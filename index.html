@@ -2492,4 +2492,104 @@ function renderPipeline() {
       <div class="acct-cell" style="flex:1;min-width:130px"><div class="acct-label">Open Deals</div><div class="acct-val">${openOpps2.length}</div></div>
       <div class="acct-cell" style="flex:1;min-width:130px"><div class="acct-label">Pipeline Value</div><div class="acct-val">${totalVal>0?'\u20ac'+totalVal.toLocaleString():'—'}</div></div>
       <div class="acct-cell" style="flex:1;min-width:130px"><div class="acct-label">Avg Deal</div><div class="acct-val">${avgVal>0?'\u20ac'+Math.round(avgVal).toLocaleString():'—'}</div></div>
-      <div class="acct-cell" style="flex:1;min-width:130px"><div class="acct-label">Closed Won</div><div class="acct-val">${state.opportunities.filt
+      <div class="acct-cell" style="flex:1;min-width:130px"><div class="acct-label">Closed Won</div><div class="acct-val">er(o=>o.stage==='closed-won').length}</div></div>
+    </div>
+    <div class="pipeline-board">${cols}</div>`;
+}
+
+load().then(()=>render());
+</script>
+
+<!-- LOADING SCREEN -->
+<div id="loading-screen" style="display:none;position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px">
+  <div style="font-size:32px">🏛️</div>
+  <div style="font-size:15px;font-weight:600;color:var(--text2)">Loading CRM data...</div>
+  <div style="font-size:12px;color:var(--muted)">Connecting to Supabase</div>
+  <div style="width:200px;height:3px;background:var(--border);border-radius:3px;overflow:hidden;margin-top:8px">
+    <div id="loading-bar" style="height:100%;background:var(--primary);border-radius:3px;animation:loadpulse 1.2s ease-in-out infinite"></div>
+  </div>
+</div>
+<style>
+@keyframes loadpulse{0%{width:0%}50%{width:80%}100%{width:100%}}
+#sync-badge{position:fixed;bottom:16px;right:16px;padding:6px 12px;border-radius:20px;font-size:11px;font-weight:700;border:1px solid currentColor;display:none;z-index:999;pointer-events:none}
+</style>
+<div id="sync-badge" style="display:none">✓ Synced</div>
+
+<!-- MODAL: Add/Edit Opportunity -->
+<div class="overlay" id="modal-opp">
+  <div class="modal">
+    <div class="mh"><h3 id="mo-title">Add Deal</h3><button class="modal-close" onclick="closeModal('modal-opp')">✕</button></div>
+    <div class="mb">
+      <input type="hidden" id="mo-id">
+      <input type="hidden" id="mo-inst-id">
+      <div class="field"><label>Deal Name *</label><input id="mo-name" placeholder="e.g. Scopus Renewal 2026"></div>
+      <div class="field"><label>Stage</label><select id="mo-stage">
+        <option value="prospect">Prospect</option>
+        <option value="engaged">Engaged</option>
+        <option value="proposal">Proposal</option>
+        <option value="negotiation">Negotiation</option>
+        <option value="closed-won">Closed Won</option>
+        <option value="closed-lost">Closed Lost</option>
+      </select></div>
+      <div class="field"><label>Value (€)</label><input id="mo-value" type="number" placeholder="0"></div>
+      <div class="field"><label>Expected Close Date</label><input id="mo-close" type="date"></div>
+      <div class="field"><label>Notes</label><textarea id="mo-notes" rows="3" placeholder="Key info, blockers, next steps..."></textarea></div>
+    </div>
+    <div class="mf">
+      <button class="btn btn-primary" onclick="saveOpp()">Save Deal</button>
+      <button class="btn btn-outline" onclick="closeModal('modal-opp')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Log Interaction -->
+<div class="overlay" id="modal-int">
+  <div class="modal">
+    <div class="mh"><h3>Log Interaction</h3><button class="modal-close" onclick="closeModal('modal-int')">✕</button></div>
+    <div class="mb">
+      <input type="hidden" id="mi-inst-id">
+      <div class="field"><label>Type</label><select id="mi-type">
+        <option value="email">📧 Email</option>
+        <option value="call">📞 Call</option>
+        <option value="meeting">🤝 Meeting</option>
+        <option value="demo">🖥️ Demo</option>
+        <option value="proposal">📄 Proposal Sent</option>
+        <option value="other">💬 Other</option>
+      </select></div>
+      <div class="field"><label>Date</label><input id="mi-date" type="date"></div>
+      <div class="field"><label>Summary *</label><input id="mi-summary" placeholder="What happened / was discussed..."></div>
+      <div class="field"><label>Contact (optional)</label><select id="mi-contact"><option value="">— none —</option></select></div>
+    </div>
+    <div class="mf">
+      <button class="btn btn-primary" onclick="saveInteraction()">Log It</button>
+      <button class="btn btn-outline" onclick="closeModal('modal-int')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Institution Account Info -->
+<div class="overlay" id="modal-acct">
+  <div class="modal">
+    <div class="mh"><h3>Account Info</h3><button class="modal-close" onclick="closeModal('modal-acct')">✕</button></div>
+    <div class="mb">
+      <input type="hidden" id="ma-inst-id">
+      <div class="field"><label>Relationship Warmth</label><select id="ma-warmth">
+        <option value="">— not set —</option>
+        <option value="cold">🔵 Cold</option>
+        <option value="warm">🟡 Warm</option>
+        <option value="hot">🔴 Hot</option>
+      </select></div>
+      <div class="field"><label>Products / Subscriptions</label><input id="ma-products" placeholder="e.g. Scopus, ScienceDirect, Pure"></div>
+      <div class="field"><label>Contract Value (€)</label><input id="ma-value" type="number" placeholder="0"></div>
+      <div class="field"><label>Renewal Date</label><input id="ma-renewal" type="date"></div>
+      <div class="field"><label>Next Action</label><input id="ma-action" placeholder="e.g. Send renewal proposal"></div>
+      <div class="field"><label>Next Action Date</label><input id="ma-action-date" type="date"></div>
+    </div>
+    <div class="mf">
+      <button class="btn btn-primary" onclick="saveInstAccount()">Save</button>
+      <button class="btn btn-outline" onclick="closeModal('modal-acct')">Cancel</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>
