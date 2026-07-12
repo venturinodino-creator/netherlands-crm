@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.jsh"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -884,7 +884,7 @@ async function load() {
     ]);
     state.institutions = instRows.map(dbToInst)
       .filter(x => x.type !== 'university' || APPROVED_UNIVERSITIES.has(x.id));
-    state.contacts = contRows.map(dbToContact);
+    state.contacts = contRows.map(dbToContact).map(c=>({...c,email:c.email||(SEED_CONTACTS.find(s=>s.id===c.id)||{}).email||''}));
     state.opportunities = oppRows.map(o => ({
       id: o.id, instId: o.inst_id, name: o.name, stage: o.stage,
       value: o.value||'', closeDate: o.close_date||'', notes: o.notes||''
