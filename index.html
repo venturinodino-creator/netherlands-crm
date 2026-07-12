@@ -2049,7 +2049,6 @@ const NEWS_TOPICS = {
   'Policy & Regulation':['policy','regulation','law','governance','legislation','directive','compliance','ethics','framework','government','minister','parliament','eu','european','subsidy'],
   'Research & Discovery':['research','study','publication','discovery','findings','paper','journal','experiment','breakthrough','innovation','grant','funding','project','prize','award'],
   'Future Plans':['plan','initiative','roadmap','vision','investment','expansion','launch','opening','collaboration','partnership','agreement','strategy','goal','2025','2026','2027','2030'],
-  'Education':['education','student','curriculum','teaching','learning','degree','program','admission','bachelor','master','phd','campus','enrollment'],
 };
 
 function detectTopics(text) {
@@ -2517,3 +2516,5 @@ load().then(()=>render());
       <div class="field"><label>Next Action Date</label><input id="ma-action-date" type="date"></div>
     </div>
     <div class="mf">
+      <button class="btn btn-primary" onclick="saveInstAccount()">Save</button>
+      <button class="btn btn-outline" onclick="closeModal('modal-acct')">
