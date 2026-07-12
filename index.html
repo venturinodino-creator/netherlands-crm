@@ -1128,6 +1128,44 @@ function esc(s) { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').repl
 const TYPE_ICON = {university:'🎓', medical:'🏥', research:'🔬', ngo:'🏢'};
 const TYPE_LABEL = {university:'University', medical:'Medical Center', research:'Research Inst.', ngo:'NGO / Foundation'};
 const TYPE_COLORS_MAP = {university:'#1d4ed8', medical:'#991b1b', research:'#166534', ngo:'#7c3aed'};
+const RESEARCH_PALETTE = {'Engineering':'#3b82f6','Life Sciences':'#22c55e','Medicine':'#dc2626','Environment':'#16a34a','Social Sciences':'#f59e0b','Humanities':'#ec4899','Physics':'#8b5cf6','AI & Computing':'#06b6d4','Economics':'#ea580c','Agriculture':'#84cc16','Law & Policy':'#64748b','Mathematics':'#0ea5e9'};
+const INST_RESEARCH_FOCUS = {
+  uva:[['Social Sciences',2],['Humanities',2],['Life Sciences',1],['Law & Policy',1],['Economics',1]],
+  vu:[['Social Sciences',2],['Life Sciences',1],['Humanities',1],['Medicine',1],['Economics',1]],
+  eur:[['Economics',3],['Medicine',2],['Law & Policy',2],['Social Sciences',1]],
+  uu:[['Life Sciences',2],['Social Sciences',2],['Humanities',2],['Engineering',1],['Law & Policy',1]],
+  leiden:[['Humanities',3],['Social Sciences',2],['Life Sciences',2],['Law & Policy',1],['Physics',1]],
+  rug:[['Life Sciences',2],['Social Sciences',2],['Economics',1],['Engineering',1],['Medicine',1]],
+  ru:[['Social Sciences',2],['Life Sciences',2],['Medicine',1],['Humanities',1]],
+  tudelft:[['Engineering',4],['AI & Computing',2],['Mathematics',1]],
+  tue:[['Engineering',3],['AI & Computing',2],['Physics',1]],
+  ut:[['Engineering',3],['AI & Computing',2],['Social Sciences',1]],
+  tiu:[['Social Sciences',3],['Law & Policy',2],['Economics',2],['Humanities',1]],
+  um:[['Medicine',2],['Economics',1],['Social Sciences',1],['Law & Policy',1]],
+  wur:[['Agriculture',4],['Life Sciences',3],['Environment',2]],
+  ou:[['Social Sciences',3],['Humanities',2]],
+  aumc:[['Medicine',5]], erasmusmc:[['Medicine',5]], umcutrecht:[['Medicine',4],['Life Sciences',1]],
+  lumc:[['Medicine',4],['Life Sciences',1]], umcg:[['Medicine',4],['Life Sciences',1]],
+  radboudumc:[['Medicine',4],['Life Sciences',1]], mumc:[['Medicine',4],['Life Sciences',1]],
+  maxima:[['Medicine',5]], nki:[['Medicine',4],['Life Sciences',1]], mmc:[['Medicine',4],['Life Sciences',1]],
+  sanquin:[['Medicine',3],['Life Sciences',2]], aighd:[['Medicine',3],['Life Sciences',1],['Social Sciences',1]],
+  princesmaxima:[['Medicine',5]],
+  nwo:[['Engineering',1],['Life Sciences',1],['Medicine',1],['Social Sciences',1],['Humanities',1],['Economics',1]],
+  tno:[['Engineering',4],['AI & Computing',2],['Environment',1]],
+  knaw:[['Humanities',3],['Social Sciences',2],['Life Sciences',2]],
+  hubrecht:[['Life Sciences',5]], nin:[['Medicine',4],['Life Sciences',1]],
+  rivm:[['Medicine',3],['Environment',2],['Life Sciences',1]],
+  cwi:[['Mathematics',3],['AI & Computing',3]], esc:[['AI & Computing',4],['Engineering',2]],
+  deltares:[['Environment',4],['Engineering',2]], sron:[['Physics',4],['Engineering',1]],
+  nikhef:[['Physics',5]], astron:[['Physics',4],['Engineering',1]],
+  nioz:[['Environment',4],['Life Sciences',1]], knmi:[['Environment',4],['Mathematics',1]],
+  naturalis:[['Life Sciences',4],['Environment',2]], nlr:[['Engineering',4],['AI & Computing',1],['Physics',1]],
+  pbl:[['Environment',3],['Social Sciences',2]], cpb:[['Economics',4],['Social Sciences',1]],
+  rathenau:[['Social Sciences',4],['AI & Computing',1]], scp:[['Social Sciences',5]],
+  clingendael:[['Law & Policy',3],['Social Sciences',2]], hiil:[['Law & Policy',4],['Social Sciences',1]],
+  oxfamnovib:[['Social Sciences',3],['Law & Policy',2]], icj:[['Law & Policy',5]],
+  iiss:[['Law & Policy',3],['Social Sciences',2]],
+};
 const INST_COORDS = {
   uva:[52.3676,4.9041], vu:[52.3328,4.8651], eur:[51.9225,4.4792], uu:[52.0907,5.1214],
   leiden:[52.1601,4.4970], rug:[53.2194,6.5665], ru:[51.8126,5.8372], tudelft:[51.9986,4.3736],
@@ -1389,6 +1427,31 @@ function buildDashWidgets(typeRows, hpRows, recentRows) {
   return getDashWidgetOrder().map(id => WIDGETS[id] || '').join('');
 }
 
+function buildInstResearchDonut(instId) {
+  const areas = INST_RESEARCH_FOCUS[instId];
+  if (!areas || !areas.length) return '';
+  const total = areas.reduce((s,[,w]) => s+w, 0);
+  if (!total) return '';
+  const cx = 60, cy = 60, R = 48, r = 26;
+  let angle = -Math.PI / 2, paths = '';
+  areas.forEach(([label, weight]) => {
+    const color = RESEARCH_PALETTE[label] || '#999';
+    const sweep = (weight / total) * 2 * Math.PI;
+    const end = angle + sweep;
+    const large = sweep > Math.PI ? 1 : 0;
+    const c0 = Math.cos(angle), s0 = Math.sin(angle), c1 = Math.cos(end), s1 = Math.sin(end);
+    paths += '<path d="M'+(cx+R*c0)+' '+(cy+R*s0)+' A'+R+' '+R+' 0 '+large+' 1 '+(cx+R*c1)+' '+(cy+R*s1)+' L'+(cx+r*c1)+' '+(cy+r*s1)+' A'+r+' '+r+' 0 '+large+' 0 '+(cx+r*c0)+' '+(cy+r*s0)+'Z" fill="'+color+'"/>';
+    angle = end;
+  });
+  const svg = '<svg width="120" height="120" viewBox="0 0 120 120" style="flex-shrink:0">'+paths+'</svg>';
+  const legend = areas.map(([label, weight]) => {
+    const color = RESEARCH_PALETTE[label] || '#999';
+    const pct = Math.round(weight / total * 100);
+    return '<div style="display:flex;align-items:center;gap:6px"><div style="width:8px;height:8px;border-radius:2px;background:'+color+';flex-shrink:0"></div><span style="font-size:11px;color:var(--muted);flex:1">'+label+'</span><span style="font-size:11px;font-weight:600;color:var(--text)">'+pct+'%</span></div>';
+  }).join('');
+  return '<div style="display:flex;align-items:center;gap:16px">'+svg+'<div style="flex:1;display:flex;flex-direction:column;gap:5px">'+legend+'</div></div>';
+}
+
 let _dashDragSrc = null;
 function initDashDrag() {
   const widgets = document.querySelectorAll('.dash-widget');
@@ -1647,6 +1710,12 @@ function renderDetail() {
     </tr>`;
   }).join('') : `<tr><td colspan="8"><div class="empty" style="padding:30px"><div class="ei">👤</div><h3>No contacts yet</h3><p><button class="btn btn-accent btn-sm" onclick="openAddContact('${inst.id}')">+ Add first contact</button></p></div></td></tr>`;
 
+  let _rfHtml = '';
+  try {
+    const _d = buildInstResearchDonut(inst.id);
+    if (_d) _rfHtml = '<div class="card" style="margin-bottom:16px;padding:14px 18px"><div class="card-header" style="margin-bottom:10px"><span class="card-title">Research Focus</span></div>' + _d + '</div>';
+  } catch(e) { /* silent */ }
+
   document.getElementById('content').innerHTML = `
     <div class="back-btn" onclick="nav('institutions')">← Back to Institutions</div>
     <div class="detail-header">
@@ -1680,6 +1749,7 @@ function renderDetail() {
       </div>
       ${statsHtml}
     </div>
+    ${_rfHtml}
     <!-- ACCOUNT INFO -->
     <div class="card" style="margin-bottom:16px;padding:14px 18px">
       <div class="card-header" style="margin-bottom:8px">
@@ -2422,99 +2492,4 @@ function renderPipeline() {
       <div class="acct-cell" style="flex:1;min-width:130px"><div class="acct-label">Open Deals</div><div class="acct-val">${openOpps2.length}</div></div>
       <div class="acct-cell" style="flex:1;min-width:130px"><div class="acct-label">Pipeline Value</div><div class="acct-val">${totalVal>0?'\u20ac'+totalVal.toLocaleString():'—'}</div></div>
       <div class="acct-cell" style="flex:1;min-width:130px"><div class="acct-label">Avg Deal</div><div class="acct-val">${avgVal>0?'\u20ac'+Math.round(avgVal).toLocaleString():'—'}</div></div>
-      <div class="acct-cell" style="flex:1;min-width:130px"><div class="acct-label">Closed Won</div><div class="acct-val">${state.opportunities.filter(o=>o.stage==='closed-won').length}</div></div>
-    </div>
-    <div class="pipeline-board">${cols}</div>`;
-}
-
-load().then(()=>render());
-</script>
-
-<!-- LOADING SCREEN -->
-<div id="loading-screen" style="display:none;position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px">
-  <div style="font-size:32px">🏛️</div>
-  <div style="font-size:15px;font-weight:600;color:var(--text2)">Loading CRM data...</div>
-  <div style="font-size:12px;color:var(--muted)">Connecting to Supabase</div>
-  <div style="width:200px;height:3px;background:var(--border);border-radius:3px;overflow:hidden;margin-top:8px">
-    <div id="loading-bar" style="height:100%;background:var(--primary);border-radius:3px;animation:loadpulse 1.2s ease-in-out infinite"></div>
-  </div>
-</div>
-<style>
-@keyframes loadpulse{0%{width:0%}50%{width:80%}100%{width:100%}}
-#sync-badge{position:fixed;bottom:16px;right:16px;padding:6px 12px;border-radius:20px;font-size:11px;font-weight:700;border:1px solid currentColor;display:none;z-index:999;pointer-events:none}
-</style>
-<div id="sync-badge" style="display:none">✓ Synced</div>
-
-<!-- MODAL: Add/Edit Opportunity -->
-<div class="overlay" id="modal-opp">
-  <div class="modal">
-    <div class="mh"><h3 id="mo-title">Add Deal</h3><button class="modal-close" onclick="closeModal('modal-opp')">✕</button></div>
-    <div class="mb">
-      <input type="hidden" id="mo-id">
-      <input type="hidden" id="mo-inst-id">
-      <div class="field"><label>Deal Name *</label><input id="mo-name" placeholder="e.g. Scopus Renewal 2026"></div>
-      <div class="field"><label>Stage</label><select id="mo-stage">
-        <option value="prospect">Prospect</option>
-        <option value="engaged">Engaged</option>
-        <option value="proposal">Proposal</option>
-        <option value="negotiation">Negotiation</option>
-        <option value="closed-won">Closed Won</option>
-        <option value="closed-lost">Closed Lost</option>
-      </select></div>
-      <div class="field"><label>Value (€)</label><input id="mo-value" type="number" placeholder="0"></div>
-      <div class="field"><label>Expected Close Date</label><input id="mo-close" type="date"></div>
-      <div class="field"><label>Notes</label><textarea id="mo-notes" rows="3" placeholder="Key info, blockers, next steps..."></textarea></div>
-    </div>
-    <div class="mf">
-      <button class="btn btn-primary" onclick="saveOpp()">Save Deal</button>
-      <button class="btn btn-outline" onclick="closeModal('modal-opp')">Cancel</button>
-    </div>
-  </div>
-</div>
-
-<!-- MODAL: Log Interaction -->
-<div class="overlay" id="modal-int">
-  <div class="modal">
-    <div class="mh"><h3>Log Interaction</h3><button class="modal-close" onclick="closeModal('modal-int')">✕</button></div>
-    <div class="mb">
-      <input type="hidden" id="mi-inst-id">
-      <div class="field"><label>Type</label><select id="mi-type">
-        <option value="email">📧 Email</option>
-        <option value="call">📞 Call</option>
-        <option value="meeting">🤝 Meeting</option>
-        <option value="demo">🖥️ Demo</option>
-        <option value="proposal">📄 Proposal Sent</option>
-        <option value="other">💬 Other</option>
-      </select></div>
-      <div class="field"><label>Date</label><input id="mi-date" type="date"></div>
-      <div class="field"><label>Summary *</label><input id="mi-summary" placeholder="What happened / was discussed..."></div>
-      <div class="field"><label>Contact (optional)</label><select id="mi-contact"><option value="">— none —</option></select></div>
-    </div>
-    <div class="mf">
-      <button class="btn btn-primary" onclick="saveInteraction()">Log It</button>
-      <button class="btn btn-outline" onclick="closeModal('modal-int')">Cancel</button>
-    </div>
-  </div>
-</div>
-
-<!-- MODAL: Institution Account Info -->
-<div class="overlay" id="modal-acct">
-  <div class="modal">
-    <div class="mh"><h3>Account Info</h3><button class="modal-close" onclick="closeModal('modal-acct')">✕</button></div>
-    <div class="mb">
-      <input type="hidden" id="ma-inst-id">
-      <div class="field"><label>Relationship Warmth</label><select id="ma-warmth">
-        <option value="">— not set —</option>
-        <option value="cold">🔵 Cold</option>
-        <option value="warm">🟡 Warm</option>
-        <option value="hot">🔴 Hot</option>
-      </select></div>
-      <div class="field"><label>Products / Subscriptions</label><input id="ma-products" placeholder="e.g. Scopus, ScienceDirect, Pure"></div>
-      <div class="field"><label>Contract Value (€)</label><input id="ma-value" type="number" placeholder="0"></div>
-      <div class="field"><label>Renewal Date</label><input id="ma-renewal" type="date"></div>
-      <div class="field"><label>Next Action</label><input id="ma-action" placeholder="e.g. Send renewal proposal"></div>
-      <div class="field"><label>Next Action Date</label><input id="ma-action-date" type="date"></div>
-    </div>
-    <div class="mf">
-      <button class="btn btn-primary" onclick="saveInstAccount()">Save</button>
-      <button class="btn btn-outline" onclick="closeModal('modal-acct')">
+      <div class="acct-cell" style="flex:1;min-width:130px"><div class="acct-label">Closed Won</div><div class="acct-val">${state.opportunities.filt
