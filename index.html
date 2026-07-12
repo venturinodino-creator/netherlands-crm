@@ -1333,8 +1333,8 @@ function renderDashboard() {
 }
 
 function getDashWidgetOrder() {
-  try { return JSON.parse(localStorage.getItem('nl_crm_widget_order')) || ['w-today','w-types','w-highprio','w-recent','w-actions','w-map']; }
-  catch(e) { return ['w-today','w-types','w-highprio','w-recent','w-actions','w-map']; }
+  try { return JSON.parse(localStorage.getItem('nl_crm_widget_order')) || ['w-today','w-types','w-research','w-highprio','w-recent','w-actions','w-map']; }
+  catch(e) { return ['w-today','w-types','w-research','w-highprio','w-recent','w-actions','w-map']; }
 }
 function saveDashWidgetOrder(order) {
   localStorage.setItem('nl_crm_widget_order', JSON.stringify(order));
@@ -1384,9 +1384,42 @@ function buildDashWidgets(typeRows, hpRows, recentRows) {
     'w-map': `<div class="card dash-widget" data-widget-id="w-map" draggable="true">
       <div class="card-header"><span class="card-title">Map Overview</span><button class="btn btn-xs btn-outline" onclick="nav('map')">Full map →</button>${handle}</div>
       <div id="dash-mini-map" style="height:220px;border-radius:7px;overflow:hidden;border:1px solid var(--border)"></div>
+    </div>`,
+    'w-research': `<div class="card dash-widget" data-widget-id="w-research" draggable="true">
+      <div class="card-header"><span class="card-title">Research Areas</span>${handle}</div>
+      ${buildResearchDonut(state.institutions)}
     </div>`
   };
   return getDashWidgetOrder().map(id => WIDGETS[id] || '').join('');
+}
+
+function buildResearchDonut(institutions) {
+  const RESEARCH_AREAS = [
+    { label: 'Life Sciences & Medicine', color: '#dc2626', ids: ['aumc','erasmusmc','umcutrecht','lumc','umcg','radboudumc','mumc','maxima','nki','mmc','sanquin','aighd','princesmaxima','hubrecht','nin','rivm'] },
+    { label: 'Multidisciplinary',        color: '#6366f1', ids: ['uva','vu','eur','uu','leiden','rug','ru','um','ou','nwo'] },
+    { label: 'Social Sciences & Policy', color: '#f59e0b', ids: ['tiu','knaw','cpb','rathenau','scp','clingendael','hiil','oxfamnovib','icj','iiss'] },
+    { label: 'Environmental & Climate',  color: '#22c55e', ids: ['wur','deltares','nioz','knmi','naturalis','pbl'] },
+    { label: 'Technology & Engineering', color: '#3b82f6', ids: ['tudelft','tue','ut','tno','nlr'] },
+    { label: 'Physics & Astronomy',      color: '#8b5cf6', ids: ['sron','nikhef','astron'] },
+    { label: 'Computer Science & Data',  color: '#06b6d4', ids: ['cwi','esc'] },
+  ];
+  const instIds = new Set(institutions.map(i => i.id));
+  const data = RESEARCH_AREAS.map(a => ({ ...a, count: a.ids.filter(id => instIds.has(id)).length })).filter(a => a.count > 0);
+  const total = data.reduce((s, a) => s + a.count, 0);
+  if (!total) return '<p style="font-size:13px;color:var(--muted);padding:12px 0">No data.</p>';
+  const cx = 75, cy = 75, R = 58, r = 32;
+  let angle = -Math.PI / 2, paths = '';
+  data.forEach(a => {
+    const sweep = (a.count / total) * 2 * Math.PI;
+    const end = angle + sweep;
+    const large = sweep > Math.PI ? 1 : 0;
+    const cos0 = Math.cos(angle), sin0 = Math.sin(angle), cos1 = Math.cos(end), sin1 = Math.sin(end);
+    paths += `<path d="M${cx+R*cos0} ${cy+R*sin0} A${R} ${R} 0 ${large} 1 ${cx+R*cos1} ${cy+R*sin1} L${cx+r*cos1} ${cy+r*sin1} A${r} ${r} 0 ${large} 0 ${cx+r*cos0} ${cy+r*sin0}Z" fill="${a.color}"/>`;
+    angle = end;
+  });
+  const svg = `<svg width="150" height="150" viewBox="0 0 150 150" style="flex-shrink:0">${paths}<text x="75" y="70" text-anchor="middle" font-size="22" font-weight="700" fill="var(--text)">${total}</text><text x="75" y="86" text-anchor="middle" font-size="10" fill="var(--muted)">institutions</text></svg>`;
+  const legend = data.map(a => `<div style="display:flex;align-items:center;gap:6px"><div style="width:9px;height:9px;border-radius:2px;background:${a.color};flex-shrink:0"></div><span style="font-size:10.5px;color:var(--muted);flex:1">${a.label}</span><span style="font-size:11px;font-weight:600;color:var(--text)">${a.count}</span></div>`).join('');
+  return `<div style="display:flex;align-items:center;gap:12px;padding:4px 0">${svg}<div style="flex:1;display:flex;flex-direction:column;gap:6px">${legend}</div></div>`;
 }
 
 let _dashDragSrc = null;
@@ -2463,58 +2496,4 @@ load().then(()=>render());
       </select></div>
       <div class="field"><label>Value (€)</label><input id="mo-value" type="number" placeholder="0"></div>
       <div class="field"><label>Expected Close Date</label><input id="mo-close" type="date"></div>
-      <div class="field"><label>Notes</label><textarea id="mo-notes" rows="3" placeholder="Key info, blockers, next steps..."></textarea></div>
-    </div>
-    <div class="mf">
-      <button class="btn btn-primary" onclick="saveOpp()">Save Deal</button>
-      <button class="btn btn-outline" onclick="closeModal('modal-opp')">Cancel</button>
-    </div>
-  </div>
-</div>
-
-<!-- MODAL: Log Interaction -->
-<div class="overlay" id="modal-int">
-  <div class="modal">
-    <div class="mh"><h3>Log Interaction</h3><button class="modal-close" onclick="closeModal('modal-int')">✕</button></div>
-    <div class="mb">
-      <input type="hidden" id="mi-inst-id">
-      <div class="field"><label>Type</label><select id="mi-type">
-        <option value="email">📧 Email</option>
-        <option value="call">📞 Call</option>
-        <option value="meeting">🤝 Meeting</option>
-        <option value="demo">🖥️ Demo</option>
-        <option value="proposal">📄 Proposal Sent</option>
-        <option value="other">💬 Other</option>
-      </select></div>
-      <div class="field"><label>Date</label><input id="mi-date" type="date"></div>
-      <div class="field"><label>Summary *</label><input id="mi-summary" placeholder="What happened / was discussed..."></div>
-      <div class="field"><label>Contact (optional)</label><select id="mi-contact"><option value="">— none —</option></select></div>
-    </div>
-    <div class="mf">
-      <button class="btn btn-primary" onclick="saveInteraction()">Log It</button>
-      <button class="btn btn-outline" onclick="closeModal('modal-int')">Cancel</button>
-    </div>
-  </div>
-</div>
-
-<!-- MODAL: Institution Account Info -->
-<div class="overlay" id="modal-acct">
-  <div class="modal">
-    <div class="mh"><h3>Account Info</h3><button class="modal-close" onclick="closeModal('modal-acct')">✕</button></div>
-    <div class="mb">
-      <input type="hidden" id="ma-inst-id">
-      <div class="field"><label>Relationship Warmth</label><select id="ma-warmth">
-        <option value="">— not set —</option>
-        <option value="cold">🔵 Cold</option>
-        <option value="warm">🟡 Warm</option>
-        <option value="hot">🔴 Hot</option>
-      </select></div>
-      <div class="field"><label>Products / Subscriptions</label><input id="ma-products" placeholder="e.g. Scopus, ScienceDirect, Pure"></div>
-      <div class="field"><label>Contract Value (€)</label><input id="ma-value" type="number" placeholder="0"></div>
-      <div class="field"><label>Renewal Date</label><input id="ma-renewal" type="date"></div>
-      <div class="field"><label>Next Action</label><input id="ma-action" placeholder="e.g. Send renewal proposal"></div>
-      <div class="field"><label>Next Action Date</label><input id="ma-action-date" type="date"></div>
-    </div>
-    <div class="mf">
-      <button class="btn btn-primary" onclick="saveInstAccount()">Save</button>
-      <button class="btn btn-outline" onclick="closeModal('modal-acct')">
+      <div
