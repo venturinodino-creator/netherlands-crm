@@ -1759,6 +1759,12 @@ function renderDetail() {
     </tr>`;
   }).join('') : `<tr><td colspan="8"><div class="empty" style="padding:30px"><div class="ei">👤</div><h3>No contacts yet</h3><p><button class="btn btn-accent btn-sm" onclick="openAddContact('${inst.id}')">+ Add first contact</button></p></div></td></tr>`;
 
+  const _rfHtml = (function(){
+    const d = buildInstResearchDonut(inst.id);
+    if (!d) return '';
+    return '<div class="card" style="margin-bottom:16px;padding:14px 18px"><div class="card-header" style="margin-bottom:10px"><span class="card-title">Research Focus</span></div>' + d + '</div>';
+  }());
+
   document.getElementById('content').innerHTML = `
     <div class="back-btn" onclick="nav('institutions')">← Back to Institutions</div>
     <div class="detail-header">
@@ -1792,8 +1798,7 @@ function renderDetail() {
       </div>
       ${statsHtml}
     </div>
-    <!-- RESEARCH FOCUS -->
-    ${(()=>{ const d=buildInstResearchDonut(inst.id); return d?`<div class="card" style="margin-bottom:16px;padding:14px 18px"><div class="card-header" style="margin-bottom:10px"><span class="card-title">Research Focus</span></div>${d}</div>`:''; })()}
+    ${_rfHtml}
     <!-- ACCOUNT INFO -->
     <div class="card" style="margin-bottom:16px;padding:14px 18px">
       <div class="card-header" style="margin-bottom:8px">
@@ -2494,4 +2499,4 @@ async function saveInstAccount() {
 
 // ── PIPELINE PAGE ─────────────────────────────────────────────────────────────
 function renderPipeline() {
-  document.getElementById('page-title').textCont
+  docum
