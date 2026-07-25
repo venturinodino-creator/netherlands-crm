@@ -2575,8 +2575,9 @@ const COMPETITOR_PRODUCTS = {
 
 (function(){
   const _orig = window.renderDetail;
-  window.renderDetail = function(instId){
-    _orig(instId);
+  window.renderDetail = function(){
+    _orig();
+    const instId = (window.state && window.state.detailInstId) || '';
     const products = (COMPETITOR_PRODUCTS[instId] || []);
     if (!products.length) return;
     const content = document.querySelector('.content');
