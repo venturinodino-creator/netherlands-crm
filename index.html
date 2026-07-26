@@ -356,6 +356,9 @@ a.ext-link:hover{color:var(--text)}
     <div class="nav-item" data-view="pipeline" onclick="nav('pipeline')">
       <div class="nav-icon-box">◈</div> Pipeline
     </div>
+    <div class="nav-item" data-view="subscriptions" onclick="nav('subscriptions')">
+      <div class="nav-icon-box">⊟</div> Subscription Matrix
+    </div>
     <div class="sb-divider"></div>
     <div class="nav-section">Data</div>
 
@@ -1267,6 +1270,7 @@ function render() {
     map: renderMap,
     news: renderNews,
     pipeline: renderPipeline,
+    subscriptions: renderSubscriptionMatrix,
   };
   (views[state.view] || renderDashboard)();
 }
@@ -2505,6 +2509,147 @@ load().then(()=>render());
 
 
 // ─── COMPETITOR PRODUCTS ────────────────────────────────────────────────────
+// ─── SUBSCRIPTION MATRIX VIEW ────────────────────────────────────────────────
+function renderSubscriptionMatrix() {
+  document.getElementById('page-title').textContent = 'University Subscription Comparison';
+  document.getElementById('page-sub').textContent = 'Competitor products across all 14 Dutch universities — one glance overview';
+  document.getElementById('topbar-actions').innerHTML = '';
+
+  // Column definitions — maps to COMPETITOR_PRODUCTS vendor field
+  const COLS = [
+    { key: 'springer',   vendor: 'Springer Nature',  label: 'SpringerLink',       cat: 'national' },
+    { key: 'wiley',      vendor: 'Wiley',             label: 'Wiley Online',       cat: 'national' },
+    { key: 'tf',         vendor: 'Taylor & Francis',  label: 'Taylor & Francis',   cat: 'national' },
+    { key: 'wos',        vendor: 'Clarivate',         label: 'Web of Science',     cat: 'citation' },
+    { key: 'ieee',       vendor: 'IEEE',              label: 'IEEE Xplore',        cat: 'specialist' },
+    { key: 'acm',        vendor: 'ACM',               label: 'ACM Digital Lib',    cat: 'specialist' },
+    { key: 'scifinder',  vendor: 'CAS / ACS',         label: 'SciFinder-N',        cat: 'specialist' },
+  ];
+
+  // Universities known to have CANCELLED WoS (intentionally absent from COMPETITOR_PRODUCTS)
+  const WOS_CANCELLED = new Set(['vu', 'uu', 'tudelft', 'ut']);
+
+  // University display order
+  const UNI_ORDER = ['uva','vu','eur','uu','leiden','rug','ru','tudelft','tue','ut','tiu','um','wur','ou'];
+
+  const unis = UNI_ORDER
+    .map(id => state.institutions.find(u => u.id === id))
+    .filter(Boolean);
+
+  function getCell(instId, col) {
+    const products = COMPETITOR_PRODUCTS[instId] || [];
+    const entry = products.find(p => p.vendor === col.vendor);
+
+    // WoS special: universities that cancelled have no entry — show as cancelled
+    if (col.key === 'wos' && !entry && WOS_CANCELLED.has(instId)) {
+      return { status: 'cancelled', badge: '✕', title: 'Cancelled' };
+    }
+
+    if (!entry) return { status: 'none', badge: '—', title: 'Not subscribed / N/A' };
+
+    const n = entry.notes || '';
+    const expiry = entry.contractExpiry ? entry.contractExpiry.slice(0,4) : '';
+    const expiryTag = expiry ? ` (→${expiry})` : '';
+
+    if (n.includes('UNCONFIRMED'))            return { status: 'unconfirmed', badge: '?',  title: 'Unconfirmed — verify with library' + expiryTag };
+    if (n.includes('CANCELLING'))             return { status: 'expiring',    badge: '⏳', title: 'Active but cancelling' + expiryTag };
+    if (n.includes('⚠️') && n.includes('likely')) return { status: 'likely', badge: '~',  title: 'Access likely but unverified' + expiryTag };
+    if (n.includes('⚠️'))                    return { status: 'likely',      badge: '~',  title: 'Access confirmed — contract details unverified' + expiryTag };
+    return { status: 'active', badge: '✓', title: 'Confirmed active' + expiryTag };
+  }
+
+  const STATUS_STYLE = {
+    active:      'background:#dcfce7;color:#166534;border:1px solid #bbf7d0',
+    likely:      'background:#f0fdf4;color:#15803d;border:1px solid #d1fae5',
+    unconfirmed: 'background:#fef9c3;color:#854d0e;border:1px solid #fde68a',
+    expiring:    'background:#ffedd5;color:#9a3412;border:1px solid #fed7aa',
+    cancelled:   'background:#fee2e2;color:#991b1b;border:1px solid #fecaca',
+    none:        'background:#f8fafc;color:#94a3b8;border:1px solid #e2e8f0',
+  };
+
+  // Column header groups
+  const catColors = { national: '#1d4ed8', citation: '#7c3aed', specialist: '#0891b2' };
+  const catLabels = { national: 'National Deals (all universities)', citation: 'Citation DB', specialist: 'Specialist DB' };
+
+  // Group headers row (colspan)
+  const groupCols = {};
+  COLS.forEach(c => { groupCols[c.cat] = (groupCols[c.cat]||0)+1; });
+  const groupOrder = ['national','citation','specialist'];
+  const groupRow = groupOrder.map(cat => `
+    <th colspan="${groupCols[cat]}" style="background:${catColors[cat]};color:#fff;text-align:center;font-size:11px;font-weight:600;padding:6px 4px;border-right:2px solid #fff">
+      ${catLabels[cat]}
+    </th>`).join('');
+
+  // Column headers
+  const colHeaders = COLS.map((c,i) => {
+    const borderR = (i===2||i===3) ? 'border-right:2px solid #e2e8f0;' : '';
+    return `<th style="background:#f1f5f9;color:#334155;font-size:11px;font-weight:600;padding:8px 6px;text-align:center;vertical-align:bottom;white-space:nowrap;${borderR}">${c.label}</th>`;
+  }).join('');
+
+  // University rows
+  const rows = unis.map(u => {
+    const cells = COLS.map((c,i) => {
+      const cell = getCell(u.id, c);
+      const borderR = (i===2||i===3) ? 'border-right:2px solid #e2e8f0;' : '';
+      return `<td title="${cell.title}" style="${STATUS_STYLE[cell.status]};text-align:center;font-size:14px;font-weight:600;padding:7px 4px;cursor:default;${borderR}">
+        <span title="${cell.title}">${cell.badge}</span>
+      </td>`;
+    }).join('');
+
+    return `<tr style="border-bottom:1px solid #f1f5f9" onclick="nav('detail',{instId:'${u.id}'})" title="Open ${esc(u.name)} profile" class="sub-row">
+      <td style="padding:8px 12px;font-size:13px;font-weight:500;color:var(--text);white-space:nowrap;cursor:pointer;min-width:140px">
+        <span style="font-size:11px;opacity:.5;margin-right:4px">${esc(u.short||u.id.toUpperCase())}</span>${esc(u.name.replace(/University|Universiteit|Universit(y|eit) of /g,'').replace(/Eindhoven University of Technology/,'TU/e').replace(/Wageningen University & Research/,'WUR'))}
+      </td>
+      ${cells}
+    </tr>`;
+  }).join('');
+
+  // Legend
+  const legend = Object.entries(STATUS_STYLE).map(([k,s]) => {
+    const labels = { active:'Confirmed active', likely:'Confirmed (contract details TBC)', unconfirmed:'Unconfirmed — verify', expiring:'Active, cancelling', cancelled:'Cancelled', none:'Not subscribed / N/A' };
+    return `<span style="display:inline-flex;align-items:center;gap:5px;margin-right:14px;font-size:12px;color:#475569">
+      <span style="${s};border-radius:4px;padding:1px 7px;font-size:13px;font-weight:600">
+        ${ {active:'✓',likely:'~',unconfirmed:'?',expiring:'⏳',cancelled:'✕',none:'—'}[k] }
+      </span>${labels[k]}</span>`;
+  }).join('');
+
+  document.getElementById('content').innerHTML = `
+    <style>
+      .sub-row:hover td { filter: brightness(.96); }
+    </style>
+    <div style="padding:0 0 20px">
+      <p style="font-size:13px;color:var(--muted);margin-bottom:16px">
+        Click any row to open the university profile. Hover a cell for details. Data sourced from institutional library pages and openaccess.nl.
+      </p>
+
+      <div style="overflow-x:auto;border-radius:10px;box-shadow:0 1px 6px rgba(0,0,0,.07);border:1px solid #e2e8f0">
+        <table style="border-collapse:collapse;width:100%;min-width:700px">
+          <thead>
+            <tr>
+              <th style="background:#f1f5f9;padding:8px 12px;text-align:left;font-size:11px;font-weight:600;color:#64748b;border-right:1px solid #e2e8f0" rowspan="2">University</th>
+              ${groupRow}
+            </tr>
+            <tr>${colHeaders}</tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+
+      <div style="margin-top:18px;padding:12px 16px;background:#f8fafc;border-radius:8px;border:1px solid #e2e8f0">
+        <div style="font-size:11px;font-weight:600;color:#64748b;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px">Legend</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px">${legend}</div>
+      </div>
+
+      <div style="margin-top:12px;padding:12px 16px;background:#fffbeb;border-radius:8px;border:1px solid #fde68a">
+        <div style="font-size:12px;color:#92400e">
+          <strong>📋 National deals</strong> (Springer, Wiley, T&F) apply to all 14 universities under UKB-SURF / UNL agreements, expiring Dec 2026. &nbsp;
+          <strong>WoS wave:</strong> VU, UU, TU Delft & UT all cancelled as of 2025–2026; RUG cancelling Dec 2026. &nbsp;
+          All ⚠️/? cells should be verified with the institution's library director before quoting in proposals.
+        </div>
+      </div>
+    </div>`;
+}
+
 const COMPETITOR_PRODUCTS = {
 
   /* ── TU/e (Eindhoven University of Technology) ─────────────────────── */
