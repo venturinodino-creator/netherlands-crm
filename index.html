@@ -2585,20 +2585,13 @@ function renderSubscriptionMatrix() {
   // Universities known to have CANCELLED WoS (intentionally absent from COMPETITOR_PRODUCTS)
   const WOS_CANCELLED = new Set(['vu', 'uu', 'tudelft', 'ut']);
 
-  // University display order
-  const UNI_ORDER = ['uva','vu','eur','uu','leiden','rug','ru','tudelft','tue','ut','tiu','um','wur','ou'];
-
-  const unis = UNI_ORDER
-    .map(id => state.institutions.find(u => u.id === id))
-    .filter(Boolean);
-
   function getCell(instId, col) {
     const products = COMPETITOR_PRODUCTS[instId] || [];
     const entry = products.find(p => p.vendor === col.vendor);
 
     // WoS special: universities that cancelled have no entry — show as cancelled
     if (col.key === 'wos' && !entry && WOS_CANCELLED.has(instId)) {
-      return { status: 'cancelled', badge: '✕', title: 'Cancelled' };
+      return { status: 'cancelled', badge: '✗', title: 'Cancelled — no longer subscribed' };
     }
 
     if (!entry) return { status: 'none', badge: '—', title: 'Not subscribed / N/A' };
@@ -2614,6 +2607,7 @@ function renderSubscriptionMatrix() {
     return { status: 'active', badge: '✓', title: 'Confirmed active' + expiryTag };
   }
 
+  // Standard styling for non-WoS columns
   const STATUS_STYLE = {
     active:      'background:#dcfce7;color:#166534;border:1px solid #bbf7d0',
     likely:      'background:#f0fdf4;color:#15803d;border:1px solid #d1fae5',
@@ -2622,6 +2616,29 @@ function renderSubscriptionMatrix() {
     cancelled:   'background:#fee2e2;color:#991b1b;border:1px solid #fecaca',
     none:        'background:#f8fafc;color:#94a3b8;border:1px solid #e2e8f0',
   };
+
+  // WoS-specific styling: active = RED (competitor present), cancelled/none = GREEN (opportunity)
+  const WOS_STYLE = {
+    active:      'background:#fee2e2;color:#991b1b;border:1px solid #fecaca',   // RED — competitor active
+    likely:      'background:#ffedd5;color:#9a3412;border:1px solid #fed7aa',   // orange — likely active
+    unconfirmed: 'background:#fef9c3;color:#854d0e;border:1px solid #fde68a',   // yellow
+    expiring:    'background:#fef9c3;color:#92400e;border:1px solid #fde68a',   // yellow — cancelling (opportunity building)
+    cancelled:   'background:#dcfce7;color:#166534;border:1px solid #bbf7d0',   // GREEN — cancelled = opportunity
+    none:        'background:#dcfce7;color:#166534;border:1px solid #bbf7d0',   // GREEN — no WoS = opportunity
+  };
+
+  // WoS sort priority: active first (red = competitor present), then expiring, then unconfirmed, then cancelled/none
+  const WOS_SORT = { active: 0, likely: 1, expiring: 2, unconfirmed: 3, cancelled: 4, none: 5 };
+
+  const ALL_IDS = ['uva','vu','eur','uu','leiden','rug','ru','tudelft','tue','ut','tiu','um','wur','ou'];
+  const unis = ALL_IDS
+    .map(id => state.institutions.find(u => u.id === id))
+    .filter(Boolean)
+    .sort((a, b) => {
+      const wa = getCell(a.id, { key:'wos', vendor:'Clarivate' }).status;
+      const wb = getCell(b.id, { key:'wos', vendor:'Clarivate' }).status;
+      return (WOS_SORT[wa] ?? 9) - (WOS_SORT[wb] ?? 9);
+    });
 
   // Column header groups
   const catColors = { national: '#1d4ed8', citation: '#7c3aed', specialist: '#0891b2' };
@@ -2647,7 +2664,8 @@ function renderSubscriptionMatrix() {
     const cells = COLS.map((c,i) => {
       const cell = getCell(u.id, c);
       const borderR = (i===2||i===3) ? 'border-right:2px solid #e2e8f0;' : '';
-      return `<td title="${cell.title}" style="${STATUS_STYLE[cell.status]};text-align:center;font-size:14px;font-weight:600;padding:7px 4px;cursor:default;${borderR}">
+      const style = c.key === 'wos' ? WOS_STYLE[cell.status] : STATUS_STYLE[cell.status];
+      return `<td title="${cell.title}" style="${style};text-align:center;font-size:14px;font-weight:600;padding:7px 4px;cursor:default;${borderR}">
         <span title="${cell.title}">${cell.badge}</span>
       </td>`;
     }).join('');
@@ -2661,13 +2679,21 @@ function renderSubscriptionMatrix() {
   }).join('');
 
   // Legend
-  const legend = Object.entries(STATUS_STYLE).map(([k,s]) => {
-    const labels = { active:'Confirmed active', likely:'Confirmed (contract details TBC)', unconfirmed:'Unconfirmed — verify', expiring:'Active, cancelling', cancelled:'Cancelled', none:'Not subscribed / N/A' };
-    return `<span style="display:inline-flex;align-items:center;gap:5px;margin-right:14px;font-size:12px;color:#475569">
-      <span style="${s};border-radius:4px;padding:1px 7px;font-size:13px;font-weight:600">
-        ${ {active:'✓',likely:'~',unconfirmed:'?',expiring:'⏳',cancelled:'✕',none:'—'}[k] }
-      </span>${labels[k]}</span>`;
-  }).join('');
+  const legendItems = [
+    { style: WOS_STYLE.active,      badge: '✓', label: 'WoS active — competitor present' },
+    { style: WOS_STYLE.expiring,    badge: '⏳', label: 'WoS cancelling — opportunity building' },
+    { style: WOS_STYLE.unconfirmed, badge: '?',  label: 'WoS status unconfirmed' },
+    { style: WOS_STYLE.cancelled,   badge: '✗',  label: 'WoS cancelled — opportunity!' },
+    { style: STATUS_STYLE.active,   badge: '✓',  label: 'Other DB confirmed active' },
+    { style: STATUS_STYLE.likely,   badge: '~',  label: 'Access likely (contract details TBC)' },
+    { style: STATUS_STYLE.none,     badge: '—',  label: 'Not subscribed / N/A' },
+  ];
+  const legend = legendItems.map(item =>
+    `<span style="display:inline-flex;align-items:center;gap:5px;margin-right:14px;font-size:12px;color:#475569">
+      <span style="${item.style};border-radius:4px;padding:1px 7px;font-size:13px;font-weight:600">${item.badge}</span>
+      ${item.label}
+    </span>`
+  ).join('');
 
   document.getElementById('content').innerHTML = `
     <style>
