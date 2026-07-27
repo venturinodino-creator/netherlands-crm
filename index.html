@@ -3339,60 +3339,88 @@ window.showMatrixCellPicker = function(instId, vendor, isWos, evt){
     const VENDOR_COL = { 'Springer Nature':'springer','Wiley':'wiley','Taylor & Francis':'tf','Clarivate':'wos','IEEE':'ieee','ACM':'acm','CAS / ACS':'scifinder' };
     const instOverrides = window.matrixOverrides && window.matrixOverrides[instId] ? window.matrixOverrides[instId] : {};
 
-    const rows = products.map(p => {
-      const colKey = VENDOR_COL[p.vendor] || '';
-      const ov = colKey ? instOverrides[colKey] : undefined;
-      const ovBadge = ov ? `<span style="margin-left:8px;font-size:10px;padding:2px 8px;border-radius:8px;font-weight:600;background:rgba(0,245,196,.15);color:var(--accent);border:1px solid rgba(0,245,196,.3)">✏️ Status updated: ${(_OV_BADGES[ov]||'') + ' ' + (_OV_TITLES[ov]||ov)}</span>` : '';
-      return '<tr>' +
-      '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-weight:600;font-size:12px;color:#ffffff">'+esc(p.product)+'</td>'+
-      '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px;color:#e2e8f0">'+esc(p.vendor)+'</td>'+
-      '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px;color:#e2e8f0">'+esc(p.category)+'</td>'+
-      '<td style="padding:8px 10px;border-bottom:1px solid var(--border)"><span style="background:rgba(239,68,68,.18);color:#fca5a5;font-size:10px;padding:2px 7px;border-radius:8px;font-weight:600">'+esc(p.competesWith)+'</span></td>'+
-      '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px;color:#e2e8f0;white-space:nowrap">'+fmtFull(p.subscriptionStart)+'</td>'+
-      '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px;font-weight:600;color:#ffffff;white-space:nowrap">'+fmtFull(p.contractExpiry)+expiryBadge(p.contractExpiry)+'</td>'+
-      '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px;color:#e2e8f0;max-width:240px">'+esc(p.notes)+ovBadge+'</td>'+
-      '</tr>';
-    }).join('');
-
-    // If any WoS override exists but WoS isn't in the products list, add a row for it
-    if (instOverrides.wos && !products.find(p => p.vendor === 'Clarivate')) {
-      const wosOv = instOverrides.wos;
-      rows + '<tr>'+
-      '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-weight:600;font-size:12px;color:#ffffff">Web of Science</td>'+
-      '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px;color:#e2e8f0">Clarivate</td>'+
-      '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px;color:#e2e8f0">Citation & Abstract Database</td>'+
-      '<td style="padding:8px 10px;border-bottom:1px solid var(--border)"><span style="background:rgba(239,68,68,.18);color:#fca5a5;font-size:10px;padding:2px 7px;border-radius:8px;font-weight:600">Scopus</span></td>'+
-      '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px;color:#e2e8f0">—</td>'+
-      '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px;color:#e2e8f0">—</td>'+
-      '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px;color:#e2e8f0"><span style="font-size:10px;padding:2px 8px;border-radius:8px;font-weight:600;background:rgba(0,245,196,.15);color:var(--accent);border:1px solid rgba(0,245,196,.3)">✏️ Status updated: '+(_OV_BADGES[wosOv]||'')+' '+(_OV_TITLES[wosOv]||wosOv)+'</span></td>'+
-      '</tr>';
-    }
-
+    const cardId = 'cp-card-'+instId;
     const thStyle = 'padding:8px 10px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#94a3b8;border-bottom:1px solid var(--border);white-space:nowrap';
+
+    // Status selector cell for edit mode
+    const EDIT_STATES = [
+      { v:'active',      label:'✓ Active',       bg:'#fee2e2', fg:'#991b1b' },
+      { v:'expiring',    label:'⏳ Cancelling',   bg:'#fef9c3', fg:'#854d0e' },
+      { v:'unconfirmed', label:'? Unconfirmed',   bg:'#fef9c3', fg:'#854d0e' },
+      { v:'cancelled',   label:'✗ Cancelled',     bg:'#dcfce7', fg:'#166534' },
+      { v:'none',        label:'— Not subscribed',bg:'rgba(255,255,255,.06)', fg:'#94a3b8' },
+      { v:'',            label:'🔄 Reset to auto', bg:'rgba(0,245,196,.08)', fg:'var(--accent)' },
+    ];
+
+    window._cpEditMode = window._cpEditMode || {};
+
+    function rebuildCpCard() {
+      const editing = window._cpEditMode[instId];
+      const editRows = products.map(p => {
+        const colKey = VENDOR_COL[p.vendor] || '';
+        const ov = colKey ? instOverrides[colKey] : undefined;
+        const ovBadge = ov && !editing ? `<span style="margin-left:8px;font-size:10px;padding:2px 8px;border-radius:8px;font-weight:600;background:rgba(0,245,196,.15);color:var(--accent);border:1px solid rgba(0,245,196,.3)">✏️ ${(_OV_BADGES[ov]||'')} ${(_OV_TITLES[ov]||ov)}</span>` : '';
+        const statusCell = editing && colKey ? `
+          <td style="padding:6px 8px;border-bottom:1px solid var(--border)">
+            <select onchange="
+              const v=this.value;
+              if(!window.matrixOverrides['${instId}']) window.matrixOverrides['${instId}']={};
+              if(v===''){delete window.matrixOverrides['${instId}']['${colKey}'];}
+              else{window.matrixOverrides['${instId}']['${colKey}']=v;}
+              if(!Object.keys(window.matrixOverrides['${instId}']).length) delete window.matrixOverrides['${instId}'];
+              localStorage.setItem('crm_matrix_overrides',JSON.stringify(window.matrixOverrides));
+              rebuildCpCard_${instId}();
+            " style="font-size:11px;padding:3px 6px;border-radius:6px;border:1px solid rgba(255,255,255,.15);background:#1e2a3a;color:#fff;cursor:pointer;width:100%">
+              ${EDIT_STATES.map(s=>`<option value="${s.v}" ${(ov||'')===(s.v)?'selected':''}>${s.label}</option>`).join('')}
+            </select>
+          </td>` : `<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px;color:#e2e8f0;max-width:240px">${esc(p.notes)}${ovBadge}</td>`;
+        return '<tr>' +
+          '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-weight:600;font-size:12px;color:#ffffff">'+esc(p.product)+'</td>'+
+          '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px;color:#e2e8f0">'+esc(p.vendor)+'</td>'+
+          '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px;color:#e2e8f0">'+esc(p.category)+'</td>'+
+          '<td style="padding:8px 10px;border-bottom:1px solid var(--border)"><span style="background:rgba(239,68,68,.18);color:#fca5a5;font-size:10px;padding:2px 7px;border-radius:8px;font-weight:600">'+esc(p.competesWith)+'</span></td>'+
+          '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px;color:#e2e8f0;white-space:nowrap">'+fmtFull(p.subscriptionStart)+'</td>'+
+          '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px;font-weight:600;color:#ffffff;white-space:nowrap">'+fmtFull(p.contractExpiry)+expiryBadge(p.contractExpiry)+'</td>'+
+          statusCell+
+          '</tr>';
+      }).join('');
+
+      const notesHeader = editing ? 'Status Override' : 'Notes';
+      const el = document.getElementById(cardId);
+      if (!el) return;
+      el.innerHTML =
+        '<div class="card-header" style="display:flex;align-items:center;gap:8px">'+
+          '<span class="card-title">Competitor Products</span>'+
+          '<span style="font-size:10px;background:rgba(239,68,68,.1);color:#dc2626;padding:2px 8px;border-radius:10px;font-weight:600">'+products.length+' identified</span>'+
+          '<button onclick="window._cpEditMode[\''+instId+'\']=!window._cpEditMode[\''+instId+'\'];rebuildCpCard_'+instId+'()" style="margin-left:auto;display:flex;align-items:center;gap:5px;padding:4px 12px;border-radius:6px;cursor:pointer;font-size:11px;font-weight:600;border:1px solid '+(editing?'var(--accent)':'rgba(255,255,255,.15)')+';background:'+(editing?'rgba(0,245,196,.12)':'rgba(255,255,255,.04)')+';color:'+(editing?'var(--accent)':'var(--text2)')+'">'+
+            '✏️ '+(editing?'Done':'Edit Subscriptions')+
+          '</button>'+
+        '</div>'+
+        (editing?'<div style="padding:8px 14px 4px;font-size:11px;color:var(--accent);background:rgba(0,245,196,.05);border-bottom:1px solid rgba(0,245,196,.15)">Select a status for each product to override. Changes sync instantly to the Subscription Matrix.</div>':'')+
+        '<div style="overflow-x:auto">'+
+          '<table style="width:100%;border-collapse:collapse;font-size:12px">'+
+            '<thead><tr>'+
+              '<th style="'+thStyle+'">Product</th>'+
+              '<th style="'+thStyle+'">Vendor</th>'+
+              '<th style="'+thStyle+'">Category</th>'+
+              '<th style="'+thStyle+'">Competes With (Elsevier)</th>'+
+              '<th style="'+thStyle+'">Subscribed Since</th>'+
+              '<th style="'+thStyle+'">Contract Expiry</th>'+
+              '<th style="'+thStyle+'">'+ notesHeader +'</th>'+
+            '</tr></thead>'+
+            '<tbody>'+editRows+'</tbody>'+
+          '</table>'+
+        '</div>';
+    }
+    // Expose globally so the onclick can call it
+    window['rebuildCpCard_'+instId] = rebuildCpCard;
+
     const card = document.createElement('div');
     card.className = 'card';
+    card.id = cardId;
     card.style.marginTop = '14px';
-    card.innerHTML =
-      '<div class="card-header" style="display:flex;align-items:center;gap:8px">'+
-        '<span class="card-title">Competitor Products</span>'+
-        '<span style="font-size:10px;background:rgba(239,68,68,.1);color:#dc2626;padding:2px 8px;border-radius:10px;font-weight:600">'+products.length+' identified</span>'+
-        '<span style="font-size:10px;color:var(--muted);margin-left:auto">Source: public tenders &amp; publisher agreements</span>'+
-      '</div>'+
-      '<div style="overflow-x:auto">'+
-        '<table style="width:100%;border-collapse:collapse;font-size:12px">'+
-          '<thead><tr>'+
-            '<th style="'+thStyle+'">Product</th>'+
-            '<th style="'+thStyle+'">Vendor</th>'+
-            '<th style="'+thStyle+'">Category</th>'+
-            '<th style="'+thStyle+'">Competes With (Elsevier)</th>'+
-            '<th style="'+thStyle+'">Subscribed Since</th>'+
-            '<th style="'+thStyle+'">Contract Expiry</th>'+
-            '<th style="'+thStyle+'">Notes</th>'+
-          '</tr></thead>'+
-          '<tbody>'+rows+'</tbody>'+
-        '</table>'+
-      '</div>';
     content.appendChild(card);
+    rebuildCpCard();
   };
 })();
 
