@@ -2564,12 +2564,62 @@ function renderPipeline() {
 load().then(()=>render());
 
 
+// ─── MATRIX OVERRIDES (persisted to localStorage) ────────────────────────────
+window.matrixOverrides = {};
+try { window.matrixOverrides = JSON.parse(localStorage.getItem('crm_matrix_overrides')||'{}'); } catch(e){}
+let _matrixEditMode = false;
+
+const _CYCLE = ['active','expiring','unconfirmed','cancelled','none'];
+const _OV_BADGES = { active:'✓', expiring:'⏳', unconfirmed:'?', cancelled:'✗', none:'—', likely:'~' };
+const _OV_TITLES = { active:'Active', expiring:'Cancelling', unconfirmed:'Unconfirmed', cancelled:'Cancelled', none:'Not subscribed', likely:'Likely active' };
+const _COL_LABELS = { springer:'SpringerLink', wiley:'Wiley Online', tf:'Taylor & Francis', wos:'Web of Science', ieee:'IEEE Xplore', acm:'ACM Digital Library', scifinder:'SciFinder-N' };
+
+function toggleMatrixEdit(){
+  _matrixEditMode = !_matrixEditMode;
+  renderSubscriptionMatrix();
+}
+
+function cycleCell(instId, colKey, ev){
+  if(ev) ev.stopPropagation();
+  if(!_matrixEditMode) return;
+  if(!window.matrixOverrides[instId]) window.matrixOverrides[instId] = {};
+  const cur = window.matrixOverrides[instId][colKey];
+  const idx = _CYCLE.indexOf(cur);
+  if(idx >= _CYCLE.length-1){ delete window.matrixOverrides[instId][colKey]; }
+  else if(idx === -1){ window.matrixOverrides[instId][colKey] = _CYCLE[0]; }
+  else { window.matrixOverrides[instId][colKey] = _CYCLE[idx+1]; }
+  if(!Object.keys(window.matrixOverrides[instId]).length) delete window.matrixOverrides[instId];
+  localStorage.setItem('crm_matrix_overrides', JSON.stringify(window.matrixOverrides));
+  renderSubscriptionMatrix();
+}
+
+function clearAllOverrides(){
+  if(!confirm('Clear all manual subscription overrides?')) return;
+  window.matrixOverrides = {};
+  localStorage.removeItem('crm_matrix_overrides');
+  renderSubscriptionMatrix();
+}
+
 // ─── COMPETITOR PRODUCTS ────────────────────────────────────────────────────
 // ─── SUBSCRIPTION MATRIX VIEW ────────────────────────────────────────────────
 function renderSubscriptionMatrix() {
   document.getElementById('page-title').textContent = 'University Subscription Comparison';
   document.getElementById('page-sub').textContent = 'Competitor products across all 14 Dutch universities — one glance overview';
-  document.getElementById('topbar-actions').innerHTML = '';
+
+  const editOn = _matrixEditMode;
+  const hasOverrides = Object.keys(window.matrixOverrides).length > 0;
+  document.getElementById('topbar-actions').innerHTML = `
+    <div style="display:flex;gap:8px;align-items:center">
+      ${hasOverrides ? `<button onclick="clearAllOverrides()" style="padding:6px 12px;border-radius:7px;cursor:pointer;font-size:11px;font-weight:600;border:1px solid rgba(239,68,68,.4);background:rgba(239,68,68,.08);color:#ef4444">✕ Clear overrides</button>` : ''}
+      <button onclick="toggleMatrixEdit()"
+        style="display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:7px;cursor:pointer;font-size:12px;font-weight:600;transition:all .15s;
+        border:1px solid ${editOn?'var(--accent)':'rgba(255,255,255,.15)'};
+        background:${editOn?'rgba(0,245,196,.15)':'rgba(255,255,255,.04)'};
+        color:${editOn?'var(--accent)':'var(--text2)'}">
+        ✏️ ${editOn?'Done Editing':'Edit Subscriptions'}
+      </button>
+    </div>
+  `;
 
   // Column definitions — maps to COMPETITOR_PRODUCTS vendor field
   const COLS = [
@@ -2586,6 +2636,12 @@ function renderSubscriptionMatrix() {
   const WOS_CANCELLED = new Set(['vu', 'uu', 'tudelft', 'ut']);
 
   function getCell(instId, col) {
+    // Manual override takes priority
+    const ov = (window.matrixOverrides[instId]||{})[col.key];
+    if (ov !== undefined) {
+      return { status: ov, badge: _OV_BADGES[ov]||'?', title: _OV_TITLES[ov]+' (manually set)', manual: true };
+    }
+
     const products = COMPETITOR_PRODUCTS[instId] || [];
     const entry = products.find(p => p.vendor === col.vendor);
 
@@ -2665,13 +2721,18 @@ function renderSubscriptionMatrix() {
       const cell = getCell(u.id, c);
       const borderR = (i===2||i===3) ? 'border-right:2px solid #e2e8f0;' : '';
       const style = c.key === 'wos' ? WOS_STYLE[cell.status] : STATUS_STYLE[cell.status];
-      return `<td title="${cell.title}" style="${style};text-align:center;font-size:14px;font-weight:600;padding:7px 4px;cursor:default;${borderR}">
-        <span title="${cell.title}">${cell.badge}</span>
+      const editCursor = editOn ? 'cursor:pointer;' : 'cursor:default;';
+      const editOutline = editOn ? 'outline:2px dashed rgba(0,245,196,.35);outline-offset:-2px;' : '';
+      const manualDot = cell.manual ? '<span title="Manually set" style="font-size:8px;vertical-align:super;margin-left:2px;opacity:.7">✏️</span>' : '';
+      const clickHandler = editOn ? `onclick="cycleCell('${u.id}','${c.key}',event)"` : '';
+      return `<td title="${editOn?'Click to change: '+cell.title:cell.title}" style="${style};text-align:center;font-size:14px;font-weight:600;padding:7px 4px;${editCursor}${editOutline}${borderR}" ${clickHandler}>
+        ${cell.badge}${manualDot}
       </td>`;
     }).join('');
 
-    return `<tr style="border-bottom:1px solid #f1f5f9" onclick="nav('detail',{instId:'${u.id}'})" title="Open ${esc(u.name)} profile" class="sub-row">
-      <td style="padding:8px 12px;font-size:13px;font-weight:500;color:var(--text);white-space:nowrap;cursor:pointer;min-width:140px">
+    const rowClick = editOn ? '' : `onclick="nav('detail',{instId:'${u.id}'})" title="Open ${esc(u.name)} profile"`;
+    return `<tr style="border-bottom:1px solid #f1f5f9" ${rowClick} class="sub-row">
+      <td style="padding:8px 12px;font-size:13px;font-weight:500;color:var(--text);white-space:nowrap;${editOn?'':'cursor:pointer;'}min-width:140px">
         <span style="font-size:11px;opacity:.5;margin-right:4px">${esc(u.short||u.id.toUpperCase())}</span>${esc(u.name.replace(/University|Universiteit|Universit(y|eit) of /g,'').replace(/Eindhoven University of Technology/,'TU/e').replace(/Wageningen University & Research/,'WUR'))}
       </td>
       ${cells}
@@ -2698,11 +2759,20 @@ function renderSubscriptionMatrix() {
   document.getElementById('content').innerHTML = `
     <style>
       .sub-row:hover td { filter: brightness(.96); }
+      .edit-mode-row:hover td { outline: 2px dashed rgba(0,245,196,.5); }
     </style>
     <div style="padding:0 0 20px">
+      ${editOn ? `
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;margin-bottom:14px;background:rgba(0,245,196,.08);border:1px solid rgba(0,245,196,.3);border-radius:8px">
+        <span style="font-size:16px">✏️</span>
+        <div>
+          <div style="font-size:12px;font-weight:600;color:var(--accent)">Edit Mode — Click any cell to cycle through statuses</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px">Cycles: ✓ Active → ⏳ Cancelling → ? Unconfirmed → ✗ Cancelled → — None → (reset to auto). Changes sync to institution profiles and save automatically.</div>
+        </div>
+      </div>` : `
       <p style="font-size:13px;color:var(--muted);margin-bottom:16px">
-        Click any row to open the university profile. Hover a cell for details. Data sourced from institutional library pages and openaccess.nl.
-      </p>
+        Click any row to open the university profile. Hover a cell for details. Use <strong style="color:var(--text2)">Edit Subscriptions</strong> to update statuses manually.
+      </p>`}
 
       <div style="overflow-x:auto;border-radius:10px;box-shadow:0 1px 6px rgba(0,0,0,.07);border:1px solid #e2e8f0">
         <table style="border-collapse:collapse;width:100%;min-width:700px">
@@ -3142,12 +3212,109 @@ const COMPETITOR_PRODUCTS = {
 
 };
 
+// ─── MATRIX OVERRIDES (localStorage-persisted manual edits) ─────────────────
+if (!window.NL_MATRIX_OV) {
+  try { window.NL_MATRIX_OV = JSON.parse(localStorage.getItem('nl_crm_ov')||'{}'); }
+  catch(e){ window.NL_MATRIX_OV = {}; }
+}
+window._matrixEditMode = false;
+
+// Vendor → canonical product info for synthesising detail-page rows
+const VENDOR_META = {
+  'Clarivate':       { product:'Web of Science',         category:'Citation & Abstract Database',  competesWith:'Scopus' },
+  'Springer Nature': { product:'SpringerLink',            category:'Journal & Book Platform',        competesWith:'ScienceDirect' },
+  'Wiley':           { product:'Wiley Online Library',    category:'Journal Content Platform',       competesWith:'ScienceDirect' },
+  'Taylor & Francis':{ product:'Taylor & Francis Online', category:'Journal Content Platform',       competesWith:'ScienceDirect' },
+  'IEEE':            { product:'IEEE Xplore',             category:'Engineering & Technology DB',    competesWith:'ScienceDirect (Engineering)' },
+  'ACM':             { product:'ACM Digital Library',     category:'Computer Science Platform',      competesWith:'ScienceDirect (CS)' },
+  'CAS / ACS':       { product:'SciFinder-N',             category:'Chemistry & Life Sciences DB',   competesWith:'Reaxys' },
+};
+
+function _saveOv(instId, vendor, cell){
+  if(!window.NL_MATRIX_OV[instId]) window.NL_MATRIX_OV[instId]={};
+  if(cell===null){ delete window.NL_MATRIX_OV[instId][vendor]; }
+  else { window.NL_MATRIX_OV[instId][vendor]=cell; }
+  localStorage.setItem('nl_crm_ov', JSON.stringify(window.NL_MATRIX_OV));
+}
+
+// Build merged product list for an institution (base + overrides)
+function getMergedProducts(instId){
+  const base = (COMPETITOR_PRODUCTS[instId]||[]).map(p=>({...p}));
+  const ovs = window.NL_MATRIX_OV[instId]||{};
+  Object.entries(ovs).forEach(([vendor, ov])=>{
+    const existing = base.find(p=>p.vendor===vendor);
+    const statusNote = ov.editNote||'';
+    if(existing){
+      existing.notes = (statusNote ? '⚡ '+statusNote+'. ' : '') + existing.notes;
+    } else {
+      const meta = VENDOR_META[vendor]||{product:vendor,category:'—',competesWith:'—'};
+      base.push({...meta, vendor, subscriptionStart:'', contractExpiry:'',
+        notes: '⚡ Manually set: '+statusNote });
+    }
+  });
+  return base;
+}
+
+// Floating cell picker
+window.showMatrixCellPicker = function(instId, vendor, isWos, evt){
+  document.getElementById('mx-picker')?.remove();
+  const OPTIONS = [
+    { status:'active',      badge:'✓', label:'Active (confirmed)',   editNote:'Confirmed active' },
+    { status:'likely',      badge:'~', label:'Access likely',        editNote:'Access likely — unverified' },
+    { status:'unconfirmed', badge:'?', label:'Unconfirmed',          editNote:'UNCONFIRMED' },
+    { status:'expiring',    badge:'⏳',label:'Active, cancelling',   editNote:'CANCELLING' },
+    { status:'cancelled',   badge:'✗', label:'Cancelled',            editNote:'Cancelled' },
+    { status:'none',        badge:'—', label:'Not subscribed / N/A', editNote:'' },
+  ];
+  const WOS_STYLE_MAP = { active:'background:#fee2e2;color:#991b1b', likely:'background:#ffedd5;color:#9a3412', unconfirmed:'background:#fef9c3;color:#854d0e', expiring:'background:#fef9c3;color:#92400e', cancelled:'background:#dcfce7;color:#166534', none:'background:#dcfce7;color:#166534' };
+  const STD_STYLE_MAP = { active:'background:#dcfce7;color:#166534', likely:'background:#f0fdf4;color:#15803d', unconfirmed:'background:#fef9c3;color:#854d0e', expiring:'background:#ffedd5;color:#9a3412', cancelled:'background:#fee2e2;color:#991b1b', none:'background:#f8fafc;color:#94a3b8' };
+
+  const div = document.createElement('div');
+  div.id='mx-picker';
+  div.style.cssText='position:fixed;z-index:9999;background:#1e2a3a;border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:8px;box-shadow:0 8px 32px rgba(0,0,0,.5);min-width:200px';
+  const rect = evt.target.closest('td').getBoundingClientRect();
+  div.style.left = Math.min(rect.left, window.innerWidth-220)+'px';
+  div.style.top  = (rect.bottom+4)+'px';
+
+  const header = document.createElement('div');
+  header.style.cssText='font-size:10px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;padding:2px 4px 6px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:6px';
+  header.textContent = vendor;
+  div.appendChild(header);
+
+  OPTIONS.forEach(opt=>{
+    const sm = isWos ? WOS_STYLE_MAP[opt.status] : STD_STYLE_MAP[opt.status];
+    const btn = document.createElement('button');
+    btn.style.cssText='display:flex;align-items:center;gap:8px;width:100%;padding:6px 8px;border:none;background:none;cursor:pointer;border-radius:6px;color:#f1f5f9;font-size:12px;text-align:left';
+    btn.onmouseover=()=>btn.style.background='rgba(255,255,255,.07)';
+    btn.onmouseout=()=>btn.style.background='none';
+    btn.innerHTML=`<span style="${sm};border-radius:4px;padding:1px 7px;font-size:13px;font-weight:700;min-width:24px;text-align:center">${opt.badge}</span>${opt.label}`;
+    btn.onclick=()=>{
+      _saveOv(instId, vendor, { status:opt.status, badge:opt.badge, title:'Manually set: '+opt.label, editNote:opt.editNote });
+      div.remove();
+      renderSubscriptionMatrix();
+    };
+    div.appendChild(btn);
+  });
+
+  // Reset option
+  const resetBtn = document.createElement('button');
+  resetBtn.style.cssText='display:flex;align-items:center;gap:8px;width:100%;padding:6px 8px;border:none;background:none;cursor:pointer;border-radius:6px;color:#94a3b8;font-size:12px;margin-top:4px;border-top:1px solid rgba(255,255,255,.08);padding-top:8px';
+  resetBtn.onmouseover=()=>resetBtn.style.background='rgba(255,255,255,.05)';
+  resetBtn.onmouseout=()=>resetBtn.style.background='none';
+  resetBtn.innerHTML='↺  Reset to default';
+  resetBtn.onclick=()=>{ _saveOv(instId, vendor, null); div.remove(); renderSubscriptionMatrix(); };
+  div.appendChild(resetBtn);
+
+  document.body.appendChild(div);
+  setTimeout(()=>document.addEventListener('click', function h(e){ if(!div.contains(e.target)){ div.remove(); document.removeEventListener('click',h); }},{ once:false }), 50);
+};
+
 (function(){
   const _orig = window.renderDetail;
   window.renderDetail = function(){
     _orig();
     const instId = (typeof state !== 'undefined' && state.detailInstId) || '';
-    const products = (COMPETITOR_PRODUCTS[instId] || []);
+    const products = getMergedProducts(instId);
     if (!products.length) return;
     const content = document.querySelector('.content');
     if (!content) return;
@@ -3168,19 +3335,40 @@ const COMPETITOR_PRODUCTS = {
       return '<span style="background:#dcfce7;color:#166534;font-size:10px;padding:2px 6px;border-radius:8px;font-weight:700;margin-left:6px">Active</span>';
     };
 
-    const rows = products.map(p =>
-      '<tr>' +
-      '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-weight:600;font-size:12px;color:var(--text2)">'+esc(p.product)+'</td>'+
-      '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px;color:var(--muted)">'+esc(p.vendor)+'</td>'+
-      '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px;color:var(--muted)">'+esc(p.category)+'</td>'+
-      '<td style="padding:8px 10px;border-bottom:1px solid var(--border)"><span style="background:rgba(239,68,68,.12);color:#dc2626;font-size:10px;padding:2px 7px;border-radius:8px;font-weight:600">'+esc(p.competesWith)+'</span></td>'+
-      '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px;color:var(--muted);white-space:nowrap">'+fmtFull(p.subscriptionStart)+'</td>'+
-      '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px;font-weight:600;color:var(--text2);white-space:nowrap">'+fmtFull(p.contractExpiry)+expiryBadge(p.contractExpiry)+'</td>'+
-      '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px;color:var(--muted);max-width:240px">'+esc(p.notes)+'</td>'+
-      '</tr>'
-    ).join('');
+    // Vendor → colKey mapping for override lookup
+    const VENDOR_COL = { 'Springer Nature':'springer','Wiley':'wiley','Taylor & Francis':'tf','Clarivate':'wos','IEEE':'ieee','ACM':'acm','CAS / ACS':'scifinder' };
+    const instOverrides = window.matrixOverrides && window.matrixOverrides[instId] ? window.matrixOverrides[instId] : {};
 
-    const thStyle = 'padding:8px 10px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);border-bottom:1px solid var(--border);white-space:nowrap';
+    const rows = products.map(p => {
+      const colKey = VENDOR_COL[p.vendor] || '';
+      const ov = colKey ? instOverrides[colKey] : undefined;
+      const ovBadge = ov ? `<span style="margin-left:8px;font-size:10px;padding:2px 8px;border-radius:8px;font-weight:600;background:rgba(0,245,196,.15);color:var(--accent);border:1px solid rgba(0,245,196,.3)">✏️ Status updated: ${(_OV_BADGES[ov]||'') + ' ' + (_OV_TITLES[ov]||ov)}</span>` : '';
+      return '<tr>' +
+      '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-weight:600;font-size:12px;color:#ffffff">'+esc(p.product)+'</td>'+
+      '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px;color:#e2e8f0">'+esc(p.vendor)+'</td>'+
+      '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px;color:#e2e8f0">'+esc(p.category)+'</td>'+
+      '<td style="padding:8px 10px;border-bottom:1px solid var(--border)"><span style="background:rgba(239,68,68,.18);color:#fca5a5;font-size:10px;padding:2px 7px;border-radius:8px;font-weight:600">'+esc(p.competesWith)+'</span></td>'+
+      '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px;color:#e2e8f0;white-space:nowrap">'+fmtFull(p.subscriptionStart)+'</td>'+
+      '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px;font-weight:600;color:#ffffff;white-space:nowrap">'+fmtFull(p.contractExpiry)+expiryBadge(p.contractExpiry)+'</td>'+
+      '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px;color:#e2e8f0;max-width:240px">'+esc(p.notes)+ovBadge+'</td>'+
+      '</tr>';
+    }).join('');
+
+    // If any WoS override exists but WoS isn't in the products list, add a row for it
+    if (instOverrides.wos && !products.find(p => p.vendor === 'Clarivate')) {
+      const wosOv = instOverrides.wos;
+      rows + '<tr>'+
+      '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-weight:600;font-size:12px;color:#ffffff">Web of Science</td>'+
+      '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px;color:#e2e8f0">Clarivate</td>'+
+      '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px;color:#e2e8f0">Citation & Abstract Database</td>'+
+      '<td style="padding:8px 10px;border-bottom:1px solid var(--border)"><span style="background:rgba(239,68,68,.18);color:#fca5a5;font-size:10px;padding:2px 7px;border-radius:8px;font-weight:600">Scopus</span></td>'+
+      '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px;color:#e2e8f0">—</td>'+
+      '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px;color:#e2e8f0">—</td>'+
+      '<td style="padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px;color:#e2e8f0"><span style="font-size:10px;padding:2px 8px;border-radius:8px;font-weight:600;background:rgba(0,245,196,.15);color:var(--accent);border:1px solid rgba(0,245,196,.3)">✏️ Status updated: '+(_OV_BADGES[wosOv]||'')+' '+(_OV_TITLES[wosOv]||wosOv)+'</span></td>'+
+      '</tr>';
+    }
+
+    const thStyle = 'padding:8px 10px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#94a3b8;border-bottom:1px solid var(--border);white-space:nowrap';
     const card = document.createElement('div');
     card.className = 'card';
     card.style.marginTop = '14px';
