@@ -3052,24 +3052,24 @@ function renderSubscriptionMatrix() {
     return { status: 'active', badge: '✓', title: 'Confirmed active' + expiryTag };
   }
 
-  // Standard styling for non-WoS columns
+  // Standard styling for non-WoS columns (dark-mode aware)
   const STATUS_STYLE = {
-    active:      'background:#dcfce7;color:#166534;border:1px solid #bbf7d0',
-    likely:      'background:#f0fdf4;color:#15803d;border:1px solid #d1fae5',
-    unconfirmed: 'background:#fef9c3;color:#854d0e;border:1px solid #fde68a',
-    expiring:    'background:#ffedd5;color:#9a3412;border:1px solid #fed7aa',
-    cancelled:   'background:#fee2e2;color:#991b1b;border:1px solid #fecaca',
-    none:        'background:#f8fafc;color:#94a3b8;border:1px solid #e2e8f0',
+    active:      'background:rgba(34,197,94,.14);color:#4ade80;border:1px solid rgba(34,197,94,.28)',
+    likely:      'background:rgba(34,197,94,.07);color:#86efac;border:1px solid rgba(34,197,94,.16)',
+    unconfirmed: 'background:rgba(245,158,11,.13);color:#fbbf24;border:1px solid rgba(245,158,11,.28)',
+    expiring:    'background:rgba(249,115,22,.13);color:#fb923c;border:1px solid rgba(249,115,22,.28)',
+    cancelled:   'background:rgba(239,68,68,.13);color:#f87171;border:1px solid rgba(239,68,68,.28)',
+    none:        'background:rgba(255,255,255,.04);color:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.07)',
   };
 
   // WoS-specific styling: active = RED (competitor present), cancelled/none = GREEN (opportunity)
   const WOS_STYLE = {
-    active:      'background:#fee2e2;color:#991b1b;border:1px solid #fecaca',   // RED — competitor active
-    likely:      'background:#ffedd5;color:#9a3412;border:1px solid #fed7aa',   // orange — likely active
-    unconfirmed: 'background:#fef9c3;color:#854d0e;border:1px solid #fde68a',   // yellow
-    expiring:    'background:#fef9c3;color:#92400e;border:1px solid #fde68a',   // yellow — cancelling (opportunity building)
-    cancelled:   'background:#dcfce7;color:#166534;border:1px solid #bbf7d0',   // GREEN — cancelled = opportunity
-    none:        'background:#dcfce7;color:#166534;border:1px solid #bbf7d0',   // GREEN — no WoS = opportunity
+    active:      'background:rgba(239,68,68,.18);color:#f87171;border:1px solid rgba(239,68,68,.35)',    // RED — competitor active
+    likely:      'background:rgba(249,115,22,.15);color:#fb923c;border:1px solid rgba(249,115,22,.3)',   // orange — likely active
+    unconfirmed: 'background:rgba(245,158,11,.13);color:#fbbf24;border:1px solid rgba(245,158,11,.28)',  // yellow
+    expiring:    'background:rgba(245,158,11,.13);color:#fbbf24;border:1px solid rgba(245,158,11,.28)',  // yellow — cancelling (opportunity building)
+    cancelled:   'background:rgba(34,197,94,.14);color:#4ade80;border:1px solid rgba(34,197,94,.28)',    // GREEN — cancelled = opportunity
+    none:        'background:rgba(34,197,94,.14);color:#4ade80;border:1px solid rgba(34,197,94,.28)',    // GREEN — no WoS = opportunity
   };
 
   // WoS sort priority: active first (red = competitor present), then expiring, then unconfirmed, then cancelled/none
@@ -3086,43 +3086,62 @@ function renderSubscriptionMatrix() {
     });
 
   // Column header groups
-  const catColors = { national: '#1d4ed8', citation: '#7c3aed', specialist: '#0891b2' };
+  const catColors = {
+    national:   { bg:'rgba(99,102,241,.18)',  border:'rgba(99,102,241,.35)',  text:'#a5b4fc', accent:'#6366f1' },
+    citation:   { bg:'rgba(168,85,247,.18)',   border:'rgba(168,85,247,.35)',  text:'#c4b5fd', accent:'#a855f7' },
+    specialist: { bg:'rgba(14,165,233,.18)',   border:'rgba(14,165,233,.35)',  text:'#7dd3fc', accent:'#0ea5e9' },
+  };
   const catLabels = { national: 'National Deals (all universities)', citation: 'Citation DB', specialist: 'Specialist DB' };
 
   // Group headers row (colspan)
   const groupCols = {};
   COLS.forEach(c => { groupCols[c.cat] = (groupCols[c.cat]||0)+1; });
   const groupOrder = ['national','citation','specialist'];
-  const groupRow = groupOrder.map(cat => `
-    <th colspan="${groupCols[cat]}" style="background:${catColors[cat]};color:#fff;text-align:center;font-size:11px;font-weight:600;padding:6px 4px;border-right:2px solid #fff">
+  const groupRow = groupOrder.map(cat => {
+    const cc = catColors[cat];
+    return `<th colspan="${groupCols[cat]}" style="background:${cc.bg};color:${cc.text};text-align:center;font-size:10px;font-weight:700;padding:7px 4px;border-right:1px solid rgba(255,255,255,.06);letter-spacing:.6px;text-transform:uppercase">
       ${catLabels[cat]}
-    </th>`).join('');
+    </th>`;
+  }).join('');
 
   // Column headers
   const colHeaders = COLS.map((c,i) => {
-    const borderR = (i===2||i===3) ? 'border-right:2px solid #e2e8f0;' : '';
-    return `<th style="background:#f1f5f9;color:#334155;font-size:11px;font-weight:600;padding:8px 6px;text-align:center;vertical-align:bottom;white-space:nowrap;${borderR}">${c.label}</th>`;
+    const cc = catColors[c.cat];
+    const borderR = (i===2||i===3) ? `border-right:1px solid rgba(255,255,255,.08);` : '';
+    return `<th style="background:rgba(255,255,255,.04);color:${cc.text};font-size:10px;font-weight:600;padding:8px 6px;text-align:center;vertical-align:bottom;white-space:nowrap;letter-spacing:.3px;${borderR}">${c.label}</th>`;
   }).join('');
 
   // University rows
-  const rows = unis.map(u => {
+  const rows = unis.map((u,ri) => {
     const cells = COLS.map((c,i) => {
       const cell = getCell(u.id, c);
-      const borderR = (i===2||i===3) ? 'border-right:2px solid #e2e8f0;' : '';
-      const style = c.key === 'wos' ? WOS_STYLE[cell.status] : STATUS_STYLE[cell.status];
+      const borderR = (i===2||i===3) ? 'border-right:1px solid rgba(255,255,255,.06);' : '';
+      const baseStyle = c.key === 'wos' ? WOS_STYLE[cell.status] : STATUS_STYLE[cell.status];
       const editCursor = editOn ? 'cursor:pointer;' : 'cursor:default;';
-      const editOutline = editOn ? 'outline:2px dashed rgba(0,245,196,.35);outline-offset:-2px;' : '';
-      const manualDot = cell.manual ? '<span title="Manually set" style="font-size:8px;vertical-align:super;margin-left:2px;opacity:.7">✏️</span>' : '';
+      const editOutline = editOn ? 'outline:1px dashed rgba(0,245,196,.4);outline-offset:-3px;' : '';
+      const manualDot = cell.manual ? '<sup style="font-size:7px;opacity:.7;margin-left:1px">✏</sup>' : '';
       const clickHandler = editOn ? `onclick="cycleCell('${u.id}','${c.key}',event)"` : '';
-      return `<td title="${editOn?'Click to change: '+cell.title:cell.title}" style="${style};text-align:center;font-size:14px;font-weight:600;padding:7px 4px;${editCursor}${editOutline}${borderR}" ${clickHandler}>
-        ${cell.badge}${manualDot}
+      // Badge pill
+      const badgeHtml = cell.status === 'none'
+        ? `<span style="font-size:13px;opacity:.25">—</span>`
+        : `<span style="display:inline-block;min-width:22px;padding:2px 7px;border-radius:20px;font-size:12px;font-weight:700;${baseStyle}">${cell.badge}${manualDot}</span>`;
+      return `<td title="${editOn?'Click to change: '+cell.title:cell.title}" style="text-align:center;padding:9px 5px;${editCursor}${editOutline}${borderR}border-bottom:1px solid rgba(255,255,255,.04);" ${clickHandler}>
+        ${badgeHtml}
       </td>`;
     }).join('');
 
+    const rowBg = ri%2===1 ? 'background:rgba(255,255,255,.018);' : '';
     const rowClick = editOn ? '' : `onclick="nav('detail',{instId:'${u.id}'})" title="Open ${esc(u.name)} profile"`;
-    return `<tr style="border-bottom:1px solid #f1f5f9" ${rowClick} class="sub-row">
-      <td style="padding:8px 12px;font-size:13px;font-weight:500;color:var(--text);white-space:nowrap;${editOn?'':'cursor:pointer;'}min-width:140px">
-        <span style="font-size:11px;opacity:.5;margin-right:4px">${esc(u.short||u.id.toUpperCase())}</span>${esc(u.name.replace(/University|Universiteit|Universit(y|eit) of /g,'').replace(/Eindhoven University of Technology/,'TU/e').replace(/Wageningen University & Research/,'WUR'))}
+    const shortName = esc(u.name
+      .replace(/University of |Universiteit van |Universiteit |University /g,'')
+      .replace(/Eindhoven University of Technology/,'TU/e')
+      .replace(/Wageningen University & Research/,'WUR'));
+    return `<tr style="${rowBg}transition:background .12s;" ${rowClick} class="sub-row">
+      <td style="padding:10px 14px;white-space:nowrap;${editOn?'':'cursor:pointer;'}border-bottom:1px solid rgba(255,255,255,.04);border-right:1px solid rgba(255,255,255,.06);">
+        <div style="display:flex;align-items:center;gap:7px">
+          <span style="font-size:10px;font-weight:700;color:var(--accent);opacity:.55;letter-spacing:.3px;min-width:28px">${esc(u.short||u.id.toUpperCase())}</span>
+          <span style="font-size:13px;font-weight:500;color:#e2e8f0">${shortName}</span>
+        </div>
       </td>
       ${cells}
     </tr>`;
@@ -3131,43 +3150,42 @@ function renderSubscriptionMatrix() {
   // Legend
   const legendItems = [
     { style: WOS_STYLE.active,      badge: '✓', label: 'WoS active — competitor present' },
-    { style: WOS_STYLE.expiring,    badge: '⏳', label: 'WoS cancelling — opportunity building' },
-    { style: WOS_STYLE.unconfirmed, badge: '?',  label: 'WoS status unconfirmed' },
+    { style: WOS_STYLE.expiring,    badge: '⏳', label: 'WoS cancelling — opportunity' },
+    { style: WOS_STYLE.unconfirmed, badge: '?',  label: 'Status unconfirmed' },
     { style: WOS_STYLE.cancelled,   badge: '✗',  label: 'WoS cancelled — opportunity!' },
-    { style: STATUS_STYLE.active,   badge: '✓',  label: 'Other DB confirmed active' },
-    { style: STATUS_STYLE.likely,   badge: '~',  label: 'Access likely (contract details TBC)' },
-    { style: STATUS_STYLE.none,     badge: '—',  label: 'Not subscribed / N/A' },
+    { style: STATUS_STYLE.active,   badge: '✓',  label: 'Confirmed active' },
+    { style: STATUS_STYLE.likely,   badge: '~',  label: 'Likely active (TBC)' },
+    { style: STATUS_STYLE.none,     badge: '—',  label: 'Not subscribed' },
   ];
   const legend = legendItems.map(item =>
-    `<span style="display:inline-flex;align-items:center;gap:5px;margin-right:14px;font-size:12px;color:#475569">
-      <span style="${item.style};border-radius:4px;padding:1px 7px;font-size:13px;font-weight:600">${item.badge}</span>
+    `<span style="display:inline-flex;align-items:center;gap:6px;font-size:11.5px;color:var(--muted2)">
+      <span style="${item.style};border-radius:20px;padding:2px 8px;font-size:11px;font-weight:700">${item.badge}</span>
       ${item.label}
     </span>`
   ).join('');
 
   document.getElementById('content').innerHTML = `
     <style>
-      .sub-row:hover td { filter: brightness(.96); }
-      .edit-mode-row:hover td { outline: 2px dashed rgba(0,245,196,.5); }
+      .sub-row:hover td { background:rgba(255,255,255,.04) !important; }
     </style>
-    <div style="padding:0 0 20px">
+    <div style="padding:0 0 24px">
       ${editOn ? `
-      <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;margin-bottom:14px;background:rgba(0,245,196,.08);border:1px solid rgba(0,245,196,.3);border-radius:8px">
-        <span style="font-size:16px">✏️</span>
+      <div style="display:flex;align-items:center;gap:10px;padding:11px 15px;margin-bottom:16px;background:rgba(0,245,196,.07);border:1px solid rgba(0,245,196,.25);border-radius:10px">
+        <span style="font-size:15px">✏️</span>
         <div>
-          <div style="font-size:12px;font-weight:600;color:var(--accent)">Edit Mode — Click any cell to cycle through statuses</div>
-          <div style="font-size:11px;color:var(--muted);margin-top:2px">Cycles: ✓ Active → ⏳ Cancelling → ? Unconfirmed → ✗ Cancelled → — None → (reset to auto). Changes sync to institution profiles and save automatically.</div>
+          <div style="font-size:12px;font-weight:600;color:var(--accent)">Edit Mode — click any cell to cycle through statuses</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px">Cycles: ✓ Active → ⏳ Cancelling → ? Unconfirmed → ✗ Cancelled → — None → (reset to auto). Saves automatically.</div>
         </div>
       </div>` : `
-      <p style="font-size:13px;color:var(--muted);margin-bottom:16px">
+      <p style="font-size:12.5px;color:var(--muted);margin-bottom:16px">
         Click any row to open the university profile. Hover a cell for details. Use <strong style="color:var(--text2)">Edit Subscriptions</strong> to update statuses manually.
       </p>`}
 
-      <div style="overflow-x:auto;border-radius:10px;box-shadow:0 1px 6px rgba(0,0,0,.07);border:1px solid #e2e8f0">
+      <div style="overflow-x:auto;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:rgba(14,22,36,.7)">
         <table style="border-collapse:collapse;width:100%;min-width:700px">
           <thead>
             <tr>
-              <th style="background:#f1f5f9;padding:8px 12px;text-align:left;font-size:11px;font-weight:600;color:#64748b;border-right:1px solid #e2e8f0" rowspan="2">University</th>
+              <th style="background:rgba(255,255,255,.04);padding:9px 14px;text-align:left;font-size:10px;font-weight:600;color:var(--muted);border-right:1px solid rgba(255,255,255,.06);letter-spacing:.6px;text-transform:uppercase" rowspan="2">University</th>
               ${groupRow}
             </tr>
             <tr>${colHeaders}</tr>
@@ -3176,16 +3194,16 @@ function renderSubscriptionMatrix() {
         </table>
       </div>
 
-      <div style="margin-top:18px;padding:12px 16px;background:#f8fafc;border-radius:8px;border:1px solid #e2e8f0">
-        <div style="font-size:11px;font-weight:600;color:#64748b;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px">Legend</div>
-        <div style="display:flex;flex-wrap:wrap;gap:6px">${legend}</div>
+      <div style="margin-top:16px;padding:14px 18px;background:rgba(255,255,255,.03);border-radius:10px;border:1px solid rgba(255,255,255,.07)">
+        <div style="font-size:10px;font-weight:700;color:var(--muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:.7px">Legend</div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px 18px">${legend}</div>
       </div>
 
-      <div style="margin-top:12px;padding:12px 16px;background:#fffbeb;border-radius:8px;border:1px solid #fde68a">
-        <div style="font-size:12px;color:#92400e">
+      <div style="margin-top:10px;padding:12px 16px;background:rgba(245,158,11,.07);border-radius:10px;border:1px solid rgba(245,158,11,.2)">
+        <div style="font-size:12px;color:rgba(251,191,36,.85)">
           <strong>📋 National deals</strong> (Springer, Wiley, T&F) apply to all 14 universities under UKB-SURF / UNL agreements, expiring Dec 2026. &nbsp;
           <strong>WoS wave:</strong> VU, UU, TU Delft & UT all cancelled as of 2025–2026; RUG cancelling Dec 2026. &nbsp;
-          All ⚠️/? cells should be verified with the institution's library director before quoting in proposals.
+          All ⚠️/? cells should be verified with the institution's library director before quoting.
         </div>
       </div>
     </div>`;
