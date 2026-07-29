@@ -241,22 +241,27 @@ a.ext-link:hover{color:var(--text)}
 .map-filter-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:20px;border:1px solid var(--border2);background:var(--bg3);color:var(--text);font-size:11px;font-family:"Inter",sans-serif;cursor:pointer;transition:all .15s;white-space:nowrap}
 .map-filter-btn:hover{border-color:rgba(0,0,0,.2);color:var(--text2)}
 .map-filter-btn.active{background:var(--accent);border-color:var(--accent);color:#060a12}
-.map-pin-wrap{display:flex;flex-direction:column;align-items:center}
-.map-pin-head{width:34px;height:34px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);display:flex;align-items:center;justify-content:center;border:2.5px solid rgba(255,255,255,.9)}
-.map-pin-emoji{transform:rotate(45deg);font-size:14px;line-height:1;display:block}
-.map-pin-tail{width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:10px solid;margin-top:-1px}
-.leaflet-popup-content-wrapper{background:#ffffff!important;border:1px solid #e5e7eb!important;border-radius:9px!important;box-shadow:0 8px 20px rgba(0,0,0,.12)!important;color:#1c1c1e!important}
-.leaflet-popup-tip{background:#ffffff!important}
-.leaflet-popup-content{font-family:"Inter",sans-serif!important;font-size:12px!important;line-height:1.5!important;margin:10px 14px!important}
-.leaflet-popup-content h4{font-size:13px;font-weight:600;color:#0d0d0d;margin-bottom:4px}
-.leaflet-popup-content p{color:#6b7280;margin:2px 0}
-.leaflet-popup-close-button{color:#9ca3af!important;top:6px!important;right:8px!important}
+/* ── MAP MARKERS ── */
+.map-marker{position:relative;display:flex;align-items:center;justify-content:center}
+.map-marker-dot{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;border:2px solid rgba(255,255,255,.25);box-shadow:0 0 0 3px rgba(255,255,255,.08),0 2px 10px rgba(0,0,0,.5)}
+.map-marker-pulse{position:absolute;width:32px;height:32px;border-radius:50%;border:1.5px solid currentColor;opacity:.35;animation:pulse-ring 2.2s ease-out infinite}
+@keyframes pulse-ring{0%{transform:scale(.7);opacity:.5}100%{transform:scale(1.5);opacity:0}}
+/* ── MAP POPUPS ── */
+.leaflet-popup-content-wrapper{background:rgba(10,18,32,.96)!important;border:1px solid rgba(255,255,255,.1)!important;border-radius:12px!important;box-shadow:0 16px 40px rgba(0,0,0,.6)!important;color:#f1f5f9!important;backdrop-filter:blur(20px)!important}
+.leaflet-popup-tip{background:rgba(10,18,32,.96)!important}
+.leaflet-popup-content{font-family:"Inter",sans-serif!important;font-size:12px!important;line-height:1.5!important;margin:12px 16px!important}
+.leaflet-popup-content h4{font-size:13px;font-weight:700;color:#f8fafc;margin-bottom:3px}
+.leaflet-popup-content p{color:rgba(255,255,255,.45);margin:2px 0}
+.leaflet-popup-close-button{color:rgba(255,255,255,.35)!important;top:8px!important;right:10px!important;font-size:16px!important}
+.leaflet-popup-close-button:hover{color:#fff!important}
+/* ── MAP ZOOM CONTROLS ── */
+.leaflet-control-zoom{border:1px solid rgba(255,255,255,.1)!important;border-radius:10px!important;overflow:hidden}
+.leaflet-control-zoom a{background:rgba(10,18,32,.9)!important;color:rgba(255,255,255,.7)!important;border-bottom:1px solid rgba(255,255,255,.08)!important;backdrop-filter:blur(12px)!important;font-size:16px!important}
+.leaflet-control-zoom a:hover{background:rgba(30,46,72,.95)!important;color:#fff!important}
+.leaflet-bar{box-shadow:0 4px 20px rgba(0,0,0,.4)!important}
+.leaflet-attribution-flag{display:none!important}
 .map-legend-item{display:flex;align-items:center;gap:6px;margin:3px 0;font-size:11px;color:var(--text)}
 .map-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
-.leaflet-control-zoom{border:1px solid #d1d5db!important}
-.leaflet-control-zoom a{background:#ffffff!important;color:#374151!important;border-bottom:1px solid #e5e7eb!important}
-.leaflet-control-zoom a:hover{background:#f9fafb!important}
-.leaflet-bar{box-shadow:none!important}
 /* ── SYNC BUTTON DISTINCTION ── */
 .nav-item-sync-inst .nav-icon-box{color:rgba(99,202,183,.8)}
 .nav-item-sync-contacts .nav-icon-box{color:rgba(167,139,250,.8)}
@@ -1943,52 +1948,77 @@ function renderMap() {
   document.getElementById('page-title').textContent = 'Map';
   document.getElementById('page-sub').textContent = 'Netherlands research institutions';
   document.getElementById('topbar-actions').innerHTML = '';
+
+  const filterBtnStyle = (k, col) => `
+    id="mf-${k}" onclick="setMapFilter('${k}')"
+    style="display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.1);
+    background:rgba(255,255,255,.04);color:rgba(255,255,255,.55);font-size:11px;font-weight:600;cursor:pointer;transition:all .15s;font-family:Inter,sans-serif"
+    onmouseover="this.style.borderColor='${col}';this.style.color='#fff'"
+    onmouseout="if(!this.classList.contains('mf-active')){this.style.borderColor='rgba(255,255,255,.1)';this.style.color='rgba(255,255,255,.55)'}"
+  `;
+
   document.getElementById('content').innerHTML = `
+    <style>
+      .mf-active{background:rgba(255,255,255,.09)!important;border-color:rgba(255,255,255,.3)!important;color:#fff!important}
+    </style>
     <div style="display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap;align-items:center">
-      <button id="mf-all" class="map-filter-btn active" onclick="setMapFilter('all')">All</button>
+      <button id="mf-all" class="mf-active" onclick="setMapFilter('all')"
+        style="display:inline-flex;align-items:center;gap:5px;padding:5px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.3);
+        background:rgba(255,255,255,.09);color:#fff;font-size:11px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif">All</button>
       ${Object.entries(TYPE_LABEL).map(([k,v])=>`
-        <button id="mf-${k}" class="map-filter-btn" onclick="setMapFilter('${k}')" style="--mf-color:${TYPE_COLORS_MAP[k]}">
-          <span style="width:8px;height:8px;border-radius:50%;background:${TYPE_COLORS_MAP[k]};display:inline-block;flex-shrink:0"></span>
-          ${TYPE_ICON[k]} ${v}
+        <button class="map-filter-btn" ${filterBtnStyle(k, TYPE_COLORS_MAP[k])}>
+          <span style="width:7px;height:7px;border-radius:50%;background:${TYPE_COLORS_MAP[k]};display:inline-block;flex-shrink:0;box-shadow:0 0 6px ${TYPE_COLORS_MAP[k]}"></span>
+          ${v.replace(' Inst.','')}
         </button>`).join('')}
     </div>
-    <div id="map-container" style="height:calc(100vh - 175px);border-radius:var(--card-radius);overflow:hidden;border:1px solid var(--border)"></div>`;
+    <div id="map-container" style="height:calc(100vh - 180px);border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.08);box-shadow:0 8px 32px rgba(0,0,0,.4)"></div>`;
+
   if (typeof L === 'undefined') { document.getElementById('map-container').innerHTML = '<p style="padding:20px;color:var(--muted)">Map library not loaded.</p>'; return; }
   if (_fullMap) { try { _fullMap.remove(); } catch(e){} _fullMap = null; }
   _mapMarkers = [];
   _mapActiveFilter = 'all';
+
   setTimeout(() => {
     const map = L.map('map-container', { center:[52.25,5.2], zoom:7, zoomControl:true });
     _fullMap = map;
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { maxZoom:18, subdomains:'abcd', attribution:'&copy; CartoDB' }).addTo(map);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      maxZoom:19, subdomains:'abcd', attribution:'&copy; CartoDB'
+    }).addTo(map);
+
     state.institutions.forEach(inst => {
       const coords = getInstCoords(inst);
       if (!coords) return;
       const contacts = contactsForInst(inst.id);
       const col = TYPE_COLORS_MAP[inst.type]||'#6366f1';
-      const ico = TYPE_ICON[inst.type]||'🏛️';
+      const label = (TYPE_LABEL[inst.type]||inst.type).replace(' Inst.','');
+      const shortName = inst.short || inst.id.toUpperCase();
+
       const pinIcon = L.divIcon({
         className: '',
-        html: `<div class="map-pin-wrap">
-          <div class="map-pin-head" style="background:${col}">
-            <span class="map-pin-emoji">${ico}</span>
-          </div>
-          <div class="map-pin-tail" style="border-top-color:${col}"></div>
+        html: `<div style="position:relative;display:flex;align-items:center;justify-content:center;width:32px;height:32px">
+          <div style="position:absolute;width:28px;height:28px;border-radius:50%;border:1.5px solid ${col};opacity:.35;animation:pulse-ring 2.2s ease-out infinite"></div>
+          <div style="width:16px;height:16px;border-radius:50%;background:${col};border:2px solid rgba(255,255,255,.2);box-shadow:0 0 10px ${col}88,0 2px 8px rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;color:rgba(255,255,255,.9);font-family:Inter,sans-serif;flex-shrink:0">${shortName.slice(0,2)}</div>
         </div>`,
-        iconSize: [36, 46],
-        iconAnchor: [18, 46],
-        popupAnchor: [0, -50]
+        iconSize: [32, 32],
+        iconAnchor: [16, 16],
+        popupAnchor: [0, -20]
       });
+
       const marker = L.marker(coords, { icon: pinIcon })
         .addTo(map)
         .bindPopup(`
-          <div style="min-width:160px">
-            <strong style="font-size:13px;display:block;margin-bottom:3px">${inst.name}</strong>
-            <small style="color:#666;display:block">${inst.city} · ${TYPE_LABEL[inst.type]||inst.type}</small>
-            <small style="color:#666;display:block;margin-bottom:6px">${contacts.length} contact${contacts.length!==1?'s':''}</small>
-            <button onclick="nav('detail',{instId:'${inst.id}'})" style="background:#1d4ed8;color:#fff;border:none;border-radius:5px;padding:4px 10px;font-size:11px;cursor:pointer;width:100%">View profile →</button>
+          <div style="min-width:170px">
+            <div style="font-size:13px;font-weight:700;color:#f8fafc;margin-bottom:4px;line-height:1.3">${inst.name}</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.4);margin-bottom:2px">${inst.city}</div>
+            <div style="display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;margin-bottom:10px;background:${col}22;color:${col};border:1px solid ${col}44">${label}</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.35);margin-bottom:10px">${contacts.length} contact${contacts.length!==1?'s':''}</div>
+            <button onclick="nav('detail',{instId:'${inst.id}'})"
+              style="background:linear-gradient(135deg,${col},${col}cc);color:#fff;border:none;border-radius:7px;padding:6px 12px;font-size:11px;font-weight:600;cursor:pointer;width:100%;font-family:Inter,sans-serif;letter-spacing:.2px">
+              View Profile →
+            </button>
           </div>
-        `);
+        `, { maxWidth: 220 });
+
       marker._instType = inst.type;
       _mapMarkers.push(marker);
     });
@@ -1998,8 +2028,14 @@ function renderMap() {
 function setMapFilter(type) {
   _mapActiveFilter = type;
   // Update button styles
-  document.querySelectorAll('.map-filter-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('mf-' + type)?.classList.add('active');
+  document.querySelectorAll('.map-filter-btn, #mf-all').forEach(b => {
+    b.classList.remove('mf-active');
+    b.style.background = 'rgba(255,255,255,.04)';
+    b.style.borderColor = 'rgba(255,255,255,.1)';
+    b.style.color = 'rgba(255,255,255,.55)';
+  });
+  const active = document.getElementById('mf-' + type);
+  if (active) { active.classList.add('mf-active'); active.style.background='rgba(255,255,255,.09)'; active.style.borderColor='rgba(255,255,255,.3)'; active.style.color='#fff'; }
   // Show/hide markers
   _mapMarkers.forEach(m => {
     if (type === 'all' || m._instType === type) {
@@ -2017,7 +2053,7 @@ function initDashMiniMap() {
   setTimeout(() => {
     const map = L.map(el, { center:[52.25,5.2], zoom:6, zoomControl:false, attributionControl:false });
     _dashMiniMap = map;
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { maxZoom:18, subdomains:'abcd' }).addTo(map);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { maxZoom:19, subdomains:'abcd' }).addTo(map);
     state.institutions.forEach(inst => {
       const coords = getInstCoords(inst);
       if (!coords) return;
