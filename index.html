@@ -12,9 +12,9 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --bg:#080d18; --bg2:#060a12; --bg3:#111827;
-  --card:rgba(20,32,50,0.78); --card2:rgba(26,38,56,0.82); --surface:rgba(32,46,66,0.85);
-  --text:#cbd5e1; --text2:#f1f5f9;
-  --muted:#64748b; --muted2:#94a3b8;
+  --card:rgba(26,40,62,0.95); --card2:rgba(32,48,70,0.95); --surface:rgba(38,54,78,0.95);
+  --text:#d4dde8; --text2:#f8fafc;
+  --muted:#7a90a8; --muted2:#a8bccf;
   --border:rgba(255,255,255,.07); --border2:rgba(255,255,255,.12);
   --accent:#00f5c4; --accent2:#8b5cf6; --primary:#00f5c4;
   --success:#22c55e; --warn:#f59e0b; --danger:#ef4444; --info:#3b82f6;
@@ -122,10 +122,10 @@ tbody tr:hover{background:rgba(255,255,255,.03)}
 tbody td{padding:9px 14px;vertical-align:middle;color:var(--text)}
 /* ── BADGES ── */
 .badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600;white-space:nowrap}
-.b-university{background:rgba(99,102,241,.12);color:#a5b4fc;border:1px solid rgba(99,102,241,.18)}
-.b-medical{background:rgba(239,68,68,.10);color:#fca5a5;border:1px solid rgba(239,68,68,.15)}
-.b-research{background:rgba(34,197,94,.10);color:#86efac;border:1px solid rgba(34,197,94,.15)}
-.b-ngo{background:rgba(234,179,8,.10);color:#fde68a;border:1px solid rgba(234,179,8,.15)}
+.b-university{background:rgba(99,102,241,.25);color:#c7d2fe;border:1px solid rgba(99,102,241,.45)}
+.b-medical{background:rgba(239,68,68,.22);color:#fca5a5;border:1px solid rgba(239,68,68,.4)}
+.b-research{background:rgba(34,197,94,.22);color:#86efac;border:1px solid rgba(34,197,94,.4)}
+.b-ngo{background:rgba(234,179,8,.22);color:#fde68a;border:1px solid rgba(234,179,8,.4)}
 .b-active{background:rgba(34,197,94,.10);color:#86efac;border:1px solid rgba(34,197,94,.15)}
 .b-prospect{background:rgba(59,130,246,.10);color:#93c5fd;border:1px solid rgba(59,130,246,.15)}
 .b-inactive{background:rgba(255,255,255,.04);color:var(--muted2);border:1px solid var(--border2)}
@@ -527,8 +527,8 @@ body { background: var(--bg); }
 /* ══ INSTITUTION GRID CARDS ══════════════════════════════════════════════════ */
 .inst-grid { gap: 14px !important; }
 .ic {
-  background: var(--card) !important;
-  border: 1px solid var(--border) !important;
+  background: rgba(26,40,62,0.95) !important;
+  border: 1px solid rgba(255,255,255,.13) !important;
   border-radius: var(--card-radius) !important;
   padding: 18px !important;
   position: relative; overflow: hidden;
@@ -542,19 +542,19 @@ body { background: var(--bg); }
   opacity: 0;
   transition: opacity .2s;
 }
-.ic:hover { border-color: rgba(0,245,196,.22) !important; box-shadow: 0 8px 32px rgba(0,0,0,.25), 0 0 20px rgba(0,245,196,.05) !important; transform: translateY(-3px) !important; }
+.ic:hover { border-color: rgba(0,245,196,.3) !important; box-shadow: 0 8px 32px rgba(0,0,0,.3) !important; transform: translateY(-3px) !important; }
 .ic:hover::before { opacity: 1; }
 
 .ic-icon { width: 40px !important; height: 40px !important; border-radius: 10px !important; font-size: 18px !important; }
-.ic-icon.university { background: rgba(99,102,241,.15) !important; border: 1px solid rgba(99,102,241,.2); }
-.ic-icon.medical    { background: rgba(239,68,68,.12)  !important; border: 1px solid rgba(239,68,68,.18); }
-.ic-icon.research   { background: rgba(34,197,94,.12)  !important; border: 1px solid rgba(34,197,94,.18); }
-.ic-icon.ngo        { background: rgba(234,179,8,.12)  !important; border: 1px solid rgba(234,179,8,.18); }
+.ic-icon.university { background: rgba(99,102,241,.28) !important; border: 1px solid rgba(99,102,241,.45) !important; }
+.ic-icon.medical    { background: rgba(239,68,68,.25)  !important; border: 1px solid rgba(239,68,68,.4) !important; }
+.ic-icon.research   { background: rgba(34,197,94,.25)  !important; border: 1px solid rgba(34,197,94,.4) !important; }
+.ic-icon.ngo        { background: rgba(234,179,8,.25)  !important; border: 1px solid rgba(234,179,8,.4) !important; }
 
-.ic h3   { font-size: 13px !important; font-weight: 700 !important; color: #f1f5f9 !important; letter-spacing: -.2px; }
-.ic .short { font-size: 9.5px !important; color: rgba(255,255,255,.28) !important; letter-spacing: .5px; }
-.ic .city  { font-size: 11.5px !important; color: rgba(255,255,255,.38) !important; }
-.ic-footer { border-top: 1px solid rgba(255,255,255,.06) !important; padding-top: 11px !important; margin-top: 13px !important; }
+.ic h3   { font-size: 13px !important; font-weight: 700 !important; color: #f8fafc !important; letter-spacing: -.2px; }
+.ic .short { font-size: 9.5px !important; color: rgba(255,255,255,.55) !important; letter-spacing: .5px; }
+.ic .city  { font-size: 11.5px !important; color: rgba(255,255,255,.6) !important; }
+.ic-footer { border-top: 1px solid rgba(255,255,255,.1) !important; padding-top: 11px !important; margin-top: 13px !important; color: rgba(255,255,255,.55) !important; }
 
 /* ══ TABLE ════════════════════════════════════════════════════════════════════ */
 .table-wrap {
