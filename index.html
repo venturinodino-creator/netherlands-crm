@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.hjs"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -753,11 +753,12 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
 .av { width: 30px !important; height: 30px !important; font-size: 11px !important; border-radius: 50% !important; }
 
 </style>
+  <link rel="stylesheet" href="animations.css">
 </head>
 <body>
 <canvas id="bg-canvas"></canvas>
 
-<nav class="sb">
+  <nav class="sb">
   <a class="sb-logo" href="landing.html" style="text-decoration:none;cursor:pointer;" title="Back to home">
     <div class="sb-logo-icon">🇳🇱</div>
     <div class="sb-logo-text"><h1>NL Research CRM</h1><p>Academic &amp; Research Network</p></div>
@@ -4052,5 +4053,6 @@ document.addEventListener('keydown', e => { if (e.key==='Escape') closeGlobalSea
     </div>
   </div>
 </div>
+<script src="animations.js"></script>
 </body>
 </html>
