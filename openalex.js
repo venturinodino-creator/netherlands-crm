@@ -2,10 +2,10 @@
 (function () {
   'use strict';
 
-  /* -- CSS -------------------- */
+  /* -- CSS ---------------------------------------------------------------- */
   var style = document.createElement('style');
   style.textContent = [
-    '.stat-card[onclick*="pipeline"]{display:none!important}',
+    '.stat-card[onclick`*="pipeline"]{display:none!important}',
     'table.sub-matrix td:first-child,table.sub-matrix th.uni-header{position:sticky;left:0;z-index:2;background:rgba(12,19,32,.97)}',
     'table.sub-matrix thead tr:first-child th:first-child{position:sticky;left:0;z-index:3;background:rgba(12,19,32,.97)}',
     'table.sub-matrix th{font-size:11px!important}',
@@ -20,7 +20,7 @@
   ].join('');
   document.head.appendChild(style);
 
-  /* -- SVG icon helpers -------------------- */
+  /* -- SVG helpers -------------------------------------------------------- */
   function stroke(p) {
     return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">' + p + '</svg>';
   }
@@ -28,11 +28,11 @@
     return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="22" height="22">' + p + '</svg>';
   }
 
-  /* -- Nav icon map -------------------- */
+  /* -- Nav icon map ------------------------------------------------------- */
   var NAV = {
     dashboard:     stroke('<path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/>'),
-    institutions:  stroke('<path d="M3 21h18M3 10h18M5 10V21M19 10V21M9 10V21M15 10V21M12 3L3 10h18L12 3z"/>'),
-    contacts:      stroke('<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>'),
+    institutions:  stroke('<path d="M3 21h18M3 10h18M5 10V21M19 10V21M9 10V21M15 10V21M12 3L3 10h12L12 3z"/>'),
+    contacts:      stroke('<path d="M17 21v-2a4 4 0 00-4-AH5`4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>'),
     map:           stroke('<polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/>'),
     news:          stroke('<path d="M4 22h16a2 2 0 002-2V4a2 2 0 00-2-2H8a2 2 0 00-2 2v16a4 4 0 01-4-4V6a2 2 0 012-2"/><path d="M18 14h-8M15 18h-5"/><rect x="10" y="6" width="8" height="4"/>'),
     subscriptions: stroke('<rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/>'),
@@ -40,19 +40,41 @@
     exportCSV:     stroke('<path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>'),
   };
 
-  /* -- Stat icon map -------------------- */
+  /* -- Stat icon map ------------------------------------------------------ */
   var STAT = {
     purple: filled('<path d="M11.584 2.376a.75.75 0 01.832 0l9 6a.75.75 0 11-.832 1.248L12 3.901 3.416 9.624a.75.75 0 01-.832-1.248l9-6z"/><path fill-rule="evenodd" d="M20.25 10.332v9.918H21a.75.75 0 010 1.5H3a.75.75 0 010-1.5h.75v-9.918a.75.75 0 01.634-.74A49.109 49.109 0 0112 9c2.59 0 5.134.202 7.616.592a.75.75 0 01.634.74zm-7.5 2.418a.75.75 0 00-1.5 0v6.75a.75.75 0 001.5 0v-6.75zm3-.75a.75.75 0 01.75.75v6.75a.75.75 0 01-1.5 0v-6.75a.75.75 0 01.75-.75zM9 12.75a.75.75 0 00-1.5 0v6.75a.75.75 0 001.5 0v-6.75z" clip-rule="evenodd"/><path d="M12 7.875a1.125 1.125 0 100-2.25 1.125 1.125 0 000 2.25z"/>'),
     teal:   filled('<path d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/>'),
   };
 
-  /* -- Fix icons on every page -------------------- */
+  /* -- Fix corrupt UTF-8-as-Latin1 text nodes -------------------------------- */
+  /* index.html chars stored as raw UTF-8 bytes misread as Latin-1:            */
+  /* \u00E2\u009C\u0093 = U+2713 checkmark (E2 9C 93 in UTF-8)              */
+  /* \u00E2\u0080\u0094 = U+2014 em-dash (E2 80 94 in UTF-8)               */
+  /* \u00C2\u00B7       = U+00B7 middle-dot (C2 B7 in UTF-8)                */
+  function fixCorruptText(root) {
+    var reChk = /\u00E2\u009C\u0093/g;
+    var reEm  = /\u00E2\u0080\u0094/g;
+    var reDot = /\u00C2\u00B7/g;
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+    var node;
+    while ((node = walker.nextNode())) {
+      var t = node.nodeValue;
+      if (t.indexOf('\u00E2') === -1 && t.indexOf('\u00C2') === -1) continue;
+      var fixed = t
+        .replace(reChk, '\u2713')
+        .replace(reEm,  '\u2014')
+        .replace(reDot, '\u00B7');
+      if (fixed !== t) node.nodeValue = fixed;
+    }
+  }
+
+  /* -- Fix nav + stat icons ----------------------------------------------- */
   function fixIcons() {
     document.querySelectorAll('.nav-icon-box').forEach(function (box) {
       if (box.querySelector('svg')) return;
       var parent = box.closest('[onclick]');
       var oc = parent ? parent.getAttribute('onclick') : '';
-      var m = oc.match(/\('([^']+)'\)/);
+      var  = oc.match(/\('([^']+)'\)/);
       var key = m ? m[1] : oc.split('(')[0];
       if (NAV[key]) box.innerHTML = NAV[key];
     });
@@ -63,7 +85,7 @@
     });
   }
 
-  /* -- OpenAlex hardcoded data -------------------- */
+  /* -- OpenAlex data ------------------------------------------------------ */
   var DB = {
     'Erasmus University Rotterdam':        { oa: 'I114027177', ror: '03h7bdz00', works: '121K' },
     'Leiden University':                   { oa: 'I165104084', ror: '027bh9e22', works: '229K' },
@@ -78,10 +100,10 @@
     'VU Amsterdam':                        { oa: 'I865747412', ror: '008xxew50', works: '176K' },
     'Utrecht University':                  { oa: 'I151185163', ror: '04pp8hn57', works: '290K' },
     'TU Delft':                            { oa: 'I95457486',  ror: '02e2c7k09', works: '155K' },
-    'University of Twente':               { oa: 'I33779607',  ror: '006hf6230', works: '77K'  },
+    'University of Twente':                { oa: 'I33779607',  ror: '006hf6230', works: '77K'  },
   };
 
-  /* -- Observer + init -------------------- */
+  /* -- Observer + init ---------------------------------------------------- */
   var content = document.getElementById('content');
   if (!content) return;
   var matrixApplied = false;
@@ -94,6 +116,7 @@
     var table = content.querySelector('table');
     if (!table || table.classList.contains('sub-matrix')) return;
     matrixApplied = true;
+    fixCorruptText(table);
     addColumns(table);
   }
 
@@ -104,7 +127,7 @@
   obs.observe(content, { childList: true, subtree: true });
   setTimeout(tryApply, 300);
 
-  /* -- Add OpenAlex + Evidence columns -------------------- */
+  /* -- Add OpenAlex + Evidence columns ------------------------------------ */
   function addColumns(table) {
     table.classList.add('sub-matrix');
     var thead = table.querySelector('thead');
@@ -137,7 +160,7 @@
         var sp = row.querySelectorAll('td:first-child span');
         name = sp.length > 1 ? sp[sp.length - 1].textContent.trim() : null;
       }
-      var info = name ? DB[name] : null;
+      var info = name ? DH	name] : null;
 
       var oaTd = document.createElement('td');
       oaTd.style.cssText = 'text-align:center;padding:9px 5px;border-bottom:1px solid rgba(255,255,255,.04);border-left:2px solid rgba(34,197,94,.2);vertical-align:middle';
@@ -149,7 +172,7 @@
       if (info) {
         oaTd.innerHTML = '<a href="https://openalex.org/institutions/' + info.oa + '" target="_blank" style="color:#4ade80;text-decoration:none;font-size:16px;font-weight:700" title="View on OpenAlex">&#10003;</a>';
         oaTd.style.background = 'rgba(34,197,94,.07)';
-        evTd.innerHTML = '<span class="oa-badge">Education &middot; NL</span><br><span style="color:#cbd5e1">' + info.works + ' works</span><br><a class="oa-badge oa-ror" href="https://ror.org/' + info.ror + '" target="_blank">ROR &#10003;</a>';
+        evTd.innerHTML = '<span class="oa-badge">Education &middot; NL</span><br><span style="color:#cbd5e1">' + info.works + ' works</span><br><a class="oa-badge oa-ror" href="https://ror.org/' + info.ror + '" target="_blank">ROR &#8599;</a>';
       } else {
         oaTd.innerHTML = '<span style="font-size:13px;opacity:.3">&#x2014;</span>';
         evTd.innerHTML = '<span style="color:#475569;font-size:11px">Not in OpenAlex</span>';
