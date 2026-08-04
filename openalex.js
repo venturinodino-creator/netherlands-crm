@@ -13,6 +13,7 @@
     'table.sub-matrix .sub-row td:first-child span:last-child{font-size:14px!important}',
     'table.sub-matrix thead tr:first-child th{border-right:1px solid rgba(255,255,255,.15)!important}',
     'table.sub-matrix .sub-row:hover td{background:rgba(255,255,255,.055)!important}',
+    '.stat-icon-box svg{width:20px;height:20px;display:block}',
     '.oa-evidence{font-size:10px;color:#94a3b8;line-height:1.7;text-align:left;padding:5px 10px;max-width:200px}',
     '.oa-evidence a{color:#4ade80;text-decoration:none}',
     '.oa-badge{display:inline-block;background:rgba(34,197,94,.12);color:#4ade80;border:1px solid rgba(34,197,94,.3);border-radius:4px;padding:1px 6px;font-size:9px;font-weight:700;letter-spacing:.4px}',
@@ -43,10 +44,10 @@
 
   /* -- Stat icon map ------------------------------------------------------ */
   var STAT = {
-    purple: filled('<path d="M11.584 2.376a.75.75 0 01.832 0l9 6a.75.75 0 11-.832 1.248L12 3.901 3.416 9.624a.75.75 0 01-.832-1.248l9-6z"/><path fill-rule="evenodd" d="M20.25 10.332v9.918H21a.75.75 0 010 1.5H3a.75.75 0 010-1.5h.75v-9.918a.75.75 0 01.634-.74A49.109 49.109 0 0112 9c2.59 0 5.134.202 7.616.592a.75.75 0 01.634.74zm-7.5 2.418a.75.75 0 00-1.5 0v6.75a.75.75 0 001.5 0v-6.75zm3-.75a.75.75 0 01.75.75v6.75a.75.75 0 01-1.5 0v-6.75a.75.75 0 01.75-.75zM9 12.75a.75.75 0 00-1.5 0v6.75a.75.75 0 001.5 0v-6.75z" clip-rule="evenodd"/><path d="M12 7.875a1.125 1.125 0 100-2.25 1.125 1.125 0 000 2.25z"/>'),
-    teal:   filled('<path d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/>'),
-    blue:   filled('<path fill-rule="evenodd" d="M7.5 5.25a3 3 0 013-3h3a3 3 0 013 3v.205c.933.085 1.857.197 2.774.334 1.454.218 2.476 1.483 2.476 2.917v3.033c0 1.211-.734 2.352-1.936 2.752A24.726 24.726 0 0112 15.75c-2.73 0-5.357-.442-7.814-1.259C2.734 14.102 2 12.961 2 11.75V8.706c0-1.434 1.022-2.7 2.476-2.917A48.814 48.814 0 017.5 5.455V5.25zm7.5 0v.09a49.488 49.488 0 00-6 0v-.09a1.5 1.5 0 011.5-1.5h3a1.5 1.5 0 011.5 1.5zm-3 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd"/><path d="M3 18.4v-2.796a4.3 4.3 0 00.713.31A26.226 26.226 0 0012 17.25c2.892 0 5.68-.468 8.287-1.335.252-.084.49-.189.713-.311V18.4c0 1.452-1.047 2.728-2.523 2.923-2.12.282-4.282.427-6.477.427a49.19 49.19 0 01-6.477-.427C4.047 21.128 3 19.852 3 18.4z"/>'),
-    orange: filled('<path fill-rule="evenodd" d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.913-.143z" clip-rule="evenodd"/>'),
+    purple: filled('<path d="M12 2L2 7v2h20V7L12 2z"/><path d="M4 10v10h6v-7h4v7h6V10"/>'),
+    teal:   filled('<path d="M19 3H5v18h14V3zm-2 16H7V5h10v14z"/><path d="M10 8h4v3h-4z"/><path d="M11 2v3h2V2z"/><path d="M12 14v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M10 16h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>'),
+    blue:   filled('<path d="M9 3L7 17h10L15 3H9z"/><path d="M8 17v3h8v-3"/><path d="M10 21v2h4v-2"/><path d="M10.5 7h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M11 10h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>'),
+    orange: filled('<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>'),
   };
   /* -- Institution card icon map ----------------------------------------- */
   var INST_ICON = {
