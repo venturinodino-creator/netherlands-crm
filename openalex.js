@@ -76,7 +76,7 @@
       if (box.querySelector('svg')) return;
       var parent = box.closest('[onclick]');
       var oc = parent ? parent.getAttribute('onclick') : '';
-      var  = oc.match(/\('([^']+)'\)/);
+      var m = oc.match(/\('([^']+)'\)/);
       var key = m ? m[1] : oc.split('(')[0];
       if (NAV[key]) box.innerHTML = NAV[key];
     });
