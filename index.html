@@ -93,7 +93,7 @@ body{
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
 .stat-card{background:var(--card);border-radius:var(--card-radius);border:1px solid var(--border);padding:16px 18px;display:flex;align-items:flex-start;gap:12px;cursor:pointer;transition:border-color .15s,box-shadow .15s}
 .stat-card:hover{border-color:var(--border2);box-shadow:0 2px 8px rgba(0,0,0,.07)}
-.stat-icon-box{width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.stat-icon-box{width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;color:rgba(255,255,255,.6)}
 .stat-icon-box.purple{background:rgba(139,92,246,.12);border:1px solid rgba(139,92,246,.18)}
 .stat-icon-box.teal{background:rgba(20,184,166,.12);border:1px solid rgba(20,184,166,.18)}
 .stat-icon-box.orange{background:rgba(249,115,22,.12);border:1px solid rgba(249,115,22,.18)}
@@ -1891,7 +1891,7 @@ function renderDashboard() {
 
     <div class="stats-grid">
       <div class="stat-card" onclick="nav('institutions')" title="View all institutions">
-        <div class="stat-icon-box purple">ðï¸</div>
+        <div class="stat-icon-box purple"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2L2 7v2h20V7L12 2z"/><path d="M4 10v10h6v-7h4v7h6V10"/></svg></div>
         <div class="stat-text">
           <div class="stat-label">Institutions</div>
           <div class="stat-value">${inst.length}</div>
@@ -1899,7 +1899,7 @@ function renderDashboard() {
         </div>
       </div>
       <div class="stat-card" onclick="nav('contacts')" title="View all contacts">
-        <div class="stat-icon-box teal">ð¤</div>
+        <div class="stat-icon-box teal"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M19 3H5v18h14V3zm-2 16H7V5h10v14z"/><path d="M10 8h4v3h-4z"/><path d="M11 2v3h2V2z"/><path d="M12 14v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M10 16h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
         <div class="stat-text">
           <div class="stat-label">Contacts</div>
           <div class="stat-value">${cont.length}</div>
@@ -1907,7 +1907,7 @@ function renderDashboard() {
         </div>
       </div>
       <div class="stat-card" onclick="nav('pipeline')" title="View deal pipeline">
-        <div class="stat-icon-box blue">â</div>
+        <div class="stat-icon-box blue"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M9 3L7 17h10L15 3H9z"/><path d="M8 17v3h8v-3"/><path d="M10 21v2h4v-2"/><path d="M10.5 7h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M11 10h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
         <div class="stat-text">
           <div class="stat-label">Open Deals</div>
           <div class="stat-value">${openOpps}</div>
@@ -1915,7 +1915,7 @@ function renderDashboard() {
         </div>
       </div>
       <div class="stat-card" onclick="nav('pipeline')" title="View due actions">
-        <div class="stat-icon-box orange">\u26a1</div>
+        <div class="stat-icon-box orange"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
         <div class="stat-text">
           <div class="stat-label">Actions Due</div>
           <div class="stat-value">${actionsDue}</div>
