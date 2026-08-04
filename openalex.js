@@ -17,6 +17,7 @@
     '.oa-evidence a{color:#4ade80;text-decoration:none}',
     '.oa-badge{display:inline-block;background:rgba(34,197,94,.12);color:#4ade80;border:1px solid rgba(34,197,94,.3);border-radius:4px;padding:1px 6px;font-size:9px;font-weight:700;letter-spacing:.4px}',
     '.oa-badge.oa-ror{background:rgba(99,102,241,.12);color:#a5b4fc;border-color:rgba(99,102,241,.3)}',
+    '.ic-icon svg{display:block}',
   ].join('');
   document.head.appendChild(style);
 
@@ -47,6 +48,16 @@
     blue:   filled('<path fill-rule="evenodd" d="M7.5 5.25a3 3 0 013-3h3a3 3 0 013 3v.205c.933.085 1.857.197 2.774.334 1.454.218 2.476 1.483 2.476 2.917v3.033c0 1.211-.734 2.352-1.936 2.752A24.726 24.726 0 0112 15.75c-2.73 0-5.357-.442-7.814-1.259C2.734 14.102 2 12.961 2 11.75V8.706c0-1.434 1.022-2.7 2.476-2.917A48.814 48.814 0 017.5 5.455V5.25zm7.5 0v.09a49.488 49.488 0 00-6 0v-.09a1.5 1.5 0 011.5-1.5h3a1.5 1.5 0 011.5 1.5zm-3 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd"/><path d="M3 18.4v-2.796a4.3 4.3 0 00.713.31A26.226 26.226 0 0012 17.25c2.892 0 5.68-.468 8.287-1.335.252-.084.49-.189.713-.311V18.4c0 1.452-1.047 2.728-2.523 2.923-2.12.282-4.282.427-6.477.427a49.19 49.19 0 01-6.477-.427C4.047 21.128 3 19.852 3 18.4z"/>'),
     orange: filled('<path fill-rule="evenodd" d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.913-.143z" clip-rule="evenodd"/>'),
   };
+  /* -- Institution card icon map ----------------------------------------- */
+  var INST_ICON = {
+    university: stroke('<path d="M3 21h18M3 10h18M5 10V21M19 10V21M9 10V21M15 10V21M12 3L3 10h18L12 3z"/>'),
+    medical:    stroke('<circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/>'),
+    research:   stroke('<path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v11l3 3 3-3V3M3 9h18"/>'),
+    ngo:        stroke('<path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>'),
+    hospital:   stroke('<circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/>'),
+    institute:  stroke('<path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v11l3 3 3-3V3M3 9h18"/>'),
+  };
+
 
   /* -- Fix corrupt UTF-8-as-Latin1 text nodes -------------------------------- */
   /* index.html chars stored as raw UTF-8 bytes misread as Latin-1:            */
@@ -84,6 +95,13 @@
       if (box.querySelector('svg')) return;
       var cls = box.className.split(' ').find(function (c) { return c !== 'stat-icon-box'; }) || '';
       if (STAT[cls]) box.innerHTML = STAT[cls];
+    });
+    /* institution card icons */
+    document.querySelectorAll('.ic-icon').forEach(function (box) {
+      if (box.querySelector('svg')) return;
+      var type = Array.from(box.classList).find(function (c) { return c !== 'ic-icon'; }) || 'university';
+      var svg = INST_ICON[type] || INST_ICON.university;
+      box.innerHTML = svg;
     });
   }
 
