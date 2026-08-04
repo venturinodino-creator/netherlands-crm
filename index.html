@@ -752,6 +752,113 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
 /* ââ AVATAR âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
 .av { width: 30px !important; height: 30px !important; font-size: 11px !important; border-radius: 50% !important; }
 
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BROKERSLYNK-STYLE SIDEBAR  
+   ═══════════════════════════════════════════════════════════════════════ */
+.sb {
+  width: 220px; --sw: 220px;
+  background: rgba(10, 14, 26, 0.98) !important;
+  border-right: 1px solid rgba(255,255,255,.06) !important;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  display: flex; flex-direction: column;
+  position: fixed; top: 0; left: 0; bottom: 0; z-index: 100;
+}
+
+.sb-logo {
+  padding: 22px 18px 18px !important;
+  border-bottom: 1px solid rgba(255,255,255,.05) !important;
+  display: flex; align-items: center; gap: 10px;
+  transition: background .2s;
+}
+.sb-logo:hover { background: rgba(0,245,196,.025); }
+
+.sb-logo-text h1 { font-size: 13px !important; font-weight: 700 !important; color: #f1f5f9 !important; letter-spacing: -.2px; }
+.sb-logo-text p  { font-size: 10px !important; color: rgba(255,255,255,.28) !important; margin-top: 2px; }
+
+.sb-nav { padding: 6px 0; flex: 1; overflow-y: auto; }
+.sb-nav::-webkit-scrollbar { width: 4px; }
+.sb-nav::-webkit-scrollbar-thumb { background: rgba(255,255,255,.1); border-radius: 4px; }
+
+.sb-divider { height: 1px; background: rgba(255,255,255,.05); margin: 6px 14px; }
+
+.nav-section {
+  font-size: 9px !important;
+  font-weight: 600 !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+  color: rgba(255,255,255,.18) !important;
+  padding: 16px 16px 4px !important;
+  margin-top: 2px;
+}
+
+.nav-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 8px 14px !important;
+  margin: 1px 10px !important;
+  border-radius: 8px !important;
+  font-size: 12.5px !important;
+  font-weight: 500 !important;
+  color: rgba(255,255,255,.38) !important;
+  cursor: pointer !important;
+  transition: all .18s ease !important;
+  border-left: 2.5px solid transparent !important;
+}
+
+.nav-item:hover {
+  background: rgba(255,255,255,.04) !important;
+  color: rgba(255,255,255,.78) !important;
+}
+
+.nav-item.active {
+  background: rgba(0,245,196,.06) !important;
+  color: #fff !important;
+  border-left-color: #00f5c4 !important;
+  padding-left: 12px !important;
+}
+
+.nav-item.active .nav-icon-box {
+  color: #00f5c4 !important;
+  opacity: 1 !important;
+}
+
+.nav-icon-box {
+  width: 20px !important;
+  height: 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  opacity: .55 !important;
+  color: rgba(255,255,255,.55) !important;
+  transition: all .18s !important;
+}
+
+.nav-item:hover .nav-icon-box { opacity: .85 !important; }
+
+.sb-footer {
+  padding: 12px 16px !important;
+  border-top: 1px solid rgba(255,255,255,.05) !important;
+  font-size: 10px !important;
+  color: rgba(255,255,255,.22) !important;
+  display: flex; align-items: center; gap: 6px;
+}
+.sb-footer-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: #00f5c4 !important;
+  box-shadow: 0 0 6px rgba(0,245,196,.4);
+  animation: pulse-dot 2.4s ease-in-out infinite;
+}
+
+.main { margin-left: 220px !important; }
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .5; transform: scale(.85); }
+}
 </style>
   <link rel="stylesheet" href="animations.css">
 </head>
@@ -764,42 +871,44 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
     <div class="sb-logo-text"><h1>Research CRM</h1><p>Academic &amp; Research Network</p></div>
   </a>
   <div class="sb-nav">
-    <div class="nav-section">Overview</div>
+    <div class="nav-section">Workspace</div>
     <div class="nav-item active" data-view="dashboard" onclick="nav('dashboard')">
-      <div class="nav-icon-box">â</div> Dashboard
+      <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></div> Dashboard
     </div>
-    <div class="sb-divider"></div>
-    <div class="nav-section">Directory</div>
     <div class="nav-item" data-view="institutions" onclick="nav('institutions')">
-      <div class="nav-icon-box">ð</div> Institutions
+      <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div> My Listings
     </div>
     <div class="nav-item" data-view="contacts" onclick="nav('contacts')">
-      <div class="nav-icon-box">â</div> Contacts
-    </div>
-    <div class="nav-item" data-view="map" onclick="nav('map')">
-      <div class="nav-icon-box">â</div> Map
-    </div>
-    <div class="nav-item" data-view="news" onclick="nav('news')">
-      <div class="nav-icon-box">ð°</div> News
+      <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M8 10h.01"/><path d="M16 10h.01"/><path d="M8 14h.01"/><path d="M16 14h.01"/></svg></div> Broker Listings
     </div>
     <div class="nav-item" data-view="subscriptions" onclick="nav('subscriptions')">
-      <div class="nav-icon-box">â</div> Subscription Matrix
+      <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div> My Portfolio
+    </div>
+    <div class="nav-item" data-view="map" onclick="nav('map')">
+      <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg></div> Map
+    </div>
+    <div class="sb-divider"></div>
+    <div class="nav-section">Network</div>
+    <div class="nav-item" data-view="news" onclick="nav('news')">
+      <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg></div> News
+    </div>
+    <div class="nav-item" data-view="clients" onclick="nav('contacts')">
+      <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div> Clients
     </div>
     <div class="sb-divider"></div>
     <div class="nav-section">Data</div>
-
     <div class="nav-item nav-item-sync-contacts" onclick="syncContacts()" title="Import new contacts from CSV">
-      <div class="nav-icon-box">â</div>
+      <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
       <div style="flex:1">
         <div>Import Contacts</div>
         <div style="font-size:10px;opacity:.55;margin-top:1px">from CSV</div>
       </div>
     </div>
     <div class="nav-item" onclick="exportCSV()">
-      <div class="nav-icon-box">â</div> Export CSV
+      <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div> Export CSV
     </div>
   </div>
-  <div class="sb-footer"><div class="sb-footer-dot"></div>v2.0 Â· OpenAlex sync enabled</div>
+  <div class="sb-footer"><div class="sb-footer-dot"></div>v2.1 · Brokerslynk style</div>
 </nav>
 
 <div class="main">
