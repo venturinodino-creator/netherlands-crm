@@ -163,7 +163,7 @@
         var sp = row.querySelectorAll('td:first-child span');
         name = sp.length > 1 ? sp[sp.length - 1].textContent.trim() : null;
       }
-      var info = name ? DH	name] : null;
+      var info = name ? DB[name] : null;
 
       var oaTd = document.createElement('td');
       oaTd.style.cssText = 'text-align:center;padding:9px 5px;border-bottom:1px solid rgba(255,255,255,.04);border-left:2px solid rgba(34,197,94,.2);vertical-align:middle';
