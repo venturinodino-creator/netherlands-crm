@@ -1,4 +1,25 @@
 {
-  "scraped": {},
-  "lastRun": null
+  "scraped": {
+    "cwi_oa_id": "https://openalex.org/I1341640284",
+    "cwi": [
+      "p1"
+    ],
+    "cwi_page": 2,
+    "esc_oa_id": "https://openalex.org/I4210095242",
+    "esc": [
+      "p1"
+    ],
+    "esc_page": 2,
+    "pbl": [
+      "https://www.pbl.nl/en/about-pbl/staff",
+      "marian-abels-van-overveld",
+      "rob-alkemade"
+    ],
+    "rathenau_oa_id": "https://openalex.org/I2800109292",
+    "rathenau": [
+      "p1"
+    ],
+    "rathenau_page": 2
+  },
+  "lastRun": "2026-08-05T20:19:57.583Z"
 }
