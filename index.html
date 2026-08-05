@@ -1,4 +1,4 @@
-x <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -859,7 +859,33 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: .5; transform: scale(.85); }
 }
-</style>
+
+    .cm-wrap { overflow-x:auto; overflow-y:auto; max-height:calc(100vh - 160px); border-radius:12px; box-shadow:0 4px 24px rgba(0,0,0,.18); margin-top:48px; }
+    .cm-table thead tr.cm-group th { position:sticky; top:0; z-index:4; background:#0f172a !important; box-shadow:0 1px 0 rgba(255,255,255,.08); }
+    .cm-table thead tr.cm-cols th { position:sticky; top:40px; z-index:3; background:#1e293b !important; box-shadow:0 2px 0 rgba(255,255,255,.06); }
+    .cm-sticky { position:sticky; left:0; z-index:2; }
+    .cm-table thead tr.cm-group th.cm-sticky { z-index:6 !important; background:#0f172a !important; }
+    .cm-table thead tr.cm-cols th.cm-sticky { z-index:5 !important; background:#1e293b !important; }
+    .cm-table tbody td { background-clip:padding-box; }
+    .cm-table { width:100%; border-collapse:separate; border-spacing:0; min-width:900px; background:#fff; }
+    .cm-table thead tr.cm-group th { padding:10px 12px; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; }
+    .cm-table thead tr.cm-cols th { padding:10px 8px; font-size:11px; font-weight:600; text-align:center; border-top:1px solid rgba(255,255,255,.15); }
+    .cm-table tbody tr { transition:background .12s; }
+    .cm-table tbody tr:hover td { background:#f0f7ff !important; }
+    .cm-table tbody tr:hover td.cm-sticky { background:#e8f4ff !important; }
+    .cm-sticky { position:sticky; left:0; z-index:2; }
+    .cm-cell { text-align:center; padding:10px 6px; border-bottom:1px solid #f1f5f9; border-right:1px solid #f1f5f9; }
+    .cm-badge { display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px; border-radius:8px; font-size:13px; font-weight:700; cursor:default; transition:transform .1s; }
+    .cm-badge:hover { transform:scale(1.15); }
+    .cm-inst-cell { padding:10px 16px; border-bottom:1px solid #f1f5f9; border-right:2px solid #e2e8f0; min-width:190px; max-width:190px; }
+    .cm-inst-name { font-size:13px; font-weight:700; color:#0f172a; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:165px; }
+    .cm-inst-city { font-size:10px; color:#94a3b8; margin-top:1px; }
+    .cm-proof-cell { text-align:center; padding:8px 6px; border-bottom:1px solid #f1f5f9; }
+    .cm-proof-link { display:inline-flex; align-items:center; gap:4px; font-size:10px; color:#3b82f6; text-decoration:none; padding:3px 8px; border:1px solid #bfdbfe; border-radius:5px; background:#eff6ff; white-space:nowrap; }
+    .cm-proof-link:hover { background:#dbeafe; }
+    .cm-legend { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:14px; padding:12px 16px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:10px; }
+    .cm-legend-item { display:inline-flex; align-items:center; gap:6px; font-size:11px; color:#94a3b8; }
+  </style>
   <link rel="stylesheet" href="animations.css">
 </head>
 <body>
@@ -882,7 +908,7 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
       <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M8 10h.01"/><path d="M16 10h.01"/><path d="M8 14h.01"/><path d="M16 14h.01"/></svg></div> Broker Listings
     </div>
     <div class="nav-item" data-view="subscriptions" onclick="nav('subscriptions')">
-      <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div> My Portfolio
+      <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div> Competitor Matrix
     </div>
     <div class="nav-item" data-view="map" onclick="nav('map')">
       <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg></div> Map
@@ -3092,7 +3118,7 @@ function renderPipeline() {
     <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px">
       <div class="acct-cell" style="flex:1;min-width:130px"><div class="acct-label">Open Deals</div><div class="acct-val">${openOpps2.length}</div></div>
       <div class="acct-cell" style="flex:1;min-width:130px"><div class="acct-label">Pipeline Value</div><div class="acct-val">${totalVal>0?'\u20ac'+totalVal.toLocaleString():'—'}</div></div>
-      <div class="acct-cell" style="flex:1;min-width:130px"><div class="acct-label">Avg Deal</div><div class="acct-val">20ac'+Math.round(avgVal).toLocaleString():'—'}</div></div>
+      <div class="acct-cell" style="flex:1;min-width:130px"><div class="acct-label">Avg Deal</div><div class="acct-val">'€'+Math.round(avgVal).toLocaleString():'—'}</div></div>
       <div class="acct-cell" style="flex:1;min-width:130px"><div class="acct-label">Closed Won</div><div class="acct-val">${state.opportunities.filter(o=>o.stage==='closed-won').length}</div></div>
     </div>
     <div class="pipeline-board">${cols}</div>`;
@@ -3139,222 +3165,376 @@ function clearAllOverrides(){
 
 //  COMPETITOR PRODUCTS 
 //  SUBSCRIPTION MATRIX VIEW 
+// Competitor product data — verified from official university library sources (Aug 2026)
+// Renewal dates verified from public contracts and library announcements
+if (!window.COMP_DATA) {
+  window.COMP_DATA = {
+    uva: {
+      scopus:'yes', scopusRenewal:'Dec 2026', scopusProof:'https://www.universiteitenvannederland.nl/en/current/news/dutch-research-institutions-and-elsevier-announce-new-agreements',
+      scival:'yes', scivalRenewal:'Dec 2026', scivalProof:'https://www.universiteitenvannederland.nl/en/current/news/dutch-research-institutions-and-elsevier-announce-new-agreements',
+      pure:'yes', pureRenewal:'', pureProof:'https://uba.uva.nl/en/support/research/registering-research/registering-research.html',
+      wos:'unknown', wosRenewal:'', openalex:'free',
+      dimensions:'unknown', converis:'no', symplectic:'no',
+      proofWos: '',
+      proofOpenalex: 'https://explore.openalex.org/institutions/I865915315',
+    },
+    vu: {
+      scopus:'yes', scopusRenewal:'Dec 2026', scopusProof:'https://www.universiteitenvannederland.nl/en/current/news/dutch-research-institutions-and-elsevier-announce-new-agreements',
+      scival:'unknown', scivalRenewal:'', scivalProof:'',
+      pure:'yes', pureRenewal:'', pureProof:'',
+      wos:'cancelled', wosRenewal:'Jan 2026', openalex:'free',
+      dimensions:'unknown', converis:'no', symplectic:'no',
+      proofWos: 'https://vu.nl/en/employee/university-library/termination-of-access-to-web-of-science-as-of-january-1-2026',
+      proofOpenalex: 'https://explore.openalex.org/institutions/I194969902',
+    },
+    eur: {
+      scopus:'yes', scopusRenewal:'Dec 2026', scopusProof:'https://www.universiteitenvannederland.nl/en/current/news/dutch-research-institutions-and-elsevier-announce-new-agreements',
+      scival:'unknown', scivalRenewal:'', scivalProof:'',
+      pure:'yes', pureRenewal:'', pureProof:'',
+      wos:'yes', wosRenewal:'', openalex:'free',
+      dimensions:'unknown', converis:'no', symplectic:'no',
+      proofWos: 'https://libguides.eur.nl/courseresearchimpacts/webofscience',
+      proofOpenalex: 'https://explore.openalex.org/institutions/I133348497',
+    },
+    uu: {
+      scopus:'yes', scopusRenewal:'Dec 2026', scopusProof:'https://www.universiteitenvannederland.nl/en/current/news/dutch-research-institutions-and-elsevier-announce-new-agreements',
+      scival:'unknown', scivalRenewal:'', scivalProof:'',
+      pure:'unknown', pureRenewal:'', pureProof:'',
+      wos:'cancelled', wosRenewal:'Jan 2026', openalex:'free',
+      dimensions:'unknown', converis:'no', symplectic:'no',
+      proofWos: 'https://students.uu.nl/en/news/access-to-web-of-science-will-end-on-1-january-2026',
+      proofOpenalex: 'https://explore.openalex.org/institutions/I193662353',
+    },
+    leiden: {
+      scopus:'yes', scopusRenewal:'Dec 2026', scopusProof:'https://www.universiteitenvannederland.nl/en/current/news/dutch-research-institutions-and-elsevier-announce-new-agreements',
+      scival:'unknown', scivalRenewal:'', scivalProof:'',
+      pure:'unknown', pureRenewal:'', pureProof:'',
+      wos:'yes', wosRenewal:'', openalex:'free',
+      dimensions:'unknown', converis:'no', symplectic:'no',
+      proofWos: 'https://www.library.universiteitleiden.nl/searching-sources',
+      proofOpenalex: 'https://explore.openalex.org/institutions/I168769449',
+    },
+    rug: {
+      scopus:'yes', scopusRenewal:'Dec 2026', scopusProof:'https://www.universiteitenvannederland.nl/en/current/news/dutch-research-institutions-and-elsevier-announce-new-agreements',
+      scival:'unknown', scivalRenewal:'', scivalProof:'',
+      pure:'unknown', pureRenewal:'', pureProof:'',
+      wos:'expiring', wosRenewal:'Dec 2026', openalex:'free',
+      dimensions:'unknown', converis:'no', symplectic:'no',
+      proofWos: 'https://www.rug.nl/library/news/20260420-end-web-of-science?lang=en',
+      proofOpenalex: 'https://explore.openalex.org/institutions/I181391015',
+    },
+    ru: {
+      scopus:'yes', scopusRenewal:'Dec 2026', scopusProof:'https://www.universiteitenvannederland.nl/en/current/news/dutch-research-institutions-and-elsevier-announce-new-agreements',
+      scival:'unknown', scivalRenewal:'', scivalProof:'',
+      pure:'unknown', pureRenewal:'', pureProof:'',
+      wos:'yes', wosRenewal:'', openalex:'free',
+      dimensions:'unknown', converis:'no', symplectic:'no',
+      proofWos: 'https://www.ru.nl/en/services/library/searching-for-literature/databases/web-of-science',
+      proofOpenalex: 'https://explore.openalex.org/institutions/I121097534',
+    },
+    tudelft: {
+      scopus:'yes', scopusRenewal:'Dec 2026', scopusProof:'https://www.universiteitenvannederland.nl/en/current/news/dutch-research-institutions-and-elsevier-announce-new-agreements',
+      scival:'unknown', scivalRenewal:'', scivalProof:'',
+      pure:'yes', pureRenewal:'', pureProof:'',
+      wos:'cancelled', wosRenewal:'Jan 2026', openalex:'free',
+      dimensions:'unknown', converis:'no', symplectic:'no',
+      proofWos: 'https://www.tudelft.nl/en/2025/library/access-to-web-of-science-and-journal-citation-reports-will-end-on-1-january-2026',
+      proofOpenalex: 'https://explore.openalex.org/institutions/I60372599',
+    },
+    tue: {
+      scopus:'yes', scopusRenewal:'Dec 2026', scopusProof:'https://www.universiteitenvannederland.nl/en/current/news/dutch-research-institutions-and-elsevier-announce-new-agreements',
+      scival:'unknown', scivalRenewal:'', scivalProof:'',
+      pure:'unknown', pureRenewal:'', pureProof:'',
+      wos:'yes', wosRenewal:'', openalex:'free',
+      dimensions:'unknown', converis:'no', symplectic:'no',
+      proofWos: 'https://www.tue.nl/en/our-university/library/resources/databases',
+      proofOpenalex: 'https://explore.openalex.org/institutions/I33006067',
+    },
+    ut: {
+      scopus:'yes', scopusRenewal:'Dec 2026', scopusProof:'https://www.universiteitenvannederland.nl/en/current/news/dutch-research-institutions-and-elsevier-announce-new-agreements',
+      scival:'unknown', scivalRenewal:'', scivalProof:'',
+      pure:'unknown', pureRenewal:'', pureProof:'',
+      wos:'cancelled', wosRenewal:'Dec 2025', openalex:'free',
+      dimensions:'unknown', converis:'no', symplectic:'no',
+      proofWos: 'https://www.utwente.nl/en/education/student-services/news-events/news/2025/11/622976/web-of-science-licence-will-end-on-31-december-2025',
+      proofOpenalex: 'https://explore.openalex.org/institutions/I41354322',
+    },
+    tiu: {
+      scopus:'yes', scopusRenewal:'Dec 2026', scopusProof:'https://www.universiteitenvannederland.nl/en/current/news/dutch-research-institutions-and-elsevier-announce-new-agreements',
+      scival:'unknown', scivalRenewal:'', scivalProof:'',
+      pure:'unknown', pureRenewal:'', pureProof:'',
+      wos:'yes', wosRenewal:'', openalex:'free',
+      dimensions:'unknown', converis:'no', symplectic:'no',
+      proofWos: 'https://www.tilburguniversity.edu/campus/university-library/events/workshop-web-science',
+      proofOpenalex: 'https://explore.openalex.org/institutions/I9652473',
+    },
+    um: {
+      scopus:'yes', scopusRenewal:'Dec 2026', scopusProof:'https://www.universiteitenvannederland.nl/en/current/news/dutch-research-institutions-and-elsevier-announce-new-agreements',
+      scival:'unknown', scivalRenewal:'', scivalProof:'',
+      pure:'unknown', pureRenewal:'', pureProof:'',
+      wos:'yes', wosRenewal:'', openalex:'free',
+      dimensions:'unknown', converis:'no', symplectic:'no',
+      proofWos: 'https://library.maastrichtuniversity.nl/database/web/',
+      proofOpenalex: 'https://explore.openalex.org/institutions/I111979921',
+    },
+    wur: {
+      scopus:'yes', scopusRenewal:'Dec 2026', scopusProof:'https://www.universiteitenvannederland.nl/en/current/news/dutch-research-institutions-and-elsevier-announce-new-agreements',
+      scival:'unknown', scivalRenewal:'', scivalProof:'',
+      pure:'unknown', pureRenewal:'', pureProof:'',
+      wos:'no', wosRenewal:'', openalex:'free',
+      dimensions:'unknown', converis:'no', symplectic:'no',
+      proofWos: 'https://www.wur.nl/en/library/databases-and-collections',
+      proofOpenalex: 'https://explore.openalex.org/institutions/I54873862',
+    },
+    ou: {
+      scopus:'unknown', scopusRenewal:'', scopusProof:'',
+      scival:'unknown', scivalRenewal:'', scivalProof:'',
+      pure:'unknown', pureRenewal:'', pureProof:'',
+      wos:'unknown', wosRenewal:'', openalex:'free',
+      dimensions:'unknown', converis:'no', symplectic:'no',
+      proofWos: '',
+      proofOpenalex: 'https://explore.openalex.org/institutions/I132397991',
+    },
+  };
+}
+
 function renderSubscriptionMatrix() {
-  document.getElementById('page-title').textContent = 'University Subscription Comparison';
-  document.getElementById('page-sub').textContent = 'Competitor products across all 14 Dutch universities — one glance overview';
+  document.getElementById('page-title').textContent = 'Competitor Matrix';
+  document.getElementById('page-sub').textContent = 'Subscription intelligence across the Netherlands research landscape';
 
-  const editOn = _matrixEditMode;
-  const hasOverrides = Object.keys(window.matrixOverrides).length > 0;
-  document.getElementById('topbar-actions').innerHTML = `
-    <div style="display:flex;gap:8px;align-items:center">
-      ${hasOverrides ? `<button onclick="clearAllOverrides()" style="padding:6px 12px;border-radius:7px;cursor:pointer;font-size:11px;font-weight:600;border:1px solid rgba(239,68,68,.4);background:rgba(239,68,68,.08);color:#ef4444"> Clear overrides</button>` : ''}
-      <button onclick="toggleMatrixEdit()"
-        style="display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:7px;cursor:pointer;font-size:12px;font-weight:600;transition:all .15s;
-        border:1px solid ${editOn?'var(--accent)':'rgba(255,255,255,.15)'};
-        background:${editOn?'rgba(0,245,196,.15)':'rgba(255,255,255,.04)'};
-        color:${editOn?'var(--accent)':'var(--text2)'}">
-        ï¸ ${editOn?'Done Editing':'Edit Subscriptions'}
-      </button>
-    </div>
-  `;
-
-  // Column definitions — maps to COMPETITOR_PRODUCTS vendor field
-  const COLS = [
-    { key: 'springer',   vendor: 'Springer Nature',  label: 'SpringerLink',       cat: 'national' },
-    { key: 'wiley',      vendor: 'Wiley',             label: 'Wiley Online',       cat: 'national' },
-    { key: 'tf',         vendor: 'Taylor & Francis',  label: 'Taylor & Francis',   cat: 'national' },
-    { key: 'wos',        vendor: 'Clarivate',         label: 'Web of Science',     cat: 'citation' },
-    { key: 'ieee',       vendor: 'IEEE',              label: 'IEEE Xplore',        cat: 'specialist' },
-    { key: 'acm',        vendor: 'ACM',               label: 'ACM Digital Lib',    cat: 'specialist' },
-    { key: 'scifinder',  vendor: 'CAS / ACS',         label: 'SciFinder-N',        cat: 'specialist' },
+  // Column definitions
+  const ELSEVIER = [
+    {key:'scopus',  label:'Scopus',  color:'#ff6200', textColor:'#fff'},
+    {key:'scival',  label:'SciVal',  color:'#ff8c00', textColor:'#fff'},
+    {key:'pure',    label:'Pure',    color:'#e65100', textColor:'#fff'},
+  ];
+  const COMPETITORS = [
+    {key:'wos',       label:'Web of Science', vendor:'Clarivate',       color:'#6b21a8', textColor:'#fff'},
+    {key:'openalex',  label:'OpenAlex',        vendor:'OpenAlex.org',    color:'#0f766e', textColor:'#fff'},
+    {key:'dimensions',label:'Dimensions',      vendor:'Digital Science', color:'#1e40af', textColor:'#fff'},
+    {key:'converis',  label:'CONVERIS',        vendor:'Clarivate',       color:'#7c3aed', textColor:'#fff'},
+    {key:'symplectic',label:'Symplectic',      vendor:'Clarivate',       color:'#0369a1', textColor:'#fff'},
   ];
 
-  // Universities known to have CANCELLED WoS (intentionally absent from COMPETITOR_PRODUCTS)
-  const WOS_CANCELLED = new Set(['vu', 'uu', 'tudelft', 'ut']);
+  const STATUS = {
+    yes:      {icon:'✓', label:'Subscribed',     bg:'#dcfce7', color:'#15803d', border:'#86efac', dot:'#22c55e'},
+    no:       {icon:'✕', label:'No access',      bg:'#fef2f2', color:'#b91c1c', border:'#fca5a5', dot:'#ef4444'},
+    unknown:  {icon:'?', label:'Unknown',         bg:'#fefce8', color:'#a16207', border:'#fde047', dot:'#eab308'},
+    likely:   {icon:'~', label:'Likely',          bg:'#eff6ff', color:'#1d4ed8', border:'#93c5fd', dot:'#3b82f6'},
+    expiring: {icon:'⚠', label:'Expiring',       bg:'#fff7ed', color:'#c2410c', border:'#fed7aa', dot:'#f97316'},
+    free:     {icon:'◎', label:'Free/Open',      bg:'#f0fdf4', color:'#15803d', border:'#bbf7d0', dot:'#4ade80'},
+  };
 
-  function getCell(instId, col) {
-    // Manual override takes priority
-    const ov = (window.matrixOverrides[instId]||{})[col.key];
-    if (ov !== undefined) {
-      return { status: ov, badge: _OV_BADGES[ov]||'?', title: _OV_TITLES[ov]+' (manually set)', manual: true };
-    }
+  const isEditing = _matrixEditMode;
+  const hasOverrides = Object.keys(window.matrixOverrides||{}).length > 0;
 
-    const products = COMPETITOR_PRODUCTS[instId] || [];
-    const entry = products.find(p => p.vendor === col.vendor);
+  document.getElementById('topbar-actions').innerHTML = `
+    <div style="display:flex;gap:8px">
+      ${hasOverrides?`<button class="btn btn-outline" onclick="clearAllOverrides()" style="font-size:11px;padding:5px 12px">Clear overrides</button>`:''}
+      <button class="btn ${isEditing?'btn-primary':'btn-outline'}" onclick="toggleMatrixEdit()" style="font-size:11px;padding:5px 12px">
+        ${isEditing?'✓ Done':'Edit Matrix'}
+      </button>
+    </div>`;
 
-    // WoS special: universities that cancelled have no entry — show as cancelled
-    if (col.key === 'wos' && !entry && WOS_CANCELLED.has(instId)) {
-      return { status: 'cancelled', badge: '', title: 'Cancelled — no longer subscribed' };
-    }
+  const insts = ['uva','vu','eur','uu','leiden','rug','ru','tudelft','tue','ut','tiu','um','wur','ou']
+    .map(id=>state.institutions.find(i=>i.id===id)).filter(Boolean);
 
-    if (!entry) return { status: 'none', badge: '—', title: 'Not subscribed / N/A' };
-
-    const n = entry.notes || '';
-    const expiry = entry.contractExpiry ? entry.contractExpiry.slice(0,4) : '';
-    const expiryTag = expiry ? ` (${expiry})` : '';
-
-    if (n.includes('UNCONFIRMED'))            return { status: 'unconfirmed', badge: '?',  title: 'Unconfirmed — verify with library' + expiryTag };
-    if (n.includes('CANCELLING'))             return { status: 'expiring',    badge: '³', title: 'Active but cancelling' + expiryTag };
-    if (n.includes(' ï¸') && n.includes('likely')) return { status: 'likely', badge: '~',  title: 'Access likely but unverified' + expiryTag };
-    if (n.includes(' ï¸'))                    return { status: 'likely',      badge: '~',  title: 'Access confirmed — contract details unverified' + expiryTag };
-    return { status: 'active', badge: '', title: 'Confirmed active' + expiryTag };
+  function getStatus(instId, key) {
+    const ov = (window.matrixOverrides||{})[instId]?.[key];
+    if (ov) return ov;
+    const cd = (window.COMP_DATA||{})[instId];
+    if (cd && cd[key]) return cd[key];
+    const cp = (state.compProducts||[]).find(p=>p.instId===instId);
+    if (cp && cp[key]) return cp[key];
+    if (key==='openalex') return 'free';
+    return 'unknown';
+  }
+  function getRenewal(instId, key) {
+    const cd = (window.COMP_DATA||{})[instId];
+    return cd ? (cd[key+'Renewal'] || '') : '';
+  }
+  function getProofForCol(instId, key) {
+    const cd = (window.COMP_DATA||{})[instId];
+    return cd ? (cd[key+'Proof'] || '') : '';
+  }
+  function getNotes(instId) {
+    const stored = JSON.parse(localStorage.getItem('crm_matrix_notes')||'{}');
+    return stored[instId] || '';
+  }
+  function saveNote(instId, val) {
+    const stored = JSON.parse(localStorage.getItem('crm_matrix_notes')||'{}');
+    if (val.trim()) { stored[instId] = val; } else { delete stored[instId]; }
+    localStorage.setItem('crm_matrix_notes', JSON.stringify(stored));
+  }
+  function getProof(instId) {
+    const cd = (window.COMP_DATA||{})[instId];
+    if (cd?.proofUrl) return cd.proofUrl;
+    const cp = (state.compProducts||[]).find(p=>p.instId===instId);
+    return cp?.proofUrl || cp?.proof || '';
+  }
+  function getProofWos(instId) {
+    return (window.COMP_DATA||{})[instId]?.proofWos || '';
+  }
+  function getProofOpenalex(instId) {
+    return (window.COMP_DATA||{})[instId]?.proofOpenalex || '';
   }
 
-  // Standard styling for non-WoS columns (dark-mode aware)
-  const STATUS_STYLE = {
-    active:      'background:rgba(34,197,94,.14);color:#4ade80;border:1px solid rgba(34,197,94,.28)',
-    likely:      'background:rgba(34,197,94,.07);color:#86efac;border:1px solid rgba(34,197,94,.16)',
-    unconfirmed: 'background:rgba(245,158,11,.13);color:#fbbf24;border:1px solid rgba(245,158,11,.28)',
-    expiring:    'background:rgba(249,115,22,.13);color:#fb923c;border:1px solid rgba(249,115,22,.28)',
-    cancelled:   'background:rgba(239,68,68,.13);color:#f87171;border:1px solid rgba(239,68,68,.28)',
-    none:        'background:rgba(255,255,255,.04);color:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.07)',
-  };
+  const ALL_COLS = [...ELSEVIER, ...COMPETITORS];
 
-  // WoS-specific styling: active = RED (competitor present), cancelled/none = GREEN (opportunity)
-  const WOS_STYLE = {
-    active:      'background:rgba(239,68,68,.18);color:#f87171;border:1px solid rgba(239,68,68,.35)',    // RED — competitor active
-    likely:      'background:rgba(249,115,22,.15);color:#fb923c;border:1px solid rgba(249,115,22,.3)',   // orange — likely active
-    unconfirmed: 'background:rgba(245,158,11,.13);color:#fbbf24;border:1px solid rgba(245,158,11,.28)',  // yellow
-    expiring:    'background:rgba(245,158,11,.13);color:#fbbf24;border:1px solid rgba(245,158,11,.28)',  // yellow — cancelling (opportunity building)
-    cancelled:   'background:rgba(34,197,94,.14);color:#4ade80;border:1px solid rgba(34,197,94,.28)',    // GREEN — cancelled = opportunity
-    none:        'background:rgba(34,197,94,.14);color:#4ade80;border:1px solid rgba(34,197,94,.28)',    // GREEN — no WoS = opportunity
-  };
+  // ── Build HTML ──────────────────────────────────────────────────────────────
+  let html = `
+  <style>
+    .cm-wrap { overflow-x:auto; overflow-y:auto; max-height:calc(100vh - 160px); border-radius:12px; box-shadow:0 4px 24px rgba(0,0,0,.18); margin-top:48px; }
+    .cm-table thead tr.cm-group th { position:sticky; top:0; z-index:4; background:#0f172a !important; box-shadow:0 1px 0 rgba(255,255,255,.08); }
+    .cm-table thead tr.cm-cols th { position:sticky; top:40px; z-index:3; background:#1e293b !important; box-shadow:0 2px 0 rgba(255,255,255,.06); }
+    .cm-sticky { position:sticky; left:0; z-index:2; }
+    .cm-table thead tr.cm-group th.cm-sticky { z-index:6 !important; background:#0f172a !important; }
+    .cm-table thead tr.cm-cols th.cm-sticky { z-index:5 !important; background:#1e293b !important; }
+    .cm-table tbody td { background-clip:padding-box; }
+    .cm-table { width:100%; border-collapse:separate; border-spacing:0; min-width:900px; background:#fff; }
+    .cm-table thead tr.cm-group th { padding:10px 12px; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; }
+    .cm-table thead tr.cm-cols th { padding:10px 8px; font-size:11px; font-weight:600; text-align:center; border-top:1px solid rgba(255,255,255,.15); }
+    .cm-table tbody tr { transition:background .12s; }
+    .cm-table tbody tr:hover td { background:#f0f7ff !important; }
+    .cm-table tbody tr:hover td.cm-sticky { background:#e8f4ff !important; }
+    .cm-sticky { position:sticky; left:0; z-index:2; }
+    .cm-cell { text-align:center; padding:10px 6px; border-bottom:1px solid #f1f5f9; border-right:1px solid #f1f5f9; }
+    .cm-badge { display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px; border-radius:8px; font-size:13px; font-weight:700; cursor:default; transition:transform .1s; }
+    .cm-badge:hover { transform:scale(1.15); }
+    .cm-inst-cell { padding:10px 16px; border-bottom:1px solid #f1f5f9; border-right:2px solid #e2e8f0; min-width:190px; max-width:190px; }
+    .cm-inst-name { font-size:13px; font-weight:700; color:#0f172a; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:165px; }
+    .cm-inst-city { font-size:10px; color:#94a3b8; margin-top:1px; }
+    .cm-proof-cell { text-align:center; padding:8px 6px; border-bottom:1px solid #f1f5f9; }
+    .cm-proof-link { display:inline-flex; align-items:center; gap:4px; font-size:10px; color:#3b82f6; text-decoration:none; padding:3px 8px; border:1px solid #bfdbfe; border-radius:5px; background:#eff6ff; white-space:nowrap; }
+    .cm-proof-link:hover { background:#dbeafe; }
+    .cm-legend { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:14px; padding:12px 16px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:10px; }
+    .cm-legend-item { display:inline-flex; align-items:center; gap:6px; font-size:11px; color:#94a3b8; }
+  </style>
 
-  // WoS sort priority: active first (red = competitor present), then expiring, then unconfirmed, then cancelled/none
-  const WOS_SORT = { active: 0, likely: 1, expiring: 2, unconfirmed: 3, cancelled: 4, none: 5 };
+  <div class="cm-wrap">
+  <table class="cm-table">
+  <thead>
+    <!-- Category row -->
+    <tr class="cm-group" style="background:#0f172a">
+      <th class="cm-sticky" style="background:#0f172a;min-width:190px;text-align:left;color:#94a3b8;font-size:10px;letter-spacing:1px;padding:10px 16px;position:sticky;top:0;left:0;z-index:7">INSTITUTION</th>
+      <th colspan="3" style="background:linear-gradient(135deg,#ff6200,#ff8c00) !important;color:#fff;border-right:2px solid #0f172a;isolation:isolate">
+        <div style="display:flex;align-items:center;justify-content:center;gap:6px">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          ELSEVIER PRODUCTS
+        </div>
+      </th>
+      <th colspan="5" style="background:#1e293b !important;color:#94a3b8;border-right:2px solid #0f172a">
+        <div style="display:flex;align-items:center;justify-content:center;gap:6px">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          COMPETITOR INTELLIGENCE
+        </div>
+      </th>
+      <th style="background:#0f172a !important;color:#64748b;font-size:10px;letter-spacing:1px;min-width:100px">PROOF</th><th style="background:#0f172a !important;color:#64748b;font-size:10px;letter-spacing:1px;min-width:160px">NOTES</th>
+    </tr>
+    <!-- Column name row -->
+    <tr class="cm-cols" style="background:#1e293b">
+      <th class="cm-sticky" style="background:#1e293b;border-right:2px solid #334155;position:sticky;top:40px;left:0;z-index:6"></th>
+      ${ELSEVIER.map(c=>`
+        <th style="min-width:90px;max-width:90px;color:${c.textColor};border-right:1px solid #334155">
+          <div style="width:8px;height:8px;border-radius:50%;background:${c.color};margin:0 auto 4px"></div>
+          ${c.label}
+        </th>`).join('')}
+      ${COMPETITORS.map((c,i)=>`
+        <th style="min-width:100px;max-width:100px;color:#cbd5e1;border-right:${i<COMPETITORS.length-1?'1px solid #334155':'2px solid #334155'}">
+          <div style="width:8px;height:8px;border-radius:50%;background:${c.color};margin:0 auto 4px"></div>
+          <div>${c.label}</div>
+          <div style="font-size:9px;color:#64748b;font-weight:400;margin-top:1px">${c.vendor}</div>
+        </th>`).join('')}
+      <th style="color:#64748b;font-size:10px;min-width:100px;background:#1e293b !important">Source</th><th style="color:#64748b;font-size:10px;min-width:160px;background:#1e293b !important">Notes</th>
+    </tr>
+  </thead>
+  <tbody>`;
 
-  const ALL_IDS = ['uva','vu','eur','uu','leiden','rug','ru','tudelft','tue','ut','tiu','um','wur','ou'];
-  const unis = ALL_IDS
-    .map(id => state.institutions.find(u => u.id === id))
-    .filter(Boolean)
-    .sort((a, b) => {
-      const wa = getCell(a.id, { key:'wos', vendor:'Clarivate' }).status;
-      const wb = getCell(b.id, { key:'wos', vendor:'Clarivate' }).status;
-      return (WOS_SORT[wa] ?? 9) - (WOS_SORT[wb] ?? 9);
+  insts.forEach((inst, idx) => {
+    const rowBg = idx%2===0 ? '#ffffff' : '#f8fafc';
+    const proof = getProof(inst.id);
+    html += `<tr style="cursor:pointer" onclick="nav('detail',{instId:'${inst.id}'})">
+      <td class="cm-sticky cm-inst-cell" style="background:${rowBg}">
+        <div class="cm-inst-name" title="${inst.name}">${inst.short||inst.name}</div>
+        <div class="cm-inst-city">${inst.city}</div>
+      </td>`;
+
+    // Elsevier columns (highlighted background)
+    ELSEVIER.forEach(col => {
+      const s = getStatus(inst.id, col.key);
+      const st = STATUS[s] || STATUS.unknown;
+      const renewal = getRenewal(inst.id, col.key);
+      html += `<td class="cm-cell" style="background:${rowBg}">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+          <span class="cm-badge" title="${st.label}" style="background:${st.bg};color:${st.color};border:1px solid ${st.border}${isEditing?';cursor:pointer':''}"
+            ${isEditing?`onclick="event.stopPropagation();cycleCell('${inst.id}','${col.key}',event)"`:''}>
+            ${st.icon}
+          </span>
+          ${renewal?`<span style="font-size:9px;color:#64748b;white-space:nowrap">${renewal}</span>`:''}
+        </div>
+      </td>`;
     });
 
-  // Column header groups
-  const catColors = {
-    national:   { bg:'rgba(99,102,241,.18)',  border:'rgba(99,102,241,.35)',  text:'#a5b4fc', accent:'#6366f1' },
-    citation:   { bg:'rgba(168,85,247,.18)',   border:'rgba(168,85,247,.35)',  text:'#c4b5fd', accent:'#a855f7' },
-    specialist: { bg:'rgba(14,165,233,.18)',   border:'rgba(14,165,233,.35)',  text:'#7dd3fc', accent:'#0ea5e9' },
-  };
-  const catLabels = { national: 'National Deals (all universities)', citation: 'Citation DB', specialist: 'Specialist DB' };
-
-  // Group headers row (colspan)
-  const groupCols = {};
-  COLS.forEach(c => { groupCols[c.cat] = (groupCols[c.cat]||0)+1; });
-  const groupOrder = ['national','citation','specialist'];
-  const groupRow = groupOrder.map(cat => {
-    const cc = catColors[cat];
-    return `<th colspan="${groupCols[cat]}" style="background:${cc.bg};color:${cc.text};text-align:center;font-size:10px;font-weight:700;padding:7px 4px;border-right:1px solid rgba(255,255,255,.06);letter-spacing:.6px;text-transform:uppercase">
-      ${catLabels[cat]}
-    </th>`;
-  }).join('');
-
-  // Column headers
-  const colHeaders = COLS.map((c,i) => {
-    const cc = catColors[c.cat];
-    const borderR = (i===2||i===3) ? `border-right:1px solid rgba(255,255,255,.08);` : '';
-    return `<th style="background:rgba(255,255,255,.04);color:${cc.text};font-size:10px;font-weight:600;padding:8px 6px;text-align:center;vertical-align:bottom;white-space:nowrap;letter-spacing:.3px;${borderR}">${c.label}</th>`;
-  }).join('');
-
-  // University rows
-  const rows = unis.map((u,ri) => {
-    const cells = COLS.map((c,i) => {
-      const cell = getCell(u.id, c);
-      const borderR = (i===2||i===3) ? 'border-right:1px solid rgba(255,255,255,.06);' : '';
-      const baseStyle = c.key === 'wos' ? WOS_STYLE[cell.status] : STATUS_STYLE[cell.status];
-      const editCursor = editOn ? 'cursor:pointer;' : 'cursor:default;';
-      const editOutline = editOn ? 'outline:1px dashed rgba(0,245,196,.4);outline-offset:-3px;' : '';
-      const manualDot = cell.manual ? '<sup style="font-size:7px;opacity:.7;margin-left:1px"></sup>' : '';
-      const clickHandler = editOn ? `onclick="cycleCell('${u.id}','${c.key}',event)"` : '';
-      // Badge pill
-      const badgeHtml = cell.status === 'none'
-        ? `<span style="font-size:13px;opacity:.25">—</span>`
-        : `<span style="display:inline-block;min-width:22px;padding:2px 7px;border-radius:20px;font-size:12px;font-weight:700;${baseStyle}">${cell.badge}${manualDot}</span>`;
-      return `<td title="${editOn?'Click to change: '+cell.title:cell.title}" style="text-align:center;padding:9px 5px;${editCursor}${editOutline}${borderR}border-bottom:1px solid rgba(255,255,255,.04);" ${clickHandler}>
-        ${badgeHtml}
+    // Competitor columns
+    COMPETITORS.forEach((col,i) => {
+      const s = getStatus(inst.id, col.key);
+      const st = STATUS[s] || STATUS.unknown;
+      const renewal = getRenewal(inst.id, col.key);
+      html += `<td class="cm-cell" style="background:${rowBg};border-right:${i===COMPETITORS.length-1?'2px solid #e2e8f0':'1px solid #f1f5f9'}">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+          <span class="cm-badge" title="${st.label}" style="background:${st.bg};color:${st.color};border:1px solid ${st.border}${isEditing?';cursor:pointer':''}"
+            ${isEditing?`onclick="event.stopPropagation();cycleCell('${inst.id}','${col.key}',event)"`:''}>
+            ${st.icon}
+          </span>
+          ${renewal?`<span style="font-size:9px;color:#64748b;white-space:nowrap">${renewal}</span>`:''}
+        </div>
       </td>`;
-    }).join('');
+    });
 
-    const rowBg = ri%2===1 ? 'background:rgba(255,255,255,.018);' : '';
-    const rowClick = editOn ? '' : `onclick="nav('detail',{instId:'${u.id}'})" title="Open ${esc(u.name)} profile"`;
-    const shortName = esc(u.name
-      .replace(/University of |Universiteit van |Universiteit |University /g,'')
-      .replace(/Eindhoven University of Technology/,'TU/e')
-      .replace(/Wageningen University & Research/,'WUR'));
-    return `<tr style="${rowBg}transition:background .12s;" ${rowClick} class="sub-row">
-      <td style="padding:10px 14px;white-space:nowrap;${editOn?'':'cursor:pointer;'}border-bottom:1px solid rgba(255,255,255,.04);border-right:1px solid rgba(255,255,255,.06);">
-        <div style="display:flex;align-items:center;gap:7px">
-          <span style="font-size:10px;font-weight:700;color:var(--accent);opacity:.55;letter-spacing:.3px;min-width:28px">${esc(u.short||u.id.toUpperCase())}</span>
-          <span style="font-size:13px;font-weight:500;color:#e2e8f0">${shortName}</span>
-        </div>
-      </td>
-      ${cells}
-    </tr>`;
-  }).join('');
-
-  // Legend
-  const legendItems = [
-    { style: WOS_STYLE.active,      badge: '', label: 'WoS active — competitor present' },
-    { style: WOS_STYLE.expiring,    badge: '³', label: 'WoS cancelling — opportunity' },
-    { style: WOS_STYLE.unconfirmed, badge: '?',  label: 'Status unconfirmed' },
-    { style: WOS_STYLE.cancelled,   badge: '',  label: 'WoS cancelled — opportunity!' },
-    { style: STATUS_STYLE.active,   badge: '',  label: 'Confirmed active' },
-    { style: STATUS_STYLE.likely,   badge: '~',  label: 'Likely active (TBC)' },
-    { style: STATUS_STYLE.none,     badge: '—',  label: 'Not subscribed' },
-  ];
-  const legend = legendItems.map(item =>
-    `<span style="display:inline-flex;align-items:center;gap:6px;font-size:11.5px;color:var(--muted2)">
-      <span style="${item.style};border-radius:20px;padding:2px 8px;font-size:11px;font-weight:700">${item.badge}</span>
-      ${item.label}
-    </span>`
-  ).join('');
-
-  document.getElementById('content').innerHTML = `
-    <style>
-      .sub-row:hover td { background:rgba(255,255,255,.04) !important; }
-    </style>
-    <div style="padding:0 0 24px">
-      ${editOn ? `
-      <div style="display:flex;align-items:center;gap:10px;padding:11px 15px;margin-bottom:16px;background:rgba(0,245,196,.07);border:1px solid rgba(0,245,196,.25);border-radius:10px">
-        <span style="font-size:15px">ï¸</span>
-        <div>
-          <div style="font-size:12px;font-weight:600;color:var(--accent)">Edit Mode — click any cell to cycle through statuses</div>
-          <div style="font-size:11px;color:var(--muted);margin-top:2px">Cycles:  Active  ³ Cancelling  ? Unconfirmed   Cancelled  — None  (reset to auto). Saves automatically.</div>
-        </div>
-      </div>` : `
-      <p style="font-size:12.5px;color:var(--muted);margin-bottom:16px">
-        Click any row to open the university profile. Hover a cell for details. Use <strong style="color:var(--text2)">Edit Subscriptions</strong> to update statuses manually.
-      </p>`}
-
-      <div style="overflow-x:auto;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:rgba(14,22,36,.7)">
-        <table style="border-collapse:collapse;width:100%;min-width:700px">
-          <thead>
-            <tr>
-              <th style="background:rgba(255,255,255,.04);padding:9px 14px;text-align:left;font-size:10px;font-weight:600;color:var(--muted);border-right:1px solid rgba(255,255,255,.06);letter-spacing:.6px;text-transform:uppercase" rowspan="2">University</th>
-              ${groupRow}
-            </tr>
-            <tr>${colHeaders}</tr>
-          </thead>
-          <tbody>${rows}</tbody>
-        </table>
+    // Proof links — WoS, OpenAlex, and Scopus renewal
+    const proofWos = getProofWos(inst.id);
+    const proofOA  = getProofOpenalex(inst.id);
+    const proofScopus = getProofForCol(inst.id, 'scopus');
+    const extSVG = `<svg viewBox="0 0 24 24" width="9" height="9" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
+    html += `<td class="cm-proof-cell" style="background:${rowBg};min-width:140px" onclick="event.stopPropagation()">
+      <div style="display:flex;flex-direction:column;gap:4px;align-items:center">
+        ${proofWos
+          ? `<a class="cm-proof-link" href="${proofWos}" target="_blank" rel="noopener" title="Web of Science source">${extSVG} WoS</a>`
+          : `<span style="font-size:9px;color:#64748b;padding:2px 6px">WoS —</span>`}
+        ${proofOA
+          ? `<a class="cm-proof-link" href="${proofOA}" target="_blank" rel="noopener" title="OpenAlex profile" style="background:#f0fdf4;border-color:#bbf7d0;color:#15803d">${extSVG} OpenAlex</a>`
+          : `<span style="font-size:9px;color:#64748b;padding:2px 6px">OA —</span>`}
+        ${proofScopus
+          ? `<a class="cm-proof-link" href="${proofScopus}" target="_blank" rel="noopener" title="Scopus national agreement" style="background:#fff7ed;border-color:#fed7aa;color:#c2410c">${extSVG} Scopus</a>`
+          : ''}
       </div>
+    </td>`;
+    // Notes cell
+    const note = getNotes(inst.id);
+    html += `<td class="cm-notes-cell" style="background:${rowBg}" onclick="event.stopPropagation()">
+      <div class="cm-notes-editable" contenteditable="true" style="color:#111827"
+        data-instid="${inst.id}"
+        data-placeholder="Add notes…"
+        oninput="saveNote('${inst.id}', this.innerText.trim())"
+        onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();this.blur();}"
+      >${note ? note.replace(/</g,'&lt;').replace(/>/g,'&gt;') : ''}</div>
+    </td>`;
+    html += '</tr>';
+  });
 
-      <div style="margin-top:16px;padding:14px 18px;background:rgba(255,255,255,.03);border-radius:10px;border:1px solid rgba(255,255,255,.07)">
-        <div style="font-size:10px;font-weight:700;color:var(--muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:.7px">Legend</div>
-        <div style="display:flex;flex-wrap:wrap;gap:10px 18px">${legend}</div>
-      </div>
+  html += `</tbody></table></div>
 
-      <div style="margin-top:10px;padding:12px 16px;background:rgba(245,158,11,.07);border-radius:10px;border:1px solid rgba(245,158,11,.2)">
-        <div style="font-size:12px;color:rgba(251,191,36,.85)">
-          <strong> National deals</strong> (Springer, Wiley, T&F) apply to all 14 universities under UKB-SURF / UNL agreements, expiring Dec 2026. &nbsp;
-          <strong>WoS wave:</strong> VU, UU, TU Delft & UT all cancelled as of 2025–2026; RUG cancelling Dec 2026. &nbsp;
-          All  ï¸/? cells should be verified with the institution's library director before quoting.
-        </div>
-      </div>
-    </div>`;
+  <!-- Legend -->
+  <div class="cm-legend">
+    ${Object.entries(STATUS).map(([k,v])=>`
+      <span class="cm-legend-item">
+        <span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:5px;background:${v.bg};color:${v.color};border:1px solid ${v.border};font-size:11px;font-weight:700">${v.icon}</span>
+        ${v.label}
+      </span>`).join('')}
+    <span style="margin-left:auto;font-size:10px;color:#64748b">Click any row → institution detail &nbsp;·&nbsp; OpenAlex marked ◎ Free as it's open access</span>
+  </div>`;
+
+  document.getElementById('content').innerHTML = html;
 }
 
 const COMPETITOR_PRODUCTS = {
