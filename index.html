@@ -3438,17 +3438,17 @@ function renderSubscriptionMatrix() {
     <tr class="cm-cols" style="background:#1e293b">
       <th class="cm-sticky" style="background:#1e293b;border-right:2px solid #334155;position:sticky;top:40px;left:0;z-index:6"></th>
       ${ELSEVIER.map(c=>`
-        <th style="min-width:90px;max-width:90px;color:${c.textColor};border-right:1px solid #334155">
+        <th style="min-width:90px;max-width:90px;color:#fff;border-right:1px solid #334155">
           <div style="width:8px;height:8px;border-radius:50%;background:${c.color};margin:0 auto 4px"></div>
           ${c.label}
         </th>`).join('')}
       ${COMPETITORS.map((c,i)=>`
-        <th style="min-width:100px;max-width:100px;color:#cbd5e1;border-right:${i<COMPETITORS.length-1?'1px solid #334155':'2px solid #334155'}">
+        <th style="min-width:100px;max-width:100px;color:#f1f5f9;border-right:${i<COMPETITORS.length-1?'1px solid #334155':'2px solid #334155'}">
           <div style="width:8px;height:8px;border-radius:50%;background:${c.color};margin:0 auto 4px"></div>
           <div>${c.label}</div>
           <div style="font-size:9px;color:#64748b;font-weight:400;margin-top:1px">${c.vendor}</div>
         </th>`).join('')}
-      <th style="color:#64748b;font-size:10px;min-width:100px;background:#1e293b !important">Source</th><th style="color:#64748b;font-size:10px;min-width:160px;background:#1e293b !important">Notes</th>
+      <th style="color:#94a3b8;font-size:10px;min-width:100px;background:#1e293b !important">Source</th><th style="color:#94a3b8;font-size:10px;min-width:160px;background:#1e293b !important">Notes</th>
     </tr>
   </thead>
   <tbody>`;
