@@ -35,7 +35,6 @@ async function getJSON(url) {
   } catch(e) { console.warn(`Fetch failed ${url}: ${e.message}`); return null; }
 }
 
-// ── OpenAlex: look up institution ID by name, then page through authors ───────
 async function getInstId(name) {
   const url = `https://api.openalex.org/institutions?search=${encodeURIComponent(name)}&per_page=1&mailto=venturino.dino@gmail.com`;
   const data = await getJSON(url);
@@ -47,25 +46,22 @@ async function getInstId(name) {
 
 async function scrapeOpenAlex(scraped, key, instName, instId, dept, needed) {
   const contacts = [];
-
-  // Look up (and cache) the institution's OpenAlex ID
   let oaId = scraped[`${key}_oa_id`];
   if (!oaId) {
     oaId = await getInstId(instName);
     if (!oaId) return contacts;
     scraped[`${key}_oa_id`] = oaId;
   }
-
+  // Extract short ID ("I4210095242") from full URL ("https://openalex.org/I4210095242")
+  const shortId = String(oaId).split('/').pop();
   const done = new Set(scraped[key] || []);
   const page = scraped[`${key}_page`] || 1;
   const cacheKey = `p${page}`;
   if (done.has(cacheKey)) return contacts;
-
-  const url = `https://api.openalex.org/authors?filter=last_known_institution.id:${encodeURIComponent(oaId)}&per_page=10&page=${page}&mailto=venturino.dino@gmail.com`;
+  const url = `https://api.openalex.org/authors?filter=last_known_institution.id:${shortId}&per_page=10&page=${page}&mailto=venturino.dino@gmail.com`;
   const data = await getJSON(url);
   done.add(cacheKey);
   scraped[key] = [...done];
-
   if (data?.results?.length) {
     for (const author of data.results) {
       if (contacts.length >= needed) break;
@@ -78,20 +74,16 @@ async function scrapeOpenAlex(scraped, key, instName, instId, dept, needed) {
     }
     scraped[`${key}_page`] = page + 1;
   }
-
   return contacts;
 }
 
-// ── CWI via OpenAlex (site blocks GitHub Actions bots) ───────────────────────
 async function scrapeCWI(scraped, needed) {
-  return scrapeOpenAlex(scraped, 'cwi', 'Centrum Wiskunde en Informatica', 'cwi', 'Mathematics & Computer Science', needed);
+  return scrapeOpenAlex(scraped, 'cwi', 'Centrum Wiskunde & Informatica', 'cwi', 'Mathematics & Computer Science', needed);
 }
 
-// ── PBL via web scraping (site accessible, profile pages have contact forms) ──
 async function scrapePBL(scraped, needed) {
   const contacts = [];
   const done = new Set(scraped.pbl || []);
-
   for (let page = 0; page <= 6 && contacts.length < needed; page++) {
     const listUrl = page === 0
       ? 'https://www.pbl.nl/en/about-pbl/staff'
@@ -100,8 +92,6 @@ async function scrapePBL(scraped, needed) {
     const html = await get(listUrl);
     done.add(listUrl);
     if (!html) continue;
-
-    // Staff list: href="/en/about-pbl/employees/firstname-lastname"
     const matches = [...html.matchAll(/href="(\/en\/about-pbl\/employees\/([a-z0-9-]+))"[^>]*>([^<]+)<\/a>/gi)];
     for (const m of matches) {
       if (contacts.length >= needed) break;
@@ -112,27 +102,22 @@ async function scrapePBL(scraped, needed) {
       const parts = full.split(' ');
       if (parts.length < 2) continue;
       const first = parts[0], last = parts.slice(1).join(' ');
-      // Construct email from slug: firstname-lastname -> firstname.lastname@pbl.nl
       const email = slug.replace(/-/g, '.') + '@pbl.nl';
       contacts.push({ first, last, title: 'Researcher', dept: 'Environmental Assessment', email, instId: 'pbl', source: `https://www.pbl.nl${path}` });
     }
   }
-
   scraped.pbl = [...done];
   return contacts;
 }
 
-// ── eScience Center via OpenAlex ──────────────────────────────────────────────
 async function scrapeEScience(scraped, needed) {
   return scrapeOpenAlex(scraped, 'esc', 'Netherlands eScience Center', 'esc', 'Research Software Engineering', needed);
 }
 
-// ── Rathenau via OpenAlex ─────────────────────────────────────────────────────
 async function scrapeRathenau(scraped, needed) {
   return scrapeOpenAlex(scraped, 'rathenau', 'Rathenau Instituut', 'rathenau', 'Science & Technology Studies', needed);
 }
 
-// ── Main ──────────────────────────────────────────────────────────────────────
 async function main() {
   const state   = readJSON(STATE_FILE,   { scraped: {}, lastRun: null });
   const pending = readJSON(PENDING_FILE, []);
