@@ -3298,6 +3298,17 @@ if (!window.COMP_DATA) {
   };
 }
 
+// Notes persistence — global so inline oninput handlers can reach them
+function getNotes(instId) {
+  const stored = JSON.parse(localStorage.getItem('crm_matrix_notes')||'{}');
+  return stored[instId] || '';
+}
+function saveNote(instId, val) {
+  const stored = JSON.parse(localStorage.getItem('crm_matrix_notes')||'{}');
+  if (val.trim()) { stored[instId] = val; } else { delete stored[instId]; }
+  localStorage.setItem('crm_matrix_notes', JSON.stringify(stored));
+}
+
 function renderSubscriptionMatrix() {
   document.getElementById('page-title').textContent = 'Competitor Matrix';
   document.getElementById('page-sub').textContent = 'Subscription intelligence across the Netherlands research landscape';
@@ -3357,15 +3368,7 @@ function renderSubscriptionMatrix() {
     const cd = (window.COMP_DATA||{})[instId];
     return cd ? (cd[key+'Proof'] || '') : '';
   }
-  function getNotes(instId) {
-    const stored = JSON.parse(localStorage.getItem('crm_matrix_notes')||'{}');
-    return stored[instId] || '';
-  }
-  function saveNote(instId, val) {
-    const stored = JSON.parse(localStorage.getItem('crm_matrix_notes')||'{}');
-    if (val.trim()) { stored[instId] = val; } else { delete stored[instId]; }
-    localStorage.setItem('crm_matrix_notes', JSON.stringify(stored));
-  }
+
   function getProof(instId) {
     const cd = (window.COMP_DATA||{})[instId];
     if (cd?.proofUrl) return cd.proofUrl;
