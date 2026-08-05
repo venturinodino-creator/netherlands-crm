@@ -58,7 +58,7 @@ async function scrapeOpenAlex(scraped, key, instName, instId, dept, needed) {
   const page = scraped[`${key}_page`] || 1;
   const cacheKey = `p${page}`;
   if (done.has(cacheKey)) return contacts;
-  const url = `https://api.openalex.org/authors?filter=last_known_institution.id:${shortId}&per_page=10&page=${page}&mailto=venturino.dino@gmail.com`;
+  const url = `https://api.openalex.org/authors?filter=last_known_institutions.id:${shortId}&per_page=10&page=${page}&mailto=venturino.dino@gmail.com`;
   const data = await getJSON(url);
   done.add(cacheKey);
   scraped[key] = [...done];
