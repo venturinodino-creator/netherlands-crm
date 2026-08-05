@@ -2,16 +2,21 @@
   "scraped": {
     "cwi": [],
     "esc": [
-      "https://www.esciencecenter.nl/team/"
+      "https://www.esciencecenter.nl/team/",
+      "p1"
     ],
     "pbl": [
       "https://www.pbl.nl/en/about-pbl/staff",
-      "https://www.pbl.nl/over-pbl/medewerkers"
+      "https://www.pbl.nl/over-pbl/medewerkers",
+      "https://www.pbl.nl/en/about-pbl/staff?page=1",
+      "ioannis-dafnomilis",
+      "anteneh-dagnachew"
     ],
     "rathenau": [
       "https://www.rathenau.nl/en/about-rathenau-instituut/people",
-      "https://www.rathenau.nl/nl/over-rathenau/medewerkers"
+      "https://www.rathenau.nl/nl/over-rathenau/medewerkers",
+      "p1"
     ]
   },
-  "lastRun": "2026-08-05T19:33:10.828Z"
+  "lastRun": "2026-08-05T19:48:19.055Z"
 }

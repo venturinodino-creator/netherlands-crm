@@ -1,1 +1,17 @@
-[]
+[
+  {
+    "first": "Read",
+    "last": "more",
+    "title": "Researcher",
+    "dept": "Environmental Assessment",
+    "email": "ioannis.dafnomilis@pbl.nl",
+    "instId": "pbl",
+    "source": "https://www.pbl.nl/en/about-pbl/employees/ioannis-dafnomilis",
+    "id": "disc_pbl_1785959299054_qkp2",
+    "status": "prospect",
+    "priority": "medium",
+    "quality": "seed",
+    "lastContact": "",
+    "notes": "Discovered: 2026-08-05 | Source: https://www.pbl.nl/en/about-pbl/employees/ioannis-dafnomilis"
+  }
+]
