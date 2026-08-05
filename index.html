@@ -1668,7 +1668,7 @@ function runContactsSync() {
 function uid() { return 'id_' + Date.now() + '_' + Math.random().toString(36).slice(2,7); }
 function esc(s) { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
-// (original emoji TYPE_ICON line removed, replaced below) // was: university:'ð', medical:'ð¥', research:'ð¬', ngo:'ð¢'};
+// (original emoji TYPE_ICON line removed, replaced below) // was: university:'ð', medical:'ð¥', research:'[R]', ngo:'ð¢'};
 const TYPE_ICON_SVG_UNI = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v12H2V10"/><path d="M6 10V3h12v7"/><path d="M12 10v12"/><path d="M2 10l10-7 10 7"/></svg>`;
 const TYPE_ICON_SVG_MED = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6v4"/><path d="M14 14h-4"/><path d="M14 18h-4"/><path d="M14 8h-4"/><path d="M18 12h2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2h2"/><path d="M18 22V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v18"/></svg>`;
 const TYPE_ICON_SVG_RES = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/></svg>`;
@@ -1974,7 +1974,7 @@ function buildDashWidgets(typeRows, hpRows, recentRows) {
       <div class="card-header"><span class="card-title">Quick Actions</span>${handle}</div>
       <div style="display:flex;flex-direction:column;gap:8px">
         <button class="btn btn-primary" onclick="nav('institutions')">ðï¸ Browse Institutions</button>
-        <button class="btn btn-outline" onclick="nav('contacts')">ð¤ View All Contacts</button>
+        <button class="btn btn-outline" onclick="nav('contacts')"><span style="display:inline-flex;vertical-align:middle;margin-right:4px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span> View All Contacts</button>
         <button class="btn btn-accent" onclick="openAddContact()">+ Add New Contact</button>
         <button class="btn btn-outline" onclick="openAddInstitution()">+ Add Institution</button>
         <button class="btn btn-outline" onclick="syncOpenAlex()">ð Sync Institutions</button>
@@ -2211,7 +2211,7 @@ function renderInstitutions() {
         <option value="">All Types</option>
         <option value="university" ${state.instType==='university'?'selected':''}>ð University</option>
         <option value="medical" ${state.instType==='medical'?'selected':''}>ð¥ Medical Center</option>
-        <option value="research" ${state.instType==='research'?'selected':''}>ð¬ Research Institute</option>
+        <option value="research" ${state.instType==='research'?'selected':''}>Research Institute</option>
         <option value="ngo" ${state.instType==='ngo'?'selected':''}>ð¢ NGO / Foundation</option>
       </select>
       <span style="font-size:12px;color:var(--muted)">${insts.length} result${insts.length!==1?'s':''}</span>
@@ -2232,10 +2232,10 @@ function renderInstitutions() {
         </div>
         <h3>${esc(i.name)}</h3>
         ${i.short?`<div class="short">${esc(i.short)}</div>`:''}
-        <div class="city">ð ${esc(i.city)}${i.founded?' Â· Est. '+i.founded:''}</div>
-        ${i.researchDirector?`<div style="font-size:11px;color:var(--muted);margin-top:6px;display:flex;align-items:center;gap:4px"><span style="opacity:.6">ð¬</span><span style="font-weight:600;color:var(--text2)">${esc(i.researchDirector)}</span></div>`:''}
+        <div class="city"><span style="display:inline-flex;vertical-align:middle;margin-right:3px;opacity:.55"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>${esc(i.city)}${i.founded?' Â· Est. '+i.founded:''}</div>
+        ${i.researchDirector?`<div style="font-size:11px;color:var(--muted);margin-top:6px;display:flex;align-items:center;gap:4px"><span style="opacity:.6"><span style="display:inline-flex;vertical-align:middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span></span><span style="font-weight:600;color:var(--text2)">${esc(i.researchDirector)}</span></div>`:''}
         <div class="ic-footer">
-          <span>ð¤ ${cc} contact${cc!==1?'s':''}</span>
+          <span><span style="opacity:.6;display:inline-flex;margin-right:3px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>${cc} contact${cc!==1?'s':''}</span>
           <div class="ic-actions">
             <button class="btn btn-xs btn-outline" onclick="event.stopPropagation();openEditInstitution('${i.id}')">âï¸</button>
             <button class="btn btn-xs btn-danger" onclick="event.stopPropagation();confirmDeleteInst('${i.id}')">ðï¸</button>
@@ -2250,7 +2250,7 @@ function renderInstitutions() {
       return `<tr onclick="nav('detail',{instId:'${i.id}'})">
         <td><div class="name-cell"><span style="font-size:18px">${TYPE_ICON[i.type]||'ðï¸'}</span><div><div style="font-weight:600">${esc(i.name)}</div><div style="font-size:11px;color:var(--muted)">${esc(i.short||'')}</div></div></div></td>
         <td><span class="badge b-${i.type}">${TYPE_LABEL[i.type]}</span></td>
-        <td>ð ${esc(i.city)}</td>
+        <td><span style="display:inline-flex;vertical-align:middle;margin-right:3px;opacity:.55"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>${esc(i.city)}</td>
         <td>${i.founded||'â'}</td>
         <td>${cc} contact${cc!==1?'s':''}</td>
         <td onclick="event.stopPropagation()" style="white-space:nowrap">
@@ -2309,7 +2309,7 @@ function renderDetail() {
         <button class="btn btn-xs btn-danger" onclick="confirmDeleteContact('${c.id}')">ðï¸</button>
       </td>
     </tr>`;
-  }).join('') : `<tr><td colspan="8"><div class="empty" style="padding:30px"><div class="ei">ð¤</div><h3>No contacts yet</h3><p><button class="btn btn-accent btn-sm" onclick="openAddContact('${inst.id}')">+ Add first contact</button></p></div></td></tr>`;
+  }).join('') : `<tr><td colspan="8"><div class="empty" style="padding:30px"><div class="ei"><span style="display:inline-flex"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span></div><h3>No contacts yet</h3><p><button class="btn btn-accent btn-sm" onclick="openAddContact('${inst.id}')">+ Add first contact</button></p></div></td></tr>`;
 
   let _rfHtml = '';
   try {
@@ -2328,7 +2328,7 @@ function renderDetail() {
             <h2>${esc(inst.name)}</h2>
             <div style="margin-top:4px;display:flex;gap:8px;flex-wrap:wrap">
               <span class="badge b-${inst.type}">${TYPE_LABEL[inst.type]||inst.type}</span>
-              <span style="font-size:12px;color:var(--muted)">ð ${esc(inst.city)}</span>
+              <span style="font-size:12px;color:var(--muted)"><span style="display:inline-flex;vertical-align:middle;margin-right:3px;opacity:.55"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span> ${esc(inst.city)}</span>
               ${inst.founded?`<span style="font-size:12px;color:var(--muted)">Est. ${inst.founded}</span>`:''}
             </div>
           </div>
@@ -2523,7 +2523,7 @@ function renderContacts() {
         <button class="btn btn-xs btn-danger" onclick="confirmDeleteContact('${c.id}')">ðï¸</button>
       </td>
     </tr>`;
-  }).join('') : `<tr><td colspan="9"><div class="empty" style="padding:30px"><div class="ei">ð¤</div><h3>No contacts found</h3><p>Try adjusting your filters.</p></div></td></tr>`;
+  }).join('') : `<tr><td colspan="9"><div class="empty" style="padding:30px"><div class="ei"><span style="display:inline-flex"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span></div><h3>No contacts found</h3><p>Try adjusting your filters.</p></div></td></tr>`;
 
   const pgButtons = Array.from({length:totalPages},(_,i)=>
     `<button class="pg-btn ${state.contactPage===i+1?'active':''}" onclick="state.contactPage=${i+1};renderContacts()">${i+1}</button>`
