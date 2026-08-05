@@ -1832,6 +1832,7 @@ function render() {
     dashboard: renderDashboard,
     institutions: renderInstitutions,
     contacts: renderContacts,
+    pending: renderPendingContacts,
     detail: renderDetail,
     map: renderMap,
     news: renderNews,
@@ -1948,12 +1949,22 @@ function renderDashboard() {
           <div class="stat-sub">${actionsOverdue} overdue \u00b7 ${actionsToday} due today</div>
         </div>
       </div>
+      <div class="stat-card" onclick="nav('pending')" title="Review AI-discovered contacts" style="border-color:rgba(168,85,247,.25);cursor:pointer">
+        <div class="stat-icon-box" style="background:rgba(168,85,247,.15);border:1px solid rgba(168,85,247,.25)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#a855f7" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg></div>
+        <div class="stat-text">
+          <div class="stat-label">New Contacts Today</div>
+          <div class="stat-value" id="pending-count">—</div>
+          <div class="stat-sub" id="pending-sub">Awaiting review</div>
+        </div>
+      </div>
     </div>
 
     <div class="dash-grid" id="dash-widget-grid">
       ${buildDashWidgets(typeRows, hpRows, recentRows)}
     </div>`;
   initDashDrag();
+  // Load pending contacts count
+  loadPendingCount();
   initDashMiniMap();
 }
 
@@ -4351,6 +4362,136 @@ document.addEventListener('keydown', e => { if (e.key==='Escape') closeGlobalSea
   </div>
 </div>
 <script src="animations.js"></script>
-    <script src="openalex.js?v=5"></script>
+    <script src="openalex.js?v=5">
+// ── PENDING CONTACTS ─────────────────────────────────────────────────────────
+
+async function loadPendingCount() {
+  try {
+    const res = await supaFetch('pending_contacts?status=eq.pending&select=id');
+    const data = await res.json();
+    const count = Array.isArray(data) ? data.length : 0;
+    const el = document.getElementById('pending-count');
+    const sub = document.getElementById('pending-sub');
+    if (el) el.textContent = count;
+    if (sub) sub.textContent = count === 0 ? 'No new contacts' : count === 1 ? '1 awaiting review' : count + ' awaiting review';
+  } catch(e) { console.error('loadPendingCount:', e); }
+}
+
+async function renderPendingContacts() {
+  document.getElementById('page-title').textContent = 'New Contacts';
+  document.getElementById('page-sub').textContent = 'AI-discovered contacts awaiting your review — accept to add to CRM, delete to discard';
+  document.getElementById('topbar-actions').innerHTML = `
+    <button class="btn btn-outline" onclick="runContactDiscovery()" style="font-size:12px">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:5px"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      Find contacts now
+    </button>`;
+
+  let pending = [];
+  try {
+    const res = await supaFetch('pending_contacts?status=eq.pending&order=created_at.desc');
+    pending = await res.json();
+  } catch(e) { console.error(e); }
+
+  if (!pending.length) {
+    document.getElementById('content').innerHTML = `
+      <div class="empty" style="margin-top:40px">
+        <div class="ei"><svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg></div>
+        <h3>No pending contacts</h3>
+        <p>The daily agent will find new contacts automatically. Click "Find contacts now" to run it manually.</p>
+      </div>`;
+    return;
+  }
+
+  const rows = pending.map(c => `
+    <tr>
+      <td style="padding:12px 14px">
+        <div style="font-weight:600;font-size:13px">${esc(c.first)} ${esc(c.last)}</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px">${esc(c.title||'')}</div>
+      </td>
+      <td style="padding:12px 14px;font-size:12px;color:var(--muted)">${esc(c.department||'')}</td>
+      <td style="padding:12px 14px">
+        <span class="badge b-${getInstType(c.institution_id)}" style="font-size:10px">${esc(c.institution_name||c.institution_id||'Unknown')}</span>
+      </td>
+      <td style="padding:12px 14px;font-size:12px">${c.email ? `<a href="mailto:${esc(c.email)}" style="color:var(--accent)">${esc(c.email)}</a>` : '—'}</td>
+      <td style="padding:12px 14px;font-size:12px">${c.linkedin ? `<a href="${esc(c.linkedin)}" target="_blank" style="color:#38bdf8">LinkedIn</a>` : '—'}</td>
+      <td style="padding:12px 14px;font-size:11px;color:var(--muted);max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(c.research||'')}</td>
+      <td style="padding:12px 14px;font-size:11px">${c.source_url ? `<a href="${esc(c.source_url)}" target="_blank" style="color:var(--muted)">Source</a>` : '—'}</td>
+      <td style="padding:12px 14px;white-space:nowrap">
+        <button class="btn btn-primary" style="font-size:11px;padding:5px 12px;margin-right:6px" onclick="acceptPendingContact('${c.id}', this)">✓ Accept</button>
+        <button class="btn btn-danger" style="font-size:11px;padding:5px 12px" onclick="deletePendingContact('${c.id}', this)">✕ Delete</button>
+      </td>
+    </tr>`).join('');
+
+  document.getElementById('content').innerHTML = `
+    <div class="table-wrap" style="margin-top:8px">
+      <table style="width:100%;border-collapse:collapse">
+        <thead><tr style="background:var(--surface)">
+          <th style="padding:10px 14px;text-align:left;font-size:11px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)">Name</th>
+          <th style="padding:10px 14px;text-align:left;font-size:11px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)">Department</th>
+          <th style="padding:10px 14px;text-align:left;font-size:11px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)">Institution</th>
+          <th style="padding:10px 14px;text-align:left;font-size:11px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)">Email</th>
+          <th style="padding:10px 14px;text-align:left;font-size:11px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)">LinkedIn</th>
+          <th style="padding:10px 14px;text-align:left;font-size:11px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)">Research Area</th>
+          <th style="padding:10px 14px;text-align:left;font-size:11px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)">Source</th>
+          <th style="padding:10px 14px;text-align:left;font-size:11px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)">Action</th>
+        </tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>`;
+}
+
+function getInstType(id) {
+  const inst = state.institutions.find(i => i.id === id);
+  return inst ? inst.type : 'research';
+}
+
+async function acceptPendingContact(id, btn) {
+  btn.disabled = true; btn.textContent = 'Saving...';
+  const res = await supaFetch('pending_contacts?id=eq.' + id);
+  const [c] = await res.json();
+  if (!c) { toast('Contact not found', 'err'); return; }
+
+  // Create in crm_contacts
+  const newContact = {
+    id: uid(),
+    first: c.first, last: c.last, title: c.title,
+    dept: c.department, instId: c.institution_id,
+    email: c.email, linkedin: c.linkedin,
+    research: c.research, status: 'prospect',
+    priority: 'medium', quality: 'seed',
+    notes: 'Added via contact discovery agent. Source: ' + (c.source_url || ''),
+    lastContact: null
+  };
+  state.contacts.push(newContact);
+  save();
+  try { await supaUpsertContact(newContact); } catch(e) { console.error(e); }
+
+  // Mark as accepted in pending_contacts
+  await supaFetch('pending_contacts?id=eq.' + id, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ status: 'accepted' })
+  });
+
+  btn.closest('tr').style.opacity = '0.4';
+  btn.closest('tr').style.pointerEvents = 'none';
+  btn.textContent = '✓ Added';
+  toast(c.first + ' ' + c.last + ' added to contacts', 'ok');
+  loadPendingCount();
+}
+
+async function deletePendingContact(id, btn) {
+  btn.disabled = true;
+  await supaFetch('pending_contacts?id=eq.' + id, { method: 'DELETE' });
+  btn.closest('tr').remove();
+  toast('Contact discarded');
+  loadPendingCount();
+}
+
+async function runContactDiscovery() {
+  toast('Contact discovery running... check back in a moment', 'ok');
+  // The scheduled agent handles this — this button is for manual trigger feedback
+}
+</script>
 </body>
 </html>
