@@ -35,106 +35,33 @@ async function getJSON(url) {
   } catch(e) { console.warn(`Fetch failed ${url}: ${e.message}`); return null; }
 }
 
-// ── CWI ──────────────────────────────────────────────────────────────────────
-async function scrapeCWI(scraped, needed) {
-  const contacts = [];
-  const done = new Set(scraped.cwi || []);
-
-  for (let page = 0; page <= 20 && contacts.length < needed; page++) {
-    const listUrl = page === 0
-      ? 'https://www.cwi.nl/en/people/'
-      : `https://www.cwi.nl/en/people/?page=${page}`;
-    if (done.has(listUrl)) continue;
-    const html = await get(listUrl);
-    if (!html || !html.includes('/en/people/')) break;
-
-    // FIXED: no trailing slash — links are href="/en/people/slug" not "/en/people/slug/"
-    const profiles = [...new Set(
-      [...html.matchAll(/href="(\/en\/people\/[a-zA-Z0-9][a-zA-Z0-9-]+)"/g)]
-        .map(m => 'https://www.cwi.nl' + m[1])
-        .filter(u => !/\/people\/$/.test(u))
-    )];
-    if (profiles.length === 0) break;
-
-    for (const profUrl of profiles) {
-      if (contacts.length >= needed) break;
-      if (done.has(profUrl)) continue;
-      const p = await get(profUrl);
-      done.add(profUrl);
-      if (!p) continue;
-
-      const nameM = p.match(/<h1[^>]*>([^<]+)<\/h1>/);
-      if (!nameM) continue;
-      const full = nameM[1].trim().replace(/\s+/g, ' ');
-      const parts = full.split(' ');
-      if (parts.length < 2) continue;
-      const first = parts[0], last = parts.slice(1).join(' ');
-
-      // Email shown as Firstname.Lastname@cwi.nl on profile page
-      const emailM = p.match(/([a-zA-Z][a-zA-Z0-9._+-]*@cwi\.nl)/i);
-      const email = emailM ? emailM[1].toLowerCase() : '';
-
-      // Title: "Function(s)\nValue" in profile markdown
-      const titleM = p.match(/Function[^\n]*\n([^\n]{3,60})/i);
-      const title = titleM ? titleM[1].trim() : 'Researcher';
-
-      const deptM = p.match(/Department[^\n]*\n([^\n]{3,80})/i);
-      const dept = deptM ? deptM[1].trim() : 'Mathematics & Computer Science';
-
-      contacts.push({ first, last, title, dept, email, instId: 'cwi', source: profUrl });
-    }
-    done.add(listUrl);
-  }
-
-  scraped.cwi = [...done];
-  return contacts;
+// ── OpenAlex: look up institution ID by name, then page through authors ───────
+async function getInstId(name) {
+  const url = `https://api.openalex.org/institutions?search=${encodeURIComponent(name)}&per_page=1&mailto=venturino.dino@gmail.com`;
+  const data = await getJSON(url);
+  const id = data?.results?.[0]?.id;
+  if (id) console.log(`  OpenAlex ID for "${name}": ${id}`);
+  else console.warn(`  Could not find OpenAlex ID for "${name}"`);
+  return id || null;
 }
 
-// ── PBL ──────────────────────────────────────────────────────────────────────
-async function scrapePBL(scraped, needed) {
-  const contacts = [];
-  const done = new Set(scraped.pbl || []);
-
-  // FIXED: correct URL is /en/about-pbl/staff (not /over-pbl/medewerkers)
-  for (let page = 0; page <= 6 && contacts.length < needed; page++) {
-    const listUrl = page === 0
-      ? 'https://www.pbl.nl/en/about-pbl/staff'
-      : `https://www.pbl.nl/en/about-pbl/staff?page=${page}`;
-    if (done.has(listUrl)) continue;
-    const html = await get(listUrl);
-    done.add(listUrl);
-    if (!html) continue;
-
-    // Parse employee links: href="/en/about-pbl/employees/firstname-lastname"
-    const matches = [...html.matchAll(/href="(\/en\/about-pbl\/employees\/([a-z0-9-]+))"[^>]*>([^<]+)<\/a>/gi)];
-    for (const m of matches) {
-      if (contacts.length >= needed) break;
-      const [, path, slug, rawName] = m;
-      if (done.has(slug)) continue;
-      done.add(slug);
-      const full = rawName.trim().replace(/\s+/g, ' ');
-      const parts = full.split(' ');
-      if (parts.length < 2) continue;
-      const first = parts[0], last = parts.slice(1).join(' ');
-      // Construct email from slug: firstname-lastname -> firstname.lastname@pbl.nl
-      const email = slug.replace(/-/g, '.') + '@pbl.nl';
-      contacts.push({ first, last, title: 'Researcher', dept: 'Environmental Assessment', email, instId: 'pbl', source: `https://www.pbl.nl${path}` });
-    }
-  }
-
-  scraped.pbl = [...done];
-  return contacts;
-}
-
-// ── OpenAlex helper (for JS-rendered sites) ───────────────────────────────────
 async function scrapeOpenAlex(scraped, key, instName, instId, dept, needed) {
   const contacts = [];
+
+  // Look up (and cache) the institution's OpenAlex ID
+  let oaId = scraped[`${key}_oa_id`];
+  if (!oaId) {
+    oaId = await getInstId(instName);
+    if (!oaId) return contacts;
+    scraped[`${key}_oa_id`] = oaId;
+  }
+
   const done = new Set(scraped[key] || []);
   const page = scraped[`${key}_page`] || 1;
   const cacheKey = `p${page}`;
   if (done.has(cacheKey)) return contacts;
 
-  const url = `https://api.openalex.org/authors?filter=last_known_institution.display_name.search:${encodeURIComponent(instName)}&per_page=10&page=${page}&mailto=venturino.dino@gmail.com`;
+  const url = `https://api.openalex.org/authors?filter=last_known_institution.id:${encodeURIComponent(oaId)}&per_page=10&page=${page}&mailto=venturino.dino@gmail.com`;
   const data = await getJSON(url);
   done.add(cacheKey);
   scraped[key] = [...done];
@@ -155,15 +82,53 @@ async function scrapeOpenAlex(scraped, key, instName, instId, dept, needed) {
   return contacts;
 }
 
+// ── CWI via OpenAlex (site blocks GitHub Actions bots) ───────────────────────
+async function scrapeCWI(scraped, needed) {
+  return scrapeOpenAlex(scraped, 'cwi', 'Centrum Wiskunde en Informatica', 'cwi', 'Mathematics & Computer Science', needed);
+}
+
+// ── PBL via web scraping (site accessible, profile pages have contact forms) ──
+async function scrapePBL(scraped, needed) {
+  const contacts = [];
+  const done = new Set(scraped.pbl || []);
+
+  for (let page = 0; page <= 6 && contacts.length < needed; page++) {
+    const listUrl = page === 0
+      ? 'https://www.pbl.nl/en/about-pbl/staff'
+      : `https://www.pbl.nl/en/about-pbl/staff?page=${page}`;
+    if (done.has(listUrl)) continue;
+    const html = await get(listUrl);
+    done.add(listUrl);
+    if (!html) continue;
+
+    // Staff list: href="/en/about-pbl/employees/firstname-lastname"
+    const matches = [...html.matchAll(/href="(\/en\/about-pbl\/employees\/([a-z0-9-]+))"[^>]*>([^<]+)<\/a>/gi)];
+    for (const m of matches) {
+      if (contacts.length >= needed) break;
+      const [, path, slug, rawName] = m;
+      if (done.has(slug)) continue;
+      done.add(slug);
+      const full = rawName.trim().replace(/\s+/g, ' ');
+      const parts = full.split(' ');
+      if (parts.length < 2) continue;
+      const first = parts[0], last = parts.slice(1).join(' ');
+      // Construct email from slug: firstname-lastname -> firstname.lastname@pbl.nl
+      const email = slug.replace(/-/g, '.') + '@pbl.nl';
+      contacts.push({ first, last, title: 'Researcher', dept: 'Environmental Assessment', email, instId: 'pbl', source: `https://www.pbl.nl${path}` });
+    }
+  }
+
+  scraped.pbl = [...done];
+  return contacts;
+}
+
 // ── eScience Center via OpenAlex ──────────────────────────────────────────────
 async function scrapeEScience(scraped, needed) {
-  // eScience website blocks GitHub Actions — use OpenAlex author search instead
   return scrapeOpenAlex(scraped, 'esc', 'Netherlands eScience Center', 'esc', 'Research Software Engineering', needed);
 }
 
 // ── Rathenau via OpenAlex ─────────────────────────────────────────────────────
 async function scrapeRathenau(scraped, needed) {
-  // Rathenau website is JS-rendered — use OpenAlex author search instead
   return scrapeOpenAlex(scraped, 'rathenau', 'Rathenau Instituut', 'rathenau', 'Science & Technology Studies', needed);
 }
 
@@ -175,7 +140,7 @@ async function main() {
   const existNames  = new Set(pending.map(c => `${c.first} ${c.last}`.toLowerCase()).filter(Boolean));
 
   const s = state.scraped;
-  const exhausted = (s.cwi?.length||0) > 80 && (s.esc_page||1) > 10 && (s.pbl?.length||0) > 12 && (s.rathenau_page||1) > 10;
+  const exhausted = (s.cwi_page||1) > 10 && (s.esc_page||1) > 10 && (s.pbl?.length||0) > 12 && (s.rathenau_page||1) > 10;
   if (exhausted) {
     console.log('Full cycle done — resetting scrape state');
     state.scraped = {};
