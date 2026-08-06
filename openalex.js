@@ -215,3 +215,12 @@
   s.onerror = function() { console.warn('[NL CRM] discovery.js failed to load'); };
   document.head.appendChild(s);
 })();
+
+
+// Auto-load discovery.js for the New Contacts page
+(function loadDiscovery(){
+  if(document.querySelector('script[src*="discovery.js"]'))return;
+  var s=document.createElement('script');
+  s.src='/netherlands-crm/discovery.js?v='+Date.now();
+  document.head.appendChild(s);
+})();
