@@ -4498,55 +4498,46 @@ async function runContactDiscovery() {
 
 <script>
 // Override renderPendingContacts to use localStorage nl_crm_pending
-window.addEventListener('load', function() {
-  const _orig = window.renderPendingContacts;
-  window.renderPendingContacts = async function() {
-    const pending = JSON.parse(localStorage.getItem('nl_crm_pending') || '[]');
-    if (document.getElementById('topbar-actions')) {
-      document.getElementById('topbar-actions').innerHTML = '<button class="btn btn-outline" onclick="runContactDiscovery()" style="font-size:12px"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:5px"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>Find contacts now</button>';
-    }
-    if (!pending.length) {
-      document.getElementById('content').innerHTML = '<div class="empty" style="margin-top:40px"><div class="ei"><svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg></div><h3>No pending contacts</h3><p>The daily agent will find new contacts automatically. Click "Find contacts now" to run it manually.</p></div>';
-      return;
-    }
-    const cards = pending.map(c => {
-      const initials = ((c.first||'?')[0] + (c.last||'?')[0]).toUpperCase();
-      const source = c.source || c.notes || '';
-      const inst = c.instId || '';
-      return `<div class="contact-card" style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:12px;display:flex;align-items:center;gap:16px">
-        <div style="width:48px;height:48px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;flex-shrink:0">${initials}</div>
-        <div style="flex:1;min-width:0">
-          <div style="font-weight:600;font-size:15px">${c.first} ${c.last}</div>
-          <div style="color:var(--text2);font-size:13px">${c.title||''} ${c.dept ? '· '+c.dept : ''}</div>
-          <div style="color:var(--muted);font-size:12px;margin-top:4px">${inst.toUpperCase()} ${c.email ? '· '+c.email : ''}</div>
-        </div>
-        <div style="display:flex;gap:8px;flex-shrink:0">
-          <button class="btn btn-primary" style="font-size:12px;padding:6px 14px" onclick="acceptPending('${c.id}')">Accept</button>
-          <button class="btn btn-outline" style="font-size:12px;padding:6px 14px;color:var(--danger)" onclick="discardPending('${c.id}')">Discard</button>
-        </div>
-      </div>`;
-    }).join('');
-    document.getElementById('content').innerHTML = `<div style="padding:24px;max-width:800px"><h2 style="margin-bottom:4px">New Contacts</h2><p style="color:var(--text2);margin-bottom:20px">${pending.length} contact${pending.length!==1?'s':''} awaiting review</p>${cards}</div>`;
-  };
-  window.acceptPending = function(id) {
-    const pending = JSON.parse(localStorage.getItem('nl_crm_pending') || '[]');
-    const idx = pending.findIndex(c => c.id === id);
-    if (idx === -1) return;
-    const contact = pending.splice(idx, 1)[0];
-    const contacts = JSON.parse(localStorage.getItem('nl_crm_contacts') || '[]');
-    contact.status = 'active'; contact.quality = 'verified';
-    contacts.push(contact);
-    localStorage.setItem('nl_crm_contacts', JSON.stringify(contacts));
-    localStorage.setItem('nl_crm_pending', JSON.stringify(pending));
-    window.renderPendingContacts();
-  };
-  window.discardPending = function(id) {
-    const pending = JSON.parse(localStorage.getItem('nl_crm_pending') || '[]');
-    const filtered = pending.filter(c => c.id !== id);
-    localStorage.setItem('nl_crm_pending', JSON.stringify(filtered));
-    window.renderPendingContacts();
-  };
-});
+window.renderPendingContacts = async function() {
+  const pending = JSON.parse(localStorage.getItem('nl_crm_pending') || '[]');
+  const topbar = document.getElementById('topbar-actions');
+  if (topbar) topbar.innerHTML = '<button class="btn btn-outline" onclick="runContactDiscovery()" style="font-size:12px"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:5px"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>Find contacts now</button>';
+  const content = document.getElementById('content');
+  if (!pending.length) {
+    content.innerHTML = '<div class="empty" style="margin-top:40px"><div class="ei"><svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg></div><h3>No pending contacts</h3><p>The daily agent will find new contacts automatically.</p></div>';
+    return;
+  }
+  const cards = pending.map(c => {
+    const initials = ((c.first||'?')[0]+(c.last||'?')[0]).toUpperCase();
+    return '<div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:12px;display:flex;align-items:center;gap:16px">'
+      + '<div style="width:48px;height:48px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;flex-shrink:0">'+initials+'</div>'
+      + '<div style="flex:1;min-width:0"><div style="font-weight:600;font-size:15px">'+c.first+' '+c.last+'</div>'
+      + '<div style="color:var(--text2);font-size:13px">'+(c.title||'')+' '+(c.dept?'&middot; '+c.dept:'')+'</div>'
+      + '<div style="color:var(--muted);font-size:12px;margin-top:4px">'+(c.instId||'').toUpperCase()+(c.email?' &middot; '+c.email:'')+'</div></div>'
+      + '<div style="display:flex;gap:8px;flex-shrink:0">'
+      + '<button class="btn btn-primary" style="font-size:12px;padding:6px 14px" onclick="window.acceptPending(''+c.id+'')">Accept</button>'
+      + '<button class="btn btn-outline" style="font-size:12px;padding:6px 14px;color:var(--danger)" onclick="window.discardPending(''+c.id+'')">Discard</button>'
+      + '</div></div>';
+  }).join('');
+  content.innerHTML = '<div style="padding:24px;max-width:800px"><h2 style="margin-bottom:4px">New Contacts</h2><p style="color:var(--text2);margin-bottom:20px">'+pending.length+' contact'+(pending.length!==1?'s':'')+' awaiting review</p>'+cards+'</div>';
+};
+window.acceptPending = function(id) {
+  const pending = JSON.parse(localStorage.getItem('nl_crm_pending')||'[]');
+  const idx = pending.findIndex(c => c.id===id);
+  if (idx===-1) return;
+  const c = pending.splice(idx,1)[0];
+  const contacts = JSON.parse(localStorage.getItem('nl_crm_contacts')||'[]');
+  c.status='active'; c.quality='verified';
+  contacts.push(c);
+  localStorage.setItem('nl_crm_contacts',JSON.stringify(contacts));
+  localStorage.setItem('nl_crm_pending',JSON.stringify(pending));
+  window.renderPendingContacts();
+};
+window.discardPending = function(id) {
+  const pending = JSON.parse(localStorage.getItem('nl_crm_pending')||'[]').filter(c=>c.id!==id);
+  localStorage.setItem('nl_crm_pending',JSON.stringify(pending));
+  window.renderPendingContacts();
+};
 </script>
 
 </body>
