@@ -260,3 +260,40 @@
     if(window.nav||++attempts>40){clearInterval(poll);wrapNav();render();}
   },100);
 })();
+
+
+// ── Pending contacts renderer (fallback when discovery.js v3 not yet deployed) ──
+(function() {
+  // Skip if discovery.js v3 already handled this
+  if (window._nlNavWrapped) return;
+
+  var INST = {cwi:{name:'Centrum Wiskunde & Informatica',type:'research'},esc:{name:'Netherlands eScience Center',type:'research'},pbl:{name:'PBL Netherlands Environmental Assessment Agency',type:'research'},rathenau:{name:'Rathenau Instituut',type:'research'},uva:{name:'University of Amsterdam',type:'university'},vu:{name:'VU Amsterdam',type:'university'},uu:{name:'Utrecht University',type:'university'},tue:{name:'Eindhoven University of Technology',type:'university'},tud:{name:'TU Delft',type:'university'},rug:{name:'University of Groningen',type:'university'},um:{name:'Maastricht University',type:'university'},lei:{name:'Leiden University',type:'university'},eur:{name:'Erasmus University Rotterdam',type:'university'},utwente:{name:'University of Twente',type:'university'},wur:{name:'Wageningen University & Research',type:'university'},ou:{name:'Open Universiteit',type:'university'},tilburg:{name:'Tilburg University',type:'university'},amc:{name:'Amsterdam UMC',type:'medical'},erasmusmc:{name:'Erasmus MC',type:'medical'},umcg:{name:'UMCG',type:'medical'},umcutrecht:{name:'UMC Utrecht',type:'medical'},mumc:{name:'Maastricht UMC+',type:'medical'},radboudumc:{name:'Radboud UMC',type:'medical'},lumc:{name:'Leiden UMC',type:'medical'},knaw:{name:'Royal Netherlands Academy of Arts and Sciences (KNAW)',type:'ngo'},nwo:{name:'Netherlands Organisation for Scientific Research (NWO)',type:'ngo'},zonmw:{name:'ZonMw',type:'ngo'}};
+  var TM = {university:{label:'University',color:'#8b5cf6',bg:'#1e1b4b'},medical:{label:'Medical Center',color:'#ef4444',bg:'#1f1010'},research:{label:'Research',color:'#06b6d4',bg:'#0c1a1f'},ngo:{label:'NGO / Foundation',color:'#10b981',bg:'#0d1f18'}};
+  function gP(){try{return JSON.parse(localStorage.getItem('nl_crm_pending')||'[]');}catch(e){return[];}}
+  function gC(){try{return JSON.parse(localStorage.getItem('nl_crm_contacts')||'[]');}catch(e){return[];}}
+  function gT(){try{return JSON.parse(localStorage.getItem('nl_crm_stype')||'["research"]');}catch(e){return['research'];}}
+  function sP(l){localStorage.setItem('nl_crm_pending',JSON.stringify(l));}
+  function sC(l){localStorage.setItem('nl_crm_contacts',JSON.stringify(l));}
+  function sT(t){localStorage.setItem('nl_crm_stype',JSON.stringify(t));}
+  function render(){
+    var title=document.getElementById('page-title');
+    if(!title||!title.textContent.includes('New Contact'))return;
+    var content=document.getElementById('content');if(!content)return;
+    var pending=gP(),selTypes=gT(),allTypes=['university','medical','research','ngo'];
+    var pills=allTypes.map(function(t){var m=TM[t],active=selTypes.indexOf(t)!==-1;return'<button onclick="window._oaNL.toggleT(''+t+'')" style="border:2px solid '+(active?m.color:'rgba(255,255,255,0.15)')+';background:'+(active?m.bg:'transparent')+';color:'+(active?m.color:'#94a3b8')+';border-radius:20px;padding:6px 16px;cursor:pointer;font-size:13px;font-weight:600;margin:0 8px 8px 0">'+m.label+'</button>';}).join('');
+    var filterBar='<div style="margin-bottom:20px"><p style="color:#94a3b8;font-size:13px;margin:0 0 10px">Filter next scrape by institution type:</p><div style="display:flex;flex-wrap:wrap;align-items:center">'+pills+'<button onclick="window._oaNL.saveCfg()" style="background:rgba(16,185,129,0.15);color:#10b981;border:1px solid rgba(16,185,129,0.3);border-radius:20px;padding:6px 16px;cursor:pointer;font-size:13px;font-weight:600;margin-bottom:8px">Save to scraper</button></div></div>';
+    if(!pending.length){content.innerHTML='<div style="padding:24px">'+filterBar+'<p style="color:#94a3b8">No pending contacts. Next scrape runs at 07:00 UTC.</p></div>';return;}
+    var header='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px"><h2 style="color:#e2e8f0;margin:0">'+pending.length+' New Contact'+(pending.length!==1?'s':'')+'</h2><button onclick="window._oaNL.acceptAll()" style="background:linear-gradient(135deg,#10b981,#059669);color:white;border:none;border-radius:8px;padding:10px 24px;cursor:pointer;font-size:14px;font-weight:700">Accept All ('+pending.length+')</button></div>';
+    var cards=pending.map(function(c){var inst=INST[c.instId]||{},tm=TM[inst.type]||{label:'Unknown',color:'#94a3b8',bg:'#1a1a1a'},iname=inst.name||c.instId||'Unknown';return'<div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:18px;margin-bottom:14px"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px"><div><div style="color:#e2e8f0;font-size:16px;font-weight:600">'+c.first+' '+c.last+'</div><div style="color:#94a3b8;font-size:13px;margin-top:3px">'+(c.title||'')+(c.dept?' - '+c.dept:'')+'</div></div><div style="background:'+tm.bg+';border:1px solid '+tm.color+'40;border-radius:6px;padding:4px 10px;text-align:right"><div style="color:'+tm.color+';font-size:10px;font-weight:700;text-transform:uppercase">'+tm.label+'</div><div style="color:#e2e8f0;font-size:12px;font-weight:600;margin-top:2px">'+iname+'</div></div></div>'+(c.email?'<div style="color:#6ee7b7;font-size:13px;margin-bottom:10px">✉ '+c.email+'</div>':'')+'<div style="display:flex;gap:10px"><button onclick="window._oaNL.accept(''+c.id+'')" style="background:#10b981;color:white;border:none;border-radius:6px;padding:7px 16px;cursor:pointer;font-size:13px;font-weight:600">✓ Accept</button><button onclick="window._oaNL.discard(''+c.id+'')" style="background:rgba(239,68,68,0.15);color:#f87171;border:1px solid rgba(239,68,68,0.3);border-radius:6px;padding:7px 16px;cursor:pointer;font-size:13px">✕ Discard</button></div></div>';}).join('');
+    content.innerHTML='<div style="padding:24px">'+header+filterBar+cards+'</div>';
+  }
+  window._oaNL = {
+    accept: function(id){var p=gP(),idx=p.findIndex(function(c){return c.id===id;});if(idx===-1)return;var contact=p.splice(idx,1)[0],inst=INST[contact.instId]||{},contacts=gC();contacts.push(Object.assign({},contact,{institution:inst.name||contact.instId||'',addedAt:new Date().toISOString()}));sC(contacts);sP(p);try{if(typeof loadPendingCount==='function')loadPendingCount();}catch(e){}render();},
+    discard: function(id){sP(gP().filter(function(c){return c.id!==id;}));render();},
+    acceptAll: function(){var p=gP();if(!p.length)return;var contacts=gC(),emails=new Set(contacts.map(function(c){return(c.email||'').toLowerCase();}).filter(Boolean)),names=new Set(contacts.map(function(c){return(c.first+' '+c.last).toLowerCase().trim();}).filter(Boolean));p.forEach(function(c){var el=(c.email||'').toLowerCase().trim(),nl=(c.first+' '+c.last).toLowerCase().trim();if(el&&emails.has(el))return;if(names.has(nl))return;var inst=INST[c.instId]||{};contacts.push(Object.assign({},c,{institution:inst.name||c.instId||'',addedAt:new Date().toISOString()}));emails.add(el);names.add(nl);});sC(contacts);sP([]);try{if(typeof loadPendingCount==='function')loadPendingCount();}catch(e){}render();},
+    toggleT: function(t){var types=gT(),idx=types.indexOf(t);if(idx===-1){types.push(t);}else if(types.length>1){types.splice(idx,1);}sT(types);render();},
+    saveCfg: function(){try{if(typeof toast==='function')toast('Scraper will target: '+gT().join(', '),'ok');}catch(e){}}
+  };
+  function wrapNav(){if(!window.nav||window._nlNavWrapped||window._oaNLWrapped)return;window._oaNLWrapped=true;var orig=window.nav;window.nav=function(s){orig(s);if(s==='pending')setTimeout(render,350);};}
+  var _att=0,_poll=setInterval(function(){if(window.nav||++_att>40){clearInterval(_poll);if(!window._nlNavWrapped){wrapNav();render();}}},100);
+})();
