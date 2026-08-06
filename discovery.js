@@ -62,7 +62,13 @@
       const titleEl = document.getElementById('page-title');
       if (titleEl) titleEl.textContent = 'New Contacts';
       const topbar = document.getElementById('topbar-actions');
-      if (topbar) topbar.innerHTML = '<button class="btn btn-outline" style="display:flex;align-items:center;gap:8px" onclick="window.runContactDiscovery()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>Find contacts now</button>';
+      if (topbar) {
+        topbar.innerHTML =
+          (pending.length > 0
+            ? '<button onclick="window.acceptAllPending()" style="background:#10b981;color:#fff;border:none;border-radius:8px;padding:8px 18px;cursor:pointer;font-size:.875rem;font-weight:600;margin-right:8px">Accept All ('+pending.length+')</button>'
+            : '')
+          + '<button class="btn btn-outline" style="display:flex;align-items:center;gap:8px" onclick="window.runContactDiscovery()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>Find contacts now</button>';
+      }
       const content = document.getElementById('content');
       if (!content) return;
       if (!pending.length) {
@@ -86,7 +92,7 @@
           +'<button onclick="window.discardPending(''+c.id+'')" style="background:#374151;color:#9ca3af;border:none;border-radius:8px;padding:8px 16px;cursor:pointer;font-size:.875rem">Discard</button>'
           +'</div></div>';
       }).join('');
-      content.innerHTML = '<div style="padding:24px;max-width:860px"><h2 style="color:#f9fafb;font-size:1.25rem;font-weight:600;margin-bottom:4px">'+pending.length+' contact'+(pending.length!==1?'s':'')+' awaiting review</h2><p style="color:#6b7280;font-size:.875rem;margin-bottom:20px">Accept to add to CRM, Discard to remove</p>'+cards+'</div>';
+      content.innerHTML = '<div style="padding:24px;max-width:860px"><h2 style="color:#f9fafb;font-size:1.25rem;font-weight:600;margin-bottom:4px">'+pending.length+' contact'+(pending.length!==1?'s':'')+' awaiting review</h2><p style="color:#6b7280;font-size:.875rem;margin-bottom:20px">Accept to add to CRM &amp; assign to institution, Discard to remove</p>'+cards+'</div>';
     };
 
     window.acceptPending = function(id) {
@@ -100,6 +106,27 @@
       saveContacts(contacts);
       savePending(pending);
       if (typeof loadPendingCount === 'function') { try { loadPendingCount(); } catch {} }
+      window.renderPendingContacts();
+    };
+
+    window.acceptAllPending = function() {
+      const pending = getPending();
+      if (!pending.length) return;
+      const contacts = getContacts();
+      const existingNames = new Set(contacts.map(c => ((c.first||'')+' '+(c.last||'')).toLowerCase().trim()));
+      let added = 0;
+      for (const c of pending) {
+        const nl = ((c.first||'')+' '+(c.last||'')).toLowerCase().trim();
+        if (existingNames.has(nl)) continue;
+        c.status = 'active'; c.quality = 'verified';
+        contacts.push(c);
+        existingNames.add(nl);
+        added++;
+      }
+      saveContacts(contacts);
+      savePending([]);
+      if (typeof loadPendingCount === 'function') { try { loadPendingCount(); } catch {} }
+      if (typeof toast === 'function') toast(added+' contact'+(added!==1?'s':'')+' added to CRM', 'ok');
       window.renderPendingContacts();
     };
 
