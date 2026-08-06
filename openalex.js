@@ -205,3 +205,13 @@
     });
   }
 })();
+
+
+// ── Auto-load discovery.js (contact discovery + render override) ──────────
+(function loadDiscovery() {
+  if (document.querySelector('script[src*="discovery.js"]')) return; // already loaded
+  var s = document.createElement('script');
+  s.src = '/netherlands-crm/discovery.js?v=' + Date.now();
+  s.onerror = function() { console.warn('[NL CRM] discovery.js failed to load'); };
+  document.head.appendChild(s);
+})();
