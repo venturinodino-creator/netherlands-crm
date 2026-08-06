@@ -161,3 +161,4 @@
   window.__crmDiscovery = { syncFromFile:syncFromFile, getPending:getP, buildExistingSets:buildSets };
   console.log('[NL CRM] discovery.js v3 loaded');
 })();
+ 
