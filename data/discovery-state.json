@@ -1,0 +1,37 @@
+{
+  "scraped": {
+    "cwi_oa_id": "https://openalex.org/I1341640284",
+    "cwi": [
+      "p1",
+      "p2",
+      "p3"
+    ],
+    "cwi_page": 4,
+    "esc_oa_id": "https://openalex.org/I4210095242",
+    "esc": [
+      "p1",
+      "p2",
+      "p3"
+    ],
+    "esc_page": 4,
+    "pbl": [
+      "https://www.pbl.nl/en/about-pbl/staff",
+      "marian-abels-van-overveld",
+      "rob-alkemade",
+      "https://www.pbl.nl/en/about-pbl/staff?page=1",
+      "ioannis-dafnomilis",
+      "anteneh-dagnachew"
+    ],
+    "rathenau_oa_id": "https://openalex.org/I2800109292",
+    "rathenau": [
+      "p1",
+      "p2",
+      "p3"
+    ],
+    "rathenau_page": 4
+  },
+  "lastRun": "2026-08-07T08:07:11.411Z",
+  "lastTypes": [
+    "research"
+  ]
+}
