@@ -345,6 +345,10 @@ body{position:relative}
 /* Card hover glow */
 .ic:hover{border-color:rgba(0,245,196,.2)!important;box-shadow:0 0 20px rgba(0,245,196,.06);transform:translateY(-2px)}
 .stat-card:hover{border-color:rgba(0,245,196,.2)!important;box-shadow:0 0 20px rgba(0,245,196,.05)}
+.stat-card[draggable=true]{cursor:grab}
+.stat-card[draggable=true]:active{cursor:grabbing}
+.stat-card.sc-dragging{opacity:.35;border-style:dashed !important}
+.stat-card.sc-drag-over{border-color:#00f5c4 !important;box-shadow:0 0 0 2px rgba(0,245,196,.35),0 0 24px rgba(0,245,196,.12) !important;transform:scale(1.02)}
 
 /* Active nav item teal accent line */
 .nav-item.active{background:rgba(0,245,196,.06)!important;color:#fff!important;border-left:2px solid var(--accent);padding-left:8px}
@@ -915,11 +919,17 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
     <div class="nav-item" data-view="subscriptions" onclick="nav('subscriptions')">
       <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div> Competitor Matrix
     </div>
+    <div class="nav-item" data-view="barcelona" onclick="nav('barcelona')">
+      <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div> Barcelona Decl.
+    </div>
     <div class="nav-item" data-view="rfp" onclick="nav('rfp')">
       <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div> RFP Opps
     </div>
     <div class="nav-item" data-view="map" onclick="nav('map')">
       <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg></div> Map
+    </div>
+    <div class="nav-item" data-view="openalex" onclick="nav('openalex')">
+      <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><line x1="2" y1="12" x2="22" y2="12"/></svg></div> OpenAlex
     </div>
     <div class="sb-divider"></div>
     <div class="nav-section">Network</div>
@@ -1847,6 +1857,8 @@ function render() {
     news: renderNews,
     pipeline: renderPipeline,
     subscriptions: renderSubscriptionMatrix,
+    openalex: renderOpenAlex,
+    barcelona: renderBarcelonaDecl,
   };
   (views[state.view] || renderDashboard)();
 }
@@ -1922,59 +1934,88 @@ function renderDashboard() {
     </div>`;
   }).join('') || '<p style="font-size:13px;color:var(--muted);padding:12px 0">No high-priority contacts yet.</p>';
 
-  document.getElementById('content').innerHTML = `
-
-
-    <div class="stats-grid">
-      <div class="stat-card" onclick="nav('institutions')" title="View all institutions">
+  // Stat card definitions — order persisted in localStorage nl_crm_stat_order
+  const _statCards = {
+    'sc-institutions': `<div class="stat-card" data-sc-id="sc-institutions" draggable="true" onclick="nav('institutions')" title="View all institutions">
         <div class="stat-icon-box purple"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg></div>
-        <div class="stat-text">
-          <div class="stat-label">Institutions</div>
-          <div class="stat-value">${inst.length}</div>
-          <div class="stat-sub">${byType.university||0} universities · ${byType.medical||0} medical · ${byType.research||0} research</div>
-        </div>
-      </div>
-      <div class="stat-card" onclick="nav('contacts')" title="View all contacts">
+        <div class="stat-text"><div class="stat-label">Institutions</div><div class="stat-value">${inst.length}</div><div class="stat-sub">${byType.university||0} universities · ${byType.medical||0} medical · ${byType.research||0} research</div></div>
+      </div>`,
+    'sc-contacts': `<div class="stat-card" data-sc-id="sc-contacts" draggable="true" onclick="nav('contacts')" title="View all contacts">
         <div class="stat-icon-box teal"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-        <div class="stat-text">
-          <div class="stat-label">Contacts</div>
-          <div class="stat-value">${cont.length}</div>
-          <div class="stat-sub">${activeC} active · ${highP} high priority</div>
-        </div>
-      </div>
-      <div class="stat-card" onclick="nav('pipeline')" title="View deal pipeline">
+        <div class="stat-text"><div class="stat-label">Contacts</div><div class="stat-value">${cont.length}</div><div class="stat-sub">${activeC} active · ${highP} high priority</div></div>
+      </div>`,
+    'sc-deals': `<div class="stat-card" data-sc-id="sc-deals" draggable="true" onclick="nav('pipeline')" title="View deal pipeline">
         <div class="stat-icon-box blue"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
-        <div class="stat-text">
-          <div class="stat-label">Open Deals</div>
-          <div class="stat-value">${openOpps}</div>
-          <div class="stat-sub">${pipelineValue > 0 ? '\u20ac' + pipelineValue.toLocaleString() + ' pipeline value' : 'No value set yet'}</div>
-        </div>
-      </div>
-      <div class="stat-card" onclick="nav('pipeline')" title="View due actions">
+        <div class="stat-text"><div class="stat-label">Open Deals</div><div class="stat-value">${openOpps}</div><div class="stat-sub">${pipelineValue > 0 ? '\u20ac' + pipelineValue.toLocaleString() + ' pipeline value' : 'No value set yet'}</div></div>
+      </div>`,
+    'sc-actions': `<div class="stat-card" data-sc-id="sc-actions" draggable="true" onclick="nav('pipeline')" title="View due actions">
         <div class="stat-icon-box orange"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
-        <div class="stat-text">
-          <div class="stat-label">Actions Due</div>
-          <div class="stat-value">${actionsDue}</div>
-          <div class="stat-sub">${actionsOverdue} overdue \u00b7 ${actionsToday} due today</div>
-        </div>
-      </div>
-      <div class="stat-card" onclick="nav('pending')" title="Review AI-discovered contacts" style="border-color:rgba(168,85,247,.25);cursor:pointer">
+        <div class="stat-text"><div class="stat-label">Actions Due</div><div class="stat-value">${actionsDue}</div><div class="stat-sub">${actionsOverdue} overdue \u00b7 ${actionsToday} due today</div></div>
+      </div>`,
+    'sc-pending': `<div class="stat-card" data-sc-id="sc-pending" draggable="true" onclick="nav('pending')" title="Review AI-discovered contacts" style="border-color:rgba(168,85,247,.25)">
         <div class="stat-icon-box" style="background:rgba(168,85,247,.15);border:1px solid rgba(168,85,247,.25)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#a855f7" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg></div>
-        <div class="stat-text">
-          <div class="stat-label">New Contacts Today</div>
-          <div class="stat-value" id="pending-count">—</div>
-          <div class="stat-sub" id="pending-sub">Awaiting review</div>
-        </div>
-      </div>
-    </div>
+        <div class="stat-text"><div class="stat-label">New Contacts Today</div><div class="stat-value" id="pending-count">—</div><div class="stat-sub" id="pending-sub">Awaiting review</div></div>
+      </div>`,
+  };
+  const _defaultStatOrder = ['sc-institutions','sc-contacts','sc-deals','sc-actions','sc-pending'];
+  let _statOrder; try { _statOrder = JSON.parse(localStorage.getItem('nl_crm_stat_order')); if(!Array.isArray(_statOrder)||!_statOrder.length) _statOrder=null; } catch(e){ _statOrder=null; }
+  _statOrder = (_statOrder||[]).filter(id=>_statCards[id]);
+  if(_statOrder.length < _defaultStatOrder.length) { _defaultStatOrder.forEach(id=>{ if(!_statOrder.includes(id)) _statOrder.push(id); }); }
+  const statCardsHtml = _statOrder.map(id => _statCards[id]||'').join('');
+
+  document.getElementById('content').innerHTML = `
+    <div class="stats-grid" id="stats-grid-drag">${statCardsHtml}</div>
 
     <div class="dash-grid" id="dash-widget-grid">
       ${buildDashWidgets(typeRows, hpRows, recentRows)}
     </div>`;
   initDashDrag();
+  initStatCardDrag();
   // Load pending contacts count
   loadPendingCount();
   initDashMiniMap();
+}
+
+let _scDragSrc = null;
+function initStatCardDrag() {
+  const grid = document.getElementById('stats-grid-drag');
+  if (!grid) return;
+  const cards = grid.querySelectorAll('.stat-card[data-sc-id]');
+  cards.forEach(card => {
+    card.addEventListener('dragstart', e => {
+      _scDragSrc = card;
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setData('text/plain', card.dataset.scId);
+      setTimeout(() => card.classList.add('sc-dragging'), 0);
+    });
+    card.addEventListener('dragend', () => {
+      card.classList.remove('sc-dragging');
+      grid.querySelectorAll('.stat-card').forEach(c => c.classList.remove('sc-drag-over'));
+    });
+    card.addEventListener('dragover', e => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      if (card !== _scDragSrc) card.classList.add('sc-drag-over');
+    });
+    card.addEventListener('dragleave', e => {
+      if (!card.contains(e.relatedTarget)) card.classList.remove('sc-drag-over');
+    });
+    card.addEventListener('drop', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      card.classList.remove('sc-drag-over');
+      if (!_scDragSrc || _scDragSrc === card) return;
+      // Reorder in the DOM immediately (no re-render flicker)
+      const allCards = [...grid.querySelectorAll('.stat-card[data-sc-id]')];
+      const srcIdx = allCards.indexOf(_scDragSrc);
+      const tgtIdx = allCards.indexOf(card);
+      if (srcIdx < tgtIdx) grid.insertBefore(_scDragSrc, card.nextSibling);
+      else grid.insertBefore(_scDragSrc, card);
+      // Save new order to localStorage
+      const newOrder = [...grid.querySelectorAll('.stat-card[data-sc-id]')].map(c => c.dataset.scId);
+      localStorage.setItem('nl_crm_stat_order', JSON.stringify(newOrder));
+    });
+  });
 }
 
 function getDashWidgetOrder() {
@@ -2346,6 +2387,7 @@ function renderDetail() {
       <td><span class="badge b-${c.quality}">${c.quality==='verified'?' Verified':' ï¸ Seed'}</span></td>
       <td style="font-size:12px;color:var(--muted)">${c.lastContact||'—'}</td>
       <td onclick="event.stopPropagation()" style="white-space:nowrap">
+        <button class="btn btn-xs btn-outline" title="Log activity" onclick="openActivityLog('${c.id}','${esc(c.first+' '+c.last)}')">📋</button>
         <button class="btn btn-xs btn-outline" onclick="openEditContact('${c.id}')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
         <button class="btn btn-xs btn-danger" onclick="confirmDeleteContact('${c.id}')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
       </td>
@@ -2560,6 +2602,7 @@ function renderContacts() {
       <td><span class="badge b-${c.quality}" style="font-size:10px">${c.quality==='verified'?' Verified':' ï¸ Seed'}</span></td>
       <td style="font-size:12px;color:var(--muted)">${c.lastContact||'—'}</td>
       <td style="white-space:nowrap">
+        <button class="btn btn-xs btn-outline" title="Log activity" onclick="openActivityLog('${c.id}','${esc(c.first+' '+c.last)}')">📋</button>
         <button class="btn btn-xs btn-outline" onclick="openEditContact('${c.id}')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
         <button class="btn btn-xs btn-danger" onclick="confirmDeleteContact('${c.id}')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
       </td>
@@ -3483,6 +3526,139 @@ function saveNote(instId, val) {
   const stored = JSON.parse(localStorage.getItem('crm_matrix_notes')||'{}');
   if (val.trim()) { stored[instId] = val; } else { delete stored[instId]; }
   localStorage.setItem('crm_matrix_notes', JSON.stringify(stored));
+}
+
+/* ─── OpenAlex Intelligence Tab ────────────────────────────────────────── */
+function renderOpenAlex() {
+  document.getElementById('page-title').textContent = 'OpenAlex Intelligence';
+  document.getElementById('page-sub').textContent = 'Tracking Dutch institution subscriptions to OpenAlex — with dates and source links';
+
+  // Known Dutch institution OpenAlex subscriptions (evidence-based, with source links)
+  const OA_DATA = [
+    {
+      inst: 'Maastricht University',
+      tier: 'Partner',
+      tierColor: '#f59e0b',
+      status: 'Active',
+      startDate: '2026-06-01',   // partnership announced 28 May 2026, effective ~June 2026
+      annualFee: 'Partner tier',
+      notes: 'Simultaneously cancelling Scopus licence effective 1 Jan 2027. Using OpenAlex as supplementary source in CRIS (Pure) alongside Web of Science.',
+      sources: [
+        { label: 'UM Library announcement (28 May 2026)', url: 'https://library.maastrichtuniversity.nl/news/investing-in-open-research-information-openalex-partnership-and-end-of-scopus-license/' },
+        { label: 'OpenAlex database page – UM Library', url: 'https://library.maastrichtuniversity.nl/database/openalex/' },
+      ],
+      flag: 'scopus-cancel',
+    },
+  ];
+
+  // Pricing reference
+  const TIERS = [
+    { name: 'Member',  price: '$5,000/yr',  color: '#10b981', desc: 'Admin dashboard, affiliation editor, Unsub access, Community Advisory Board nomination, quarterly roundtables.' },
+    { name: 'Member+', price: 'Custom',      color: '#3b82f6', desc: 'All Member benefits + increased API quotas + consulting hours.' },
+    { name: 'Partner', price: 'Custom',      color: '#f59e0b', desc: 'Highest tier. All Member+ benefits + ability to influence product roadmap and data curation priorities.' },
+  ];
+
+  const tierBadge = (tier, color) =>
+    `<span style="background:${color}20;color:${color};border:1px solid ${color}40;border-radius:6px;padding:2px 10px;font-size:11px;font-weight:700">${tier}</span>`;
+
+  const sourcesHtml = (sources) => sources.map(s =>
+    `<a href="${s.url}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:6px;padding:4px 10px;font-size:12px;color:#60a5fa;text-decoration:none;margin:3px 4px 3px 0;white-space:nowrap">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 0 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      ${s.label}</a>`
+  ).join('');
+
+  const rowHtml = (d) => {
+    const start = d.startDate ? new Date(d.startDate).toLocaleDateString('en-GB', {day:'numeric', month:'short', year:'numeric'}) : '—';
+    const flagHtml = d.flag === 'scopus-cancel'
+      ? `<span style="background:#ef444420;color:#f87171;border:1px solid #ef444430;border-radius:6px;padding:2px 8px;font-size:10px;font-weight:700;margin-left:8px">⚠ SCOPUS CANCEL Jan 2027</span>`
+      : '';
+    return `
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:22px 24px;margin-bottom:16px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;margin-bottom:14px">
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+              <span style="color:#e2e8f0;font-size:17px;font-weight:700">${d.inst}</span>
+              ${tierBadge(d.tier, d.tierColor)}
+              <span style="background:#10b98120;color:#10b981;border:1px solid #10b98130;border-radius:6px;padding:2px 8px;font-size:11px;font-weight:600">${d.status}</span>
+              ${flagHtml}
+            </div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:11px;color:#64748b;margin-bottom:2px">Subscription start</div>
+            <div style="color:#e2e8f0;font-weight:600;font-size:14px">${start}</div>
+          </div>
+        </div>
+        <div style="color:#94a3b8;font-size:13px;line-height:1.6;margin-bottom:14px">${d.notes}</div>
+        <div style="border-top:1px solid rgba(255,255,255,0.06);padding-top:12px">
+          <div style="font-size:11px;color:#64748b;font-weight:600;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px">Source evidence</div>
+          <div>${sourcesHtml(d.sources)}</div>
+        </div>
+      </div>`;
+  };
+
+  const pricingHtml = TIERS.map(t => `
+    <div style="flex:1;min-width:180px;background:rgba(255,255,255,0.03);border:1px solid ${t.color}30;border-radius:12px;padding:18px">
+      <div style="color:${t.color};font-size:13px;font-weight:700;margin-bottom:4px">${t.name}</div>
+      <div style="color:#e2e8f0;font-size:22px;font-weight:800;margin-bottom:10px">${t.price}</div>
+      <div style="color:#94a3b8;font-size:12px;line-height:1.6">${t.desc}</div>
+    </div>`
+  ).join('');
+
+  const html = `
+  <div style="padding:24px;max-width:1000px">
+
+    <!-- Summary bar -->
+    <div style="display:flex;gap:16px;margin-bottom:24px;flex-wrap:wrap">
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 22px;flex:1;min-width:140px">
+        <div style="font-size:11px;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Dutch Subscribers</div>
+        <div style="font-size:28px;font-weight:800;color:#e2e8f0">${OA_DATA.length}</div>
+        <div style="font-size:11px;color:#94a3b8;margin-top:2px">publicly confirmed</div>
+      </div>
+      <div style="background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);border-radius:12px;padding:16px 22px;flex:1;min-width:140px">
+        <div style="font-size:11px;color:#f87171;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Scopus Cancellations</div>
+        <div style="font-size:28px;font-weight:800;color:#f87171">${OA_DATA.filter(d=>d.flag==='scopus-cancel').length}</div>
+        <div style="font-size:11px;color:#94a3b8;margin-top:2px">switching to OpenAlex</div>
+      </div>
+      <div style="background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.2);border-radius:12px;padding:16px 22px;flex:2;min-width:200px">
+        <div style="font-size:11px;color:#f59e0b;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Key context</div>
+        <div style="font-size:12px;color:#94a3b8;line-height:1.5">OpenAlex launched institutional plans in Feb 2022. The <strong style="color:#e2e8f0">Member tier ($5k/yr)</strong> launched Feb 2026. OpenAlex does <em>not</em> publicly disclose its full subscriber list — only institutions that announce publicly are listed here.</div>
+      </div>
+    </div>
+
+    <!-- Confirmed Dutch subscribers -->
+    <div style="margin-bottom:28px">
+      <h2 style="color:#e2e8f0;font-size:15px;font-weight:700;margin:0 0 14px;text-transform:uppercase;letter-spacing:.5px">
+        🇳🇱 Confirmed Dutch Subscribers
+      </h2>
+      ${OA_DATA.map(rowHtml).join('')}
+
+      <div style="background:rgba(255,255,255,0.02);border:1px dashed rgba(255,255,255,0.12);border-radius:14px;padding:20px 24px;text-align:center">
+        <div style="color:#64748b;font-size:13px">Other Dutch institutions may be subscribers — OpenAlex does not publish a full member list.</div>
+        <div style="margin-top:8px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+          <a href="https://openalex.org/members" target="_blank" style="color:#60a5fa;font-size:13px;text-decoration:none">→ OpenAlex members page</a>
+          <a href="https://openalex.org/pricing/institutions" target="_blank" style="color:#60a5fa;font-size:13px;text-decoration:none">→ Pricing tiers</a>
+          <a href="https://blog.openalex.org" target="_blank" style="color:#60a5fa;font-size:13px;text-decoration:none">→ OpenAlex blog (new announcements)</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pricing tiers reference -->
+    <div>
+      <h2 style="color:#e2e8f0;font-size:15px;font-weight:700;margin:0 0 14px;text-transform:uppercase;letter-spacing:.5px">
+        OpenAlex Pricing Tiers
+      </h2>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:16px">
+        ${pricingHtml}
+      </div>
+      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:14px 18px;font-size:12px;color:#64748b">
+        Source: <a href="https://blog.openalex.org/a-new-way-to-support-openalex-become-a-member/" target="_blank" style="color:#60a5fa">OpenAlex blog — Feb 10, 2026</a> ·
+        <a href="https://openalex.org/pricing" target="_blank" style="color:#60a5fa">openalex.org/pricing</a>
+      </div>
+    </div>
+
+  </div>`;
+
+  document.getElementById('content').innerHTML = html;
 }
 
 function renderSubscriptionMatrix() {
@@ -4782,6 +4958,437 @@ window.discardPending = function(id) {
   localStorage.setItem('nl_crm_pending',JSON.stringify(pending));
   window.renderPendingContacts();
 };
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FEATURE 1 — GLOBAL ⌘K SEARCH
+   ═══════════════════════════════════════════════════════════════════════════ */
+(function initGlobalSearch() {
+  // Inject overlay HTML
+  const overlay = document.createElement('div');
+  overlay.id = 'gsk-overlay';
+  overlay.innerHTML = `
+    <div id="gsk-box">
+      <div id="gsk-input-wrap">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.5" style="flex-shrink:0"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input id="gsk-input" placeholder="Search contacts, institutions…" autocomplete="off" spellcheck="false"/>
+        <kbd style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:4px;padding:2px 6px;font-size:11px;color:#64748b;flex-shrink:0">ESC</kbd>
+      </div>
+      <div id="gsk-results"></div>
+      <div id="gsk-footer">
+        <span>↑↓ navigate</span><span>↵ open</span><span>esc close</span>
+        <span style="margin-left:auto;opacity:.4">⌘K / Ctrl+K</span>
+      </div>
+    </div>`;
+  document.body.appendChild(overlay);
+
+  // Styles
+  const style = document.createElement('style');
+  style.textContent = `
+    #gsk-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);z-index:9999;display:none;align-items:flex-start;justify-content:center;padding-top:12vh}
+    #gsk-overlay.open{display:flex}
+    #gsk-box{background:#1e2535;border:1px solid rgba(255,255,255,.12);border-radius:16px;width:min(620px,92vw);box-shadow:0 24px 80px rgba(0,0,0,.5);overflow:hidden}
+    #gsk-input-wrap{display:flex;align-items:center;gap:10px;padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.07)}
+    #gsk-input{flex:1;background:transparent;border:none;outline:none;color:#e2e8f0;font-size:16px}
+    #gsk-input::placeholder{color:#475569}
+    #gsk-results{max-height:380px;overflow-y:auto}
+    .gsk-section{padding:8px 18px 4px;font-size:10px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:.8px}
+    .gsk-item{display:flex;align-items:center;gap:12px;padding:10px 18px;cursor:pointer;border-radius:0;transition:background .1s}
+    .gsk-item:hover,.gsk-item.active{background:rgba(0,245,196,.06)}
+    .gsk-item.active{border-left:2px solid #00f5c4}
+    .gsk-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px}
+    .gsk-title{color:#e2e8f0;font-size:14px;font-weight:500}
+    .gsk-sub{color:#64748b;font-size:12px;margin-top:1px}
+    .gsk-tag{background:rgba(255,255,255,.07);border-radius:5px;padding:1px 7px;font-size:11px;color:#94a3b8;margin-left:auto;flex-shrink:0}
+    .gsk-empty{padding:32px 18px;text-align:center;color:#475569;font-size:14px}
+    #gsk-footer{display:flex;gap:16px;padding:10px 18px;border-top:1px solid rgba(255,255,255,.06);font-size:11px;color:#475569}
+  `;
+  document.head.appendChild(style);
+
+  let activeIdx = -1, results = [];
+
+  function open() { overlay.classList.add('open'); document.getElementById('gsk-input').focus(); }
+  function close() { overlay.classList.remove('open'); document.getElementById('gsk-input').value=''; results=[]; activeIdx=-1; document.getElementById('gsk-results').innerHTML=''; }
+
+  function search(q) {
+    q = q.trim().toLowerCase();
+    results = [];
+    if (!q) { document.getElementById('gsk-results').innerHTML=''; return; }
+    const contacts = (typeof state !== 'undefined' && state.contacts) || [];
+    const insts = (typeof state !== 'undefined' && state.institutions) || [];
+    const cMatches = contacts.filter(c =>
+      `${c.first} ${c.last} ${c.email} ${c.institution}`.toLowerCase().includes(q)
+    ).slice(0,6);
+    const iMatches = insts.filter(i =>
+      `${i.name} ${i.type} ${i.city}`.toLowerCase().includes(q)
+    ).slice(0,4);
+    cMatches.forEach(c => results.push({ type:'contact', label:`${c.first} ${c.last}`, sub: c.institution || c.email || '', action: () => { close(); nav('contacts'); } }));
+    iMatches.forEach(i => results.push({ type:'inst', label: i.name, sub: `${i.type||''} · ${i.city||''}`, action: () => { close(); nav('detail', {instId: i.id}); } }));
+    activeIdx = -1;
+    renderResults();
+  }
+
+  function renderResults() {
+    const el = document.getElementById('gsk-results');
+    if (!results.length) { el.innerHTML = '<div class="gsk-empty">No results found</div>'; return; }
+    let html = '';
+    const cResults = results.filter(r=>r.type==='contact');
+    const iResults = results.filter(r=>r.type==='inst');
+    if (cResults.length) {
+      html += '<div class="gsk-section">Contacts</div>';
+      cResults.forEach((r,i) => {
+        const globalIdx = results.indexOf(r);
+        html += `<div class="gsk-item${globalIdx===activeIdx?' active':''}" data-idx="${globalIdx}">
+          <div class="gsk-icon" style="background:rgba(168,85,247,.15);color:#a855f7">👤</div>
+          <div><div class="gsk-title">${r.label}</div><div class="gsk-sub">${r.sub}</div></div>
+          <span class="gsk-tag">Contact</span></div>`;
+      });
+    }
+    if (iResults.length) {
+      html += '<div class="gsk-section">Institutions</div>';
+      iResults.forEach((r) => {
+        const globalIdx = results.indexOf(r);
+        html += `<div class="gsk-item${globalIdx===activeIdx?' active':''}" data-idx="${globalIdx}">
+          <div class="gsk-icon" style="background:rgba(0,245,196,.1);color:#00f5c4">🏛</div>
+          <div><div class="gsk-title">${r.label}</div><div class="gsk-sub">${r.sub}</div></div>
+          <span class="gsk-tag">Institution</span></div>`;
+      });
+    }
+    el.innerHTML = html;
+    el.querySelectorAll('.gsk-item').forEach(item => {
+      item.addEventListener('click', () => { const idx = parseInt(item.dataset.idx); if(results[idx]) results[idx].action(); });
+    });
+  }
+
+  document.getElementById('gsk-input').addEventListener('input', e => search(e.target.value));
+  document.getElementById('gsk-input').addEventListener('keydown', e => {
+    if (e.key==='ArrowDown') { activeIdx=Math.min(activeIdx+1,results.length-1); renderResults(); e.preventDefault(); }
+    if (e.key==='ArrowUp')   { activeIdx=Math.max(activeIdx-1,0); renderResults(); e.preventDefault(); }
+    if (e.key==='Enter' && results[activeIdx]) { results[activeIdx].action(); }
+    if (e.key==='Escape') close();
+  });
+  overlay.addEventListener('click', e => { if(e.target===overlay) close(); });
+  document.addEventListener('keydown', e => {
+    if ((e.metaKey||e.ctrlKey) && e.key==='k') { e.preventDefault(); overlay.classList.contains('open') ? close() : open(); }
+  });
+
+  // Show ⌘K hint in topbar
+  setTimeout(() => {
+    const tb = document.getElementById('topbar-actions');
+    if (tb && !document.getElementById('gsk-trigger-btn')) {
+      const btn = document.createElement('button');
+      btn.id = 'gsk-trigger-btn';
+      btn.className = 'btn btn-outline';
+      btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Search <kbd style="background:rgba(255,255,255,.1);border-radius:3px;padding:1px 5px;font-size:10px;margin-left:4px">⌘K</kbd>';
+      btn.style.cssText = 'display:flex;align-items:center;gap:6px;font-size:13px';
+      btn.onclick = open;
+      tb.prepend(btn);
+    }
+  }, 800);
+
+  window.openGlobalSearch = open;
+})();
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FEATURE 2 — BARCELONA DECLARATION TRACKER
+   ═══════════════════════════════════════════════════════════════════════════ */
+function renderBarcelonaDecl() {
+  document.getElementById('page-title').textContent = 'Barcelona Declaration';
+  document.getElementById('page-sub').textContent = 'Tracking which Dutch institutions have committed to open research information — a direct threat to Scopus';
+
+  // Full Dutch signatory data (source: barcelona-declaration.org/signatories/)
+  const SIGNED = [
+    { name:'Delft University of Technology',          type:'university', date:'2024-04-16', scopusRisk:'High', source:'https://barcelona-declaration.org/signatories/', note:'Launch-day signatory.' },
+    { name:'Leiden University',                        type:'university', date:'2024-04-16', scopusRisk:'High', source:'https://barcelona-declaration.org/signatories/', note:'Launch-day signatory, co-drafter.' },
+    { name:'University of Amsterdam',                  type:'university', date:'2024-04-16', scopusRisk:'High', source:'https://barcelona-declaration.org/signatories/', note:'Launch-day signatory.' },
+    { name:'University of Groningen',                  type:'university', date:'2024-04-16', scopusRisk:'High', source:'https://www.rug.nl/about-ug/latest-news/news/archief2024/nieuwsberichten/0416-barcelona-declaration', note:'Signed on launch day.' },
+    { name:'Utrecht University',                       type:'university', date:'2024-04-16', scopusRisk:'High', source:'https://barcelona-declaration.org/signatories/', note:'Launch-day signatory.' },
+    { name:'Vrije Universiteit Amsterdam',             type:'university', date:'2024-04-16', scopusRisk:'High', source:'https://vu.nl/en/news/2024/barcelona-declaration-important-step-for-vu-towards-open-research-information', note:'Signed on launch day.' },
+    { name:'Maastricht University',                    type:'university', date:'2026-06-12', scopusRisk:'Critical', source:'https://www.maastrichtuniversity.nl/news/maastricht-university-signs-barcelona-declaration-open-research-information-0', note:'Signed Jun 2026. Also cancelling Scopus from Jan 2027 and signed OpenAlex Partner subscription.' },
+    { name:'Universities of the Netherlands (UNL)',    type:'association', date:'2024-04-16', scopusRisk:'High', source:'https://barcelona-declaration.org/signatories/', note:'National umbrella — implies sector-wide intent.' },
+    { name:'Netherlands Association of UAS',           type:'association', date:'2024-04-16', scopusRisk:'Medium', source:'https://barcelona-declaration.org/signatories/', note:'Hogescholen network.' },
+    { name:'Dutch Research Council (NWO)',             type:'funder',     date:'2024-04-16', scopusRisk:'High', source:'https://barcelona-declaration.org/signatories/', note:'Major research funder — will shape grant conditions.' },
+    { name:'ZonMw',                                    type:'funder',     date:'2024-04-16', scopusRisk:'Medium', source:'https://barcelona-declaration.org/signatories/', note:'Health research funder.' },
+    { name:'Taskforce for Applied Research SIA',       type:'funder',     date:'2024-04-16', scopusRisk:'Medium', source:'https://barcelona-declaration.org/signatories/', note:'' },
+    { name:'KNAW',                                     type:'academy',    date:'2024-04-16', scopusRisk:'Medium', source:'https://barcelona-declaration.org/signatories/', note:'Royal Netherlands Academy.' },
+    { name:'Netherlands eScience Center',              type:'research',   date:'2024-04-16', scopusRisk:'Medium', source:'https://barcelona-declaration.org/signatories/', note:'' },
+    { name:'SURF',                                     type:'infra',      date:'2024-04-16', scopusRisk:'Low',    source:'https://barcelona-declaration.org/signatories/', note:'National IT infrastructure.' },
+    { name:'KB – National Library of Netherlands',     type:'library',    date:'2024-04-16', scopusRisk:'Low',    source:'https://barcelona-declaration.org/signatories/', note:'' },
+    { name:'Digital Competence Center (DCC-PO)',       type:'other',      date:'2024-04-16', scopusRisk:'Low',    source:'https://barcelona-declaration.org/signatories/', note:'' },
+    { name:'Dutch Reproducibility Network (NLRN)',     type:'other',      date:'2024-04-16', scopusRisk:'Low',    source:'https://barcelona-declaration.org/signatories/', note:'' },
+  ];
+
+  const NOT_SIGNED = [
+    { name:'Erasmus University Rotterdam',         type:'university', note:'No public commitment yet.' },
+    { name:'Wageningen University & Research',     type:'university', note:'No public commitment yet.' },
+    { name:'University of Twente',                 type:'university', note:'No public commitment yet.' },
+    { name:'Eindhoven University of Technology',   type:'university', note:'No public commitment yet.' },
+    { name:'Radboud University',                   type:'university', note:'No public commitment yet.' },
+    { name:'Tilburg University',                   type:'university', note:'No public commitment yet.' },
+    { name:'Amsterdam UMC',                        type:'medical',    note:'Medical centres not yet on declaration.' },
+    { name:'Erasmus MC',                           type:'medical',    note:'Medical centres not yet on declaration.' },
+    { name:'UMC Utrecht',                          type:'medical',    note:'Medical centres not yet on declaration.' },
+  ];
+
+  const riskColor = { Critical:'#ef4444', High:'#f97316', Medium:'#f59e0b', Low:'#10b981' };
+  const typeIcon = { university:'🎓', funder:'💰', academy:'🏛', research:'🔬', infra:'🖥', library:'📚', association:'🤝', other:'•', medical:'🏥' };
+
+  const fmtDate = iso => iso ? new Date(iso).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}) : '—';
+
+  const signedUnis = SIGNED.filter(s=>s.type==='university');
+  const totalDutchUnis = signedUnis.length + NOT_SIGNED.filter(s=>s.type==='university').length;
+  const criticalCount = SIGNED.filter(s=>s.scopusRisk==='Critical').length;
+  const highCount = SIGNED.filter(s=>s.scopusRisk==='High').length;
+
+  const signedRows = SIGNED.map(s => `
+    <tr style="border-bottom:1px solid rgba(255,255,255,0.05);cursor:pointer" onclick="window.open('${s.source}','_blank')">
+      <td style="padding:11px 14px">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:16px">${typeIcon[s.type]||'•'}</span>
+          <div>
+            <div style="color:#e2e8f0;font-size:13px;font-weight:600">${s.name}</div>
+            ${s.note ? `<div style="color:#64748b;font-size:11px;margin-top:2px">${s.note}</div>` : ''}
+          </div>
+        </div>
+      </td>
+      <td style="padding:11px 14px;white-space:nowrap">
+        <span style="background:#0f2,background:rgba(16,185,129,.1);color:#10b981;font-size:11px;font-weight:700;border:1px solid rgba(16,185,129,.3);border-radius:6px;padding:2px 9px">✓ Signed</span>
+      </td>
+      <td style="padding:11px 14px;color:#94a3b8;font-size:12px;white-space:nowrap">${fmtDate(s.date)}</td>
+      <td style="padding:11px 14px">
+        <span style="background:${riskColor[s.scopusRisk]}20;color:${riskColor[s.scopusRisk]};border:1px solid ${riskColor[s.scopusRisk]}40;border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700">${s.scopusRisk}</span>
+      </td>
+      <td style="padding:11px 14px">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" style="opacity:.6"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 0 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </td>
+    </tr>`).join('');
+
+  const notSignedRows = NOT_SIGNED.map(s => `
+    <tr style="border-bottom:1px solid rgba(255,255,255,0.04)">
+      <td style="padding:10px 14px">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:16px;opacity:.4">${typeIcon[s.type]||'•'}</span>
+          <div>
+            <div style="color:#94a3b8;font-size:13px">${s.name}</div>
+            <div style="color:#475569;font-size:11px;margin-top:1px">${s.note}</div>
+          </div>
+        </div>
+      </td>
+      <td style="padding:10px 14px">
+        <span style="background:rgba(255,255,255,.05);color:#475569;font-size:11px;border:1px solid rgba(255,255,255,.08);border-radius:6px;padding:2px 9px">Not signed</span>
+      </td>
+      <td style="padding:10px 14px;color:#475569;font-size:12px">—</td>
+      <td style="padding:10px 14px">
+        <span style="background:rgba(16,185,129,.08);color:#10b981;border:1px solid rgba(16,185,129,.2);border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700">Opportunity</span>
+      </td>
+      <td style="padding:10px 14px"></td>
+    </tr>`).join('');
+
+  const thStyle = 'padding:9px 14px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#475569;border-bottom:1px solid rgba(255,255,255,.08);white-space:nowrap';
+
+  document.getElementById('content').innerHTML = `
+  <div style="padding:24px;max-width:1050px">
+
+    <!-- KPI bar -->
+    <div style="display:flex;gap:14px;margin-bottom:24px;flex-wrap:wrap">
+      <div style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.25);border-radius:12px;padding:16px 22px;flex:1;min-width:130px">
+        <div style="font-size:11px;color:#f87171;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Signed — Dutch</div>
+        <div style="font-size:30px;font-weight:800;color:#e2e8f0">${SIGNED.length}</div>
+        <div style="font-size:11px;color:#94a3b8;margin-top:2px">orgs committed</div>
+      </div>
+      <div style="background:rgba(249,115,22,0.08);border:1px solid rgba(249,115,22,0.25);border-radius:12px;padding:16px 22px;flex:1;min-width:130px">
+        <div style="font-size:11px;color:#f97316;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Universities signed</div>
+        <div style="font-size:30px;font-weight:800;color:#e2e8f0">${signedUnis.length}<span style="font-size:16px;color:#64748b"> / ${totalDutchUnis}</span></div>
+        <div style="font-size:11px;color:#94a3b8;margin-top:2px">of tracked NL unis</div>
+      </div>
+      <div style="background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);border-radius:12px;padding:16px 22px;flex:1;min-width:130px">
+        <div style="font-size:11px;color:#ef4444;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Critical Scopus risk</div>
+        <div style="font-size:30px;font-weight:800;color:#ef4444">${criticalCount}</div>
+        <div style="font-size:11px;color:#94a3b8;margin-top:2px">already cancelling</div>
+      </div>
+      <div style="background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.2);border-radius:12px;padding:16px 22px;flex:1;min-width:130px">
+        <div style="font-size:11px;color:#10b981;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Not yet signed</div>
+        <div style="font-size:30px;font-weight:800;color:#10b981">${NOT_SIGNED.length}</div>
+        <div style="font-size:11px;color:#94a3b8;margin-top:2px">still opportunities</div>
+      </div>
+    </div>
+
+    <!-- Context banner -->
+    <div style="background:rgba(239,68,68,0.05);border:1px solid rgba(239,68,68,0.2);border-radius:10px;padding:14px 18px;margin-bottom:22px;display:flex;gap:12px;align-items:flex-start">
+      <span style="font-size:18px;flex-shrink:0">⚠️</span>
+      <div style="font-size:13px;color:#94a3b8;line-height:1.6">
+        <strong style="color:#f87171">What this means for Scopus:</strong> The Barcelona Declaration commits institutions to moving away from closed, commercial research databases. Signatories specifically commit to "work towards making research information openly available." Maastricht University has gone furthest — signing both the Declaration and an OpenAlex Partner subscription while simultaneously cancelling Scopus from January 2027. Other signatories are likely to follow.
+        <br><a href="https://barcelona-declaration.org/commitments/" target="_blank" style="color:#60a5fa">Read the commitments →</a>
+      </div>
+    </div>
+
+    <!-- Main table -->
+    <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:14px;overflow:hidden;margin-bottom:24px">
+      <div style="padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:space-between">
+        <span style="color:#e2e8f0;font-weight:700;font-size:14px">Dutch Signatories</span>
+        <a href="https://barcelona-declaration.org/signatories_by_country/" target="_blank" style="font-size:12px;color:#60a5fa;text-decoration:none">Full list by country →</a>
+      </div>
+      <div style="overflow-x:auto">
+        <table style="width:100%;border-collapse:collapse">
+          <thead><tr>
+            <th style="${thStyle}">Organisation</th>
+            <th style="${thStyle}">Status</th>
+            <th style="${thStyle}">Date signed</th>
+            <th style="${thStyle}">Scopus risk</th>
+            <th style="${thStyle}">Source</th>
+          </tr></thead>
+          <tbody>${signedRows}${notSignedRows}</tbody>
+        </table>
+      </div>
+    </div>
+
+    <div style="font-size:11px;color:#475569;text-align:center">
+      Source: <a href="https://barcelona-declaration.org/signatories/" target="_blank" style="color:#60a5fa">barcelona-declaration.org/signatories/</a> · Last checked August 2026
+    </div>
+  </div>`;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FEATURE 3 — ACTIVITY LOG (per contact, from contact cards)
+   ═══════════════════════════════════════════════════════════════════════════ */
+(function initActivityLog() {
+  // Inject modal HTML
+  const modal = document.createElement('div');
+  modal.id = 'alog-modal';
+  modal.innerHTML = `
+    <div id="alog-box">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
+        <h3 style="color:#e2e8f0;margin:0;font-size:15px" id="alog-title">Log Activity</h3>
+        <button onclick="closeActivityLog()" style="background:none;border:none;color:#64748b;cursor:pointer;font-size:20px;line-height:1">×</button>
+      </div>
+      <div style="display:flex;gap:8px;margin-bottom:14px" id="alog-types">
+        <button class="alog-type-btn active" data-type="call">📞 Call</button>
+        <button class="alog-type-btn" data-type="email">✉ Email</button>
+        <button class="alog-type-btn" data-type="meeting">🤝 Meeting</button>
+        <button class="alog-type-btn" data-type="note">📝 Note</button>
+      </div>
+      <input id="alog-date" type="date" style="width:100%;box-sizing:border-box;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:9px 12px;color:#e2e8f0;font-size:13px;margin-bottom:10px"/>
+      <textarea id="alog-notes" placeholder="Notes…" rows="4" style="width:100%;box-sizing:border-box;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:10px 12px;color:#e2e8f0;font-size:13px;resize:vertical;font-family:inherit"></textarea>
+      <div style="display:flex;gap:10px;margin-top:14px;justify-content:flex-end">
+        <button onclick="closeActivityLog()" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#94a3b8;border-radius:8px;padding:8px 18px;cursor:pointer;font-size:13px">Cancel</button>
+        <button onclick="saveActivity()" style="background:linear-gradient(135deg,#10b981,#059669);border:none;color:white;border-radius:8px;padding:8px 22px;cursor:pointer;font-size:13px;font-weight:600">Save Activity</button>
+      </div>
+      <!-- History -->
+      <div id="alog-history" style="margin-top:20px;border-top:1px solid rgba(255,255,255,.07);padding-top:16px"></div>
+    </div>`;
+  document.body.appendChild(modal);
+
+  const mStyle = document.createElement('style');
+  mStyle.textContent = `
+    #alog-modal{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);z-index:9998;display:none;align-items:center;justify-content:center}
+    #alog-modal.open{display:flex}
+    #alog-box{background:#1e2535;border:1px solid rgba(255,255,255,.12);border-radius:16px;width:min(480px,92vw);padding:24px;box-shadow:0 24px 80px rgba(0,0,0,.5);max-height:85vh;overflow-y:auto}
+    .alog-type-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#94a3b8;border-radius:8px;padding:6px 14px;cursor:pointer;font-size:12px;transition:all .15s}
+    .alog-type-btn.active{background:rgba(0,245,196,.12);border-color:rgba(0,245,196,.4);color:#00f5c4;font-weight:600}
+    .alog-entry{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+    .alog-entry-icon{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;background:rgba(255,255,255,.06)}
+  `;
+  document.head.appendChild(mStyle);
+
+  let _currentContactId = null, _selectedType = 'call';
+
+  // Type button wiring
+  modal.querySelectorAll('.alog-type-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      modal.querySelectorAll('.alog-type-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      _selectedType = btn.dataset.type;
+    });
+  });
+
+  modal.querySelector('#alog-date').value = new Date().toISOString().slice(0,10);
+
+  function getActivities(contactId) {
+    try { return JSON.parse(localStorage.getItem('nl_crm_activities_'+contactId)||'[]'); } catch(e) { return []; }
+  }
+  function saveActivities(contactId, acts) {
+    localStorage.setItem('nl_crm_activities_'+contactId, JSON.stringify(acts));
+  }
+
+  function renderHistory(contactId) {
+    const acts = getActivities(contactId);
+    const el = document.getElementById('alog-history');
+    if (!acts.length) { el.innerHTML = '<div style="color:#475569;font-size:13px;text-align:center;padding:8px">No activity logged yet.</div>'; return; }
+    const icons = { call:'📞', email:'✉', meeting:'🤝', note:'📝' };
+    el.innerHTML = '<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#475569;margin-bottom:10px">Recent activity</div>' +
+      acts.slice().reverse().slice(0,8).map(a => `
+        <div class="alog-entry">
+          <div class="alog-entry-icon">${icons[a.type]||'•'}</div>
+          <div style="flex:1;min-width:0">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="color:#e2e8f0;font-size:13px;font-weight:500;text-transform:capitalize">${a.type}</span>
+              <span style="color:#475569;font-size:11px">${a.date}</span>
+            </div>
+            ${a.notes ? `<div style="color:#94a3b8;font-size:12px;margin-top:3px;white-space:pre-wrap">${a.notes}</div>` : ''}
+          </div>
+        </div>`).join('');
+  }
+
+  window.openActivityLog = function(contactId, contactName) {
+    _currentContactId = contactId;
+    document.getElementById('alog-title').textContent = 'Log Activity — ' + (contactName||'Contact');
+    document.getElementById('alog-notes').value = '';
+    document.getElementById('alog-date').value = new Date().toISOString().slice(0,10);
+    modal.querySelectorAll('.alog-type-btn').forEach(b => b.classList.remove('active'));
+    modal.querySelector('[data-type="call"]').classList.add('active');
+    _selectedType = 'call';
+    renderHistory(contactId);
+    modal.classList.add('open');
+  };
+
+  window.closeActivityLog = function() { modal.classList.remove('open'); };
+
+  window.saveActivity = function() {
+    const notes = document.getElementById('alog-notes').value.trim();
+    const date  = document.getElementById('alog-date').value;
+    if (!_currentContactId) return;
+    const acts = getActivities(_currentContactId);
+    acts.push({ type: _selectedType, date, notes, savedAt: new Date().toISOString() });
+    saveActivities(_currentContactId, acts);
+    renderHistory(_currentContactId);
+    if (typeof toast === 'function') toast('Activity saved', 'ok');
+    document.getElementById('alog-notes').value = '';
+  };
+
+  modal.addEventListener('click', e => { if(e.target===modal) window.closeActivityLog(); });
+
+  // Patch contact cards in renderContacts to show Log button
+  // We hook renderContacts to inject the button into each contact card
+  const _origRenderContacts = window.renderContacts;
+  if (typeof _origRenderContacts === 'function') {
+    // Instead of patching (fragile), we use event delegation on the content div
+    document.getElementById('content').addEventListener('click', e => {
+      const btn = e.target.closest('.alog-open-btn');
+      if (!btn) return;
+      const id   = btn.dataset.contactId;
+      const name = btn.dataset.contactName;
+      window.openActivityLog(id, name);
+    });
+  }
+
+  // Inject Log buttons into contact rows after any render via MutationObserver
+  const observer = new MutationObserver(() => {
+    document.querySelectorAll('[data-contact-row-id]').forEach(row => {
+      if (row.querySelector('.alog-open-btn')) return; // already injected
+      const id = row.dataset.contactRowId;
+      const name = row.dataset.contactRowName || '';
+      const btn = document.createElement('button');
+      btn.className = 'alog-open-btn btn btn-xs btn-outline';
+      btn.dataset.contactId = id;
+      btn.dataset.contactName = name;
+      btn.title = 'Log activity';
+      btn.innerHTML = '📋 Log';
+      btn.style.cssText = 'font-size:11px;padding:3px 9px';
+      const actionsEl = row.querySelector('.contact-row-actions');
+      if (actionsEl) actionsEl.appendChild(btn);
+    });
+  });
+  observer.observe(document.getElementById('content'), { childList:true, subtree:true });
+})();
 </script>
 
 </body>

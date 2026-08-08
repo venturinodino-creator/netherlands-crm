@@ -75,7 +75,8 @@
         remote.forEach(function(c) {
           var el = (c.email||'').toLowerCase().trim();
           var nl = ((c.first||'')+' '+(c.last||'')).toLowerCase().trim();
-          if (el && sets.emails.has(el)) return;
+          if (!el) return; // skip contacts with no email
+          if (sets.emails.has(el)) return;
           if (sets.names.has(nl)) return;
           var id = 'disc_'+(c.instId||'xx')+'_'+Date.now()+'_'+Math.random().toString(36).slice(2,6);
           pending.push({
@@ -104,7 +105,7 @@
     var content = document.getElementById('content');
     if (!content) return;
 
-    var pending  = getP();
+    var pending  = getP().filter(function(c){ return !!(c.email||'').trim(); }); // emails only
     var selType  = getT()[0] || 'research';   // single selection
     var allTypes = ['university','medical','research','ngo'];
 
