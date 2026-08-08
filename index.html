@@ -3199,9 +3199,17 @@ function renderRFPOpps() {
         <div style="color:#00f5c4;font-size:12px;font-weight:600;margin-bottom:${hasCompetitor?'5px':'0'}">${esc(r.product||'—')}</div>
         ${hasCompetitor ? `<div style="display:inline-flex;align-items:center;gap:4px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);border-radius:4px;padding:2px 8px"><span style="color:#f87171;font-size:11px;font-weight:600">vs</span><span style="color:#fca5a5;font-size:11px;font-weight:500">${esc(r.competitor)}</span></div>` : ''}
       </td>
-      <td style="padding:16px 14px;vertical-align:top">
-        <div style="font-size:12px;color:#94a3b8;white-space:nowrap">${fmtDate(r.publishedDate)}</div>
-        ${r.deadline ? `<div style="font-size:11px;color:#475569;margin-top:3px">Deadline: <span style="color:${overdue?'#f87171':'#64748b'}">${fmtDate(r.deadline)}${overdue?' ⚠':''}</span></div>` : ''}
+      <td style="padding:16px 14px;vertical-align:top;white-space:nowrap">
+        ${(()=>{
+          if (!r.publishedDate) return '<span style="color:#334155">—</span>';
+          const d = new Date(r.publishedDate);
+          const isThisYear = d.getFullYear() === new Date().getFullYear();
+          const badge = isThisYear
+            ? `<span style="display:inline-block;background:rgba(0,245,196,.15);color:#00f5c4;border:1px solid rgba(0,245,196,.35);border-radius:4px;padding:1px 6px;font-size:10px;font-weight:700;letter-spacing:.04em;margin-left:6px">${d.getFullYear()}</span>`
+            : `<span style="display:inline-block;background:rgba(255,255,255,.05);color:#475569;border:1px solid rgba(255,255,255,.08);border-radius:4px;padding:1px 6px;font-size:10px;font-weight:600;margin-left:6px">${d.getFullYear()}</span>`;
+          return `<div style="font-size:13px;font-weight:600;color:#e2e8f0">${d.toLocaleDateString('en-GB',{day:'2-digit',month:'short'})}${badge}</div>`;
+        })()}
+        ${r.deadline ? `<div style="font-size:11px;color:#475569;margin-top:4px">Deadline ${fmtDate(r.deadline)}${overdue?' <span style="color:#f87171">⚠ overdue</span>':''}</div>` : ''}
       </td>
       <td style="padding:16px 14px;vertical-align:top">
         <span style="display:inline-block;background:${st.bg};color:${st.color};border:1px solid ${st.color}33;border-radius:5px;padding:3px 10px;font-size:11px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;white-space:nowrap">${st.label}</span>
