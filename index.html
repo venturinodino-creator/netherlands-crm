@@ -4487,12 +4487,26 @@ async function deletePendingContact(id, btn) {
 }
 
 async function runContactDiscovery() {
-  toast('Contact discovery running... check back in a moment', 'ok');
-  // The scheduled agent handles this — this button is for manual trigger feedback
+  toast('Checking for new contacts...', 'ok');
+  if (window.__crmDiscovery && window.__crmDiscovery.syncFromFile) {
+    try {
+      const n = await window.__crmDiscovery.syncFromFile();
+      if (n > 0) {
+        toast(n + ' new contact' + (n !== 1 ? 's' : '') + ' added!', 'ok');
+        if (typeof loadPendingCount === 'function') loadPendingCount();
+      } else {
+        toast('No new contacts found.', 'ok');
+      }
+    } catch(e) {
+      toast('Discovery failed: ' + e.message, 'error');
+    }
+  } else {
+    toast('Discovery not ready — try again in a moment.', 'ok');
+  }
 }
 </script>
 <script src="animations.js?v=4"></script>
-    <script src="openalex.js?v=7">
+    <script src="openalex.js?v=7"></script>
   <script src="discovery.js"></script>
 
 <script>

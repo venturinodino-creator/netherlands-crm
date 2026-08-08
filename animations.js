@@ -115,10 +115,10 @@
 
   function getP() { try { return JSON.parse(localStorage.getItem('nl_crm_pending') || '[]'); } catch(e) { return []; } }
   function getC() { try { return JSON.parse(localStorage.getItem('nl_crm_contacts') || '[]'); } catch(e) { return []; } }
-  function getT() { try { return JSON.parse(localStorage.getItem('nl_crm_stype') || '["research","university","medical","ngo"]'); } catch(e) { return ['research','university','medical','ngo']; } }
+  function getT() { try { return JSON.parse(localStorage.getItem('nl_crm_filter_types') || '["research","university","medical","ngo"]'); } catch(e) { return ['research','university','medical','ngo']; } }
   function saveP(l) { localStorage.setItem('nl_crm_pending', JSON.stringify(l)); }
   function saveC(l) { localStorage.setItem('nl_crm_contacts', JSON.stringify(l)); }
-  function saveT(t) { localStorage.setItem('nl_crm_stype', JSON.stringify(t)); }
+  function saveT(t) { localStorage.setItem('nl_crm_filter_types', JSON.stringify(t)); }
 
   window._nlAccept = function(id) {
     var p = getP(), c = getC();
