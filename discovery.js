@@ -52,7 +52,7 @@
   /* ── Storage helpers ─────────────────────────────────────────────────── */
   function getP()  { try { return JSON.parse(localStorage.getItem('nl_crm_pending')   || '[]'); } catch(e) { return []; } }
   function getC()  { try { return JSON.parse(localStorage.getItem('nl_crm_contacts')  || '[]'); } catch(e) { return []; } }
-  function getT()  { try { return JSON.parse(localStorage.getItem('nl_crm_stype')     || '["research"]'); } catch(e) { return ['research']; } }
+  function getT()  { try { var v = JSON.parse(localStorage.getItem('nl_crm_stype') || '["research"]'); return Array.isArray(v) && v.length ? [v[0]] : ['research']; } catch(e) { return ['research']; } }
   function saveP(l){ localStorage.setItem('nl_crm_pending',  JSON.stringify(l)); }
   function saveC(l){ localStorage.setItem('nl_crm_contacts', JSON.stringify(l)); }
   function saveT(t){ localStorage.setItem('nl_crm_stype',    JSON.stringify(t)); }
@@ -105,25 +105,30 @@
     if (!content) return;
 
     var pending  = getP();
-    var selTypes = getT();
+    var selType  = getT()[0] || 'research';   // single selection
     var allTypes = ['university','medical','research','ngo'];
 
     var pills = allTypes.map(function(t) {
-      var m = TM[t], active = selTypes.indexOf(t) !== -1;
-      return '<button onclick="window._nlToggleT(\'' + t + '\')" style="border:2px solid ' +
-        (active ? m.color : 'rgba(255,255,255,0.15)') + ';background:' +
-        (active ? m.bg : 'transparent') + ';color:' +
-        (active ? m.color : '#94a3b8') +
-        ';border-radius:20px;padding:6px 16px;cursor:pointer;font-size:13px;font-weight:600;margin:0 8px 8px 0">' +
-        m.label + '</button>';
+      var m = TM[t], active = (t === selType);
+      return '<button onclick="window._nlSelectT(\'' + t + '\')" style="' +
+        'border:2px solid ' + (active ? m.color : 'rgba(255,255,255,0.12)') + ';' +
+        'background:' + (active ? m.bg : 'transparent') + ';' +
+        'color:' + (active ? m.color : '#64748b') + ';' +
+        'border-radius:20px;padding:6px 18px;cursor:pointer;font-size:13px;font-weight:700;' +
+        'margin:0 8px 0 0;transition:all .15s;' +
+        (active ? 'box-shadow:0 0 0 1px ' + m.color + '40;' : '') +
+        '">' + m.label + '</button>';
     }).join('');
 
-    var filterBar = '<div style="margin-bottom:20px"><p style="color:#94a3b8;font-size:13px;margin:0 0 10px">' +
-      'Filter next scrape by institution type:</p><div style="display:flex;flex-wrap:wrap;align-items:center">' +
-      pills +
-      '<button onclick="window._nlSaveCfg()" style="background:rgba(16,185,129,0.15);color:#10b981;' +
-      'border:1px solid rgba(16,185,129,0.3);border-radius:20px;padding:6px 16px;cursor:pointer;' +
-      'font-size:13px;font-weight:600;margin-bottom:8px">Save to scraper</button></div></div>';
+    var activeMeta = TM[selType];
+    var filterBar = '<div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;' +
+      'background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);' +
+      'border-radius:12px;padding:14px 18px">' +
+      '<div style="font-size:12px;color:#64748b;font-weight:600;white-space:nowrap">NEXT SCRAPE →</div>' +
+      '<div style="display:flex;gap:8px;flex-wrap:wrap">' + pills + '</div>' +
+      '<div style="margin-left:auto;font-size:11px;color:' + activeMeta.color + ';white-space:nowrap">' +
+      '✓ Saved</div>' +
+      '</div>';
 
     if (!pending.length) {
       content.innerHTML = '<div style="padding:24px">' + filterBar +
@@ -206,19 +211,11 @@
     render();
   };
 
-  window._nlToggleT = function(t) {
-    var types = getT();
-    var idx = types.indexOf(t);
-    if (idx === -1) { types.push(t); }
-    else if (types.length > 1) { types.splice(idx, 1); }
-    saveT(types);
+  // Single-select: clicking a type exclusively sets the scraper target
+  window._nlSelectT = function(t) {
+    saveT([t]);
+    try { if (typeof toast==='function') toast('Agent will target: ' + TM[t].label + ' contacts tomorrow', 'ok'); } catch(e){}
     render();
-  };
-
-  window._nlSaveCfg = function() {
-    var t = getT();
-    try { if (typeof toast==='function') toast('Scraper will target: '+t.join(', '),'ok'); } catch(e){}
-    console.log('[NL CRM] Scrape config saved:', t);
   };
 
   /* ── Nav wrap ────────────────────────────────────────────────────────── */
