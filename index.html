@@ -3573,54 +3573,81 @@ function renderOpenAlex() {
     },
   ];
 
-  /* ── CONFIRMED DUTCH SUBSCRIBERS ─────────────────────────────────────── */
+  /* ── CONFIRMED DUTCH SUBSCRIBERS (detail cards) ──────────────────────── */
   const NL_CONFIRMED = [
     {
       inst: 'Maastricht University',
-      tier: 'Partner',
-      tierColor: '#f59e0b',
-      status: 'Active',
-      announceDate: '2026-05-28',
-      effectiveDate: '2026-06-01',
-      annualFee: 'Custom (Partner tier)',
+      tier: 'Partner', tierColor: '#f59e0b', status: 'Active',
+      announceDate: '2026-05-28', effectiveDate: '2026-06-01',
+      annualFee: 'Custom — Partner tier (price not disclosed)',
       scopusAction: 'Cancelling Scopus effective 1 Jan 2027',
       barcelonaAction: 'Formally signing Barcelona Declaration on 12 Jun 2026',
-      notes: 'UM Library confirmed a Partner subscription — the highest tier — citing OpenAlex\'s open infrastructure and alignment with their Open Science ambitions. Simultaneously cancelling Scopus licence (1 Jan 2027) and signing the Barcelona Declaration on Open Research Information (12 Jun 2026). OpenAlex will be used as primary metadata source in CRIS (Pure) alongside Web of Science.',
+      notes: 'Confirmed Partner subscription — the highest tier. UM Library cites declining Scopus usage and rising costs as drivers. Simultaneously cancelling Scopus (1 Jan 2027) and signing the Barcelona Declaration (12 Jun 2026). OpenAlex used as primary metadata source in CRIS (Pure) alongside Web of Science. Maastricht UMC+ staff are explicitly covered under the same library arrangement.',
       sources: [
         { label: 'UM Library announcement — 28 May 2026', url: 'https://library.maastrichtuniversity.nl/news/investing-in-open-research-information-openalex-partnership-and-end-of-scopus-license/' },
-        { label: 'OpenAlex database page — UM Library', url: 'https://library.maastrichtuniversity.nl/database/openalex/' },
+        { label: 'UM Library — OpenAlex database page', url: 'https://library.maastrichtuniversity.nl/database/openalex/' },
         { label: 'UM on OpenAlex (institution profile)', url: 'https://explore.openalex.org/institutions/i34352273' },
       ],
       flags: ['scopus-cancel', 'barcelona'],
     },
+    {
+      inst: 'TU Delft',
+      tier: 'Member', tierColor: '#10b981', status: 'Active',
+      announceDate: '2026-07-09', effectiveDate: '2026-06-01',
+      annualFee: '$5,000 USD / year',
+      scopusAction: null, barcelonaAction: null,
+      notes: 'Confirmed Member tier subscriber. TU Delft is named in the OpenAlex Community Advisory Board (CAB) retro of 9 July 2026, which lists "~42 new institutional members joined, including the Wellcome Trust, TU Delft, Curtin, and 11 via the JISC consortium." TU Delft had already discontinued Web of Science as of 1 January 2026. No separate institutional press release from TU Delft library; confirmed solely via OpenAlex\'s own CAB notes.',
+      sources: [
+        { label: 'OpenAlex CAB retro — 9 Jul 2026 (GitHub)', url: 'https://github.com/ourresearch/town-hall-notes/blob/main/2026-07-09-cab/retro.md' },
+        { label: 'TU Delft Library4Research — OpenAlex blog (Jun 2025)', url: 'https://library4research.tudl.tudelft.nl/2025/06/06/beyond-the-usual-suspects-exploring-the-power-of-openalex-for-your-research/' },
+      ],
+      flags: [],
+    },
+    {
+      inst: 'NWO (Netherlands Organisation for Scientific Research)',
+      tier: 'Direct contribution', tierColor: '#8b5cf6', status: 'Active (2024–2025)',
+      announceDate: '2024-01-01', effectiveDate: '2024-01-01',
+      annualFee: '$12,500 USD / year',
+      scopusAction: null, barcelonaAction: null,
+      notes: 'NWO\'s open science infrastructure support page publicly lists a $12,500/yr direct contribution to OpenAlex (OurResearch) for the period 2024–2025, alongside similar contributions to ArXiv, ORCID, and ROR. This predates the formal Member/Member+/Partner tier structure (launched Feb 2026). Whether the arrangement has been renewed for 2026 under a named tier is not publicly confirmed.',
+      sources: [
+        { label: 'NWO Open Science Infrastructure Support (lists $12,500/yr)', url: 'https://www.nwo.nl/en/open-science-infrastructure-support' },
+      ],
+      flags: [],
+    },
   ];
 
   /* ── ALL NL INSTITUTIONS — OPENALEX STATUS ───────────────────────────── */
-  // status: 'subscriber' | 'active' | 'exploring' | 'none'
+  // status: 'subscriber' | 'active' | 'none'
   const NL_ALL = [
-    // ── Confirmed subscriber ──────────────────────────────────────────────
+    // ── Confirmed paying subscribers ─────────────────────────────────────
     {
-      inst: 'Maastricht University', type: 'University', status: 'subscriber', tier: 'Partner',
-      signal: 'Confirmed Partner subscription. Cancelling Scopus Jan 2027. Signing Barcelona Declaration Jun 2026.',
-      sources: [{ label: 'UM Library announcement — May 2026', url: 'https://library.maastrichtuniversity.nl/news/investing-in-open-research-information-openalex-partnership-and-end-of-scopus-license/' }],
+      inst: 'Maastricht University', type: 'University', status: 'subscriber', tier: 'Partner — Custom',
+      signal: '✅ CONFIRMED PAYING. Partner tier (highest). Cancelling Scopus Jan 2027. Signing Barcelona Declaration Jun 2026. MUMC+ staff covered under same arrangement.',
+      sources: [{ label: 'UM Library — May 2026', url: 'https://library.maastrichtuniversity.nl/news/investing-in-open-research-information-openalex-partnership-and-end-of-scopus-license/' }],
     },
-    // ── Actively using / publicly promoting ──────────────────────────────
+    {
+      inst: 'TU Delft', type: 'University', status: 'subscriber', tier: 'Member — $5,000/yr',
+      signal: '✅ CONFIRMED PAYING. Member tier at $5,000/yr. Named in OpenAlex CAB retro of 9 Jul 2026 alongside ~42 new institutional members. WoS licence already cancelled Jan 2026.',
+      sources: [{ label: 'OpenAlex CAB retro — 9 Jul 2026', url: 'https://github.com/ourresearch/town-hall-notes/blob/main/2026-07-09-cab/retro.md' }],
+    },
+    {
+      inst: 'NWO', type: 'NGO / Funder', status: 'subscriber', tier: 'Direct contribution — $12,500/yr',
+      signal: '✅ CONFIRMED PAYING. $12,500/yr direct contribution to OurResearch (2024–2025), publicly listed on NWO\'s own infrastructure support page. Renewal for 2026 not yet confirmed.',
+      sources: [{ label: 'NWO Open Science Infrastructure page', url: 'https://www.nwo.nl/en/open-science-infrastructure-support' }],
+    },
+    // ── Actively using / public engagement — not yet paying ──────────────
     {
       inst: 'Utrecht University', type: 'University', status: 'active', tier: null,
-      signal: 'Published a LibGuide and a background article specifically on OpenAlex. Strong open science team. High conversion probability.',
+      signal: 'Published LibGuide + background article on OpenAlex. Active open science team. Treats OpenAlex as free infrastructure. High conversion probability.',
       sources: [
         { label: 'UU LibGuide on OpenAlex', url: 'https://libguides.library.uu.nl/openalex' },
         { label: 'UU: "OpenAlex — a big step towards Open Science?"', url: 'https://www.uu.nl/en/background/openalex-a-big-step-towards-open-science' },
       ],
     },
     {
-      inst: 'TU Delft', type: 'University', status: 'active', tier: null,
-      signal: 'Library published a dedicated blog post promoting OpenAlex to researchers (Jun 2025). Active open data posture.',
-      sources: [{ label: 'TU Delft Library blog — Jun 2025', url: 'https://library4research.tudl.tudelft.nl/2025/06/06/beyond-the-usual-suspects-exploring-the-power-of-openalex-for-your-research/' }],
-    },
-    {
       inst: 'Leiden University / CWTS', type: 'University', status: 'active', tier: null,
-      signal: 'CWTS co-developed the OpenAlex subject classification system. The Leiden Ranking Open Edition is built entirely on OpenAlex data. Deep technical integration.',
+      signal: 'CWTS co-developed OpenAlex subject classification. Leiden Ranking Open Edition is built entirely on OpenAlex. CWTS dropping Web of Science data from 2027 (announced Jul 2026). Strong candidate for paid tier.',
       sources: [
         { label: 'Leiden Ranking Open Edition', url: 'https://open.leidenranking.com/' },
         { label: 'OpenAlex explore — Leiden', url: 'https://explore.openalex.org/institutions/i97018004' },
@@ -3679,11 +3706,6 @@ function renderOpenAlex() {
     },
     // ── NGOs / Research councils ──────────────────────────────────────────
     {
-      inst: 'NWO', type: 'NGO / Funder', status: 'active', tier: null,
-      signal: 'NWO grant data is now indexed in OpenAlex (as of Q1 2026). NWO is listed as an integrated funder in the OpenAlex awards database.',
-      sources: [{ label: 'OpenAlex Q2 Town Hall — funder integrations', url: 'https://blog.openalex.org/q2-2026-town-hall-what-we-shipped-and-whats-next/' }],
-    },
-    {
       inst: 'KNAW', type: 'NGO / Research', status: 'none', tier: null,
       signal: 'No confirmed OpenAlex subscription or public engagement found.',
       sources: [],
@@ -3720,9 +3742,9 @@ function renderOpenAlex() {
       sources: [],
     },
     {
-      inst: 'Maastricht UMC+', type: 'Medical Centre', status: 'none', tier: null,
-      signal: 'No confirmed engagement. Note: Maastricht University (partner) — MUMC+ is separate entity.',
-      sources: [],
+      inst: 'Maastricht UMC+', type: 'Medical Centre', status: 'subscriber', tier: 'Partner — covered under UM',
+      signal: '✅ CONFIRMED COVERED. MUMC+ staff are explicitly covered under Maastricht University\'s Partner tier arrangement, per the UM Library announcement of 28 May 2026.',
+      sources: [{ label: 'UM Library announcement — 28 May 2026', url: 'https://library.maastrichtuniversity.nl/news/investing-in-open-research-information-openalex-partnership-and-end-of-scopus-license/' }],
     },
     {
       inst: 'Leiden UMC', type: 'Medical Centre', status: 'none', tier: null,
