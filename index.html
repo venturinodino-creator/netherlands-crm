@@ -907,6 +907,11 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
     <div class="nav-item" data-view="contacts" onclick="nav('contacts')">
       <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M8 10h.01"/><path d="M16 10h.01"/><path d="M8 14h.01"/><path d="M16 14h.01"/></svg></div> Contacts
     </div>
+    <div class="nav-item" data-view="pending" onclick="nav('pending')" style="position:relative">
+      <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg></div>
+      <span style="flex:1">New Contacts</span>
+      <span id="nav-pending-badge" style="display:none;background:#a855f7;color:#fff;border-radius:99px;font-size:10px;font-weight:700;padding:1px 6px;min-width:18px;text-align:center"></span>
+    </div>
     <div class="nav-item" data-view="subscriptions" onclick="nav('subscriptions')">
       <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div> Competitor Matrix
     </div>
@@ -4372,6 +4377,8 @@ function loadPendingCount() {
     const sub = document.getElementById('pending-sub');
     if (el) el.textContent = count;
     if (sub) sub.textContent = count === 0 ? 'No new contacts' : count === 1 ? '1 awaiting review' : count + ' awaiting review';
+    const badge = document.getElementById('nav-pending-badge');
+    if (badge) { badge.textContent = count; badge.style.display = count > 0 ? 'inline-block' : 'none'; }
   } catch(e) { console.error('loadPendingCount:', e); }
 }
 
