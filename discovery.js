@@ -237,8 +237,12 @@
   window.runContactDiscovery = function() {
     try { if (typeof toast==='function') toast('Checking for new contacts...','ok'); } catch(e){}
     syncFromFile().then(function(n) {
-      var msg = n > 0 ? n+' new contacts loaded' : 'No new contacts yet';
+      var msg = n > 0 ? n+' new contacts loaded!' : 'No new contacts yet.';
       try { if (typeof toast==='function') toast(msg,'ok'); } catch(e){}
+      // Always re-render the pending page so newly loaded contacts appear
+      if (typeof window.nav === 'function') {
+        setTimeout(function() { window.nav('pending'); }, 100);
+      }
     });
   };
 
