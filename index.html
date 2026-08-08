@@ -4364,10 +4364,10 @@ document.addEventListener('keydown', e => { if (e.key==='Escape') closeGlobalSea
 <script>
 // ── PENDING CONTACTS ─────────────────────────────────────────────────────────
 
-async function loadPendingCount() {
+function loadPendingCount() {
   try {
-    const data = await supaFetch('pending_contacts?status=eq.pending&select=id');
-    const count = Array.isArray(data) ? data.length : 0;
+    const pending = JSON.parse(localStorage.getItem('nl_crm_pending') || '[]');
+    const count = Array.isArray(pending) ? pending.length : 0;
     const el = document.getElementById('pending-count');
     const sub = document.getElementById('pending-sub');
     if (el) el.textContent = count;
