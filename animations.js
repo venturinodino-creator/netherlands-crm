@@ -219,9 +219,9 @@
   function wrapNav() {
     if (!window.nav || window._nlNavWrapped) return;
     var orig = window.nav;
-    window.nav = function(section) {
+    window.nav = function(section, extra) {
       _curSection = section;
-      orig(section);
+      orig(section, extra);
       if (section === 'pending') setTimeout(render, 350);
     };
     window._nlNavWrapped = true;
