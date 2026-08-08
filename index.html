@@ -3731,9 +3731,8 @@ function renderOpenAlex() {
     },
   ];
 
-  const NL_CONFIRMED = NL_ALL.filter(d => d.status === 'subscriber');
-  const NL_ACTIVE    = NL_ALL.filter(d => d.status === 'active');
-  const NL_NONE      = NL_ALL.filter(d => d.status === 'none');
+  const NL_ACTIVE = NL_ALL.filter(d => d.status === 'active');
+  const NL_NONE   = NL_ALL.filter(d => d.status === 'none');
 
   /* ── NL institutions status removed — NL-only focus ─────────────────── */
 
