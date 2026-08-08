@@ -3531,129 +3531,253 @@ function saveNote(instId, val) {
 /* ─── OpenAlex Intelligence Tab ────────────────────────────────────────── */
 function renderOpenAlex() {
   document.getElementById('page-title').textContent = 'OpenAlex Intelligence';
-  document.getElementById('page-sub').textContent = 'Tracking Dutch institution subscriptions to OpenAlex — with dates and source links';
+  document.getElementById('page-sub').textContent = 'Subscription details, pricing tiers, and Dutch institution intelligence — sourced & verified';
 
-  // Known Dutch institution OpenAlex subscriptions (evidence-based, with source links)
-  const OA_DATA = [
+  /* ── PRICING TIERS (source: Q2 2026 Town Hall blog + member launch post) ── */
+  const TIERS = [
+    {
+      name: 'Free / API',
+      price: '$1/day',
+      color: '#64748b',
+      highlight: false,
+      includes: ['Full API access (rate-limited)', 'Quarterly public snapshot (CC0)', 'Website & search', 'No affiliation editing'],
+      note: 'Default for all users. Individuals & low-volume use.',
+      source: { label: 'API pricing docs', url: 'https://developers.openalex.org/guides/authentication' },
+    },
+    {
+      name: 'Member',
+      price: '$5,000 / yr',
+      color: '#10b981',
+      highlight: false,
+      includes: ['Admin dashboard', 'Affiliation editor (corrections live in <24h)', 'Unsub access', 'Community Advisory Board nomination', 'Quarterly member roundtables'],
+      note: 'Launched Feb 10, 2026. Entry-level institutional support.',
+      source: { label: 'Member launch post — Feb 2026', url: 'https://blog.openalex.org/a-new-way-to-support-openalex-become-a-member/' },
+    },
+    {
+      name: 'Member+',
+      price: '$20,000 / yr',
+      color: '#3b82f6',
+      highlight: false,
+      includes: ['All Member benefits', 'Increased API quotas (pro keys)', 'Consulting hours', 'Higher API rate limits for faculty'],
+      note: 'For institutions needing high-volume API access.',
+      source: { label: '2026 Roadmap post — Jan 2026', url: 'https://blog.openalex.org/openalex-2026-roadmap/' },
+    },
+    {
+      name: 'Partner',
+      price: 'Custom',
+      color: '#f59e0b',
+      highlight: true,
+      includes: ['All Member+ benefits', 'Product roadmap influence', 'Data curation priorities', 'Dedicated support', 'Actively shapes OpenAlex development'],
+      note: 'Top tier. For strategic institutional partners.',
+      source: { label: 'Q2 2026 Town Hall recap', url: 'https://blog.openalex.org/q2-2026-town-hall-what-we-shipped-and-whats-next/' },
+    },
+  ];
+
+  /* ── CONFIRMED DUTCH SUBSCRIBERS ─────────────────────────────────────── */
+  const NL_CONFIRMED = [
     {
       inst: 'Maastricht University',
       tier: 'Partner',
       tierColor: '#f59e0b',
       status: 'Active',
-      startDate: '2026-06-01',   // partnership announced 28 May 2026, effective ~June 2026
-      annualFee: 'Partner tier',
-      notes: 'Simultaneously cancelling Scopus licence effective 1 Jan 2027. Using OpenAlex as supplementary source in CRIS (Pure) alongside Web of Science.',
+      announceDate: '2026-05-28',
+      effectiveDate: '2026-06-01',
+      annualFee: 'Custom (Partner tier)',
+      scopusAction: 'Cancelling Scopus effective 1 Jan 2027',
+      barcelonaAction: 'Formally signing Barcelona Declaration on 12 Jun 2026',
+      notes: 'UM Library confirmed a Partner subscription — the highest tier — citing OpenAlex\'s open infrastructure and alignment with their Open Science ambitions. Simultaneously cancelling Scopus licence (1 Jan 2027) and signing the Barcelona Declaration on Open Research Information (12 Jun 2026). OpenAlex will be used as primary metadata source in CRIS (Pure) alongside Web of Science.',
       sources: [
-        { label: 'UM Library announcement (28 May 2026)', url: 'https://library.maastrichtuniversity.nl/news/investing-in-open-research-information-openalex-partnership-and-end-of-scopus-license/' },
-        { label: 'OpenAlex database page – UM Library', url: 'https://library.maastrichtuniversity.nl/database/openalex/' },
+        { label: 'UM Library announcement — 28 May 2026', url: 'https://library.maastrichtuniversity.nl/news/investing-in-open-research-information-openalex-partnership-and-end-of-scopus-license/' },
+        { label: 'OpenAlex database page — UM Library', url: 'https://library.maastrichtuniversity.nl/database/openalex/' },
+        { label: 'UM on OpenAlex (institution profile)', url: 'https://explore.openalex.org/institutions/i34352273' },
       ],
-      flag: 'scopus-cancel',
+      flags: ['scopus-cancel', 'barcelona'],
     },
   ];
 
-  // Pricing reference
-  const TIERS = [
-    { name: 'Member',  price: '$5,000/yr',  color: '#10b981', desc: 'Admin dashboard, affiliation editor, Unsub access, Community Advisory Board nomination, quarterly roundtables.' },
-    { name: 'Member+', price: 'Custom',      color: '#3b82f6', desc: 'All Member benefits + increased API quotas + consulting hours.' },
-    { name: 'Partner', price: 'Custom',      color: '#f59e0b', desc: 'Highest tier. All Member+ benefits + ability to influence product roadmap and data curation priorities.' },
+  /* ── DUTCH INSTITUTIONS: WATCHING / EXPLORING ───────────────────────── */
+  const NL_WATCHING = [
+    {
+      inst: 'Utrecht University',
+      signal: 'Library guide published, background article on OpenAlex published',
+      tier: null,
+      sources: [
+        { label: 'UU LibGuide on OpenAlex', url: 'https://libguides.library.uu.nl/openalex' },
+        { label: 'UU background article: "a big step towards Open Science?"', url: 'https://www.uu.nl/en/background/openalex-a-big-step-towards-open-science' },
+      ],
+    },
+    {
+      inst: 'TU Delft',
+      signal: 'Library blog post promoting OpenAlex to researchers (Jun 2025)',
+      tier: null,
+      sources: [
+        { label: 'TU Delft Library blog — Jun 2025', url: 'https://library4research.tudl.tudelft.nl/2025/06/06/beyond-the-usual-suspects-exploring-the-power-of-openalex-for-your-research/' },
+      ],
+    },
+    {
+      inst: 'Leiden University / CWTS',
+      signal: 'CWTS co-developed OpenAlex subject classification; Leiden Ranking Open Edition runs on OpenAlex data',
+      tier: null,
+      sources: [
+        { label: 'Leiden Ranking Open Edition (uses OpenAlex)', url: 'https://open.leidenranking.com/' },
+      ],
+    },
   ];
 
+  /* ── GLOBAL MEMBER CONTEXT (launched Feb 10, 2026) ──────────────────── */
+  const GLOBAL_MEMBERS = [
+    { inst: 'University of Victoria', country: '🇨🇦 Canada', tier: 'Member', note: 'First ever OpenAlex Member, Feb 2026' },
+    { inst: 'Université de Montréal', country: '🇨🇦 Canada', tier: 'Member', note: 'Founding member cohort' },
+    { inst: 'KISTI', country: '🇰🇷 South Korea', tier: 'Member', note: 'Korea Institute of Science and Technology Information' },
+    { inst: 'University of Queensland', country: '🇦🇺 Australia', tier: 'Member', note: 'Founding member cohort' },
+    { inst: 'Statistics Denmark', country: '🇩🇰 Denmark', tier: 'Member', note: 'National statistics agency' },
+    { inst: 'Maastricht University', country: '🇳🇱 Netherlands', tier: 'Partner', note: 'Only confirmed Dutch subscriber — highest tier' },
+  ];
+
+  /* ── HELPERS ─────────────────────────────────────────────────────────── */
   const tierBadge = (tier, color) =>
     `<span style="background:${color}20;color:${color};border:1px solid ${color}40;border-radius:6px;padding:2px 10px;font-size:11px;font-weight:700">${tier}</span>`;
 
-  const sourcesHtml = (sources) => sources.map(s =>
-    `<a href="${s.url}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:6px;padding:4px 10px;font-size:12px;color:#60a5fa;text-decoration:none;margin:3px 4px 3px 0;white-space:nowrap">
-      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 0 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-      ${s.label}</a>`
-  ).join('');
+  const linkBtn = (s) =>
+    `<a href="${s.url}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:6px;padding:4px 10px;font-size:12px;color:#60a5fa;text-decoration:none;margin:3px 4px 3px 0">
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 0 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      ${s.label}</a>`;
 
-  const rowHtml = (d) => {
-    const start = d.startDate ? new Date(d.startDate).toLocaleDateString('en-GB', {day:'numeric', month:'short', year:'numeric'}) : '—';
-    const flagHtml = d.flag === 'scopus-cancel'
-      ? `<span style="background:#ef444420;color:#f87171;border:1px solid #ef444430;border-radius:6px;padding:2px 8px;font-size:10px;font-weight:700;margin-left:8px">⚠ SCOPUS CANCEL Jan 2027</span>`
-      : '';
+  /* ── SECTION: KPI bar ───────────────────────────────────────────────── */
+  const kpiBar = `
+    <div style="display:flex;gap:14px;margin-bottom:24px;flex-wrap:wrap">
+      <div style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.25);border-radius:12px;padding:16px 22px;flex:1;min-width:130px">
+        <div style="font-size:11px;color:#10b981;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">🇳🇱 Confirmed Dutch</div>
+        <div style="font-size:30px;font-weight:800;color:#e2e8f0">${NL_CONFIRMED.length}</div>
+        <div style="font-size:11px;color:#94a3b8;margin-top:2px">publicly verified subscriber</div>
+      </div>
+      <div style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.25);border-radius:12px;padding:16px 22px;flex:1;min-width:130px">
+        <div style="font-size:11px;color:#f59e0b;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Tier</div>
+        <div style="font-size:30px;font-weight:800;color:#f59e0b">Partner</div>
+        <div style="font-size:11px;color:#94a3b8;margin-top:2px">highest available tier</div>
+      </div>
+      <div style="background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);border-radius:12px;padding:16px 22px;flex:1;min-width:130px">
+        <div style="font-size:11px;color:#f87171;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">⚠ Scopus Exits</div>
+        <div style="font-size:30px;font-weight:800;color:#f87171">1</div>
+        <div style="font-size:11px;color:#94a3b8;margin-top:2px">cancelling Jan 2027</div>
+      </div>
+      <div style="background:rgba(96,165,250,0.06);border:1px solid rgba(96,165,250,0.2);border-radius:12px;padding:16px 22px;flex:2;min-width:180px">
+        <div style="font-size:11px;color:#60a5fa;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Global Member count (Feb 2026 launch)</div>
+        <div style="font-size:30px;font-weight:800;color:#e2e8f0">${GLOBAL_MEMBERS.length}</div>
+        <div style="font-size:11px;color:#94a3b8;margin-top:2px">known institutions worldwide (list is not exhaustive)</div>
+      </div>
+    </div>`;
+
+  /* ── SECTION: Confirmed Dutch subscriber cards ──────────────────────── */
+  const confirmedCards = NL_CONFIRMED.map(d => {
+    const announced = new Date(d.announceDate).toLocaleDateString('en-GB', {day:'numeric',month:'long',year:'numeric'});
+    const effective = new Date(d.effectiveDate).toLocaleDateString('en-GB', {day:'numeric',month:'long',year:'numeric'});
+    const flags = (d.flags||[]).map(f => {
+      if (f === 'scopus-cancel') return `<div style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:8px;padding:8px 14px;font-size:12px;color:#f87171;margin-bottom:8px">⚠️ <strong>Scopus cancellation:</strong> ${d.scopusAction}</div>`;
+      if (f === 'barcelona') return `<div style="background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.3);border-radius:8px;padding:8px 14px;font-size:12px;color:#a78bfa;margin-bottom:8px">📋 <strong>Barcelona Declaration:</strong> ${d.barcelonaAction}</div>`;
+      return '';
+    }).join('');
     return `
-      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:22px 24px;margin-bottom:16px">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;margin-bottom:14px">
+      <div style="background:rgba(245,158,11,0.04);border:1px solid rgba(245,158,11,0.2);border-radius:14px;padding:22px 24px;margin-bottom:16px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:16px">
           <div>
-            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-              <span style="color:#e2e8f0;font-size:17px;font-weight:700">${d.inst}</span>
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px">
+              <span style="color:#e2e8f0;font-size:18px;font-weight:800">${d.inst}</span>
               ${tierBadge(d.tier, d.tierColor)}
               <span style="background:#10b98120;color:#10b981;border:1px solid #10b98130;border-radius:6px;padding:2px 8px;font-size:11px;font-weight:600">${d.status}</span>
-              ${flagHtml}
             </div>
+            <div style="font-size:12px;color:#64748b">Annual fee: <strong style="color:#e2e8f0">${d.annualFee}</strong></div>
           </div>
-          <div style="text-align:right">
-            <div style="font-size:11px;color:#64748b;margin-bottom:2px">Subscription start</div>
-            <div style="color:#e2e8f0;font-weight:600;font-size:14px">${start}</div>
+          <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:10px 16px;text-align:right;min-width:160px">
+            <div style="font-size:10px;color:#64748b;margin-bottom:3px;text-transform:uppercase;letter-spacing:.5px">Announced</div>
+            <div style="color:#e2e8f0;font-weight:700;font-size:13px">${announced}</div>
+            <div style="font-size:10px;color:#64748b;margin-top:6px;margin-bottom:3px;text-transform:uppercase;letter-spacing:.5px">Effective from</div>
+            <div style="color:#e2e8f0;font-weight:700;font-size:13px">${effective}</div>
           </div>
         </div>
-        <div style="color:#94a3b8;font-size:13px;line-height:1.6;margin-bottom:14px">${d.notes}</div>
-        <div style="border-top:1px solid rgba(255,255,255,0.06);padding-top:12px">
-          <div style="font-size:11px;color:#64748b;font-weight:600;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px">Source evidence</div>
-          <div>${sourcesHtml(d.sources)}</div>
+        <p style="color:#94a3b8;font-size:13px;line-height:1.7;margin:0 0 14px">${d.notes}</p>
+        <div style="margin-bottom:14px">${flags}</div>
+        <div style="border-top:1px solid rgba(255,255,255,0.07);padding-top:12px">
+          <div style="font-size:10px;color:#64748b;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Source evidence</div>
+          <div>${d.sources.map(linkBtn).join('')}</div>
         </div>
       </div>`;
-  };
+  }).join('');
 
-  const pricingHtml = TIERS.map(t => `
-    <div style="flex:1;min-width:180px;background:rgba(255,255,255,0.03);border:1px solid ${t.color}30;border-radius:12px;padding:18px">
-      <div style="color:${t.color};font-size:13px;font-weight:700;margin-bottom:4px">${t.name}</div>
-      <div style="color:#e2e8f0;font-size:22px;font-weight:800;margin-bottom:10px">${t.price}</div>
-      <div style="color:#94a3b8;font-size:12px;line-height:1.6">${t.desc}</div>
-    </div>`
-  ).join('');
+  /* ── SECTION: Pricing tiers ─────────────────────────────────────────── */
+  const pricingCards = TIERS.map(t => `
+    <div style="flex:1;min-width:190px;background:rgba(255,255,255,0.03);border:1px solid ${t.color}${t.highlight?'50':'25'};border-radius:12px;padding:18px 20px;${t.highlight?'box-shadow:0 0 0 1px '+t.color+'20;':'' }">
+      <div style="color:${t.color};font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">${t.name}</div>
+      <div style="color:#e2e8f0;font-size:24px;font-weight:800;margin-bottom:12px">${t.price}</div>
+      <ul style="margin:0 0 12px;padding-left:16px;color:#94a3b8;font-size:12px;line-height:1.8">
+        ${t.includes.map(i=>`<li>${i}</li>`).join('')}
+      </ul>
+      <div style="font-size:11px;color:#64748b;margin-bottom:8px;font-style:italic">${t.note}</div>
+      ${linkBtn(t.source)}
+    </div>`).join('');
 
-  const html = `
-  <div style="padding:24px;max-width:1000px">
+  /* ── SECTION: Global members table ──────────────────────────────────── */
+  const globalRows = GLOBAL_MEMBERS.map((m,i) => {
+    const isNL = m.country.includes('Netherlands');
+    return `<tr style="border-bottom:1px solid rgba(255,255,255,0.05);${isNL?'background:rgba(245,158,11,0.05)':''}">
+      <td style="padding:10px 14px;color:#e2e8f0;font-weight:${isNL?'700':'400'}">${m.inst}${isNL?' 🇳🇱':''}</td>
+      <td style="padding:10px 14px;color:#94a3b8;font-size:13px">${m.country}</td>
+      <td style="padding:10px 14px">${tierBadge(m.tier, m.tier==='Partner'?'#f59e0b':'#10b981')}</td>
+      <td style="padding:10px 14px;color:#64748b;font-size:12px">${m.note}</td>
+    </tr>`;
+  }).join('');
 
-    <!-- Summary bar -->
-    <div style="display:flex;gap:16px;margin-bottom:24px;flex-wrap:wrap">
-      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 22px;flex:1;min-width:140px">
-        <div style="font-size:11px;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Dutch Subscribers</div>
-        <div style="font-size:28px;font-weight:800;color:#e2e8f0">${OA_DATA.length}</div>
-        <div style="font-size:11px;color:#94a3b8;margin-top:2px">publicly confirmed</div>
+  /* ── SECTION: Dutch institutions watching ────────────────────────────── */
+  const watchingCards = NL_WATCHING.map(w => `
+    <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 20px;margin-bottom:10px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:8px">
+        <span style="color:#e2e8f0;font-weight:700;font-size:15px">${w.inst}</span>
+        <span style="background:rgba(96,165,250,0.1);color:#60a5fa;border:1px solid rgba(96,165,250,0.3);border-radius:6px;padding:2px 10px;font-size:11px;font-weight:700">Exploring / Using (free)</span>
       </div>
-      <div style="background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);border-radius:12px;padding:16px 22px;flex:1;min-width:140px">
-        <div style="font-size:11px;color:#f87171;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Scopus Cancellations</div>
-        <div style="font-size:28px;font-weight:800;color:#f87171">${OA_DATA.filter(d=>d.flag==='scopus-cancel').length}</div>
-        <div style="font-size:11px;color:#94a3b8;margin-top:2px">switching to OpenAlex</div>
-      </div>
-      <div style="background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.2);border-radius:12px;padding:16px 22px;flex:2;min-width:200px">
-        <div style="font-size:11px;color:#f59e0b;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Key context</div>
-        <div style="font-size:12px;color:#94a3b8;line-height:1.5">OpenAlex launched institutional plans in Feb 2022. The <strong style="color:#e2e8f0">Member tier ($5k/yr)</strong> launched Feb 2026. OpenAlex does <em>not</em> publicly disclose its full subscriber list — only institutions that announce publicly are listed here.</div>
-      </div>
+      <div style="color:#94a3b8;font-size:13px;margin-bottom:10px">${w.signal}</div>
+      <div>${w.sources.map(linkBtn).join('')}</div>
+    </div>`).join('');
+
+  /* ── ASSEMBLE ────────────────────────────────────────────────────────── */
+  const html = `<div style="padding:24px;max-width:1040px">
+
+    ${kpiBar}
+
+    <!-- Confirmed Dutch subscriber -->
+    <h2 style="color:#e2e8f0;font-size:14px;font-weight:700;margin:0 0 14px;text-transform:uppercase;letter-spacing:.6px">🇳🇱 Confirmed Dutch Subscribers</h2>
+    ${confirmedCards}
+
+    <!-- Watching -->
+    <h2 style="color:#e2e8f0;font-size:14px;font-weight:700;margin:24px 0 12px;text-transform:uppercase;letter-spacing:.6px">👀 Dutch Institutions — Exploring / Using Free Tier</h2>
+    <div style="background:rgba(96,165,250,0.05);border:1px solid rgba(96,165,250,0.15);border-radius:10px;padding:10px 16px;font-size:12px;color:#60a5fa;margin-bottom:14px">
+      These institutions publish LibGuides, blog posts, or use OpenAlex data publicly but have not announced a paid subscription. Each is a potential conversion target.
+    </div>
+    ${watchingCards}
+
+    <!-- Global context table -->
+    <h2 style="color:#e2e8f0;font-size:14px;font-weight:700;margin:28px 0 12px;text-transform:uppercase;letter-spacing:.6px">🌍 Global Known Members (as of Q2 2026)</h2>
+    <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;margin-bottom:10px">
+      <table style="width:100%;border-collapse:collapse;font-size:13px">
+        <thead>
+          <tr style="background:rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.1)">
+            <th style="padding:10px 14px;text-align:left;color:#64748b;font-size:11px;text-transform:uppercase;letter-spacing:.5px">Institution</th>
+            <th style="padding:10px 14px;text-align:left;color:#64748b;font-size:11px;text-transform:uppercase;letter-spacing:.5px">Country</th>
+            <th style="padding:10px 14px;text-align:left;color:#64748b;font-size:11px;text-transform:uppercase;letter-spacing:.5px">Tier</th>
+            <th style="padding:10px 14px;text-align:left;color:#64748b;font-size:11px;text-transform:uppercase;letter-spacing:.5px">Notes</th>
+          </tr>
+        </thead>
+        <tbody>${globalRows}</tbody>
+      </table>
+    </div>
+    <div style="font-size:11px;color:#475569;margin-bottom:28px">
+      Source: <a href="https://blog.openalex.org/q2-2026-town-hall-what-we-shipped-and-whats-next/" target="_blank" style="color:#60a5fa">Q2 2026 Town Hall (Apr 25, 2026)</a> · OpenAlex does not publicly publish its full member list — only publicly announced subscribers are shown.
     </div>
 
-    <!-- Confirmed Dutch subscribers -->
-    <div style="margin-bottom:28px">
-      <h2 style="color:#e2e8f0;font-size:15px;font-weight:700;margin:0 0 14px;text-transform:uppercase;letter-spacing:.5px">
-        🇳🇱 Confirmed Dutch Subscribers
-      </h2>
-      ${OA_DATA.map(rowHtml).join('')}
-
-      <div style="background:rgba(255,255,255,0.02);border:1px dashed rgba(255,255,255,0.12);border-radius:14px;padding:20px 24px;text-align:center">
-        <div style="color:#64748b;font-size:13px">Other Dutch institutions may be subscribers — OpenAlex does not publish a full member list.</div>
-        <div style="margin-top:8px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-          <a href="https://openalex.org/members" target="_blank" style="color:#60a5fa;font-size:13px;text-decoration:none">→ OpenAlex members page</a>
-          <a href="https://openalex.org/pricing/institutions" target="_blank" style="color:#60a5fa;font-size:13px;text-decoration:none">→ Pricing tiers</a>
-          <a href="https://blog.openalex.org" target="_blank" style="color:#60a5fa;font-size:13px;text-decoration:none">→ OpenAlex blog (new announcements)</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Pricing tiers reference -->
-    <div>
-      <h2 style="color:#e2e8f0;font-size:15px;font-weight:700;margin:0 0 14px;text-transform:uppercase;letter-spacing:.5px">
-        OpenAlex Pricing Tiers
-      </h2>
-      <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:16px">
-        ${pricingHtml}
-      </div>
-      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:14px 18px;font-size:12px;color:#64748b">
-        Source: <a href="https://blog.openalex.org/a-new-way-to-support-openalex-become-a-member/" target="_blank" style="color:#60a5fa">OpenAlex blog — Feb 10, 2026</a> ·
-        <a href="https://openalex.org/pricing" target="_blank" style="color:#60a5fa">openalex.org/pricing</a>
-      </div>
+    <!-- Pricing tiers -->
+    <h2 style="color:#e2e8f0;font-size:14px;font-weight:700;margin:0 0 14px;text-transform:uppercase;letter-spacing:.6px">💰 OpenAlex Pricing Tiers</h2>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px">${pricingCards}</div>
+    <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:12px 16px;font-size:12px;color:#475569">
+      Pricing confirmed via: <a href="https://blog.openalex.org/openalex-2026-roadmap/" target="_blank" style="color:#60a5fa">2026 Roadmap (Jan 16, 2026)</a> · <a href="https://blog.openalex.org/q2-2026-town-hall-what-we-shipped-and-whats-next/" target="_blank" style="color:#60a5fa">Q2 Town Hall (Apr 25, 2026)</a> · <a href="https://developers.openalex.org/guides/authentication" target="_blank" style="color:#60a5fa">API pricing docs</a>
     </div>
 
   </div>`;
