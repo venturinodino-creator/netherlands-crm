@@ -4366,8 +4366,7 @@ document.addEventListener('keydown', e => { if (e.key==='Escape') closeGlobalSea
 
 async function loadPendingCount() {
   try {
-    const res = await supaFetch('pending_contacts?status=eq.pending&select=id');
-    const data = await res.json();
+    const data = await supaFetch('pending_contacts?status=eq.pending&select=id');
     const count = Array.isArray(data) ? data.length : 0;
     const el = document.getElementById('pending-count');
     const sub = document.getElementById('pending-sub');
@@ -4387,8 +4386,8 @@ async function renderPendingContacts() {
 
   let pending = [];
   try {
-    const res = await supaFetch('pending_contacts?status=eq.pending&order=created_at.desc');
-    pending = await res.json();
+    const rows = await supaFetch('pending_contacts?status=eq.pending&order=created_at.desc');
+    pending = rows || [];
   } catch(e) { console.error(e); }
 
   if (!pending.length) {
