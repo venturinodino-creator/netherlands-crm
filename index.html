@@ -3595,44 +3595,147 @@ function renderOpenAlex() {
     },
   ];
 
-  /* ── DUTCH INSTITUTIONS: WATCHING / EXPLORING ───────────────────────── */
-  const NL_WATCHING = [
+  /* ── ALL NL INSTITUTIONS — OPENALEX STATUS ───────────────────────────── */
+  // status: 'subscriber' | 'active' | 'exploring' | 'none'
+  const NL_ALL = [
+    // ── Confirmed subscriber ──────────────────────────────────────────────
     {
-      inst: 'Utrecht University',
-      signal: 'Library guide published, background article on OpenAlex published',
-      tier: null,
+      inst: 'Maastricht University', type: 'University', status: 'subscriber', tier: 'Partner',
+      signal: 'Confirmed Partner subscription. Cancelling Scopus Jan 2027. Signing Barcelona Declaration Jun 2026.',
+      sources: [{ label: 'UM Library announcement — May 2026', url: 'https://library.maastrichtuniversity.nl/news/investing-in-open-research-information-openalex-partnership-and-end-of-scopus-license/' }],
+    },
+    // ── Actively using / publicly promoting ──────────────────────────────
+    {
+      inst: 'Utrecht University', type: 'University', status: 'active', tier: null,
+      signal: 'Published a LibGuide and a background article specifically on OpenAlex. Strong open science team. High conversion probability.',
       sources: [
         { label: 'UU LibGuide on OpenAlex', url: 'https://libguides.library.uu.nl/openalex' },
-        { label: 'UU background article: "a big step towards Open Science?"', url: 'https://www.uu.nl/en/background/openalex-a-big-step-towards-open-science' },
+        { label: 'UU: "OpenAlex — a big step towards Open Science?"', url: 'https://www.uu.nl/en/background/openalex-a-big-step-towards-open-science' },
       ],
     },
     {
-      inst: 'TU Delft',
-      signal: 'Library blog post promoting OpenAlex to researchers (Jun 2025)',
-      tier: null,
-      sources: [
-        { label: 'TU Delft Library blog — Jun 2025', url: 'https://library4research.tudl.tudelft.nl/2025/06/06/beyond-the-usual-suspects-exploring-the-power-of-openalex-for-your-research/' },
-      ],
+      inst: 'TU Delft', type: 'University', status: 'active', tier: null,
+      signal: 'Library published a dedicated blog post promoting OpenAlex to researchers (Jun 2025). Active open data posture.',
+      sources: [{ label: 'TU Delft Library blog — Jun 2025', url: 'https://library4research.tudl.tudelft.nl/2025/06/06/beyond-the-usual-suspects-exploring-the-power-of-openalex-for-your-research/' }],
     },
     {
-      inst: 'Leiden University / CWTS',
-      signal: 'CWTS co-developed OpenAlex subject classification; Leiden Ranking Open Edition runs on OpenAlex data',
-      tier: null,
+      inst: 'Leiden University / CWTS', type: 'University', status: 'active', tier: null,
+      signal: 'CWTS co-developed the OpenAlex subject classification system. The Leiden Ranking Open Edition is built entirely on OpenAlex data. Deep technical integration.',
       sources: [
-        { label: 'Leiden Ranking Open Edition (uses OpenAlex)', url: 'https://open.leidenranking.com/' },
+        { label: 'Leiden Ranking Open Edition', url: 'https://open.leidenranking.com/' },
+        { label: 'OpenAlex explore — Leiden', url: 'https://explore.openalex.org/institutions/i97018004' },
       ],
+    },
+    // ── No confirmed engagement ───────────────────────────────────────────
+    {
+      inst: 'University of Amsterdam (UvA)', type: 'University', status: 'none', tier: null,
+      signal: 'No public announcement or LibGuide found. Signed Barcelona Declaration. Potential target.',
+      sources: [],
+    },
+    {
+      inst: 'VU Amsterdam', type: 'University', status: 'none', tier: null,
+      signal: 'No public OpenAlex engagement found. Active open science community — likely aware.',
+      sources: [],
+    },
+    {
+      inst: 'University of Groningen', type: 'University', status: 'none', tier: null,
+      signal: 'No confirmed engagement. Strong research output institution.',
+      sources: [],
+    },
+    {
+      inst: 'Erasmus University Rotterdam', type: 'University', status: 'none', tier: null,
+      signal: 'No public announcement found.',
+      sources: [],
+    },
+    {
+      inst: 'Radboud University', type: 'University', status: 'none', tier: null,
+      signal: 'No confirmed OpenAlex engagement. Part of UNL consortium — watch for consortium moves.',
+      sources: [],
+    },
+    {
+      inst: 'University of Twente', type: 'University', status: 'none', tier: null,
+      signal: 'No public engagement found. Signed Barcelona Declaration.',
+      sources: [],
+    },
+    {
+      inst: 'Eindhoven University of Technology', type: 'University', status: 'none', tier: null,
+      signal: 'No confirmed engagement found.',
+      sources: [],
+    },
+    {
+      inst: 'Wageningen University & Research', type: 'University', status: 'none', tier: null,
+      signal: 'No confirmed engagement. Large research output in life sciences.',
+      sources: [],
+    },
+    {
+      inst: 'Tilburg University', type: 'University', status: 'none', tier: null,
+      signal: 'No confirmed engagement found.',
+      sources: [],
+    },
+    {
+      inst: 'Open Universiteit', type: 'University', status: 'none', tier: null,
+      signal: 'No confirmed engagement found.',
+      sources: [],
+    },
+    // ── NGOs / Research councils ──────────────────────────────────────────
+    {
+      inst: 'NWO', type: 'NGO / Funder', status: 'active', tier: null,
+      signal: 'NWO grant data is now indexed in OpenAlex (as of Q1 2026). NWO is listed as an integrated funder in the OpenAlex awards database.',
+      sources: [{ label: 'OpenAlex Q2 Town Hall — funder integrations', url: 'https://blog.openalex.org/q2-2026-town-hall-what-we-shipped-and-whats-next/' }],
+    },
+    {
+      inst: 'KNAW', type: 'NGO / Research', status: 'none', tier: null,
+      signal: 'No confirmed OpenAlex subscription or public engagement found.',
+      sources: [],
+    },
+    {
+      inst: 'ZonMw', type: 'NGO / Funder', status: 'none', tier: null,
+      signal: 'No confirmed engagement. Health research funder — potential interest in bibliometric tracking.',
+      sources: [],
+    },
+    // ── Medical centres ───────────────────────────────────────────────────
+    {
+      inst: 'Amsterdam UMC', type: 'Medical Centre', status: 'none', tier: null,
+      signal: 'No confirmed engagement. Large research output.',
+      sources: [],
+    },
+    {
+      inst: 'Erasmus MC', type: 'Medical Centre', status: 'none', tier: null,
+      signal: 'No confirmed engagement.',
+      sources: [],
+    },
+    {
+      inst: 'UMCG', type: 'Medical Centre', status: 'none', tier: null,
+      signal: 'No confirmed engagement.',
+      sources: [],
+    },
+    {
+      inst: 'UMC Utrecht', type: 'Medical Centre', status: 'none', tier: null,
+      signal: 'No confirmed engagement.',
+      sources: [],
+    },
+    {
+      inst: 'Radboud UMC', type: 'Medical Centre', status: 'none', tier: null,
+      signal: 'No confirmed engagement.',
+      sources: [],
+    },
+    {
+      inst: 'Maastricht UMC+', type: 'Medical Centre', status: 'none', tier: null,
+      signal: 'No confirmed engagement. Note: Maastricht University (partner) — MUMC+ is separate entity.',
+      sources: [],
+    },
+    {
+      inst: 'Leiden UMC', type: 'Medical Centre', status: 'none', tier: null,
+      signal: 'No confirmed engagement.',
+      sources: [],
     },
   ];
 
-  /* ── GLOBAL MEMBER CONTEXT (launched Feb 10, 2026) ──────────────────── */
-  const GLOBAL_MEMBERS = [
-    { inst: 'University of Victoria', country: '🇨🇦 Canada', tier: 'Member', note: 'First ever OpenAlex Member, Feb 2026' },
-    { inst: 'Université de Montréal', country: '🇨🇦 Canada', tier: 'Member', note: 'Founding member cohort' },
-    { inst: 'KISTI', country: '🇰🇷 South Korea', tier: 'Member', note: 'Korea Institute of Science and Technology Information' },
-    { inst: 'University of Queensland', country: '🇦🇺 Australia', tier: 'Member', note: 'Founding member cohort' },
-    { inst: 'Statistics Denmark', country: '🇩🇰 Denmark', tier: 'Member', note: 'National statistics agency' },
-    { inst: 'Maastricht University', country: '🇳🇱 Netherlands', tier: 'Partner', note: 'Only confirmed Dutch subscriber — highest tier' },
-  ];
+  const NL_CONFIRMED = NL_ALL.filter(d => d.status === 'subscriber');
+  const NL_ACTIVE    = NL_ALL.filter(d => d.status === 'active');
+  const NL_NONE      = NL_ALL.filter(d => d.status === 'none');
+
+  /* ── NL institutions status removed — NL-only focus ─────────────────── */
 
   /* ── HELPERS ─────────────────────────────────────────────────────────── */
   const tierBadge = (tier, color) =>
@@ -3646,25 +3749,25 @@ function renderOpenAlex() {
   /* ── SECTION: KPI bar ───────────────────────────────────────────────── */
   const kpiBar = `
     <div style="display:flex;gap:14px;margin-bottom:24px;flex-wrap:wrap">
-      <div style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.25);border-radius:12px;padding:16px 22px;flex:1;min-width:130px">
-        <div style="font-size:11px;color:#10b981;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">🇳🇱 Confirmed Dutch</div>
-        <div style="font-size:30px;font-weight:800;color:#e2e8f0">${NL_CONFIRMED.length}</div>
-        <div style="font-size:11px;color:#94a3b8;margin-top:2px">publicly verified subscriber</div>
+      <div style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.3);border-radius:12px;padding:16px 22px;flex:1;min-width:130px">
+        <div style="font-size:11px;color:#f59e0b;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">✅ Paying Subscriber</div>
+        <div style="font-size:30px;font-weight:800;color:#f59e0b">${NL_CONFIRMED.length}</div>
+        <div style="font-size:11px;color:#94a3b8;margin-top:2px">confirmed — Partner tier</div>
       </div>
-      <div style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.25);border-radius:12px;padding:16px 22px;flex:1;min-width:130px">
-        <div style="font-size:11px;color:#f59e0b;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Tier</div>
-        <div style="font-size:30px;font-weight:800;color:#f59e0b">Partner</div>
-        <div style="font-size:11px;color:#94a3b8;margin-top:2px">highest available tier</div>
+      <div style="background:rgba(96,165,250,0.08);border:1px solid rgba(96,165,250,0.25);border-radius:12px;padding:16px 22px;flex:1;min-width:130px">
+        <div style="font-size:11px;color:#60a5fa;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">👀 Actively Using</div>
+        <div style="font-size:30px;font-weight:800;color:#60a5fa">${NL_ACTIVE.length}</div>
+        <div style="font-size:11px;color:#94a3b8;margin-top:2px">using free tier publicly</div>
       </div>
       <div style="background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);border-radius:12px;padding:16px 22px;flex:1;min-width:130px">
-        <div style="font-size:11px;color:#f87171;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">⚠ Scopus Exits</div>
+        <div style="font-size:11px;color:#f87171;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">⚠ Scopus Exit</div>
         <div style="font-size:30px;font-weight:800;color:#f87171">1</div>
-        <div style="font-size:11px;color:#94a3b8;margin-top:2px">cancelling Jan 2027</div>
+        <div style="font-size:11px;color:#94a3b8;margin-top:2px">UM cancelling Jan 2027</div>
       </div>
-      <div style="background:rgba(96,165,250,0.06);border:1px solid rgba(96,165,250,0.2);border-radius:12px;padding:16px 22px;flex:2;min-width:180px">
-        <div style="font-size:11px;color:#60a5fa;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Global Member count (Feb 2026 launch)</div>
-        <div style="font-size:30px;font-weight:800;color:#e2e8f0">${GLOBAL_MEMBERS.length}</div>
-        <div style="font-size:11px;color:#94a3b8;margin-top:2px">known institutions worldwide (list is not exhaustive)</div>
+      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:16px 22px;flex:1;min-width:130px">
+        <div style="font-size:11px;color:#64748b;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">🎯 Not Engaged</div>
+        <div style="font-size:30px;font-weight:800;color:#e2e8f0">${NL_NONE.length}</div>
+        <div style="font-size:11px;color:#94a3b8;margin-top:2px">potential targets</div>
       </div>
     </div>`;
 
@@ -3716,61 +3819,55 @@ function renderOpenAlex() {
       ${linkBtn(t.source)}
     </div>`).join('');
 
-  /* ── SECTION: Global members table ──────────────────────────────────── */
-  const globalRows = GLOBAL_MEMBERS.map((m,i) => {
-    const isNL = m.country.includes('Netherlands');
-    return `<tr style="border-bottom:1px solid rgba(255,255,255,0.05);${isNL?'background:rgba(245,158,11,0.05)':''}">
-      <td style="padding:10px 14px;color:#e2e8f0;font-weight:${isNL?'700':'400'}">${m.inst}${isNL?' 🇳🇱':''}</td>
-      <td style="padding:10px 14px;color:#94a3b8;font-size:13px">${m.country}</td>
-      <td style="padding:10px 14px">${tierBadge(m.tier, m.tier==='Partner'?'#f59e0b':'#10b981')}</td>
-      <td style="padding:10px 14px;color:#64748b;font-size:12px">${m.note}</td>
+  /* ── SECTION: Full NL institution table ─────────────────────────────── */
+  const STATUS_CFG = {
+    subscriber: { label: 'Paying — Partner',   color: '#f59e0b', bg: 'rgba(245,158,11,0.08)',  border: 'rgba(245,158,11,0.3)' },
+    active:     { label: 'Free tier (active)',  color: '#60a5fa', bg: 'rgba(96,165,250,0.06)',  border: 'rgba(96,165,250,0.2)' },
+    none:       { label: 'Not engaged',         color: '#475569', bg: 'rgba(255,255,255,0.02)', border: 'rgba(255,255,255,0.07)' },
+  };
+
+  const nlTableRows = NL_ALL.map(d => {
+    const sc = STATUS_CFG[d.status];
+    const badge = `<span style="background:${sc.bg};color:${sc.color};border:1px solid ${sc.border};border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700;white-space:nowrap">${sc.label}</span>`;
+    const srcLinks = d.sources.length
+      ? d.sources.map(s => `<a href="${s.url}" target="_blank" rel="noopener" style="color:#60a5fa;font-size:11px;text-decoration:none;display:inline-block;margin-right:8px">↗ ${s.label}</a>`).join('')
+      : `<span style="color:#334155;font-size:11px">—</span>`;
+    return `<tr style="border-bottom:1px solid rgba(255,255,255,0.05)">
+      <td style="padding:11px 14px;color:#e2e8f0;font-weight:600;font-size:13px;white-space:nowrap">${d.inst}</td>
+      <td style="padding:11px 14px;color:#64748b;font-size:12px;white-space:nowrap">${d.type}</td>
+      <td style="padding:11px 14px">${badge}</td>
+      <td style="padding:11px 14px;color:#94a3b8;font-size:12px;line-height:1.5">${d.signal}</td>
+      <td style="padding:11px 14px">${srcLinks}</td>
     </tr>`;
   }).join('');
 
-  /* ── SECTION: Dutch institutions watching ────────────────────────────── */
-  const watchingCards = NL_WATCHING.map(w => `
-    <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 20px;margin-bottom:10px">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:8px">
-        <span style="color:#e2e8f0;font-weight:700;font-size:15px">${w.inst}</span>
-        <span style="background:rgba(96,165,250,0.1);color:#60a5fa;border:1px solid rgba(96,165,250,0.3);border-radius:6px;padding:2px 10px;font-size:11px;font-weight:700">Exploring / Using (free)</span>
-      </div>
-      <div style="color:#94a3b8;font-size:13px;margin-bottom:10px">${w.signal}</div>
-      <div>${w.sources.map(linkBtn).join('')}</div>
-    </div>`).join('');
-
   /* ── ASSEMBLE ────────────────────────────────────────────────────────── */
-  const html = `<div style="padding:24px;max-width:1040px">
+  const html = `<div style="padding:24px;max-width:1060px">
 
     ${kpiBar}
 
-    <!-- Confirmed Dutch subscriber -->
-    <h2 style="color:#e2e8f0;font-size:14px;font-weight:700;margin:0 0 14px;text-transform:uppercase;letter-spacing:.6px">🇳🇱 Confirmed Dutch Subscribers</h2>
+    <!-- Confirmed Dutch subscriber — detail card -->
+    <h2 style="color:#e2e8f0;font-size:14px;font-weight:700;margin:0 0 14px;text-transform:uppercase;letter-spacing:.6px">✅ Confirmed Paying Subscriber</h2>
     ${confirmedCards}
 
-    <!-- Watching -->
-    <h2 style="color:#e2e8f0;font-size:14px;font-weight:700;margin:24px 0 12px;text-transform:uppercase;letter-spacing:.6px">👀 Dutch Institutions — Exploring / Using Free Tier</h2>
-    <div style="background:rgba(96,165,250,0.05);border:1px solid rgba(96,165,250,0.15);border-radius:10px;padding:10px 16px;font-size:12px;color:#60a5fa;margin-bottom:14px">
-      These institutions publish LibGuides, blog posts, or use OpenAlex data publicly but have not announced a paid subscription. Each is a potential conversion target.
-    </div>
-    ${watchingCards}
-
-    <!-- Global context table -->
-    <h2 style="color:#e2e8f0;font-size:14px;font-weight:700;margin:28px 0 12px;text-transform:uppercase;letter-spacing:.6px">🌍 Global Known Members (as of Q2 2026)</h2>
+    <!-- Full NL institution table -->
+    <h2 style="color:#e2e8f0;font-size:14px;font-weight:700;margin:28px 0 12px;text-transform:uppercase;letter-spacing:.6px">🇳🇱 All Dutch Institutions — OpenAlex Status</h2>
     <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;margin-bottom:10px">
       <table style="width:100%;border-collapse:collapse;font-size:13px">
         <thead>
           <tr style="background:rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.1)">
             <th style="padding:10px 14px;text-align:left;color:#64748b;font-size:11px;text-transform:uppercase;letter-spacing:.5px">Institution</th>
-            <th style="padding:10px 14px;text-align:left;color:#64748b;font-size:11px;text-transform:uppercase;letter-spacing:.5px">Country</th>
-            <th style="padding:10px 14px;text-align:left;color:#64748b;font-size:11px;text-transform:uppercase;letter-spacing:.5px">Tier</th>
-            <th style="padding:10px 14px;text-align:left;color:#64748b;font-size:11px;text-transform:uppercase;letter-spacing:.5px">Notes</th>
+            <th style="padding:10px 14px;text-align:left;color:#64748b;font-size:11px;text-transform:uppercase;letter-spacing:.5px">Type</th>
+            <th style="padding:10px 14px;text-align:left;color:#64748b;font-size:11px;text-transform:uppercase;letter-spacing:.5px">OpenAlex Status</th>
+            <th style="padding:10px 14px;text-align:left;color:#64748b;font-size:11px;text-transform:uppercase;letter-spacing:.5px">Intelligence</th>
+            <th style="padding:10px 14px;text-align:left;color:#64748b;font-size:11px;text-transform:uppercase;letter-spacing:.5px">Sources</th>
           </tr>
         </thead>
-        <tbody>${globalRows}</tbody>
+        <tbody>${nlTableRows}</tbody>
       </table>
     </div>
     <div style="font-size:11px;color:#475569;margin-bottom:28px">
-      Source: <a href="https://blog.openalex.org/q2-2026-town-hall-what-we-shipped-and-whats-next/" target="_blank" style="color:#60a5fa">Q2 2026 Town Hall (Apr 25, 2026)</a> · OpenAlex does not publicly publish its full member list — only publicly announced subscribers are shown.
+      OpenAlex does not publish a full subscriber list — statuses are based on publicly available announcements and library publications only.
     </div>
 
     <!-- Pricing tiers -->
