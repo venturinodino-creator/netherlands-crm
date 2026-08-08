@@ -3120,13 +3120,20 @@ function refreshTenders() {
         return;
       }
       const existing = getRFPs();
-      const existingIds = new Set(existing.map(function(r){ return r.id; }));
-      var added = 0;
+      const existingMap = {};
+      existing.forEach(function(r){ existingMap[r.id] = r; });
+      var added = 0, updated = 0;
       remote.forEach(function(t) {
-        if (!existingIds.has(t.id)) { existing.unshift(t); existingIds.add(t.id); added++; }
+        if (existingMap[t.id]) {
+          // Merge new fields (e.g. url) into existing entry
+          if (t.url && !existingMap[t.id].url) { existingMap[t.id].url = t.url; updated++; }
+        } else {
+          existing.unshift(t); existingMap[t.id] = t; added++;
+        }
       });
       saveRFPs(existing);
-      try { if (typeof toast==='function') toast(added > 0 ? added+' new tenders loaded!' : 'Up to date — no new tenders','ok'); } catch(e){}
+      var msg = added > 0 ? added+' new tenders loaded!' : updated > 0 ? 'Tenders updated!' : 'Up to date';
+      try { if (typeof toast==='function') toast(msg,'ok'); } catch(e){}
       renderRFPOpps();
     })
     .catch(function() {
