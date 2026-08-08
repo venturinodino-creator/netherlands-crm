@@ -3489,39 +3489,37 @@ function renderSubscriptionMatrix() {
   document.getElementById('page-title').textContent = 'Competitor Matrix';
   document.getElementById('page-sub').textContent = 'Subscription intelligence across the Netherlands research landscape';
 
-  // Column definitions
   const ELSEVIER = [
-    {key:'scopus',  label:'Scopus',  color:'#ff6200', textColor:'#fff'},
-    {key:'scival',  label:'SciVal',  color:'#ff8c00', textColor:'#fff'},
-    {key:'pure',    label:'Pure',    color:'#e65100', textColor:'#fff'},
+    {key:'scopus',  label:'Scopus',   color:'#ea580c'},
+    {key:'scival',  label:'SciVal',   color:'#f97316'},
+    {key:'pure',    label:'Pure',     color:'#c2410c'},
   ];
   const COMPETITORS = [
-    {key:'wos',       label:'Web of Science', vendor:'Clarivate',       color:'#6b21a8', textColor:'#fff'},
-    {key:'openalex',  label:'OpenAlex',        vendor:'OpenAlex.org',    color:'#0f766e', textColor:'#fff'},
-    {key:'dimensions',label:'Dimensions',      vendor:'Digital Science', color:'#1e40af', textColor:'#fff'},
-    {key:'converis',  label:'CONVERIS',        vendor:'Clarivate',       color:'#7c3aed', textColor:'#fff'},
-    {key:'symplectic',label:'Symplectic',      vendor:'Clarivate',       color:'#0369a1', textColor:'#fff'},
+    {key:'wos',        label:'Web of Science', vendor:'Clarivate',       color:'#7c3aed'},
+    {key:'openalex',   label:'OpenAlex',       vendor:'OpenAlex.org',    color:'#0d9488'},
+    {key:'dimensions', label:'Dimensions',     vendor:'Digital Science', color:'#2563eb'},
+    {key:'converis',   label:'Converis',       vendor:'Clarivate',       color:'#9333ea'},
+    {key:'symplectic', label:'Symplectic',     vendor:'Clarivate',       color:'#0284c7'},
   ];
 
   const STATUS = {
-    yes:      {icon:'✓', label:'Subscribed',     bg:'#dcfce7', color:'#15803d', border:'#86efac', dot:'#22c55e'},
-    no:       {icon:'✕', label:'No access',      bg:'#fef2f2', color:'#b91c1c', border:'#fca5a5', dot:'#ef4444'},
-    unknown:  {icon:'?', label:'Unknown',         bg:'#fefce8', color:'#a16207', border:'#fde047', dot:'#eab308'},
-    likely:   {icon:'~', label:'Likely',          bg:'#eff6ff', color:'#1d4ed8', border:'#93c5fd', dot:'#3b82f6'},
-    expiring: {icon:'⚠', label:'Expiring',       bg:'#fff7ed', color:'#c2410c', border:'#fed7aa', dot:'#f97316'},
-    free:     {icon:'◎', label:'Free/Open',      bg:'#f0fdf4', color:'#15803d', border:'#bbf7d0', dot:'#4ade80'},
+    yes:      { label:'Active',    dot:'#16a34a', bg:'#f0fdf4', text:'#15803d', border:'#bbf7d0', icon:'✓' },
+    no:       { label:'None',      dot:'#dc2626', bg:'#fef2f2', text:'#b91c1c', border:'#fecaca', icon:'✕' },
+    unknown:  { label:'Unknown',   dot:'#d97706', bg:'#fffbeb', text:'#92400e', border:'#fde68a', icon:'?' },
+    likely:   { label:'Likely',    dot:'#2563eb', bg:'#eff6ff', text:'#1d4ed8', border:'#bfdbfe', icon:'~' },
+    expiring: { label:'Expiring',  dot:'#ea580c', bg:'#fff7ed', text:'#c2410c', border:'#fed7aa', icon:'!' },
+    free:     { label:'Open',      dot:'#0d9488', bg:'#f0fdfa', text:'#0f766e', border:'#99f6e4', icon:'◎' },
   };
 
   const isEditing = _matrixEditMode;
   const hasOverrides = Object.keys(window.matrixOverrides||{}).length > 0;
 
-  document.getElementById('topbar-actions').innerHTML = `
-    <div style="display:flex;gap:8px">
-      ${hasOverrides?`<button class="btn btn-outline" onclick="clearAllOverrides()" style="font-size:11px;padding:5px 12px">Clear overrides</button>`:''}
-      <button class="btn ${isEditing?'btn-primary':'btn-outline'}" onclick="toggleMatrixEdit()" style="font-size:11px;padding:5px 12px">
-        ${isEditing?'✓ Done':'Edit Matrix'}
-      </button>
-    </div>`;
+  document.getElementById('topbar-actions').innerHTML = `<div style="display:flex;gap:8px;align-items:center">
+    ${hasOverrides?`<button class="btn btn-outline" onclick="clearAllOverrides()" style="font-size:11px;padding:5px 12px;color:#ef4444;border-color:#ef4444">Clear overrides</button>`:''}
+    <button class="btn ${isEditing?'btn-primary':'btn-outline'}" onclick="toggleMatrixEdit()" style="font-size:12px;padding:6px 14px">
+      ${isEditing?'✓ Done editing':'Edit Matrix'}
+    </button>
+  </div>`;
 
   const insts = ['uva','vu','eur','uu','leiden','rug','ru','tudelft','tue','ut','tiu','um','wur','ou']
     .map(id=>state.institutions.find(i=>i.id===id)).filter(Boolean);
@@ -3540,178 +3538,171 @@ function renderSubscriptionMatrix() {
     const cd = (window.COMP_DATA||{})[instId];
     return cd ? (cd[key+'Renewal'] || '') : '';
   }
-  function getProofForCol(instId, key) {
-    const cd = (window.COMP_DATA||{})[instId];
-    return cd ? (cd[key+'Proof'] || '') : '';
+  function getProofWos(instId)     { return (window.COMP_DATA||{})[instId]?.proofWos || ''; }
+  function getProofOpenalex(instId){ return (window.COMP_DATA||{})[instId]?.proofOpenalex || ''; }
+  function getProofForCol(instId, key) { const cd=(window.COMP_DATA||{})[instId]; return cd?(cd[key+'Proof']||''):''; }
+
+  // Summary stats
+  const totalInsts = insts.length;
+  const elsevierActive = insts.filter(i => getStatus(i.id,'scopus')==='yes').length;
+  const wosActive = insts.filter(i => ['yes','likely'].includes(getStatus(i.id,'wos'))).length;
+
+  function statusCell(instId, col) {
+    const s = getStatus(instId, col.key);
+    const st = STATUS[s] || STATUS.unknown;
+    const renewal = getRenewal(instId, col.key);
+    const editAttr = isEditing ? `onclick="event.stopPropagation();cycleCell('${instId}','${col.key}',event)" style="cursor:pointer"` : '';
+    return `<td style="text-align:center;padding:12px 8px;border-bottom:1px solid #f1f5f9;border-right:1px solid #f1f5f9;vertical-align:middle">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+        <span ${editAttr} title="${st.label}" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:${st.bg};border:1.5px solid ${st.border};font-size:12px;font-weight:800;color:${st.text};transition:transform .1s;${isEditing?'cursor:pointer':''}" onmouseenter="this.style.transform='scale(1.15)'" onmouseleave="this.style.transform='scale(1)'">${st.icon}</span>
+        ${renewal ? `<span style="font-size:9px;color:#94a3b8;font-weight:500;letter-spacing:.02em">${renewal}</span>` : ''}
+      </div>
+    </td>`;
   }
 
-  function getProof(instId) {
-    const cd = (window.COMP_DATA||{})[instId];
-    if (cd?.proofUrl) return cd.proofUrl;
-    const cp = (state.compProducts||[]).find(p=>p.instId===instId);
-    return cp?.proofUrl || cp?.proof || '';
-  }
-  function getProofWos(instId) {
-    return (window.COMP_DATA||{})[instId]?.proofWos || '';
-  }
-  function getProofOpenalex(instId) {
-    return (window.COMP_DATA||{})[instId]?.proofOpenalex || '';
-  }
+  const extIcon = `<svg viewBox="0 0 24 24" width="9" height="9" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
 
-  const ALL_COLS = [...ELSEVIER, ...COMPETITORS];
-
-  // ── Build HTML ──────────────────────────────────────────────────────────────
   let html = `
   <style>
-    .cm-wrap { overflow-x:auto; overflow-y:auto; max-height:calc(100vh - 160px); border-radius:12px; box-shadow:0 4px 24px rgba(0,0,0,.18); margin-top:48px; }
-    .cm-table thead tr.cm-group th { position:sticky; top:0; z-index:4; background:#0f172a !important; box-shadow:0 1px 0 rgba(255,255,255,.08); }
-    .cm-table thead tr.cm-cols th { position:sticky; top:40px; z-index:3; background:#1e293b !important; box-shadow:0 2px 0 rgba(255,255,255,.06); }
-    .cm-sticky { position:sticky; left:0; z-index:2; }
-    .cm-table thead tr.cm-group th.cm-sticky { z-index:6 !important; background:#0f172a !important; }
-    .cm-table thead tr.cm-cols th.cm-sticky { z-index:5 !important; background:#1e293b !important; }
-    .cm-table tbody td { background-clip:padding-box; }
-    .cm-table { width:100%; border-collapse:separate; border-spacing:0; min-width:900px; background:#fff; }
-    .cm-table thead tr.cm-group th { padding:10px 12px; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; }
-    .cm-table thead tr.cm-cols th { padding:10px 8px; font-size:11px; font-weight:600; text-align:center; border-top:1px solid rgba(255,255,255,.15); }
-    .cm-table tbody tr { transition:background .12s; }
-    .cm-table tbody tr:hover td { background:#f0f7ff !important; }
-    .cm-table tbody tr:hover td.cm-sticky { background:#e8f4ff !important; }
-    .cm-sticky { position:sticky; left:0; z-index:2; }
-    .cm-cell { text-align:center; padding:10px 6px; border-bottom:1px solid #f1f5f9; border-right:1px solid #f1f5f9; }
-    .cm-badge { display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px; border-radius:8px; font-size:13px; font-weight:700; cursor:default; transition:transform .1s; }
-    .cm-badge:hover { transform:scale(1.15); }
-    .cm-inst-cell { padding:10px 16px; border-bottom:1px solid #f1f5f9; border-right:2px solid #e2e8f0; min-width:190px; max-width:190px; }
-    .cm-inst-name { font-size:13px; font-weight:700; color:#0f172a; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:165px; }
-    .cm-inst-city { font-size:10px; color:#94a3b8; margin-top:1px; }
-    .cm-proof-cell { text-align:center; padding:8px 6px; border-bottom:1px solid #f1f5f9; }
-    .cm-proof-link { display:inline-flex; align-items:center; gap:4px; font-size:10px; color:#3b82f6; text-decoration:none; padding:3px 8px; border:1px solid #bfdbfe; border-radius:5px; background:#eff6ff; white-space:nowrap; }
-    .cm-proof-link:hover { background:#dbeafe; }
-    .cm-legend { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:14px; padding:12px 16px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:10px; }
-    .cm-legend-item { display:inline-flex; align-items:center; gap:6px; font-size:11px; color:#94a3b8; }
+    .cmx-wrap { overflow-x:auto; border-radius:14px; box-shadow:0 2px 16px rgba(0,0,0,.08); border:1px solid #e2e8f0; background:#fff; margin-top:8px; }
+    .cmx-table { width:100%; border-collapse:separate; border-spacing:0; min-width:960px; background:#fff; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; }
+    .cmx-table thead th { position:sticky; z-index:3; }
+    .cmx-table thead tr:first-child th { top:0; z-index:4; }
+    .cmx-table thead tr:last-child th { top:38px; z-index:3; }
+    .cmx-sticky { position:sticky; left:0; z-index:5 !important; background:#fff; }
+    .cmx-table thead .cmx-sticky { background:#f8fafc !important; }
+    .cmx-table tbody tr { transition:background .1s; }
+    .cmx-table tbody tr:hover td { background:#f8faff !important; }
+    .cmx-table tbody tr:hover td.cmx-sticky { background:#eef2ff !important; }
+    .cmx-elsevier-bg { background:#fff7f0 !important; }
+    .cmx-table tbody tr:hover .cmx-elsevier-bg { background:#ffeedd !important; }
+    .cmx-proof-link { display:inline-flex;align-items:center;gap:3px;font-size:10px;padding:3px 8px;border-radius:4px;text-decoration:none;font-weight:500;transition:opacity .1s; }
+    .cmx-proof-link:hover { opacity:.75; }
+    @media print { .cmx-wrap { box-shadow:none; border:1px solid #ccc; } }
   </style>
 
-  <div class="cm-wrap">
-  <table class="cm-table">
+  <!-- Summary bar -->
+  <div style="display:flex;gap:20px;align-items:center;margin-bottom:16px;padding:14px 20px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.04)">
+    <div style="display:flex;align-items:center;gap:10px">
+      <div style="width:36px;height:36px;border-radius:10px;background:#fff7ed;border:1.5px solid #fed7aa;display:flex;align-items:center;justify-content:center">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#ea580c" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      </div>
+      <div><div style="font-size:20px;font-weight:800;color:#0f172a;line-height:1">${totalInsts}</div><div style="font-size:11px;color:#64748b;font-weight:500">institutions tracked</div></div>
+    </div>
+    <div style="width:1px;height:36px;background:#e2e8f0"></div>
+    <div>
+      <div style="font-size:11px;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">Scopus coverage</div>
+      <div style="display:flex;align-items:center;gap:6px">
+        <div style="height:6px;width:140px;border-radius:3px;background:#e2e8f0;overflow:hidden"><div style="height:100%;width:${Math.round(elsevierActive/totalInsts*100)}%;background:#16a34a;border-radius:3px"></div></div>
+        <span style="font-size:12px;font-weight:700;color:#15803d">${elsevierActive}/${totalInsts}</span>
+      </div>
+    </div>
+    <div style="width:1px;height:36px;background:#e2e8f0"></div>
+    <div>
+      <div style="font-size:11px;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">WoS exposure</div>
+      <div style="display:flex;align-items:center;gap:6px">
+        <div style="height:6px;width:140px;border-radius:3px;background:#e2e8f0;overflow:hidden"><div style="height:100%;width:${Math.round(wosActive/totalInsts*100)}%;background:#7c3aed;border-radius:3px"></div></div>
+        <span style="font-size:12px;font-weight:700;color:#7c3aed">${wosActive}/${totalInsts}</span>
+      </div>
+    </div>
+    <div style="margin-left:auto;display:flex;gap:12px;flex-wrap:wrap">
+      ${Object.entries(STATUS).map(([k,v])=>`<span style="display:inline-flex;align-items:center;gap:5px;font-size:11px;color:#64748b;white-space:nowrap"><span style="width:8px;height:8px;border-radius:50%;background:${v.dot};flex-shrink:0"></span>${v.label}</span>`).join('')}
+    </div>
+  </div>
+
+  <div class="cmx-wrap">
+  <table class="cmx-table">
   <thead>
-    <!-- Category row -->
-    <tr class="cm-group" style="background:#0f172a">
-      <th class="cm-sticky" style="background:#0f172a;min-width:190px;text-align:left;color:#94a3b8;font-size:10px;letter-spacing:1px;padding:10px 16px;position:sticky;top:0;left:0;z-index:7">INSTITUTION</th>
-      <th colspan="3" style="background:linear-gradient(135deg,#ff6200,#ff8c00) !important;color:#fff !important;border-right:2px solid #0f172a;isolation:isolate;font-weight:700;letter-spacing:1.5px">
-        <div style="display:flex;align-items:center;justify-content:center;gap:6px">
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-          ELSEVIER PRODUCTS
+    <!-- Group header -->
+    <tr style="background:#f8fafc">
+      <th class="cmx-sticky" style="background:#f8fafc;min-width:180px;padding:10px 16px;text-align:left;border-bottom:1px solid #e2e8f0;border-right:2px solid #e2e8f0">
+        <span style="font-size:10px;font-weight:700;color:#94a3b8;letter-spacing:.08em;text-transform:uppercase">Institution</span>
+      </th>
+      <th colspan="3" style="background:#fff7ed;border-bottom:1px solid #e2e8f0;border-right:2px solid #fed7aa;padding:8px 12px;text-align:center">
+        <div style="display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:800;color:#c2410c;letter-spacing:.1em;text-transform:uppercase">
+          <div style="width:6px;height:6px;border-radius:50%;background:#ea580c"></div>
+          Elsevier Products
         </div>
       </th>
-      <th colspan="5" style="background:linear-gradient(135deg,#1d4ed8,#0ea5e9) !important;color:#fff !important;border-right:2px solid #0f172a;isolation:isolate;font-weight:700;letter-spacing:1.5px">
-        <div style="display:flex;align-items:center;justify-content:center;gap:6px">
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-          COMPETITOR INTELLIGENCE
+      <th colspan="5" style="background:#f8fafc;border-bottom:1px solid #e2e8f0;border-right:1px solid #e2e8f0;padding:8px 12px;text-align:center">
+        <div style="display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:800;color:#475569;letter-spacing:.1em;text-transform:uppercase">
+          <div style="width:6px;height:6px;border-radius:50%;background:#7c3aed"></div>
+          Competitor Intelligence
         </div>
       </th>
-      <th style="background:#0f172a !important;color:#64748b;font-size:10px;letter-spacing:1px;min-width:100px">PROOF</th><th style="background:#0f172a !important;color:#64748b;font-size:10px;letter-spacing:1px;min-width:160px">NOTES</th>
+      <th style="background:#f8fafc;border-bottom:1px solid #e2e8f0;padding:8px 12px;text-align:center">
+        <span style="font-size:10px;font-weight:700;color:#94a3b8;letter-spacing:.08em;text-transform:uppercase">Sources</span>
+      </th>
     </tr>
-    <!-- Column name row -->
-    <tr class="cm-cols" style="background:#1e293b">
-      <th class="cm-sticky" style="background:#1e293b;border-right:2px solid #334155;position:sticky;top:40px;left:0;z-index:6"></th>
-      ${ELSEVIER.map(c=>`
-        <th style="min-width:90px;max-width:90px;color:#fff;border-right:1px solid #334155">
-          <div style="width:8px;height:8px;border-radius:50%;background:${c.color};margin:0 auto 4px"></div>
-          ${c.label}
-        </th>`).join('')}
-      ${COMPETITORS.map((c,i)=>`
-        <th style="min-width:100px;max-width:100px;color:#f1f5f9;border-right:${i<COMPETITORS.length-1?'1px solid #334155':'2px solid #334155'}">
-          <div style="width:8px;height:8px;border-radius:50%;background:${c.color};margin:0 auto 4px"></div>
-          <div>${c.label}</div>
-          <div style="font-size:9px;color:#64748b;font-weight:400;margin-top:1px">${c.vendor}</div>
-        </th>`).join('')}
-      <th style="color:#94a3b8;font-size:10px;min-width:100px;background:#1e293b !important">Source</th><th style="color:#94a3b8;font-size:10px;min-width:160px;background:#1e293b !important">Notes</th>
+    <!-- Column names -->
+    <tr style="background:#fff">
+      <th class="cmx-sticky" style="background:#fff;padding:8px 16px;border-bottom:2px solid #e2e8f0;border-right:2px solid #e2e8f0"></th>
+      ${ELSEVIER.map(c=>`<th style="padding:8px 6px;border-bottom:2px solid #e2e8f0;border-right:1px solid #f1f5f9;min-width:88px;text-align:center;background:#fff7ed">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+          <div style="width:6px;height:6px;border-radius:50%;background:${c.color}"></div>
+          <div style="font-size:11px;font-weight:700;color:#92400e">${c.label}</div>
+        </div>
+      </th>`).join('')}
+      ${COMPETITORS.map((c,i)=>`<th style="padding:8px 6px;border-bottom:2px solid #e2e8f0;border-right:${i<COMPETITORS.length-1?'1px solid #f1f5f9':'2px solid #e2e8f0'};min-width:96px;text-align:center;background:#fff">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+          <div style="width:6px;height:6px;border-radius:50%;background:${c.color}"></div>
+          <div style="font-size:11px;font-weight:700;color:#1e293b">${c.label}</div>
+          <div style="font-size:9px;color:#94a3b8;font-weight:500">${c.vendor}</div>
+        </div>
+      </th>`).join('')}
+      <th style="padding:8px 12px;border-bottom:2px solid #e2e8f0;min-width:120px;text-align:center;background:#fff">
+        <span style="font-size:10px;font-weight:600;color:#94a3b8">Verify</span>
+      </th>
     </tr>
   </thead>
   <tbody>`;
 
   insts.forEach((inst, idx) => {
-    const rowBg = idx%2===0 ? '#ffffff' : '#f8fafc';
-    const proof = getProof(inst.id);
-    html += `<tr style="cursor:pointer" onclick="nav('detail',{instId:'${inst.id}'})">
-      <td class="cm-sticky cm-inst-cell" style="background:${rowBg}">
-        <div class="cm-inst-name" title="${inst.name}">${inst.short||inst.name}</div>
-        <div class="cm-inst-city">${inst.city}</div>
+    const isEven = idx % 2 === 0;
+    const proofWos    = getProofWos(inst.id);
+    const proofOA     = getProofOpenalex(inst.id);
+    const proofScopus = getProofForCol(inst.id, 'scopus');
+    const note = getNotes(inst.id);
+
+    html += `<tr onclick="nav('detail',{instId:'${inst.id}'})" style="cursor:pointer">
+      <td class="cmx-sticky" style="background:${isEven?'#fff':'#fafafa'};padding:12px 16px;border-bottom:1px solid #f1f5f9;border-right:2px solid #e2e8f0;min-width:180px;max-width:180px">
+        <div style="font-size:13px;font-weight:700;color:#0f172a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${inst.short||inst.name}</div>
+        <div style="font-size:10px;color:#94a3b8;margin-top:2px;font-weight:500">${inst.city}</div>
+        ${note ? `<div style="font-size:10px;color:#64748b;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px" title="${note.replace(/"/g,'&quot;')}">📝 ${note}</div>` : ''}
       </td>`;
 
-    // Elsevier columns (highlighted background)
     ELSEVIER.forEach(col => {
       const s = getStatus(inst.id, col.key);
       const st = STATUS[s] || STATUS.unknown;
       const renewal = getRenewal(inst.id, col.key);
-      html += `<td class="cm-cell" style="background:${rowBg}">
-        <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
-          <span class="cm-badge" title="${st.label}" style="background:${st.bg};color:${st.color};border:1px solid ${st.border}${isEditing?';cursor:pointer':''}"
-            ${isEditing?`onclick="event.stopPropagation();cycleCell('${inst.id}','${col.key}',event)"`:''}>
-            ${st.icon}
-          </span>
-          ${renewal?`<span style="font-size:9px;color:#64748b;white-space:nowrap">${renewal}</span>`:''}
+      const editAttr = isEditing ? `onclick="event.stopPropagation();cycleCell('${inst.id}','${col.key}',event)"` : '';
+      html += `<td class="cmx-elsevier-bg" style="text-align:center;padding:12px 8px;border-bottom:1px solid #f1f5f9;border-right:1px solid #fed7aa;vertical-align:middle">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+          <span ${editAttr} title="${st.label}" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:${st.bg};border:1.5px solid ${st.border};font-size:12px;font-weight:800;color:${st.text};${isEditing?'cursor:pointer':''}" onmouseenter="this.style.transform='scale(1.15)'" onmouseleave="this.style.transform='scale(1)'">${st.icon}</span>
+          ${renewal ? `<span style="font-size:9px;color:#92400e;font-weight:600;background:#fff7ed;padding:1px 5px;border-radius:3px;letter-spacing:.02em">${renewal}</span>` : ''}
         </div>
       </td>`;
     });
 
-    // Competitor columns
-    COMPETITORS.forEach((col,i) => {
-      const s = getStatus(inst.id, col.key);
-      const st = STATUS[s] || STATUS.unknown;
-      const renewal = getRenewal(inst.id, col.key);
-      html += `<td class="cm-cell" style="background:${rowBg};border-right:${i===COMPETITORS.length-1?'2px solid #e2e8f0':'1px solid #f1f5f9'}">
-        <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
-          <span class="cm-badge" title="${st.label}" style="background:${st.bg};color:${st.color};border:1px solid ${st.border}${isEditing?';cursor:pointer':''}"
-            ${isEditing?`onclick="event.stopPropagation();cycleCell('${inst.id}','${col.key}',event)"`:''}>
-            ${st.icon}
-          </span>
-          ${renewal?`<span style="font-size:9px;color:#64748b;white-space:nowrap">${renewal}</span>`:''}
-        </div>
-      </td>`;
+    COMPETITORS.forEach((col, i) => {
+      html += statusCell(inst.id, col).replace('border-right:1px solid #f1f5f9', i===COMPETITORS.length-1?'border-right:2px solid #e2e8f0':'border-right:1px solid #f1f5f9');
     });
 
-    // Proof links — WoS, OpenAlex, and Scopus renewal
-    const proofWos = getProofWos(inst.id);
-    const proofOA  = getProofOpenalex(inst.id);
-    const proofScopus = getProofForCol(inst.id, 'scopus');
-    const extSVG = `<svg viewBox="0 0 24 24" width="9" height="9" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
-    html += `<td class="cm-proof-cell" style="background:${rowBg};min-width:140px" onclick="event.stopPropagation()">
+    // Sources column
+    html += `<td style="padding:10px 10px;border-bottom:1px solid #f1f5f9;text-align:center;vertical-align:middle" onclick="event.stopPropagation()">
       <div style="display:flex;flex-direction:column;gap:4px;align-items:center">
-        ${proofWos
-          ? `<a class="cm-proof-link" href="${proofWos}" target="_blank" rel="noopener" title="Web of Science source">${extSVG} WoS</a>`
-          : `<span style="font-size:9px;color:#64748b;padding:2px 6px">WoS —</span>`}
-        ${proofOA
-          ? `<a class="cm-proof-link" href="${proofOA}" target="_blank" rel="noopener" title="OpenAlex profile" style="background:#f0fdf4;border-color:#bbf7d0;color:#15803d">${extSVG} OpenAlex</a>`
-          : `<span style="font-size:9px;color:#64748b;padding:2px 6px">OA —</span>`}
-        ${proofScopus
-          ? `<a class="cm-proof-link" href="${proofScopus}" target="_blank" rel="noopener" title="Scopus national agreement" style="background:#fff7ed;border-color:#fed7aa;color:#c2410c">${extSVG} Scopus</a>`
-          : ''}
+        ${proofWos    ? `<a class="cmx-proof-link" href="${proofWos}"    target="_blank" rel="noopener" style="background:#f5f3ff;color:#6d28d9;border:1px solid #ddd6fe">${extIcon} WoS</a>` : ''}
+        ${proofOA     ? `<a class="cmx-proof-link" href="${proofOA}"     target="_blank" rel="noopener" style="background:#f0fdfa;color:#0f766e;border:1px solid #99f6e4">${extIcon} OpenAlex</a>` : ''}
+        ${proofScopus ? `<a class="cmx-proof-link" href="${proofScopus}" target="_blank" rel="noopener" style="background:#fff7ed;color:#c2410c;border:1px solid #fed7aa">${extIcon} Scopus</a>` : ''}
+        ${!proofWos && !proofOA && !proofScopus ? `<span style="font-size:10px;color:#cbd5e1">—</span>` : ''}
       </div>
     </td>`;
-    // Notes cell
-    const note = getNotes(inst.id);
-    html += `<td class="cm-notes-cell" style="background:${rowBg}" onclick="event.stopPropagation()">
-      <div class="cm-notes-editable" contenteditable="true" style="color:#111827"
-        data-instid="${inst.id}"
-        data-placeholder="Add notes…"
-        oninput="saveNote('${inst.id}', this.innerText.trim())"
-        onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();this.blur();}"
-      >${note ? note.replace(/</g,'&lt;').replace(/>/g,'&gt;') : ''}</div>
-    </td>`;
+
     html += '</tr>';
   });
 
   html += `</tbody></table></div>
-
-  <!-- Legend -->
-  <div class="cm-legend">
-    ${Object.entries(STATUS).map(([k,v])=>`
-      <span class="cm-legend-item">
-        <span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:5px;background:${v.bg};color:${v.color};border:1px solid ${v.border};font-size:11px;font-weight:700">${v.icon}</span>
-        ${v.label}
-      </span>`).join('')}
-    <span style="margin-left:auto;font-size:10px;color:#64748b">Click any row → institution detail &nbsp;·&nbsp; OpenAlex marked ◎ Free as it's open access</span>
-  </div>`;
+  <div style="margin-top:10px;font-size:10px;color:#94a3b8;text-align:right">Click any row to view institution detail &nbsp;·&nbsp; ${new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}</div>`;
 
   document.getElementById('content').innerHTML = html;
 }
