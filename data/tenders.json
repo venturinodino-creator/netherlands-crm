@@ -1,0 +1,72 @@
+[
+  {
+    "id": "tender_radboud_cris_2026",
+    "title": "CRIS System — Successor to Metis",
+    "institution": "Radboud University",
+    "deadline": "2026-04-01",
+    "status": "lost",
+    "value": "",
+    "product": "Elsevier Pure",
+    "competitor": "Vidatum",
+    "notes": "European open tender for research information system to replace Metis. Awarded to Vidatum — direct loss for Elsevier Pure. Both Radboud University and Radboud UMC signed. Go-live Q1 2027.",
+    "source": "Radboud University procurement, April 2026",
+    "createdAt": "2026-08-08T00:00:00Z",
+    "updatedAt": "2026-08-08T00:00:00Z"
+  },
+  {
+    "id": "tender_utwente_wos_2025",
+    "title": "Web of Science Licence Non-Renewal",
+    "institution": "University of Twente",
+    "deadline": "2025-12-31",
+    "status": "won",
+    "value": "",
+    "product": "Elsevier Scopus",
+    "competitor": "Clarivate Web of Science",
+    "notes": "UT decided not to renew Clarivate Web of Science (incl. JCR + ESI). Scopus was explicitly cited as the preferred alternative — UT stated Scopus has broader scope and higher usage. Win by default for Elsevier. Licence ended Dec 31 2025.",
+    "source": "University of Twente student news, November 2025",
+    "createdAt": "2026-08-08T00:00:00Z",
+    "updatedAt": "2026-08-08T00:00:00Z"
+  },
+  {
+    "id": "tender_vu_wos_2026",
+    "title": "Web of Science Access Termination",
+    "institution": "VU Amsterdam",
+    "deadline": "2025-12-31",
+    "status": "won",
+    "value": "",
+    "product": "Elsevier Scopus",
+    "competitor": "Clarivate Web of Science",
+    "notes": "VU Amsterdam terminated Web of Science access effective January 1 2026. Scopus retained as primary bibliometric database. Another Clarivate loss, Scopus wins by default.",
+    "source": "VU Amsterdam library announcement, 2025",
+    "createdAt": "2026-08-08T00:00:00Z",
+    "updatedAt": "2026-08-08T00:00:00Z"
+  },
+  {
+    "id": "tender_surf_national_2025",
+    "title": "SURF National Read & Publish + Scopus Deal",
+    "institution": "All Dutch Universities (SURF)",
+    "deadline": "2027-12-31",
+    "status": "inprogress",
+    "value": "",
+    "product": "ScienceDirect + Scopus",
+    "competitor": "—",
+    "notes": "2-year national Read & Publish agreement + Scopus subscription signed Jan 2025 via SURF consortium. Covers all Dutch universities. Optional 3rd-year extension. Renewal negotiations expected late 2026 / early 2027. Key relationship to protect.",
+    "source": "SURF consortium announcement, January 2025",
+    "createdAt": "2026-08-08T00:00:00Z",
+    "updatedAt": "2026-08-08T00:00:00Z"
+  },
+  {
+    "id": "tender_irel_2025",
+    "title": "IReL Framework — ScienceDirect / Scopus / SciVal",
+    "institution": "IReL Irish Research eLibrary (Ireland)",
+    "deadline": "2025-06-01",
+    "status": "identified",
+    "value": "42100000",
+    "product": "ScienceDirect + Scopus + SciVal",
+    "competitor": "—",
+    "notes": "TED reference 598844-2025. €42.1M, 72-month open framework tender for Lots covering ScienceDirect, Scopus, SciVal and Knovel. Cancelled — zero responses received. Suggests Elsevier unwilling to compete on open tender format. Watch for re-tender.",
+    "source": "TED Europa 598844-2025, 2025",
+    "createdAt": "2026-08-08T00:00:00Z",
+    "updatedAt": "2026-08-08T00:00:00Z"
+  }
+]
