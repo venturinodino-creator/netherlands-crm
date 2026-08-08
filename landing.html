@@ -673,7 +673,7 @@
         <div class="stat-lbl">Competitor products</div>
       </div>
       <div class="stat">
-        <div class="stat-val">300<span class="unit">+</span></div>
+        <div class="stat-val" id="stat-contacts">300<span class="unit">+</span></div>
         <div class="stat-lbl">Verified contacts</div>
       </div>
     </div>
@@ -897,7 +897,7 @@
   <div class="section-tag">Join the platform</div>
   <h2 class="cta-h2">Enter the CRM.</h2>
   <p class="cta-sub">
-    All <em>56 institutions</em>, <em>300+ contacts</em>, and <em>7 competitor product tracks</em><br>
+    All <em>56 institutions</em>, <em id="cta-contacts">300+ contacts</em>, and <em>7 competitor product tracks</em><br>
     — ready and waiting.
   </p>
   <a href="index.html" class="btn-big">
@@ -1101,6 +1101,24 @@ function setSearch(val){
 
 // Expiry count
 document.getElementById('expiry-count').textContent = '8';
+
+// Live contact count from CRM localStorage
+(function(){
+  try {
+    var raw = localStorage.getItem('nl_crm_contacts');
+    if (raw) {
+      var contacts = JSON.parse(raw);
+      var count = Array.isArray(contacts) ? contacts.length : 0;
+      if (count > 0) {
+        var label = count + (count % 100 < 11 || count % 100 > 19 ? '+' : '+');
+        var statEl = document.getElementById('stat-contacts');
+        var ctaEl  = document.getElementById('cta-contacts');
+        if (statEl) statEl.innerHTML = count + '<span class="unit">+</span>';
+        if (ctaEl)  ctaEl.textContent = count + '+ contacts';
+      }
+    }
+  } catch(e) {}
+})();
 
 // Toast
 (function(){
