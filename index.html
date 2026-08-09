@@ -1912,16 +1912,6 @@ function renderDashboard() {
     </div>`;
   }).join('');
 
-  const recentContacts = cont.filter(c=>c.lastContact).sort((a,b)=>b.lastContact.localeCompare(a.lastContact)).slice(0,6);
-  const recentRows = recentContacts.length ? recentContacts.map(c=>{
-    const inst = getInst(c.instId);
-    const col = avatarColor(c.first+c.last);
-    return `<div class="recent-row">
-      <div class="av" style="background:${col}">${initials(c.first,c.last)}</div>
-      <div class="ri"><h4>${esc(c.first)} ${esc(c.last)}</h4><p>${esc(c.title||'')}${inst.short?' · '+esc(inst.short):''}</p></div>
-      <span style="font-size:11px;color:var(--muted)">${c.lastContact}</span>
-    </div>`;
-  }).join('') : '<p style="font-size:13px;color:var(--muted);padding:12px 0">No contacts with recorded dates yet.</p>';
 
   const highPrioity = cont.filter(c=>c.priority==='high').slice(0,5);
   const hpRows = highPrioity.map(c=>{
@@ -1967,7 +1957,7 @@ function renderDashboard() {
     <div class="stats-grid" id="stats-grid-drag">${statCardsHtml}</div>
 
     <div class="dash-grid" id="dash-widget-grid">
-      ${buildDashWidgets(typeRows, hpRows, recentRows)}
+      ${buildDashWidgets(typeRows, hpRows)}
     </div>`;
   initDashDrag();
   initStatCardDrag();
@@ -2026,7 +2016,7 @@ function saveDashWidgetOrder(order) {
   localStorage.setItem('nl_crm_widget_order', JSON.stringify(order));
 }
 
-function buildDashWidgets(typeRows, hpRows, recentRows) {
+function buildDashWidgets(typeRows, hpRows) {
   const handle = '';
   const _td2 = new Date().toISOString().slice(0,10);
   const _dueList = state.institutions.filter(i=>i.nextActionDate && i.nextActionDate <= _td2)
@@ -2047,10 +2037,6 @@ function buildDashWidgets(typeRows, hpRows, recentRows) {
     'w-highprio': `<div class="card dash-widget" data-widget-id="w-highprio" draggable="true">
       <div class="card-header"><span class="card-title">High Priority Contacts</span>${handle}</div>
       ${hpRows}
-    </div>`,
-    'w-recent': `<div class="card dash-widget" data-widget-id="w-recent" draggable="true">
-      <div class="card-header"><span class="card-title">Recently Contacted</span>${handle}</div>
-      ${recentRows}
     </div>`,
     'w-actions': `<div class="card dash-widget" data-widget-id="w-actions" draggable="true">
       <div class="card-header"><span class="card-title">Quick Actions</span>${handle}</div>
