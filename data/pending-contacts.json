@@ -839,5 +839,170 @@
     "source": "https://openalex.org/A5101254389",
     "research": "",
     "id": "disc_rathenau_1786174849297_uyii"
+  },
+  {
+    "first": "Syver",
+    "last": "Døving Agdestein",
+    "title": "Researcher",
+    "dept": "Mathematics & Computer Science",
+    "email": "",
+    "instId": "cwi",
+    "source": "https://openalex.org/A5067473170",
+    "research": "ORCID: https://orcid.org/0000-0002-1589-2916",
+    "id": "disc_cwi_1786261483404_i4jq"
+  },
+  {
+    "first": "Marc",
+    "last": "Stevens",
+    "title": "Researcher",
+    "dept": "Mathematics & Computer Science",
+    "email": "",
+    "instId": "cwi",
+    "source": "https://openalex.org/A5042597739",
+    "research": "ORCID: https://orcid.org/0000-0002-7091-2924",
+    "id": "disc_cwi_1786261483404_vc8y"
+  },
+  {
+    "first": "Jurgen",
+    "last": "Vinju",
+    "title": "Researcher",
+    "dept": "Mathematics & Computer Science",
+    "email": "",
+    "instId": "cwi",
+    "source": "https://openalex.org/A5074526787",
+    "research": "ORCID: https://orcid.org/0000-0002-2686-7409",
+    "id": "disc_cwi_1786261483404_tq3y"
+  },
+  {
+    "first": "Johan",
+    "last": "Bollen",
+    "title": "Researcher",
+    "dept": "Mathematics & Computer Science",
+    "email": "",
+    "instId": "cwi",
+    "source": "https://openalex.org/A5082461253",
+    "research": "ORCID: https://orcid.org/0000-0001-7031-9293",
+    "id": "disc_cwi_1786261483404_gxzu"
+  },
+  {
+    "first": "Felix",
+    "last": "Lucka",
+    "title": "Researcher",
+    "dept": "Mathematics & Computer Science",
+    "email": "",
+    "instId": "cwi",
+    "source": "https://openalex.org/A5036662934",
+    "research": "ORCID: https://orcid.org/0000-0002-8763-5177",
+    "id": "disc_cwi_1786261483404_obnb"
+  },
+  {
+    "first": "Elena",
+    "last": "Ranguelova",
+    "title": "Researcher",
+    "dept": "Research Software Engineering",
+    "email": "",
+    "instId": "esc",
+    "source": "https://openalex.org/A5028901046",
+    "research": "ORCID: https://orcid.org/0000-0002-9834-1756",
+    "id": "disc_esc_1786261483404_xvpx"
+  },
+  {
+    "first": "Sonja",
+    "last": "Georgievska",
+    "title": "Researcher",
+    "dept": "Research Software Engineering",
+    "email": "",
+    "instId": "esc",
+    "source": "https://openalex.org/A5060758353",
+    "research": "ORCID: https://orcid.org/0000-0002-8094-4532",
+    "id": "disc_esc_1786261483404_iew9"
+  },
+  {
+    "first": "Cunliang",
+    "last": "Geng",
+    "title": "Researcher",
+    "dept": "Research Software Engineering",
+    "email": "",
+    "instId": "esc",
+    "source": "https://openalex.org/A5065088864",
+    "research": "ORCID: https://orcid.org/0000-0002-1409-8358",
+    "id": "disc_esc_1786261483404_s9b9"
+  },
+  {
+    "first": "Janneke",
+    "last": "M. van der Zwaan",
+    "title": "Researcher",
+    "dept": "Research Software Engineering",
+    "email": "",
+    "instId": "esc",
+    "source": "https://openalex.org/A5029982012",
+    "research": "ORCID: https://orcid.org/0000-0002-8329-7000",
+    "id": "disc_esc_1786261483404_yfck"
+  },
+  {
+    "first": "Robin",
+    "last": "A. Richardson",
+    "title": "Researcher",
+    "dept": "Research Software Engineering",
+    "email": "",
+    "instId": "esc",
+    "source": "https://openalex.org/A5056155210",
+    "research": "ORCID: https://orcid.org/0000-0002-9984-2720",
+    "id": "disc_esc_1786261483404_a2ru"
+  },
+  {
+    "first": "Carlotta",
+    "last": "Buttaboni",
+    "title": "Researcher",
+    "dept": "Science & Technology Studies",
+    "email": "",
+    "instId": "rathenau",
+    "source": "https://openalex.org/A5093125941",
+    "research": "",
+    "id": "disc_rathenau_1786261483404_tuwr"
+  },
+  {
+    "first": "FJ",
+    "last": "Rodriguez",
+    "title": "Researcher",
+    "dept": "Science & Technology Studies",
+    "email": "",
+    "instId": "rathenau",
+    "source": "https://openalex.org/A5103614998",
+    "research": "",
+    "id": "disc_rathenau_1786261483404_4lim"
+  },
+  {
+    "first": "Romy",
+    "last": "Dekker",
+    "title": "Researcher",
+    "dept": "Science & Technology Studies",
+    "email": "",
+    "instId": "rathenau",
+    "source": "https://openalex.org/A5109850528",
+    "research": "",
+    "id": "disc_rathenau_1786261483404_jy1o"
+  },
+  {
+    "first": "Natalia",
+    "last": "Philadelpho Azevedo",
+    "title": "Researcher",
+    "dept": "Science & Technology Studies",
+    "email": "",
+    "instId": "rathenau",
+    "source": "https://openalex.org/A5112437207",
+    "research": "",
+    "id": "disc_rathenau_1786261483404_tkn6"
+  },
+  {
+    "first": "Mark",
+    "last": "Mouchantaf",
+    "title": "Researcher",
+    "dept": "Science & Technology Studies",
+    "email": "",
+    "instId": "rathenau",
+    "source": "https://openalex.org/A5104880006",
+    "research": "ORCID: https://orcid.org/0000-0001-9025-2874",
+    "id": "disc_rathenau_1786261483404_uxwq"
   }
 ]
