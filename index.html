@@ -1001,6 +1001,26 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
         <div class="fg full"><label>Website</label><input id="mi-website" placeholder="https://www.uva.nl"></div>
         <div class="fg full"><label>Description</label><textarea id="mi-desc" placeholder="Brief description..."></textarea></div>
       </div>
+      <div style="border-top:1px solid var(--border);margin-top:16px;padding-top:16px">
+        <div style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px">Competitor Intelligence</div>
+        <div class="fgrid" style="gap:10px 14px">
+          <div class="fg"><label>Scopus</label>
+            <select id="mi-scopus"><option value="yes">✓ Active</option><option value="expiring">⚠ Expiring</option><option value="unknown">? Unknown</option><option value="no">✗ No</option><option value="cancelled">✗ Cancelled</option></select></div>
+          <div class="fg"><label>Scopus Renewal</label><input id="mi-scopus-renewal" placeholder="e.g. Dec 2026"></div>
+          <div class="fg"><label>SciVal</label>
+            <select id="mi-scival"><option value="yes">✓ Active</option><option value="expiring">⚠ Expiring</option><option value="unknown">? Unknown</option><option value="no">✗ No</option><option value="cancelled">✗ Cancelled</option></select></div>
+          <div class="fg"><label>SciVal Renewal</label><input id="mi-scival-renewal" placeholder="e.g. Dec 2026"></div>
+          <div class="fg"><label>Pure</label>
+            <select id="mi-pure"><option value="yes">✓ Active</option><option value="expiring">⚠ Expiring</option><option value="unknown">? Unknown</option><option value="no">✗ No</option><option value="cancelled">✗ Cancelled</option></select></div>
+          <div class="fg"><label>Pure Renewal</label><input id="mi-pure-renewal" placeholder="e.g. Dec 2026"></div>
+          <div class="fg"><label>Web of Science</label>
+            <select id="mi-wos"><option value="yes">✓ Active</option><option value="expiring">⚠ Expiring</option><option value="unknown">? Unknown</option><option value="no">✗ No</option><option value="cancelled">✗ Cancelled</option></select></div>
+          <div class="fg"><label>WoS Renewal</label><input id="mi-wos-renewal" placeholder="e.g. Dec 2026"></div>
+          <div class="fg"><label>OpenAlex</label>
+            <select id="mi-openalex"><option value="free">Free API</option><option value="member">Member</option><option value="partner">Partner</option><option value="direct">Direct</option></select></div>
+          <div class="fg"><label>OpenAlex Fee</label><input id="mi-openalex-fee" placeholder="e.g. $5,000/yr"></div>
+        </div>
+      </div>
     </div>
     <div class="mf">
       <button class="btn btn-outline" onclick="closeModal('modal-inst')">Cancel</button>
@@ -2633,6 +2653,9 @@ function openAddInstitution() {
   document.getElementById('mi-title').textContent = 'Add Institution';
   ['mi-name','mi-short','mi-city','mi-founded','mi-website','mi-desc'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('mi-type').value='university';
+  ['mi-scopus','mi-scival','mi-pure','mi-wos'].forEach(id=>document.getElementById(id).value='unknown');
+  document.getElementById('mi-openalex').value='free';
+  ['mi-scopus-renewal','mi-scival-renewal','mi-pure-renewal','mi-wos-renewal','mi-openalex-fee'].forEach(id=>document.getElementById(id).value='');
   openModal('modal-inst');
 }
 function openEditInstitution(id) {
@@ -2647,6 +2670,19 @@ function openEditInstitution(id) {
   document.getElementById('mi-founded').value = i.founded||'';
   document.getElementById('mi-website').value = i.website||'';
   document.getElementById('mi-desc').value = i.description||'';
+  // Competitor data
+  const cd = window.COMP_DATA[id] || {};
+  document.getElementById('mi-scopus').value = cd.scopus||'unknown';
+  document.getElementById('mi-scopus-renewal').value = cd.scopusRenewal||'';
+  document.getElementById('mi-scival').value = cd.scival||'unknown';
+  document.getElementById('mi-scival-renewal').value = cd.scivalRenewal||'';
+  document.getElementById('mi-pure').value = cd.pure||'unknown';
+  document.getElementById('mi-pure-renewal').value = cd.pureRenewal||'';
+  document.getElementById('mi-wos').value = cd.wos||'unknown';
+  document.getElementById('mi-wos-renewal').value = cd.wosRenewal||'';
+  const oaTier = (cd.openalexTier||'').toLowerCase()||cd.openalex||'free';
+  document.getElementById('mi-openalex').value = oaTier;
+  document.getElementById('mi-openalex-fee').value = cd.openalexFee||'';
   openModal('modal-inst');
 }
 async function saveInstitution() {
@@ -2669,6 +2705,27 @@ async function saveInstitution() {
     data.id = uid();
     state.institutions.push(data);
     toast('Institution added','ok');
+  }
+  // Save competitor data
+  if(state.editInstId) {
+    const instId = state.editInstId;
+    if(!window.COMP_DATA[instId]) window.COMP_DATA[instId] = {};
+    const oaVal = document.getElementById('mi-openalex').value;
+    const oaFee = document.getElementById('mi-openalex-fee').value.trim();
+    Object.assign(window.COMP_DATA[instId], {
+      scopus: document.getElementById('mi-scopus').value,
+      scopusRenewal: document.getElementById('mi-scopus-renewal').value.trim(),
+      scival: document.getElementById('mi-scival').value,
+      scivalRenewal: document.getElementById('mi-scival-renewal').value.trim(),
+      pure: document.getElementById('mi-pure').value,
+      pureRenewal: document.getElementById('mi-pure-renewal').value.trim(),
+      wos: document.getElementById('mi-wos').value,
+      wosRenewal: document.getElementById('mi-wos-renewal').value.trim(),
+      openalex: oaVal === 'free' ? 'free' : oaVal,
+      openalexTier: oaVal !== 'free' ? oaVal.charAt(0).toUpperCase() + oaVal.slice(1) : null,
+      openalexFee: oaFee,
+    });
+    localStorage.setItem('nl_crm_comp_data', JSON.stringify(window.COMP_DATA));
   }
   save(); try { await supaUpsertInst(inst); syncBadge(true); } catch(e){ console.error(e); syncBadge(true,'err'); } closeModal('modal-inst'); render();
 }
@@ -3512,6 +3569,18 @@ if (!window.COMP_DATA) {
     },
   };
 }
+// Merge any localStorage overrides into COMP_DATA
+(function() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('nl_crm_comp_data') || 'null');
+    if (saved) {
+      Object.keys(saved).forEach(k => {
+        if (!window.COMP_DATA[k]) window.COMP_DATA[k] = {};
+        Object.assign(window.COMP_DATA[k], saved[k]);
+      });
+    }
+  } catch(e) {}
+})();
 
 // Notes persistence — global so inline oninput handlers can reach them
 function getNotes(instId) {
