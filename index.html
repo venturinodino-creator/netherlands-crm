@@ -4031,10 +4031,10 @@ function renderSubscriptionMatrix() {
     const s = getStatus(instId, col.key);
     const st = STATUS[s] || STATUS.unknown;
     const renewal = getRenewal(instId, col.key);
-    const editAttr = isEditing ? `onclick="event.stopPropagation();cycleCell('${instId}','${col.key}',event)" style="cursor:pointer"` : '';
-    return `<td style="text-align:center;padding:12px 8px;border-bottom:1px solid #f1f5f9;border-right:1px solid #f1f5f9;vertical-align:middle">
+    const tdAttr = isEditing ? `onclick="event.stopPropagation();cycleCell('${instId}','${col.key}',event)" style="cursor:pointer;text-align:center;padding:12px 8px;border-bottom:1px solid #f1f5f9;border-right:1px solid #f1f5f9;vertical-align:middle"` : `style="text-align:center;padding:12px 8px;border-bottom:1px solid #f1f5f9;border-right:1px solid #f1f5f9;vertical-align:middle"`;
+    return `<td ${tdAttr}>
       <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
-        <span ${editAttr} title="${st.label}" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:${st.bg};border:1.5px solid ${st.border};font-size:12px;font-weight:800;color:${st.text};transition:transform .1s;${isEditing?'cursor:pointer':''}" onmouseenter="this.style.transform='scale(1.15)'" onmouseleave="this.style.transform='scale(1)'">${st.icon}</span>
+        <span title="${st.label}" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:${st.bg};border:1.5px solid ${st.border};font-size:12px;font-weight:800;color:${st.text};transition:transform .1s;${isEditing?'cursor:pointer':''}" onmouseenter="this.style.transform='scale(1.15)'" onmouseleave="this.style.transform='scale(1)'">${st.icon}</span>
         ${renewal ? `<span style="font-size:9px;color:#94a3b8;font-weight:500;letter-spacing:.02em">${renewal}</span>` : ''}
       </div>
     </td>`;
@@ -4162,10 +4162,10 @@ function renderSubscriptionMatrix() {
       const s = getStatus(inst.id, col.key);
       const st = STATUS[s] || STATUS.unknown;
       const renewal = getRenewal(inst.id, col.key);
-      const editAttr = isEditing ? `onclick="event.stopPropagation();cycleCell('${inst.id}','${col.key}',event)"` : '';
-      html += `<td class="cmx-elsevier-bg" style="text-align:center;padding:12px 8px;border-bottom:1px solid #f1f5f9;border-right:1px solid #fed7aa;vertical-align:middle">
+      const tdEditAttr = isEditing ? `onclick="event.stopPropagation();cycleCell('${inst.id}','${col.key}',event)"` : '';
+      html += `<td class="cmx-elsevier-bg" ${tdEditAttr} style="cursor:${isEditing?'pointer':'default'};text-align:center;padding:12px 8px;border-bottom:1px solid #f1f5f9;border-right:1px solid #fed7aa;vertical-align:middle">
         <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
-          <span ${editAttr} title="${st.label}" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:${st.bg};border:1.5px solid ${st.border};font-size:12px;font-weight:800;color:${st.text};${isEditing?'cursor:pointer':''}" onmouseenter="this.style.transform='scale(1.15)'" onmouseleave="this.style.transform='scale(1)'">${st.icon}</span>
+          <span title="${st.label}" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:${st.bg};border:1.5px solid ${st.border};font-size:12px;font-weight:800;color:${st.text};${isEditing?'cursor:pointer':''}" onmouseenter="this.style.transform='scale(1.15)'" onmouseleave="this.style.transform='scale(1)'">${st.icon}</span>
           ${renewal ? `<span style="font-size:9px;color:#92400e;font-weight:600;background:#fff7ed;padding:1px 5px;border-radius:3px;letter-spacing:.02em">${renewal}</span>` : ''}
         </div>
       </td>`;
