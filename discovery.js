@@ -195,6 +195,7 @@
     var contacts = getC();
     var emails = new Set(contacts.map(function(c){ return (c.email||'').toLowerCase(); }).filter(Boolean));
     var names  = new Set(contacts.map(function(c){ return (c.first+' '+c.last).toLowerCase().trim(); }).filter(Boolean));
+    var added = 0;
     p.forEach(function(c) {
       var el = (c.email||'').toLowerCase().trim();
       var nl = (c.first+' '+c.last).toLowerCase().trim();
@@ -204,11 +205,21 @@
       contacts.push(Object.assign({}, c, {
         institution: inst.name || c.instId || '',
         addedAt: new Date().toISOString(),
+        status: 'active',
+        quality: 'verified',
       }));
       emails.add(el); names.add(nl);
+      added++;
     });
     saveC(contacts); saveP([]);
+    // Update live state so Contacts view refreshes immediately without reload
+    try {
+      if (window.state && Array.isArray(window.state.contacts)) {
+        window.state.contacts = contacts.filter(function(c){ return c.quality === 'verified'; });
+      }
+    } catch(e){}
     try { if (typeof loadPendingCount==='function') loadPendingCount(); } catch(e){}
+    try { if (typeof toast==='function') toast(added + ' contact' + (added!==1?'s':'') + ' added to CRM!', 'ok'); } catch(e){}
     render();
   };
 

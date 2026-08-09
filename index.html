@@ -5089,6 +5089,8 @@ async function runContactDiscovery() {
 // Override renderPendingContacts to use localStorage nl_crm_pending
 window.renderPendingContacts = async function() {
   const pending = JSON.parse(localStorage.getItem('nl_crm_pending') || '[]');
+  document.getElementById('page-title').textContent = 'New Contacts';
+  document.getElementById('page-sub').textContent = 'AI-discovered contacts awaiting your review';
   const topbar = document.getElementById('topbar-actions');
   if (topbar) topbar.innerHTML = '<div style="display:flex;gap:8px">'
     + '<button class="btn btn-outline" onclick="runContactDiscovery()" style="font-size:12px"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:5px"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>Find contacts now</button>'
@@ -5185,12 +5187,21 @@ window.acceptAllPending = async function() {
   }
   localStorage.setItem('nl_crm_contacts', JSON.stringify(contacts));
   localStorage.setItem('nl_crm_pending', JSON.stringify([]));
+
+  // Update live state so Contacts view refreshes immediately without reload
+  state.contacts = contacts.filter(c => c.quality === 'verified');
+
+  if (typeof loadPendingCount === 'function') loadPendingCount();
+  toast(pending.length + ' contact' + (pending.length!==1?'s':'') + ' added to CRM!', 'ok');
   window.renderPendingContacts();
 
   // Enrich all in the background (staggered to avoid rate limiting)
   for (let i = 0; i < pending.length; i++) {
     const enriched = await enrichViaOpenAlex(pending[i]);
     updateContactInStorage(enriched);
+    // Also update in-memory state
+    const idx = state.contacts.findIndex(c => c.id === enriched.id);
+    if (idx !== -1) state.contacts[idx] = enriched;
     await new Promise(r => setTimeout(r, 120)); // ~8/sec, within OpenAlex polite limit
   }
 };
