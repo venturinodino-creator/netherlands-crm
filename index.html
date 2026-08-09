@@ -260,6 +260,15 @@ a.ext-link:hover{color:var(--text)}
 .leaflet-control-zoom a:hover{background:#f3f4f6!important;color:#111!important}
 .leaflet-bar{box-shadow:0 4px 16px rgba(0,0,0,.15)!important}
 .leaflet-tile-pane{filter:brightness(1.6) contrast(0.85)!important}
+.map-inst-tooltip.leaflet-tooltip{background:rgba(8,14,28,.97)!important;border:1px solid rgba(255,255,255,.12)!important;border-radius:8px!important;padding:5px 11px!important;font-size:11px!important;font-weight:600!important;color:#f1f5f9!important;white-space:nowrap!important;box-shadow:0 6px 20px rgba(0,0,0,.5)!important;backdrop-filter:blur(12px)!important;pointer-events:none!important}
+.map-inst-tooltip.leaflet-tooltip::before{display:none!important}
+.map-pin-inner{transition:transform .18s cubic-bezier(.34,1.56,.64,1),box-shadow .18s ease!important;cursor:pointer}
+.map-pin-wrapper:hover .map-pin-inner{transform:scale(1.35)!important}
+.map-pin-wrapper.pin-active .map-pin-inner{transform:scale(1.2)!important}
+.map-pin-ring1,.map-pin-ring2{transition:opacity .18s ease}
+.map-pin-wrapper:hover .map-pin-ring1{opacity:.55!important}
+.map-pin-wrapper:hover .map-pin-ring2{opacity:.35!important}
+.map-pin-badge{position:absolute;top:-4px;right:-4px;min-width:14px;height:14px;border-radius:7px;background:#f43f5e;border:1.5px solid rgba(10,18,32,.9);font-size:8px;font-weight:800;color:#fff;display:flex;align-items:center;justify-content:center;padding:0 3px;line-height:1;pointer-events:none;box-shadow:0 1px 4px rgba(0,0,0,.5)}
 .leaflet-attribution-flag{display:none!important}
 .map-legend-item{display:flex;align-items:center;gap:6px;margin:3px 0;font-size:11px;color:var(--text)}
 .map-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
@@ -2152,12 +2161,14 @@ function renderMap() {
       const label = (TYPE_LABEL[inst.type]||inst.type).replace(' Inst.','');
       const abbr = (inst.short || inst.id).toUpperCase().slice(0,2);
 
+      const hasBadge = contacts.length > 0;
       const pinIcon = L.divIcon({
         className: '',
-        html: `<div style="position:relative;display:flex;align-items:center;justify-content:center;width:46px;height:46px">
-          <div style="position:absolute;width:46px;height:46px;border-radius:50%;border:1.5px solid ${col};opacity:.2;animation:pulse-ring 2.8s ease-out infinite"></div>
-          <div style="position:absolute;width:36px;height:36px;border-radius:50%;border:1px solid ${col};opacity:.12;animation:pulse-ring 2.8s ease-out infinite;animation-delay:.7s"></div>
-          <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(145deg,${col},${col}bb);border:2px solid rgba(255,255,255,.3);box-shadow:0 0 14px ${col}55,0 2px 10px rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:#fff;font-family:Inter,sans-serif;letter-spacing:.5px;text-shadow:0 1px 3px rgba(0,0,0,.6)">${abbr}</div>
+        html: `<div class="map-pin-wrapper" style="position:relative;display:flex;align-items:center;justify-content:center;width:46px;height:46px">
+          <div class="map-pin-ring1" style="position:absolute;width:46px;height:46px;border-radius:50%;border:1.5px solid ${col};opacity:.2;animation:pulse-ring 2.8s ease-out infinite"></div>
+          <div class="map-pin-ring2" style="position:absolute;width:36px;height:36px;border-radius:50%;border:1px solid ${col};opacity:.12;animation:pulse-ring 2.8s ease-out infinite;animation-delay:.7s"></div>
+          <div class="map-pin-inner" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(145deg,${col},${col}bb);border:2px solid rgba(255,255,255,.3);box-shadow:0 0 14px ${col}55,0 2px 10px rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:#fff;font-family:Inter,sans-serif;letter-spacing:.5px;text-shadow:0 1px 3px rgba(0,0,0,.6)">${abbr}</div>
+          ${hasBadge ? `<div class="map-pin-badge">${contacts.length > 9 ? '9+' : contacts.length}</div>` : ''}
         </div>`,
         iconSize: [46, 46],
         iconAnchor: [23, 23],
@@ -2166,6 +2177,7 @@ function renderMap() {
 
       const marker = L.marker(coords, { icon: pinIcon })
         .addTo(map)
+        .bindTooltip(inst.name, { direction:'top', offset:[0,-32], className:'map-inst-tooltip', sticky:false })
         .bindPopup(`
           <div style="min-width:200px">
             <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
@@ -2186,7 +2198,21 @@ function renderMap() {
           </div>
         `, { maxWidth: 250 });
 
+      // Interactive events
+      marker.on('popupopen', function() {
+        const el = this.getElement();
+        if (el) el.querySelector('.map-pin-wrapper')?.classList.add('pin-active');
+      });
+      marker.on('popupclose', function() {
+        const el = this.getElement();
+        if (el) el.querySelector('.map-pin-wrapper')?.classList.remove('pin-active');
+      });
+      marker.on('click', function() {
+        map.flyTo(coords, Math.max(map.getZoom(), 9), { duration: 0.6, easeLinearity: 0.4 });
+      });
+
       marker._instType = inst.type;
+      marker._instCol = col;
       _mapMarkers.push(marker);
     });
   }, 50);
