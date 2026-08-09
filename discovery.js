@@ -122,13 +122,16 @@
     }).join('');
 
     var activeMeta = TM[selType];
+    var hasToken = !!getGhToken();
+    var tokenStatus = hasToken
+      ? '<span style="font-size:11px;color:#10b981">✓ Synced to GitHub</span>'
+      : '<button onclick="window._nlSetGhToken()" style="font-size:11px;background:none;border:1px solid rgba(255,255,255,0.15);color:#94a3b8;border-radius:6px;padding:3px 10px;cursor:pointer">Set token to save</button>';
     var filterBar = '<div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;' +
       'background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);' +
       'border-radius:12px;padding:14px 18px">' +
       '<div style="font-size:12px;color:#64748b;font-weight:600;white-space:nowrap">NEXT SCRAPE →</div>' +
       '<div style="display:flex;gap:8px;flex-wrap:wrap">' + pills + '</div>' +
-      '<div style="margin-left:auto;font-size:11px;color:' + activeMeta.color + ';white-space:nowrap">' +
-      '✓ Saved</div>' +
+      '<div style="margin-left:auto;flex-shrink:0">' + tokenStatus + '</div>' +
       '</div>';
 
     if (!pending.length) {
@@ -234,9 +237,62 @@
   // Single-select: clicking a type exclusively sets the scraper target
   window._nlSelectT = function(t) {
     saveT([t]);
-    try { if (typeof toast==='function') toast('Agent will target: ' + TM[t].label + ' contacts tomorrow', 'ok'); } catch(e){}
     render();
+    // Sync to scrape-config.json on GitHub so the daily agent picks it up
+    pushScrapeConfig([t]);
   };
+
+  var GH_OWNER = 'venturinodino-creator';
+  var GH_REPO  = 'netherlands-crm';
+  var GH_PATH  = 'data/scrape-config.json';
+
+  function getGhToken() {
+    return localStorage.getItem('nl_crm_gh_token') || '';
+  }
+
+  window._nlSetGhToken = function() {
+    var t = prompt('Paste your GitHub Personal Access Token (needs Contents: read+write):\n\nCreate one at: github.com/settings/tokens/new\nScopes needed: repo → Contents (read and write)', getGhToken() || '');
+    if (t && t.trim()) {
+      localStorage.setItem('nl_crm_gh_token', t.trim());
+      try { if (typeof toast==='function') toast('GitHub token saved!', 'ok'); } catch(e){}
+    }
+  };
+
+  function pushScrapeConfig(types) {
+    var token = getGhToken();
+    if (!token) {
+      try {
+        if (typeof toast==='function') toast('Set a GitHub token to save scrape preference — click "Set token" below', 'ok');
+      } catch(e){}
+      render(); // re-render to show the set-token button
+      return;
+    }
+    var content = JSON.stringify({ types: types, updatedAt: new Date().toISOString().slice(0,10) }, null, 2);
+    var b64 = btoa(unescape(encodeURIComponent(content)));
+    var api = 'https://api.github.com/repos/' + GH_OWNER + '/' + GH_REPO + '/contents/' + GH_PATH;
+    // Get current SHA first, then commit
+    fetch(api, { headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github+json' } })
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(meta) {
+        var body = { message: 'scrape config: target ' + types.join(','), content: b64 };
+        if (meta && meta.sha) body.sha = meta.sha;
+        return fetch(api, {
+          method: 'PUT',
+          headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+      })
+      .then(function(r) {
+        if (r && r.ok) {
+          try { if (typeof toast==='function') toast('Saved! Agent will scrape ' + (TM[types[0]] ? TM[types[0]].label : types[0]) + ' contacts tomorrow.', 'ok'); } catch(e){}
+        } else {
+          try { if (typeof toast==='function') toast('Could not save to GitHub — check your token', 'ok'); } catch(e){}
+        }
+      })
+      .catch(function() {
+        try { if (typeof toast==='function') toast('Network error saving preference', 'ok'); } catch(e){}
+      });
+  }
 
   /* ── Nav wrap ────────────────────────────────────────────────────────── */
   function wrapNav() {
