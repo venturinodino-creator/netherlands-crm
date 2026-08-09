@@ -2109,27 +2109,27 @@ function renderMap() {
 
   const filterBtnStyle = (k, col) => `
     id="mf-${k}" onclick="setMapFilter('${k}')"
-    style="display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.1);
-    background:rgba(255,255,255,.04);color:rgba(255,255,255,.55);font-size:11px;font-weight:600;cursor:pointer;transition:all .15s;font-family:Inter,sans-serif"
-    onmouseover="this.style.borderColor='${col}';this.style.color='#fff'"
-    onmouseout="if(!this.classList.contains('mf-active')){this.style.borderColor='rgba(255,255,255,.1)';this.style.color='rgba(255,255,255,.55)'}"
+    style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:24px;border:1px solid rgba(255,255,255,.08);
+    background:rgba(255,255,255,.03);color:rgba(255,255,255,.45);font-size:11px;font-weight:700;cursor:pointer;transition:all .2s;font-family:Inter,sans-serif;letter-spacing:.3px"
+    onmouseover="this.style.borderColor='${col}55';this.style.color='rgba(255,255,255,.85)';this.style.background='${col}12'"
+    onmouseout="if(!this.classList.contains('mf-active')){this.style.borderColor='rgba(255,255,255,.08)';this.style.color='rgba(255,255,255,.45)';this.style.background='rgba(255,255,255,.03)'}"
   `;
 
   document.getElementById('content').innerHTML = `
     <style>
-      .mf-active{background:rgba(255,255,255,.09)!important;border-color:rgba(255,255,255,.3)!important;color:#fff!important}
+      .mf-active{background:rgba(255,255,255,.1)!important;border-color:rgba(255,255,255,.22)!important;color:#fff!important;box-shadow:0 2px 8px rgba(0,0,0,.3)!important}
     </style>
-    <div style="display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap;align-items:center">
+    <div style="display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap;align-items:center">
       <button id="mf-all" class="mf-active" onclick="setMapFilter('all')"
-        style="display:inline-flex;align-items:center;gap:5px;padding:5px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.3);
-        background:rgba(255,255,255,.09);color:#fff;font-size:11px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif">All</button>
-      ${Object.entries(TYPE_LABEL).map(([k,v])=>`
-        <button class="map-filter-btn" ${filterBtnStyle(k, TYPE_COLORS_MAP[k])}>
-          <span style="width:7px;height:7px;border-radius:50%;background:${TYPE_COLORS_MAP[k]};display:inline-block;flex-shrink:0;box-shadow:0 0 6px ${TYPE_COLORS_MAP[k]}"></span>
-          ${v.replace(' Inst.','')}
+        style="display:inline-flex;align-items:center;gap:5px;padding:6px 16px;border-radius:24px;border:1px solid rgba(255,255,255,.25);
+        background:rgba(255,255,255,.1);color:#fff;font-size:11px;font-weight:700;cursor:pointer;font-family:Inter,sans-serif;letter-spacing:.3px;box-shadow:0 2px 8px rgba(0,0,0,.3)">All</button>
+      \${Object.entries(TYPE_LABEL).map(([k,v])=>`
+        <button class="map-filter-btn" \${filterBtnStyle(k, TYPE_COLORS_MAP[k])}>
+          <span style="width:7px;height:7px;border-radius:50%;background:\${TYPE_COLORS_MAP[k]};display:inline-block;flex-shrink:0;box-shadow:0 0 8px \${TYPE_COLORS_MAP[k]}"></span>
+          \${v.replace(' Inst.','')}
         </button>`).join('')}
     </div>
-    <div id="map-container" style="height:calc(100vh - 180px);border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.08);box-shadow:0 8px 32px rgba(0,0,0,.4)"></div>`;
+    <div id="map-container" style="height:calc(100vh - 186px);border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.06);box-shadow:0 12px 48px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.04)"></div>`;
 
   if (typeof L === 'undefined') { document.getElementById('map-container').innerHTML = '<p style="padding:20px;color:var(--muted)">Map library not loaded.</p>'; return; }
   if (_fullMap) { try { _fullMap.remove(); } catch(e){} _fullMap = null; }
@@ -2139,7 +2139,7 @@ function renderMap() {
   setTimeout(() => {
     const map = L.map('map-container', { center:[52.25,5.2], zoom:7, zoomControl:true });
     _fullMap = map;
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
       maxZoom:19, subdomains:'abcd', attribution:'&copy; CartoDB'
     }).addTo(map);
 
@@ -2149,33 +2149,41 @@ function renderMap() {
       const contacts = contactsForInst(inst.id);
       const col = TYPE_COLORS_MAP[inst.type]||'#6366f1';
       const label = (TYPE_LABEL[inst.type]||inst.type).replace(' Inst.','');
-      const shortName = inst.short || inst.id.toUpperCase();
+      const abbr = (inst.short || inst.id).toUpperCase().slice(0,2);
 
       const pinIcon = L.divIcon({
         className: '',
-        html: `<div style="position:relative;display:flex;align-items:center;justify-content:center;width:32px;height:32px">
-          <div style="position:absolute;width:28px;height:28px;border-radius:50%;border:1.5px solid ${col};opacity:.35;animation:pulse-ring 2.2s ease-out infinite"></div>
-          <div style="width:16px;height:16px;border-radius:50%;background:${col};border:2px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;color:rgba(255,255,255,.9);font-family:Inter,sans-serif;flex-shrink:0">${shortName.slice(0,2)}</div>
+        html: `<div style="position:relative;display:flex;align-items:center;justify-content:center;width:46px;height:46px">
+          <div style="position:absolute;width:46px;height:46px;border-radius:50%;border:1.5px solid ${col};opacity:.2;animation:pulse-ring 2.8s ease-out infinite"></div>
+          <div style="position:absolute;width:36px;height:36px;border-radius:50%;border:1px solid ${col};opacity:.12;animation:pulse-ring 2.8s ease-out infinite;animation-delay:.7s"></div>
+          <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(145deg,${col},${col}bb);border:2px solid rgba(255,255,255,.3);box-shadow:0 0 14px ${col}55,0 2px 10px rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:#fff;font-family:Inter,sans-serif;letter-spacing:.5px;text-shadow:0 1px 3px rgba(0,0,0,.6)">${abbr}</div>
         </div>`,
-        iconSize: [32, 32],
-        iconAnchor: [16, 16],
-        popupAnchor: [0, -20]
+        iconSize: [46, 46],
+        iconAnchor: [23, 23],
+        popupAnchor: [0, -28]
       });
 
       const marker = L.marker(coords, { icon: pinIcon })
         .addTo(map)
         .bindPopup(`
-          <div style="min-width:170px">
-            <div style="font-size:13px;font-weight:700;color:#f8fafc;margin-bottom:4px;line-height:1.3">${inst.name}</div>
-            <div style="font-size:11px;color:rgba(255,255,255,.4);margin-bottom:2px">${inst.city}</div>
-            <div style="display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;margin-bottom:10px;background:${col}22;color:${col};border:1px solid ${col}44">${label}</div>
-            <div style="font-size:11px;color:rgba(255,255,255,.35);margin-bottom:10px">${contacts.length} contact${contacts.length!==1?'s':''}</div>
+          <div style="min-width:200px">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+              <div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(145deg,${col},${col}aa);border:2px solid rgba(255,255,255,.15);box-shadow:0 0 12px ${col}44;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;flex-shrink:0;letter-spacing:.5px">${abbr}</div>
+              <div style="flex:1;min-width:0">
+                <div style="font-size:13px;font-weight:700;color:#f8fafc;line-height:1.3">${inst.name}</div>
+                <div style="font-size:10px;color:rgba(255,255,255,.35);margin-top:2px">${inst.city}</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.07)">
+              <span style="font-size:10px;font-weight:600;padding:3px 9px;border-radius:20px;background:${col}1a;color:${col};border:1px solid ${col}33">${label}</span>
+              <span style="font-size:10px;color:rgba(255,255,255,.28);font-weight:500">${contacts.length} contact${contacts.length!==1?'s':''}</span>
+            </div>
             <button onclick="nav('detail',{instId:'${inst.id}'})"
-              style="background:linear-gradient(135deg,${col},${col}cc);color:#fff;border:none;border-radius:7px;padding:6px 12px;font-size:11px;font-weight:600;cursor:pointer;width:100%;font-family:Inter,sans-serif;letter-spacing:.2px">
-              View Profile 
+              style="background:linear-gradient(135deg,${col}ee,${col}99);color:#fff;border:none;border-radius:8px;padding:8px 12px;font-size:11px;font-weight:700;cursor:pointer;width:100%;font-family:Inter,sans-serif;letter-spacing:.3px;box-shadow:0 2px 10px ${col}33">
+              View Profile →
             </button>
           </div>
-        `, { maxWidth: 220 });
+        `, { maxWidth: 250 });
 
       marker._instType = inst.type;
       _mapMarkers.push(marker);
@@ -2193,7 +2201,7 @@ function setMapFilter(type) {
     b.style.color = 'rgba(255,255,255,.55)';
   });
   const active = document.getElementById('mf-' + type);
-  if (active) { active.classList.add('mf-active'); active.style.background='rgba(255,255,255,.09)'; active.style.borderColor='rgba(255,255,255,.3)'; active.style.color='#fff'; }
+  if (active) { active.classList.add('mf-active'); active.style.background='rgba(255,255,255,.1)'; active.style.borderColor='rgba(255,255,255,.22)'; active.style.color='#fff'; }
   // Show/hide markers
   _mapMarkers.forEach(m => {
     if (type === 'all' || m._instType === type) {
@@ -2211,13 +2219,14 @@ function initDashMiniMap() {
   setTimeout(() => {
     const map = L.map(el, { center:[52.25,5.2], zoom:6, zoomControl:false, attributionControl:false });
     _dashMiniMap = map;
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', { maxZoom:19, subdomains:'abcd' }).addTo(map);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { maxZoom:19, subdomains:'abcd' }).addTo(map);
     state.institutions.forEach(inst => {
       const coords = getInstCoords(inst);
       if (!coords) return;
+      const col = TYPE_COLORS_MAP[inst.type]||'#6366f1';
       L.circleMarker(coords, {
-        radius:5, fillColor: TYPE_COLORS_MAP[inst.type]||'#6366f1',
-        color:'#fff', weight:1.5, fillOpacity:0.85
+        radius:6, fillColor: col,
+        color:'rgba(255,255,255,.5)', weight:1.5, fillOpacity:0.9
       }).addTo(map).bindPopup('<strong>' + inst.name + '</strong><br><small>' + inst.city + '</small>');
     });
   }, 50);
