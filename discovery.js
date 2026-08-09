@@ -178,8 +178,16 @@
     contacts.push(Object.assign({}, contact, {
       institution: inst.name || contact.instId || '',
       addedAt: new Date().toISOString(),
+      status: 'active',
+      quality: 'verified',
     }));
     saveC(contacts); saveP(p);
+    // Update live state so Contacts view refreshes immediately
+    try {
+      if (window.state && Array.isArray(window.state.contacts)) {
+        window.state.contacts = contacts.filter(function(c){ return c.quality === 'verified'; });
+      }
+    } catch(e){}
     try { if (typeof loadPendingCount==='function') loadPendingCount(); } catch(e){}
     render();
   };
