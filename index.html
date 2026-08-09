@@ -3418,6 +3418,7 @@ if (!window.COMP_DATA) {
       pure:'yes', pureRenewal:'', pureProof:'',
       wos:'cancelled', wosRenewal:'Jan 2026', openalex:'free',
       dimensions:'unknown', converis:'no', symplectic:'no',
+      openalexTier:'Member', openalexFee:'$5,000/yr',
       proofWos: 'https://www.tudelft.nl/en/2025/library/access-to-web-of-science-and-journal-citation-reports-will-end-on-1-january-2026',
       proofOpenalex: 'https://explore.openalex.org/institutions/I60372599',
     },
@@ -3454,6 +3455,7 @@ if (!window.COMP_DATA) {
       pure:'unknown', pureRenewal:'', pureProof:'',
       wos:'yes', wosRenewal:'', openalex:'free',
       dimensions:'unknown', converis:'no', symplectic:'no',
+      openalexTier:'Partner', openalexFee:'Custom',
       proofWos: 'https://library.maastrichtuniversity.nl/database/web/',
       proofOpenalex: 'https://explore.openalex.org/institutions/I111979921',
     },
@@ -4029,6 +4031,13 @@ function renderSubscriptionMatrix() {
       <th style="padding:8px 12px;border-bottom:2px solid #e2e8f0;min-width:120px;text-align:center;background:#fff">
         <span style="font-size:10px;font-weight:600;color:#94a3b8">Verify</span>
       </th>
+      <th style="padding:8px 12px;border-bottom:2px solid #e2e8f0;border-left:2px solid #e2e8f0;min-width:130px;text-align:center;background:#f0fdfa">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+          <div style="width:6px;height:6px;border-radius:50%;background:#0d9488"></div>
+          <div style="font-size:11px;font-weight:700;color:#0f766e">OpenAlex Sub.</div>
+          <div style="font-size:9px;color:#94a3b8;font-weight:500">OpenAlex.org</div>
+        </div>
+      </th>
     </tr>
   </thead>
   <tbody>`;
@@ -4072,6 +4081,24 @@ function renderSubscriptionMatrix() {
         ${proofScopus ? `<a class="cmx-proof-link" href="${proofScopus}" target="_blank" rel="noopener" style="background:#fff7ed;color:#c2410c;border:1px solid #fed7aa">${extIcon} Scopus</a>` : ''}
         ${!proofWos && !proofOA && !proofScopus ? `<span style="font-size:10px;color:#cbd5e1">—</span>` : ''}
       </div>
+    </td>`;
+
+    // OpenAlex subscription tier column
+    const oaData = window.COMP_DATA[inst.id] || {};
+    const oaTier = oaData.openalexTier || null;
+    const oaFee  = oaData.openalexFee  || null;
+    const OA_TIER_STYLE = {
+      'Partner':  { bg:'#fffbeb', border:'#fde68a', text:'#92400e', dot:'#f59e0b' },
+      'Member+':  { bg:'#eff6ff', border:'#bfdbfe', text:'#1d4ed8', dot:'#3b82f6' },
+      'Member':   { bg:'#f0fdf4', border:'#bbf7d0', text:'#15803d', dot:'#10b981' },
+      'Direct':   { bg:'#f5f3ff', border:'#ddd6fe', text:'#6d28d9', dot:'#8b5cf6' },
+    };
+    const ts = oaTier ? (OA_TIER_STYLE[oaTier] || OA_TIER_STYLE['Member']) : null;
+    html += `<td style="padding:10px 8px;border-bottom:1px solid #f1f5f9;border-left:2px solid #e2e8f0;text-align:center;vertical-align:middle;background:#fafffe">
+      ${oaTier ? `<div style="display:inline-flex;flex-direction:column;align-items:center;gap:3px">
+        <span style="font-size:11px;font-weight:700;color:${ts.text};background:${ts.bg};border:1.5px solid ${ts.border};padding:3px 8px;border-radius:12px;white-space:nowrap">${oaTier}</span>
+        ${oaFee ? `<span style="font-size:9px;color:#64748b;font-weight:600">${oaFee}</span>` : ''}
+      </div>` : `<span style="font-size:10px;color:#cbd5e1">Free API</span>`}
     </td>`;
 
     html += '</tr>';
