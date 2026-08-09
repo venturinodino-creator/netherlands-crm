@@ -2009,8 +2009,8 @@ function initStatCardDrag() {
 }
 
 function getDashWidgetOrder() {
-  try { return JSON.parse(localStorage.getItem('nl_crm_widget_order')) || ['w-today','w-types','w-highprio','w-actions','w-map']; }
-  catch(e) { return ['w-today','w-types','w-highprio','w-actions','w-map']; }
+  try { return JSON.parse(localStorage.getItem('nl_crm_widget_order')) || ['w-types','w-highprio','w-actions','w-map']; }
+  catch(e) { return ['w-types','w-highprio','w-actions','w-map']; }
 }
 function saveDashWidgetOrder(order) {
   localStorage.setItem('nl_crm_widget_order', JSON.stringify(order));
@@ -2019,16 +2019,6 @@ function saveDashWidgetOrder(order) {
 function buildDashWidgets(typeRows, hpRows) {
   const handle = '';
   const _td2 = new Date().toISOString().slice(0,10);
-  const _dueList = state.institutions.filter(i=>i.nextActionDate && i.nextActionDate <= _td2)
-    .sort((a,b)=>a.nextActionDate.localeCompare(b.nextActionDate));
-  const actionRows = _dueList.length ? _dueList.map(i=>{
-    const isOvd = i.nextActionDate < _td2;
-    const lbl = isOvd ? '<span class="action-due action-overdue">Overdue</span>' : '<span class="action-due action-today">Today</span>';
-    return `<div class="action-item" onclick="nav('detail',{instId:'${i.id}'})">` +
-      lbl + `<div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:600">${esc(i.short||i.name)}</div>` +
-      `<div style="font-size:11px;color:var(--muted)">${esc(i.nextAction||'Follow up')}</div></div>` +
-      `<span style="font-size:10px;color:var(--muted)">${i.nextActionDate}</span></div>`;
-  }).join('') : '<p style="font-size:13px;color:var(--muted);padding:12px 0">No actions due today.</p>';
   const WIDGETS = {
     'w-types': `<div class="card dash-widget" data-widget-id="w-types" draggable="true">
       <div class="card-header"><span class="card-title">Institutions by Type</span>${handle}</div>
@@ -2048,10 +2038,6 @@ function buildDashWidgets(typeRows, hpRows) {
         <button class="btn btn-outline" onclick="syncOpenAlex()"> Sync Institutions</button>
         <button class="btn btn-outline" onclick="exportCSV()">¬ï¸ Export to CSV</button>
       </div>
-    </div>`,
-    'w-today': `<div class="card dash-widget" data-widget-id="w-today" draggable="true">
-      <div class="card-header"><span class="card-title">Today's Actions</span><button class="btn btn-xs btn-outline" onclick="nav('pipeline')">Pipeline \u2192</button>${handle}</div>
-      ${actionRows}
     </div>`,
     'w-map': `<div class="card dash-widget" data-widget-id="w-map" draggable="true">
       <div class="card-header"><span class="card-title">Map Overview</span><button class="btn btn-xs btn-outline" onclick="nav('map')">Full map </button>${handle}</div>
