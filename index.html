@@ -2009,8 +2009,8 @@ function initStatCardDrag() {
 }
 
 function getDashWidgetOrder() {
-  try { return JSON.parse(localStorage.getItem('nl_crm_widget_order')) || ['w-types','w-highprio','w-actions','w-map']; }
-  catch(e) { return ['w-types','w-highprio','w-actions','w-map']; }
+  try { return JSON.parse(localStorage.getItem('nl_crm_widget_order')) || ['w-types','w-highprio','w-map']; }
+  catch(e) { return ['w-types','w-highprio','w-map']; }
 }
 function saveDashWidgetOrder(order) {
   localStorage.setItem('nl_crm_widget_order', JSON.stringify(order));
@@ -2027,17 +2027,6 @@ function buildDashWidgets(typeRows, hpRows) {
     'w-highprio': `<div class="card dash-widget" data-widget-id="w-highprio" draggable="true">
       <div class="card-header"><span class="card-title">High Priority Contacts</span>${handle}</div>
       ${hpRows}
-    </div>`,
-    'w-actions': `<div class="card dash-widget" data-widget-id="w-actions" draggable="true">
-      <div class="card-header"><span class="card-title">Quick Actions</span>${handle}</div>
-      <div style="display:flex;flex-direction:column;gap:8px">
-        <button class="btn btn-primary" onclick="nav('institutions')">ï¸ Browse Institutions</button>
-        <button class="btn btn-outline" onclick="nav('contacts')"><span style="display:inline-flex;vertical-align:middle;margin-right:4px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span> View All Contacts</button>
-        <button class="btn btn-accent" onclick="openAddContact()">+ Add New Contact</button>
-        <button class="btn btn-outline" onclick="openAddInstitution()">+ Add Institution</button>
-        <button class="btn btn-outline" onclick="syncOpenAlex()"> Sync Institutions</button>
-        <button class="btn btn-outline" onclick="exportCSV()">¬ï¸ Export to CSV</button>
-      </div>
     </div>`,
     'w-map': `<div class="card dash-widget" data-widget-id="w-map" draggable="true">
       <div class="card-header"><span class="card-title">Map Overview</span><button class="btn btn-xs btn-outline" onclick="nav('map')">Full map </button>${handle}</div>
