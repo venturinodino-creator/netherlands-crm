@@ -1,4 +1,4 @@
-/* discovery.js v7 — NL Research CRM contact discovery */
+/* discovery.js v8 — NL Research CRM contact discovery */
 (function () {
   'use strict';
 
@@ -44,7 +44,14 @@
   /* ── Storage ──────────────────────────────────────────────────────────── */
   function getP()  { try { return JSON.parse(localStorage.getItem('nl_crm_pending')  || '[]'); } catch(e) { return []; } }
   function getC()  { try { return JSON.parse(localStorage.getItem('nl_crm_contacts') || '[]'); } catch(e) { return []; } }
-  function getT()  { try { return localStorage.getItem('nl_crm_stype') || 'all'; } catch(e) { return 'all'; } }
+  function getT()  {
+    try {
+      var v = localStorage.getItem('nl_crm_stype') || 'all';
+      // Handle old array format: '["university"]' → 'university'
+      if (v.charAt(0) === '[') { var a = JSON.parse(v); return (Array.isArray(a) && a[0]) ? a[0] : 'all'; }
+      return v;
+    } catch(e) { return 'all'; }
+  }
   function saveP(l){ localStorage.setItem('nl_crm_pending',  JSON.stringify(l)); }
   function saveC(l){ localStorage.setItem('nl_crm_contacts', JSON.stringify(l)); }
   function saveT(t){ localStorage.setItem('nl_crm_stype', t); }
@@ -325,5 +332,5 @@
   }
 
   window.__crmDiscovery = { syncFromFile: syncFromFile, getPending: getP };
-  console.log('[NL CRM] discovery.js v7');
+  console.log('[NL CRM] discovery.js v8');
 })();
