@@ -2019,15 +2019,15 @@ function initStatCardDrag() {
 }
 
 function getDashWidgetOrder() {
-  try { return JSON.parse(localStorage.getItem('nl_crm_widget_order')) || ['w-today','w-types','w-highprio','w-recent','w-actions','w-map']; }
-  catch(e) { return ['w-today','w-types','w-highprio','w-recent','w-actions','w-map']; }
+  try { return JSON.parse(localStorage.getItem('nl_crm_widget_order')) || ['w-today','w-types','w-highprio','w-actions','w-map']; }
+  catch(e) { return ['w-today','w-types','w-highprio','w-actions','w-map']; }
 }
 function saveDashWidgetOrder(order) {
   localStorage.setItem('nl_crm_widget_order', JSON.stringify(order));
 }
 
 function buildDashWidgets(typeRows, hpRows, recentRows) {
-  const handle = '<span class="widget-drag-handle" title="Drag to reorder"> ¿</span>';
+  const handle = '';
   const _td2 = new Date().toISOString().slice(0,10);
   const _dueList = state.institutions.filter(i=>i.nextActionDate && i.nextActionDate <= _td2)
     .sort((a,b)=>a.nextActionDate.localeCompare(b.nextActionDate));
