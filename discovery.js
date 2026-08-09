@@ -105,46 +105,52 @@
     var content = document.getElementById('content');
     if (!content) return;
 
-    var pending  = getP().filter(function(c){ return !!(c.email||'').trim(); }); // emails only
-    var selType  = getT()[0] || 'research';   // single selection
+    var allPending = getP();
+    var selType  = getT()[0] || 'all';
     var allTypes = ['university','medical','research','ngo'];
 
-    var pills = allTypes.map(function(t) {
-      var m = TM[t], active = (t === selType);
-      return '<button onclick="window._nlSelectT(\'' + t + '\')" style="' +
-        'border:2px solid ' + (active ? m.color : 'rgba(255,255,255,0.12)') + ';' +
-        'background:' + (active ? m.bg : 'transparent') + ';' +
-        'color:' + (active ? m.color : '#64748b') + ';' +
-        'border-radius:20px;padding:6px 18px;cursor:pointer;font-size:13px;font-weight:700;' +
-        'margin:0 8px 0 0;transition:all .15s;' +
-        (active ? 'box-shadow:0 0 0 1px ' + m.color + '40;' : '') +
-        '">' + m.label + '</button>';
-    }).join('');
+    // Filter pending by selected type (or show all)
+    var pending = selType === 'all'
+      ? allPending
+      : allPending.filter(function(c) {
+          var inst = INST[c.instId] || {};
+          return inst.type === selType;
+        });
 
-    var activeMeta = TM[selType];
-    var hasToken = !!getGhToken();
-    var tokenStatus = hasToken
-      ? '<span style="font-size:11px;color:#10b981">✓ Synced to GitHub</span>'
-      : '<button onclick="window._nlSetGhToken()" style="font-size:11px;background:none;border:1px solid rgba(255,255,255,0.15);color:#94a3b8;border-radius:6px;padding:3px 10px;cursor:pointer">Set token to save</button>';
-    var filterBar = '<div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;' +
+    var pills = [{ key:'all', label:'All', color:'#f1f5f9', bg:'rgba(241,245,249,0.08)' }]
+      .concat(allTypes.map(function(t){ return { key:t, label:TM[t].label, color:TM[t].color, bg:TM[t].bg }; }))
+      .map(function(item) {
+        var active = (item.key === selType);
+        return '<button onclick="window._nlSelectT(\'' + item.key + '\')" style="' +
+          'border:2px solid ' + (active ? item.color : 'rgba(255,255,255,0.12)') + ';' +
+          'background:' + (active ? item.bg : 'transparent') + ';' +
+          'color:' + (active ? item.color : '#64748b') + ';' +
+          'border-radius:20px;padding:6px 18px;cursor:pointer;font-size:13px;font-weight:700;' +
+          'margin:0 4px 0 0;transition:all .15s;' +
+          (active ? 'box-shadow:0 0 0 1px ' + item.color + '40;' : '') +
+          '">' + item.label + (active && item.key !== 'all' ? ' (' + pending.length + ')' : '') + '</button>';
+      }).join('');
+
+    var filterBar = '<div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;' +
       'background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);' +
-      'border-radius:12px;padding:14px 18px">' +
-      '<div style="font-size:12px;color:#64748b;font-weight:600;white-space:nowrap">NEXT SCRAPE →</div>' +
-      '<div style="display:flex;gap:8px;flex-wrap:wrap">' + pills + '</div>' +
-      '<div style="margin-left:auto;flex-shrink:0">' + tokenStatus + '</div>' +
+      'border-radius:12px;padding:12px 16px">' +
+      '<div style="font-size:11px;color:#64748b;font-weight:600;white-space:nowrap;text-transform:uppercase;letter-spacing:.05em">Filter</div>' +
+      '<div style="display:flex;gap:4px;flex-wrap:wrap">' + pills + '</div>' +
       '</div>';
 
-    if (!pending.length) {
+    if (!allPending.length) {
       content.innerHTML = '<div style="padding:24px">' + filterBar +
         '<p style="color:#94a3b8">No pending contacts. Next scrape runs at 07:00 UTC.</p></div>';
       return;
     }
 
     var header = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">' +
-      '<h2 style="color:#e2e8f0;margin:0">' + pending.length + ' New Contact' + (pending.length !== 1 ? 's' : '') + '</h2>' +
-      '<button onclick="window._nlAcceptAll()" style="background:linear-gradient(135deg,#10b981,#059669);' +
+      '<h2 style="color:#e2e8f0;margin:0">' + pending.length + ' New Contact' + (pending.length !== 1 ? 's' : '') +
+      (selType !== 'all' ? ' <span style="font-size:14px;font-weight:400;color:#64748b">(' + selType + ')</span>' : '') + '</h2>' +
+      (pending.length ? '<button onclick="window._nlAcceptAll()" style="background:linear-gradient(135deg,#10b981,#059669);' +
       'color:white;border:none;border-radius:8px;padding:10px 24px;cursor:pointer;font-size:14px;' +
-      'font-weight:700;box-shadow:0 4px 15px rgba(16,185,129,0.3)">Accept All (' + pending.length + ')</button></div>';
+      'font-weight:700;box-shadow:0 4px 15px rgba(16,185,129,0.3)">Accept All (' + pending.length + ')</button>' : '') +
+      '</div>';
 
     var cards = pending.map(function(c) {
       var inst  = INST[c.instId] || {};
@@ -201,8 +207,15 @@
   };
 
   window._nlAcceptAll = function() {
-    var p = getP();
+    // Accept only the currently-visible (filtered) contacts
+    var selType = getT()[0] || 'all';
+    var allP = getP();
+    var p = selType === 'all' ? allP : allP.filter(function(c) {
+      var inst = INST[c.instId] || {};
+      return inst.type === selType;
+    });
     if (!p.length) return;
+    var acceptIds = new Set(p.map(function(c){ return c.id; }));
     var contacts = getC();
     var emails = new Set(contacts.map(function(c){ return (c.email||'').toLowerCase(); }).filter(Boolean));
     var names  = new Set(contacts.map(function(c){ return (c.first+' '+c.last).toLowerCase().trim(); }).filter(Boolean));
@@ -222,7 +235,9 @@
       emails.add(el); names.add(nl);
       added++;
     });
-    saveC(contacts); saveP([]);
+    // Remove only the accepted contacts from pending (keep others)
+    var remaining = allP.filter(function(c){ return !acceptIds.has(c.id); });
+    saveC(contacts); saveP(remaining);
     // Update live state so Contacts view refreshes immediately without reload
     try {
       if (window.state && Array.isArray(window.state.contacts)) {
@@ -234,12 +249,10 @@
     render();
   };
 
-  // Single-select: clicking a type exclusively sets the scraper target
+  // Filter the pending list by institution type
   window._nlSelectT = function(t) {
     saveT([t]);
     render();
-    // Sync to scrape-config.json on GitHub so the daily agent picks it up
-    pushScrapeConfig([t]);
   };
 
   var GH_OWNER = 'venturinodino-creator';

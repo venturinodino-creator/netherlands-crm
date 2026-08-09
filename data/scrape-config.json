@@ -1,4 +1,4 @@
 {
-  "types": ["research"],
-  "updatedAt": "2026-08-06"
+  "types": ["research", "university", "medical", "ngo"],
+  "updatedAt": "2026-08-09"
 }
