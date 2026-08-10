@@ -3402,7 +3402,7 @@ window.matrixOverrides = {};
 try { window.matrixOverrides = JSON.parse(localStorage.getItem('crm_matrix_overrides')||'{}'); } catch(e){}
 let _matrixEditMode = false;
 
-const _CYCLE = ['active','expiring','unconfirmed','cancelled','none'];
+const _CYCLE = ['yes','likely','expiring','unknown','no'];
 const _OV_BADGES = { active:'', expiring:'³', unconfirmed:'?', cancelled:'', none:'—', likely:'~' };
 const _OV_TITLES = { active:'Active', expiring:'Cancelling', unconfirmed:'Unconfirmed', cancelled:'Cancelled', none:'Not subscribed', likely:'Likely active' };
 const _COL_LABELS = { springer:'SpringerLink', wiley:'Wiley Online', tf:'Taylor & Francis', wos:'Web of Science', ieee:'IEEE Xplore', acm:'ACM Digital Library', scifinder:'SciFinder-N' };
