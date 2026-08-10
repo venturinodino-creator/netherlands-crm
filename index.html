@@ -5169,7 +5169,7 @@ async function runContactDiscovery() {
 </script>
 <script src="animations.js?v=4"></script>
     <script src="openalex.js?v=7"></script>
-  <script src="discovery.js?v=8"></script>
+  <script src="discovery.js?v=9"></script>
 
 <script>
 // Override renderPendingContacts to use localStorage nl_crm_pending
@@ -5178,9 +5178,11 @@ window.renderPendingContacts = async function() {
   document.getElementById('page-title').textContent = 'New Contacts';
   document.getElementById('page-sub').textContent = 'AI-discovered contacts awaiting your review';
   const topbar = document.getElementById('topbar-actions');
-  if (topbar) topbar.innerHTML = '<div style="display:flex;gap:8px">'
+  var hasToken = !!localStorage.getItem('nl_crm_gh_token');
+  if (topbar) topbar.innerHTML = '<div style="display:flex;gap:8px;align-items:center">'
     + '<button class="btn btn-outline" onclick="runContactDiscovery()" style="font-size:12px"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:5px"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>Find contacts now</button>'
     + (pending.length ? '<button id="accept-all-btn" class="btn btn-accent" style="font-size:12px" onclick="window.acceptAllPending()">Accept All ('+pending.length+')</button>' : '')
+    + '<button onclick="window._nlSetGhToken()" title="' + (hasToken ? 'GitHub token configured ✓ — click to update' : 'Set GitHub token to enable scraper filters') + '" style="background:' + (hasToken ? 'rgba(16,185,129,0.15)' : 'rgba(239,68,68,0.12)') + ';border:1px solid ' + (hasToken ? 'rgba(16,185,129,0.3)' : 'rgba(239,68,68,0.25)') + ';color:' + (hasToken ? '#10b981' : '#f87171') + ';border-radius:6px;padding:5px 10px;cursor:pointer;font-size:13px">🔑</button>'
     + '</div>';
   const content = document.getElementById('content');
   if (!pending.length) {

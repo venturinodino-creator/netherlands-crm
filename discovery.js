@@ -195,25 +195,49 @@
   }
 
   /* ── Pill → scraper config via GitHub API ─────────────────────────────── */
-  function pushScrapeConfig(types) {
+  function pushScrapeConfig(types, retry) {
     var token = localStorage.getItem('nl_crm_gh_token') || '';
-    if (!token) return;
+    if (!token) {
+      if (retry) return; // already prompted once
+      var t = prompt(
+        'To save your scraper preference to GitHub, paste a Personal Access Token.\n\n' +
+        'Create one at: github.com/settings/tokens/new\n' +
+        '  → Name: netherlands-crm\n' +
+        '  → Expiration: 90 days\n' +
+        '  → Repository access: Only select repos → venturinodino-creator/netherlands-crm\n' +
+        '  → Permissions: Contents → Read and write\n\n' +
+        'Paste token (leave blank to skip):'
+      );
+      if (!t || !t.trim()) {
+        try { if (typeof toast==='function') toast('Scraper filter not saved — no GitHub token. Click 🔑 in the topbar to set one.','ok'); } catch(e){}
+        return;
+      }
+      localStorage.setItem('nl_crm_gh_token', t.trim());
+      try { if (typeof toast==='function') toast('Token saved ✓ — saving scraper config…','ok'); } catch(e){}
+      pushScrapeConfig(types, true);
+      return;
+    }
     var payload = JSON.stringify({ types: types, updatedAt: new Date().toISOString().slice(0,10) }, null, 2);
     var body64  = btoa(unescape(encodeURIComponent(payload)));
     var api     = 'https://api.github.com/repos/venturinodino-creator/netherlands-crm/contents/data/scrape-config.json';
     fetch(api, { headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github+json' } })
       .then(function(r) { return r.ok ? r.json() : {}; })
       .then(function(meta) {
-        var req = { message: 'scrape: target ' + types.join(','), content: body64 };
+        var label = types.length === 4 ? 'all types' : types.join(' + ');
+        var req = { message: 'scrape: target ' + label, content: body64 };
         if (meta.sha) req.sha = meta.sha;
         return fetch(api, { method: 'PUT', headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' }, body: JSON.stringify(req) });
       })
       .then(function(r) {
         if (r && r.ok) {
-          try { if (typeof toast==='function') toast('Scraper will target ' + types.join(' + ') + ' tomorrow ✓','ok'); } catch(e){}
+          var label = types.length === 4 ? 'all institution types' : (TM[types[0]]||{label:types[0]}).label;
+          try { if (typeof toast==='function') toast('✓ Next scrape will target: ' + label,'ok'); } catch(e){}
+        } else if (r && r.status === 401) {
+          localStorage.removeItem('nl_crm_gh_token');
+          try { if (typeof toast==='function') toast('GitHub token invalid or expired — click 🔑 to update it','ok'); } catch(e){}
         }
       })
-      .catch(function(){});
+      .catch(function(){ try { if (typeof toast==='function') toast('Could not reach GitHub API','ok'); } catch(e){} });
   }
 
   /* ── Handlers ─────────────────────────────────────────────────────────── */
