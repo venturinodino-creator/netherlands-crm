@@ -6,18 +6,20 @@
       "p2",
       "p3",
       "p4",
-      "p5"
+      "p5",
+      "p6"
     ],
-    "cwi_page": 6,
+    "cwi_page": 7,
     "esc_oa_id": "https://openalex.org/I4210095242",
     "esc": [
       "p1",
       "p2",
       "p3",
       "p4",
-      "p5"
+      "p5",
+      "p6"
     ],
-    "esc_page": 6,
+    "esc_page": 7,
     "pbl": [
       "https://www.pbl.nl/en/about-pbl/staff",
       "marian-abels-van-overveld",
@@ -32,12 +34,36 @@
       "p2",
       "p3",
       "p4",
-      "p5"
+      "p5",
+      "p6"
     ],
-    "rathenau_page": 6
+    "rathenau_page": 7,
+    "uva_oa_id": "https://openalex.org/I887064364",
+    "uva": [
+      "p1"
+    ],
+    "uva_page": 2,
+    "vu_oa_id": "https://openalex.org/I865915315",
+    "vu": [
+      "p1"
+    ],
+    "vu_page": 2,
+    "uu_oa_id": "https://openalex.org/I193662353",
+    "uu": [
+      "p1"
+    ],
+    "uu_page": 2,
+    "leiden_oa_id": "https://openalex.org/I121797337",
+    "leiden": [
+      "p1"
+    ],
+    "leiden_page": 2
   },
-  "lastRun": "2026-08-09T07:44:43.404Z",
+  "lastRun": "2026-08-10T08:21:11.928Z",
   "lastTypes": [
-    "research"
+    "research",
+    "university",
+    "medical",
+    "ngo"
   ]
 }
