@@ -1,4 +1,4 @@
-/* discovery.js v8 — NL Research CRM contact discovery */
+/* discovery.js v10 — NL Research CRM contact discovery */
 (function () {
   'use strict';
 
@@ -132,11 +132,12 @@
     var pills = pillDefs.map(function(p) {
       var active = p.key === selType;
       return '<button onclick="window._nlSelectT(\'' + p.key + '\')" style="' +
-        'border:2px solid ' + (active ? p.color : 'rgba(255,255,255,0.1)') + ';' +
+        'border:2px solid ' + (active ? p.color : 'rgba(255,255,255,0.08)') + ';' +
         'background:' + (active ? p.bg : 'transparent') + ';' +
-        'color:' + (active ? p.color : '#64748b') + ';' +
+        'color:' + (active ? p.color : 'rgba(255,255,255,0.2)') + ';' +
         'border-radius:20px;padding:5px 14px;cursor:pointer;font-size:12px;font-weight:700;white-space:nowrap;' +
-        (active ? 'box-shadow:0 0 0 1px ' + p.color + '33;' : '') + '">' + p.label + '</button>';
+        'transition:all 0.15s;' +
+        (active ? 'box-shadow:0 0 8px ' + p.color + '44;' : 'filter:grayscale(100%);') + '">' + p.label + '</button>';
     }).join('');
 
     var filterBar = '<div style="display:flex;align-items:center;gap:8px;margin-bottom:20px;flex-wrap:wrap;' +
@@ -195,26 +196,11 @@
   }
 
   /* ── Pill → scraper config via GitHub API ─────────────────────────────── */
-  function pushScrapeConfig(types, retry) {
+  function pushScrapeConfig(types) {
     var token = localStorage.getItem('nl_crm_gh_token') || '';
     if (!token) {
-      if (retry) return; // already prompted once
-      var t = prompt(
-        'To save your scraper preference to GitHub, paste a Personal Access Token.\n\n' +
-        'Create one at: github.com/settings/tokens/new\n' +
-        '  → Name: netherlands-crm\n' +
-        '  → Expiration: 90 days\n' +
-        '  → Repository access: Only select repos → venturinodino-creator/netherlands-crm\n' +
-        '  → Permissions: Contents → Read and write\n\n' +
-        'Paste token (leave blank to skip):'
-      );
-      if (!t || !t.trim()) {
-        try { if (typeof toast==='function') toast('Scraper filter not saved — no GitHub token. Click 🔑 in the topbar to set one.','ok'); } catch(e){}
-        return;
-      }
-      localStorage.setItem('nl_crm_gh_token', t.trim());
-      try { if (typeof toast==='function') toast('Token saved ✓ — saving scraper config…','ok'); } catch(e){}
-      pushScrapeConfig(types, true);
+      // Silent — user can set token via 🔑 button; don't interrupt with a prompt
+      try { if (typeof toast==='function') toast('Filter applied. Click 🔑 to save as default for future scrapes.','ok'); } catch(e){}
       return;
     }
     var payload = JSON.stringify({ types: types, updatedAt: new Date().toISOString().slice(0,10) }, null, 2);
@@ -234,10 +220,10 @@
           try { if (typeof toast==='function') toast('✓ Next scrape will target: ' + label,'ok'); } catch(e){}
         } else if (r && r.status === 401) {
           localStorage.removeItem('nl_crm_gh_token');
-          try { if (typeof toast==='function') toast('GitHub token invalid or expired — click 🔑 to update it','ok'); } catch(e){}
+          try { if (typeof toast==='function') toast('GitHub token expired — click 🔑 to update it','ok'); } catch(e){}
         }
       })
-      .catch(function(){ try { if (typeof toast==='function') toast('Could not reach GitHub API','ok'); } catch(e){} });
+      .catch(function(){});
   }
 
   /* ── Handlers ─────────────────────────────────────────────────────────── */
