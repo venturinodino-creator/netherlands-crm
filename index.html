@@ -3926,22 +3926,22 @@ function renderSubscriptionMatrix() {
   document.getElementById('page-sub').textContent = 'Subscription intelligence across the Netherlands research landscape';
 
   const ELSEVIER = [
-    {key:'scopus',  label:'Scopus',   color:'#ea580c'},
+    {key:'scopus',  label:'Scopus',   color:'#fb923c'},
     {key:'scival',  label:'SciVal',   color:'#f97316'},
-    {key:'pure',    label:'Pure',     color:'#c2410c'},
+    {key:'pure',    label:'Pure',     color:'#ea580c'},
   ];
   const COMPETITORS = [
-    {key:'wos',        label:'Web of Science', vendor:'Clarivate',       color:'#7c3aed'},
-    {key:'openalex',   label:'OpenAlex',       vendor:'OpenAlex.org',    color:'#0d9488'},
+    {key:'wos',      label:'Web of Science', vendor:'Clarivate',    color:'#a78bfa'},
+    {key:'openalex', label:'OpenAlex',       vendor:'OpenAlex.org', color:'#34d399'},
   ];
 
   const STATUS = {
-    yes:      { label:'Active',    dot:'#16a34a', bg:'#f0fdf4', text:'#15803d', border:'#bbf7d0', icon:'✓' },
-    no:       { label:'None',      dot:'#dc2626', bg:'#fef2f2', text:'#b91c1c', border:'#fecaca', icon:'✕' },
-    unknown:  { label:'Unknown',   dot:'#d97706', bg:'#fffbeb', text:'#92400e', border:'#fde68a', icon:'?' },
-    likely:   { label:'Likely',    dot:'#2563eb', bg:'#eff6ff', text:'#1d4ed8', border:'#bfdbfe', icon:'~' },
-    expiring: { label:'Expiring',  dot:'#ea580c', bg:'#fff7ed', text:'#c2410c', border:'#fed7aa', icon:'!' },
-    free:     { label:'Open',      dot:'#0d9488', bg:'#f0fdfa', text:'#0f766e', border:'#99f6e4', icon:'◎' },
+    yes:      { label:'Active',   dot:'#22c55e', bg:'rgba(34,197,94,.13)',   border:'rgba(34,197,94,.35)',   text:'#4ade80', glow:'0 0 10px rgba(34,197,94,.5)',   icon:'✓' },
+    no:       { label:'None',     dot:'#f87171', bg:'rgba(239,68,68,.1)',    border:'rgba(239,68,68,.3)',    text:'#f87171', glow:'0 0 10px rgba(239,68,68,.4)',   icon:'✕' },
+    unknown:  { label:'Unknown',  dot:'#fbbf24', bg:'rgba(245,158,11,.1)',   border:'rgba(245,158,11,.3)',   text:'#fbbf24', glow:'0 0 10px rgba(245,158,11,.4)', icon:'?' },
+    likely:   { label:'Likely',   dot:'#60a5fa', bg:'rgba(59,130,246,.1)',   border:'rgba(59,130,246,.3)',   text:'#60a5fa', glow:'0 0 10px rgba(59,130,246,.5)', icon:'~' },
+    expiring: { label:'Expiring', dot:'#fb923c', bg:'rgba(249,115,22,.1)',   border:'rgba(249,115,22,.3)',   text:'#fb923c', glow:'0 0 10px rgba(249,115,22,.5)', icon:'!' },
+    free:     { label:'Open',     dot:'#00f5c4', bg:'rgba(0,245,196,.08)',   border:'rgba(0,245,196,.3)',    text:'#00f5c4', glow:'0 0 10px rgba(0,245,196,.5)',  icon:'◎' },
   };
 
   const isEditing = _matrixEditMode;
@@ -3975,7 +3975,6 @@ function renderSubscriptionMatrix() {
   function getProofOpenalex(instId){ return (window.COMP_DATA||{})[instId]?.proofOpenalex || ''; }
   function getProofForCol(instId, key) { const cd=(window.COMP_DATA||{})[instId]; return cd?(cd[key+'Proof']||''):''; }
 
-  // Summary stats
   const totalInsts = insts.length;
   const elsevierActive = insts.filter(i => getStatus(i.id,'scopus')==='yes').length;
   const wosActive = insts.filter(i => ['yes','likely'].includes(getStatus(i.id,'wos'))).length;
@@ -3984,11 +3983,11 @@ function renderSubscriptionMatrix() {
     const s = getStatus(instId, col.key);
     const st = STATUS[s] || STATUS.unknown;
     const renewal = getRenewal(instId, col.key);
-    const tdAttr = isEditing ? `onclick="event.stopPropagation();cycleCell('${instId}','${col.key}',event)" style="cursor:pointer;text-align:center;padding:12px 8px;border-bottom:1px solid #f1f5f9;border-right:1px solid #f1f5f9;vertical-align:middle"` : `style="text-align:center;padding:12px 8px;border-bottom:1px solid #f1f5f9;border-right:1px solid #f1f5f9;vertical-align:middle"`;
-    return `<td ${tdAttr}>
-      <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
-        <span title="${st.label}" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:${st.bg};border:1.5px solid ${st.border};font-size:12px;font-weight:800;color:${st.text};transition:transform .1s;${isEditing?'cursor:pointer':''}" onmouseenter="this.style.transform='scale(1.15)'" onmouseleave="this.style.transform='scale(1)'">${st.icon}</span>
-        ${renewal ? `<span style="font-size:9px;color:#94a3b8;font-weight:500;letter-spacing:.02em">${renewal}</span>` : ''}
+    const tdClick = isEditing ? `onclick="event.stopPropagation();cycleCell('${instId}','${col.key}',event)"` : '';
+    return `<td ${tdClick} style="cursor:${isEditing?'pointer':'default'};text-align:center;padding:10px 8px;border-bottom:1px solid rgba(255,255,255,.04);border-right:1px solid rgba(255,255,255,.04);vertical-align:middle">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+        <span title="${st.label}" style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:${st.bg};border:1.5px solid ${st.border};font-size:12px;font-weight:800;color:${st.text};transition:all .15s;box-shadow:none" onmouseenter="this.style.boxShadow='${st.glow}';this.style.transform='scale(1.2)'" onmouseleave="this.style.boxShadow='none';this.style.transform='scale(1)'">${st.icon}</span>
+        ${renewal ? `<span style="font-size:9px;color:rgba(255,255,255,.4);font-weight:500">${renewal}</span>` : ''}
       </div>
     </td>`;
   }
@@ -3997,49 +3996,61 @@ function renderSubscriptionMatrix() {
 
   let html = `
   <style>
-    .cmx-wrap { overflow-x:auto; border-radius:14px; box-shadow:0 2px 16px rgba(0,0,0,.08); border:1px solid #e2e8f0; background:#fff; margin-top:8px; }
-    .cmx-table { width:100%; border-collapse:separate; border-spacing:0; min-width:960px; background:#fff; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; }
+    .cmx-wrap { overflow-x:auto; border-radius:14px; border:1px solid rgba(255,255,255,.07); background:rgba(26,40,62,0.95); margin-top:8px; box-shadow:0 4px 32px rgba(0,0,0,.4); }
+    .cmx-table { width:100%; border-collapse:separate; border-spacing:0; min-width:960px; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; }
     .cmx-table thead th { position:sticky; z-index:3; }
     .cmx-table thead tr:first-child th { top:0; z-index:4; }
-    .cmx-table thead tr:last-child th { top:38px; z-index:3; }
-    .cmx-sticky { position:sticky; left:0; z-index:5 !important; background:#fff; }
-    .cmx-table thead .cmx-sticky { background:#f8fafc !important; }
-    .cmx-table tbody tr { transition:background .1s; }
-    .cmx-table tbody tr:hover td { background:#f8faff !important; }
-    .cmx-table tbody tr:hover td.cmx-sticky { background:#eef2ff !important; }
-    .cmx-elsevier-bg { background:#fff7f0 !important; }
-    .cmx-table tbody tr:hover .cmx-elsevier-bg { background:#ffeedd !important; }
-    .cmx-proof-link { display:inline-flex;align-items:center;gap:3px;font-size:10px;padding:3px 8px;border-radius:4px;text-decoration:none;font-weight:500;transition:opacity .1s; }
-    .cmx-proof-link:hover { opacity:.75; }
-    @media print { .cmx-wrap { box-shadow:none; border:1px solid #ccc; } }
+    .cmx-table thead tr:last-child th { top:40px; z-index:3; }
+    .cmx-sticky { position:sticky; left:0; z-index:5 !important; background:rgba(26,40,62,0.98) !important; }
+    .cmx-table thead .cmx-sticky { background:rgba(15,22,38,0.98) !important; }
+    .cmx-table tbody tr { transition:background .12s; }
+    .cmx-table tbody tr:hover td { background:rgba(255,255,255,.03) !important; }
+    .cmx-table tbody tr:hover td.cmx-sticky { background:rgba(38,54,78,.98) !important; }
+    .cmx-elsevier-bg { background:rgba(251,146,60,.04) !important; }
+    .cmx-table tbody tr:hover .cmx-elsevier-bg { background:rgba(251,146,60,.08) !important; }
+    .cmx-oa-bg { background:rgba(0,245,196,.03) !important; }
+    .cmx-table tbody tr:hover .cmx-oa-bg { background:rgba(0,245,196,.06) !important; }
+    .cmx-proof-link { display:inline-flex;align-items:center;gap:3px;font-size:10px;padding:3px 7px;border-radius:5px;text-decoration:none;font-weight:600;transition:all .15s; }
+    .cmx-proof-link:hover { filter:brightness(1.2); transform:translateY(-1px); }
+    .cmx-header-els { background:linear-gradient(180deg,rgba(251,146,60,.12) 0%,rgba(251,146,60,.05) 100%) !important; }
+    .cmx-header-oa { background:linear-gradient(180deg,rgba(0,245,196,.08) 0%,rgba(0,245,196,.03) 100%) !important; }
   </style>
 
   <!-- Summary bar -->
-  <div style="display:flex;gap:20px;align-items:center;margin-bottom:16px;padding:14px 20px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.04)">
-    <div style="display:flex;align-items:center;gap:10px">
-      <div style="width:36px;height:36px;border-radius:10px;background:#fff7ed;border:1.5px solid #fed7aa;display:flex;align-items:center;justify-content:center">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#ea580c" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+  <div style="display:flex;gap:20px;align-items:center;margin-bottom:16px;padding:16px 24px;background:rgba(26,40,62,0.95);border:1px solid rgba(255,255,255,.07);border-radius:14px;box-shadow:0 4px 24px rgba(0,0,0,.3)">
+    <div style="display:flex;align-items:center;gap:12px">
+      <div style="width:40px;height:40px;border-radius:10px;background:rgba(251,146,60,.12);border:1px solid rgba(251,146,60,.25);display:flex;align-items:center;justify-content:center;box-shadow:0 0 16px rgba(251,146,60,.15)">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fb923c" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
       </div>
-      <div><div style="font-size:20px;font-weight:800;color:#0f172a;line-height:1">${totalInsts}</div><div style="font-size:11px;color:#64748b;font-weight:500">institutions tracked</div></div>
+      <div>
+        <div style="font-size:22px;font-weight:800;color:#f8fafc;line-height:1">${totalInsts}</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4);font-weight:500;margin-top:1px">institutions tracked</div>
+      </div>
     </div>
-    <div style="width:1px;height:36px;background:#e2e8f0"></div>
+    <div style="width:1px;height:40px;background:rgba(255,255,255,.08)"></div>
     <div>
-      <div style="font-size:11px;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">Scopus coverage</div>
-      <div style="display:flex;align-items:center;gap:6px">
-        <div style="height:6px;width:140px;border-radius:3px;background:#e2e8f0;overflow:hidden"><div style="height:100%;width:${Math.round(elsevierActive/totalInsts*100)}%;background:#16a34a;border-radius:3px"></div></div>
-        <span style="font-size:12px;font-weight:700;color:#15803d">${elsevierActive}/${totalInsts}</span>
+      <div style="font-size:10px;color:rgba(255,255,255,.4);font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px">Scopus coverage</div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <div style="height:6px;width:140px;border-radius:3px;background:rgba(255,255,255,.08);overflow:hidden">
+          <div style="height:100%;width:${Math.round(elsevierActive/totalInsts*100)}%;background:linear-gradient(90deg,#16a34a,#4ade80);border-radius:3px;box-shadow:0 0 8px rgba(74,222,128,.5)"></div>
+        </div>
+        <span style="font-size:12px;font-weight:700;color:#4ade80">${elsevierActive}/${totalInsts}</span>
       </div>
     </div>
-    <div style="width:1px;height:36px;background:#e2e8f0"></div>
+    <div style="width:1px;height:40px;background:rgba(255,255,255,.08)"></div>
     <div>
-      <div style="font-size:11px;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">WoS exposure</div>
-      <div style="display:flex;align-items:center;gap:6px">
-        <div style="height:6px;width:140px;border-radius:3px;background:#e2e8f0;overflow:hidden"><div style="height:100%;width:${Math.round(wosActive/totalInsts*100)}%;background:#7c3aed;border-radius:3px"></div></div>
-        <span style="font-size:12px;font-weight:700;color:#7c3aed">${wosActive}/${totalInsts}</span>
+      <div style="font-size:10px;color:rgba(255,255,255,.4);font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px">WoS exposure</div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <div style="height:6px;width:140px;border-radius:3px;background:rgba(255,255,255,.08);overflow:hidden">
+          <div style="height:100%;width:${Math.round(wosActive/totalInsts*100)}%;background:linear-gradient(90deg,#6d28d9,#a78bfa);border-radius:3px;box-shadow:0 0 8px rgba(167,139,250,.5)"></div>
+        </div>
+        <span style="font-size:12px;font-weight:700;color:#a78bfa">${wosActive}/${totalInsts}</span>
       </div>
     </div>
-    <div style="margin-left:auto;display:flex;gap:12px;flex-wrap:wrap">
-      ${Object.entries(STATUS).map(([k,v])=>`<span style="display:inline-flex;align-items:center;gap:5px;font-size:11px;color:#64748b;white-space:nowrap"><span style="width:8px;height:8px;border-radius:50%;background:${v.dot};flex-shrink:0"></span>${v.label}</span>`).join('')}
+    <div style="margin-left:auto;display:flex;gap:14px;flex-wrap:wrap;align-items:center">
+      ${Object.entries(STATUS).map(([k,v])=>`<span style="display:inline-flex;align-items:center;gap:5px;font-size:11px;color:rgba(255,255,255,.45);white-space:nowrap">
+        <span style="width:8px;height:8px;border-radius:50%;background:${v.dot};flex-shrink:0;box-shadow:0 0 6px ${v.dot}88"></span>${v.label}
+      </span>`).join('')}
     </div>
   </div>
 
@@ -4047,50 +4058,50 @@ function renderSubscriptionMatrix() {
   <table class="cmx-table">
   <thead>
     <!-- Group header -->
-    <tr style="background:#f8fafc">
-      <th class="cmx-sticky" style="background:#f8fafc;min-width:180px;padding:10px 16px;text-align:left;border-bottom:1px solid #e2e8f0;border-right:2px solid #e2e8f0">
-        <span style="font-size:10px;font-weight:700;color:#94a3b8;letter-spacing:.08em;text-transform:uppercase">Institution</span>
+    <tr>
+      <th class="cmx-sticky" style="min-width:185px;padding:10px 16px;text-align:left;border-bottom:1px solid rgba(255,255,255,.06);border-right:1px solid rgba(255,255,255,.08);background:rgba(15,22,38,0.98) !important">
+        <span style="font-size:10px;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.1em;text-transform:uppercase">Institution</span>
       </th>
-      <th colspan="3" style="background:#fff7ed;border-bottom:1px solid #e2e8f0;border-right:2px solid #fed7aa;padding:8px 12px;text-align:center">
-        <div style="display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:800;color:#c2410c;letter-spacing:.1em;text-transform:uppercase">
-          <div style="width:6px;height:6px;border-radius:50%;background:#ea580c"></div>
+      <th colspan="3" class="cmx-header-els" style="border-bottom:1px solid rgba(251,146,60,.25);border-right:1px solid rgba(251,146,60,.2);padding:9px 12px;text-align:center">
+        <div style="display:inline-flex;align-items:center;gap:7px;font-size:10px;font-weight:800;color:#fb923c;letter-spacing:.1em;text-transform:uppercase">
+          <div style="width:6px;height:6px;border-radius:50%;background:#fb923c;box-shadow:0 0 8px rgba(251,146,60,.7)"></div>
           Elsevier Products
         </div>
       </th>
-      <th colspan="5" style="background:#f8fafc;border-bottom:1px solid #e2e8f0;border-right:1px solid #e2e8f0;padding:8px 12px;text-align:center">
-        <div style="display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:800;color:#475569;letter-spacing:.1em;text-transform:uppercase">
-          <div style="width:6px;height:6px;border-radius:50%;background:#7c3aed"></div>
+      <th colspan="5" style="background:rgba(15,22,38,.5);border-bottom:1px solid rgba(167,139,250,.2);border-right:1px solid rgba(255,255,255,.06);padding:9px 12px;text-align:center">
+        <div style="display:inline-flex;align-items:center;gap:7px;font-size:10px;font-weight:800;color:#a78bfa;letter-spacing:.1em;text-transform:uppercase">
+          <div style="width:6px;height:6px;border-radius:50%;background:#a78bfa;box-shadow:0 0 8px rgba(167,139,250,.7)"></div>
           Competitor Intelligence
         </div>
       </th>
-      <th style="background:#f8fafc;border-bottom:1px solid #e2e8f0;padding:8px 12px;text-align:center">
-        <span style="font-size:10px;font-weight:700;color:#94a3b8;letter-spacing:.08em;text-transform:uppercase">Sources</span>
+      <th style="background:rgba(0,245,196,.03);border-bottom:1px solid rgba(255,255,255,.06);padding:9px 12px;text-align:center">
+        <span style="font-size:10px;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.08em;text-transform:uppercase">Sources</span>
       </th>
     </tr>
     <!-- Column names -->
-    <tr style="background:#fff">
-      <th class="cmx-sticky" style="background:#fff;padding:8px 16px;border-bottom:2px solid #e2e8f0;border-right:2px solid #e2e8f0"></th>
-      ${ELSEVIER.map(c=>`<th style="padding:8px 6px;border-bottom:2px solid #e2e8f0;border-right:1px solid #f1f5f9;min-width:88px;text-align:center;background:#fff7ed">
+    <tr>
+      <th class="cmx-sticky" style="padding:8px 16px;border-bottom:1px solid rgba(255,255,255,.08);border-right:1px solid rgba(255,255,255,.08);background:rgba(15,22,38,0.98) !important"></th>
+      ${ELSEVIER.map(c=>`<th class="cmx-header-els" style="padding:9px 6px;border-bottom:1px solid rgba(251,146,60,.2);border-right:1px solid rgba(251,146,60,.1);min-width:88px;text-align:center">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+          <div style="width:7px;height:7px;border-radius:50%;background:${c.color};box-shadow:0 0 8px ${c.color}99"></div>
+          <div style="font-size:11px;font-weight:700;color:${c.color}">${c.label}</div>
+        </div>
+      </th>`).join('')}
+      ${COMPETITORS.map((c,i)=>`<th style="padding:9px 6px;border-bottom:1px solid rgba(167,139,250,.2);border-right:${i<COMPETITORS.length-1?'1px solid rgba(167,139,250,.1)':'1px solid rgba(255,255,255,.06)'};min-width:96px;text-align:center;background:rgba(15,22,38,.5)">
         <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
-          <div style="width:6px;height:6px;border-radius:50%;background:${c.color}"></div>
-          <div style="font-size:11px;font-weight:700;color:#92400e">${c.label}</div>
+          <div style="width:7px;height:7px;border-radius:50%;background:${c.color};box-shadow:0 0 8px ${c.color}99"></div>
+          <div style="font-size:11px;font-weight:700;color:${c.color}">${c.label}</div>
+          <div style="font-size:9px;color:rgba(255,255,255,.3);font-weight:500">${c.vendor}</div>
         </div>
       </th>`).join('')}
-      ${COMPETITORS.map((c,i)=>`<th style="padding:8px 6px;border-bottom:2px solid #e2e8f0;border-right:${i<COMPETITORS.length-1?'1px solid #f1f5f9':'2px solid #e2e8f0'};min-width:96px;text-align:center;background:#fff">
-        <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
-          <div style="width:6px;height:6px;border-radius:50%;background:${c.color}"></div>
-          <div style="font-size:11px;font-weight:700;color:#1e293b">${c.label}</div>
-          <div style="font-size:9px;color:#94a3b8;font-weight:500">${c.vendor}</div>
-        </div>
-      </th>`).join('')}
-      <th style="padding:8px 12px;border-bottom:2px solid #e2e8f0;min-width:120px;text-align:center;background:#fff">
-        <span style="font-size:10px;font-weight:600;color:#94a3b8">Verify</span>
+      <th style="padding:9px 12px;border-bottom:1px solid rgba(255,255,255,.08);min-width:120px;text-align:center;background:rgba(0,245,196,.03)">
+        <span style="font-size:10px;font-weight:600;color:rgba(255,255,255,.3)">Verify</span>
       </th>
-      <th style="padding:8px 12px;border-bottom:2px solid #e2e8f0;border-left:2px solid #e2e8f0;min-width:130px;text-align:center;background:#f0fdfa">
-        <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
-          <div style="width:6px;height:6px;border-radius:50%;background:#0d9488"></div>
-          <div style="font-size:11px;font-weight:700;color:#0f766e">OpenAlex Sub.</div>
-          <div style="font-size:9px;color:#94a3b8;font-weight:500">OpenAlex.org</div>
+      <th class="cmx-header-oa" style="padding:9px 12px;border-bottom:1px solid rgba(0,245,196,.2);border-left:1px solid rgba(0,245,196,.15);min-width:130px;text-align:center">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+          <div style="width:7px;height:7px;border-radius:50%;background:#00f5c4;box-shadow:0 0 10px rgba(0,245,196,.7)"></div>
+          <div style="font-size:11px;font-weight:700;color:#00f5c4">OpenAlex Sub.</div>
+          <div style="font-size:9px;color:rgba(255,255,255,.3);font-weight:500">OpenAlex.org</div>
         </div>
       </th>
     </tr>
@@ -4098,17 +4109,16 @@ function renderSubscriptionMatrix() {
   <tbody>`;
 
   insts.forEach((inst, idx) => {
-    const isEven = idx % 2 === 0;
     const proofWos    = getProofWos(inst.id);
     const proofOA     = getProofOpenalex(inst.id);
     const proofScopus = getProofForCol(inst.id, 'scopus');
     const note = getNotes(inst.id);
 
     html += `<tr onclick="nav('detail',{instId:'${inst.id}'})" style="cursor:pointer">
-      <td class="cmx-sticky" style="background:${isEven?'#fff':'#fafafa'};padding:12px 16px;border-bottom:1px solid #f1f5f9;border-right:2px solid #e2e8f0;min-width:180px;max-width:180px">
-        <div style="font-size:13px;font-weight:700;color:#0f172a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${inst.short||inst.name}</div>
-        <div style="font-size:10px;color:#94a3b8;margin-top:2px;font-weight:500">${inst.city}</div>
-        ${note ? `<div style="font-size:10px;color:#64748b;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px" title="${note.replace(/"/g,'&quot;')}">📝 ${note}</div>` : ''}
+      <td class="cmx-sticky" style="padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.04);border-right:1px solid rgba(255,255,255,.07);min-width:185px;max-width:185px">
+        <div style="font-size:13px;font-weight:700;color:#f8fafc;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${inst.short||inst.name}</div>
+        <div style="font-size:10px;color:rgba(255,255,255,.35);margin-top:2px;font-weight:500">${inst.city}</div>
+        ${note ? `<div style="font-size:10px;color:rgba(255,255,255,.3);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px" title="${note.replace(/"/g,'&quot;')}">\ud83d\udcdd ${note}</div>` : ''}
       </td>`;
 
     ELSEVIER.forEach(col => {
@@ -4116,55 +4126,52 @@ function renderSubscriptionMatrix() {
       const st = STATUS[s] || STATUS.unknown;
       const renewal = getRenewal(inst.id, col.key);
       const tdEditAttr = isEditing ? `onclick="event.stopPropagation();cycleCell('${inst.id}','${col.key}',event)"` : '';
-      html += `<td class="cmx-elsevier-bg" ${tdEditAttr} style="cursor:${isEditing?'pointer':'default'};text-align:center;padding:12px 8px;border-bottom:1px solid #f1f5f9;border-right:1px solid #fed7aa;vertical-align:middle">
-        <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
-          <span title="${st.label}" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:${st.bg};border:1.5px solid ${st.border};font-size:12px;font-weight:800;color:${st.text};${isEditing?'cursor:pointer':''}" onmouseenter="this.style.transform='scale(1.15)'" onmouseleave="this.style.transform='scale(1)'">${st.icon}</span>
-          ${renewal ? `<span style="font-size:9px;color:#92400e;font-weight:600;background:#fff7ed;padding:1px 5px;border-radius:3px;letter-spacing:.02em">${renewal}</span>` : ''}
+      html += `<td class="cmx-elsevier-bg" ${tdEditAttr} style="cursor:${isEditing?'pointer':'default'};text-align:center;padding:10px 8px;border-bottom:1px solid rgba(255,255,255,.04);border-right:1px solid rgba(251,146,60,.1);vertical-align:middle">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+          <span title="${st.label}" style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:${st.bg};border:1.5px solid ${st.border};font-size:12px;font-weight:800;color:${st.text};transition:all .15s;box-shadow:none" onmouseenter="this.style.boxShadow='${st.glow}';this.style.transform='scale(1.2)'" onmouseleave="this.style.boxShadow='none';this.style.transform='scale(1)'">${st.icon}</span>
+          ${renewal ? `<span style="font-size:9px;color:#fb923c;font-weight:600;background:rgba(251,146,60,.12);padding:1px 5px;border-radius:3px;letter-spacing:.02em">${renewal}</span>` : ''}
         </div>
       </td>`;
     });
 
     COMPETITORS.forEach((col, i) => {
-      html += statusCell(inst.id, col).replace('border-right:1px solid #f1f5f9', i===COMPETITORS.length-1?'border-right:2px solid #e2e8f0':'border-right:1px solid #f1f5f9');
+      html += statusCell(inst.id, col).replace('border-right:1px solid rgba(255,255,255,.04)', i===COMPETITORS.length-1?'border-right:1px solid rgba(255,255,255,.06)':'border-right:1px solid rgba(167,139,250,.1)');
     });
 
-    // Sources column
-    html += `<td style="padding:10px 10px;border-bottom:1px solid #f1f5f9;text-align:center;vertical-align:middle" onclick="event.stopPropagation()">
+    html += `<td style="padding:10px 10px;border-bottom:1px solid rgba(255,255,255,.04);text-align:center;vertical-align:middle;background:rgba(0,245,196,.02)" onclick="event.stopPropagation()">
       <div style="display:flex;flex-direction:column;gap:4px;align-items:center">
-        ${proofWos    ? `<a class="cmx-proof-link" href="${proofWos}"    target="_blank" rel="noopener" style="background:#f5f3ff;color:#6d28d9;border:1px solid #ddd6fe">${extIcon} WoS</a>` : ''}
-        ${proofOA     ? `<a class="cmx-proof-link" href="${proofOA}"     target="_blank" rel="noopener" style="background:#f0fdfa;color:#0f766e;border:1px solid #99f6e4">${extIcon} OpenAlex</a>` : ''}
-        ${proofScopus ? `<a class="cmx-proof-link" href="${proofScopus}" target="_blank" rel="noopener" style="background:#fff7ed;color:#c2410c;border:1px solid #fed7aa">${extIcon} Scopus</a>` : ''}
-        ${!proofWos && !proofOA && !proofScopus ? `<span style="font-size:10px;color:#cbd5e1">—</span>` : ''}
+        ${proofWos    ? `<a class="cmx-proof-link" href="${proofWos}"    target="_blank" rel="noopener" style="background:rgba(167,139,250,.12);color:#c4b5fd;border:1px solid rgba(167,139,250,.25)">${extIcon} WoS</a>` : ''}
+        ${proofOA     ? `<a class="cmx-proof-link" href="${proofOA}"     target="_blank" rel="noopener" style="background:rgba(0,245,196,.08);color:#00f5c4;border:1px solid rgba(0,245,196,.25)">${extIcon} OpenAlex</a>` : ''}
+        ${proofScopus ? `<a class="cmx-proof-link" href="${proofScopus}" target="_blank" rel="noopener" style="background:rgba(251,146,60,.1);color:#fb923c;border:1px solid rgba(251,146,60,.25)">${extIcon} Scopus</a>` : ''}
+        ${!proofWos && !proofOA && !proofScopus ? `<span style="font-size:10px;color:rgba(255,255,255,.2)">\u2014</span>` : ''}
       </div>
     </td>`;
 
-    // OpenAlex subscription tier column
     const oaData = window.COMP_DATA[inst.id] || {};
     const oaTier = oaData.openalexTier || null;
     const oaFee  = oaData.openalexFee  || null;
     const OA_TIER_STYLE = {
-      'Partner':  { bg:'#fffbeb', border:'#fde68a', text:'#92400e', dot:'#f59e0b' },
-      'Member+':  { bg:'#eff6ff', border:'#bfdbfe', text:'#1d4ed8', dot:'#3b82f6' },
-      'Member':   { bg:'#f0fdf4', border:'#bbf7d0', text:'#15803d', dot:'#10b981' },
-      'Direct':   { bg:'#f5f3ff', border:'#ddd6fe', text:'#6d28d9', dot:'#8b5cf6' },
+      'Partner':  { bg:'rgba(251,191,36,.1)',  border:'rgba(251,191,36,.3)',  text:'#fbbf24', glow:'0 0 8px rgba(251,191,36,.4)' },
+      'Member+':  { bg:'rgba(96,165,250,.1)',  border:'rgba(96,165,250,.3)',  text:'#60a5fa', glow:'0 0 8px rgba(96,165,250,.4)' },
+      'Member':   { bg:'rgba(52,211,153,.1)',  border:'rgba(52,211,153,.3)',  text:'#34d399', glow:'0 0 8px rgba(52,211,153,.4)' },
+      'Direct':   { bg:'rgba(167,139,250,.1)', border:'rgba(167,139,250,.3)', text:'#c4b5fd', glow:'0 0 8px rgba(167,139,250,.4)' },
     };
     const ts = oaTier ? (OA_TIER_STYLE[oaTier] || OA_TIER_STYLE['Member']) : null;
-    html += `<td style="padding:10px 8px;border-bottom:1px solid #f1f5f9;border-left:2px solid #e2e8f0;text-align:center;vertical-align:middle;background:#fafffe">
+    html += `<td class="cmx-oa-bg" style="padding:10px 8px;border-bottom:1px solid rgba(255,255,255,.04);border-left:1px solid rgba(0,245,196,.1);text-align:center;vertical-align:middle">
       ${oaTier ? `<div style="display:inline-flex;flex-direction:column;align-items:center;gap:3px">
-        <span style="font-size:11px;font-weight:700;color:${ts.text};background:${ts.bg};border:1.5px solid ${ts.border};padding:3px 8px;border-radius:12px;white-space:nowrap">${oaTier}</span>
-        ${oaFee ? `<span style="font-size:9px;color:#64748b;font-weight:600">${oaFee}</span>` : ''}
-      </div>` : `<span style="font-size:10px;font-weight:600;color:#64748b;background:#f1f5f9;border:1px solid #e2e8f0;padding:2px 8px;border-radius:10px">Free API</span>`}
+        <span style="font-size:11px;font-weight:700;color:${ts.text};background:${ts.bg};border:1px solid ${ts.border};padding:3px 9px;border-radius:12px;white-space:nowrap;box-shadow:${ts.glow}">${oaTier}</span>
+        ${oaFee ? `<span style="font-size:9px;color:rgba(255,255,255,.35);font-weight:600">${oaFee}</span>` : ''}
+      </div>` : `<span style="font-size:10px;font-weight:600;color:rgba(0,245,196,.6);background:rgba(0,245,196,.06);border:1px solid rgba(0,245,196,.15);padding:2px 9px;border-radius:10px">Free API</span>`}
     </td>`;
 
     html += '</tr>';
   });
 
   html += `</tbody></table></div>
-  <div style="margin-top:10px;font-size:10px;color:#94a3b8;text-align:right">Click any row to view institution detail &nbsp;·&nbsp; ${new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}</div>`;
+  <div style="margin-top:10px;font-size:10px;color:rgba(255,255,255,.25);text-align:right">Click any row to view institution detail \u00b7 ${new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}</div>`;
 
   document.getElementById('content').innerHTML = html;
 }
-
 const COMPETITOR_PRODUCTS = {
 
   /*  TU/e (Eindhoven University of Technology)  */
