@@ -4291,6 +4291,13 @@ function renderCompetitorInsights() {
     </div>`;
     return;
   }
+  // Catch up anyone whose local storage got seeded incompletely in an earlier
+  // visit (e.g. before later competitors were added to the feed) — runs once
+  // per page load, silently, without disturbing manually-added/edited entries.
+  if (!window._aiInsightsAutoSynced) {
+    window._aiInsightsAutoSynced = true;
+    refreshAIInsights(true);
+  }
 
   list = list.slice().sort(function(a,b){ return (b.addedDate||'').localeCompare(a.addedDate||''); });
 
