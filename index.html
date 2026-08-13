@@ -1954,19 +1954,35 @@ function renderDashboard() {
     </div>`;
   }).join('') || '<p style="font-size:13px;color:var(--muted);padding:12px 0">No high-priority contacts yet.</p>';
 
-  const upcomingActions = _dueInst.slice().sort((a,b)=>(a.nextActionDate||'').localeCompare(b.nextActionDate||'')).slice(0,5);
-  const actionRows = upcomingActions.map(i=>{
-    const overdue = i.nextActionDate < _today;
-    const today = i.nextActionDate === _today;
-    const badgeColor = overdue ? '#f87171' : today ? '#fb923c' : 'var(--muted)';
-    const badgeBg = overdue ? 'rgba(239,68,68,.12)' : today ? 'rgba(251,146,60,.12)' : 'rgba(255,255,255,.05)';
-    const badgeLabel = overdue ? 'Overdue' : today ? 'Today' : i.nextActionDate;
-    return `<div class="recent-row" style="cursor:pointer" onclick="nav('detail',{instId:'${i.id}'})">
-      <div class="av" style="background:${avatarColor(i.name||i.id)}">${(i.short||i.name||'?').slice(0,2).toUpperCase()}</div>
-      <div class="ri"><h4>${esc(i.nextAction||'Follow up')}</h4><p>${esc(i.short||i.name||'')}</p></div>
-      <span class="badge" style="background:${badgeBg};color:${badgeColor};border-color:${badgeColor}33">${esc(badgeLabel)}</span>
+  const AGENTS = [
+    {
+      id: 'agent-discovery', name: 'Contact Discovery', icon: '👤',
+      status: 'active', cadence: 'Daily · 07:00 UTC · GitHub Actions', source: 'OpenAlex API',
+      statusEl: 'agent-discovery-lastrun', view: 'pending',
+    },
+    {
+      id: 'agent-tenders', name: 'Tender / RFP Scraper', icon: '📄',
+      status: 'manual', cadence: 'Not scheduled — run manually', source: 'TED Europa & TenderNed',
+      statusEl: null, view: 'rfp',
+    },
+    {
+      id: 'agent-competitor', name: 'Competitor Insights Scan', icon: '🔍',
+      status: 'manual', cadence: 'Not scheduled — run manually', source: 'LeapSpace competitor watch',
+      statusEl: null, view: 'ai-insights',
+    },
+  ];
+  const agentRows = AGENTS.map(a=>{
+    const live = a.status === 'active';
+    const dot = live ? '#4ade80' : 'rgba(255,255,255,.3)';
+    const badgeBg = live ? 'rgba(74,222,128,.12)' : 'rgba(255,255,255,.05)';
+    const badgeColor = live ? '#4ade80' : 'var(--muted)';
+    const badgeLabel = live ? 'Active' : 'Manual';
+    return `<div class="recent-row" style="cursor:pointer" onclick="nav('${a.view}')">
+      <div class="av" style="background:rgba(255,255,255,.06);position:relative">${a.icon}<span style="position:absolute;bottom:-1px;right:-1px;width:9px;height:9px;border-radius:50%;background:${dot};border:1.5px solid var(--card,#111a2e);box-shadow:0 0 6px ${dot}"></span></div>
+      <div class="ri"><h4>${esc(a.name)}</h4><p>${esc(a.source)} · ${esc(a.cadence)}${a.statusEl ? ` · <span id="${a.statusEl}">checking…</span>` : ''}</p></div>
+      <span class="badge" style="background:${badgeBg};color:${badgeColor};border-color:${badgeColor}33">${badgeLabel}</span>
     </div>`;
-  }).join('') || '<p style="font-size:13px;color:var(--muted);padding:12px 0">No upcoming actions scheduled.</p>';
+  }).join('');
 
   // Stat card definitions — order persisted in localStorage nl_crm_stat_order
   const _statCards = {
@@ -2001,13 +2017,29 @@ function renderDashboard() {
     <div class="stats-grid" id="stats-grid-drag">${statCardsHtml}</div>
 
     <div class="dash-grid" id="dash-widget-grid">
-      ${buildDashWidgets(typeRows, hpRows, actionRows)}
+      ${buildDashWidgets(typeRows, hpRows, agentRows)}
     </div>`;
   initDashDrag();
   initStatCardDrag();
   // Load pending contacts count
   loadPendingCount();
   initDashMiniMap();
+  syncAgentStatus();
+}
+
+function syncAgentStatus() {
+  const el = document.getElementById('agent-discovery-lastrun');
+  if (!el) return;
+  fetch('/netherlands-crm/data/discovery-state.json?t=' + Date.now())
+    .then(r => r.ok ? r.json() : null)
+    .then(data => {
+      if (!data || !data.lastRun) { el.textContent = 'no run recorded yet'; return; }
+      const ran = new Date(data.lastRun);
+      const hrs = Math.round((Date.now() - ran.getTime()) / 3600000);
+      const rel = hrs < 1 ? 'just now' : hrs === 1 ? '1 hour ago' : hrs < 24 ? hrs + ' hours ago' : Math.round(hrs/24) + 'd ago';
+      el.textContent = 'last ran ' + rel;
+    })
+    .catch(() => { el.textContent = 'status unavailable'; });
 }
 
 let _scDragSrc = null;
@@ -2052,7 +2084,7 @@ function initStatCardDrag() {
   });
 }
 
-const DASH_WIDGET_DEFAULT_ORDER = ['w-types','w-highprio','w-map','w-actions'];
+const DASH_WIDGET_DEFAULT_ORDER = ['w-types','w-highprio','w-map','w-agents'];
 function getDashWidgetOrder() {
   let order;
   try { order = JSON.parse(localStorage.getItem('nl_crm_widget_order')); if(!Array.isArray(order)||!order.length) order=null; }
@@ -2065,7 +2097,7 @@ function saveDashWidgetOrder(order) {
   localStorage.setItem('nl_crm_widget_order', JSON.stringify(order));
 }
 
-function buildDashWidgets(typeRows, hpRows, actionRows) {
+function buildDashWidgets(typeRows, hpRows, agentRows) {
   const handle = '';
   const _td2 = new Date().toISOString().slice(0,10);
   const WIDGETS = {
@@ -2077,9 +2109,9 @@ function buildDashWidgets(typeRows, hpRows, actionRows) {
       <div class="card-header"><span class="card-title">High Priority Contacts</span>${handle}</div>
       ${hpRows}
     </div>`,
-    'w-actions': `<div class="card dash-widget" data-widget-id="w-actions" draggable="true">
-      <div class="card-header"><span class="card-title">Upcoming Actions</span><button class="btn btn-xs btn-outline" onclick="nav('institutions')">View all </button>${handle}</div>
-      ${actionRows}
+    'w-agents': `<div class="card dash-widget" data-widget-id="w-agents" draggable="true">
+      <div class="card-header"><span class="card-title">Agents Working For You</span>${handle}</div>
+      ${agentRows}
     </div>`,
     'w-map': `<div class="card dash-widget" data-widget-id="w-map" draggable="true">
       <div class="card-header"><span class="card-title">Map Overview</span><button class="btn btn-xs btn-outline" onclick="nav('map')">Full map </button>${handle}</div>
