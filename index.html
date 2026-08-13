@@ -928,8 +928,8 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
     <div class="nav-item" data-view="subscriptions" onclick="nav('subscriptions')">
       <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div> Competitor Matrix
     </div>
-    <div class="nav-item" data-view="competitor-insight" onclick="nav('competitor-insight')">
-      <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 10v6M4.2 4.2l4.2 4.2m7.2 7.2 4.2 4.2M1 12h6m10 0h6M4.2 19.8l4.2-4.2m7.2-7.2 4.2-4.2"/></svg></div> Competitor Insight
+    <div class="nav-item" data-view="ai-insights" onclick="nav('ai-insights')">
+      <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5c0 1.7.7 2.6 1.5 3.5.6.6 1 1.2 1.2 2.1M12 2a5 5 0 0 1 5 5c0 1.7-.7 2.6-1.5 3.5-.6.6-1 1.2-1.2 2.1M9.7 12.6h4.6M9.9 16h4.2M10.5 19h3"/></svg></div> Competitor Insights
     </div>
     <div class="nav-item" data-view="rfp" onclick="nav('rfp')">
       <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div> RFP Opps
@@ -1889,7 +1889,7 @@ function render() {
     news: renderNews,
     pipeline: renderPipeline,
     subscriptions: renderSubscriptionMatrix,
-    'competitor-insight': renderCompetitorInsight,
+    'ai-insights': renderCompetitorInsights,
     openalex: renderOpenAlex,
     barcelona: renderBarcelonaDecl,
   };
@@ -4177,128 +4177,182 @@ function renderSubscriptionMatrix() {
   document.getElementById('content').innerHTML = html;
 }
 
-//  COMPETITOR INSIGHT (product-level, not per-institution) 
-// Reference data — verified manually, update as vendors ship new features.
-// ai.has: true/false/'partial'. url fields are for external verification only.
-const COMPETITOR_INSIGHT_DATA = {
-  scopus: {
-    label: 'Scopus', color: '#fb923c', desc: 'Abstract & citation database',
-    competitors: [
-      { name:'Web of Science', vendor:'Clarivate', ai:'partial', aiDetail:'Research Intelligence AI-generated summaries; citation topic clustering', url:'https://clarivate.com/webofsciencegroup/solutions/web-of-science/' },
-      { name:'Dimensions', vendor:'Digital Science', ai:true, aiDetail:'Dimensions AI-assisted analytics & research assistant features', url:'https://www.dimensions.ai/' },
-    ],
-    openAlt: [
-      { name:'OpenAlex', ai:true, aiDetail:'ML-based topic/field classification, entity disambiguation', url:'https://openalex.org/' },
-      { name:'Semantic Scholar', ai:true, aiDetail:'AI-generated TLDRs, citation context classification', url:'https://www.semanticscholar.org/' },
-      { name:'Lens.org', ai:false, aiDetail:'Rule-based filtering, no generative AI layer', url:'https://www.lens.org/' },
-    ]
-  },
-  leapspace: {
-    label: 'LeapSpace', color: '#38bdf8', desc: 'AI-native research discovery workspace',
-    competitors: [
-      { name:'Elicit', vendor:'Elicit / Ought', ai:true, aiDetail:'AI research assistant — literature review, data extraction, Q&A over papers', url:'https://elicit.com/' },
-      { name:'Consensus', vendor:'Consensus', ai:true, aiDetail:'AI search engine that synthesizes findings across papers', url:'https://consensus.app/' },
-      { name:'SciSpace', vendor:'SciSpace', ai:true, aiDetail:'AI copilot for reading, writing & literature review', url:'https://scispace.com/' },
-    ],
-    openAlt: [
-      { name:'Semantic Scholar (Ask this paper)', ai:true, aiDetail:'Free AI Q&A grounded in paper text', url:'https://www.semanticscholar.org/' },
-      { name:'Perplexity (academic focus)', ai:true, aiDetail:'General-purpose AI search, usable for lit review with citations', url:'https://www.perplexity.ai/' },
-    ]
-  },
-  scival: {
-    label: 'SciVal', color: '#f97316', desc: 'Research performance & benchmarking analytics',
-    competitors: [
-      { name:'InCites', vendor:'Clarivate', ai:'partial', aiDetail:'AI-assisted benchmarking narratives (beta rollout)', url:'https://clarivate.com/products/scientific-and-academic-research/research-intelligence/incites/' },
-      { name:'Dimensions Analytics', vendor:'Digital Science', ai:true, aiDetail:'AI-generated insights on funding & output trends', url:'https://www.dimensions.ai/' },
-    ],
-    openAlt: [
-      { name:'OpenAlex + custom dashboards', ai:false, aiDetail:'Raw API data; any AI layer has to be built on top', url:'https://openalex.org/' },
-      { name:'Leiden Ranking / CWTS tools', ai:false, aiDetail:'Bibliometric indicators, no AI layer', url:'https://www.leidenranking.com/' },
-    ]
-  },
-  pure: {
-    label: 'Pure', color: '#ea580c', desc: 'Current Research Information System (CRIS)',
-    competitors: [
-      { name:'Symplectic Elements', vendor:'Digital Science', ai:'partial', aiDetail:'Automated publication harvesting/matching; limited generative AI', url:'https://www.digital-science.com/product/symplectic-elements/' },
-      { name:'Converis', vendor:'Clarivate', ai:false, aiDetail:'Workflow automation; no notable generative AI features', url:'https://clarivate.com/products/scientific-and-academic-research/research-management-and-collaboration/converis/' },
-    ],
-    openAlt: [
-      { name:'VIVO', ai:false, aiDetail:'Open-source CRIS, semantic-web based, no built-in AI', url:'https://duraspace.org/vivo/' },
-      { name:'DSpace-CRIS', ai:false, aiDetail:'Open-source, extensible; AI possible via plugins, not native', url:'https://www.dspace-cris.com/' },
-    ]
-  }
+//  AI COMPETITOR INSIGHTS (LeapSpace watch)
+const LEAPSPACE_ELEMENTS = {
+  ideaGeneration:        { label: 'Idea Generation',         color: '#00f5c4' },
+  literatureExploration: { label: 'Literature Exploration',  color: '#60a5fa' },
+  collaboratorDiscovery: { label: 'Collaborator Discovery',  color: '#a78bfa' },
+  fundingDiscovery:      { label: 'Funding Discovery',       color: '#fbbf24' },
+  writingAgent:          { label: 'Writing Agent',           color: '#f472b6' },
+  evidenceChecking:      { label: 'Evidence Checking',       color: '#4ade80' },
 };
 
-function renderCompetitorInsight() {
-  document.getElementById('page-title').textContent = 'Competitor Insight';
-  document.getElementById('page-sub').textContent = 'Product-level competitive landscape — paid competitors vs. open/free alternatives, by AI capability';
-  document.getElementById('topbar-actions').innerHTML = '';
+function getAIInsights() {
+  try { return JSON.parse(localStorage.getItem('nl_crm_ai_insights') || '[]'); } catch(e) { return []; }
+}
+function saveAIInsights(list) { localStorage.setItem('nl_crm_ai_insights', JSON.stringify(list)); }
 
-  const AI_BADGE = {
-    true:     { label:'AI', bg:'rgba(0,245,196,.1)', border:'rgba(0,245,196,.35)', text:'#00f5c4', icon:'✓' },
-    partial:  { label:'Partial', bg:'rgba(245,158,11,.1)', border:'rgba(245,158,11,.35)', text:'#fbbf24', icon:'~' },
-    false:    { label:'No AI', bg:'rgba(239,68,68,.08)', border:'rgba(239,68,68,.25)', text:'#f87171', icon:'✕' },
+function refreshAIInsights(silent) {
+  const btn = document.getElementById('refresh-insights-btn');
+  if (btn) { btn.textContent = '↻ Scanning...'; btn.disabled = true; }
+  fetch('/netherlands-crm/data/leapspace-competitors.json?t=' + Date.now())
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(remote) {
+      if (!Array.isArray(remote)) remote = [];
+      const existing = getAIInsights();
+      const existingMap = {};
+      existing.forEach(function(x){ existingMap[x.id] = x; });
+      var added = 0;
+      remote.forEach(function(x) {
+        if (!existingMap[x.id]) { existing.push(x); existingMap[x.id] = x; added++; }
+      });
+      saveAIInsights(existing);
+      if (!silent) {
+        var msg = added > 0 ? added+' new competitor solution'+(added>1?'s':'')+' found!' : 'Up to date — no new solutions found';
+        try { if (typeof toast==='function') toast(msg, added>0?'ok':'warn'); } catch(e){}
+      }
+      if (btn) { btn.textContent = '↻ Scan for New Solutions'; btn.disabled = false; }
+      renderCompetitorInsights();
+    })
+    .catch(function() {
+      if (!silent) { try { if (typeof toast==='function') toast('Could not reach insights feed','warn'); } catch(e){} }
+      if (btn) { btn.textContent = '↻ Scan for New Solutions'; btn.disabled = false; }
+    });
+}
+
+function deleteAIInsight(id) {
+  if (!confirm('Remove this competitor insight?')) return;
+  saveAIInsights(getAIInsights().filter(function(x){ return x.id !== id; }));
+  renderCompetitorInsights();
+}
+
+function openAddAIInsight() {
+  document.getElementById('ai-company').value = '';
+  document.getElementById('ai-product').value = '';
+  document.getElementById('ai-desc').value = '';
+  document.getElementById('ai-source-name').value = '';
+  document.getElementById('ai-source-url').value = '';
+  Object.keys(LEAPSPACE_ELEMENTS).forEach(function(k){
+    var cb = document.getElementById('ai-el-'+k); if (cb) cb.checked = false;
+  });
+  openModal('modal-ai-insight');
+}
+
+function saveAIInsight() {
+  const company = document.getElementById('ai-company').value.trim();
+  const product = document.getElementById('ai-product').value.trim();
+  if (!company || !product) { try { toast('Company and product name are required','warn'); } catch(e){ alert('Company and product name are required'); } return; }
+  const elements = Object.keys(LEAPSPACE_ELEMENTS).filter(function(k){
+    var cb = document.getElementById('ai-el-'+k); return cb && cb.checked;
+  });
+  const entry = {
+    id: 'manual_' + Date.now() + '_' + Math.random().toString(36).slice(2,6),
+    company: company,
+    product: product,
+    addedDate: new Date().toISOString().slice(0,10),
+    elements: elements,
+    howItCompetes: document.getElementById('ai-desc').value.trim(),
+    sourceUrl: document.getElementById('ai-source-url').value.trim(),
+    sourceName: document.getElementById('ai-source-name').value.trim() || 'Manual entry',
   };
-  function aiPill(ai, detail) {
-    const b = AI_BADGE[String(ai)] || AI_BADGE['false'];
-    return `<span title="${(detail||'').replace(/"/g,'&quot;')}" style="display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;padding:3px 9px;border-radius:99px;background:${b.bg};border:1px solid ${b.border};color:${b.text};white-space:nowrap">${b.icon} ${b.label}</span>`;
-  }
-  const extIcon = `<svg viewBox="0 0 24 24" width="9" height="9" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
-  function linkOut(url, label) {
-    return url ? `<a href="${url}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:3px;font-size:11px;color:rgba(255,255,255,.55);text-decoration:none" onmouseenter="this.style.color='#fff'" onmouseleave="this.style.color='rgba(255,255,255,.55)'">${label}${extIcon}</a>` : label;
-  }
+  const list = getAIInsights();
+  list.unshift(entry);
+  saveAIInsights(list);
+  closeModal('modal-ai-insight');
+  try { toast('Competitor insight added','ok'); } catch(e){}
+  renderCompetitorInsights();
+}
 
-  let html = `<div style="display:flex;flex-direction:column;gap:22px">`;
+function renderCompetitorInsights() {
+  document.getElementById('page-title').textContent = 'Competitor Insights';
+  document.getElementById('page-sub').textContent = 'AI solutions competing against Elsevier LeapSpace';
+  document.getElementById('topbar-actions').innerHTML = `<div style="display:flex;gap:8px;align-items:center">
+    <button class="btn btn-outline" onclick="openAddAIInsight()" style="font-size:12px;padding:6px 14px">+ Add Insight</button>
+    <button id="refresh-insights-btn" class="btn btn-accent" onclick="refreshAIInsights()" style="display:flex;align-items:center;gap:6px">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+      Scan for New Solutions
+    </button>
+  </div>`;
 
-  Object.entries(COMPETITOR_INSIGHT_DATA).forEach(([key, prod]) => {
-    const maxRows = Math.max(prod.competitors.length, prod.openAlt.length);
-    let rows = '';
-    for (let i = 0; i < maxRows; i++) {
-      const c = prod.competitors[i];
-      const o = prod.openAlt[i];
-      rows += `<tr>
-        <td style="padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.05);border-right:1px solid rgba(255,255,255,.06)">
-          ${c ? `<div style="font-size:12.5px;font-weight:700;color:#f8fafc">${linkOut(c.url, c.name)}</div><div style="font-size:10px;color:rgba(255,255,255,.35);margin-top:1px">${c.vendor}</div>` : ''}
-        </td>
-        <td style="padding:10px 10px;border-bottom:1px solid rgba(255,255,255,.05);border-right:1px solid rgba(255,255,255,.08);text-align:center">
-          ${c ? aiPill(c.ai, c.aiDetail) : ''}
-        </td>
-        <td style="padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.05);border-right:1px solid rgba(255,255,255,.06);background:rgba(0,245,196,.02)">
-          ${o ? `<div style="font-size:12.5px;font-weight:700;color:#f8fafc">${linkOut(o.url, o.name)}</div>` : ''}
-        </td>
-        <td style="padding:10px 10px;border-bottom:1px solid rgba(255,255,255,.05);text-align:center;background:rgba(0,245,196,.02)">
-          ${o ? aiPill(o.ai, o.aiDetail) : ''}
-        </td>
-      </tr>`;
-    }
-
-    html += `
-    <div style="border-radius:14px;border:1px solid rgba(255,255,255,.07);background:rgba(26,40,62,0.95);box-shadow:0 4px 24px rgba(0,0,0,.3);overflow:hidden">
-      <div style="display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.07);background:linear-gradient(180deg,${prod.color}1a 0%,transparent 100%)">
-        <div style="width:8px;height:8px;border-radius:50%;background:${prod.color};box-shadow:0 0 10px ${prod.color}99"></div>
-        <div style="font-size:14px;font-weight:800;color:${prod.color}">${prod.label}</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.4)">${prod.desc}</div>
-      </div>
-      <div style="overflow-x:auto">
-        <table style="width:100%;border-collapse:separate;border-spacing:0;min-width:720px">
-          <thead>
-            <tr>
-              <th style="text-align:left;padding:8px 14px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.35);border-bottom:1px solid rgba(255,255,255,.08);border-right:1px solid rgba(255,255,255,.06)">Direct Competitor</th>
-              <th style="padding:8px 10px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.35);border-bottom:1px solid rgba(255,255,255,.08);border-right:1px solid rgba(255,255,255,.08);text-align:center">AI?</th>
-              <th style="text-align:left;padding:8px 14px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#00f5c4;border-bottom:1px solid rgba(255,255,255,.08);border-right:1px solid rgba(255,255,255,.06);background:rgba(0,245,196,.03)">Open / Free Alternative</th>
-              <th style="padding:8px 10px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#00f5c4;border-bottom:1px solid rgba(255,255,255,.08);text-align:center;background:rgba(0,245,196,.03)">AI?</th>
-            </tr>
-          </thead>
-          <tbody>${rows}</tbody>
-        </table>
-      </div>
+  const content = document.getElementById('content');
+  let list = getAIInsights();
+  if (!list.length) {
+    refreshAIInsights(true);
+    content.innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 24px;gap:16px">
+      <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <p style="color:#475569;font-size:14px;margin:0">Loading known LeapSpace competitors...</p>
     </div>`;
+    return;
+  }
+
+  list = list.slice().sort(function(a,b){ return (b.addedDate||'').localeCompare(a.addedDate||''); });
+
+  const byCompany = {};
+  const order = [];
+  list.forEach(function(x){
+    const key = x.company || 'Unknown';
+    if (!byCompany[key]) { byCompany[key] = []; order.push(key); }
+    byCompany[key].push(x);
   });
 
-  html += `</div>
-  <div style="margin-top:14px;font-size:10px;color:rgba(255,255,255,.25);text-align:right">Manually curated — verify AI feature claims periodically, vendors ship fast · ${new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}</div>`;
+  const elementCounts = {};
+  Object.keys(LEAPSPACE_ELEMENTS).forEach(function(k){ elementCounts[k] = list.filter(function(x){ return (x.elements||[]).includes(k); }).length; });
 
-  document.getElementById('content').innerHTML = html;
+  const summaryHtml = `<div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap;margin-bottom:16px;padding:16px 24px;background:rgba(26,40,62,0.95);border:1px solid rgba(255,255,255,.07);border-radius:14px;box-shadow:0 4px 24px rgba(0,0,0,.3)">
+    <div style="display:flex;align-items:center;gap:12px">
+      <div style="width:40px;height:40px;border-radius:10px;background:rgba(0,245,196,.1);border:1px solid rgba(0,245,196,.25);display:flex;align-items:center;justify-content:center">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#00f5c4" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6M12 17v6M4.2 4.2l4.2 4.2M15.5 15.5l4.3 4.3M1 12h6M17 12h6M4.2 19.8l4.2-4.2M15.5 8.5l4.3-4.3"/></svg>
+      </div>
+      <div>
+        <div style="font-size:22px;font-weight:800;color:#f8fafc;line-height:1">${list.length}</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4);font-weight:500;margin-top:1px">AI solutions tracked · ${order.length} competitor${order.length!==1?'s':''}</div>
+      </div>
+    </div>
+    <div style="width:1px;height:40px;background:rgba(255,255,255,.08)"></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      ${Object.entries(LEAPSPACE_ELEMENTS).map(function(pair){
+        const k = pair[0], v = pair[1];
+        return `<span style="display:inline-flex;align-items:center;gap:6px;font-size:11px;color:rgba(255,255,255,.55);background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);padding:4px 10px;border-radius:20px">
+          <span style="width:7px;height:7px;border-radius:50%;background:${v.color};box-shadow:0 0 6px ${v.color}88"></span>${v.label} <b style="color:${v.color}">${elementCounts[k]}</b>
+        </span>`;
+      }).join('')}
+    </div>
+  </div>`;
+
+  const cardsHtml = order.map(function(company){
+    const items = byCompany[company];
+    return `<div style="margin-bottom:22px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;padding:0 2px">
+        <div style="width:8px;height:8px;border-radius:50%;background:#f87171;box-shadow:0 0 8px rgba(248,113,113,.6)"></div>
+        <h3 style="font-size:13px;font-weight:800;color:#f8fafc;text-transform:uppercase;letter-spacing:.06em;margin:0">${esc(company)}</h3>
+        <span style="font-size:10px;color:rgba(255,255,255,.35);font-weight:600">${items.length} product${items.length!==1?'s':''} vs LeapSpace</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px">
+        ${items.map(function(x){
+          const chips = (x.elements||[]).map(function(k){
+            const el = LEAPSPACE_ELEMENTS[k]; if (!el) return '';
+            return `<span style="font-size:9.5px;font-weight:700;color:${el.color};background:${el.color}1a;border:1px solid ${el.color}44;padding:2px 8px;border-radius:10px;white-space:nowrap">${el.label}</span>`;
+          }).join('');
+          return `<div style="background:rgba(26,40,62,0.95);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:10px;box-shadow:0 4px 20px rgba(0,0,0,.25)">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
+              <div style="font-size:13.5px;font-weight:700;color:#f8fafc;line-height:1.3">${esc(x.product||'—')}</div>
+              <button onclick="deleteAIInsight('${x.id}')" title="Remove" style="background:none;border:none;cursor:pointer;color:#334155;padding:2px;opacity:.5;flex-shrink:0" onmouseover="this.style.opacity=1;this.style.color='#ef4444'" onmouseout="this.style.opacity='.5';this.style.color='#334155'"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:5px">${chips}</div>
+            <p style="font-size:12px;line-height:1.6;color:rgba(255,255,255,.55);margin:0">${esc(x.howItCompetes||'')}</p>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:2px;padding-top:10px;border-top:1px solid rgba(255,255,255,.06)">
+              <span style="font-size:10px;color:rgba(255,255,255,.3);font-weight:500">Found ${x.addedDate||'—'}</span>
+              ${x.sourceUrl ? `<a href="${esc(x.sourceUrl)}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:10.5px;color:#00f5c4;text-decoration:none;font-weight:600">${esc(x.sourceName||'Source')}<svg viewBox="0 0 24 24" width="9" height="9" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>` : ''}
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>`;
+  }).join('');
+
+  content.innerHTML = `<div style="padding:20px 24px 24px">${summaryHtml}${cardsHtml}
+    <p style="color:#334155;font-size:11px;margin:12px 0 0;text-align:right">Watching for new solutions that compete with LeapSpace · last scan ${new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}</p>
+  </div>`;
 }
 
 const COMPETITOR_PRODUCTS = {
@@ -5111,6 +5165,34 @@ document.addEventListener('keydown', e => { if (e.key==='Escape') closeGlobalSea
     <div class="mf">
       <button class="btn btn-primary" onclick="saveOpp()">Save Deal</button>
       <button class="btn btn-outline" onclick="closeModal('modal-opp')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Add AI Competitor Insight -->
+<div class="overlay" id="modal-ai-insight">
+  <div class="modal">
+    <div class="mh"><h3>Add Competitor Insight</h3><button class="modal-close" onclick="closeModal('modal-ai-insight')">&#10005;</button></div>
+    <div class="mb">
+      <div class="field"><label>Competitor Company *</label><input id="ai-company" placeholder="e.g. Clarivate"></div>
+      <div class="field"><label>Product Name *</label><input id="ai-product" placeholder="e.g. Web of Science Research Assistant"></div>
+      <div class="field"><label>How it competes with LeapSpace</label><textarea id="ai-desc" rows="4" placeholder="What it does and how it overlaps with or challenges LeapSpace..."></textarea></div>
+      <div class="field"><label>LeapSpace elements it covers</label>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;padding-top:4px">
+          <label style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;cursor:pointer"><input type="checkbox" id="ai-el-ideaGeneration"> Idea Generation</label>
+          <label style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;cursor:pointer"><input type="checkbox" id="ai-el-literatureExploration"> Literature Exploration</label>
+          <label style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;cursor:pointer"><input type="checkbox" id="ai-el-collaboratorDiscovery"> Collaborator Discovery</label>
+          <label style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;cursor:pointer"><input type="checkbox" id="ai-el-fundingDiscovery"> Funding Discovery</label>
+          <label style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;cursor:pointer"><input type="checkbox" id="ai-el-writingAgent"> Writing Agent</label>
+          <label style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;cursor:pointer"><input type="checkbox" id="ai-el-evidenceChecking"> Evidence Checking</label>
+        </div>
+      </div>
+      <div class="field"><label>Source Name</label><input id="ai-source-name" placeholder="e.g. Clarivate press release"></div>
+      <div class="field"><label>Source URL</label><input id="ai-source-url" placeholder="https://..."></div>
+    </div>
+    <div class="mf">
+      <button class="btn btn-primary" onclick="saveAIInsight()">Save Insight</button>
+      <button class="btn btn-outline" onclick="closeModal('modal-ai-insight')">Cancel</button>
     </div>
   </div>
 </div>

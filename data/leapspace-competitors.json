@@ -1,0 +1,52 @@
+[
+  {
+    "id": "clarivate-wos-research-assistant",
+    "company": "Clarivate",
+    "product": "Web of Science Research Assistant + Extended Research Assistant",
+    "addedDate": "2026-08-13",
+    "elements": ["ideaGeneration", "literatureExploration", "fundingDiscovery"],
+    "howItCompetes": "Clarivate's flagship rival to LeapSpace, and the closest 1:1 match. Built on the Web of Science Core Collection — their answer to LeapSpace's ScienceDirect/Scopus foundation. New agentic guides (Topic Explorer, Find a Journal, and a multi-step literature review guide) turn any research question into a connected AI workflow. The Extended Research Assistant bridges into Web of Science Research Intelligence, carrying researchers from literature discovery through to funding opportunities and proposal strategy — directly mirroring LeapSpace's idea-to-funding workflow.",
+    "sourceUrl": "https://clarivate.com/academia-government/scientific-and-academic-research/research-discovery-and-referencing/web-of-science/web-of-science-research-assistant/",
+    "sourceName": "Clarivate — Web of Science AI Research Assistant"
+  },
+  {
+    "id": "elicit-research-agent",
+    "company": "Elicit (Elicit PBC)",
+    "product": "Elicit Research Agent (Pro plan)",
+    "addedDate": "2026-08-13",
+    "elements": ["literatureExploration", "evidenceChecking", "writingAgent"],
+    "howItCompetes": "Elicit's Pro-plan Research Agent autonomously searches, reads and extracts structured data across 125M+ papers (via Semantic Scholar) plus 545K+ clinical trials, then hands a populated, organized workspace off to a human researcher for review. That's the same 'agent does the legwork, human directs it' model LeapSpace is built around, but sold direct to individual academics rather than bundled into an institutional subscription.",
+    "sourceUrl": "https://fast.io/resources/elicit-ai-review-2026/",
+    "sourceName": "Elicit AI Review 2026 (Fast.io)"
+  },
+  {
+    "id": "scite-assistant",
+    "company": "scite (scite.ai)",
+    "product": "scite Assistant / Smart Citations",
+    "addedDate": "2026-08-13",
+    "elements": ["evidenceChecking"],
+    "howItCompetes": "Purpose-built for the single job LeapSpace bundles as one feature among many: telling you whether the literature actually backs a claim. Smart Citations classify 1.2B+ citation statements as Supporting, Mentioning or Contrasting, letting a researcher audit a claim's evidence trail paper by paper — a narrower but deeper challenge specifically to LeapSpace's evidence-checking agent.",
+    "sourceUrl": "https://www.atlasworkspace.ai/blog/best-ai-research-assistants",
+    "sourceName": "Best AI Research Assistants 2026 — Atlas Workspace"
+  },
+  {
+    "id": "consensus-ai",
+    "company": "Consensus",
+    "product": "Consensus AI Search",
+    "addedDate": "2026-08-13",
+    "elements": ["ideaGeneration", "literatureExploration"],
+    "howItCompetes": "A lightweight, consumer-friendly entry point that answers a research question directly from peer-reviewed literature with inline citations. Competes with LeapSpace's literature-exploration and idea-generation surface for quick evidence checks, though it doesn't attempt LeapSpace's full agentic workspace — reviewers rank it cleanest for fast, evidence-backed Q&A rather than deep review work.",
+    "sourceUrl": "https://paperguide.ai/blog/scispace-vs-consensus/",
+    "sourceName": "SciSpace vs Consensus 2026 — Paperguide"
+  },
+  {
+    "id": "scispace-workspace",
+    "company": "SciSpace",
+    "product": "SciSpace Research Workspace (AI Search, BioMed Agent, Meta-Analysis Agent, Manuscript Writer)",
+    "addedDate": "2026-08-13",
+    "elements": ["ideaGeneration", "literatureExploration", "writingAgent", "evidenceChecking"],
+    "howItCompetes": "The broadest multi-agent workspace challenger to LeapSpace. AI Search behaves like a research agent — querying 280M+ papers plus Google Scholar and PubMed, retrieving roughly 240 papers and extracting evidence from the top matches into a cited answer. Domain-specific agents (BioMed Agent, Meta-Analysis Agent) plus a Manuscript Writer agent cover the same idea-to-writing span LeapSpace targets, though independent reviews flag more hallucination risk in its in-paper explanations than source-grounded alternatives.",
+    "sourceUrl": "https://www.atlasworkspace.ai/blog/best-ai-research-assistants",
+    "sourceName": "Best AI Research Assistants 2026 — Atlas Workspace"
+  }
+]
