@@ -928,6 +928,9 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
     <div class="nav-item" data-view="subscriptions" onclick="nav('subscriptions')">
       <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div> Competitor Matrix
     </div>
+    <div class="nav-item" data-view="competitor-insight" onclick="nav('competitor-insight')">
+      <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 10v6M4.2 4.2l4.2 4.2m7.2 7.2 4.2 4.2M1 12h6m10 0h6M4.2 19.8l4.2-4.2m7.2-7.2 4.2-4.2"/></svg></div> Competitor Insight
+    </div>
     <div class="nav-item" data-view="rfp" onclick="nav('rfp')">
       <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div> RFP Opps
     </div>
@@ -1886,6 +1889,7 @@ function render() {
     news: renderNews,
     pipeline: renderPipeline,
     subscriptions: renderSubscriptionMatrix,
+    'competitor-insight': renderCompetitorInsight,
     openalex: renderOpenAlex,
     barcelona: renderBarcelonaDecl,
   };
@@ -4172,6 +4176,131 @@ function renderSubscriptionMatrix() {
 
   document.getElementById('content').innerHTML = html;
 }
+
+//  COMPETITOR INSIGHT (product-level, not per-institution) 
+// Reference data — verified manually, update as vendors ship new features.
+// ai.has: true/false/'partial'. url fields are for external verification only.
+const COMPETITOR_INSIGHT_DATA = {
+  scopus: {
+    label: 'Scopus', color: '#fb923c', desc: 'Abstract & citation database',
+    competitors: [
+      { name:'Web of Science', vendor:'Clarivate', ai:'partial', aiDetail:'Research Intelligence AI-generated summaries; citation topic clustering', url:'https://clarivate.com/webofsciencegroup/solutions/web-of-science/' },
+      { name:'Dimensions', vendor:'Digital Science', ai:true, aiDetail:'Dimensions AI-assisted analytics & research assistant features', url:'https://www.dimensions.ai/' },
+    ],
+    openAlt: [
+      { name:'OpenAlex', ai:true, aiDetail:'ML-based topic/field classification, entity disambiguation', url:'https://openalex.org/' },
+      { name:'Semantic Scholar', ai:true, aiDetail:'AI-generated TLDRs, citation context classification', url:'https://www.semanticscholar.org/' },
+      { name:'Lens.org', ai:false, aiDetail:'Rule-based filtering, no generative AI layer', url:'https://www.lens.org/' },
+    ]
+  },
+  leapspace: {
+    label: 'LeapSpace', color: '#38bdf8', desc: 'AI-native research discovery workspace',
+    competitors: [
+      { name:'Elicit', vendor:'Elicit / Ought', ai:true, aiDetail:'AI research assistant — literature review, data extraction, Q&A over papers', url:'https://elicit.com/' },
+      { name:'Consensus', vendor:'Consensus', ai:true, aiDetail:'AI search engine that synthesizes findings across papers', url:'https://consensus.app/' },
+      { name:'SciSpace', vendor:'SciSpace', ai:true, aiDetail:'AI copilot for reading, writing & literature review', url:'https://scispace.com/' },
+    ],
+    openAlt: [
+      { name:'Semantic Scholar (Ask this paper)', ai:true, aiDetail:'Free AI Q&A grounded in paper text', url:'https://www.semanticscholar.org/' },
+      { name:'Perplexity (academic focus)', ai:true, aiDetail:'General-purpose AI search, usable for lit review with citations', url:'https://www.perplexity.ai/' },
+    ]
+  },
+  scival: {
+    label: 'SciVal', color: '#f97316', desc: 'Research performance & benchmarking analytics',
+    competitors: [
+      { name:'InCites', vendor:'Clarivate', ai:'partial', aiDetail:'AI-assisted benchmarking narratives (beta rollout)', url:'https://clarivate.com/products/scientific-and-academic-research/research-intelligence/incites/' },
+      { name:'Dimensions Analytics', vendor:'Digital Science', ai:true, aiDetail:'AI-generated insights on funding & output trends', url:'https://www.dimensions.ai/' },
+    ],
+    openAlt: [
+      { name:'OpenAlex + custom dashboards', ai:false, aiDetail:'Raw API data; any AI layer has to be built on top', url:'https://openalex.org/' },
+      { name:'Leiden Ranking / CWTS tools', ai:false, aiDetail:'Bibliometric indicators, no AI layer', url:'https://www.leidenranking.com/' },
+    ]
+  },
+  pure: {
+    label: 'Pure', color: '#ea580c', desc: 'Current Research Information System (CRIS)',
+    competitors: [
+      { name:'Symplectic Elements', vendor:'Digital Science', ai:'partial', aiDetail:'Automated publication harvesting/matching; limited generative AI', url:'https://www.digital-science.com/product/symplectic-elements/' },
+      { name:'Converis', vendor:'Clarivate', ai:false, aiDetail:'Workflow automation; no notable generative AI features', url:'https://clarivate.com/products/scientific-and-academic-research/research-management-and-collaboration/converis/' },
+    ],
+    openAlt: [
+      { name:'VIVO', ai:false, aiDetail:'Open-source CRIS, semantic-web based, no built-in AI', url:'https://duraspace.org/vivo/' },
+      { name:'DSpace-CRIS', ai:false, aiDetail:'Open-source, extensible; AI possible via plugins, not native', url:'https://www.dspace-cris.com/' },
+    ]
+  }
+};
+
+function renderCompetitorInsight() {
+  document.getElementById('page-title').textContent = 'Competitor Insight';
+  document.getElementById('page-sub').textContent = 'Product-level competitive landscape — paid competitors vs. open/free alternatives, by AI capability';
+  document.getElementById('topbar-actions').innerHTML = '';
+
+  const AI_BADGE = {
+    true:     { label:'AI', bg:'rgba(0,245,196,.1)', border:'rgba(0,245,196,.35)', text:'#00f5c4', icon:'✓' },
+    partial:  { label:'Partial', bg:'rgba(245,158,11,.1)', border:'rgba(245,158,11,.35)', text:'#fbbf24', icon:'~' },
+    false:    { label:'No AI', bg:'rgba(239,68,68,.08)', border:'rgba(239,68,68,.25)', text:'#f87171', icon:'✕' },
+  };
+  function aiPill(ai, detail) {
+    const b = AI_BADGE[String(ai)] || AI_BADGE['false'];
+    return `<span title="${(detail||'').replace(/"/g,'&quot;')}" style="display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;padding:3px 9px;border-radius:99px;background:${b.bg};border:1px solid ${b.border};color:${b.text};white-space:nowrap">${b.icon} ${b.label}</span>`;
+  }
+  const extIcon = `<svg viewBox="0 0 24 24" width="9" height="9" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
+  function linkOut(url, label) {
+    return url ? `<a href="${url}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:3px;font-size:11px;color:rgba(255,255,255,.55);text-decoration:none" onmouseenter="this.style.color='#fff'" onmouseleave="this.style.color='rgba(255,255,255,.55)'">${label}${extIcon}</a>` : label;
+  }
+
+  let html = `<div style="display:flex;flex-direction:column;gap:22px">`;
+
+  Object.entries(COMPETITOR_INSIGHT_DATA).forEach(([key, prod]) => {
+    const maxRows = Math.max(prod.competitors.length, prod.openAlt.length);
+    let rows = '';
+    for (let i = 0; i < maxRows; i++) {
+      const c = prod.competitors[i];
+      const o = prod.openAlt[i];
+      rows += `<tr>
+        <td style="padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.05);border-right:1px solid rgba(255,255,255,.06)">
+          ${c ? `<div style="font-size:12.5px;font-weight:700;color:#f8fafc">${linkOut(c.url, c.name)}</div><div style="font-size:10px;color:rgba(255,255,255,.35);margin-top:1px">${c.vendor}</div>` : ''}
+        </td>
+        <td style="padding:10px 10px;border-bottom:1px solid rgba(255,255,255,.05);border-right:1px solid rgba(255,255,255,.08);text-align:center">
+          ${c ? aiPill(c.ai, c.aiDetail) : ''}
+        </td>
+        <td style="padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.05);border-right:1px solid rgba(255,255,255,.06);background:rgba(0,245,196,.02)">
+          ${o ? `<div style="font-size:12.5px;font-weight:700;color:#f8fafc">${linkOut(o.url, o.name)}</div>` : ''}
+        </td>
+        <td style="padding:10px 10px;border-bottom:1px solid rgba(255,255,255,.05);text-align:center;background:rgba(0,245,196,.02)">
+          ${o ? aiPill(o.ai, o.aiDetail) : ''}
+        </td>
+      </tr>`;
+    }
+
+    html += `
+    <div style="border-radius:14px;border:1px solid rgba(255,255,255,.07);background:rgba(26,40,62,0.95);box-shadow:0 4px 24px rgba(0,0,0,.3);overflow:hidden">
+      <div style="display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.07);background:linear-gradient(180deg,${prod.color}1a 0%,transparent 100%)">
+        <div style="width:8px;height:8px;border-radius:50%;background:${prod.color};box-shadow:0 0 10px ${prod.color}99"></div>
+        <div style="font-size:14px;font-weight:800;color:${prod.color}">${prod.label}</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4)">${prod.desc}</div>
+      </div>
+      <div style="overflow-x:auto">
+        <table style="width:100%;border-collapse:separate;border-spacing:0;min-width:720px">
+          <thead>
+            <tr>
+              <th style="text-align:left;padding:8px 14px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.35);border-bottom:1px solid rgba(255,255,255,.08);border-right:1px solid rgba(255,255,255,.06)">Direct Competitor</th>
+              <th style="padding:8px 10px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.35);border-bottom:1px solid rgba(255,255,255,.08);border-right:1px solid rgba(255,255,255,.08);text-align:center">AI?</th>
+              <th style="text-align:left;padding:8px 14px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#00f5c4;border-bottom:1px solid rgba(255,255,255,.08);border-right:1px solid rgba(255,255,255,.06);background:rgba(0,245,196,.03)">Open / Free Alternative</th>
+              <th style="padding:8px 10px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#00f5c4;border-bottom:1px solid rgba(255,255,255,.08);text-align:center;background:rgba(0,245,196,.03)">AI?</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+    </div>`;
+  });
+
+  html += `</div>
+  <div style="margin-top:14px;font-size:10px;color:rgba(255,255,255,.25);text-align:right">Manually curated — verify AI feature claims periodically, vendors ship fast · ${new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}</div>`;
+
+  document.getElementById('content').innerHTML = html;
+}
+
 const COMPETITOR_PRODUCTS = {
 
   /*  TU/e (Eindhoven University of Technology)  */
