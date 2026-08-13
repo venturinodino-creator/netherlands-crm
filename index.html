@@ -1954,6 +1954,20 @@ function renderDashboard() {
     </div>`;
   }).join('') || '<p style="font-size:13px;color:var(--muted);padding:12px 0">No high-priority contacts yet.</p>';
 
+  const upcomingActions = _dueInst.slice().sort((a,b)=>(a.nextActionDate||'').localeCompare(b.nextActionDate||'')).slice(0,5);
+  const actionRows = upcomingActions.map(i=>{
+    const overdue = i.nextActionDate < _today;
+    const today = i.nextActionDate === _today;
+    const badgeColor = overdue ? '#f87171' : today ? '#fb923c' : 'var(--muted)';
+    const badgeBg = overdue ? 'rgba(239,68,68,.12)' : today ? 'rgba(251,146,60,.12)' : 'rgba(255,255,255,.05)';
+    const badgeLabel = overdue ? 'Overdue' : today ? 'Today' : i.nextActionDate;
+    return `<div class="recent-row" style="cursor:pointer" onclick="nav('detail',{instId:'${i.id}'})">
+      <div class="av" style="background:${avatarColor(i.name||i.id)}">${(i.short||i.name||'?').slice(0,2).toUpperCase()}</div>
+      <div class="ri"><h4>${esc(i.nextAction||'Follow up')}</h4><p>${esc(i.short||i.name||'')}</p></div>
+      <span class="badge" style="background:${badgeBg};color:${badgeColor};border-color:${badgeColor}33">${esc(badgeLabel)}</span>
+    </div>`;
+  }).join('') || '<p style="font-size:13px;color:var(--muted);padding:12px 0">No upcoming actions scheduled.</p>';
+
   // Stat card definitions — order persisted in localStorage nl_crm_stat_order
   const _statCards = {
     'sc-institutions': `<div class="stat-card" data-sc-id="sc-institutions" draggable="true" onclick="nav('institutions')" title="View all institutions">
@@ -1987,7 +2001,7 @@ function renderDashboard() {
     <div class="stats-grid" id="stats-grid-drag">${statCardsHtml}</div>
 
     <div class="dash-grid" id="dash-widget-grid">
-      ${buildDashWidgets(typeRows, hpRows)}
+      ${buildDashWidgets(typeRows, hpRows, actionRows)}
     </div>`;
   initDashDrag();
   initStatCardDrag();
@@ -2038,15 +2052,20 @@ function initStatCardDrag() {
   });
 }
 
+const DASH_WIDGET_DEFAULT_ORDER = ['w-types','w-highprio','w-map','w-actions'];
 function getDashWidgetOrder() {
-  try { return JSON.parse(localStorage.getItem('nl_crm_widget_order')) || ['w-types','w-highprio','w-map']; }
-  catch(e) { return ['w-types','w-highprio','w-map']; }
+  let order;
+  try { order = JSON.parse(localStorage.getItem('nl_crm_widget_order')); if(!Array.isArray(order)||!order.length) order=null; }
+  catch(e) { order = null; }
+  order = (order||[]).filter(id=>DASH_WIDGET_DEFAULT_ORDER.includes(id));
+  DASH_WIDGET_DEFAULT_ORDER.forEach(id=>{ if(!order.includes(id)) order.push(id); });
+  return order;
 }
 function saveDashWidgetOrder(order) {
   localStorage.setItem('nl_crm_widget_order', JSON.stringify(order));
 }
 
-function buildDashWidgets(typeRows, hpRows) {
+function buildDashWidgets(typeRows, hpRows, actionRows) {
   const handle = '';
   const _td2 = new Date().toISOString().slice(0,10);
   const WIDGETS = {
@@ -2057,6 +2076,10 @@ function buildDashWidgets(typeRows, hpRows) {
     'w-highprio': `<div class="card dash-widget" data-widget-id="w-highprio" draggable="true">
       <div class="card-header"><span class="card-title">High Priority Contacts</span>${handle}</div>
       ${hpRows}
+    </div>`,
+    'w-actions': `<div class="card dash-widget" data-widget-id="w-actions" draggable="true">
+      <div class="card-header"><span class="card-title">Upcoming Actions</span><button class="btn btn-xs btn-outline" onclick="nav('institutions')">View all </button>${handle}</div>
+      ${actionRows}
     </div>`,
     'w-map': `<div class="card dash-widget" data-widget-id="w-map" draggable="true">
       <div class="card-header"><span class="card-title">Map Overview</span><button class="btn btn-xs btn-outline" onclick="nav('map')">Full map </button>${handle}</div>
