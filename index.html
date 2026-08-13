@@ -4178,14 +4178,20 @@ function renderSubscriptionMatrix() {
 }
 
 //  AI COMPETITOR INSIGHTS (LeapSpace watch)
-const LEAPSPACE_ELEMENTS = {
-  ideaGeneration:        { label: 'Idea Generation',         color: '#00f5c4' },
-  literatureExploration: { label: 'Literature Exploration',  color: '#60a5fa' },
-  collaboratorDiscovery: { label: 'Collaborator Discovery',  color: '#a78bfa' },
-  fundingDiscovery:      { label: 'Funding Discovery',       color: '#fbbf24' },
-  writingAgent:          { label: 'Writing Agent',           color: '#f472b6' },
-  evidenceChecking:      { label: 'Evidence Checking',       color: '#4ade80' },
+// LeapSpace's actual named tabs/features (elsevier.com/products/leapspace) — every
+// competitor entry below is scored against this specific set, not a generic taxonomy.
+const LEAPSPACE_TABS = {
+  literatureSearch:  { label: 'Literature Search & Discovery', color: '#60a5fa', desc: 'AI search across ScienceDirect/Scopus content, returning structured, referenced answers.' },
+  authorSearch:      { label: 'Author Search',                 color: '#a78bfa', desc: 'Finds relevant collaborators, mentors and topic contributors.' },
+  fundingDiscovery:  { label: 'Funding Discovery',              color: '#fbbf24', desc: '40,000+ active/recurring funding opportunities from 16,000+ funders.' },
+  writingCoach:      { label: 'Writing Coach',                  color: '#f472b6', desc: 'Private drafting workspace — pressure-tests claims and arguments via dialogue.' },
+  trustClaimRadar:   { label: 'Trust Cards & Claim Radar',      color: '#4ade80', desc: 'Checks how a claim aligns with its sources and the wider research landscape.' },
+  deepResearchReports:{ label: 'Deep Research Reports',         color: '#00f5c4', desc: 'Longer-form analyses surfacing patterns, contradictions and evidence gaps.' },
+  readingAssistant:  { label: 'Reading Assistant',              color: '#38bdf8', desc: 'Conversational Q&A grounded in one specific article or book chapter.' },
+  compareFeature:    { label: 'Compare',                        color: '#fb923c', desc: 'Side-by-side tables breaking down papers by goals, methods and results.' },
 };
+// kept as an alias — earlier code in this file refers to LEAPSPACE_ELEMENTS
+const LEAPSPACE_ELEMENTS = LEAPSPACE_TABS;
 
 function getAIInsights() {
   try { return JSON.parse(localStorage.getItem('nl_crm_ai_insights') || '[]'); } catch(e) { return []; }
@@ -4205,6 +4211,7 @@ function refreshAIInsights(silent) {
       var added = 0;
       remote.forEach(function(x) {
         if (!existingMap[x.id]) { existing.push(x); existingMap[x.id] = x; added++; }
+        else { Object.assign(existingMap[x.id], x); } // keep manually-tracked entries current with the seed feed
       });
       saveAIInsights(existing);
       if (!silent) {
@@ -4265,7 +4272,7 @@ function saveAIInsight() {
 
 function renderCompetitorInsights() {
   document.getElementById('page-title').textContent = 'Competitor Insights';
-  document.getElementById('page-sub').textContent = 'AI solutions competing against Elsevier LeapSpace';
+  document.getElementById('page-sub').textContent = 'Every solution below is benchmarked against Elsevier LeapSpace, tab by tab';
   document.getElementById('topbar-actions').innerHTML = `<div style="display:flex;gap:8px;align-items:center">
     <button class="btn btn-outline" onclick="openAddAIInsight()" style="font-size:12px;padding:6px 14px">+ Add Insight</button>
     <button id="refresh-insights-btn" class="btn btn-accent" onclick="refreshAIInsights()" style="display:flex;align-items:center;gap:6px">
@@ -4298,6 +4305,25 @@ function renderCompetitorInsights() {
   const elementCounts = {};
   Object.keys(LEAPSPACE_ELEMENTS).forEach(function(k){ elementCounts[k] = list.filter(function(x){ return (x.elements||[]).includes(k); }).length; });
 
+  const leapspaceHtml = `<div style="margin-bottom:16px;padding:18px 24px;background:linear-gradient(135deg,rgba(251,146,60,.1) 0%,rgba(26,40,62,0.95) 45%);border:1px solid rgba(251,146,60,.3);border-radius:14px;box-shadow:0 4px 24px rgba(0,0,0,.3)">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+      <div style="width:8px;height:8px;border-radius:50%;background:#fb923c;box-shadow:0 0 8px rgba(251,146,60,.7)"></div>
+      <div style="font-size:13px;font-weight:800;color:#fb923c;text-transform:uppercase;letter-spacing:.07em">The Benchmark: Elsevier LeapSpace</div>
+    </div>
+    <p style="font-size:12px;color:rgba(255,255,255,.5);margin:2px 0 14px;max-width:760px;line-height:1.55">Every competitor on this page is measured against these ${Object.keys(LEAPSPACE_TABS).length} LeapSpace tabs. The colored chips on each card below show exactly which of these it matches or challenges.</p>
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px 14px">
+      ${Object.entries(LEAPSPACE_TABS).map(function(pair){
+        const v = pair[1];
+        return `<div style="display:flex;flex-direction:column;gap:3px;min-width:0">
+          <span style="display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;color:${v.color}">
+            <span style="width:7px;height:7px;border-radius:50%;background:${v.color};box-shadow:0 0 6px ${v.color}88;flex-shrink:0"></span>${v.label}
+          </span>
+          <span style="font-size:10.5px;line-height:1.4;color:rgba(255,255,255,.4)">${v.desc}</span>
+        </div>`;
+      }).join('')}
+    </div>
+  </div>`;
+
   const summaryHtml = `<div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap;margin-bottom:16px;padding:16px 24px;background:rgba(26,40,62,0.95);border:1px solid rgba(255,255,255,.07);border-radius:14px;box-shadow:0 4px 24px rgba(0,0,0,.3)">
     <div style="display:flex;align-items:center;gap:12px">
       <div style="width:40px;height:40px;border-radius:10px;background:rgba(0,245,196,.1);border:1px solid rgba(0,245,196,.25);display:flex;align-items:center;justify-content:center">
@@ -4309,13 +4335,16 @@ function renderCompetitorInsights() {
       </div>
     </div>
     <div style="width:1px;height:40px;background:rgba(255,255,255,.08)"></div>
-    <div style="display:flex;gap:10px;flex-wrap:wrap">
-      ${Object.entries(LEAPSPACE_ELEMENTS).map(function(pair){
-        const k = pair[0], v = pair[1];
-        return `<span style="display:inline-flex;align-items:center;gap:6px;font-size:11px;color:rgba(255,255,255,.55);background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);padding:4px 10px;border-radius:20px">
-          <span style="width:7px;height:7px;border-radius:50%;background:${v.color};box-shadow:0 0 6px ${v.color}88"></span>${v.label} <b style="color:${v.color}">${elementCounts[k]}</b>
-        </span>`;
-      }).join('')}
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.06em">LeapSpace tabs covered by tracked competitors</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        ${Object.entries(LEAPSPACE_ELEMENTS).map(function(pair){
+          const k = pair[0], v = pair[1];
+          return `<span style="display:inline-flex;align-items:center;gap:6px;font-size:11px;color:rgba(255,255,255,.55);background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);padding:4px 10px;border-radius:20px">
+            <span style="width:7px;height:7px;border-radius:50%;background:${v.color};box-shadow:0 0 6px ${v.color}88"></span>${v.label} <b style="color:${v.color}">${elementCounts[k]}</b>
+          </span>`;
+        }).join('')}
+      </div>
     </div>
   </div>`;
 
@@ -4347,7 +4376,7 @@ function renderCompetitorInsights() {
     }).join('');
   }).join('');
 
-  content.innerHTML = `<div style="padding:20px 24px 24px">${summaryHtml}
+  content.innerHTML = `<div style="padding:20px 24px 24px">${leapspaceHtml}${summaryHtml}
     <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px">${cardsHtml}</div>
     <p style="color:#334155;font-size:11px;margin:12px 0 0;text-align:right">Watching for new solutions that compete with LeapSpace · last scan ${new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}</p>
   </div>`;
@@ -5175,14 +5204,16 @@ document.addEventListener('keydown', e => { if (e.key==='Escape') closeGlobalSea
       <div class="field"><label>Competitor Company *</label><input id="ai-company" placeholder="e.g. Clarivate"></div>
       <div class="field"><label>Product Name *</label><input id="ai-product" placeholder="e.g. Web of Science Research Assistant"></div>
       <div class="field"><label>How it competes with LeapSpace</label><textarea id="ai-desc" rows="4" placeholder="What it does and how it overlaps with or challenges LeapSpace..."></textarea></div>
-      <div class="field"><label>LeapSpace elements it covers</label>
+      <div class="field"><label>Which LeapSpace tabs does it cover?</label>
         <div style="display:flex;flex-wrap:wrap;gap:10px;padding-top:4px">
-          <label style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;cursor:pointer"><input type="checkbox" id="ai-el-ideaGeneration"> Idea Generation</label>
-          <label style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;cursor:pointer"><input type="checkbox" id="ai-el-literatureExploration"> Literature Exploration</label>
-          <label style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;cursor:pointer"><input type="checkbox" id="ai-el-collaboratorDiscovery"> Collaborator Discovery</label>
+          <label style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;cursor:pointer"><input type="checkbox" id="ai-el-literatureSearch"> Literature Search & Discovery</label>
+          <label style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;cursor:pointer"><input type="checkbox" id="ai-el-authorSearch"> Author Search</label>
           <label style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;cursor:pointer"><input type="checkbox" id="ai-el-fundingDiscovery"> Funding Discovery</label>
-          <label style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;cursor:pointer"><input type="checkbox" id="ai-el-writingAgent"> Writing Agent</label>
-          <label style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;cursor:pointer"><input type="checkbox" id="ai-el-evidenceChecking"> Evidence Checking</label>
+          <label style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;cursor:pointer"><input type="checkbox" id="ai-el-writingCoach"> Writing Coach</label>
+          <label style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;cursor:pointer"><input type="checkbox" id="ai-el-trustClaimRadar"> Trust Cards & Claim Radar</label>
+          <label style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;cursor:pointer"><input type="checkbox" id="ai-el-deepResearchReports"> Deep Research Reports</label>
+          <label style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;cursor:pointer"><input type="checkbox" id="ai-el-readingAssistant"> Reading Assistant</label>
+          <label style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;cursor:pointer"><input type="checkbox" id="ai-el-compareFeature"> Compare</label>
         </div>
       </div>
       <div class="field"><label>Source Name</label><input id="ai-source-name" placeholder="e.g. Clarivate press release"></div>
