@@ -1962,8 +1962,8 @@ function renderDashboard() {
     },
     {
       id: 'agent-tenders', name: 'Tender / RFP Scraper', icon: '📄',
-      status: 'manual', cadence: 'Not scheduled — run manually', source: 'TED Europa & TenderNed',
-      statusEl: null, view: 'rfp',
+      status: 'active', cadence: 'Daily · 06:30 UTC · GitHub Actions', source: 'TED Europa & TenderNed',
+      statusEl: 'agent-tenders-lastrun', view: 'rfp',
     },
     {
       id: 'agent-competitor', name: 'Competitor Insights Scan', icon: '🔍',
@@ -2027,19 +2027,25 @@ function renderDashboard() {
   syncAgentStatus();
 }
 
-function syncAgentStatus() {
-  const el = document.getElementById('agent-discovery-lastrun');
+function _relativeTime(iso) {
+  const ran = new Date(iso);
+  const hrs = Math.round((Date.now() - ran.getTime()) / 3600000);
+  return hrs < 1 ? 'just now' : hrs === 1 ? '1 hour ago' : hrs < 24 ? hrs + ' hours ago' : Math.round(hrs/24) + 'd ago';
+}
+function _syncAgentFrom(elId, jsonPath, extra) {
+  const el = document.getElementById(elId);
   if (!el) return;
-  fetch('/netherlands-crm/data/discovery-state.json?t=' + Date.now())
+  fetch('/netherlands-crm/' + jsonPath + '?t=' + Date.now())
     .then(r => r.ok ? r.json() : null)
     .then(data => {
       if (!data || !data.lastRun) { el.textContent = 'no run recorded yet'; return; }
-      const ran = new Date(data.lastRun);
-      const hrs = Math.round((Date.now() - ran.getTime()) / 3600000);
-      const rel = hrs < 1 ? 'just now' : hrs === 1 ? '1 hour ago' : hrs < 24 ? hrs + ' hours ago' : Math.round(hrs/24) + 'd ago';
-      el.textContent = 'last ran ' + rel;
+      el.textContent = 'last ran ' + _relativeTime(data.lastRun) + (extra ? extra(data) : '');
     })
     .catch(() => { el.textContent = 'status unavailable'; });
+}
+function syncAgentStatus() {
+  _syncAgentFrom('agent-discovery-lastrun', 'data/discovery-state.json');
+  _syncAgentFrom('agent-tenders-lastrun', 'data/tenders-scan-state.json', d => d.lastNewCount ? ` · +${d.lastNewCount}` : '');
 }
 
 let _scDragSrc = null;

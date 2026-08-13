@@ -13,13 +13,14 @@ import time
 import urllib.request
 import urllib.parse
 import urllib.error
-from datetime import datetime, date
+from datetime import datetime, date, timedelta, timezone
 from pathlib import Path
 
 # ── Config ───────────────────────────────────────────────────────────────────
 
 REPO_ROOT    = Path(__file__).parent.parent
 TENDERS_FILE = REPO_ROOT / "data" / "tenders.json"
+STATE_FILE   = REPO_ROOT / "data" / "tenders-scan-state.json"
 
 # Keywords that make a tender Elsevier-relevant
 ELSEVIER_PRODUCTS = [
@@ -42,20 +43,6 @@ CATEGORY_KEYWORDS = [
 
 ALL_KEYWORDS = ELSEVIER_PRODUCTS + COMPETITOR_PRODUCTS + CATEGORY_KEYWORDS
 
-# Status mapping
-def guess_status(title: str, notes: str, deadline_str: str) -> str:
-    text = (title + " " + notes).lower()
-    if any(k.lower() in text for k in COMPETITOR_PRODUCTS):
-        return "identified"   # monitoring competitor situation
-    if deadline_str:
-        try:
-            dl = date.fromisoformat(deadline_str)
-            if dl > date.today():
-                return "identified"   # open tender
-        except ValueError:
-            pass
-    return "identified"
-
 # ── Helpers ──────────────────────────────────────────────────────────────────
 
 def load_tenders() -> list:
@@ -70,6 +57,14 @@ def save_tenders(tenders: list) -> None:
         json.dumps(tenders, indent=2, ensure_ascii=False),
         encoding="utf-8"
     )
+
+def save_state(new_count: int) -> None:
+    state = {
+        "lastRun": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+        "lastNewCount": new_count,
+    }
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(json.dumps(state, indent=2), encoding="utf-8")
 
 def existing_ids(tenders: list) -> set:
     return {t["id"] for t in tenders}
@@ -97,15 +92,46 @@ def fetch_json(url: str, data: bytes = None, headers: dict = None) -> dict | Non
         with urllib.request.urlopen(req, timeout=20) as resp:
             return json.loads(resp.read().decode("utf-8"))
     except urllib.error.HTTPError as e:
-        print(f"  HTTP {e.code} for {url}", file=sys.stderr)
+        body = ""
+        try:
+            body = e.read().decode("utf-8", errors="replace")[:300]
+        except Exception:
+            pass
+        print(f"  HTTP {e.code} for {url} :: {body}", file=sys.stderr)
         return None
     except Exception as e:
         print(f"  Error fetching {url}: {e}", file=sys.stderr)
         return None
 
 # ── TED Europa scraper ────────────────────────────────────────────────────────
+# API v3 expert-query syntax: field~"value", combined with AND/OR/parens.
+# Verified against the live API on 2026-08-13 — field names below match the
+# current schema (the previous version of this script used a since-retired
+# field set: title-text, notice-number, estimated-value, deadline-receipt-tenders).
 
 TED_URL = "https://api.ted.europa.eu/v3/notices/search"
+TED_FIELDS = [
+    "publication-number", "notice-title", "buyer-name", "publication-date",
+    "deadline", "estimated-value-lot", "contract-nature",
+    "place-of-performance", "links",
+]
+TED_LOOKBACK_DAYS = 180  # only scan recent notices — avoids re-walking all TED history every run
+
+def _ted_lookback_cutoff() -> str:
+    return (date.today() - timedelta(days=TED_LOOKBACK_DAYS)).strftime("%Y%m%d")
+
+def _pick_lang(obj, prefer: str = "eng") -> str:
+    """TED v3 returns multilingual fields as {lang3: value_or_[value]}."""
+    if not isinstance(obj, dict) or not obj:
+        return ""
+    v = obj.get(prefer)
+    if v is None:
+        v = next(iter(obj.values()), "")
+    return v[0] if isinstance(v, list) else (v or "")
+
+def build_ted_query(keywords: list) -> str:
+    ors = " OR ".join(f'notice-title~"{k}"' for k in keywords)
+    return f"({ors}) AND publication-date>={_ted_lookback_cutoff()}"
 
 def search_ted(query: str, page: int = 1) -> list:
     """Search TED Europa notices. Returns list of raw notice dicts."""
@@ -113,61 +139,58 @@ def search_ted(query: str, page: int = 1) -> list:
         "query": query,
         "onlyLatestVersions": True,
         "scope": "ALL",
-        "fields": [
-            "notice-number", "title-text", "buyer-name",
-            "publication-date", "deadline-receipt-tenders",
-            "estimated-value", "contract-nature", "place-of-performance"
-        ],
+        "fields": TED_FIELDS,
         "page": page,
         "limit": 50
     }).encode()
     result = fetch_json(TED_URL, data=payload)
-    if not result:
+    if not result or "notices" not in result:
         return []
     return result.get("notices", [])
 
 def ted_to_tender(notice: dict, product: str, competitor: str) -> dict:
-    """Convert a TED notice dict to our tender schema."""
-    pub = notice.get("publication-date", "")
-    deadline_raw = notice.get("deadline-receipt-tenders", "")
-    deadline = deadline_raw[:10] if deadline_raw else ""
-    value_raw = notice.get("estimated-value", {})
+    """Convert a TED v3 notice dict to our tender schema."""
+    pub_num = notice.get("publication-number", "") or ""
+    tender_id = "ted_" + re.sub(r"[^a-z0-9_]", "_", pub_num.lower())
+
+    title = _pick_lang(notice.get("notice-title") or {})
+    buyer = _pick_lang(notice.get("buyer-name") or {})
+
+    pub_date_raw = notice.get("publication-date") or ""
+    published = pub_date_raw[:10] if pub_date_raw else ""
+
+    deadline_raw = notice.get("deadline")
+    deadline = deadline_raw[0][:10] if isinstance(deadline_raw, list) and deadline_raw else ""
+
+    value_raw = notice.get("estimated-value-lot")
     value = ""
-    if isinstance(value_raw, dict):
-        value = str(int(value_raw.get("amount", 0))) if value_raw.get("amount") else ""
-    elif isinstance(value_raw, (int, float)):
-        value = str(int(value_raw))
+    if isinstance(value_raw, list) and value_raw:
+        try:
+            value = str(int(float(value_raw[0])))
+        except (ValueError, TypeError):
+            value = ""
 
-    # Title: TED stores as list of lang objects [{lang, value}]
-    title_list = notice.get("title-text", [])
-    if isinstance(title_list, list) and title_list:
-        title = next((t["value"] for t in title_list if t.get("lang") == "ENG"), title_list[0].get("value", ""))
-    else:
-        title = str(title_list)
-
-    # Buyer
-    buyer_list = notice.get("buyer-name", [])
-    if isinstance(buyer_list, list) and buyer_list:
-        buyer = buyer_list[0].get("value", "")
-    else:
-        buyer = str(buyer_list)
-
-    notice_num = notice.get("notice-number", "").replace("/", "-")
-    tender_id = "ted_" + re.sub(r"[^a-z0-9_]", "_", notice_num.lower())
+    links = notice.get("links") or {}
+    html_links = links.get("html") or {} if isinstance(links, dict) else {}
+    url = html_links.get("ENG") or (next(iter(html_links.values()), "") if html_links else "")
+    if not url and pub_num:
+        url = f"https://ted.europa.eu/en/notice/-/detail/{pub_num}"
 
     return {
         "id": tender_id,
-        "title": title,
+        "title": title or f"TED notice {pub_num}",
         "institution": buyer,
+        "publishedDate": published,
         "deadline": deadline,
         "status": "identified",
         "value": value,
         "product": product or "Academic database",
         "competitor": competitor or "—",
-        "notes": f"TED Europa notice {notice_num}. Published: {pub[:10] if pub else '—'}.",
-        "source": f"TED Europa {notice_num}",
-        "createdAt": datetime.utcnow().isoformat() + "Z",
-        "updatedAt": datetime.utcnow().isoformat() + "Z",
+        "url": url,
+        "notes": f"TED Europa notice {pub_num}. Published: {published or '—'}.",
+        "source": f"TED Europa {pub_num}",
+        "createdAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+        "updatedAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
     }
 
 def scrape_ted(existing: list) -> list:
@@ -177,22 +200,16 @@ def scrape_ted(existing: list) -> list:
     new    = []
     seen   = set()
 
-    # Search in chunks so we don't blow the query length
-    query_groups = [
-        " OR ".join(f'"{k}"' for k in ELSEVIER_PRODUCTS),
-        " OR ".join(f'"{k}"' for k in COMPETITOR_PRODUCTS),
-        " OR ".join(f'"{k}"' for k in CATEGORY_KEYWORDS[:6]),
-    ]
+    query_groups = [ELSEVIER_PRODUCTS, COMPETITOR_PRODUCTS, CATEGORY_KEYWORDS[:6]]
 
-    for q in query_groups:
-        print(f"  TED query: {q[:80]}...")
-        notices = search_ted(q)
+    for group in query_groups:
+        query = build_ted_query(group)
+        print(f"  TED query: {query[:90]}...")
+        notices = search_ted(query)
         print(f"    → {len(notices)} notices")
         for n in notices:
-            rel, product, competitor = is_relevant(
-                str(n.get("title-text", "")),
-                str(n.get("short-description", ""))
-            )
+            title = _pick_lang(n.get("notice-title") or {})
+            rel, product, competitor = is_relevant(title)
             if not rel:
                 continue
             t = ted_to_tender(n, product, competitor)
@@ -207,14 +224,13 @@ def scrape_ted(existing: list) -> list:
     return new
 
 # ── TenderNed scraper (Dutch national) ───────────────────────────────────────
+# TenderNed's site is now an Angular SPA (tn-root) — the HTML has no results
+# in it. Use the underlying public JSON API it calls instead.
+# Verified against the live API on 2026-08-13.
 
-TENDERNED_URL = "https://www.tenderned.nl/aankondigingen/overzicht?search={query}&page=1"
+TENDERNED_API = "https://www.tenderned.nl/papi/tenderned-rs-tns/v2/publicaties"
 
 def scrape_tenderned(existing: list) -> list:
-    """
-    TenderNed has no public JSON API; scrape the search HTML.
-    Returns new tenders only.
-    """
     ids    = existing_ids(existing)
     titles = existing_titles(existing)
     new    = []
@@ -227,56 +243,42 @@ def scrape_tenderned(existing: list) -> list:
 
     for kw in keywords:
         encoded = urllib.parse.quote(kw)
-        url     = f"https://www.tenderned.nl/aankondigingen/overzicht?search={encoded}"
+        url     = f"{TENDERNED_API}?zoekterm={encoded}"
         print(f"  TenderNed: {kw}")
-        req = urllib.request.Request(url, headers={
-            "User-Agent": "Mozilla/5.0 (research-crm-scraper/1.0)"
-        })
-        try:
-            with urllib.request.urlopen(req, timeout=20) as resp:
-                html = resp.read().decode("utf-8", errors="replace")
-        except Exception as e:
-            print(f"    Error: {e}", file=sys.stderr)
+        result = fetch_json(url, headers={"User-Agent": "Mozilla/5.0 (research-crm-scraper/1.0)"})
+        if not result:
             continue
-
-        # Extract basic tender blocks from HTML
-        # TenderNed renders cards with class-based structure
-        blocks = re.findall(
-            r'<article[^>]*class="[^"]*tender[^"]*"[^>]*>(.*?)</article>',
-            html, re.DOTALL | re.IGNORECASE
-        )
-        if not blocks:
-            # Fallback: look for h2/h3 links that contain the keyword
-            links = re.findall(
-                r'href="(/aankondigingen/[^"]+)"[^>]*>([^<]{10,120})</a>',
-                html, re.IGNORECASE
-            )
-            for path, title in links:
-                if kw.lower() not in title.lower() and kw.lower() not in html[max(0,html.find(title)-200):html.find(title)+200].lower():
-                    continue
-                t_id = "tn_" + re.sub(r"[^a-z0-9]", "_", path.split("/")[-1].lower())
-                if t_id in ids or t_id in seen:
-                    continue
-                if title.lower().strip() in titles:
-                    continue
-                _, product, competitor = is_relevant(title)
-                t = {
-                    "id": t_id,
-                    "title": title.strip(),
-                    "institution": "",
-                    "deadline": "",
-                    "status": "identified",
-                    "value": "",
-                    "product": product or kw,
-                    "competitor": competitor or "—",
-                    "notes": f"Found via TenderNed search for '{kw}'.",
-                    "source": f"TenderNed {path}",
-                    "createdAt": datetime.utcnow().isoformat() + "Z",
-                    "updatedAt": datetime.utcnow().isoformat() + "Z",
-                }
-                new.append(t)
-                seen.add(t_id)
-
+        for item in result.get("content", []) or []:
+            title = (item.get("aanbestedingNaam") or "").strip()
+            desc  = item.get("opdrachtBeschrijving") or ""
+            rel, product, competitor = is_relevant(title, desc)
+            if not rel:
+                continue
+            pub_id = str(item.get("publicatieId", ""))
+            t_id = "tn_" + re.sub(r"[^a-z0-9]", "_", pub_id.lower())
+            if t_id in ids or t_id in seen:
+                continue
+            if title.lower().strip() in titles:
+                continue
+            link = item.get("link") or {}
+            t = {
+                "id": t_id,
+                "title": title,
+                "institution": item.get("opdrachtgeverNaam") or "",
+                "publishedDate": (item.get("publicatieDatum") or "")[:10],
+                "deadline": (item.get("sluitingsDatum") or "")[:10],
+                "status": "identified",
+                "value": "",
+                "product": product or kw,
+                "competitor": competitor or "—",
+                "url": link.get("href") or f"https://www.tenderned.nl/aankondigingen/overzicht/{pub_id}",
+                "notes": f"TenderNed publicatie {pub_id}. Found via search for '{kw}'.",
+                "source": f"TenderNed {pub_id}",
+                "createdAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+                "updatedAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+            }
+            new.append(t)
+            seen.add(t_id)
         time.sleep(0.5)
 
     return new
@@ -284,6 +286,14 @@ def scrape_tenderned(existing: list) -> list:
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
+    # Windows consoles default to cp1252, which can't encode the arrows/checkmarks
+    # below. GitHub Actions runners are UTF-8 by default, but reconfigure defensively
+    # so a print() never crashes the run after the actual scraping work is done.
+    for stream in (sys.stdout, sys.stderr):
+        try:
+            stream.reconfigure(encoding="utf-8", errors="replace")
+        except Exception:
+            pass
     print(f"[tender_scraper] {datetime.now().strftime('%Y-%m-%d %H:%M')} starting...")
     tenders = load_tenders()
     print(f"  Existing tenders: {len(tenders)}")
@@ -316,6 +326,7 @@ def main():
     else:
         print("[tender_scraper] ✓ No new relevant tenders found.")
 
+    save_state(len(new_tenders))
     return len(new_tenders)
 
 if __name__ == "__main__":

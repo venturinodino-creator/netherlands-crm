@@ -1,0 +1,27 @@
+name: Daily Tender Scan
+
+on:
+  schedule:
+    - cron: '30 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run tender scraper
+        run: python scraper/tender_scraper.py
+      - name: Commit new tenders
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          git add data/tenders.json data/tenders-scan-state.json
+          git diff --staged --quiet || git commit -m "tenders: auto-scan $(date +%Y-%m-%d)"
+          git push
