@@ -3259,7 +3259,7 @@ function refreshTenders() {
 
 function renderRFPOpps() {
   document.getElementById('page-title').textContent = 'RFP Opps';
-  document.getElementById('page-sub').textContent = 'Tenders involving Elsevier products or direct competitors';
+  document.getElementById('page-sub').textContent = 'Netherlands tenders where a specific Elsevier product aligns with what\'s being sought';
   document.getElementById('topbar-actions').innerHTML = '<button id="refresh-tenders-btn" class="btn btn-accent" onclick="refreshTenders()" style="display:flex;align-items:center;gap:6px"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>Refresh Tenders</button>';
 
   const rfps = getRFPs();

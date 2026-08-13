@@ -1,6 +1,10 @@
 """
-tender_scraper.py — Daily scraper for Elsevier-relevant tenders
-Sources: TED Europa (EU official journal), TenderNed (Dutch national)
+tender_scraper.py — Daily scraper for Netherlands tenders that align with an
+Elsevier product
+Sources: TED Europa (EU official journal, filtered to place-of-performance =
+Netherlands), TenderNed (Dutch national — NL by definition).
+Only keeps tenders that resolve to a specific named Elsevier product
+(Scopus, ScienceDirect, SciVal, or Elsevier Pure) — see PRODUCT_ALIGNMENT.
 Writes new tenders to data/tenders.json without duplicates.
 
 Run: python scraper/tender_scraper.py
@@ -33,7 +37,11 @@ COMPETITOR_PRODUCTS = [
     "Vidatum", "Symplectic Elements",
 ]
 CATEGORY_KEYWORDS = [
-    "research information system", "CRIS", "current research information",
+    # NOTE: bare "CRIS" was removed — it's a common Dutch acronym for unrelated
+    # things (e.g. "Cliëntvolgsysteem", a client-tracking system), and matched
+    # a victim-support charity's IT tender with nothing to do with research
+    # information systems. Only the unambiguous phrases stay.
+    "research information system", "current research information",
     "bibliometric", "academic database", "scientific database",
     "scientific literature", "scholarly database", "publication database",
     "library database", "elektronische tijdschriften",      # NL: electronic journals
@@ -42,6 +50,39 @@ CATEGORY_KEYWORDS = [
 ]
 
 ALL_KEYWORDS = ELSEVIER_PRODUCTS + COMPETITOR_PRODUCTS + CATEGORY_KEYWORDS
+
+# Every non-Elsevier keyword must resolve to the specific Elsevier product it
+# competes with — we only want tenders where a named Elsevier solution
+# actually aligns with what's being procured, not a vague "academic database"
+# bucket. Case-insensitive lookup; keys are lowercased at lookup time.
+PRODUCT_ALIGNMENT = {
+    # Research information systems / CRIS -> Pure
+    "research information system": "Elsevier Pure",
+    "current research information": "Elsevier Pure",
+    "onderzoeksinformatie": "Elsevier Pure",
+    "publication database": "Elsevier Pure",
+    "symplectic elements": "Elsevier Pure",   # Digital Science CRIS competitor
+    "vidatum": "Elsevier Pure",                # CRIS-adjacent competitor
+    # Bibliometrics / analytics -> SciVal
+    "bibliometric": "SciVal",
+    "incites": "SciVal",
+    "journal citation reports": "SciVal",
+    # Citation / discovery database -> Scopus
+    "academic database": "Scopus",
+    "scholarly database": "Scopus",
+    "library database": "Scopus",
+    "wetenschappelijke databases": "Scopus",
+    "literatuurbestanden": "Scopus",
+    "web of science": "Scopus",
+    "clarivate": "Scopus",
+    # Full-text content platform -> ScienceDirect
+    "scientific database": "ScienceDirect",
+    "scientific literature": "ScienceDirect",
+    "elektronische tijdschriften": "ScienceDirect",
+    "springer nature": "ScienceDirect",
+    "wiley online": "ScienceDirect",
+    "taylor & francis": "ScienceDirect",
+}
 
 # ── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -73,14 +114,43 @@ def existing_titles(tenders: list) -> set:
     return {t["title"].lower().strip() for t in tenders}
 
 def is_relevant(title: str, description: str = "") -> tuple[bool, str, str]:
-    """Returns (relevant, matched_product, matched_competitor)."""
+    """Returns (relevant, elsevier_product, matched_competitor).
+
+    `elsevier_product` is always a specific named Elsevier product (Scopus,
+    ScienceDirect, SciVal, or Elsevier Pure) — never a generic category term.
+    A tender is only relevant if it resolves to one; a bare category or
+    competitor match with no Elsevier alignment is not enough.
+    """
     text = (title + " " + description).lower()
-    product    = next((k for k in ELSEVIER_PRODUCTS    if k.lower() in text), "")
-    competitor = next((k for k in COMPETITOR_PRODUCTS  if k.lower() in text), "")
-    category   = next((k for k in CATEGORY_KEYWORDS    if k.lower() in text), "")
-    if product or competitor or category:
-        return True, product or category, competitor
+
+    elsevier_hit = next((k for k in ELSEVIER_PRODUCTS if k.lower() in text), "")
+    if elsevier_hit:
+        competitor = next((k for k in COMPETITOR_PRODUCTS if k.lower() in text), "")
+        return True, elsevier_hit, competitor
+
+    competitor_hit = next((k for k in COMPETITOR_PRODUCTS if k.lower() in text), "")
+    if competitor_hit:
+        aligned = PRODUCT_ALIGNMENT.get(competitor_hit.lower())
+        if aligned:
+            return True, aligned, competitor_hit
+
+    category_hit = next((k for k in CATEGORY_KEYWORDS if k.lower() in text), "")
+    if category_hit:
+        aligned = PRODUCT_ALIGNMENT.get(category_hit.lower())
+        if aligned:
+            competitor = next((k for k in COMPETITOR_PRODUCTS if k.lower() in text), "")
+            return True, aligned, competitor
+
     return False, "", ""
+
+NL_COUNTRY_CODE = "NLD"
+
+def is_netherlands(notice: dict) -> bool:
+    """TED place-of-performance is a list of ISO-3 country codes."""
+    places = notice.get("place-of-performance")
+    if isinstance(places, list):
+        return NL_COUNTRY_CODE in places
+    return False
 
 def fetch_json(url: str, data: bytes = None, headers: dict = None) -> dict | None:
     """Simple HTTP GET/POST returning parsed JSON or None on error."""
@@ -184,7 +254,7 @@ def ted_to_tender(notice: dict, product: str, competitor: str) -> dict:
         "deadline": deadline,
         "status": "identified",
         "value": value,
-        "product": product or "Academic database",
+        "product": product,
         "competitor": competitor or "—",
         "url": url,
         "notes": f"TED Europa notice {pub_num}. Published: {published or '—'}.",
@@ -208,6 +278,8 @@ def scrape_ted(existing: list) -> list:
         notices = search_ted(query)
         print(f"    → {len(notices)} notices")
         for n in notices:
+            if not is_netherlands(n):
+                continue
             title = _pick_lang(n.get("notice-title") or {})
             rel, product, competitor = is_relevant(title)
             if not rel:
@@ -269,7 +341,7 @@ def scrape_tenderned(existing: list) -> list:
                 "deadline": (item.get("sluitingsDatum") or "")[:10],
                 "status": "identified",
                 "value": "",
-                "product": product or kw,
+                "product": product,
                 "competitor": competitor or "—",
                 "url": link.get("href") or f"https://www.tenderned.nl/aankondigingen/overzicht/{pub_id}",
                 "notes": f"TenderNed publicatie {pub_id}. Found via search for '{kw}'.",
