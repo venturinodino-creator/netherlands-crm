@@ -1967,8 +1967,8 @@ function renderDashboard() {
     },
     {
       id: 'agent-competitor', name: 'Competitor Insights Scan', icon: '🔍',
-      status: 'manual', cadence: 'Not scheduled — run manually', source: 'LeapSpace competitor watch',
-      statusEl: null, view: 'ai-insights',
+      status: 'active', cadence: 'Daily · 07:00 UTC · GitHub Actions', source: 'Claude API (web search)',
+      statusEl: 'agent-competitor-lastrun', view: 'ai-insights',
     },
   ];
   const agentRows = AGENTS.map(a=>{
@@ -2046,6 +2046,7 @@ function _syncAgentFrom(elId, jsonPath, extra) {
 function syncAgentStatus() {
   _syncAgentFrom('agent-discovery-lastrun', 'data/discovery-state.json');
   _syncAgentFrom('agent-tenders-lastrun', 'data/tenders-scan-state.json', d => d.lastNewCount ? ` · +${d.lastNewCount}` : '');
+  _syncAgentFrom('agent-competitor-lastrun', 'data/competitor-scan-state.json', d => d.error === 'missing_api_key' ? ' · needs ANTHROPIC_API_KEY' : d.lastAddedCount ? ` · +${d.lastAddedCount}` : '');
 }
 
 let _scDragSrc = null;
@@ -4468,7 +4469,7 @@ function renderCompetitorInsights() {
           </div>
           <button onclick="deleteAIInsight('${x.id}')" title="Remove" style="background:none;border:none;cursor:pointer;color:#334155;padding:2px;opacity:.5;flex-shrink:0" onmouseover="this.style.opacity=1;this.style.color='#ef4444'" onmouseout="this.style.opacity='.5';this.style.color='#334155'"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
         </div>
-        <div style="display:flex;flex-wrap:wrap;gap:5px">${chips}</div>
+        <div style="display:flex;flex-wrap:wrap;gap:5px">${chips}${x.autoDiscovered ? `<span title="Found automatically by the daily scan agent — not yet manually reviewed" style="font-size:9.5px;font-weight:700;color:#fbbf24;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.3);padding:2px 8px;border-radius:10px;white-space:nowrap">🤖 Auto-found</span>` : ''}</div>
         <p style="font-size:12px;line-height:1.6;color:rgba(255,255,255,.55);margin:0">${esc(x.howItCompetes||'')}</p>
         <div style="display:flex;justify-content:space-between;align-items:center;margin-top:2px;padding-top:10px;border-top:1px solid rgba(255,255,255,.06)">
           <span style="font-size:10px;color:rgba(255,255,255,.3);font-weight:500">Found ${x.addedDate||'—'}</span>
