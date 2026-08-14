@@ -4512,13 +4512,13 @@ function renderCompetitorInsights() {
   const matrixHtml = `<div style="margin-bottom:16px;border-radius:14px;border:1px solid rgba(255,255,255,.07);background:rgba(26,40,62,0.95);box-shadow:0 4px 24px rgba(0,0,0,.3);overflow:hidden">
     <div style="padding:12px 18px;border-bottom:1px solid rgba(255,255,255,.07);font-size:11px;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.06em">LeapSpace tab coverage, per competitor</div>
     <div style="overflow-x:auto">
-      <table style="width:100%;border-collapse:separate;border-spacing:0;min-width:900px">
+      <table style="width:100%;border-collapse:separate;border-spacing:0;min-width:560px;table-layout:fixed">
         <thead>
           <tr>
-            <th style="text-align:left;padding:8px 14px;font-size:10px;font-weight:700;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid rgba(255,255,255,.08);border-right:1px solid rgba(255,255,255,.06);position:sticky;left:0;background:rgba(15,22,38,0.98);min-width:180px">Competitor</th>
+            <th style="text-align:left;padding:8px 10px;font-size:10px;font-weight:700;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid rgba(255,255,255,.08);border-right:1px solid rgba(255,255,255,.06);position:sticky;left:0;background:rgba(15,22,38,0.98);width:16%">Competitor</th>
             ${Object.entries(LEAPSPACE_TABS).map(function(pair){
               const k = pair[0], v = pair[1];
-              return `<th title="${v.desc.replace(/"/g,'&quot;')}" style="padding:8px 6px;font-size:9.5px;font-weight:700;color:${v.color};text-align:center;border-bottom:1px solid rgba(255,255,255,.08);white-space:nowrap">${v.label}<div style="font-weight:600;color:rgba(255,255,255,.3);margin-top:2px">${elementCounts[k]}</div></th>`;
+              return `<th title="${v.desc.replace(/"/g,'&quot;')}" style="padding:8px 4px;font-size:9.5px;line-height:1.25;font-weight:700;color:${v.color};text-align:center;border-bottom:1px solid rgba(255,255,255,.08);word-break:break-word">${v.label}<div style="font-weight:600;color:rgba(255,255,255,.3);margin-top:2px">${elementCounts[k]}</div></th>`;
             }).join('')}
           </tr>
         </thead>
