@@ -66,9 +66,14 @@
         var contacts = getC();
         var pending  = getP();
 
-        // Against accepted contacts: only skip by email (names not unique enough across scrapes)
+        // Against accepted contacts: skip by email when present, else fall back to name+institution
+        // (most scraped contacts have no email, so email-only dedup let them come right back
+        // on every reload even after being accepted)
         var acceptedEmails = new Set(
           contacts.map(function(c){ return (c.email||'').toLowerCase().trim(); }).filter(Boolean)
+        );
+        var acceptedNameInst = new Set(
+          contacts.map(function(c){ return ((c.first||'')+' '+(c.last||'')).toLowerCase().trim() + '@' + (c.instId||''); })
         );
         // Against current pending: skip by both name and email (no exact dupes in queue)
         var pendingEmails = new Set(
@@ -84,6 +89,7 @@
           var nl = ((c.first||'')+' '+(c.last||'')).toLowerCase().trim();
           if (!nl || nl.trim() === '') return;                    // blank name
           if (el && acceptedEmails.has(el)) return;              // already accepted (by email)
+          if (!el && acceptedNameInst.has(nl + '@' + (c.instId||''))) return; // already accepted (no email — by name+institution)
           if (el && pendingEmails.has(el)) return;               // already queued (by email)
           if (pendingNames.has(nl)) return;                      // already queued (by name)
           var id = 'disc_' + (c.instId||'xx') + '_' + Date.now() + '_' + Math.random().toString(36).slice(2,6);
@@ -290,8 +296,35 @@
     };
   }
 
+  // One-time cleanup: entries already accepted into crm_contacts (in an earlier
+  // session, before the email-less dedup fix existed) can still be sitting in
+  // this browser's pending queue. Prune them so they don't linger indefinitely.
+  function pruneAlreadyAccepted() {
+    var contacts = getC();
+    var pending = getP();
+    if (!pending.length || !contacts.length) return 0;
+    var acceptedEmails = new Set(
+      contacts.map(function(c){ return (c.email||'').toLowerCase().trim(); }).filter(Boolean)
+    );
+    var acceptedNameInst = new Set(
+      contacts.map(function(c){ return ((c.first||'')+' '+(c.last||'')).toLowerCase().trim() + '@' + (c.instId||''); })
+    );
+    var kept = pending.filter(function(c) {
+      var el = (c.email||'').toLowerCase().trim();
+      var nl = ((c.first||'')+' '+(c.last||'')).toLowerCase().trim();
+      if (el && acceptedEmails.has(el)) return false;
+      if (!el && acceptedNameInst.has(nl + '@' + (c.instId||''))) return false;
+      return true;
+    });
+    var removed = pending.length - kept.length;
+    if (removed > 0) saveP(kept);
+    return removed;
+  }
+
   function init() {
     hookNav();
+    var pruned = pruneAlreadyAccepted();
+    if (pruned > 0) console.log('[NL CRM] pruned', pruned, 'already-accepted contacts from pending queue');
     syncFromFile().then(function(n) {
       if (n > 0) { console.log('[NL CRM] loaded', n, 'new contacts'); render(); }
     });
