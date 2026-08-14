@@ -61,12 +61,11 @@
     "company": "SciSpace",
     "product": "SciSpace Research Workspace (AI Search, BioMed Agent, Meta-Analysis Agent, Manuscript Writer)",
     "addedDate": "2026-08-13",
-    "elements": ["literatureSearch", "writingCoach", "trustClaimRadar", "deepResearchReports"],
-    "howItCompetes": "The broadest multi-agent workspace challenger to LeapSpace. AI Search behaves like a research agent — querying 280M+ papers plus Google Scholar and PubMed, retrieving roughly 240 papers and extracting evidence from the top matches into a cited answer, matching LeapSpace's Literature Search and Deep Research Reports. Domain-specific agents (BioMed Agent, Meta-Analysis Agent) plus a Manuscript Writer agent go head-to-head with LeapSpace's Writing Coach, though independent reviews flag more hallucination risk in its in-paper explanations than source-grounded alternatives — exactly the gap LeapSpace's Trust Cards & Claim Radar is designed to close.",
+    "elements": ["literatureSearch", "writingCoach", "deepResearchReports"],
+    "howItCompetes": "The broadest multi-agent workspace challenger to LeapSpace. AI Search behaves like a research agent — querying 280M+ papers plus Google Scholar and PubMed, retrieving roughly 240 papers and extracting evidence from the top matches into a cited answer, matching LeapSpace's Literature Search and Deep Research Reports. Domain-specific agents (BioMed Agent, Meta-Analysis Agent) plus a Manuscript Writer agent go head-to-head with LeapSpace's Writing Coach, though independent reviews flag more hallucination risk in its in-paper explanations than source-grounded alternatives — exactly the gap LeapSpace's Trust Cards & Claim Radar is designed to close, not a capability SciSpace itself offers.",
     "elementNotes": {
       "literatureSearch": "AI Search queries 280M+ papers plus Google Scholar/PubMed and returns a cited answer built from roughly 240 retrieved papers — same job as Literature Search & Discovery.",
       "writingCoach": "Manuscript Writer agent assists with drafting — competes with Writing Coach's dialogue-based argument pressure-testing, though it's a more generic writing aid rather than a claim-pressure-testing dialogue.",
-      "trustClaimRadar": "Weakest overlap on this card: SciSpace doesn't offer a matching claim-verification feature — it's tagged because independent reviews flag more hallucination risk in its in-paper explanations, i.e. it's the gap Trust Cards & Claim Radar is designed to close, not a competing capability.",
       "deepResearchReports": "BioMed Agent and Meta-Analysis Agent produce longer-form, domain-specific analyses — same category of output as Deep Research Reports."
     },
     "sourceUrl": "https://www.atlasworkspace.ai/blog/best-ai-research-assistants",
