@@ -5,6 +5,26 @@ const STATE_FILE   = 'data/discovery-state.json';
 const CONFIG_FILE  = 'data/scrape-config.json';
 const TARGET       = 20;
 
+const SUPA_URL = 'https://cfhljbexesdrabmadpcc.supabase.co';
+const SUPA_KEY = 'sb_publishable_PE2Yc0ivOT4F4fE80CXJUw_kbch9TpZ'; // publishable key — read-only here, safe to embed
+
+// The admin sets scrape targets from the CRM's "New Contacts" page, which
+// writes to this table. Falls back to the local CONFIG_FILE if Supabase is
+// unreachable, so a scan never silently fails from a transient network issue.
+async function fetchScrapeConfig() {
+  try {
+    const res = await fetch(`${SUPA_URL}/rest/v1/scrape_config?select=types&id=eq.1`, {
+      headers: { apikey: SUPA_KEY, Authorization: `Bearer ${SUPA_KEY}` }
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const rows = await res.json();
+    if (rows[0] && Array.isArray(rows[0].types) && rows[0].types.length) return rows[0].types;
+  } catch (e) {
+    console.warn('Could not fetch scrape_config from Supabase, falling back to local file:', e.message);
+  }
+  return null;
+}
+
 // ── Institution definitions by type ────────────────────────────────────────
 const INSTITUTIONS = {
   research: [
@@ -123,8 +143,10 @@ async function scrapeOpenAlex(scraped, inst, needed) {
 }
 
 async function main() {
-  // Read config
-  const config = readJSON(CONFIG_FILE, { types: ['research'] });
+  // Read config — Supabase first (set from the CRM UI), local file as fallback
+  const remoteTypes = await fetchScrapeConfig();
+  const config = remoteTypes ? { types: remoteTypes } : readJSON(CONFIG_FILE, { types: ['research'] });
+  console.log(remoteTypes ? 'Using scrape target from Supabase' : 'Using scrape target from local config file');
   const enabledTypes = new Set(Array.isArray(config.types) ? config.types : ['research']);
   console.log('Enabled institution types:', [...enabledTypes].join(', '));
 

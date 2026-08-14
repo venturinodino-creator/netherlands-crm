@@ -212,6 +212,19 @@
   window._nlSelectT = function(t) {
     saveT(t);
     render();
+    // Persist the target to Supabase so the daily discovery scraper (GitHub
+    // Action) picks it up too — admin-only, enforced by RLS on scrape_config.
+    var isAdmin = window.state && window.state.currentRole === 'admin';
+    if (!isAdmin || typeof window.supaFetch !== 'function') return;
+    var types = t === 'all' ? ['university','medical','research','ngo'] : [t];
+    window.supaFetch('scrape_config?id=eq.1', {
+      method: 'PATCH',
+      headers: { 'Prefer': 'return=minimal' },
+      body: JSON.stringify({ types: types, updated_at: new Date().toISOString() })
+    }).then(function() {
+      var label = t === 'all' ? 'all institution types' : (TM[t]||{label:t}).label;
+      try { if (typeof toast==='function') toast('✓ Next scrape will target: ' + label, 'ok'); } catch(e){}
+    }).catch(function(e) { console.error('Failed to save scrape target:', e); });
   };
 
   window._nlAccept = function(id) {
