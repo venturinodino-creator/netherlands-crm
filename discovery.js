@@ -176,7 +176,7 @@
         tm.label + ' · ' + iname + '</div>' +
         (c.email ? '<div style="color:#6ee7b7;font-size:12px;margin-top:4px">✉ ' + c.email + '</div>' : '') +
         '</div>' +
-        '<div style="display:flex;gap:8px;flex-shrink:0">' +
+        '<div style="display:flex;gap:8px;flex-shrink:0" data-admin-only>' +
         '<button onclick="window._nlAccept(\'' + c.id + '\')" style="background:#10b981;color:#fff;' +
         'border:none;border-radius:6px;padding:7px 16px;cursor:pointer;font-size:13px;font-weight:600">Accept</button>' +
         '<button onclick="window._nlDiscard(\'' + c.id + '\')" style="background:rgba(239,68,68,0.12);' +
@@ -193,6 +193,8 @@
       'box-shadow:0 4px 12px rgba(16,185,129,0.3)">Accept All (' + filtered.length + ')</button></div>';
 
     content.innerHTML = '<div style="padding:24px;max-width:860px">' + header + filterBar + cards + '</div>';
+    // Re-apply admin-only visibility since this rebuilds #content outside index.html's own render()
+    try { if (typeof window.applyRoleUI === 'function') window.applyRoleUI(); } catch(e) {}
   }
 
   /* ── Handlers ─────────────────────────────────────────────────────────── */
@@ -213,14 +215,16 @@
     var contact = p.splice(idx, 1)[0];
     var inst = INST[contact.instId] || {};
     var contacts = getC();
-    contacts.push(Object.assign({}, contact, {
+    var newContact = Object.assign({}, contact, {
       institution: inst.name || contact.instId || '',
       addedAt: new Date().toISOString(),
       status: 'active', quality: 'verified',
-    }));
+    });
+    contacts.push(newContact);
     saveC(contacts); saveP(p);
     try { if (window.state && Array.isArray(window.state.contacts)) window.state.contacts = contacts.filter(function(c){ return c.quality==='verified'; }); } catch(e) {}
     try { if (typeof loadPendingCount==='function') loadPendingCount(); } catch(e) {}
+    try { if (typeof window.supaUpsertContact === 'function') window.supaUpsertContact(newContact).catch(function(e){ console.error(e); }); } catch(e) {}
     render();
   };
 
@@ -241,13 +245,16 @@
     var seenEmails = new Set(contacts.map(function(c){ return (c.email||'').toLowerCase(); }).filter(Boolean));
     var seenNames  = new Set(contacts.map(function(c){ return ((c.first||'')+' '+(c.last||'')).toLowerCase().trim(); }));
     var added = 0;
+    var addedContacts = [];
     toAccept.forEach(function(c) {
       var el = (c.email||'').toLowerCase().trim();
       var nl = ((c.first||'')+' '+(c.last||'')).toLowerCase().trim();
       if (el && seenEmails.has(el)) return;
       if (seenNames.has(nl)) return;
       var inst = INST[c.instId] || {};
-      contacts.push(Object.assign({}, c, { institution: inst.name||c.instId||'', addedAt: new Date().toISOString(), status:'active', quality:'verified' }));
+      var newContact = Object.assign({}, c, { institution: inst.name||c.instId||'', addedAt: new Date().toISOString(), status:'active', quality:'verified' });
+      contacts.push(newContact);
+      addedContacts.push(newContact);
       if (el) seenEmails.add(el);
       seenNames.add(nl);
       added++;
@@ -257,6 +264,9 @@
     try { if (window.state && Array.isArray(window.state.contacts)) window.state.contacts = contacts.filter(function(c){ return c.quality==='verified'; }); } catch(e){}
     try { if (typeof loadPendingCount==='function') loadPendingCount(); } catch(e){}
     try { if (typeof toast==='function') toast(added + ' contact' + (added!==1?'s':'') + ' added to CRM!','ok'); } catch(e){}
+    if (typeof window.supaUpsertContact === 'function') {
+      addedContacts.forEach(function(nc){ window.supaUpsertContact(nc).catch(function(e){ console.error(e); }); });
+    }
     render();
   };
 
