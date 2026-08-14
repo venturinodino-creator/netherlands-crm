@@ -2896,26 +2896,30 @@ function exportCSV() {
 
 //  NEWS PAGE 
 // Uses Google News RSS via allorigins.win proxy — no API key needed
+// Every query is scoped to one of the CRM's 4 tracked institution types
+// (university / medical / research / ngo) crossed with either AI & research
+// or a theme directly relevant to Elsevier's business (research infrastructure,
+// bibliometrics, funding, open access policy) — not generic campus news.
 const NEWS_QUERIES = [
-  {id:'ai',       name:'AI & Technology',    color:'#1d4ed8',
-   q:'netherlands university artificial intelligence research'},
-  {id:'policy',   name:'Policy',             color:'#7c3aed',
-   q:'netherlands higher education policy government'},
-  {id:'research', name:'Research',           color:'#166534',
-   q:'netherlands university research innovation science'},
-  {id:'plans',    name:'Future Plans',       color:'#b45309',
-   q:'netherlands university strategy funding future'},
-  {id:'general',  name:'NL Universities',   color:'#991b1b',
-   q:'netherlands university news 2026'},
-  {id:'medical',  name:'Medical & Health',   color:'#0369a1',
-   q:'netherlands university medical health research'},
+  {id:'uni_ai',        name:'Universities · AI & Research',            color:'#1d4ed8',
+   q:'Netherlands university artificial intelligence research'},
+  {id:'medical_ai',    name:'Medical Centers · AI & Research',         color:'#0369a1',
+   q:'Netherlands medical center hospital AI research'},
+  {id:'research_ai',   name:'Research Institutes · AI & Research',     color:'#166534',
+   q:'Netherlands research institute KNAW TNO artificial intelligence'},
+  {id:'ngo_funding',   name:'NGOs & Funders',                          color:'#7c3aed',
+   q:'Netherlands NWO ZonMw research funding grant'},
+  {id:'research_infra',name:'Research Infrastructure & Publishing',    color:'#b45309',
+   q:'Netherlands university Scopus SciVal bibliometrics research information system'},
+  {id:'oa_policy',     name:'Open Access & Policy',                    color:'#991b1b',
+   q:'Netherlands open access research policy universities'},
 ];
 
 const NEWS_TOPICS = {
   'AI & Technology':['ai','artificial intelligence','machine learning','deep learning','chatgpt','llm','generative','neural','digital','algorithm','data science','robotics','automation','tech','software','quantum'],
-  'Policy & Regulation':['policy','regulation','law','governance','legislation','directive','compliance','ethics','framework','government','minister','parliament','eu','european','subsidy'],
-  'Research & Discovery':['research','study','publication','discovery','findings','paper','journal','experiment','breakthrough','innovation','grant','funding','project','prize','award'],
-  'Future Plans':['plan','initiative','roadmap','vision','investment','expansion','launch','opening','collaboration','partnership','agreement','strategy','goal','2025','2026','2027','2030'],
+  'Research Infrastructure':['scopus','scival','pure','bibliometric','research information system','cris','open access','subscription','licence','license','licensing','database','elsevier','clarivate','web of science','publisher','publishing'],
+  'Policy & Funding':['policy','regulation','law','governance','legislation','nwo','zonmw','subsidy','grant','funding','minister','ministry','parliament','eu','european'],
+  'Research & Discovery':['research','study','publication','discovery','findings','paper','journal','experiment','breakthrough','innovation','project','prize','award'],
 };
 
 function detectTopics(text) {
@@ -2923,6 +2927,23 @@ function detectTopics(text) {
   return Object.entries(NEWS_TOPICS)
     .filter(([,kws]) => kws.some(k => lower.includes(k)))
     .map(([t]) => t);
+}
+
+// Safety net: even a well-scoped Google News query can return a generic,
+// non-Dutch result. Keep an article only if it plausibly concerns the
+// Netherlands — either a generic NL/city keyword, or one of the CRM's own
+// tracked institutions (reusing SEED_INSTITUTIONS so this stays in sync with
+// the actual institution list rather than a separate hardcoded copy).
+const NEWS_NL_KEYWORDS = ['netherlands','dutch','holland','nl-based','amsterdam','rotterdam','utrecht','delft','eindhoven','groningen','leiden','nijmegen','maastricht','wageningen','tilburg','enschede','the hague','den haag'];
+const NEWS_INSTITUTION_LOOKUP = SEED_INSTITUTIONS
+  .map(i => ({ name: (i.name||'').toLowerCase(), shortRe: i.short && i.short.length >= 3 ? new RegExp('\\b'+i.short.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\b','i') : null }))
+  .filter(i => i.name || i.shortRe);
+
+function isNLRelevant(text) {
+  const raw = text || '';
+  const lower = ' ' + raw.toLowerCase() + ' ';
+  if (NEWS_NL_KEYWORDS.some(k => lower.includes(k))) return true;
+  return NEWS_INSTITUTION_LOOKUP.some(i => (i.name && lower.includes(i.name)) || (i.shortRe && i.shortRe.test(raw)));
 }
 
 function newsStorageKey(d)  { return 'nl_crm_news_' + d; }
@@ -2942,7 +2963,9 @@ function getNewsForDate(d) {
 }
 
 const PROXY = 'https://api.allorigins.win/raw?url=';
-const GN_BASE = 'https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US:en&q=';
+// NL edition (not US) — surfaces Dutch-context English-language sources
+// (NL Times, DutchNews.nl, university press pages, etc.) more consistently.
+const GN_BASE = 'https://news.google.com/rss/search?hl=en-NL&gl=NL&ceid=NL:en&q=';
 
 async function fetchQueryFeed(qObj) {
   const rssUrl = GN_BASE + encodeURIComponent(qObj.q);
@@ -2962,7 +2985,7 @@ async function fetchQueryFeed(qObj) {
       const pubDate = pubRaw ? new Date(pubRaw).toISOString().slice(0,10) : '';
       const source = item.querySelector('source')?.textContent || qObj.name;
       return { title, description: desc, url: link, pubDate, sourceName: source, query: qObj, topics: detectTopics(title + ' ' + desc) };
-    }).filter(a => a.title && a.url);
+    }).filter(a => a.title && a.url && isNLRelevant(a.title + ' ' + a.description));
   } catch(e) { return []; }
 }
 
@@ -3073,8 +3096,8 @@ function toggleNewsSource(id, checked) {
 }
 
 function renderNews() {
-  document.getElementById('page-title').textContent = 'University News';
-  document.getElementById('page-sub').textContent = 'Live updates from Dutch universities · policy · AI · research · future plans';
+  document.getElementById('page-title').textContent = 'Netherlands Research News';
+  document.getElementById('page-sub').textContent = 'AI & research news from NL universities, medical centers, research institutes & NGOs — filtered for relevance to your business';
   document.getElementById('topbar-actions').innerHTML =
     `<button id="news-refresh-btn" class="btn btn-outline btn-sm" onclick="fetchAndShowNews('${todayStr()}',true)">º Refresh</button>`;
 
