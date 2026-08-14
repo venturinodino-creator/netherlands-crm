@@ -950,7 +950,7 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
     </div>
     <div class="sb-divider"></div>
     <div class="nav-section">Data</div>
-    <div class="nav-item nav-item-sync-contacts" onclick="syncContacts()" title="Import new contacts from CSV">
+    <div class="nav-item nav-item-sync-contacts" data-admin-only onclick="syncContacts()" title="Import new contacts from CSV">
       <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
       <div style="flex:1">
         <div>Import Contacts</div>
@@ -1332,6 +1332,7 @@ let state = {
   contacts: [],
   opportunities: [],
   interactions: [],
+  currentRole: null, // 'admin' | 'viewer' | null (not signed in yet)
   view: 'dashboard',
   pipelineStage: 'all',
   instView: 'grid', // grid | table
@@ -1358,14 +1359,31 @@ const SEED_VERSION = 'v6';
 
 //  SUPABASE CONFIG 
 const SUPA_URL = 'https://cfhljbexesdrabmadpcc.supabase.co';
-const SUPA_KEY = 'sb_publishable_PE2Yc0ivOT4F4fE80CXJUw_kbch9TpZ';
+const SUPA_KEY = 'sb_publishable_PE2Yc0ivOT4F4fE80CXJUw_kbch9TpZ'; // publishable/anon key — safe to be public, RLS enforces access
 
+let supabaseClient = null;
+
+// Loads the real supabase-js client (handles magic-link sessions, token refresh, etc.)
+async function initSupabase() {
+  if (supabaseClient) return supabaseClient;
+  const { createClient } = await import('https://esm.sh/@supabase/supabase-js@2');
+  supabaseClient = createClient(SUPA_URL, SUPA_KEY);
+  return supabaseClient;
+}
+
+// PostgREST fetch wrapper — attaches the signed-in user's session JWT when present,
+// so requests are evaluated as `authenticated` (with auth.uid()) rather than `anon`.
 async function supaFetch(path, opts={}) {
+  let authKey = SUPA_KEY;
+  if (supabaseClient) {
+    const { data } = await supabaseClient.auth.getSession();
+    if (data && data.session && data.session.access_token) authKey = data.session.access_token;
+  }
   const res = await fetch(SUPA_URL + '/rest/v1/' + path, {
     ...opts,
     headers: {
       'apikey': SUPA_KEY,
-      'Authorization': 'Bearer ' + SUPA_KEY,
+      'Authorization': 'Bearer ' + authKey,
       'Content-Type': 'application/json',
       'Prefer': opts.method && opts.method !== 'GET' ? 'return=representation' : '',
       ...(opts.headers||{})
@@ -1708,6 +1726,7 @@ function runContactsSync() {
   if (!_csvRows.length) return;
   const existingEmails = new Set(state.contacts.map(c => (c.email||'').toLowerCase()));
   let added = 0, skipped = 0;
+  const newContacts = [];
   _csvRows.forEach(cols => {
     const [first='', last='', title='', dept='', instId='', email='', phone='', linkedin='', research='', status='prospect', priority='medium', notes=''] = cols;
     if (!first && !last) return;
@@ -1721,10 +1740,16 @@ function runContactsSync() {
       lastContact: '', notes: notes.trim(), quality: 'seed'
     };
     state.contacts.push(newContact);
+    newContacts.push(newContact);
     if (email) existingEmails.add(email.toLowerCase());
     added++;
   });
   save();
+  if (newContacts.length) {
+    Promise.all(newContacts.map(c => supaUpsertContact(c).catch(e=>console.error(e))))
+      .then(()=>syncBadge(true))
+      .catch(()=>syncBadge(true,'err'));
+  }
   const res = document.getElementById('csync-result');
   res.style.display = 'block';
   res.style.background = added > 0 ? 'rgba(34,197,94,.07)' : 'rgba(59,130,246,.07)';
@@ -1891,13 +1916,23 @@ function render() {
     barcelona: renderBarcelonaDecl,
   };
   (views[state.view] || renderDashboard)();
+  applyRoleUI();
+}
+
+// Hides elements marked data-admin-only for non-admin (viewer) accounts.
+// UX nicety only — the real enforcement is the RLS policies in Supabase.
+function applyRoleUI() {
+  const isAdmin = state.currentRole === 'admin';
+  document.querySelectorAll('[data-admin-only]').forEach(function(el){
+    el.style.display = isAdmin ? '' : 'none';
+  });
 }
 
 //  DASHBOARD 
 function renderDashboard() {
   document.getElementById('page-title').textContent = 'Dashboard';
   document.getElementById('page-sub').textContent = 'Overview of your Netherlands research network';
-  document.getElementById('topbar-actions').innerHTML = `<button class="btn btn-outline btn-sm" onclick="resetData()">º Reset to Seed Data</button>`;
+  document.getElementById('topbar-actions').innerHTML = `<button class="btn btn-outline btn-sm" data-admin-only onclick="resetData()">º Reset to Seed Data</button>`;
 
   const inst = state.institutions;
   const cont = state.contacts;
@@ -2348,7 +2383,7 @@ function renderInstitutions() {
       <button class="vt-btn ${state.instView==='grid'?'active':''}" onclick="state.instView='grid';renderInstitutions()"> Grid</button>
       <button class="vt-btn ${state.instView==='table'?'active':''}" onclick="state.instView='table';renderInstitutions()">° Table</button>
     </div>
-    <button class="btn btn-primary" onclick="openAddInstitution()">+ Add Institution</button>`;
+    <button class="btn btn-primary" data-admin-only onclick="openAddInstitution()">+ Add Institution</button>`;
 
   const _typeOrder = {university:0, medical:1, research:2, ngo:3};
   let insts = state.institutions.filter(i=>{
@@ -2414,8 +2449,8 @@ function renderInstitutions() {
         <td>${cc} contact${cc!==1?'s':''}</td>
         <td onclick="event.stopPropagation()" style="white-space:nowrap">
           ${i.website?`<a class="ext-link" href="${esc(i.website)}" target="_blank"> Website</a>`:''}&nbsp;
-          <button class="btn btn-xs btn-outline" onclick="openEditInstitution('${i.id}')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
-          <button class="btn btn-xs btn-danger" onclick="confirmDeleteInst('${i.id}')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
+          <button class="btn btn-xs btn-outline" data-admin-only onclick="openEditInstitution('${i.id}')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+          <button class="btn btn-xs btn-danger" data-admin-only onclick="confirmDeleteInst('${i.id}')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
         </td>
       </tr>`;
     }).join('');
@@ -2440,8 +2475,8 @@ function renderDetail() {
   document.getElementById('page-title').textContent = inst.short || inst.name;
   document.getElementById('page-sub').textContent = inst.city + ' · ' + (TYPE_LABEL[inst.type]||inst.type);
   document.getElementById('topbar-actions').innerHTML = `
-    <button class="btn btn-outline" onclick="openEditInstitution('${inst.id}')">ï¸ Edit</button>
-    <button class="btn btn-accent" onclick="openAddContact('${inst.id}')">+ Add Contact</button>`;
+    <button class="btn btn-outline" data-admin-only onclick="openEditInstitution('${inst.id}')">ï¸ Edit</button>
+    <button class="btn btn-accent" data-admin-only onclick="openAddContact('${inst.id}')">+ Add Contact</button>`;
 
   const statsHtml = `
     <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;padding-top:14px;border-top:1px solid var(--border)">
@@ -2465,8 +2500,8 @@ function renderDetail() {
       <td style="font-size:12px;color:var(--muted)">${c.lastContact||'—'}</td>
       <td onclick="event.stopPropagation()" style="white-space:nowrap">
         <button class="btn btn-xs btn-outline" title="Log activity" onclick="openActivityLog('${c.id}','${esc(c.first+' '+c.last)}')">📋</button>
-        <button class="btn btn-xs btn-outline" onclick="openEditContact('${c.id}')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
-        <button class="btn btn-xs btn-danger" onclick="confirmDeleteContact('${c.id}')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
+        <button class="btn btn-xs btn-outline" data-admin-only onclick="openEditContact('${c.id}')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+        <button class="btn btn-xs btn-danger" data-admin-only onclick="confirmDeleteContact('${c.id}')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
       </td>
     </tr>`;
   }).join('') : `<tr><td colspan="8"><div class="empty" style="padding:30px"><div class="ei"><span style="display:inline-flex"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span></div><h3>No contacts yet</h3><p><button class="btn btn-accent btn-sm" onclick="openAddContact('${inst.id}')">+ Add first contact</button></p></div></td></tr>`;
@@ -2560,7 +2595,7 @@ function renderDetail() {
 function renderContacts() {
   document.getElementById('page-title').textContent = 'Contacts';
   document.getElementById('page-sub').textContent = `${state.contacts.length} contacts across all institutions`;
-  document.getElementById('topbar-actions').innerHTML = `<button class="btn btn-accent" onclick="openAddContact()">+ Add Contact</button>`;
+  document.getElementById('topbar-actions').innerHTML = `<button class="btn btn-accent" data-admin-only onclick="openAddContact()">+ Add Contact</button>`;
 
   let contacts = state.contacts.filter(c=>{
     const inst = getInst(c.instId);
@@ -2634,8 +2669,8 @@ function renderContacts() {
       <td style="font-size:12px;color:var(--muted)">${c.lastContact||'—'}</td>
       <td style="white-space:nowrap">
         <button class="btn btn-xs btn-outline" title="Log activity" onclick="openActivityLog('${c.id}','${esc(c.first+' '+c.last)}')">📋</button>
-        <button class="btn btn-xs btn-outline" onclick="openEditContact('${c.id}')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
-        <button class="btn btn-xs btn-danger" onclick="confirmDeleteContact('${c.id}')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
+        <button class="btn btn-xs btn-outline" data-admin-only onclick="openEditContact('${c.id}')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+        <button class="btn btn-xs btn-danger" data-admin-only onclick="confirmDeleteContact('${c.id}')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
       </td>
     </tr>`;
   }).join('') : `<tr><td colspan="9"><div class="empty" style="padding:30px"><div class="ei"><span style="display:inline-flex"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span></div><h3>No contacts found</h3><p>Try adjusting your filters.</p></div></td></tr>`;
@@ -2755,10 +2790,13 @@ function confirmDeleteInst(id) {
   openModal('modal-del');
 }
 function deleteInst(id) {
+  const removedContacts = state.contacts.filter(c=>c.instId===id);
   state.institutions = state.institutions.filter(i=>i.id!==id);
   state.contacts = state.contacts.filter(c=>c.instId!==id);
   save(); if(state.view==='detail'&&state.detailInstId===id) nav('institutions'); else render();
   toast('Institution deleted');
+  supaDelete('crm_institutions', id).catch(e=>console.error(e));
+  removedContacts.forEach(c => supaDelete('crm_contacts', c.id).catch(e=>console.error(e)));
 }
 
 //  CONTACT CRUD 
@@ -2837,6 +2875,7 @@ function deleteContact(id) {
   state.contacts = state.contacts.filter(c=>c.id!==id);
   save(); render();
   toast('Contact deleted');
+  supaDelete('crm_contacts', id).catch(e=>console.error(e));
 }
 
 //  EXPORT 
@@ -3366,7 +3405,7 @@ function deleteRFP(id) {
 function renderPipeline() {
   document.getElementById('page-title').textContent = 'Pipeline';
   document.getElementById('page-sub').textContent = 'Deal tracking across all institutions';
-  document.getElementById('topbar-actions').innerHTML = '<button class="btn btn-accent" onclick="openAddOpp(\'\')">+ New Deal</button>';
+  document.getElementById('topbar-actions').innerHTML = '<button class="btn btn-accent" data-admin-only onclick="openAddOpp(\'\')">+ New Deal</button>';
   const STAGES = [
     {key:'prospect',label:'Prospect',color:'#64748b'},
     {key:'engaged',label:'Engaged',color:'#1d4ed8'},
@@ -3411,7 +3450,78 @@ function renderPipeline() {
     <div class="pipeline-board">${cols}</div>`;
 }
 
-load().then(()=>render());
+//  AUTH GATE
+function showLoginScreen() {
+  const el = document.getElementById('login-screen');
+  if (el) el.style.display = 'flex';
+  hideLoadingScreen();
+}
+function hideLoginScreen() {
+  const el = document.getElementById('login-screen');
+  if (el) el.style.display = 'none';
+}
+function setUserBadge(email, role) {
+  const badge = document.getElementById('user-badge');
+  const emailEl = document.getElementById('user-email-badge');
+  const roleEl = document.getElementById('user-role-badge');
+  if (!badge) return;
+  if (email) {
+    if (emailEl) emailEl.textContent = email;
+    if (roleEl) roleEl.textContent = role === 'admin' ? 'Admin' : 'Viewer';
+    badge.style.display = 'flex';
+  } else {
+    badge.style.display = 'none';
+  }
+}
+async function sendMagicLink() {
+  const emailInput = document.getElementById('login-email');
+  const email = emailInput && emailInput.value.trim();
+  const msgEl = document.getElementById('login-msg');
+  if (!email) { if (msgEl) msgEl.textContent = 'Enter your email.'; return; }
+  await initSupabase();
+  const btn = document.getElementById('login-send-btn');
+  if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+  const redirectTo = window.location.href.split('#')[0].split('?')[0];
+  const { error } = await supabaseClient.auth.signInWithOtp({ email, options: { emailRedirectTo: redirectTo } });
+  if (btn) { btn.disabled = false; btn.textContent = 'Send magic link'; }
+  if (msgEl) msgEl.textContent = error ? ('Error: ' + error.message) : ('Check your email — we sent a sign-in link to ' + email);
+}
+async function logout() {
+  if (supabaseClient) await supabaseClient.auth.signOut();
+}
+async function onSignedIn(session) {
+  showLoadingScreen();
+  hideLoginScreen();
+  try {
+    const rows = await supaFetch('profiles?select=role&id=eq.' + session.user.id);
+    state.currentRole = (rows && rows[0] && rows[0].role) || 'viewer';
+  } catch (e) {
+    console.warn('Could not load profile/role, defaulting to viewer:', e);
+    state.currentRole = 'viewer';
+  }
+  setUserBadge(session.user.email, state.currentRole);
+  await load();
+  render();
+}
+async function bootstrapApp() {
+  await initSupabase();
+  const { data } = await supabaseClient.auth.getSession();
+  if (data && data.session) {
+    await onSignedIn(data.session);
+  } else {
+    showLoginScreen();
+  }
+  supabaseClient.auth.onAuthStateChange(async (event, session) => {
+    if (event === 'SIGNED_IN' && session) {
+      await onSignedIn(session);
+    } else if (event === 'SIGNED_OUT') {
+      state.currentRole = null;
+      setUserBadge(null);
+      showLoginScreen();
+    }
+  });
+}
+bootstrapApp();
 
 
 //  MATRIX OVERRIDES (persisted to localStorage) 
@@ -5282,6 +5392,26 @@ document.addEventListener('keydown', e => { if (e.key==='Escape') closeGlobalSea
     <div id="loading-bar" style="height:100%;background:var(--primary);border-radius:3px;animation:loadpulse 1.2s ease-in-out infinite"></div>
   </div>
 </div>
+
+<!-- LOGIN SCREEN -->
+<div id="login-screen" style="display:none;position:fixed;inset:0;background:var(--bg);z-index:10000;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:20px">
+  <div style="font-size:32px">&#128274;</div>
+  <div style="font-size:17px;font-weight:700;color:var(--text2)">Sign in to Research CRM</div>
+  <div style="font-size:12px;color:var(--muted);max-width:280px;text-align:center;line-height:1.5">Enter your email and we'll send you a one-time sign-in link. No password needed.</div>
+  <div style="display:flex;flex-direction:column;gap:8px;width:100%;max-width:280px">
+    <input id="login-email" type="email" placeholder="you@example.com" autocomplete="email" style="padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--text2);font-size:13px" onkeydown="if(event.key==='Enter')sendMagicLink()">
+    <button id="login-send-btn" class="btn btn-primary" onclick="sendMagicLink()" style="width:100%">Send magic link</button>
+  </div>
+  <div id="login-msg" style="font-size:11.5px;color:var(--muted);max-width:280px;text-align:center;min-height:14px;line-height:1.5"></div>
+</div>
+
+<!-- SIGNED-IN USER BADGE -->
+<div id="user-badge" style="display:none;position:fixed;top:14px;right:20px;z-index:500;align-items:center;gap:8px;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:6px 12px;font-size:11px;color:var(--muted)">
+  <span id="user-email-badge"></span>
+  <span id="user-role-badge" style="font-weight:700;color:var(--primary)"></span>
+  <button onclick="logout()" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:11px;text-decoration:underline;padding:0">Log out</button>
+</div>
+
 <style>
 @keyframes loadpulse{0%{width:0%}50%{width:80%}100%{width:100%}}
 #sync-badge{position:fixed;bottom:16px;right:16px;padding:6px 12px;border-radius:20px;font-size:11px;font-weight:700;border:1px solid currentColor;display:none;z-index:999;pointer-events:none}
@@ -5551,11 +5681,9 @@ window.renderPendingContacts = async function() {
   document.getElementById('page-title').textContent = 'New Contacts';
   document.getElementById('page-sub').textContent = 'AI-discovered contacts awaiting your review';
   const topbar = document.getElementById('topbar-actions');
-  var hasToken = !!localStorage.getItem('nl_crm_gh_token');
-  if (topbar) topbar.innerHTML = '<div style="display:flex;gap:8px;align-items:center">'
+  if (topbar) topbar.innerHTML = '<div style="display:flex;gap:8px;align-items:center" data-admin-only>'
     + '<button class="btn btn-outline" onclick="runContactDiscovery()" style="font-size:12px"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:5px"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>Find contacts now</button>'
     + (pending.length ? '<button id="accept-all-btn" class="btn btn-accent" style="font-size:12px" onclick="window.acceptAllPending()">Accept All ('+pending.length+')</button>' : '')
-    + '<button onclick="window._nlSetGhToken()" title="' + (hasToken ? 'GitHub token configured ✓ — click to update' : 'Set GitHub token to enable scraper filters') + '" style="background:' + (hasToken ? 'rgba(16,185,129,0.15)' : 'rgba(239,68,68,0.12)') + ';border:1px solid ' + (hasToken ? 'rgba(16,185,129,0.3)' : 'rgba(239,68,68,0.25)') + ';color:' + (hasToken ? '#10b981' : '#f87171') + ';border-radius:6px;padding:5px 10px;cursor:pointer;font-size:13px">🔑</button>'
     + '</div>';
   const content = document.getElementById('content');
   if (!pending.length) {

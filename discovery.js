@@ -195,43 +195,15 @@
     content.innerHTML = '<div style="padding:24px;max-width:860px">' + header + filterBar + cards + '</div>';
   }
 
-  /* ── Pill → scraper config via GitHub API ─────────────────────────────── */
-  function pushScrapeConfig(types) {
-    var token = localStorage.getItem('nl_crm_gh_token') || '';
-    if (!token) {
-      // Silent — user can set token via 🔑 button; don't interrupt with a prompt
-      try { if (typeof toast==='function') toast('Filter applied. Click 🔑 to save as default for future scrapes.','ok'); } catch(e){}
-      return;
-    }
-    var payload = JSON.stringify({ types: types, updatedAt: new Date().toISOString().slice(0,10) }, null, 2);
-    var body64  = btoa(unescape(encodeURIComponent(payload)));
-    var api     = 'https://api.github.com/repos/venturinodino-creator/netherlands-crm/contents/data/scrape-config.json';
-    fetch(api, { headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github+json' } })
-      .then(function(r) { return r.ok ? r.json() : {}; })
-      .then(function(meta) {
-        var label = types.length === 4 ? 'all types' : types.join(' + ');
-        var req = { message: 'scrape: target ' + label, content: body64 };
-        if (meta.sha) req.sha = meta.sha;
-        return fetch(api, { method: 'PUT', headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' }, body: JSON.stringify(req) });
-      })
-      .then(function(r) {
-        if (r && r.ok) {
-          var label = types.length === 4 ? 'all institution types' : (TM[types[0]]||{label:types[0]}).label;
-          try { if (typeof toast==='function') toast('✓ Next scrape will target: ' + label,'ok'); } catch(e){}
-        } else if (r && r.status === 401) {
-          localStorage.removeItem('nl_crm_gh_token');
-          try { if (typeof toast==='function') toast('GitHub token expired — click 🔑 to update it','ok'); } catch(e){}
-        }
-      })
-      .catch(function(){});
-  }
-
   /* ── Handlers ─────────────────────────────────────────────────────────── */
+  // Note: this pill only filters the current view. It used to also push
+  // data/scrape-config.json to GitHub via a client-side PAT stored in
+  // localStorage (removed — a repo-write token pasted into the browser is a
+  // credential-exposure risk). To change what the daily scraper targets,
+  // edit data/scrape-config.json directly in the repo.
   window._nlSelectT = function(t) {
     saveT(t);
     render();
-    var types = t === 'all' ? ['university','medical','research','ngo'] : [t];
-    pushScrapeConfig(types);
   };
 
   window._nlAccept = function(id) {
@@ -286,23 +258,6 @@
     try { if (typeof loadPendingCount==='function') loadPendingCount(); } catch(e){}
     try { if (typeof toast==='function') toast(added + ' contact' + (added!==1?'s':'') + ' added to CRM!','ok'); } catch(e){}
     render();
-  };
-
-  /* ── GitHub token setup (one-time) ───────────────────────────────────── */
-  window._nlSetGhToken = function() {
-    var t = prompt(
-      'Paste a GitHub Personal Access Token (PAT) with "Contents: Write" permission on this repo.\n\n' +
-      'Create one at: https://github.com/settings/tokens/new\n' +
-      '  → Token name: netherlands-crm\n' +
-      '  → Expiration: 90 days\n' +
-      '  → Repository access: Only select repositories → venturinodino-creator/netherlands-crm\n' +
-      '  → Permissions: Repository permissions → Contents → Read and write\n\n' +
-      'Then paste it here:'
-    );
-    if (t && t.trim()) {
-      localStorage.setItem('nl_crm_gh_token', t.trim());
-      try { if (typeof toast==='function') toast('Token saved — pill clicks will now update the scraper config ✓','ok'); } catch(e){}
-    }
   };
 
   /* ── "Find contacts now" ──────────────────────────────────────────────── */
