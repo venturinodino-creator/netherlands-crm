@@ -4,13 +4,16 @@ Elsevier product
 Sources: TED Europa (EU official journal, filtered to place-of-performance =
 Netherlands), TenderNed (Dutch national — NL by definition).
 Only keeps tenders that resolve to a specific named Elsevier product
-(Scopus, ScienceDirect, SciVal, or Elsevier Pure) — see PRODUCT_ALIGNMENT.
-Writes new tenders to data/tenders.json without duplicates.
+(Scopus, SciVal, or Elsevier Pure) — see PRODUCT_ALIGNMENT.
+Writes new tenders to data/tenders.json without duplicates, and (if any new
+tenders were found) writes a summary for the workflow to post as a GitHub
+issue — see write_notification_files().
 
 Run: python scraper/tender_scraper.py
 """
 
 import json
+import os
 import re
 import sys
 import time
@@ -26,15 +29,15 @@ REPO_ROOT    = Path(__file__).parent.parent
 TENDERS_FILE = REPO_ROOT / "data" / "tenders.json"
 STATE_FILE   = REPO_ROOT / "data" / "tenders-scan-state.json"
 
-# Keywords that make a tender Elsevier-relevant
-ELSEVIER_PRODUCTS = [
-    "ScienceDirect", "Scopus", "SciVal", "Elsevier Pure", "Mendeley",
-    "Reaxys", "ClinicalKey", "Embase",
-]
+# Keywords that make a tender Elsevier-relevant.
+# Scoped to exactly Scopus, SciVal and Elsevier Pure — per explicit product
+# scope, ScienceDirect and Elsevier's other products (Mendeley, Reaxys,
+# ClinicalKey, Embase) are intentionally excluded, even though they're real
+# Elsevier products, because they're not in scope for this tracker.
+ELSEVIER_PRODUCTS = ["Scopus", "SciVal", "Elsevier Pure"]
 COMPETITOR_PRODUCTS = [
     "Web of Science", "InCites", "Journal Citation Reports",
-    "Clarivate", "Springer Nature", "Wiley Online", "Taylor & Francis",
-    "Vidatum", "Symplectic Elements",
+    "Clarivate", "Vidatum", "Symplectic Elements",
 ]
 CATEGORY_KEYWORDS = [
     # NOTE: bare "CRIS" was removed — it's a common Dutch acronym for unrelated
@@ -42,9 +45,8 @@ CATEGORY_KEYWORDS = [
     # a victim-support charity's IT tender with nothing to do with research
     # information systems. Only the unambiguous phrases stay.
     "research information system", "current research information",
-    "bibliometric", "academic database", "scientific database",
-    "scientific literature", "scholarly database", "publication database",
-    "library database", "elektronische tijdschriften",      # NL: electronic journals
+    "bibliometric", "academic database", "scholarly database",
+    "publication database", "library database",
     "wetenschappelijke databases", "onderzoeksinformatie",  # NL: research information
     "literatuurbestanden",                                   # NL: literature files
 ]
@@ -75,13 +77,6 @@ PRODUCT_ALIGNMENT = {
     "literatuurbestanden": "Scopus",
     "web of science": "Scopus",
     "clarivate": "Scopus",
-    # Full-text content platform -> ScienceDirect
-    "scientific database": "ScienceDirect",
-    "scientific literature": "ScienceDirect",
-    "elektronische tijdschriften": "ScienceDirect",
-    "springer nature": "ScienceDirect",
-    "wiley online": "ScienceDirect",
-    "taylor & francis": "ScienceDirect",
 }
 
 # ── Helpers ──────────────────────────────────────────────────────────────────
@@ -106,6 +101,33 @@ def save_state(new_count: int) -> None:
     }
     STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
     STATE_FILE.write_text(json.dumps(state, indent=2), encoding="utf-8")
+
+def write_notification(new_tenders: list) -> None:
+    """Writes GitHub Actions step outputs (new_count, summary) so the workflow
+    can post a notification issue when new tenders are found — this is the
+    "let me know daily" channel. No-op if not running in GitHub Actions, or
+    if there's nothing new to report (no daily "nothing found" noise)."""
+    output_path = os.environ.get("GITHUB_OUTPUT")
+    if not output_path or not new_tenders:
+        return
+    lines = [f"**{len(new_tenders)} new Netherlands tender(s) competing with Elsevier found today.**\n"]
+    for t in new_tenders:
+        competes = t.get("product", "—")
+        vs = f" (vs {t['competitor']})" if t.get("competitor") and t["competitor"] != "—" else ""
+        deadline = f" · Deadline: {t['deadline']}" if t.get("deadline") else ""
+        lines.append(
+            f"### {t['title']}\n"
+            f"- Institution: {t.get('institution') or 'Unknown'}\n"
+            f"- Competes with: **{competes}**{vs}\n"
+            f"- Published: {t.get('publishedDate') or '—'}{deadline}\n"
+            f"- {t.get('url', '')}\n"
+        )
+    body = "\n".join(lines)
+    with open(output_path, "a", encoding="utf-8") as f:
+        f.write(f"new_count={len(new_tenders)}\n")
+        f.write("summary<<TENDER_SUMMARY_EOF\n")
+        f.write(body + "\n")
+        f.write("TENDER_SUMMARY_EOF\n")
 
 def existing_ids(tenders: list) -> set:
     return {t["id"] for t in tenders}
@@ -309,7 +331,7 @@ def scrape_tenderned(existing: list) -> list:
     seen   = set()
 
     keywords = [
-        "ScienceDirect", "Scopus", "Web of Science",
+        "Scopus", "Web of Science",
         "CRIS onderzoek", "bibliometrisch", "wetenschappelijke databases",
     ]
 
@@ -399,6 +421,7 @@ def main():
         print("[tender_scraper] ✓ No new relevant tenders found.")
 
     save_state(len(new_tenders))
+    write_notification(new_tenders)
     return len(new_tenders)
 
 if __name__ == "__main__":

@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 jobs:
   scan:
@@ -17,6 +18,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Run tender scraper
+        id: scan
         run: python scraper/tender_scraper.py
       - name: Commit new tenders
         run: |
@@ -25,3 +27,21 @@ jobs:
           git add data/tenders.json data/tenders-scan-state.json
           git diff --staged --quiet || git commit -m "tenders: auto-scan $(date +%Y-%m-%d)"
           git push
+      - name: Open notification issue for new tenders
+        if: steps.scan.outputs.new_count
+        uses: actions/github-script@v7
+        env:
+          NEW_COUNT: ${{ steps.scan.outputs.new_count }}
+          SUMMARY: ${{ steps.scan.outputs.summary }}
+        with:
+          script: |
+            // Tender text comes from external sources (TED Europa, TenderNed) —
+            // read via env, not interpolated into the script, so nothing in a
+            // scraped title/notes can affect what code actually runs here.
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `🔔 ${process.env.NEW_COUNT} new Netherlands tender(s) competing with Elsevier`,
+              body: process.env.SUMMARY,
+              labels: ['rfp-alert']
+            });

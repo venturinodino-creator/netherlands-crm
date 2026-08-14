@@ -1,21 +1,5 @@
 [
   {
-    "id": "ted_117689_2026",
-    "title": "Netherlands – Newspapers, journals, periodicals and magazines – Pakket Springer Nature Palgrave journals",
-    "institution": "Universiteit Utrecht",
-    "publishedDate": "2026-02-19",
-    "deadline": "",
-    "status": "identified",
-    "value": "1500000",
-    "product": "ScienceDirect",
-    "competitor": "Springer Nature",
-    "url": "https://ted.europa.eu/en/notice/-/detail/117689-2026",
-    "notes": "TED Europa notice 117689-2026. Published: 2026-02-19.",
-    "source": "TED Europa 117689-2026",
-    "createdAt": "2026-08-13T18:42:52.785483Z",
-    "updatedAt": "2026-08-13T18:42:52.785483Z"
-  },
-  {
     "id": "ted_365494_2026",
     "title": "Netherlands – IT services: consulting, software development, Internet and support – Current Research Information System",
     "institution": "Technische Universiteit Delft",
@@ -39,10 +23,10 @@
     "deadline": "2026-09-30",
     "status": "inprogress",
     "value": "",
-    "product": "ScienceDirect + Scopus",
+    "product": "Scopus",
     "competitor": "—",
     "url": "https://www.universiteitenvannederland.nl/files/publications/ELSEVIER%20-%20SURF%20-%20SCOPUS%20-%202025-2026-2027%20-%20signed_Redacted.pdf",
-    "notes": "BIDDABLE. Current 2-year deal (Jan 2025–Dec 2026) includes optional 3rd-year extension to Dec 2027 requiring 90 days written notice — decision deadline ~1 Oct 2026. Covers 14 universities (UNL), 7 UMCs (NFU), NWO-i, KNAW, 23 hogescholen. If not extended: full open re-tender expected for 2028. Renewal negotiations active NOW.",
+    "notes": "BIDDABLE. Current 2-year deal (Jan 2025–Dec 2026) includes optional 3rd-year extension to Dec 2027 requiring 90 days written notice — decision deadline ~1 Oct 2026. Covers 14 universities (UNL), 7 UMCs (NFU), NWO-i, KNAW, 23 hogescholen. If not extended: full open re-tender expected for 2028. Renewal negotiations active NOW. Deal also covers ScienceDirect Read & Publish, out of scope for this tracker's product focus but noted for context.",
     "source": "UNL signed contract, January 2025",
     "createdAt": "2026-08-08T00:00:00Z",
     "updatedAt": "2026-08-08T00:00:00Z"
