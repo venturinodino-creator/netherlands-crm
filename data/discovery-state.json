@@ -10,9 +10,10 @@
       "p6",
       "p7",
       "p8",
-      "p9"
+      "p9",
+      "p10"
     ],
-    "cwi_page": 10,
+    "cwi_page": 11,
     "esc_oa_id": "https://openalex.org/I4210095242",
     "esc": [
       "p1",
@@ -23,9 +24,10 @@
       "p6",
       "p7",
       "p8",
-      "p9"
+      "p9",
+      "p10"
     ],
-    "esc_page": 10,
+    "esc_page": 11,
     "pbl": [
       "https://www.pbl.nl/en/about-pbl/staff",
       "marian-abels-van-overveld",
@@ -44,43 +46,48 @@
       "p6",
       "p7",
       "p8",
-      "p9"
+      "p9",
+      "p10"
     ],
-    "rathenau_page": 10,
+    "rathenau_page": 11,
     "uva_oa_id": "https://openalex.org/I887064364",
     "uva": [
       "p1",
       "p2",
       "p3",
-      "p4"
+      "p4",
+      "p5"
     ],
-    "uva_page": 5,
+    "uva_page": 6,
     "vu_oa_id": "https://openalex.org/I865915315",
     "vu": [
       "p1",
       "p2",
       "p3",
-      "p4"
+      "p4",
+      "p5"
     ],
-    "vu_page": 5,
+    "vu_page": 6,
     "uu_oa_id": "https://openalex.org/I193662353",
     "uu": [
       "p1",
       "p2",
       "p3",
-      "p4"
+      "p4",
+      "p5"
     ],
-    "uu_page": 5,
+    "uu_page": 6,
     "leiden_oa_id": "https://openalex.org/I121797337",
     "leiden": [
       "p1",
       "p2",
       "p3",
-      "p4"
+      "p4",
+      "p5"
     ],
-    "leiden_page": 5
+    "leiden_page": 6
   },
-  "lastRun": "2026-08-13T08:11:25.324Z",
+  "lastRun": "2026-08-14T08:07:31.307Z",
   "lastTypes": [
     "research",
     "university",
