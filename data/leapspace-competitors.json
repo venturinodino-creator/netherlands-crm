@@ -6,6 +6,11 @@
     "addedDate": "2026-08-13",
     "elements": ["literatureSearch", "fundingDiscovery", "deepResearchReports"],
     "howItCompetes": "Clarivate's flagship rival to LeapSpace, and the closest 1:1 match. Built on the Web of Science Core Collection — their answer to LeapSpace's ScienceDirect/Scopus foundation. New agentic guides (Topic Explorer, Find a Journal, and a multi-step literature review guide) turn any research question into a connected AI workflow, playing the same role as LeapSpace's Literature Search & Deep Research Reports. The Extended Research Assistant bridges into Web of Science Research Intelligence, carrying researchers from literature discovery through to funding opportunities and proposal strategy — directly mirroring LeapSpace's Funding Discovery tab.",
+    "elementNotes": {
+      "literatureSearch": "Topic Explorer and Find-a-Journal guides turn a research question into a structured, referenced answer — same job as Literature Search & Discovery, run against Web of Science instead of ScienceDirect/Scopus.",
+      "fundingDiscovery": "Extended Research Assistant hands off into Web of Science Research Intelligence's funding-opportunity matching — a direct, named analogue to LeapSpace's Funding Discovery tab.",
+      "deepResearchReports": "The multi-step literature review guide assembles a longer-form, evidence-based writeup — same output shape as Deep Research Reports."
+    },
     "sourceUrl": "https://clarivate.com/academia-government/scientific-and-academic-research/research-discovery-and-referencing/web-of-science/web-of-science-research-assistant/",
     "sourceName": "Clarivate — Web of Science AI Research Assistant"
   },
@@ -16,6 +21,11 @@
     "addedDate": "2026-08-13",
     "elements": ["literatureSearch", "deepResearchReports", "trustClaimRadar"],
     "howItCompetes": "Elicit's Pro-plan Research Agent autonomously searches, reads and extracts structured data across 125M+ papers (via Semantic Scholar) plus 545K+ clinical trials, then hands a populated, organized workspace off to a human researcher for review — the same territory as LeapSpace's Literature Search and Deep Research Reports. That extraction-and-synthesis loop is also a direct, if less branded, challenge to LeapSpace's Trust Cards & Claim Radar. It's sold direct to individual academics rather than bundled into an institutional subscription.",
+    "elementNotes": {
+      "literatureSearch": "Research Agent autonomously searches and reads across 125M+ papers via Semantic Scholar — comparable coverage and workflow to Literature Search & Discovery.",
+      "deepResearchReports": "Extracts structured data into an organized workspace for human review — same longer-form synthesis role as Deep Research Reports.",
+      "trustClaimRadar": "Weakest overlap of the three: the per-paper data extraction surfaces supporting evidence, which is a looser, unbranded version of claim-checking — Elicit has no dedicated claim-verification feature comparable to Trust Cards & Claim Radar."
+    },
     "sourceUrl": "https://fast.io/resources/elicit-ai-review-2026/",
     "sourceName": "Elicit AI Review 2026 (Fast.io)"
   },
@@ -25,7 +35,10 @@
     "product": "scite Assistant / Smart Citations",
     "addedDate": "2026-08-13",
     "elements": ["trustClaimRadar"],
-    "howItCompetes": "Purpose-built for the single job LeapSpace bundles as one tab among many: telling you whether the literature actually backs a claim. Smart Citations classify 1.2B+ citation statements as Supporting, Mentioning or Contrasting, letting a researcher audit a claim's evidence trail paper by paper — a narrower but deeper challenge specifically to LeapSpace's Trust Cards & Claim Radar.",
+    "howItCompetes": "Purpose-built for the single job LeapSpace bundles as one tab among many: telling you whether the literature actually backs a claim. Smart Citations classify 1.6B+ citation statements as Supporting, Mentioning or Contrasting, letting a researcher audit a claim's evidence trail paper by paper — the closest direct analog to Claim Radar. Its Reference Check feature (upload a manuscript, verify each citation actually backs the claim it's attached to) also overlaps with Trust Cards' claim-to-source accuracy function. Now owned by Research Solutions.",
+    "elementNotes": {
+      "trustClaimRadar": "Strongest match of any tracked competitor, and the only one with two features mapping onto LeapSpace's pairing: Smart Citations (1.6B+ citation statements classified Supporting/Mentioning/Contrasting) is the closest analog to Claim Radar's broader-literature check, while Reference Check (upload a manuscript, verify each citation backs its claim) mirrors Trust Cards' claim-to-source accuracy function."
+    },
     "sourceUrl": "https://www.atlasworkspace.ai/blog/best-ai-research-assistants",
     "sourceName": "Best AI Research Assistants 2026 — Atlas Workspace"
   },
@@ -34,8 +47,12 @@
     "company": "Consensus",
     "product": "Consensus AI Search",
     "addedDate": "2026-08-13",
-    "elements": ["literatureSearch"],
-    "howItCompetes": "A lightweight, consumer-friendly entry point that answers a research question directly from peer-reviewed literature with inline citations. Competes with LeapSpace's Literature Search & Discovery tab for quick evidence checks, though it doesn't attempt LeapSpace's full agentic workspace — reviewers rank it cleanest for fast, evidence-backed Q&A rather than deep review work.",
+    "elements": ["literatureSearch", "trustClaimRadar"],
+    "howItCompetes": "A lightweight, consumer-friendly entry point that answers a research question directly from peer-reviewed literature with inline citations. Competes with LeapSpace's Literature Search & Discovery tab for quick evidence checks, though it doesn't attempt LeapSpace's full agentic workspace — reviewers rank it cleanest for fast, evidence-backed Q&A rather than deep review work. Its Consensus Meter feature — pulling roughly 20 relevant papers for a yes/no research question and visualizing how many support, contradict or are mixed on the claim — is a lighter-weight, standalone challenge to Trust Cards & Claim Radar.",
+    "elementNotes": {
+      "literatureSearch": "Answers a research question directly from peer-reviewed literature with inline citations — narrower than LeapSpace's full agentic search, but the same core job of turning a question into a referenced answer.",
+      "trustClaimRadar": "Weaker match: Consensus Meter pulls ~20 papers for a yes/no question and shows how many support, contradict or are mixed on it — essentially a lighter-weight Claim Radar answering \"what does the evidence say\" rather than fact-checking a specific AI output. No Trust Card equivalent — there's no separate AI-generated answer needing claim-to-source verification, since the literature synthesis is the whole output."
+    },
     "sourceUrl": "https://paperguide.ai/blog/scispace-vs-consensus/",
     "sourceName": "SciSpace vs Consensus 2026 — Paperguide"
   },
@@ -46,6 +63,12 @@
     "addedDate": "2026-08-13",
     "elements": ["literatureSearch", "writingCoach", "trustClaimRadar", "deepResearchReports"],
     "howItCompetes": "The broadest multi-agent workspace challenger to LeapSpace. AI Search behaves like a research agent — querying 280M+ papers plus Google Scholar and PubMed, retrieving roughly 240 papers and extracting evidence from the top matches into a cited answer, matching LeapSpace's Literature Search and Deep Research Reports. Domain-specific agents (BioMed Agent, Meta-Analysis Agent) plus a Manuscript Writer agent go head-to-head with LeapSpace's Writing Coach, though independent reviews flag more hallucination risk in its in-paper explanations than source-grounded alternatives — exactly the gap LeapSpace's Trust Cards & Claim Radar is designed to close.",
+    "elementNotes": {
+      "literatureSearch": "AI Search queries 280M+ papers plus Google Scholar/PubMed and returns a cited answer built from roughly 240 retrieved papers — same job as Literature Search & Discovery.",
+      "writingCoach": "Manuscript Writer agent assists with drafting — competes with Writing Coach's dialogue-based argument pressure-testing, though it's a more generic writing aid rather than a claim-pressure-testing dialogue.",
+      "trustClaimRadar": "Weakest overlap on this card: SciSpace doesn't offer a matching claim-verification feature — it's tagged because independent reviews flag more hallucination risk in its in-paper explanations, i.e. it's the gap Trust Cards & Claim Radar is designed to close, not a competing capability.",
+      "deepResearchReports": "BioMed Agent and Meta-Analysis Agent produce longer-form, domain-specific analyses — same category of output as Deep Research Reports."
+    },
     "sourceUrl": "https://www.atlasworkspace.ai/blog/best-ai-research-assistants",
     "sourceName": "Best AI Research Assistants 2026 — Atlas Workspace"
   }
