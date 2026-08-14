@@ -1,4 +1,4 @@
-/* discovery.js v10 — NL Research CRM contact discovery */
+/* discovery.js v11 — NL Research CRM contact discovery */
 (function () {
   'use strict';
 
@@ -353,5 +353,5 @@
   }
 
   window.__crmDiscovery = { syncFromFile: syncFromFile, getPending: getP };
-  console.log('[NL CRM] discovery.js v8');
+  console.log('[NL CRM] discovery.js v11');
 })();
