@@ -4454,9 +4454,24 @@ function renderCompetitorInsights() {
   const cardsHtml = order.map(function(company){
     const items = byCompany[company];
     return items.map(function(x){
+      // Elements whose analog isn't literally branded/named the same as the LeapSpace tab —
+      // currently just trustClaimRadar, since no competitor ships a feature literally called
+      // "Trust Cards" or "Claim Radar". Flag these distinctly so a viewer doesn't read the
+      // chip as "this company has LeapSpace's exact feature."
+      const APPROXIMATE_ELEMENTS = { trustClaimRadar: true };
       const chips = (x.elements||[]).map(function(k){
         const el = LEAPSPACE_ELEMENTS[k]; if (!el) return '';
-        return `<span style="font-size:9.5px;font-weight:700;color:${el.color};background:${el.color}1a;border:1px solid ${el.color}44;padding:2px 8px;border-radius:10px;white-space:nowrap">${el.label}</span>`;
+        const approx = APPROXIMATE_ELEMENTS[k];
+        const note = x.elementNotes && x.elementNotes[k];
+        const tooltip = approx
+          ? (note ? 'Similar functionality, not literally ' + el.label + ': ' + note : 'Similar functionality, not literally ' + el.label)
+          : (note || ('Covers ' + el.label));
+        return `<span title="${esc(tooltip)}" style="font-size:9.5px;font-weight:700;color:${el.color};background:${el.color}1a;border:1px solid ${el.color}44;padding:2px 8px;border-radius:10px;white-space:nowrap${approx?';border-style:dashed':''}">${el.label}${approx?' ≈':''}</span>`;
+      }).join('');
+      const elementNoteLines = (x.elements||[]).filter(function(k){ return APPROXIMATE_ELEMENTS[k]; }).map(function(k){
+        const el = LEAPSPACE_ELEMENTS[k];
+        const note = x.elementNotes && x.elementNotes[k];
+        return `<div style="font-size:10.5px;line-height:1.5;color:rgba(255,255,255,.45);padding-left:8px;border-left:2px solid ${el.color}55"><b style="color:${el.color}">≈ ${esc(el.label)} — similar, not a literal match:</b> ${esc(note || 'No feature literally named or branded like this LeapSpace tab; the chip marks functional overlap only.')}</div>`;
       }).join('');
       return `<div style="background:rgba(26,40,62,0.95);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:10px;box-shadow:0 4px 20px rgba(0,0,0,.25);min-width:0">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
@@ -4470,6 +4485,7 @@ function renderCompetitorInsights() {
           <button onclick="deleteAIInsight('${x.id}')" title="Remove" style="background:none;border:none;cursor:pointer;color:#334155;padding:2px;opacity:.5;flex-shrink:0" onmouseover="this.style.opacity=1;this.style.color='#ef4444'" onmouseout="this.style.opacity='.5';this.style.color='#334155'"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
         </div>
         <div style="display:flex;flex-wrap:wrap;gap:5px">${chips}${x.autoDiscovered ? `<span title="Found automatically by the daily scan agent — not yet manually reviewed" style="font-size:9.5px;font-weight:700;color:#fbbf24;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.3);padding:2px 8px;border-radius:10px;white-space:nowrap">🤖 Auto-found</span>` : ''}</div>
+        ${elementNoteLines ? `<div style="display:flex;flex-direction:column;gap:4px">${elementNoteLines}</div>` : ''}
         <p style="font-size:12px;line-height:1.6;color:rgba(255,255,255,.55);margin:0">${esc(x.howItCompetes||'')}</p>
         <div style="display:flex;justify-content:space-between;align-items:center;margin-top:2px;padding-top:10px;border-top:1px solid rgba(255,255,255,.06)">
           <span style="font-size:10px;color:rgba(255,255,255,.3);font-weight:500">Found ${x.addedDate||'—'}</span>
