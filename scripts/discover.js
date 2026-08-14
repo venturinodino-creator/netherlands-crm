@@ -183,17 +183,21 @@ async function main() {
     }
   }
 
-  // Dedup and push to pending
-  let added = 0;
+  // Dedup and push to pending — an email address is required, not optional.
+  // OpenAlex (this scraper's only source) never provides one, so this will
+  // filter out every result until a source that does is added.
+  let added = 0, skippedNoEmail = 0;
   for (const c of contacts) {
     const el = (c.email||'').toLowerCase().trim();
     const nl = ((c.first||'')+' '+(c.last||'')).toLowerCase().trim();
-    if (el && existingEmails.has(el)) continue;
+    if (!el) { skippedNoEmail++; continue; }
+    if (existingEmails.has(el)) continue;
     if (existingNames.has(nl)) continue;
     const id = makeId(c.instId || 'xx');
     pending.push({ ...c, id });
     existingEmails.add(el); existingNames.add(nl); added++;
   }
+  if (skippedNoEmail) console.log(`Skipped ${skippedNoEmail} contact(s) with no email address`);
 
   state.scraped  = scraped;
   state.lastRun  = new Date().toISOString();
