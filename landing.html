@@ -904,7 +904,7 @@
     Open Research CRM
     <span>→</span>
   </a>
-  <p class="cta-note">Internal platform · No account required</p>
+  <p class="cta-note">Internal platform · Sign-in required</p>
 </section>
 
 <!-- Bottom bar -->
@@ -922,6 +922,71 @@
     <a href="index.html" class="toast-link">View in CRM →</a>
   </div>
 </div>
+
+<!-- LOGIN MODAL -->
+<div id="login-modal" style="display:none;position:fixed;inset:0;z-index:2000;align-items:center;justify-content:center;background:rgba(6,13,26,.75);backdrop-filter:blur(4px)">
+  <div style="background:var(--panel-bg);border:1px solid var(--border);border-radius:14px;padding:28px;width:100%;max-width:320px;display:flex;flex-direction:column;align-items:center;gap:10px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.5)">
+    <button onclick="closeLoginModal()" style="position:absolute;top:12px;right:12px;background:none;border:none;color:var(--muted);cursor:pointer;font-size:16px;line-height:1">✕</button>
+    <div style="font-size:28px">🔒</div>
+    <div style="font-size:16px;font-weight:700;color:var(--text)">Sign in to Research CRM</div>
+    <div style="font-size:12px;color:var(--muted);text-align:center;line-height:1.5">Enter the email and password you were given to access the CRM.</div>
+    <div style="display:flex;flex-direction:column;gap:8px;width:100%;margin-top:6px">
+      <input id="lm-email" type="email" placeholder="you@example.com" autocomplete="username" style="padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:var(--bg2);color:var(--text);font-size:13px" onkeydown="if(event.key==='Enter')doLogin()">
+      <input id="lm-password" type="password" placeholder="Password" autocomplete="current-password" style="padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:var(--bg2);color:var(--text);font-size:13px" onkeydown="if(event.key==='Enter')doLogin()">
+      <button id="lm-btn" onclick="doLogin()" style="width:100%;padding:10px;border-radius:8px;border:none;cursor:pointer;font-weight:700;font-size:13px;background:linear-gradient(135deg,var(--accent2),var(--accent));color:#04141f">Sign in</button>
+    </div>
+    <div id="lm-msg" style="font-size:11.5px;color:var(--muted);text-align:center;min-height:14px;line-height:1.5"></div>
+  </div>
+</div>
+
+<script>
+// ── Auth gate: sign-in lives here on the landing page. A successful sign-in
+// establishes a Supabase session in localStorage, which index.html (same
+// origin) picks up automatically on load, so no token needs to be passed.
+(function(){
+  var SUPA_URL = 'https://cfhljbexesdrabmadpcc.supabase.co';
+  var SUPA_KEY = 'sb_publishable_PE2Yc0ivOT4F4fE80CXJUw_kbch9TpZ';
+  var supabaseClient = null;
+  async function initSupabase() {
+    if (supabaseClient) return supabaseClient;
+    var mod = await import('https://esm.sh/@supabase/supabase-js@2');
+    supabaseClient = mod.createClient(SUPA_URL, SUPA_KEY);
+    return supabaseClient;
+  }
+  window.showLoginModal = function(){ document.getElementById('login-modal').style.display = 'flex'; };
+  window.closeLoginModal = function(){ document.getElementById('login-modal').style.display = 'none'; };
+  window.enterCRM = async function(){
+    await initSupabase();
+    var res = await supabaseClient.auth.getSession();
+    if (res.data && res.data.session) {
+      window.location.href = 'index.html';
+    } else {
+      window.showLoginModal();
+    }
+  };
+  window.doLogin = async function(){
+    var email = (document.getElementById('lm-email').value || '').trim();
+    var password = document.getElementById('lm-password').value || '';
+    var msg = document.getElementById('lm-msg');
+    if (!email || !password) { msg.textContent = 'Enter both email and password.'; return; }
+    await initSupabase();
+    var btn = document.getElementById('lm-btn');
+    btn.disabled = true; btn.textContent = 'Signing in…';
+    var res = await supabaseClient.auth.signInWithPassword({ email: email, password: password });
+    btn.disabled = false; btn.textContent = 'Sign in';
+    if (res.error) { msg.textContent = 'Error: ' + res.error.message; }
+    else { window.location.href = 'index.html'; }
+  };
+  // Every "enter the CRM" link on this page points to index.html — intercept
+  // all of them so signed-out visitors get the modal instead of a dead page.
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href="index.html"]');
+    if (!a) return;
+    e.preventDefault();
+    window.enterCRM();
+  });
+})();
+</script>
 
 <script>
 // ── Constellation canvas ────────────────────────────────────────────────────
