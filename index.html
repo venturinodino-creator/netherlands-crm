@@ -1944,13 +1944,6 @@ function renderDashboard() {
   const activeC = cont.filter(c=>c.status==='active').length;
   const highP = cont.filter(c=>c.priority==='high').length;
   const verified = cont.filter(c=>c.quality==='verified').length;
-  const _today = new Date().toISOString().slice(0,10);
-  const openOpps = state.opportunities.filter(o=>!['closed-won','closed-lost'].includes(o.stage)).length;
-  const pipelineValue = state.opportunities.filter(o=>!['closed-won','closed-lost'].includes(o.stage)).reduce((s,o)=>s+(parseFloat(o.value)||0),0);
-  const _dueInst = inst.filter(i=>i.nextActionDate);
-  const actionsOverdue = _dueInst.filter(i=>i.nextActionDate < _today).length;
-  const actionsToday = _dueInst.filter(i=>i.nextActionDate === _today).length;
-  const actionsDue = actionsOverdue + actionsToday;
 
   const _typeMax = Math.max(...Object.values(byType), 1);
   const _typeBarColors = {university:'#6366f1,#818cf8', medical:'#ef4444,#f87171', research:'#00f5c4,#38bdf8', ngo:'#a855f7,#c084fc'};
@@ -2029,20 +2022,12 @@ function renderDashboard() {
         <div class="stat-icon-box teal"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
         <div class="stat-text"><div class="stat-label">Contacts</div><div class="stat-value">${cont.length}</div><div class="stat-sub">${activeC} active · ${highP} high priority</div></div>
       </div>`,
-    'sc-deals': `<div class="stat-card" data-sc-id="sc-deals" draggable="true" onclick="nav('pipeline')" title="View deal pipeline">
-        <div class="stat-icon-box blue"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
-        <div class="stat-text"><div class="stat-label">Open Deals</div><div class="stat-value">${openOpps}</div><div class="stat-sub">${pipelineValue > 0 ? '\u20ac' + pipelineValue.toLocaleString() + ' pipeline value' : 'No value set yet'}</div></div>
-      </div>`,
-    'sc-actions': `<div class="stat-card" data-sc-id="sc-actions" draggable="true" onclick="nav('pipeline')" title="View due actions">
-        <div class="stat-icon-box orange"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
-        <div class="stat-text"><div class="stat-label">Actions Due</div><div class="stat-value">${actionsDue}</div><div class="stat-sub">${actionsOverdue} overdue \u00b7 ${actionsToday} due today</div></div>
-      </div>`,
     'sc-pending': `<div class="stat-card" data-sc-id="sc-pending" draggable="true" onclick="nav('pending')" title="Review AI-discovered contacts" style="border-color:rgba(168,85,247,.25)">
         <div class="stat-icon-box" style="background:rgba(168,85,247,.15);border:1px solid rgba(168,85,247,.25)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#a855f7" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg></div>
         <div class="stat-text"><div class="stat-label">New Contacts Today</div><div class="stat-value" id="pending-count">—</div><div class="stat-sub" id="pending-sub">Awaiting review</div></div>
       </div>`,
   };
-  const _defaultStatOrder = ['sc-institutions','sc-contacts','sc-deals','sc-actions','sc-pending'];
+  const _defaultStatOrder = ['sc-institutions','sc-contacts','sc-pending'];
   let _statOrder; try { _statOrder = JSON.parse(localStorage.getItem('nl_crm_stat_order')); if(!Array.isArray(_statOrder)||!_statOrder.length) _statOrder=null; } catch(e){ _statOrder=null; }
   _statOrder = (_statOrder||[]).filter(id=>_statCards[id]);
   if(_statOrder.length < _defaultStatOrder.length) { _defaultStatOrder.forEach(id=>{ if(!_statOrder.includes(id)) _statOrder.push(id); }); }
