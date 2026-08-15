@@ -27,7 +27,7 @@ body{
   background:var(--bg);
   color:var(--text);display:flex;min-height:100vh;font-size:14px;-webkit-font-smoothing:antialiased;
 }
-/*  SIDEBAR  */
+/*  SIDEBAR  */
 .sb{
   width:var(--sw);background:rgba(6,10,18,0.82);
   display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;
@@ -52,7 +52,7 @@ body{
 .sb-divider{height:1px;background:rgba(255,255,255,.07);margin:5px 16px}
 .sb-footer{padding:12px 16px;border-top:1px solid rgba(255,255,255,.07);font-size:10px;color:var(--muted);display:flex;align-items:center;gap:6px}
 .sb-footer-dot{width:5px;height:5px;border-radius:50%;background:var(--success);flex-shrink:0}
-/*  SIDEBAR DARK OVERRIDES (keep white text on dark sidebar)  */
+/*  SIDEBAR DARK OVERRIDES (keep white text on dark sidebar)  */
 .sb .sb-logo-text h1{color:#f0f0f0}
 .sb .sb-logo-text p{color:rgba(255,255,255,.35)}
 .sb .nav-section{color:rgba(255,255,255,.3)}
@@ -64,14 +64,14 @@ body{
 
 .topbar-left h2{color:#f0f0f0}
 .topbar-left p{color:rgba(255,255,255,.38)}
-/*  MAIN  */
+/*  MAIN  */
 .main{margin-left:var(--sw);flex:1;display:flex;flex-direction:column;min-height:100vh}
 .topbar{background:rgba(6,10,18,0.75);padding:13px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;position:sticky;top:0;z-index:50;border-bottom:1px solid rgba(255,255,255,.07)}
 .topbar-left h2{font-size:15px;font-weight:700;color:var(--text2);letter-spacing:-.2px}
 .topbar-left p{font-size:11px;color:var(--muted);margin-top:1px}
 .topbar-right{display:flex;gap:7px;align-items:center;flex-shrink:0}
 .content{padding:18px 22px;flex:1}
-/*  BUTTONS  */
+/*  BUTTONS  */
 .btn{padding:6px 13px;border-radius:6px;border:none;cursor:pointer;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:6px;transition:all .15s;font-family:"Inter",sans-serif}
 .btn-primary{background:var(--accent);color:#060a12}
 .btn-primary:hover{background:#00ddb0}
@@ -85,11 +85,11 @@ body{
 .btn-danger:hover{background:rgba(239,68,68,.2)}
 .btn-sm{padding:5px 11px;font-size:11px;border-radius:5px}
 .btn-xs{padding:3px 8px;font-size:10px;border-radius:4px}
-/*  CARDS  */
+/*  CARDS  */
 .card{background:var(--card);border-radius:var(--card-radius);border:1px solid var(--border);padding:18px}
 .card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
 .card-title{font-size:12px;font-weight:600;color:var(--text2)}
-/*  STATS GRID  */
+/*  STATS GRID  */
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
 .stat-card{background:var(--card);border-radius:var(--card-radius);border:1px solid var(--border);padding:16px 18px;display:flex;align-items:flex-start;gap:12px;cursor:pointer;transition:border-color .15s,box-shadow .15s}
 .stat-card:hover{border-color:var(--border2);box-shadow:0 2px 8px rgba(0,0,0,.07)}
@@ -101,7 +101,7 @@ body{
 .stat-text .stat-label{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.7px}
 .stat-text .stat-value{font-size:24px;font-weight:700;color:var(--text2);margin-top:1px;line-height:1.1}
 .stat-text .stat-sub{font-size:11px;color:var(--muted);margin-top:3px}
-/*  TOOLBAR  */
+/*  TOOLBAR  */
 .toolbar{display:flex;gap:8px;margin-bottom:14px;align-items:center;flex-wrap:wrap}
 .search-wrap{flex:1;min-width:180px;position:relative}
 .search-wrap input{width:100%;padding:7px 11px 7px 31px;border:1px solid var(--border2);border-radius:6px;font-size:12px;outline:none;background:var(--bg3);font-family:"Inter",sans-serif;color:var(--text);transition:all .15s}
@@ -111,7 +111,7 @@ body{
 .flt{padding:7px 11px;border:1px solid var(--border2);border-radius:6px;font-size:12px;background:var(--bg3);color:var(--text);outline:none;cursor:pointer;font-family:"Inter",sans-serif}
 .flt:focus{border-color:rgba(255,255,255,.14)}
 .flt option{background:#1a1a1a}
-/*  TABLE  */
+/*  TABLE  */
 .table-wrap{background:var(--card);border-radius:var(--card-radius);border:1px solid var(--border);overflow:hidden}
 table{width:100%;border-collapse:collapse;font-size:12px}
 thead th{padding:8px 14px;text-align:left;font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.7px;border-bottom:1px solid var(--border);background:var(--card);cursor:pointer;user-select:none;white-space:nowrap}
@@ -120,7 +120,7 @@ tbody tr{border-bottom:1px solid var(--border);cursor:pointer;transition:backgro
 tbody tr:last-child{border-bottom:none}
 tbody tr:hover{background:rgba(255,255,255,.03)}
 tbody td{padding:9px 14px;vertical-align:middle;color:var(--text)}
-/*  BADGES  */
+/*  BADGES  */
 .badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600;white-space:nowrap}
 .b-university{background:rgba(99,102,241,.25);color:#c7d2fe;border:1px solid rgba(99,102,241,.45)}
 .b-medical{background:rgba(239,68,68,.22);color:#fca5a5;border:1px solid rgba(239,68,68,.4)}
@@ -134,10 +134,10 @@ tbody td{padding:9px 14px;vertical-align:middle;color:var(--text)}
 .b-low{background:rgba(255,255,255,.04);color:var(--muted2);border:1px solid var(--border2)}
 .b-verified{background:rgba(34,197,94,.10);color:#86efac;border:1px solid rgba(34,197,94,.15)}
 .b-seed{background:rgba(234,179,8,.10);color:#fde68a;border:1px solid rgba(234,179,8,.15)}
-/*  AVATAR  */
+/*  AVATAR  */
 .av{width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:10px;color:#fff;flex-shrink:0}
 .name-cell{display:flex;align-items:center;gap:9px}
-/*  INSTITUTION GRID  */
+/*  INSTITUTION GRID  */
 .inst-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
 .ic{background:var(--card);border-radius:var(--card-radius);border:1px solid var(--border);padding:16px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
 .ic::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--border2),transparent);opacity:0;transition:opacity .2s}
@@ -155,11 +155,11 @@ tbody td{padding:9px 14px;vertical-align:middle;color:var(--text)}
 .ic-footer{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding-top:10px;border-top:1px solid var(--border);font-size:11px;color:var(--muted)}
 .ic-actions{display:flex;gap:4px;opacity:0;transition:opacity .15s}
 .ic:hover .ic-actions{opacity:1}
-/*  VIEW TOGGLE  */
+/*  VIEW TOGGLE  */
 .view-toggle{display:flex;border:1px solid var(--border2);border-radius:6px;overflow:hidden;background:var(--bg2)}
 .vt-btn{padding:6px 11px;background:transparent;border:none;cursor:pointer;font-size:11px;color:var(--muted);font-family:"Inter",sans-serif;font-weight:500;transition:all .15s}
 .vt-btn.active{background:rgba(255,255,255,.06);color:var(--text)}
-/*  MODAL  */
+/*  MODAL  */
 .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(6px);z-index:1000;align-items:center;justify-content:center;padding:20px}
 .overlay.open{display:flex}
 .modal{background:var(--card);border:1px solid var(--border);border-radius:12px;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;box-shadow:0 24px 40px rgba(0,0,0,.15)}
@@ -169,7 +169,7 @@ tbody td{padding:9px 14px;vertical-align:middle;color:var(--text)}
 .mf{padding:12px 20px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:7px}
 .modal-close{background:rgba(255,255,255,.05);border:none;font-size:13px;cursor:pointer;color:var(--muted);width:24px;height:24px;border-radius:5px;display:flex;align-items:center;justify-content:center;transition:all .15s}
 .modal-close:hover{background:rgba(255,255,255,.09);color:var(--text)}
-/*  FORM  */
+/*  FORM  */
 .fg{display:flex;flex-direction:column;gap:4px;margin-bottom:12px}
 .fg label{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
 .fg input,.fg select,.fg textarea{padding:7px 11px;border:1px solid var(--border2);border-radius:6px;font-size:12px;outline:none;font-family:"Inter",sans-serif;color:var(--text);background:var(--bg3);transition:all .15s}
@@ -179,7 +179,7 @@ tbody td{padding:9px 14px;vertical-align:middle;color:var(--text)}
 .fg select option{background:#1a1a1a}
 .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .full{grid-column:1/-1}
-/*  DETAIL  */
+/*  DETAIL  */
 .back-btn{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);font-weight:500;cursor:pointer;margin-bottom:14px;padding:4px 0;transition:color .15s}
 .back-btn:hover{color:var(--text)}
 .detail-header{background:var(--card);border-radius:var(--card-radius);border:1px solid var(--border);padding:20px;margin-bottom:14px}
@@ -191,9 +191,9 @@ tbody td{padding:9px 14px;vertical-align:middle;color:var(--text)}
 .dh-icon.ngo{background:rgba(234,179,8,.10)}
 .dh-info h2{font-size:17px;font-weight:700;color:var(--text2);margin-top:2px;letter-spacing:-.2px}
 .dh-info .short{font-size:10px;font-weight:600;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;margin-bottom:2px}
-/*  DASHBOARD  */
+/*  DASHBOARD  */
 .dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
-/*  DRAGGABLE WIDGETS  */
+/*  DRAGGABLE WIDGETS  */
 .dash-widget{transition:box-shadow .15s,opacity .15s;user-select:none}
 .dash-widget.dragging{opacity:.35;box-shadow:0 0 0 2px #6366f1}
 .dash-widget.drag-over{box-shadow:0 0 0 2px #6366f1,0 4px 16px rgba(99,102,241,.18)}
@@ -211,42 +211,42 @@ tbody td{padding:9px 14px;vertical-align:middle;color:var(--text)}
 .ri{flex:1}
 .ri h4{font-size:12px;font-weight:600;color:var(--text2)}
 .ri p{font-size:10px;color:var(--muted);margin-top:1px}
-/*  PAGINATION  */
+/*  PAGINATION  */
 .pg{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;font-size:11px;color:var(--muted);border-top:1px solid var(--border)}
 .pg-btns{display:flex;gap:4px}
 .pg-btn{width:26px;height:26px;border-radius:5px;border:1px solid var(--border2);background:transparent;cursor:pointer;font-size:11px;display:flex;align-items:center;justify-content:center;font-family:"Inter",sans-serif;font-weight:600;color:var(--muted);transition:all .15s}
 .pg-btn.active{background:rgba(255,255,255,.07);color:var(--text2);border-color:rgba(255,255,255,.1)}
 .pg-btn:hover:not(.active){border-color:rgba(255,255,255,.1);color:var(--text)}
-/*  EMPTY STATE  */
+/*  EMPTY STATE  */
 .empty{text-align:center;padding:48px 20px;color:var(--muted)}
 .empty .ei{font-size:34px;margin-bottom:10px}
 .empty h3{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px}
 .empty p{font-size:11px}
-/*  INFO BOX  */
+/*  INFO BOX  */
 .info-box{background:rgba(234,179,8,.06);border:1px solid rgba(234,179,8,.14);border-radius:7px;padding:10px 13px;font-size:11px;color:#fde68a;margin-bottom:16px;display:flex;gap:9px;align-items:flex-start}
-/*  TOAST  */
+/*  TOAST  */
 .toast{position:fixed;bottom:22px;right:22px;background:#111111;border:1px solid #2a2a2a;color:#e1e1e1;padding:11px 16px;border-radius:8px;font-size:12px;font-weight:500;box-shadow:0 8px 24px rgba(0,0,0,.4);z-index:9999;transform:translateY(50px);opacity:0;transition:all .28s;max-width:280px}
 .toast.show{transform:translateY(0);opacity:1}
 .toast.ok{border-color:rgba(34,197,94,.25);color:#86efac}
 .toast.err{border-color:rgba(239,68,68,.25);color:#fca5a5}
-/*  LINKS  */
+/*  LINKS  */
 a.ext-link{color:var(--info);text-decoration:none;font-size:11px}
 a.ext-link:hover{color:var(--text)}
-/*  SCROLLBAR  */
+/*  SCROLLBAR  */
 ::-webkit-scrollbar{width:4px;height:4px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px}
-/*  MAP  */
+/*  MAP  */
 #map-container{height:calc(100vh - 126px);border-radius:var(--card-radius);overflow:hidden;border:1px solid var(--border)}
 .map-filter-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:20px;border:1px solid var(--border2);background:var(--bg3);color:var(--text);font-size:11px;font-family:"Inter",sans-serif;cursor:pointer;transition:all .15s;white-space:nowrap}
 .map-filter-btn:hover{border-color:rgba(0,0,0,.2);color:var(--text2)}
 .map-filter-btn.active{background:var(--accent);border-color:var(--accent);color:#060a12}
-/*  MAP MARKERS  */
+/*  MAP MARKERS  */
 .map-marker{position:relative;display:flex;align-items:center;justify-content:center}
 .map-marker-dot{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;border:2px solid rgba(255,255,255,.25);box-shadow:0 0 0 3px rgba(255,255,255,.08),0 2px 10px rgba(0,0,0,.5)}
 .map-marker-pulse{position:absolute;width:32px;height:32px;border-radius:50%;border:1.5px solid currentColor;opacity:.35;animation:pulse-ring 2.2s ease-out infinite}
 @keyframes pulse-ring{0%{transform:scale(.7);opacity:.5}100%{transform:scale(1.5);opacity:0}}
-/*  MAP POPUPS  */
+/*  MAP POPUPS  */
 .leaflet-popup-content-wrapper{background:rgba(10,18,32,.96)!important;border:1px solid rgba(255,255,255,.1)!important;border-radius:12px!important;box-shadow:0 16px 40px rgba(0,0,0,.6)!important;color:#f1f5f9!important;backdrop-filter:blur(20px)!important}
 .leaflet-popup-tip{background:rgba(10,18,32,.96)!important}
 .leaflet-popup-content{font-family:"Inter",sans-serif!important;font-size:12px!important;line-height:1.5!important;margin:12px 16px!important}
@@ -254,7 +254,7 @@ a.ext-link:hover{color:var(--text)}
 .leaflet-popup-content p{color:rgba(255,255,255,.45);margin:2px 0}
 .leaflet-popup-close-button{color:rgba(255,255,255,.35)!important;top:8px!important;right:10px!important;font-size:16px!important}
 .leaflet-popup-close-button:hover{color:#fff!important}
-/*  MAP ZOOM CONTROLS  */
+/*  MAP ZOOM CONTROLS  */
 .leaflet-control-zoom{border:1px solid rgba(0,0,0,.1)!important;border-radius:10px!important;overflow:hidden}
 .leaflet-control-zoom a{background:rgba(255,255,255,.95)!important;color:#374151!important;border-bottom:1px solid rgba(0,0,0,.08)!important;font-size:16px!important}
 .leaflet-control-zoom a:hover{background:#f3f4f6!important;color:#111!important}
@@ -271,10 +271,10 @@ a.ext-link:hover{color:var(--text)}
 .leaflet-attribution-flag{display:none!important}
 .map-legend-item{display:flex;align-items:center;gap:6px;margin:3px 0;font-size:11px;color:var(--text)}
 .map-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
-/*  SYNC BUTTON DISTINCTION  */
+/*  SYNC BUTTON DISTINCTION  */
 .nav-item-sync-inst .nav-icon-box{color:rgba(99,202,183,.8)}
 .nav-item-sync-contacts .nav-icon-box{color:rgba(167,139,250,.8)}
-/*  PIPELINE / KANBAN  */
+/*  PIPELINE / KANBAN  */
 .pipeline-board{display:flex;gap:12px;overflow-x:auto;padding-bottom:16px;align-items:flex-start}
 .pipeline-col{min-width:200px;flex:1;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:8px}
 .pipeline-col-header{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:5px 7px;border-radius:6px;margin-bottom:2px;display:flex;justify-content:space-between;align-items:center}
@@ -285,21 +285,21 @@ a.ext-link:hover{color:var(--text)}
 .pipeline-card .opp-meta{display:flex;justify-content:space-between;align-items:center}
 .opp-value{font-size:12px;font-weight:700;color:var(--primary)}
 .opp-date{font-size:10px;color:var(--muted)}
-/*  WARMTH  */
+/*  WARMTH  */
 .badge-cold{background:#e2e8f0;color:#475569;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600}
 .badge-warm{background:#fef3c7;color:#92400e;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600}
 .badge-hot{background:#fee2e2;color:#991b1b;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600}
-/*  ACCOUNT GRID  */
+/*  ACCOUNT GRID  */
 .acct-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:10px 0}
 .acct-cell{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px}
 .acct-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:4px}
 .acct-val{font-size:14px;font-weight:600;color:var(--text2)}
-/*  INTERACTION LOG  */
+/*  INTERACTION LOG  */
 .int-log{display:flex;flex-direction:column;gap:6px}
 .int-row{display:flex;gap:10px;align-items:flex-start;padding:9px 11px;background:var(--surface);border-radius:7px;border:1px solid var(--border)}
 .int-icon{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;background:var(--bg);border:1px solid var(--border)}
 .int-meta{font-size:11px;color:var(--muted);margin-top:2px}
-/*  TODAY ACTIONS  */
+/*  TODAY ACTIONS  */
 .action-item{display:flex;gap:10px;align-items:center;padding:8px 9px;border-radius:7px;border:1px solid var(--border);margin-bottom:6px;background:var(--bg);cursor:pointer}
 .action-item:hover{background:var(--surface)}
 .action-due{font-size:10px;font-weight:700;padding:2px 7px;border-radius:5px;text-transform:uppercase;flex-shrink:0}
@@ -308,7 +308,7 @@ a.ext-link:hover{color:var(--text)}
 @media(max-width:1100px){.stats-grid{grid-template-columns:1fr 1fr}.dash-grid{grid-template-columns:1fr}}
 @media(max-width:860px){.sb{width:200px;--sw:200px}.main{margin-left:200px}}
 
-/*  NEWS PAGE  */
+/*  NEWS PAGE  */
 .news-layout{display:grid;grid-template-columns:1fr 220px;gap:18px;align-items:start}
 .news-feed{display:flex;flex-direction:column;gap:14px}
 .news-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 18px;transition:box-shadow .15s;cursor:pointer}
@@ -340,7 +340,7 @@ a.ext-link:hover{color:var(--text)}
 .news-source-item{display:flex;align-items:center;gap:7px;padding:4px 0;font-size:12px;color:var(--text);cursor:pointer}
 .news-source-item input{cursor:pointer;accent-color:var(--accent)}
 
-/*  BROKERSLYNK THEME  */
+/*  BROKERSLYNK THEME  */
 
 /* Constellation canvas */
 #bg-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;}
@@ -394,11 +394,11 @@ body{position:relative}
 .gs-tag-product{background:rgba(139,92,246,.18);color:#c4b5fd}
 .gs-shortcut{font-size:10px;color:rgba(255,255,255,.2);padding:2px 6px;border:1px solid rgba(255,255,255,.08);border-radius:4px;font-family:monospace}
 
-/* 
+/* 
    MODERN REFRESH — matches landing page quality
-    */
+    */
 
-/*  Root tweaks  */
+/*  Root tweaks  */
 :root {
   --bg:        #060d1a;
   --bg2:       #08101f;
@@ -412,11 +412,11 @@ body{position:relative}
   --card-shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 0 1px var(--border);
 }
 
-/*  Body & canvas  */
+/*  Body & canvas  */
 body { background: var(--bg); }
 #bg-canvas { opacity: .6; }
 
-/*  SIDEBAR  */
+/*  SIDEBAR  */
 .sb {
   background: rgba(5,10,20,0.96) !important;
   border-right: 1px solid rgba(0,245,196,.06) !important;
@@ -481,7 +481,7 @@ body { background: var(--bg); }
   font-size: 10px !important;
 }
 
-/*  TOPBAR  */
+/*  TOPBAR  */
 .topbar {
   padding: 14px 26px !important;
   background: rgba(5,10,20,.92) !important;
@@ -492,10 +492,10 @@ body { background: var(--bg); }
 .topbar-left h2 { font-size: 16px !important; font-weight: 700 !important; letter-spacing: -.3px; color: #f8fafc !important; }
 .topbar-left p  { font-size: 11.5px !important; color: rgba(255,255,255,.32) !important; margin-top: 2px; }
 
-/*  MAIN CONTENT  */
+/*  MAIN CONTENT  */
 .content { padding: 22px 28px !important; }
 
-/*  STAT CARDS  */
+/*  STAT CARDS  */
 .stats-grid { gap: 14px !important; margin-bottom: 22px !important; }
 .stat-card {
   background: var(--card) !important;
@@ -527,7 +527,7 @@ body { background: var(--bg); }
 .stat-text .stat-value { font-size: 30px !important; font-weight: 800 !important; color: #f8fafc !important; letter-spacing: -1.5px !important; line-height: 1 !important; margin-top: 4px !important; }
 .stat-text .stat-sub   { font-size: 11px !important; color: rgba(255,255,255,.32) !important; margin-top: 5px !important; }
 
-/*  CARDS  */
+/*  CARDS  */
 .card {
   background: var(--card) !important;
   border: 1px solid var(--border) !important;
@@ -537,7 +537,7 @@ body { background: var(--bg); }
 .card-title { font-size: 13px !important; font-weight: 700 !important; color: #f1f5f9 !important; letter-spacing: -.2px; }
 .card-header { margin-bottom: 16px !important; }
 
-/*  INSTITUTION GRID CARDS  */
+/*  INSTITUTION GRID CARDS  */
 .inst-grid { gap: 14px !important; }
 .ic {
   background: rgba(26,40,62,0.95) !important;
@@ -569,7 +569,7 @@ body { background: var(--bg); }
 .ic .city  { font-size: 11.5px !important; color: rgba(255,255,255,.6) !important; }
 .ic-footer { border-top: 1px solid rgba(255,255,255,.1) !important; padding-top: 11px !important; margin-top: 13px !important; color: rgba(255,255,255,.55) !important; }
 
-/*  TABLE  */
+/*  TABLE  */
 .table-wrap {
   background: var(--card) !important;
   border: 1px solid var(--border) !important;
@@ -590,10 +590,10 @@ tbody tr { border-bottom: 1px solid rgba(255,255,255,.04) !important; transition
 tbody tr:hover { background: rgba(0,245,196,.025) !important; }
 tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !important; }
 
-/*  BADGES  */
+/*  BADGES  */
 .badge { padding: 3px 9px !important; border-radius: 6px !important; font-size: 10px !important; font-weight: 700 !important; letter-spacing: .3px; }
 
-/*  BUTTONS  */
+/*  BUTTONS  */
 .btn { border-radius: 8px !important; font-size: 12.5px !important; font-weight: 600 !important; padding: 7px 15px !important; transition: all .18s !important; }
 .btn-primary {
   background: linear-gradient(135deg, #00f5c4, #38bdf8) !important;
@@ -612,7 +612,7 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
 .btn-outline:hover { background: rgba(255,255,255,.05) !important; border-color: rgba(255,255,255,.22) !important; }
 .btn-sm { padding: 5px 12px !important; font-size: 11px !important; }
 
-/*  TOOLBAR  */
+/*  TOOLBAR  */
 .toolbar { margin-bottom: 16px !important; gap: 10px !important; }
 .search-wrap input {
   background: rgba(255,255,255,.04) !important;
@@ -636,7 +636,7 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
   color: rgba(255,255,255,.7) !important;
 }
 
-/*  DETAIL PAGE  */
+/*  DETAIL PAGE  */
 .detail-header {
   background: var(--card) !important;
   border: 1px solid var(--border) !important;
@@ -665,7 +665,7 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
 }
 .back-btn:hover { color: var(--accent) !important; border-color: rgba(0,245,196,.2) !important; background: rgba(0,245,196,.04) !important; }
 
-/*  DASHBOARD WIDGETS  */
+/*  DASHBOARD WIDGETS  */
 .dash-grid { gap: 16px !important; margin-top: 16px !important; }
 
 .bk-bar { height: 4px !important; border-radius: 4px !important; background: rgba(255,255,255,.06) !important; }
@@ -684,7 +684,7 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
 /* Quick actions button */
 .dash-widget .btn-primary { font-size: 13px !important; padding: 10px 18px !important; border-radius: 10px !important; }
 
-/*  PIPELINE  */
+/*  PIPELINE  */
 .pipeline-col {
   background: var(--card) !important;
   border: 1px solid var(--border) !important;
@@ -697,19 +697,19 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
 }
 .pipeline-card:hover { border-color: rgba(0,245,196,.18) !important; box-shadow: 0 4px 16px rgba(0,0,0,.2) !important; }
 
-/*  PAGINATION  */
+/*  PAGINATION  */
 .pg { padding: 12px 18px !important; border-top: 1px solid var(--border) !important; }
 .pg-btn { border-radius: 7px !important; border-color: var(--border2) !important; }
 .pg-btn.active { background: rgba(0,245,196,.1) !important; border-color: rgba(0,245,196,.25) !important; color: var(--accent) !important; }
 
-/*  MODAL  */
+/*  MODAL  */
 .modal { border-radius: 16px !important; border-color: var(--border) !important; background: rgba(10,18,35,.98) !important; backdrop-filter: blur(24px); }
 .mh { padding: 20px 24px 16px !important; }
 .mh h3 { font-size: 15px !important; font-weight: 700 !important; color: #f1f5f9 !important; }
 .mc { padding: 16px 24px !important; }
 .mf { padding: 14px 24px !important; }
 
-/*  FORM INPUTS  */
+/*  FORM INPUTS  */
 .fg input, .fg select, .fg textarea {
   background: rgba(255,255,255,.04) !important;
   border: 1px solid var(--border2) !important;
@@ -724,13 +724,13 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
 }
 .fg label { font-size: 9.5px !important; letter-spacing: 1px !important; color: rgba(255,255,255,.35) !important; margin-bottom: 5px !important; }
 
-/*  SUBSCRIPTION MATRIX (tabs, cells)  */
+/*  SUBSCRIPTION MATRIX (tabs, cells)  */
 .tab-btn, [onclick*="tab"] {
   border-radius: 8px !important;
   transition: all .18s !important;
 }
 
-/*  NEWS PAGE  */
+/*  NEWS PAGE  */
 .news-card {
   background: var(--card) !important;
   border: 1px solid var(--border) !important;
@@ -744,7 +744,7 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
 }
 .news-card h3 { font-size: 15px !important; font-weight: 700 !important; color: #f1f5f9 !important; letter-spacing: -.2px; }
 
-/*  TOAST  */
+/*  TOAST  */
 .toast {
   background: rgba(8,16,30,.96) !important;
   border: 1px solid rgba(255,255,255,.1) !important;
@@ -755,14 +755,14 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
 .toast.ok { border-color: rgba(0,245,196,.25) !important; }
 .toast.err { border-color: rgba(239,68,68,.25) !important; }
 
-/*  SCROLLBAR  */
+/*  SCROLLBAR  */
 ::-webkit-scrollbar { width: 4px !important; height: 4px !important; }
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,.1) !important; border-radius: 4px !important; }
 
-/*  INFO BOX  */
+/*  INFO BOX  */
 .info-box { border-radius: 10px !important; padding: 12px 15px !important; }
 
-/*  AVATAR  */
+/*  AVATAR  */
 .av { width: 30px !important; height: 30px !important; font-size: 11px !important; border-radius: 50% !important; }
 
 
@@ -983,7 +983,7 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
 <!-- MODAL: ADD / EDIT INSTITUTION -->
 <div class="overlay" id="modal-inst">
   <div class="modal">
-    <div class="mh"><h3 id="mi-title">Add Institution</h3><button class="modal-close" onclick="closeModal('modal-inst')"></button></div>
+    <div class="mh"><h3 id="mi-title">Add Institution</h3><button class="modal-close" onclick="closeModal('modal-inst')"></button></div>
     <div class="mc">
       <div class="fgrid">
         <div class="fg full"><label>Institution Name *</label><input id="mi-name" placeholder="e.g. University of Amsterdam"></div>
@@ -1032,7 +1032,7 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
 <!-- MODAL: ADD / EDIT CONTACT -->
 <div class="overlay" id="modal-contact">
   <div class="modal">
-    <div class="mh"><h3 id="mc-title">Add Contact</h3><button class="modal-close" onclick="closeModal('modal-contact')"></button></div>
+    <div class="mh"><h3 id="mc-title">Add Contact</h3><button class="modal-close" onclick="closeModal('modal-contact')"></button></div>
     <div class="mc">
       <div class="fgrid">
         <div class="fg"><label>First Name *</label><input id="mc-first" placeholder="Jan"></div>
@@ -1078,7 +1078,7 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
 <!-- MODAL: DELETE -->
 <div class="overlay" id="modal-del">
   <div class="modal" style="max-width:400px">
-    <div class="mh"><h3>Confirm Delete</h3><button class="modal-close" onclick="closeModal('modal-del')"></button></div>
+    <div class="mh"><h3>Confirm Delete</h3><button class="modal-close" onclick="closeModal('modal-del')"></button></div>
     <div class="mc"><p id="del-msg" style="font-size:12px;color:var(--muted);line-height:1.6"></p></div>
     <div class="mf">
       <button class="btn btn-outline" onclick="closeModal('modal-del')">Cancel</button>
@@ -1090,7 +1090,7 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
 <!-- MODAL: OPENALEX SYNC -->
 <div class="overlay" id="modal-sync">
   <div class="modal" style="max-width:440px">
-    <div class="mh"><h3>Sync from OpenAlex</h3><button class="modal-close" onclick="closeModal('modal-sync')"></button></div>
+    <div class="mh"><h3>Sync from OpenAlex</h3><button class="modal-close" onclick="closeModal('modal-sync')"></button></div>
     <div class="mc">
       <p style="font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.6">
         Fetches all Netherlands institutions from <strong style="color:var(--text)">OpenAlex</strong> (~1,800 institutions) and merges them into your CRM. Existing contacts and data are preserved.
@@ -1113,7 +1113,7 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
 <!-- MODAL: IMPORT CONTACTS -->
 <div class="overlay" id="modal-sync-contacts">
   <div class="modal" style="max-width:500px">
-    <div class="mh"><h3>Import Contacts from CSV</h3><button class="modal-close" onclick="closeModal('modal-sync-contacts')"></button></div>
+    <div class="mh"><h3>Import Contacts from CSV</h3><button class="modal-close" onclick="closeModal('modal-sync-contacts')"></button></div>
     <div class="mc">
       <p style="font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.6">
         Upload a CSV file to ingest new contacts. Duplicates are skipped (matched by email). Contacts without a matching institution are still imported and can be assigned later.
@@ -1123,7 +1123,7 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
         first_name, last_name, title, department, institution_id,<br>email, phone, linkedin, research, status, priority, notes
       </div>
       <label style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border:1.5px dashed var(--border2);border-radius:8px;padding:22px;cursor:pointer;transition:border-color .15s" id="csv-drop-zone" onmouseover="this.style.borderColor='#9ca3af'" onmouseout="this.style.borderColor='var(--border2)'">
-        <span style="font-size:22px"></span>
+        <span style="font-size:22px"></span>
         <span style="font-size:12px;color:var(--muted);font-weight:500">Click to choose a CSV file</span>
         <input type="file" accept=".csv,text/csv" id="csv-file-input" style="display:none" onchange="previewCSV(this)">
       </label>
@@ -1140,7 +1140,7 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
 <div class="toast" id="toast"></div>
 
 <script>
-//  SEED DATA 
+//  SEED DATA 
 const SEED_INSTITUTIONS = [
   // UNIVERSITIES
   {id:'uva',name:'University of Amsterdam',short:'UvA',type:'university',city:'Amsterdam',website:'https://www.uva.nl',founded:1632,description:'One of Europe\'s largest research universities with ~30,000 students.',researchDirector:'Peter-Paul Verbeek',libraryDirector:'Carlos Reijnen'},
@@ -1166,7 +1166,7 @@ const SEED_INSTITUTIONS = [
   {id:'umcg',name:'University Medical Centre Groningen',short:'UMCG',type:'medical',city:'Groningen',website:'https://www.umcg.nl',founded:1797,description:'The largest employer in the north of the Netherlands.',researchDirector:'Jochen Mierau',libraryDirector:'Peter Fokkens'},
   {id:'radboudumc',name:'Radboudumc',short:'Radboudumc',type:'medical',city:'Nijmegen',website:'https://www.radboudumc.nl',founded:1956,description:'Academic medical centre affiliated with Radboud University.',researchDirector:'Jan Smit',libraryDirector:''},
   {id:'mumc',name:'Maastricht UMC+',short:'MUMC+',type:'medical',city:'Maastricht',website:'https://www.mumc.nl',founded:1966,description:'Academic hospital linked to Maastricht University.',researchDirector:'Annemie Schols',libraryDirector:'Claudia van Oppen'},
-  {id:'maxima',name:'Princess Mà¡xima Center',short:'PMC',type:'medical',city:'Utrecht',website:'https://www.prinsesmaximacentrum.nl',founded:2018,description:'National centre for paediatric oncology in the Netherlands.',researchDirector:'René Medema',libraryDirector:''},
+  {id:'maxima',name:'Princess Máxima Center',short:'PMC',type:'medical',city:'Utrecht',website:'https://www.prinsesmaximacentrum.nl',founded:2018,description:'National centre for paediatric oncology in the Netherlands.',researchDirector:'René Medema',libraryDirector:''},
   {id:'nki',name:'Netherlands Cancer Institute',short:'NKI',type:'medical',city:'Amsterdam',website:'https://www.nki.nl',founded:1913,description:'Comprehensive cancer centre combining clinic and research.',researchDirector:'Thijn Brummelkamp',libraryDirector:''},
 
   // RESEARCH INSTITUTIONS
@@ -1181,10 +1181,10 @@ const SEED_INSTITUTIONS = [
   {id:'deltares',name:'Deltares',short:'Deltares',type:'research',city:'Delft',website:'https://www.deltares.nl',founded:2008,description:'Independent institute for applied research on water and subsurface.',researchDirector:'Henriette Otter',libraryDirector:''},
   {id:'sron',name:'SRON Netherlands Institute for Space Research',short:'SRON',type:'research',city:'Leiden',website:'https://www.sron.nl',founded:1983,description:'National expertise institute for space research.',researchDirector:'Michael Wise',libraryDirector:''},
   {id:'nikhef',name:'Nikhef',short:'Nikhef',type:'research',city:'Amsterdam',website:'https://www.nikhef.nl',founded:1975,description:'National institute for subatomic physics.',researchDirector:'Jorgen D\'Hondt',libraryDirector:''},
-  {id:'mmc',type:'medical',name:'Mà¡xima Medical Centre',short:'MMC',city:'Veldhoven',website:'https://www.mmc.nl',founded:'2015',description:'Major teaching hospital in the Eindhoven-Veldhoven region; partner to TU/e and significant clinical research centre.',researchDirector:'',libraryDirector:''},
+  {id:'mmc',type:'medical',name:'Máxima Medical Centre',short:'MMC',city:'Veldhoven',website:'https://www.mmc.nl',founded:'2015',description:'Major teaching hospital in the Eindhoven-Veldhoven region; partner to TU/e and significant clinical research centre.',researchDirector:'',libraryDirector:''},
   {id:'sanquin',type:'medical',name:'Sanquin Research',short:'Sanquin',city:'Amsterdam',website:'https://www.sanquin.nl',founded:'1998',description:'National blood supply organisation and internationally recognised research institute for blood-related disorders, immunology and haematology.',researchDirector:'',libraryDirector:''},
   {id:'aighd',type:'medical',name:'Amsterdam Institute for Global Health and Development',short:'AIGHD',city:'Amsterdam',website:'https://www.aighd.org',founded:'2009',description:'Joint initiative of UvA and AMC; leading global health research with strong focus on infectious disease in low- and middle-income countries.',researchDirector:'',libraryDirector:''},
-  {id:'princesmaxima',type:'medical',name:'Princess Mà¡xima Center for Paediatric Oncology',short:'Mà¡xima Center',city:'Utrecht',website:'https://www.prinsesmaximacentrum.nl',founded:'2018',description:'Europe\'s largest centre for paediatric oncology; combines world-class treatment with frontier research in a single national facility.',researchDirector:'',libraryDirector:''},
+  {id:'princesmaxima',type:'medical',name:'Princess Máxima Center for Paediatric Oncology',short:'Máxima Center',city:'Utrecht',website:'https://www.prinsesmaximacentrum.nl',founded:'2018',description:'Europe\'s largest centre for paediatric oncology; combines world-class treatment with frontier research in a single national facility.',researchDirector:'',libraryDirector:''},
   {id:'astron',type:'research',name:'ASTRON — Netherlands Institute for Radio Astronomy',short:'ASTRON',city:'Dwingeloo',website:'https://www.astron.nl',founded:'1949',description:'Operates the LOFAR radio telescope and is a core partner in the Square Kilometre Array (SKA); world leader in radio astronomy technology.',researchDirector:'',libraryDirector:''},
   {id:'nioz',type:'research',name:'NIOZ Royal Netherlands Institute for Sea Research',short:'NIOZ',city:'Den Burg (Texel)',website:'https://www.nioz.nl',founded:'1876',description:'Leading European marine and climate research institute; operates two campuses and major research vessels across the North Sea and beyond.',researchDirector:'',libraryDirector:''},
   {id:'knmi',type:'research',name:'KNMI — Royal Netherlands Meteorological Institute',short:'KNMI',city:'De Bilt',website:'https://www.knmi.nl',founded:'1854',description:'National weather, climate and seismological authority; major contributor to IPCC and EU climate science infrastructure.',researchDirector:'',libraryDirector:''},
@@ -1245,7 +1245,7 @@ const SEED_CONTACTS = [
   {id:'c041',instId:'ru',first:'José',last:'Sanders',title:'Rector Magnificus',dept:'Executive Board',email:'j.m.sanders@ru.nl',phone:'',linkedin:'',research:'',status:'active',priority:'high',quality:'verified',lastContact:'',notes:'60th Rector since 17 Oct 2023. Education, research, student affairs. Source: ru.nl'},
   {id:'c042',instId:'ru',first:'Marcel',last:'Wintels',title:'Interim Vice President of the Executive Board',dept:'Executive Board',email:'m.wintels@ru.nl',phone:'',linkedin:'',research:'',status:'active',priority:'medium',quality:'verified',lastContact:'',notes:'Interim VP from 5 Jan 2026. Source: ru.nl'},
   {id:'c043',instId:'ru',first:'Iwan',last:'Holleman',title:'Director of University Library',dept:'Radboud University Library',email:'i.holleman@ru.nl',phone:'',linkedin:'',research:'',status:'active',priority:'high',quality:'verified',lastContact:'',notes:'Source: ru.nl'},
-  {id:'c044',instId:'um',first:'Pamela',last:'HabiboviÄ',title:'Interim Chair of the Executive Board',dept:'Executive Board',email:'pamela.habibovic@maastrichtuniversity.nl',phone:'',linkedin:'',research:'',status:'active',priority:'high',quality:'verified',lastContact:'',notes:'Interim from 1 Mar 2026 for 6 months, following Rianne Letschert becoming minister. Source: maastrichtuniversity.nl'},
+  {id:'c044',instId:'um',first:'Pamela',last:'Habibović',title:'Interim Chair of the Executive Board',dept:'Executive Board',email:'pamela.habibovic@maastrichtuniversity.nl',phone:'',linkedin:'',research:'',status:'active',priority:'high',quality:'verified',lastContact:'',notes:'Interim from 1 Mar 2026 for 6 months, following Rianne Letschert becoming minister. Source: maastrichtuniversity.nl'},
   {id:'c045',instId:'um',first:'Jan',last:'Smits',title:'Interim Rector Magnificus',dept:'Executive Board',email:'jan.smits@maastrichtuniversity.nl',phone:'',linkedin:'',research:'',status:'active',priority:'high',quality:'verified',lastContact:'',notes:'Interim Rector from 1 Mar 2026. Source: maastrichtuniversity.nl'},
   {id:'c046',instId:'um',first:'Jan-Tjitte',last:'Meindersma',title:'Vice-Chair of the Executive Board',dept:'Executive Board',email:'jantjitte.meindersma@maastrichtuniversity.nl',phone:'',linkedin:'',research:'',status:'active',priority:'medium',quality:'verified',lastContact:'',notes:'Source: maastrichtuniversity.nl'},
   {id:'c047',instId:'um',first:'Claudia',last:'van Oppen',title:'Director University Library',dept:'Maastricht University Library',email:'claudia.vanoppen@maastrichtuniversity.nl',phone:'',linkedin:'',research:'',status:'active',priority:'high',quality:'verified',lastContact:'',notes:'Source: maastrichtuniversity.nl'},
@@ -1291,7 +1291,7 @@ const SEED_CONTACTS = [
   {id:'c087',instId:'uu',first:'Roos',last:'Masereeuw',title:'Vice-Dean Research, Faculty of Science',dept:'Faculty of Science',email:'r.masereeuw@uu.nl',phone:'',linkedin:'',research:'Research Director',status:'active',priority:'high',quality:'verified',lastContact:'',notes:'Source: uu.nl/faculty-science'},
   {id:'c088',instId:'uu',first:'Jan',last:'Hassink',title:'Vice-Dean Research, Utrecht University School of Economics',dept:'Utrecht University School of Economics (USE)',email:'j.hassink@uu.nl',phone:'',linkedin:'',research:'Research Director',status:'active',priority:'high',quality:'verified',lastContact:'',notes:'Source: uu.nl/use'},
   {id:'c089',instId:'wur',first:'Edith',last:'Feskens',title:'Dean of Research',dept:'Research & Innovation',email:'edith.feskens@wur.nl',phone:'',linkedin:'',research:'Research Director',status:'active',priority:'high',quality:'verified',lastContact:'',notes:'Source: wur.nl/research'},
-  {id:'c090',instId:'eur',first:'Semiha',last:'DenktaÅ',title:'Vice-Dean Research, Erasmus School of Social & Behavioural Sciences',dept:'ESSB',email:'semiha.denktaÅ@eur.nl',phone:'',linkedin:'',research:'Research Director',status:'active',priority:'high',quality:'verified',lastContact:'',notes:'Source: eur.nl/essb'},
+  {id:'c090',instId:'eur',first:'Semiha',last:'Denktaş',title:'Vice-Dean Research, Erasmus School of Social & Behavioural Sciences',dept:'ESSB',email:'semiha.denktaş@eur.nl',phone:'',linkedin:'',research:'Research Director',status:'active',priority:'high',quality:'verified',lastContact:'',notes:'Source: eur.nl/essb'},
   {id:'c091',instId:'ru',first:'Tom',last:'Heskes',title:'Vice-Dean Research, Faculty of Science',dept:'Faculty of Science',email:'t.heskes@ru.nl',phone:'',linkedin:'',research:'Research Director',status:'active',priority:'high',quality:'verified',lastContact:'',notes:'Source: ru.nl/faculty-science'},
   {id:'c092',instId:'rug',first:'Joost',last:'Frenken',title:'Dean, Faculty of Science & Engineering',dept:'Faculty of Science & Engineering',email:'j.w.m.frenken@rug.nl',phone:'',linkedin:'',research:'Research Director',status:'active',priority:'high',quality:'verified',lastContact:'',notes:'Holds research portfolio for FSE. Source: rug.nl/fse'},
   {id:'c093',instId:'ut',first:'Mariolein',last:'Koeva',title:'Portfolio Holder Research, Faculty ITC',dept:'Faculty of Geo-Information Science & Earth Obs. (ITC)',email:'m.koeva@utwente.nl',phone:'',linkedin:'',research:'Research Director',status:'active',priority:'high',quality:'verified',lastContact:'',notes:'Source: utwente.nl/itc'},
@@ -1300,7 +1300,7 @@ const SEED_CONTACTS = [
   {id:'c096',instId:'leiden',first:'Jan',last:'Knoester',title:'Dean, Faculty of Science',dept:'Faculty of Science',email:'j.knoester@physics.leidenuniv.nl',phone:'',linkedin:'',research:'Research Director',status:'active',priority:'high',quality:'verified',lastContact:'',notes:'Source: universiteitleiden.nl/science'},
   {id:'c097',instId:'leiden',first:'Janine',last:'Ubink',title:'Director of Research, Faculty of Law',dept:'Faculty of Law',email:'j.m.ubink@law.leidenuniv.nl',phone:'',linkedin:'',research:'Research Director',status:'active',priority:'high',quality:'verified',lastContact:'',notes:'Source: universiteitleiden.nl/law'},
   {id:'c098',instId:'tiu',first:'Joerg',last:'Knoben',title:'VP Research, Tilburg School of Economics & Management',dept:'TiSEM',email:'j.knoben@tilburguniversity.edu',phone:'',linkedin:'',research:'Research Director',status:'active',priority:'high',quality:'verified',lastContact:'',notes:'Source: tilburguniversity.edu/tisem'},
-  {id:'c099',instId:'tiu',first:'Jitske',last:'Å afà¡Å Postma',title:'VP Research, Tilburg School of Humanities & Digital Sciences',dept:'TSHD',email:'j.safarpostma@tilburguniversity.edu',phone:'',linkedin:'',research:'Research Director',status:'active',priority:'high',quality:'verified',lastContact:'',notes:'Source: tilburguniversity.edu/tshd'},
+  {id:'c099',instId:'tiu',first:'Jitske',last:'Šafář Postma',title:'VP Research, Tilburg School of Humanities & Digital Sciences',dept:'TSHD',email:'j.safarpostma@tilburguniversity.edu',phone:'',linkedin:'',research:'Research Director',status:'active',priority:'high',quality:'verified',lastContact:'',notes:'Source: tilburguniversity.edu/tshd'},
   {id:'c100',instId:'tiu',first:'Thomas',last:'Kooij',title:'VP Research, Tilburg School of Social & Behavioural Sciences',dept:'TSB',email:'t.kooij@tilburguniversity.edu',phone:'',linkedin:'',research:'Research Director',status:'active',priority:'high',quality:'verified',lastContact:'',notes:'Source: tilburguniversity.edu/tsb'},
   {id:'c101',instId:'aumc',first:'Elga',last:'de Vries',title:'Vice Dean of Research',dept:'Amsterdam UMC',email:'e.devries@amsterdamumc.nl',phone:'',linkedin:'',research:'Research Director',status:'active',priority:'high',quality:'verified',lastContact:'',notes:'Appointed June 2024. Source: amsterdamumc.nl'},
   {id:'c102',instId:'umcutrecht',first:'Elly',last:'Hol',title:'Vice-Dean of Research',dept:'UMC Utrecht',email:'e.hol@umcutrecht.nl',phone:'',linkedin:'',research:'Research Director',status:'active',priority:'high',quality:'verified',lastContact:'',notes:'Appointed 2024. Source: umcutrecht.nl'},
@@ -1317,7 +1317,7 @@ const SEED_CONTACTS = [
   {id:'c113',instId:'sron',first:'Michael',last:'Wise',title:'General & Scientific Director',dept:'SRON Netherlands Institute for Space Research',email:'m.wise@sron.nl',phone:'',linkedin:'',research:'Research Director',status:'active',priority:'high',quality:'verified',lastContact:'',notes:'Second term. Source: sron.nl'},
   {id:'c114',instId:'nwo',first:'Marcel',last:'Levi',title:'President',dept:'NWO',email:'m.levi@nwo.nl',phone:'',linkedin:'',research:'Research Director',status:'active',priority:'high',quality:'verified',lastContact:'',notes:'Source: nwo.nl'},
   {id:'c115',instId:'nwo',first:'Mirjam',last:'de Boer',title:'Domain Chair, Science (ENW)',dept:'NWO',email:'m.deboer@nwo.nl',phone:'',linkedin:'',research:'Research Director',status:'active',priority:'high',quality:'verified',lastContact:'',notes:'Source: nwo.nl'},
-  {id:'c116',instId:'nwo',first:'Michiel',last:'Voà»te',title:'Domain Chair, Applied & Engineering Sciences (TTW)',dept:'NWO',email:'m.voute@nwo.nl',phone:'',linkedin:'',research:'Research Director',status:'active',priority:'high',quality:'verified',lastContact:'',notes:'Source: nwo.nl'},
+  {id:'c116',instId:'nwo',first:'Michiel',last:'Voûte',title:'Domain Chair, Applied & Engineering Sciences (TTW)',dept:'NWO',email:'m.voute@nwo.nl',phone:'',linkedin:'',research:'Research Director',status:'active',priority:'high',quality:'verified',lastContact:'',notes:'Source: nwo.nl'},
   {id:'c117',instId:'knaw',first:'Marileen',last:'Dogterom',title:'President',dept:'KNAW',email:'m.dogterom@knaw.nl',phone:'',linkedin:'',research:'Research Director',status:'active',priority:'high',quality:'verified',lastContact:'',notes:'Source: knaw.nl'},
   {id:'c118',instId:'knaw',first:'Gijs',last:'de Snoo',title:'Director Research Policy',dept:'KNAW',email:'g.desnoo@knaw.nl',phone:'',linkedin:'',research:'Research Director',status:'active',priority:'high',quality:'verified',lastContact:'',notes:'Source: knaw.nl'},
   {id:'c119',instId:'rivm',first:'Isabel',last:'Arends',title:'Director General',dept:'RIVM',email:'i.arends@rivm.nl',phone:'',linkedin:'',research:'Research Director',status:'active',priority:'high',quality:'verified',lastContact:'',notes:'Appointed April 2026. Source: rivm.nl'},
@@ -1326,7 +1326,7 @@ const SEED_CONTACTS = [
   {id:'c122',instId:'esc',first:'Menno',last:'Rasch',title:'Director',dept:'Netherlands eScience Center',email:'m.rasch@esciencecenter.nl',phone:'',linkedin:'',research:'Research Director',status:'active',priority:'high',quality:'verified',lastContact:'',notes:'Source: esciencecenter.nl'}
 ];
 
-//  STATE 
+//  STATE 
 let state = {
   institutions: [],
   contacts: [],
@@ -1353,11 +1353,11 @@ let state = {
 
 const PER_PAGE = 20;
 
-//  STORAGE 
+//  STORAGE 
 const APPROVED_UNIVERSITIES = new Set(['uva','vu','leiden','tudelft','eur','uu','wur','rug','ru','um','tiu','tue','ut','ou']);
 const SEED_VERSION = 'v6';
 
-//  SUPABASE CONFIG 
+//  SUPABASE CONFIG 
 const SUPA_URL = 'https://cfhljbexesdrabmadpcc.supabase.co';
 const SUPA_KEY = 'sb_publishable_PE2Yc0ivOT4F4fE80CXJUw_kbch9TpZ'; // publishable/anon key — safe to be public, RLS enforces access
 
@@ -1397,7 +1397,7 @@ async function supaFetch(path, opts={}) {
   return text ? JSON.parse(text) : null;
 }
 
-// Map DB row (snake_case)  CRM institution object (camelCase)
+// Map DB row (snake_case)  CRM institution object (camelCase)
 function dbToInst(r) {
   return {
     id: r.id, name: r.name, short: r.short||'', type: r.type||'',
@@ -1410,7 +1410,7 @@ function dbToInst(r) {
   };
 }
 
-// Map DB row  CRM contact object
+// Map DB row  CRM contact object
 function dbToContact(r) {
   return {
     id: r.id, instId: r.inst_id, first: r.first||'', last: r.last||'',
@@ -1421,7 +1421,7 @@ function dbToContact(r) {
   };
 }
 
-// Map CRM institution object  DB row (snake_case)
+// Map CRM institution object  DB row (snake_case)
 function instToDB(inst) {
   return {
     id: inst.id, name: inst.name, short: inst.short, type: inst.type,
@@ -1436,7 +1436,7 @@ function instToDB(inst) {
   };
 }
 
-// Map CRM contact object  DB row
+// Map CRM contact object  DB row
 function contactToDB(contact) {
   return {
     id: contact.id, inst_id: contact.instId, first: contact.first, last: contact.last,
@@ -1505,7 +1505,7 @@ function syncBadge(show, err) {
   el.style.display = show ? 'flex' : 'none';
   el.style.background = err ? '#fee2e2' : '#f0fdf4';
   el.style.color = err ? '#991b1b' : '#166534';
-  el.textContent = err ? '  Sync error' : ' Synced';
+  el.textContent = err ? '  Sync error' : ' Synced';
 }
 async function load() {
   showLoadingScreen();
@@ -1576,7 +1576,7 @@ function resetData() {
   toast('Data reset to seed data');
 }
 
-//  OPENALEX SYNC 
+//  OPENALEX SYNC 
 function syncOpenAlex() {
   document.getElementById('sync-progress').style.display = 'none';
   document.getElementById('sync-result').style.display = 'none';
@@ -1656,9 +1656,9 @@ async function runOpenAlexSync() {
     status.textContent = 'Done!';
 
     result.style.display = 'block';
-    result.innerHTML = ` <strong>Sync complete!</strong> Added <strong>${added}</strong> new institutions from OpenAlex. Your CRM now has <strong>${state.institutions.length}</strong> institutions total.`;
+    result.innerHTML = ` <strong>Sync complete!</strong> Added <strong>${added}</strong> new institutions from OpenAlex. Your CRM now has <strong>${state.institutions.length}</strong> institutions total.`;
 
-    document.getElementById('sync-footer').innerHTML = '<button class="btn btn-primary" onclick="closeModal(\'modal-sync\');render()"> Done</button>';
+    document.getElementById('sync-footer').innerHTML = '<button class="btn btn-primary" onclick="closeModal(\'modal-sync\');render()"> Done</button>';
     document.getElementById('sync-footer').style.display = 'flex';
     render();
 
@@ -1667,13 +1667,13 @@ async function runOpenAlexSync() {
     result.style.background = '#fff5f5';
     result.style.borderColor = '#feb2b2';
     result.style.color = 'var(--danger)';
-    result.innerHTML = ` <strong>Sync failed:</strong> ${err.message}. Make sure you are connected to the internet and try again.`;
+    result.innerHTML = ` <strong>Sync failed:</strong> ${err.message}. Make sure you are connected to the internet and try again.`;
     document.getElementById('sync-footer').innerHTML = '<button class="btn btn-outline" onclick="closeModal(\'modal-sync\')">Close</button>';
     document.getElementById('sync-footer').style.display = 'flex';
   }
 }
 
-//  CONTACTS IMPORT (CSV) 
+//  CONTACTS IMPORT (CSV) 
 let _csvRows = [];
 function syncContacts() {
   _csvRows = [];
@@ -1756,13 +1756,13 @@ function runContactsSync() {
   res.style.border = added > 0 ? '1px solid rgba(34,197,94,.18)' : '1px solid rgba(59,130,246,.18)';
   res.style.color = added > 0 ? '#16a34a' : '#2563eb';
   res.innerHTML = added > 0
-    ? ` <strong>Imported ${added} new contact${added!==1?'s':''}.</strong>${skipped?' '+skipped+' duplicate'+(skipped!==1?'s':'')+' skipped.':''} CRM now has <strong>${state.contacts.length}</strong> contacts.`
+    ? ` <strong>Imported ${added} new contact${added!==1?'s':''}.</strong>${skipped?' '+skipped+' duplicate'+(skipped!==1?'s':'')+' skipped.':''} CRM now has <strong>${state.contacts.length}</strong> contacts.`
     : `No new contacts to import — ${skipped} duplicate${skipped!==1?'s':''} skipped.`;
   document.getElementById('csync-footer').innerHTML = '<button class="btn btn-primary" onclick="closeModal(\'modal-sync-contacts\');render()">Done</button>';
   render();
 }
 
-//  UTILS 
+//  UTILS 
 function uid() { return 'id_' + Date.now() + '_' + Math.random().toString(36).slice(2,7); }
 function esc(s) { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
@@ -1888,7 +1888,7 @@ document.querySelectorAll('.overlay').forEach(el=>{
   el.addEventListener('click', e=>{ if(e.target===el) el.classList.remove('open'); });
 });
 
-//  NAVIGATION 
+//  NAVIGATION 
 function nav(view, extra={}) {
   state.view = view;
   if(extra.instId) state.detailInstId = extra.instId;
@@ -1898,7 +1898,7 @@ function nav(view, extra={}) {
   render();
 }
 
-//  RENDER 
+//  RENDER 
 function render() {
   const views = {
     dashboard: renderDashboard,
@@ -1928,11 +1928,11 @@ function applyRoleUI() {
   });
 }
 
-//  DASHBOARD 
+//  DASHBOARD 
 function renderDashboard() {
   document.getElementById('page-title').textContent = 'Dashboard';
   document.getElementById('page-sub').textContent = 'Overview of your Netherlands research network';
-  document.getElementById('topbar-actions').innerHTML = `<button class="btn btn-outline btn-sm" data-admin-only onclick="resetData()">º Reset to Seed Data</button>`;
+  document.getElementById('topbar-actions').innerHTML = `<button class="btn btn-outline btn-sm" data-admin-only onclick="resetData()"> Reset to Seed Data</button>`;
 
   const inst = state.institutions;
   const cont = state.contacts;
@@ -2156,7 +2156,7 @@ function buildDashWidgets(typeRows, hpRows, agentRows) {
       ${agentRows}
     </div>`,
     'w-map': `<div class="card dash-widget" data-widget-id="w-map" draggable="true">
-      <div class="card-header"><span class="card-title">Map Overview</span><button class="btn btn-xs btn-outline" onclick="nav('map')">Full map </button>${handle}</div>
+      <div class="card-header"><span class="card-title">Map Overview</span><button class="btn btn-xs btn-outline" onclick="nav('map')">Full map </button>${handle}</div>
       <div id="dash-mini-map" style="height:220px;border-radius:7px;overflow:hidden;border:1px solid var(--border)"></div>
     </div>`
   };
@@ -2224,7 +2224,7 @@ function initDashDrag() {
 }
 
 let _dashMiniMap = null;
-//  MAP VIEW 
+//  MAP VIEW 
 let _fullMap = null;
 let _mapActiveFilter = 'all';
 let _mapMarkers = [];
@@ -2374,14 +2374,14 @@ function initDashMiniMap() {
   }, 50);
 }
 
-//  INSTITUTIONS 
+//  INSTITUTIONS 
 function renderInstitutions() {
   document.getElementById('page-title').textContent = 'Institutions';
   document.getElementById('page-sub').textContent = `${state.institutions.length} institutions in your network`;
   document.getElementById('topbar-actions').innerHTML = `
     <div class="view-toggle">
-      <button class="vt-btn ${state.instView==='grid'?'active':''}" onclick="state.instView='grid';renderInstitutions()"> Grid</button>
-      <button class="vt-btn ${state.instView==='table'?'active':''}" onclick="state.instView='table';renderInstitutions()">° Table</button>
+      <button class="vt-btn ${state.instView==='grid'?'active':''}" onclick="state.instView='grid';renderInstitutions()"> Grid</button>
+      <button class="vt-btn ${state.instView==='table'?'active':''}" onclick="state.instView='table';renderInstitutions()"> Table</button>
     </div>
     <button class="btn btn-primary" data-admin-only onclick="openAddInstitution()">+ Add Institution</button>`;
 
@@ -2397,22 +2397,22 @@ function renderInstitutions() {
 
   const toolbar = `
     <div class="toolbar">
-      <div class="search-wrap"><span class="search-icon"></span>
+      <div class="search-wrap"><span class="search-icon"></span>
         <input placeholder="Search institutions..." value="${esc(state.instSearch)}"
           oninput="state.instSearch=this.value;state.instPage=1;renderInstitutions()">
       </div>
       <select class="flt" onchange="state.instType=this.value;state.instPage=1;renderInstitutions()">
         <option value="">All Types</option>
-        <option value="university" ${state.instType==='university'?'selected':''}> University</option>
-        <option value="medical" ${state.instType==='medical'?'selected':''}>¥ Medical Center</option>
+        <option value="university" ${state.instType==='university'?'selected':''}> University</option>
+        <option value="medical" ${state.instType==='medical'?'selected':''}> Medical Center</option>
         <option value="research" ${state.instType==='research'?'selected':''}>Research Institute</option>
-        <option value="ngo" ${state.instType==='ngo'?'selected':''}>¢ NGO / Foundation</option>
+        <option value="ngo" ${state.instType==='ngo'?'selected':''}> NGO / Foundation</option>
       </select>
       <span style="font-size:12px;color:var(--muted)">${insts.length} result${insts.length!==1?'s':''}</span>
     </div>`;
 
   if(!insts.length) {
-    document.getElementById('content').innerHTML = toolbar + `<div class="empty"><div class="ei">ï¸</div><h3>No institutions found</h3><p>Try adjusting your search or filters.</p></div>`;
+    document.getElementById('content').innerHTML = toolbar + `<div class="empty"><div class="ei"></div><h3>No institutions found</h3><p>Try adjusting your search or filters.</p></div>`;
     return;
   }
 
@@ -2448,7 +2448,7 @@ function renderInstitutions() {
         <td>${i.founded||'—'}</td>
         <td>${cc} contact${cc!==1?'s':''}</td>
         <td onclick="event.stopPropagation()" style="white-space:nowrap">
-          ${i.website?`<a class="ext-link" href="${esc(i.website)}" target="_blank"> Website</a>`:''}&nbsp;
+          ${i.website?`<a class="ext-link" href="${esc(i.website)}" target="_blank"> Website</a>`:''}&nbsp;
           <button class="btn btn-xs btn-outline" data-admin-only onclick="openEditInstitution('${i.id}')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
           <button class="btn btn-xs btn-danger" data-admin-only onclick="confirmDeleteInst('${i.id}')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
         </td>
@@ -2466,7 +2466,7 @@ function renderInstitutions() {
   }
 }
 
-//  INSTITUTION DETAIL 
+//  INSTITUTION DETAIL 
 function renderDetail() {
   const inst = getInst(state.detailInstId);
   if(!inst.id) { nav('institutions'); return; }
@@ -2475,7 +2475,7 @@ function renderDetail() {
   document.getElementById('page-title').textContent = inst.short || inst.name;
   document.getElementById('page-sub').textContent = inst.city + ' · ' + (TYPE_LABEL[inst.type]||inst.type);
   document.getElementById('topbar-actions').innerHTML = `
-    <button class="btn btn-outline" data-admin-only onclick="openEditInstitution('${inst.id}')">ï¸ Edit</button>
+    <button class="btn btn-outline" data-admin-only onclick="openEditInstitution('${inst.id}')"> Edit</button>
     <button class="btn btn-accent" data-admin-only onclick="openAddContact('${inst.id}')">+ Add Contact</button>`;
 
   const statsHtml = `
@@ -2496,7 +2496,7 @@ function renderDetail() {
       <td>${c.email?`<a class="ext-link" href="mailto:${esc(c.email)}">${esc(c.email)}</a>`:'—'}</td>
       <td><span class="badge b-${c.status}">${c.status}</span></td>
       <td><span class="badge b-${c.priority}">${c.priority}</span></td>
-      <td><span class="badge b-${c.quality}">${c.quality==='verified'?' Verified':' ï¸ Seed'}</span></td>
+      <td><span class="badge b-${c.quality}">${c.quality==='verified'?' Verified':'  Seed'}</span></td>
       <td style="font-size:12px;color:var(--muted)">${c.lastContact||'—'}</td>
       <td onclick="event.stopPropagation()" style="white-space:nowrap">
         <button class="btn btn-xs btn-outline" title="Log activity" onclick="openActivityLog('${c.id}','${esc(c.first+' '+c.last)}')">📋</button>
@@ -2513,7 +2513,7 @@ function renderDetail() {
   } catch(e) { /* silent */ }
 
   document.getElementById('content').innerHTML = `
-    <div class="back-btn" onclick="nav('institutions')"> Back to Institutions</div>
+    <div class="back-btn" onclick="nav('institutions')"> Back to Institutions</div>
     <div class="detail-header">
       <div class="dh-top">
         <div class="name-cell" style="gap:14px">
@@ -2529,7 +2529,7 @@ function renderDetail() {
           </div>
         </div>
         <div style="display:flex;gap:8px;flex-shrink:0">
-          ${inst.website?`<a href="${esc(inst.website)}" target="_blank" class="btn btn-outline btn-sm"> Website</a>`:''}
+          ${inst.website?`<a href="${esc(inst.website)}" target="_blank" class="btn btn-outline btn-sm"> Website</a>`:''}
         </div>
       </div>
       ${inst.description?`<p style="margin-top:12px;font-size:13px;color:var(--muted)">${esc(inst.description)}</p>`:''}
@@ -2555,11 +2555,11 @@ function renderDetail() {
       <div class="acct-grid">
         <div class="acct-cell">
           <div class="acct-label">Relationship</div>
-          <div class="acct-val">${inst.warmth ? `<span class="badge-${esc(inst.warmth)}">${inst.warmth==='hot'?'´ Hot':inst.warmth==='warm'?'¡ Warm':'µ Cold'}</span>` : '<span style="color:var(--muted)">—</span>'}</div>
+          <div class="acct-val">${inst.warmth ? `<span class="badge-${esc(inst.warmth)}">${inst.warmth==='hot'?' Hot':inst.warmth==='warm'?' Warm':' Cold'}</span>` : '<span style="color:var(--muted)">—</span>'}</div>
         </div>
         <div class="acct-cell">
           <div class="acct-label">Contract Value</div>
-          <div class="acct-val">${inst.contractValue ? '¬' + parseFloat(inst.contractValue).toLocaleString() : '—'}</div>
+          <div class="acct-val">${inst.contractValue ? '€' + parseFloat(inst.contractValue).toLocaleString() : '—'}</div>
         </div>
         <div class="acct-cell">
           <div class="acct-label">Renewal Date</div>
@@ -2591,7 +2591,7 @@ function renderDetail() {
     </div>`;
 }
 
-//  CONTACTS 
+//  CONTACTS 
 function renderContacts() {
   document.getElementById('page-title').textContent = 'Contacts';
   document.getElementById('page-sub').textContent = `${state.contacts.length} contacts across all institutions`;
@@ -2625,7 +2625,7 @@ function renderContacts() {
 
   const toolbar = `
     <div class="toolbar">
-      <div class="search-wrap"><span class="search-icon"></span>
+      <div class="search-wrap"><span class="search-icon"></span>
         <input placeholder="Search contacts, roles, research area..." value="${esc(state.contactSearch)}"
           oninput="state.contactSearch=this.value;state.contactPage=1;renderContacts()">
       </div>
@@ -2649,7 +2649,7 @@ function renderContacts() {
 
   function th(label, col) {
     const active = state.contactSort.col === col;
-    const arrow = active ? (state.contactSort.dir===1?' ':' ') : '';
+    const arrow = active ? (state.contactSort.dir===1?' ':' ') : '';
     return `<th onclick="sortContacts('${col}')">${label}${arrow}</th>`;
   }
 
@@ -2665,7 +2665,7 @@ function renderContacts() {
       <td>${c.email?`<a class="ext-link" href="mailto:${esc(c.email)}">${esc(c.email)}</a>`:'<span style="color:var(--muted);font-size:12px">—</span>'}</td>
       <td><span class="badge b-${c.status}">${c.status}</span></td>
       <td><span class="badge b-${c.priority}">${c.priority}</span></td>
-      <td><span class="badge b-${c.quality}" style="font-size:10px">${c.quality==='verified'?' Verified':' ï¸ Seed'}</span></td>
+      <td><span class="badge b-${c.quality}" style="font-size:10px">${c.quality==='verified'?' Verified':'  Seed'}</span></td>
       <td style="font-size:12px;color:var(--muted)">${c.lastContact||'—'}</td>
       <td style="white-space:nowrap">
         <button class="btn btn-xs btn-outline" title="Log activity" onclick="openActivityLog('${c.id}','${esc(c.first+' '+c.last)}')">📋</button>
@@ -2699,7 +2699,7 @@ function sortContacts(col) {
   renderContacts();
 }
 
-//  INSTITUTION CRUD 
+//  INSTITUTION CRUD 
 function openAddInstitution() {
   state.editInstId = null;
   document.getElementById('mi-title').textContent = 'Add Institution';
@@ -2799,7 +2799,7 @@ function deleteInst(id) {
   removedContacts.forEach(c => supaDelete('crm_contacts', c.id).catch(e=>console.error(e)));
 }
 
-//  CONTACT CRUD 
+//  CONTACT CRUD 
 function openAddContact(preInstId='') {
   state.editContactId = null;
   document.getElementById('mc-title').textContent = 'Add Contact';
@@ -2878,7 +2878,7 @@ function deleteContact(id) {
   supaDelete('crm_contacts', id).catch(e=>console.error(e));
 }
 
-//  EXPORT 
+//  EXPORT 
 function exportCSV() {
   const headers = ['First','Last','Title','Department','Institution','Type','City','Email','Phone','LinkedIn','Research Areas','Status','Priority','Last Contact','Quality','Notes'];
   const instMap = {};
@@ -2894,7 +2894,7 @@ function exportCSV() {
   toast('Exported CSV');
 }
 
-//  NEWS PAGE 
+//  NEWS PAGE 
 // Uses Google News RSS via allorigins.win proxy — no API key needed
 // Every query is scoped to one of the CRM's 4 tracked institution types
 // (university / medical / research / ngo) crossed with either AI & research
@@ -3060,7 +3060,7 @@ function renderNewsArticles(articles) {
       <h3>${esc(a.title)}</h3>
       ${a.description ? `<p>${esc(a.description)}</p>` : ''}
       <div class="news-card-footer">
-        <a href="${safeUrl}" target="_blank" onclick="event.stopPropagation()">Read full article </a>
+        <a href="${safeUrl}" target="_blank" onclick="event.stopPropagation()">Read full article </a>
       </div>
     </div>`;
   }).join('');
@@ -3099,7 +3099,7 @@ function renderNews() {
   document.getElementById('page-title').textContent = 'Netherlands Research News';
   document.getElementById('page-sub').textContent = 'AI & research news from NL universities, medical centers, research institutes & NGOs — filtered for relevance to your business';
   document.getElementById('topbar-actions').innerHTML =
-    `<button id="news-refresh-btn" class="btn btn-outline btn-sm" onclick="fetchAndShowNews('${todayStr()}',true)">º Refresh</button>`;
+    `<button id="news-refresh-btn" class="btn btn-outline btn-sm" onclick="fetchAndShowNews('${todayStr()}',true)"> Refresh</button>`;
 
   const allTopics = ['all', ...Object.keys(NEWS_TOPICS)];
   const topicBtns = allTopics.map(t => {
@@ -3138,7 +3138,7 @@ function renderNews() {
 }
 
 
-//  OPPORTUNITY HELPERS 
+//  OPPORTUNITY HELPERS 
 function openAddOpp(instId) {
   document.getElementById('mo-id').value = '';
   document.getElementById('mo-inst-id').value = instId||'';
@@ -3194,7 +3194,7 @@ function openAddOppInStage(stage) {
   document.getElementById('mo-stage').value = stage;
 }
 
-//  INTERACTION HELPERS 
+//  INTERACTION HELPERS 
 function openLogInteraction(instId) {
   document.getElementById('mi-inst-id').value = instId;
   document.getElementById('mi-date').value = new Date().toISOString().slice(0,10);
@@ -3233,7 +3233,7 @@ function deleteInteraction(intId) {
   save(); supaDelete('crm_interactions', intId).catch(e=>console.error(e)); toast('Removed'); render();
 }
 
-//  ACCOUNT INFO HELPERS 
+//  ACCOUNT INFO HELPERS 
 function openEditInstAccount(instId) {
   const inst = getInst(instId);
   document.getElementById('ma-inst-id').value = instId;
@@ -3268,7 +3268,7 @@ async function saveInstAccount() {
   save(); try { await supaUpsertInst(inst); syncBadge(true); } catch(e){ console.error(e); syncBadge(true,'err'); } closeModal('modal-acct'); toast('Account info saved'); render();
 }
 
-//  PIPELINE PAGE 
+//  PIPELINE PAGE 
 // ── RFP OPPS ──────────────────────────────────────────────────────────────────
 function getRFPs() { try { return JSON.parse(localStorage.getItem('nl_crm_rfp') || '[]'); } catch(e) { return []; } }
 function saveRFPs(list) { localStorage.setItem('nl_crm_rfp', JSON.stringify(list)); }
@@ -3531,13 +3531,13 @@ async function bootstrapApp() {
 bootstrapApp();
 
 
-//  MATRIX OVERRIDES (persisted to localStorage) 
+//  MATRIX OVERRIDES (persisted to localStorage) 
 window.matrixOverrides = {};
 try { window.matrixOverrides = JSON.parse(localStorage.getItem('crm_matrix_overrides')||'{}'); } catch(e){}
 let _matrixEditMode = false;
 
 const _CYCLE = ['yes','likely','expiring','unknown','no'];
-const _OV_BADGES = { active:'', expiring:'³', unconfirmed:'?', cancelled:'', none:'—', likely:'~' };
+const _OV_BADGES = { active:'', expiring:'', unconfirmed:'?', cancelled:'', none:'—', likely:'~' };
 const _OV_TITLES = { active:'Active', expiring:'Cancelling', unconfirmed:'Unconfirmed', cancelled:'Cancelled', none:'Not subscribed', likely:'Likely active' };
 const _COL_LABELS = { springer:'SpringerLink', wiley:'Wiley Online', tf:'Taylor & Francis', wos:'Web of Science', ieee:'IEEE Xplore', acm:'ACM Digital Library', scifinder:'SciFinder-N' };
 
@@ -3567,8 +3567,8 @@ function clearAllOverrides(){
   renderSubscriptionMatrix();
 }
 
-//  COMPETITOR PRODUCTS 
-//  SUBSCRIPTION MATRIX VIEW 
+//  COMPETITOR PRODUCTS 
+//  SUBSCRIPTION MATRIX VIEW 
 // Competitor product data — verified from official university library sources (Aug 2026)
 // Renewal dates verified from public contracts and library announcements
 if (!window.COMP_DATA) {
@@ -4620,12 +4620,12 @@ function renderCompetitorInsights() {
 
 const COMPETITOR_PRODUCTS = {
 
-  /*  TU/e (Eindhoven University of Technology)  */
+  /*  TU/e (Eindhoven University of Technology)  */
   'tue': [
     {
       vendor: 'Clarivate', product: 'Web of Science', category: 'Citation & Abstract Database',
       competesWith: 'Scopus', subscriptionStart: '', contractExpiry: '',
-      notes: ' ï¸ UNCONFIRMED. TU/e access status unclear — UT, VU, UU & TU Delft all cancelled WoS as of Jan 2026 citing overlap with Scopus & budget pressures. UKB consortium attribution unverified. Confirm with Corry Wouters (Library Director).'
+      notes: '  UNCONFIRMED. TU/e access status unclear — UT, VU, UU & TU Delft all cancelled WoS as of Jan 2026 citing overlap with Scopus & budget pressures. UKB consortium attribution unverified. Confirm with Corry Wouters (Library Director).'
     },
     {
       vendor: 'Springer Nature', product: 'SpringerLink', category: 'Journal & Book Platform',
@@ -4640,31 +4640,31 @@ const COMPETITOR_PRODUCTS = {
     {
       vendor: 'Taylor & Francis', product: 'Taylor & Francis Online', category: 'Journal Content Platform',
       competesWith: 'ScienceDirect', subscriptionStart: '2024-01-01', contractExpiry: '2026-12-31',
-      notes: 'UNL (Dutch universities) Read & Publish agreement 2024–2026. ~2,200 hybrid T&F/Routledge journals, capped at 1,451 articles/year.  ï¸ 2025 quota already reached — authors paying APC from cap onwards. Source: openaccess.nl.'
+      notes: 'UNL (Dutch universities) Read & Publish agreement 2024–2026. ~2,200 hybrid T&F/Routledge journals, capped at 1,451 articles/year.   2025 quota already reached — authors paying APC from cap onwards. Source: openaccess.nl.'
     },
     {
       vendor: 'IEEE', product: 'IEEE Xplore', category: 'Engineering & Standards Content',
       competesWith: 'ScienceDirect (Engineering)', subscriptionStart: '', contractExpiry: '',
-      notes: ' ï¸ Access confirmed (listed on TU/e library databases page). Full IEEE/IEL journals, conference proceedings & IEEE Standards. Contract dates and consortium unverified — confirm with library.'
+      notes: '  Access confirmed (listed on TU/e library databases page). Full IEEE/IEL journals, conference proceedings & IEEE Standards. Contract dates and consortium unverified — confirm with library.'
     },
     {
       vendor: 'ACM', product: 'ACM Digital Library', category: 'Computer Science Platform',
       competesWith: 'ScienceDirect (CS)', subscriptionStart: '2026-01-01', contractExpiry: '2028-12-31',
-      notes: ' ï¸ Access confirmed (listed on TU/e library databases page). OA Publishing agreement reported Jan 2026–Dec 2028 — exact contract terms unverified.'
+      notes: '  Access confirmed (listed on TU/e library databases page). OA Publishing agreement reported Jan 2026–Dec 2028 — exact contract terms unverified.'
     },
     {
       vendor: 'CAS / ACS', product: 'SciFinder-N', category: 'Chemistry & Life Sciences DB',
       competesWith: 'Reaxys', subscriptionStart: '', contractExpiry: '',
-      notes: ' ï¸ Access confirmed (listed on TU/e library databases page as "SciFinderN"). Used by Chemical Engineering & Chemistry dept. Contract dates unverified — confirm with library.'
+      notes: '  Access confirmed (listed on TU/e library databases page as "SciFinderN"). Used by Chemical Engineering & Chemistry dept. Contract dates unverified — confirm with library.'
     }
   ],
 
-  /*  UvA (University of Amsterdam)  */
+  /*  UvA (University of Amsterdam)  */
   'uva': [
     {
       vendor: 'Clarivate', product: 'Web of Science', category: 'Citation & Abstract Database',
       competesWith: 'Scopus', subscriptionStart: '', contractExpiry: '',
-      notes: ' ï¸ UNCONFIRMED. Access status unclear. Multiple Dutch universities cancelled WoS in 2025–2026 citing Scopus overlap. Verify with UvA Library (contact: library@uva.nl).'
+      notes: '  UNCONFIRMED. Access status unclear. Multiple Dutch universities cancelled WoS in 2025–2026 citing Scopus overlap. Verify with UvA Library (contact: library@uva.nl).'
     },
     {
       vendor: 'Springer Nature', product: 'SpringerLink', category: 'Journal & Book Platform',
@@ -4679,21 +4679,21 @@ const COMPETITOR_PRODUCTS = {
     {
       vendor: 'Taylor & Francis', product: 'Taylor & Francis Online', category: 'Journal Content Platform',
       competesWith: 'ScienceDirect', subscriptionStart: '2024-01-01', contractExpiry: '2026-12-31',
-      notes: 'UNL (Dutch universities) Read & Publish agreement 2024–2026. ~2,200 hybrid T&F/Routledge journals, capped at 1,451 articles/year.  ï¸ 2025 quota already reached. Source: openaccess.nl.'
+      notes: 'UNL (Dutch universities) Read & Publish agreement 2024–2026. ~2,200 hybrid T&F/Routledge journals, capped at 1,451 articles/year.   2025 quota already reached. Source: openaccess.nl.'
     },
     {
       vendor: 'ACM', product: 'ACM Digital Library', category: 'Computer Science Platform',
       competesWith: 'ScienceDirect (CS)', subscriptionStart: '', contractExpiry: '',
-      notes: ' ï¸ Access likely — UvA has a major Informatics faculty (top-ranked CS programme). Contract details unverified — confirm with library.'
+      notes: '  Access likely — UvA has a major Informatics faculty (top-ranked CS programme). Contract details unverified — confirm with library.'
     },
     {
       vendor: 'CAS / ACS', product: 'SciFinder-N', category: 'Chemistry & Life Sciences DB',
       competesWith: 'Reaxys', subscriptionStart: '', contractExpiry: '',
-      notes: ' ï¸ Access likely — UvA has strong chemistry & molecular biology research (Van\'t Hoff Institute). Contract dates unverified — confirm with library.'
+      notes: '  Access likely — UvA has strong chemistry & molecular biology research (Van\'t Hoff Institute). Contract dates unverified — confirm with library.'
     }
   ],
 
-  /*  VU (Vrije Universiteit Amsterdam)  */
+  /*  VU (Vrije Universiteit Amsterdam)  */
   'vu': [
     {
       vendor: 'Springer Nature', product: 'SpringerLink', category: 'Journal & Book Platform',
@@ -4708,21 +4708,21 @@ const COMPETITOR_PRODUCTS = {
     {
       vendor: 'Taylor & Francis', product: 'Taylor & Francis Online', category: 'Journal Content Platform',
       competesWith: 'ScienceDirect', subscriptionStart: '2024-01-01', contractExpiry: '2026-12-31',
-      notes: 'UNL (Dutch universities) Read & Publish agreement 2024–2026. ~2,200 hybrid T&F/Routledge journals, capped at 1,451 articles/year.  ï¸ 2025 quota already reached. Source: openaccess.nl.'
+      notes: 'UNL (Dutch universities) Read & Publish agreement 2024–2026. ~2,200 hybrid T&F/Routledge journals, capped at 1,451 articles/year.   2025 quota already reached. Source: openaccess.nl.'
     },
     {
       vendor: 'ACM', product: 'ACM Digital Library', category: 'Computer Science Platform',
       competesWith: 'ScienceDirect (CS)', subscriptionStart: '', contractExpiry: '',
-      notes: ' ï¸ Access likely — VU has a strong CS / AI faculty (home of ILPS group). Contract details unverified — confirm with library.  NOTE: VU cancelled Web of Science as of January 2026 — Scopus is now primary citation DB here.'
+      notes: '  Access likely — VU has a strong CS / AI faculty (home of ILPS group). Contract details unverified — confirm with library.  NOTE: VU cancelled Web of Science as of January 2026 — Scopus is now primary citation DB here.'
     },
     {
       vendor: 'CAS / ACS', product: 'SciFinder-N', category: 'Chemistry & Life Sciences DB',
       competesWith: 'Reaxys', subscriptionStart: '', contractExpiry: '',
-      notes: ' ï¸ Access likely given chemistry & molecular life sciences research. Contract dates unverified — confirm with library.  NOTE: VU cancelled Web of Science as of January 2026.'
+      notes: '  Access likely given chemistry & molecular life sciences research. Contract dates unverified — confirm with library.  NOTE: VU cancelled Web of Science as of January 2026.'
     }
   ],
 
-  /*  EUR (Erasmus University Rotterdam)  */
+  /*  EUR (Erasmus University Rotterdam)  */
   'eur': [
     {
       vendor: 'Clarivate', product: 'Web of Science', category: 'Citation & Abstract Database',
@@ -4742,11 +4742,11 @@ const COMPETITOR_PRODUCTS = {
     {
       vendor: 'Taylor & Francis', product: 'Taylor & Francis Online', category: 'Journal Content Platform',
       competesWith: 'ScienceDirect', subscriptionStart: '2024-01-01', contractExpiry: '2026-12-31',
-      notes: 'UNL (Dutch universities) Read & Publish agreement 2024–2026. ~2,200 hybrid T&F/Routledge journals, capped at 1,451 articles/year.  ï¸ 2025 quota already reached. Source: openaccess.nl.'
+      notes: 'UNL (Dutch universities) Read & Publish agreement 2024–2026. ~2,200 hybrid T&F/Routledge journals, capped at 1,451 articles/year.   2025 quota already reached. Source: openaccess.nl.'
     }
   ],
 
-  /*  UU (Utrecht University)  */
+  /*  UU (Utrecht University)  */
   'uu': [
     {
       vendor: 'Springer Nature', product: 'SpringerLink', category: 'Journal & Book Platform',
@@ -4761,16 +4761,16 @@ const COMPETITOR_PRODUCTS = {
     {
       vendor: 'Taylor & Francis', product: 'Taylor & Francis Online', category: 'Journal Content Platform',
       competesWith: 'ScienceDirect', subscriptionStart: '2024-01-01', contractExpiry: '2026-12-31',
-      notes: 'UNL (Dutch universities) Read & Publish agreement 2024–2026. ~2,200 hybrid T&F/Routledge journals, capped at 1,451 articles/year.  ï¸ 2025 quota already reached. Source: openaccess.nl.'
+      notes: 'UNL (Dutch universities) Read & Publish agreement 2024–2026. ~2,200 hybrid T&F/Routledge journals, capped at 1,451 articles/year.   2025 quota already reached. Source: openaccess.nl.'
     },
     {
       vendor: 'CAS / ACS', product: 'SciFinder-N', category: 'Chemistry & Life Sciences DB',
       competesWith: 'Reaxys', subscriptionStart: '', contractExpiry: '',
-      notes: ' ï¸ Access highly likely — UU has one of the largest chemistry departments in the Netherlands (Debye Institute). Contract dates unverified — confirm with library.  NOTE: UU cancelled Web of Science as of January 2026 — Scopus is now primary citation DB here.'
+      notes: '  Access highly likely — UU has one of the largest chemistry departments in the Netherlands (Debye Institute). Contract dates unverified — confirm with library.  NOTE: UU cancelled Web of Science as of January 2026 — Scopus is now primary citation DB here.'
     }
   ],
 
-  /*  Leiden (Leiden University)  */
+  /*  Leiden (Leiden University)  */
   'leiden': [
     {
       vendor: 'Clarivate', product: 'Web of Science', category: 'Citation & Abstract Database',
@@ -4790,16 +4790,16 @@ const COMPETITOR_PRODUCTS = {
     {
       vendor: 'Taylor & Francis', product: 'Taylor & Francis Online', category: 'Journal Content Platform',
       competesWith: 'ScienceDirect', subscriptionStart: '2024-01-01', contractExpiry: '2026-12-31',
-      notes: 'UNL (Dutch universities) Read & Publish agreement 2024–2026. ~2,200 hybrid T&F/Routledge journals, capped at 1,451 articles/year.  ï¸ 2025 quota already reached. Source: openaccess.nl.'
+      notes: 'UNL (Dutch universities) Read & Publish agreement 2024–2026. ~2,200 hybrid T&F/Routledge journals, capped at 1,451 articles/year.   2025 quota already reached. Source: openaccess.nl.'
     },
     {
       vendor: 'CAS / ACS', product: 'SciFinder-N', category: 'Chemistry & Life Sciences DB',
       competesWith: 'Reaxys', subscriptionStart: '', contractExpiry: '',
-      notes: ' ï¸ Access highly likely — Leiden has strong chemistry and drug discovery research (LACDR, Leiden Institute of Chemistry). Contract dates unverified — confirm with library.'
+      notes: '  Access highly likely — Leiden has strong chemistry and drug discovery research (LACDR, Leiden Institute of Chemistry). Contract dates unverified — confirm with library.'
     }
   ],
 
-  /*  RUG (University of Groningen)  */
+  /*  RUG (University of Groningen)  */
   'rug': [
     {
       vendor: 'Clarivate', product: 'Web of Science', category: 'Citation & Abstract Database',
@@ -4819,16 +4819,16 @@ const COMPETITOR_PRODUCTS = {
     {
       vendor: 'Taylor & Francis', product: 'Taylor & Francis Online', category: 'Journal Content Platform',
       competesWith: 'ScienceDirect', subscriptionStart: '2024-01-01', contractExpiry: '2026-12-31',
-      notes: 'UNL (Dutch universities) Read & Publish agreement 2024–2026. ~2,200 hybrid T&F/Routledge journals, capped at 1,451 articles/year.  ï¸ 2025 quota already reached. Source: openaccess.nl.'
+      notes: 'UNL (Dutch universities) Read & Publish agreement 2024–2026. ~2,200 hybrid T&F/Routledge journals, capped at 1,451 articles/year.   2025 quota already reached. Source: openaccess.nl.'
     },
     {
       vendor: 'CAS / ACS', product: 'SciFinder-N', category: 'Chemistry & Life Sciences DB',
       competesWith: 'Reaxys', subscriptionStart: '', contractExpiry: '',
-      notes: ' ï¸ Access likely — RUG has a strong Chemistry & Pharmaceutical Sciences faculty (Zernike Institute for Advanced Materials). Contract dates unverified — confirm with library.'
+      notes: '  Access likely — RUG has a strong Chemistry & Pharmaceutical Sciences faculty (Zernike Institute for Advanced Materials). Contract dates unverified — confirm with library.'
     }
   ],
 
-  /*  RU (Radboud University)  */
+  /*  RU (Radboud University)  */
   'ru': [
     {
       vendor: 'Clarivate', product: 'Web of Science', category: 'Citation & Abstract Database',
@@ -4848,16 +4848,16 @@ const COMPETITOR_PRODUCTS = {
     {
       vendor: 'Taylor & Francis', product: 'Taylor & Francis Online', category: 'Journal Content Platform',
       competesWith: 'ScienceDirect', subscriptionStart: '2024-01-01', contractExpiry: '2026-12-31',
-      notes: 'UNL (Dutch universities) Read & Publish agreement 2024–2026. ~2,200 hybrid T&F/Routledge journals, capped at 1,451 articles/year.  ï¸ 2025 quota already reached. Source: openaccess.nl.'
+      notes: 'UNL (Dutch universities) Read & Publish agreement 2024–2026. ~2,200 hybrid T&F/Routledge journals, capped at 1,451 articles/year.   2025 quota already reached. Source: openaccess.nl.'
     },
     {
       vendor: 'CAS / ACS', product: 'SciFinder-N', category: 'Chemistry & Life Sciences DB',
       competesWith: 'Reaxys', subscriptionStart: '', contractExpiry: '',
-      notes: ' ï¸ Access likely — Radboud has strong chemistry & molecular life sciences faculties (Institute for Molecules and Materials). Contract dates unverified — confirm with library.'
+      notes: '  Access likely — Radboud has strong chemistry & molecular life sciences faculties (Institute for Molecules and Materials). Contract dates unverified — confirm with library.'
     }
   ],
 
-  /*  TU Delft (Delft University of Technology)  */
+  /*  TU Delft (Delft University of Technology)  */
   'tudelft': [
     {
       vendor: 'Springer Nature', product: 'SpringerLink', category: 'Journal & Book Platform',
@@ -4872,26 +4872,26 @@ const COMPETITOR_PRODUCTS = {
     {
       vendor: 'Taylor & Francis', product: 'Taylor & Francis Online', category: 'Journal Content Platform',
       competesWith: 'ScienceDirect', subscriptionStart: '2024-01-01', contractExpiry: '2026-12-31',
-      notes: 'UNL (Dutch universities) Read & Publish agreement 2024–2026. ~2,200 hybrid T&F/Routledge journals, capped at 1,451 articles/year.  ï¸ 2025 quota already reached. Source: openaccess.nl.'
+      notes: 'UNL (Dutch universities) Read & Publish agreement 2024–2026. ~2,200 hybrid T&F/Routledge journals, capped at 1,451 articles/year.   2025 quota already reached. Source: openaccess.nl.'
     },
     {
       vendor: 'IEEE', product: 'IEEE Xplore', category: 'Engineering & Standards Content',
       competesWith: 'ScienceDirect (Engineering)', subscriptionStart: '', contractExpiry: '',
-      notes: ' ï¸ Access confirmed (TU Delft library databases page). Essential for electrical engineering, aerospace & CS research. Contract dates/consortium unverified — confirm with library.  NOTE: TU Delft cancelled Web of Science as of January 2026 — Scopus is now primary citation DB here.'
+      notes: '  Access confirmed (TU Delft library databases page). Essential for electrical engineering, aerospace & CS research. Contract dates/consortium unverified — confirm with library.  NOTE: TU Delft cancelled Web of Science as of January 2026 — Scopus is now primary citation DB here.'
     },
     {
       vendor: 'ACM', product: 'ACM Digital Library', category: 'Computer Science Platform',
       competesWith: 'ScienceDirect (CS)', subscriptionStart: '', contractExpiry: '',
-      notes: ' ï¸ Access likely — TU Delft has a major CS & software technology faculty. Contract details unverified — confirm with library.  NOTE: TU Delft cancelled Web of Science as of January 2026.'
+      notes: '  Access likely — TU Delft has a major CS & software technology faculty. Contract details unverified — confirm with library.  NOTE: TU Delft cancelled Web of Science as of January 2026.'
     },
     {
       vendor: 'CAS / ACS', product: 'SciFinder-N', category: 'Chemistry & Life Sciences DB',
       competesWith: 'Reaxys', subscriptionStart: '', contractExpiry: '',
-      notes: ' ï¸ Access likely — TU Delft has chemical engineering & applied sciences faculties. Contract dates unverified — confirm with library.  NOTE: TU Delft cancelled Web of Science as of January 2026.'
+      notes: '  Access likely — TU Delft has chemical engineering & applied sciences faculties. Contract dates unverified — confirm with library.  NOTE: TU Delft cancelled Web of Science as of January 2026.'
     }
   ],
 
-  /*  UT (University of Twente)  */
+  /*  UT (University of Twente)  */
   'ut': [
     {
       vendor: 'Springer Nature', product: 'SpringerLink', category: 'Journal & Book Platform',
@@ -4906,26 +4906,26 @@ const COMPETITOR_PRODUCTS = {
     {
       vendor: 'Taylor & Francis', product: 'Taylor & Francis Online', category: 'Journal Content Platform',
       competesWith: 'ScienceDirect', subscriptionStart: '2024-01-01', contractExpiry: '2026-12-31',
-      notes: 'UNL (Dutch universities) Read & Publish agreement 2024–2026. ~2,200 hybrid T&F/Routledge journals, capped at 1,451 articles/year.  ï¸ 2025 quota already reached. Source: openaccess.nl.'
+      notes: 'UNL (Dutch universities) Read & Publish agreement 2024–2026. ~2,200 hybrid T&F/Routledge journals, capped at 1,451 articles/year.   2025 quota already reached. Source: openaccess.nl.'
     },
     {
       vendor: 'IEEE', product: 'IEEE Xplore', category: 'Engineering & Standards Content',
       competesWith: 'ScienceDirect (Engineering)', subscriptionStart: '', contractExpiry: '',
-      notes: ' ï¸ Access highly likely — UT is a technical university with strong EE, robotics & nanotechnology research. Contract details unverified — confirm with library.  NOTE: UT cancelled Web of Science as of December 2025 — Scopus is now primary citation DB here.'
+      notes: '  Access highly likely — UT is a technical university with strong EE, robotics & nanotechnology research. Contract details unverified — confirm with library.  NOTE: UT cancelled Web of Science as of December 2025 — Scopus is now primary citation DB here.'
     },
     {
       vendor: 'ACM', product: 'ACM Digital Library', category: 'Computer Science Platform',
       competesWith: 'ScienceDirect (CS)', subscriptionStart: '', contractExpiry: '',
-      notes: ' ï¸ Access likely — UT has a strong computer science faculty (EEMCS). Contract details unverified — confirm with library.  NOTE: UT cancelled Web of Science as of December 2025.'
+      notes: '  Access likely — UT has a strong computer science faculty (EEMCS). Contract details unverified — confirm with library.  NOTE: UT cancelled Web of Science as of December 2025.'
     }
   ],
 
-  /*  TiU (Tilburg University)  */
+  /*  TiU (Tilburg University)  */
   'tiu': [
     {
       vendor: 'Clarivate', product: 'Web of Science', category: 'Citation & Abstract Database',
       competesWith: 'Scopus', subscriptionStart: '', contractExpiry: '',
-      notes: ' ï¸ UNCONFIRMED. TiU focuses on social sciences, economics, law & humanities — less dependent on citation DBs than STEM universities. Verify whether WoS subscription is active with library (tilburguniversity.edu/library).'
+      notes: '  UNCONFIRMED. TiU focuses on social sciences, economics, law & humanities — less dependent on citation DBs than STEM universities. Verify whether WoS subscription is active with library (tilburguniversity.edu/library).'
     },
     {
       vendor: 'Springer Nature', product: 'SpringerLink', category: 'Journal & Book Platform',
@@ -4940,11 +4940,11 @@ const COMPETITOR_PRODUCTS = {
     {
       vendor: 'Taylor & Francis', product: 'Taylor & Francis Online', category: 'Journal Content Platform',
       competesWith: 'ScienceDirect', subscriptionStart: '2024-01-01', contractExpiry: '2026-12-31',
-      notes: 'UNL (Dutch universities) Read & Publish agreement 2024–2026. ~2,200 hybrid T&F/Routledge journals (including many social science & law titles).  ï¸ 2025 quota already reached. Source: openaccess.nl.'
+      notes: 'UNL (Dutch universities) Read & Publish agreement 2024–2026. ~2,200 hybrid T&F/Routledge journals (including many social science & law titles).   2025 quota already reached. Source: openaccess.nl.'
     }
   ],
 
-  /*  UM (Maastricht University)  */
+  /*  UM (Maastricht University)  */
   'um': [
     {
       vendor: 'Clarivate', product: 'Web of Science', category: 'Citation & Abstract Database',
@@ -4964,21 +4964,21 @@ const COMPETITOR_PRODUCTS = {
     {
       vendor: 'Taylor & Francis', product: 'Taylor & Francis Online', category: 'Journal Content Platform',
       competesWith: 'ScienceDirect', subscriptionStart: '2024-01-01', contractExpiry: '2026-12-31',
-      notes: 'UNL (Dutch universities) Read & Publish agreement 2024–2026. ~2,200 hybrid T&F/Routledge journals, capped at 1,451 articles/year.  ï¸ 2025 quota already reached. Source: openaccess.nl.'
+      notes: 'UNL (Dutch universities) Read & Publish agreement 2024–2026. ~2,200 hybrid T&F/Routledge journals, capped at 1,451 articles/year.   2025 quota already reached. Source: openaccess.nl.'
     },
     {
       vendor: 'CAS / ACS', product: 'SciFinder-N', category: 'Chemistry & Life Sciences DB',
       competesWith: 'Reaxys', subscriptionStart: '', contractExpiry: '',
-      notes: ' ï¸ Access likely — UM has a FHML (Faculty of Health, Medicine & Life Sciences) with pharma/biochemistry research. Contract details unverified — confirm with library.'
+      notes: '  Access likely — UM has a FHML (Faculty of Health, Medicine & Life Sciences) with pharma/biochemistry research. Contract details unverified — confirm with library.'
     }
   ],
 
-  /*  WUR (Wageningen University & Research)  */
+  /*  WUR (Wageningen University & Research)  */
   'wur': [
     {
       vendor: 'Clarivate', product: 'Web of Science', category: 'Citation & Abstract Database',
       competesWith: 'Scopus', subscriptionStart: '', contractExpiry: '',
-      notes: ' ï¸ UNCONFIRMED. WUR is life sciences / agri-food focused — strong bibliometrics culture. Access status unclear given NL cancellation wave. Verify with WUR Library (library@wur.nl).'
+      notes: '  UNCONFIRMED. WUR is life sciences / agri-food focused — strong bibliometrics culture. Access status unclear given NL cancellation wave. Verify with WUR Library (library@wur.nl).'
     },
     {
       vendor: 'Springer Nature', product: 'SpringerLink', category: 'Journal & Book Platform',
@@ -4993,21 +4993,21 @@ const COMPETITOR_PRODUCTS = {
     {
       vendor: 'Taylor & Francis', product: 'Taylor & Francis Online', category: 'Journal Content Platform',
       competesWith: 'ScienceDirect', subscriptionStart: '2024-01-01', contractExpiry: '2026-12-31',
-      notes: 'UNL (Dutch universities) Read & Publish agreement 2024–2026. ~2,200 hybrid T&F/Routledge journals, capped at 1,451 articles/year.  ï¸ 2025 quota already reached. Source: openaccess.nl.'
+      notes: 'UNL (Dutch universities) Read & Publish agreement 2024–2026. ~2,200 hybrid T&F/Routledge journals, capped at 1,451 articles/year.   2025 quota already reached. Source: openaccess.nl.'
     },
     {
       vendor: 'CAS / ACS', product: 'SciFinder-N', category: 'Chemistry & Life Sciences DB',
       competesWith: 'Reaxys', subscriptionStart: '', contractExpiry: '',
-      notes: ' ï¸ Access highly likely — WUR\'s food chemistry, biochemistry & plant sciences research makes SciFinder-N essential. Contract dates unverified — confirm with library.'
+      notes: '  Access highly likely — WUR\'s food chemistry, biochemistry & plant sciences research makes SciFinder-N essential. Contract dates unverified — confirm with library.'
     }
   ],
 
-  /*  OU (Open Universiteit)  */
+  /*  OU (Open Universiteit)  */
   'ou': [
     {
       vendor: 'Clarivate', product: 'Web of Science', category: 'Citation & Abstract Database',
       competesWith: 'Scopus', subscriptionStart: '', contractExpiry: '',
-      notes: ' ï¸ UNCONFIRMED. OU is a distance-learning institution with a smaller research budget. WoS subscription status unclear — likely minimal or absent. Verify with OU Library (library@ou.nl).'
+      notes: '  UNCONFIRMED. OU is a distance-learning institution with a smaller research budget. WoS subscription status unclear — likely minimal or absent. Verify with OU Library (library@ou.nl).'
     },
     {
       vendor: 'Springer Nature', product: 'SpringerLink', category: 'Journal & Book Platform',
@@ -5022,7 +5022,7 @@ const COMPETITOR_PRODUCTS = {
     {
       vendor: 'Taylor & Francis', product: 'Taylor & Francis Online', category: 'Journal Content Platform',
       competesWith: 'ScienceDirect', subscriptionStart: '2024-01-01', contractExpiry: '2026-12-31',
-      notes: 'UNL (Dutch universities) Read & Publish agreement 2024–2026. ~2,200 hybrid T&F/Routledge journals, capped at 1,451 articles/year.  ï¸ 2025 quota already reached. Source: openaccess.nl.'
+      notes: 'UNL (Dutch universities) Read & Publish agreement 2024–2026. ~2,200 hybrid T&F/Routledge journals, capped at 1,451 articles/year.   2025 quota already reached. Source: openaccess.nl.'
     }
   ]
 
@@ -5062,7 +5062,7 @@ function getMergedProducts(instId){
       return '<span style="background:#dcfce7;color:#166534;font-size:10px;padding:2px 6px;border-radius:8px;font-weight:700;margin-left:6px">Active</span>';
     };
 
-    // Vendor  colKey mapping for override lookup
+    // Vendor  colKey mapping for override lookup
     const VENDOR_COL = { 'Springer Nature':'springer','Wiley':'wiley','Taylor & Francis':'tf','Clarivate':'wos','IEEE':'ieee','ACM':'acm','CAS / ACS':'scifinder' };
     const instOverrides = window.matrixOverrides && window.matrixOverrides[instId] ? window.matrixOverrides[instId] : {};
 
@@ -5071,12 +5071,12 @@ function getMergedProducts(instId){
 
     // Status selector cell for edit mode
     const EDIT_STATES = [
-      { v:'active',      label:' Active',       bg:'#fee2e2', fg:'#991b1b' },
-      { v:'expiring',    label:'³ Cancelling',   bg:'#fef9c3', fg:'#854d0e' },
+      { v:'active',      label:' Active',       bg:'#fee2e2', fg:'#991b1b' },
+      { v:'expiring',    label:' Cancelling',   bg:'#fef9c3', fg:'#854d0e' },
       { v:'unconfirmed', label:'? Unconfirmed',   bg:'#fef9c3', fg:'#854d0e' },
-      { v:'cancelled',   label:' Cancelled',     bg:'#dcfce7', fg:'#166534' },
+      { v:'cancelled',   label:' Cancelled',     bg:'#dcfce7', fg:'#166534' },
       { v:'none',        label:'— Not subscribed',bg:'rgba(255,255,255,.06)', fg:'#94a3b8' },
-      { v:'',            label:' Reset to auto', bg:'rgba(0,245,196,.08)', fg:'var(--accent)' },
+      { v:'',            label:' Reset to auto', bg:'rgba(0,245,196,.08)', fg:'var(--accent)' },
     ];
 
     window._cpEditMode = window._cpEditMode || {};
@@ -5086,7 +5086,7 @@ function getMergedProducts(instId){
       const editRows = products.map(p => {
         const colKey = VENDOR_COL[p.vendor] || '';
         const ov = colKey ? instOverrides[colKey] : undefined;
-        const ovBadge = ov && !editing ? `<span style="margin-left:8px;font-size:10px;padding:2px 8px;border-radius:8px;font-weight:600;background:rgba(0,245,196,.15);color:var(--accent);border:1px solid rgba(0,245,196,.3)">ï¸ ${(_OV_BADGES[ov]||'')} ${(_OV_TITLES[ov]||ov)}</span>` : '';
+        const ovBadge = ov && !editing ? `<span style="margin-left:8px;font-size:10px;padding:2px 8px;border-radius:8px;font-weight:600;background:rgba(0,245,196,.15);color:var(--accent);border:1px solid rgba(0,245,196,.3)"> ${(_OV_BADGES[ov]||'')} ${(_OV_TITLES[ov]||ov)}</span>` : '';
         const statusCell = editing && colKey ? `
           <td style="padding:6px 8px;border-bottom:1px solid var(--border)">
             <select onchange="
@@ -5120,7 +5120,7 @@ function getMergedProducts(instId){
           '<span class="card-title">Competitor Products</span>'+
           '<span style="font-size:10px;background:rgba(239,68,68,.1);color:#dc2626;padding:2px 8px;border-radius:10px;font-weight:600">'+products.length+' identified</span>'+
           '<button onclick="window._cpEditMode[\''+instId+'\']=!window._cpEditMode[\''+instId+'\'];rebuildCpCard_'+instId+'()" style="margin-left:auto;display:flex;align-items:center;gap:5px;padding:4px 12px;border-radius:6px;cursor:pointer;font-size:11px;font-weight:600;border:1px solid '+(editing?'var(--accent)':'rgba(255,255,255,.15)')+';background:'+(editing?'rgba(0,245,196,.12)':'rgba(255,255,255,.04)')+';color:'+(editing?'var(--accent)':'var(--text2)')+'">'+
-            'ï¸ '+(editing?'Done':'Edit Subscriptions')+
+            ' '+(editing?'Done':'Edit Subscriptions')+
           '</button>'+
         '</div>'+
         (editing?'<div style="padding:8px 14px 4px;font-size:11px;color:var(--accent);background:rgba(0,245,196,.05);border-bottom:1px solid rgba(0,245,196,.15)">Select a status for each product to override. Changes sync instantly to the Subscription Matrix.</div>':'')+
@@ -5151,7 +5151,7 @@ function getMergedProducts(instId){
   };
 })();
 
-//  CONSTELLATION BACKGROUND 
+//  CONSTELLATION BACKGROUND 
 (function(){
   const canvas = document.getElementById('bg-canvas');
   if (!canvas) return;
@@ -5179,7 +5179,7 @@ function getMergedProducts(instId){
     ctx.clearRect(0,0,W,H);
     const t = performance.now() * 0.0007;
 
-    //  Lines 
+    //  Lines 
     for(let i=0;i<dots.length;i++){
       for(let j=i+1;j<dots.length;j++){
         const dx=dots[i].x-dots[j].x, dy=dots[i].y-dots[j].y;
@@ -5196,7 +5196,7 @@ function getMergedProducts(instId){
       }
     }
 
-    //  Nodes with shadowBlur glow (GPU-accelerated) 
+    //  Nodes with shadowBlur glow (GPU-accelerated) 
     dots.forEach(d=>{
       const pulse = 1 + .12*Math.sin(t*1.4 + d.pulse);
       const cr = d.core * pulse;
@@ -5224,7 +5224,7 @@ function getMergedProducts(instId){
   draw();
 })();
 
-//  GLOBAL SEARCH 
+//  GLOBAL SEARCH 
 let _gsTimer = null;
 
 function globalSearch(q) {
