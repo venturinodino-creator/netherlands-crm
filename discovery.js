@@ -303,8 +303,8 @@
     if (!window.nav || window._nlNavWrapped) return;
     window._nlNavWrapped = true;
     var orig = window.nav;
-    window.nav = function(section) {
-      orig(section);
+    window.nav = function(section, extra) {
+      orig(section, extra);
       if (section === 'pending') setTimeout(render, 80);
     };
   }
