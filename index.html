@@ -1998,6 +1998,11 @@ function renderDashboard() {
       status: 'active', cadence: 'Daily · 07:00 UTC · GitHub Actions', source: 'Claude API (web search)',
       statusEl: 'agent-competitor-lastrun', view: 'ai-insights',
     },
+    {
+      id: 'agent-openalex-subs', name: 'OpenAlex Subscription Scan', icon: '💰',
+      status: 'active', cadence: 'Daily · 07:00 UTC · GitHub Actions', source: 'Institution sites & media',
+      statusEl: 'agent-openalex-subs-lastrun', view: 'openalex',
+    },
   ];
   const agentRows = AGENTS.map(a=>{
     const live = a.status === 'active';
@@ -2067,6 +2072,7 @@ function syncAgentStatus() {
   _syncAgentFrom('agent-discovery-lastrun', 'data/discovery-state.json');
   _syncAgentFrom('agent-tenders-lastrun', 'data/tenders-scan-state.json', d => d.lastNewCount ? ` · +${d.lastNewCount}` : '');
   _syncAgentFrom('agent-competitor-lastrun', 'data/competitor-scan-state.json', d => d.error === 'missing_api_key' ? ' · needs ANTHROPIC_API_KEY' : d.lastAddedCount ? ` · +${d.lastAddedCount}` : '');
+  _syncAgentFrom('agent-openalex-subs-lastrun', 'data/openalex-scan-state.json', d => d.error === 'missing_api_key' ? ' · needs ANTHROPIC_API_KEY' : d.lastAddedCount ? ` · +${d.lastAddedCount}` : '');
 }
 
 let _scDragSrc = null;
@@ -3739,10 +3745,46 @@ function saveNote(instId, val) {
   localStorage.setItem('crm_matrix_notes', JSON.stringify(stored));
 }
 
+/* ─── OpenAlex subscription agent findings (data/openalex-subscriptions.json) ─── */
+function getOpenAlexAutoSubs() { try { return JSON.parse(localStorage.getItem('nl_crm_openalex_subs') || '[]'); } catch(e) { return []; } }
+function saveOpenAlexAutoSubs(list) { localStorage.setItem('nl_crm_openalex_subs', JSON.stringify(list)); }
+
+function refreshOpenAlexSubs(silent) {
+  const btn = document.getElementById('refresh-openalex-subs-btn');
+  if (btn) { btn.textContent = '↻ Scanning...'; btn.disabled = true; }
+  fetch('/netherlands-crm/data/openalex-subscriptions.json?t=' + Date.now())
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(remote) {
+      if (!Array.isArray(remote)) remote = [];
+      const existing = getOpenAlexAutoSubs();
+      const existingMap = {};
+      existing.forEach(function(x){ existingMap[x.id] = x; });
+      var added = 0, updated = 0;
+      remote.forEach(function(x) {
+        if (!existingMap[x.id]) { existing.push(x); existingMap[x.id] = x; added++; }
+        else if (JSON.stringify(existingMap[x.id]) !== JSON.stringify(Object.assign({}, existingMap[x.id], x))) {
+          Object.assign(existingMap[x.id], x); updated++;
+        }
+      });
+      if (added > 0 || updated > 0) saveOpenAlexAutoSubs(existing);
+      if (!silent) {
+        var msg = added > 0 ? added+' new subscription finding'+(added>1?'s':'')+'!' : 'Up to date — no new findings';
+        try { if (typeof toast==='function') toast(msg, added>0?'ok':'warn'); } catch(e){}
+      }
+      if (btn) { btn.textContent = '↻ Scan for Subscriptions'; btn.disabled = false; }
+      if ((added > 0 || updated > 0) && state.view === 'openalex') renderOpenAlex();
+    })
+    .catch(function() {
+      if (!silent) { try { if (typeof toast==='function') toast('Could not reach subscription feed','warn'); } catch(e){} }
+      if (btn) { btn.textContent = '↻ Scan for Subscriptions'; btn.disabled = false; }
+    });
+}
+
 /* ─── OpenAlex Intelligence Tab ────────────────────────────────────────── */
 function renderOpenAlex() {
   document.getElementById('page-title').textContent = 'OpenAlex Intelligence';
   document.getElementById('page-sub').textContent = 'Subscription details, pricing tiers, and Dutch institution intelligence — sourced & verified';
+  document.getElementById('topbar-actions').innerHTML = '<button id="refresh-openalex-subs-btn" class="btn btn-outline btn-sm" onclick="refreshOpenAlexSubs()">↻ Scan for Subscriptions</button>';
 
   /* ── PRICING TIERS (source: Q2 2026 Town Hall blog + member launch post) ── */
   const TIERS = [
@@ -3964,6 +4006,34 @@ function renderOpenAlex() {
     },
   ];
 
+  /* ── Merge in daily agent-discovered subscription findings ───────────── */
+  const _matchName = s => String(s || '').toLowerCase().replace(/\([^)]*\)/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+  getOpenAlexAutoSubs().forEach(a => {
+    const idx = NL_ALL.findIndex(d => _matchName(d.inst) === _matchName(a.inst));
+    const row = {
+      inst: a.inst, type: a.type || 'University', status: a.status,
+      tier: a.tier ? a.tier + (a.annualFee ? ' — ' + a.annualFee : '') : null,
+      signal: (a.status === 'subscriber' ? '✅ ' : '🔶 ') + (a.signal || a.notes || 'Agent-discovered — pending review.'),
+      sources: a.sources || [],
+      autoDiscovered: true,
+    };
+    if (idx >= 0) Object.assign(NL_ALL[idx], row);
+    else NL_ALL.push(row);
+
+    if (a.status === 'subscriber' && (a.annualFee || a.notes)) {
+      const cIdx = NL_CONFIRMED.findIndex(d => _matchName(d.inst) === _matchName(a.inst));
+      const card = {
+        inst: a.inst, tier: a.tier || 'Member', tierColor: '#f59e0b', status: 'Active',
+        announceDate: a.announceDate || a.foundDate, effectiveDate: a.effectiveDate || a.announceDate || a.foundDate,
+        annualFee: a.annualFee || 'Not disclosed',
+        scopusAction: null, barcelonaAction: null,
+        notes: a.notes || a.signal || '', sources: a.sources || [], flags: [], autoDiscovered: true,
+      };
+      if (cIdx >= 0) Object.assign(NL_CONFIRMED[cIdx], card);
+      else NL_CONFIRMED.push(card);
+    }
+  });
+
   const NL_ACTIVE = NL_ALL.filter(d => d.status === 'active');
   const NL_NONE   = NL_ALL.filter(d => d.status === 'none');
 
@@ -4053,14 +4123,16 @@ function renderOpenAlex() {
 
   /* ── SECTION: Full NL institution table ─────────────────────────────── */
   const STATUS_CFG = {
-    subscriber: { label: 'Paying — Partner',   color: '#f59e0b', bg: 'rgba(245,158,11,0.08)',  border: 'rgba(245,158,11,0.3)' },
+    subscriber: { label: 'Paying',               color: '#f59e0b', bg: 'rgba(245,158,11,0.08)',  border: 'rgba(245,158,11,0.3)' },
     active:     { label: 'Free tier (active)',  color: '#60a5fa', bg: 'rgba(96,165,250,0.06)',  border: 'rgba(96,165,250,0.2)' },
     none:       { label: 'Not engaged',         color: '#475569', bg: 'rgba(255,255,255,0.02)', border: 'rgba(255,255,255,0.07)' },
   };
 
   const nlTableRows = NL_ALL.map(d => {
     const sc = STATUS_CFG[d.status];
-    const badge = `<span style="background:${sc.bg};color:${sc.color};border:1px solid ${sc.border};border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700;white-space:nowrap">${sc.label}</span>`;
+    const tierWord = (d.tier || '').split(/[—-]/)[0].trim(); // "Member — $5,000/yr" -> "Member"
+    const label = d.status === 'subscriber' && tierWord ? `${sc.label} — ${tierWord}` : sc.label;
+    const badge = `<span style="background:${sc.bg};color:${sc.color};border:1px solid ${sc.border};border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700;white-space:nowrap">${label}</span>`;
     const srcLinks = d.sources.length
       ? d.sources.map(s => `<a href="${s.url}" target="_blank" rel="noopener" style="color:#60a5fa;font-size:11px;text-decoration:none;display:inline-block;margin-right:8px">↗ ${s.label}</a>`).join('')
       : `<span style="color:#334155;font-size:11px">—</span>`;
@@ -4112,6 +4184,7 @@ function renderOpenAlex() {
   </div>`;
 
   document.getElementById('content').innerHTML = html;
+  refreshOpenAlexSubs(true);
 }
 
 function renderSubscriptionMatrix() {
