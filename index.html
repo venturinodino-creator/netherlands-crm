@@ -2398,7 +2398,7 @@ function renderInstitutions() {
   const toolbar = `
     <div class="toolbar">
       <div class="search-wrap"><span class="search-icon"></span>
-        <input placeholder="Search institutions..." value="${esc(state.instSearch)}"
+        <input id="inst-search-input" placeholder="Search institutions..." value="${esc(state.instSearch)}"
           oninput="state.instSearch=this.value;state.instPage=1;renderInstitutions()">
       </div>
       <select class="flt" onchange="state.instType=this.value;state.instPage=1;renderInstitutions()">
@@ -2626,7 +2626,7 @@ function renderContacts() {
   const toolbar = `
     <div class="toolbar">
       <div class="search-wrap"><span class="search-icon"></span>
-        <input placeholder="Search contacts, roles, research area..." value="${esc(state.contactSearch)}"
+        <input id="contact-search-input" placeholder="Search contacts, roles, research area..." value="${esc(state.contactSearch)}"
           oninput="state.contactSearch=this.value;state.contactPage=1;renderContacts()">
       </div>
       <select class="flt" onchange="state.contactInst=this.value;state.contactPage=1;renderContacts()">
@@ -3528,6 +3528,33 @@ async function bootstrapApp() {
     }
   });
 }
+
+// Live search-as-you-type on Institutions/Contacts rebuilds the whole page via
+// innerHTML on every keystroke, which destroys and recreates the <input> itself
+// and drops focus to <body> -- so anything typed after the first character is
+// silently lost. Wrap the two render functions to save/restore focus + caret
+// position around the rebuild.
+(function(){
+  function preserveFocus(renderFn, inputId) {
+    return function(...args) {
+      const active = document.activeElement;
+      const wasFocused = active && active.id === inputId;
+      const selStart = wasFocused ? active.selectionStart : null;
+      const selEnd = wasFocused ? active.selectionEnd : null;
+      renderFn.apply(this, args);
+      if (wasFocused) {
+        const input = document.getElementById(inputId);
+        if (input) {
+          input.focus();
+          try { input.setSelectionRange(selStart, selEnd); } catch (e) {}
+        }
+      }
+    };
+  }
+  window.renderInstitutions = preserveFocus(window.renderInstitutions, 'inst-search-input');
+  window.renderContacts = preserveFocus(window.renderContacts, 'contact-search-input');
+})();
+
 bootstrapApp();
 
 
