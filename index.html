@@ -5036,64 +5036,13 @@ function getMergedProducts(instId){
 }
 
 
-// Build and append Interaction Log + Opportunities after CP card
-function _appendIntLogAndOpp(instId, container) {
-  var TYPE_INT = {email:'📧',call:'📞',meeting:'🤝',demo:'🎥',proposal:'📋',other:'💬'};
-  var logs = (state.interactions||[]).filter(function(x){return x.instId===instId;}).sort(function(a,b){return b.date.localeCompare(a.date);}).slice(0,8);
-  var logsHtml = !logs.length
-    ? '<p style="font-size:13px;color:var(--muted);padding:6px 0">No interactions logged yet.</p>'
-    : '<div class="int-log">' + logs.map(function(l){ return '<div class="int-row">'
-        +'<div class="int-icon">'+(TYPE_INT[l.type]||'💬')+'</div>'
-        +'<div style="flex:1">'
-          +'<div style="font-size:13px;font-weight:600">'+esc(l.summary)+'</div>'
-          +'<div class="int-meta">'+l.type+' · '+l.date+(l.contactId?' · '+esc((function(){ var cx=state.contacts.find(function(x){return x.id===l.contactId;}); return cx?cx.first+' '+cx.last:''; })()):'')+'</div>'
-        +'</div>'
-        +'<button class="btn btn-xs btn-danger" onclick="deleteInteraction(\''+l.id+'\')">🗑</button>'
-      +'</div>'; }).join('') + '</div>';
-  var intCard = document.createElement('div');
-  intCard.className = 'card';
-  intCard.style.marginTop = '14px';
-  intCard.style.padding = '14px 18px';
-  intCard.innerHTML = '<div class="card-header" style="margin-bottom:8px">'
-    +'<span class="card-title">Interaction Log</span>'
-    +'<button class="btn btn-xs btn-accent" onclick="openLogInteraction(\''+instId+'\')>+ Log</button>'
-    +'</div>'+logsHtml;
-  container.appendChild(intCard);
-
-  var STAGE_COLOR = {prospect:'#64748b',engaged:'#1d4ed8',proposal:'#d97706',negotiation:'#7c3aed','closed-won':'#166534','closed-lost':'#991b1b'};
-  var opps = (state.opportunities||[]).filter(function(x){return x.instId===instId;});
-  var oppsHtml = !opps.length
-    ? '<p style="font-size:13px;color:var(--muted);padding:6px 0">No deals yet. <button class="btn btn-xs btn-outline" onclick="openAddOpp(\''+instId+'\')">🏦 Add one</button></p>'
-    : opps.map(function(o){ return '<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:var(--surface);border-radius:7px;border:1px solid var(--border);margin-bottom:6px">'
-        +'<div>'
-          +'<div style="font-size:13px;font-weight:600">'+esc(o.name)+'</div>'
-          +'<div style="font-size:11px;color:var(--muted);margin-top:2px">'+(o.closeDate?'Close: '+o.closeDate:'')+'</div>'
-        +'</div>'
-        +'<div style="display:flex;gap:8px;align-items:center">'
-          +(o.value?'<span class="opp-value">€'+parseFloat(o.value).toLocaleString()+'</span>':'')
-          +'<span style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;color:#fff;background:'+(STAGE_COLOR[o.stage]||'#64748b')+'">'+ o.stage+'</span>'
-          +'<button class="btn btn-xs btn-outline" onclick="openEditOpp(\''+o.id+'\')">✏️</button>'
-          +'<button class="btn btn-xs btn-danger" onclick="deleteOpp(\''+o.id+'\')">🗑</button>'
-        +'</div>'
-      +'</div>'; }).join('');
-  var oppCard = document.createElement('div');
-  oppCard.className = 'card';
-  oppCard.style.marginTop = '14px';
-  oppCard.style.padding = '14px 18px';
-  oppCard.innerHTML = '<div class="card-header" style="margin-bottom:8px">'
-    +'<span class="card-title">Opportunities</span>'
-    +'<button class="btn btn-xs btn-accent" onclick="openAddOpp(\''+instId+'\')>+ Add Deal</button>'
-    +'</div>'+oppsHtml;
-  container.appendChild(oppCard);
-}
-
 (function(){
   const _orig = window.renderDetail;
   window.renderDetail = function(){
     _orig();
     const instId = (typeof state !== 'undefined' && state.detailInstId) || '';
     const products = getMergedProducts(instId);
-    if (!products.length) { var _c2 = document.querySelector('.content'); if (_c2) _appendIntLogAndOpp(instId, _c2); return; }
+    if (!products.length) { return; }
     const content = document.querySelector('.content');
     if (!content) return;
 
@@ -5199,7 +5148,6 @@ function _appendIntLogAndOpp(instId, container) {
     card.style.marginTop = '14px';
     content.appendChild(card);
     rebuildCpCard();
-    _appendIntLogAndOpp(instId, content);
   };
 })();
 
