@@ -2072,7 +2072,7 @@ function syncAgentStatus() {
   _syncAgentFrom('agent-discovery-lastrun', 'data/discovery-state.json');
   _syncAgentFrom('agent-tenders-lastrun', 'data/tenders-scan-state.json', d => d.lastNewCount ? ` · +${d.lastNewCount}` : '');
   _syncAgentFrom('agent-competitor-lastrun', 'data/competitor-scan-state.json', d => d.error === 'missing_api_key' ? ' · needs ANTHROPIC_API_KEY' : d.lastAddedCount ? ` · +${d.lastAddedCount}` : '');
-  _syncAgentFrom('agent-openalex-subs-lastrun', 'data/openalex-scan-state.json', d => d.error === 'missing_api_key' ? ' · needs ANTHROPIC_API_KEY' : d.lastAddedCount ? ` · +${d.lastAddedCount}` : '');
+  _syncAgentFrom('agent-openalex-subs-lastrun', 'data/openalex-scan-state.json', d => d.error === 'missing_api_key' ? ' · needs XAI_API_KEY' : d.lastAddedCount ? ` · +${d.lastAddedCount}` : '');
 }
 
 let _scDragSrc = null;

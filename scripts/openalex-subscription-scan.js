@@ -1,14 +1,15 @@
 /**
  * openalex-subscription-scan.js — Daily OpenAlex subscription intelligence scan
- * Calls the Claude API (web search tool) to research public evidence — institution
- * library pages, press releases, blog posts, OpenAlex's own Community Advisory
- * Board notes — that a Netherlands research institution has subscribed to OpenAlex
- * (Member / Member+ / Partner tier), and critically, what it is paying and when the
- * subscription was announced/took effect. Genuinely new or updated findings are
- * appended to data/openalex-subscriptions.json, tagged autoDiscovered: true so the
- * UI can flag them as not yet manually reviewed.
+ * Calls the xAI Grok API (web_search tool, via the /v1/responses endpoint) to
+ * research public evidence — institution library pages, press releases, blog
+ * posts, OpenAlex's own Community Advisory Board notes — that a Netherlands
+ * research institution has subscribed to OpenAlex (Member / Member+ / Partner
+ * tier), and critically, what it is paying and when the subscription was
+ * announced/took effect. Genuinely new or updated findings are appended to
+ * data/openalex-subscriptions.json, tagged autoDiscovered: true so the UI can
+ * flag them as not yet manually reviewed.
  *
- * Requires ANTHROPIC_API_KEY in the environment.
+ * Requires XAI_API_KEY in the environment (a key from console.x.ai).
  * Run: node scripts/openalex-subscription-scan.js
  */
 
@@ -16,8 +17,8 @@ import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 
 const DATA_FILE = 'data/openalex-subscriptions.json';
 const STATE_FILE = 'data/openalex-scan-state.json';
-const API_KEY = process.env.ANTHROPIC_API_KEY;
-const MODEL = 'claude-opus-5';
+const API_KEY = process.env.XAI_API_KEY;
+const MODEL = process.env.XAI_MODEL || 'grok-4.6';
 
 // The Netherlands institutions this CRM tracks — kept in sync with SEED_INSTITUTIONS
 // in index.html. Used to focus the search and to let the model flag status changes
@@ -51,7 +52,17 @@ function slugify(s) {
   return String(s).toLowerCase().replace(/\([^)]*\)/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 90);
 }
 function extractText(response) {
-  return (response.content || []).filter(b => b.type === 'text').map(b => b.text).join('\n');
+  // Prefer the Responses API convenience field if present.
+  if (typeof response.output_text === 'string') return response.output_text;
+  // Otherwise walk output[].content[] for output_text/text items — defensive
+  // about minor shape differences since this is unofficial-doc-derived parsing.
+  const chunks = [];
+  for (const item of response.output || []) {
+    for (const part of item.content || []) {
+      if (typeof part.text === 'string') chunks.push(part.text);
+    }
+  }
+  return chunks.join('\n');
 }
 function parseJSONL(text) {
   const items = [];
@@ -63,7 +74,7 @@ function parseJSONL(text) {
   return items;
 }
 
-async function callClaude(existing) {
+async function callGrok(existing) {
   const known = existing.map(e => `- ${e.inst}: ${e.status}${e.tier ? ' (' + e.tier + (e.annualFee ? ', ' + e.annualFee : '') + ')' : ''}`).join('\n') || '(none tracked yet)';
 
   const prompt = `You are researching OpenAlex (the open scholarly metadata index run by OurResearch) subscription status for Netherlands research institutions, for a sales-intelligence CRM used by a competing publisher.
@@ -84,31 +95,29 @@ For each genuinely new or updated finding, respond with one JSON object per line
 
 Use status "active" only for an institution publicly and substantially engaging with OpenAlex (e.g. built a library guide on it, cancelled Scopus/WoS explicitly citing OpenAlex as the replacement) without a confirmed paid subscription. Only report what your search actually surfaces with a verifiable source URL — never invent a subscription, a price, or a source. If you find nothing genuinely new, output nothing at all.`;
 
-  const res = await fetch('https://api.anthropic.com/v1/messages', {
+  const res = await fetch('https://api.x.ai/v1/responses', {
     method: 'POST',
     headers: {
-      'x-api-key': API_KEY,
-      'anthropic-version': '2023-06-01',
-      'content-type': 'application/json',
+      'Authorization': `Bearer ${API_KEY}`,
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
       model: MODEL,
-      max_tokens: 4096,
-      tools: [{ type: 'web_search_20260209', name: 'web_search', max_uses: 12 }],
-      messages: [{ role: 'user', content: prompt }],
+      input: [{ role: 'user', content: prompt }],
+      tools: [{ type: 'web_search' }],
     }),
   });
 
   if (!res.ok) {
     const body = await res.text();
-    throw new Error(`Anthropic API ${res.status}: ${body.slice(0, 500)}`);
+    throw new Error(`xAI API ${res.status}: ${body.slice(0, 500)}`);
   }
   return res.json();
 }
 
 async function main() {
   if (!API_KEY) {
-    console.log('[openalex-subscription-scan] ANTHROPIC_API_KEY not set — skipping scan until it is configured.');
+    console.log('[openalex-subscription-scan] XAI_API_KEY not set — skipping scan until it is configured.');
     saveJSON(STATE_FILE, { lastRun: new Date().toISOString(), lastAddedCount: 0, error: 'missing_api_key' });
     return;
   }
@@ -116,16 +125,13 @@ async function main() {
   const entries = readJSON(DATA_FILE, []);
   const byId = new Map(entries.map(e => [e.id, e]));
 
-  console.log(`[openalex-subscription-scan] Calling Claude with web search across ${NL_INSTITUTIONS.length} tracked institutions...`);
-  const response = await callClaude(entries);
-
-  if (response.stop_reason === 'refusal') {
-    console.log('[openalex-subscription-scan] Request was declined by safety classifiers — no results this run.');
-    saveJSON(STATE_FILE, { lastRun: new Date().toISOString(), lastAddedCount: 0, refused: true });
-    return;
-  }
+  console.log(`[openalex-subscription-scan] Calling Grok with web search across ${NL_INSTITUTIONS.length} tracked institutions...`);
+  const response = await callGrok(entries);
 
   const text = extractText(response);
+  if (!text) {
+    console.log('[openalex-subscription-scan] No text in response — raw shape:', JSON.stringify(response).slice(0, 800));
+  }
   const found = parseJSONL(text);
   console.log(`[openalex-subscription-scan] Model returned ${found.length} candidate(s).`);
 
