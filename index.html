@@ -2919,11 +2919,14 @@ const NEWS_CATEGORIES = {
 let _newsAllArticles    = [];
 let _newsActiveCategory = 'all';
 
-async function loadNewsArticles(forceRefresh) {
+async function loadNewsArticles() {
   const feedEl = document.getElementById('news-feed');
   if (feedEl) feedEl.innerHTML = `<div class="news-loading"><div class="news-spinner"></div>Loading…</div>`;
   try {
-    const res = await fetch('/netherlands-crm/data/news.json' + (forceRefresh ? '?t=' + Date.now() : ''));
+    // Always bypass cache — this file changes daily and a stale cached copy
+    // (e.g. from before the first scan ever ran) would silently show 0
+    // articles even once real data exists.
+    const res = await fetch('/netherlands-crm/data/news.json?t=' + Date.now());
     const data = res.ok ? await res.json() : [];
     _newsAllArticles = Array.isArray(data) ? data : [];
   } catch(e) { _newsAllArticles = []; }
