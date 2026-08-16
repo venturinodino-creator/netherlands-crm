@@ -1986,33 +1986,36 @@ function renderDashboard() {
     {
       id: 'agent-discovery', name: 'Contact Discovery', icon: '👤',
       status: 'active', cadence: 'Daily · 07:00 UTC · GitHub Actions', source: 'OpenAlex API',
-      statusEl: 'agent-discovery-lastrun', view: 'pending',
+      statusEl: 'agent-discovery-lastrun', view: 'pending', workflow: 'discover.yml',
     },
     {
       id: 'agent-tenders', name: 'Tender / RFP Scraper', icon: '📄',
       status: 'active', cadence: 'Daily · 06:30 UTC · GitHub Actions', source: 'TED Europa & TenderNed',
-      statusEl: 'agent-tenders-lastrun', view: 'rfp',
+      statusEl: 'agent-tenders-lastrun', view: 'rfp', workflow: 'tenders.yml',
     },
     {
       id: 'agent-competitor', name: 'Competitor Insights Scan', icon: '🔍',
       status: 'active', cadence: 'Daily · 07:00 UTC · GitHub Actions', source: 'Claude API (web search)',
-      statusEl: 'agent-competitor-lastrun', view: 'ai-insights',
+      statusEl: 'agent-competitor-lastrun', view: 'ai-insights', workflow: 'competitor-scan.yml',
     },
     {
       id: 'agent-openalex-subs', name: 'OpenAlex Subscription Scan', icon: '💰',
       status: 'active', cadence: 'Daily · 07:00 UTC · GitHub Actions', source: 'Institution sites & media',
-      statusEl: 'agent-openalex-subs-lastrun', view: 'openalex',
+      statusEl: 'agent-openalex-subs-lastrun', view: 'openalex', workflow: 'openalex-scan.yml',
     },
   ];
+  const AGENTS_REPO = 'venturinodino-creator/netherlands-crm';
   const agentRows = AGENTS.map(a=>{
     const live = a.status === 'active';
     const dot = live ? '#4ade80' : 'rgba(255,255,255,.3)';
     const badgeBg = live ? 'rgba(74,222,128,.12)' : 'rgba(255,255,255,.05)';
     const badgeColor = live ? '#4ade80' : 'var(--muted)';
     const badgeLabel = live ? 'Active' : 'Manual';
+    const runUrl = `https://github.com/${AGENTS_REPO}/actions/workflows/${a.workflow}`;
     return `<div class="recent-row" style="cursor:pointer" onclick="nav('${a.view}')">
       <div class="av" style="background:rgba(255,255,255,.06);position:relative">${a.icon}<span style="position:absolute;bottom:-1px;right:-1px;width:9px;height:9px;border-radius:50%;background:${dot};border:1.5px solid var(--card,#111a2e);box-shadow:0 0 6px ${dot}"></span></div>
       <div class="ri"><h4>${esc(a.name)}</h4><p>${esc(a.source)} · ${esc(a.cadence)}${a.statusEl ? ` · <span id="${a.statusEl}">checking…</span>` : ''}</p></div>
+      <button class="btn btn-xs btn-outline" onclick="event.stopPropagation(); window.open('${runUrl}','_blank')" title="Opens this workflow's GitHub Actions page — click &quot;Run workflow&quot; there to run it now instead of waiting for the daily schedule">Run now</button>
       <span class="badge" style="background:${badgeBg};color:${badgeColor};border-color:${badgeColor}33">${badgeLabel}</span>
     </div>`;
   }).join('');
