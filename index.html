@@ -2003,6 +2003,11 @@ function renderDashboard() {
       status: 'active', cadence: 'Daily · 07:00 UTC · GitHub Actions', source: 'Institution sites & media',
       statusEl: 'agent-openalex-subs-lastrun', view: 'openalex', workflow: 'openalex-scan.yml',
     },
+    {
+      id: 'agent-news', name: 'Netherlands Research News Scan', icon: '📰',
+      status: 'active', cadence: 'Daily · 07:00 UTC · GitHub Actions', source: 'Claude API (web search)',
+      statusEl: 'agent-news-lastrun', view: 'news', workflow: 'news-scan.yml',
+    },
   ];
   const AGENTS_REPO = 'venturinodino-creator/netherlands-crm';
   const agentRows = AGENTS.map(a=>{
@@ -2081,6 +2086,7 @@ function syncAgentStatus() {
   _syncAgentFrom('agent-tenders-lastrun', 'data/tenders-scan-state.json', d => d.lastNewCount ? ` · +${d.lastNewCount}` : '');
   _syncAgentFrom('agent-competitor-lastrun', 'data/competitor-scan-state.json', d => d.error === 'missing_api_key' ? ' · needs ANTHROPIC_API_KEY' : d.lastAddedCount ? ` · +${d.lastAddedCount}` : '');
   _syncAgentFrom('agent-openalex-subs-lastrun', 'data/openalex-scan-state.json', d => d.error === 'missing_api_key' ? ' · needs ANTHROPIC_API_KEY' : d.lastAddedCount ? ` · +${d.lastAddedCount}` : '');
+  _syncAgentFrom('agent-news-lastrun', 'data/news-scan-state.json', d => d.error === 'missing_api_key' ? ' · needs ANTHROPIC_API_KEY' : d.lastAddedCount ? ` · +${d.lastAddedCount}` : '');
 }
 
 let _scDragSrc = null;
@@ -2894,250 +2900,115 @@ function exportCSV() {
 }
 
 //  NEWS PAGE 
-// Uses Google News RSS via allorigins.win proxy — no API key needed
-// Each "AI & Research" source is batched into per-institution-name OR queries
-// (chunked to keep query URLs short) so results are about a NAMED Dutch
-// institution's own AI work/adoption — not generic "Netherlands AI" news.
-// Funding and policy get their own dedicated, institution-agnostic queries so
-// "who got funded" and "what's the policy" are each their own lens.
-function _chunk(arr, size) {
-  const out = [];
-  for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
-  return out;
-}
-function _namesOrQuery(names) {
-  return '(' + names.map(n => `"${n}"`).join(' OR ') + ')';
-}
-const NL_UNI_NAMES      = SEED_INSTITUTIONS.filter(i => i.type === 'university').map(i => i.name);
-const NL_MEDICAL_NAMES  = SEED_INSTITUTIONS.filter(i => i.type === 'medical').map(i => i.name);
-const NL_RESEARCH_NAMES = SEED_INSTITUTIONS.filter(i => i.type === 'research').map(i => i.name);
+// News is scanned server-side by .github/workflows/news-scan.yml
+// (scripts/news-scan.js), which uses Claude web search to find institution-
+// specific AI-adoption, funding, and policy news and commits results to
+// data/news.json. The old approach (scraping Google News RSS from the
+// browser via a public CORS proxy) was retired: news.google.com started
+// rate-limiting/blocking proxy traffic outright ("DDoS attack suspected"),
+// so no proxy swap would have fixed it reliably. This mirrors the same
+// server-side pattern already used for the competitor and OpenAlex scans.
+function todayStr() { return new Date().toISOString().slice(0,10); }
 
-const NEWS_QUERIES = [
-  {id:'uni_ai',        name:'Universities · AI & Research',            color:'#1d4ed8',
-   qs: _chunk(NL_UNI_NAMES, 6).map(b => _namesOrQuery(b) + ' (AI OR "artificial intelligence")')},
-  {id:'medical_ai',    name:'Medical Centers · AI & Research',         color:'#0369a1',
-   qs: _chunk(NL_MEDICAL_NAMES, 6).map(b => _namesOrQuery(b) + ' (AI OR "artificial intelligence")')},
-  {id:'research_ai',   name:'Research Institutes · AI & Research',     color:'#166534',
-   qs: _chunk(NL_RESEARCH_NAMES, 6).map(b => _namesOrQuery(b) + ' (AI OR "artificial intelligence")')},
-  {id:'inst_funding',  name:'Institution Funding Received',            color:'#059669',
-   qs: ['Netherlands university research institute grant funding awarded miljoen subsidie NWO ZonMw']},
-  {id:'nl_policy',     name:'Netherlands Research Policy',             color:'#991b1b',
-   qs: ['Netherlands higher education research policy ministry OCW universities regulation']},
-  {id:'research_infra',name:'Research Infrastructure & Publishing',    color:'#b45309',
-   qs: ['Netherlands university Scopus SciVal bibliometrics research information system']},
-];
-
-const NEWS_TOPICS = {
-  'AI & Technology':['ai','artificial intelligence','machine learning','deep learning','chatgpt','llm','generative','neural','digital','algorithm','data science','robotics','automation','tech','software','quantum'],
-  'Research Infrastructure':['scopus','scival','pure','bibliometric','research information system','cris','open access','subscription','licence','license','licensing','database','elsevier','clarivate','web of science','publisher','publishing'],
-  'Policy':['policy','regulation','law','governance','legislation','minister','ministry','parliament','eu','european','ocw'],
-  'Funding':['nwo','zonmw','subsidy','subsidie','grant','funding','financiering','miljoen','million','awarded','award'],
+const NEWS_CATEGORIES = {
+  ai_adoption: { label: 'AI Development & Adoption', color: '#1d4ed8' },
+  funding:     { label: 'Funding Received',           color: '#059669' },
+  policy:      { label: 'Netherlands Research Policy', color: '#991b1b' },
 };
 
-function detectTopics(text) {
-  const lower = (text||'').toLowerCase();
-  return Object.entries(NEWS_TOPICS)
-    .filter(([,kws]) => kws.some(k => lower.includes(k)))
-    .map(([t]) => t);
-}
+let _newsAllArticles    = [];
+let _newsActiveCategory = 'all';
 
-// Safety net: even a well-scoped Google News query can return a generic,
-// non-Dutch result. Keep an article only if it plausibly concerns the
-// Netherlands — either a generic NL/city keyword, or one of the CRM's own
-// tracked institutions (reusing SEED_INSTITUTIONS so this stays in sync with
-// the actual institution list rather than a separate hardcoded copy).
-const NEWS_NL_KEYWORDS = ['netherlands','dutch','holland','nl-based','amsterdam','rotterdam','utrecht','delft','eindhoven','groningen','leiden','nijmegen','maastricht','wageningen','tilburg','enschede','the hague','den haag'];
-const NEWS_INSTITUTION_LOOKUP = SEED_INSTITUTIONS
-  .map(i => ({ name: (i.name||'').toLowerCase(), shortRe: i.short && i.short.length >= 3 ? new RegExp('\\b'+i.short.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\b','i') : null }))
-  .filter(i => i.name || i.shortRe);
-
-function isNLRelevant(text) {
-  const raw = text || '';
-  const lower = ' ' + raw.toLowerCase() + ' ';
-  if (NEWS_NL_KEYWORDS.some(k => lower.includes(k))) return true;
-  return NEWS_INSTITUTION_LOOKUP.some(i => (i.name && lower.includes(i.name)) || (i.shortRe && i.shortRe.test(raw)));
-}
-
-function newsStorageKey(d)  { return 'nl_crm_news_' + d; }
-function newsMetaKey()      { return 'nl_crm_news_dates'; }
-function todayStr()         { return new Date().toISOString().slice(0,10); }
-
-function getStoredNewsDates() {
-  try { return JSON.parse(localStorage.getItem(newsMetaKey())) || []; } catch(e) { return []; }
-}
-function storeNewsForDate(d, articles) {
-  localStorage.setItem(newsStorageKey(d), JSON.stringify(articles));
-  const dates = getStoredNewsDates();
-  if (!dates.includes(d)) { dates.unshift(d); dates.splice(60); localStorage.setItem(newsMetaKey(), JSON.stringify(dates)); }
-}
-function getNewsForDate(d) {
-  try { return JSON.parse(localStorage.getItem(newsStorageKey(d))) || null; } catch(e) { return null; }
-}
-
-const PROXY = 'https://api.allorigins.win/raw?url=';
-// NL edition (not US) — surfaces Dutch-context English-language sources
-// (NL Times, DutchNews.nl, university press pages, etc.) more consistently.
-const GN_BASE = 'https://news.google.com/rss/search?hl=en-NL&gl=NL&ceid=NL:en&q=';
-
-async function fetchOneQuery(qObj, queryStr) {
-  const rssUrl = GN_BASE + encodeURIComponent(queryStr);
-  const proxyUrl = PROXY + encodeURIComponent(rssUrl);
-  try {
-    const res = await fetch(proxyUrl, { signal: AbortSignal.timeout(12000) });
-    if (!res.ok) return [];
-    const xml = await res.text();
-    const doc = new DOMParser().parseFromString(xml, 'application/xml');
-    const items = [...doc.querySelectorAll('item')].slice(0, 12);
-    return items.map(item => {
-      const title = item.querySelector('title')?.textContent?.replace(/\s*-\s*[^-]+$/, '') || '';
-      const rawDesc = item.querySelector('description')?.textContent || '';
-      const desc = rawDesc.replace(/<[^>]+>/g, '').replace(/\s+/g,' ').trim().slice(0, 320);
-      const link = item.querySelector('link')?.textContent || '';
-      const pubRaw = item.querySelector('pubDate')?.textContent || '';
-      const pubDate = pubRaw ? new Date(pubRaw).toISOString().slice(0,10) : '';
-      const source = item.querySelector('source')?.textContent || qObj.name;
-      return { title, description: desc, url: link, pubDate, sourceName: source, query: qObj, topics: detectTopics(title + ' ' + desc) };
-    }).filter(a => a.title && a.url && isNLRelevant(a.title + ' ' + a.description));
-  } catch(e) { return []; }
-}
-
-// A "source" (qObj) can carry multiple underlying search strings (qs) — e.g.
-// institution-name batches chunked to stay under Google News' query length —
-// fetched in parallel and merged back under the same source for filtering/UI.
-async function fetchQueryFeed(qObj) {
-  const results = await Promise.allSettled(qObj.qs.map(q => fetchOneQuery(qObj, q)));
-  const out = [];
-  results.forEach(r => { if (r.status === 'fulfilled') out.push(...r.value); });
-  return out;
-}
-
-let _newsActiveTopic   = 'all';
-let _newsActiveQueries = new Set(NEWS_QUERIES.map(q => q.id));
-let _newsCurrentDate   = todayStr();
-
-async function fetchAndShowNews(dateStr, forceRefresh=false) {
-  _newsCurrentDate = dateStr;
-  const isToday = dateStr === todayStr();
-
-  const cached = getNewsForDate(dateStr);
-  if (cached && !forceRefresh) { renderNewsArticles(cached); renderNewsArchiveSidebar(); return; }
-
+async function loadNewsArticles(forceRefresh) {
   const feedEl = document.getElementById('news-feed');
-  if (feedEl) feedEl.innerHTML = `<div class="news-loading"><div class="news-spinner"></div>Fetching live news from Google News…</div>`;
-  const btn = document.getElementById('news-refresh-btn');
-  if (btn) btn.disabled = true;
-
-  const results = await Promise.allSettled(NEWS_QUERIES.map(q => fetchQueryFeed(q)));
-  const allArticles = [];
-  results.forEach(r => { if (r.status === 'fulfilled') allArticles.push(...r.value); });
-
-  // Deduplicate by title similarity, sort newest first
-  const seen = new Set();
-  const unique = allArticles
-    .filter(a => {
-      const k = a.title.toLowerCase().replace(/[^a-z0-9]/g,'').slice(0, 50);
-      if (seen.has(k)) return false;
-      seen.add(k); return true;
-    })
-    .sort((a,b) => (b.pubDate||'').localeCompare(a.pubDate||''));
-
-  const cutoff = '2026-04-01';
-  const cutFiltered = unique.filter(a => !a.pubDate || a.pubDate >= cutoff);
-  if (isToday && cutFiltered.length) storeNewsForDate(dateStr, cutFiltered);
-  unique.length = 0; cutFiltered.forEach(a => unique.push(a));
-  renderNewsArticles(unique);
-  if (btn) btn.disabled = false;
-  renderNewsArchiveSidebar();
+  if (feedEl) feedEl.innerHTML = `<div class="news-loading"><div class="news-spinner"></div>Loading…</div>`;
+  try {
+    const res = await fetch('/netherlands-crm/data/news.json' + (forceRefresh ? '?t=' + Date.now() : ''));
+    const data = res.ok ? await res.json() : [];
+    _newsAllArticles = Array.isArray(data) ? data : [];
+  } catch(e) { _newsAllArticles = []; }
+  renderNewsArticles();
+  renderNewsScanStatus();
 }
 
-function renderNewsArticles(articles) {
+function setNewsCategory(cat) {
+  _newsActiveCategory = cat;
+  document.querySelectorAll('.news-filter-btn').forEach(b => b.classList.remove('active'));
+  const safeId = 'nf-' + cat.replace(/[^a-z0-9]/gi, '_');
+  document.getElementById(safeId)?.classList.add('active');
+  renderNewsArticles();
+}
+
+function renderNewsArticles() {
   const feed = document.getElementById('news-feed');
   if (!feed) return;
 
-  const filtered = articles.filter(a => {
-    if (!_newsActiveQueries.has(a.query.id)) return false;
-    if (_newsActiveTopic !== 'all' && !a.topics.includes(_newsActiveTopic)) return false;
-    if (a.pubDate && a.pubDate < '2026-04-01') return false;
-    return true;
-  });
+  const filtered = _newsActiveCategory === 'all'
+    ? _newsAllArticles
+    : _newsAllArticles.filter(a => a.category === _newsActiveCategory);
 
   if (!filtered.length) {
     feed.innerHTML = `<div class="news-empty">
       <div style="font-size:32px;margin-bottom:10px">­</div>
-      No articles match the current filters.<br>
-      <small>Try selecting "All Topics" or toggling more sources.</small>
+      No articles yet.<br>
+      <small>The daily scan runs at 07:00 UTC — or trigger "Run scan now" above and check back in a couple of minutes.</small>
     </div>`;
     return;
   }
 
-  feed.innerHTML = filtered.slice(0, 50).map(a => {
-    const topicTags = a.topics.slice(0,2).map(t => `<span class="news-topic-tag">${t}</span>`).join('');
-    const safeUrl = a.url.replace(/'/g, '%27');
+  feed.innerHTML = filtered.slice(0, 80).map(a => {
+    const cat = NEWS_CATEGORIES[a.category] || { label: a.categoryLabel || 'News', color: '#64748b' };
+    const badgeLabel = a.institution || cat.label;
+    const safeUrl = (a.url || '').replace(/'/g, '%27');
     return `<div class="news-card" onclick="window.open('${safeUrl}','_blank')">
       <div class="news-card-top">
-        <span class="news-source-badge" style="background:${a.query.color}22;color:${a.query.color}">${esc(a.sourceName||a.query.name)}</span>
-        ${topicTags}
-        <span class="news-date">${a.pubDate||''}</span>
+        <span class="news-source-badge" style="background:${cat.color}22;color:${cat.color}">${esc(badgeLabel)}</span>
+        <span class="news-topic-tag">${esc(cat.label)}</span>
+        <span class="news-date">${esc(a.publishedDate || a.foundDate || '')}</span>
       </div>
       <h3>${esc(a.title)}</h3>
       ${a.description ? `<p>${esc(a.description)}</p>` : ''}
       <div class="news-card-footer">
         <a href="${safeUrl}" target="_blank" onclick="event.stopPropagation()">Read full article </a>
+        ${a.sourceName ? `<span style="color:var(--muted);font-size:11px">· ${esc(a.sourceName)}</span>` : ''}
       </div>
     </div>`;
   }).join('');
 }
 
-function renderNewsArchiveSidebar() {
-  const el = document.getElementById('news-archive-list');
+async function renderNewsScanStatus() {
+  const el = document.getElementById('news-scan-status');
   if (!el) return;
-  const dates = getStoredNewsDates();
-  if (!dates.length) { el.innerHTML = '<p style="font-size:12px;color:var(--muted)">No archive yet — check back tomorrow.</p>'; return; }
-  el.innerHTML = dates.map(d => {
-    const count = (JSON.parse(localStorage.getItem(newsStorageKey(d)) || '[]')).length;
-    const active = d === _newsCurrentDate ? 'color:var(--accent);font-weight:600' : '';
-    return `<div class="news-archive-date" onclick="fetchAndShowNews('${d}')" style="${active}">
-      <span>${d}</span><span style="font-size:10px;color:var(--muted)">${count}</span>
-    </div>`;
-  }).join('');
-}
-
-function setNewsTopic(topic) {
-  _newsActiveTopic = topic;
-  document.querySelectorAll('.news-filter-btn').forEach(b => b.classList.remove('active'));
-  const safeId = 'nf-' + topic.replace(/[^a-z0-9]/gi, '_');
-  document.getElementById(safeId)?.classList.add('active');
-  const cached = getNewsForDate(_newsCurrentDate);
-  if (cached) renderNewsArticles(cached);
-}
-
-function toggleNewsSource(id, checked) {
-  if (checked) _newsActiveQueries.add(id); else _newsActiveQueries.delete(id);
-  const cached = getNewsForDate(_newsCurrentDate);
-  if (cached) renderNewsArticles(cached);
+  try {
+    const res = await fetch('/netherlands-crm/data/news-scan-state.json?t=' + Date.now());
+    const state = res.ok ? await res.json() : null;
+    if (!state || !state.lastRun) { el.innerHTML = '<p style="font-size:12px;color:var(--muted)">No scan recorded yet.</p>'; return; }
+    el.innerHTML = `<p style="font-size:12px;color:var(--text)">Last scan: <strong>${_relativeTime(state.lastRun)}</strong></p>
+      <p style="font-size:12px;color:var(--muted);margin-top:3px">${state.lastAddedCount||0} new article${state.lastAddedCount===1?'':'s'} found</p>
+      ${state.error ? `<p style="font-size:11px;color:#f87171;margin-top:6px">${esc(state.error)}</p>` : ''}`;
+  } catch(e) { el.innerHTML = '<p style="font-size:12px;color:var(--muted)">Status unavailable.</p>'; }
 }
 
 function renderNews() {
   document.getElementById('page-title').textContent = 'Netherlands Research News';
-  document.getElementById('page-sub').textContent = 'AI & research news from NL universities, medical centers, research institutes & NGOs — filtered for relevance to your business';
-  document.getElementById('topbar-actions').innerHTML =
-    `<button id="news-refresh-btn" class="btn btn-outline btn-sm" onclick="fetchAndShowNews('${todayStr()}',true)"> Refresh</button>`;
+  document.getElementById('page-sub').textContent = 'AI adoption, funding, and policy news for the institutions you track — curated daily via Claude web search';
+  document.getElementById('topbar-actions').innerHTML = `
+    <a class="btn btn-outline btn-sm" href="https://github.com/venturinodino-creator/netherlands-crm/actions/workflows/news-scan.yml" target="_blank" rel="noopener" style="text-decoration:none">↻ Run scan now</a>`;
 
-  const allTopics = ['all', ...Object.keys(NEWS_TOPICS)];
-  const topicBtns = allTopics.map(t => {
-    const safeId = 'nf-' + t.replace(/[^a-z0-9]/gi, '_');
-    return `<button id="${safeId}" class="news-filter-btn${t === _newsActiveTopic ? ' active' : ''}" onclick="setNewsTopic('${t}')">${t === 'all' ? 'All Topics' : t}</button>`;
+  const allCats = ['all', ...Object.keys(NEWS_CATEGORIES)];
+  const catBtns = allCats.map(c => {
+    const safeId = 'nf-' + c.replace(/[^a-z0-9]/gi, '_');
+    const label = c === 'all' ? 'All Topics' : NEWS_CATEGORIES[c].label;
+    return `<button id="${safeId}" class="news-filter-btn${c === _newsActiveCategory ? ' active' : ''}" onclick="setNewsCategory('${c}')">${label}</button>`;
   }).join('');
 
-  const sourceChecks = NEWS_QUERIES.map(q => `
-    <label class="news-source-item">
-      <input type="checkbox" ${_newsActiveQueries.has(q.id) ? 'checked' : ''} onchange="toggleNewsSource('${q.id}',this.checked)">
-      <span style="width:8px;height:8px;border-radius:50%;background:${q.color};display:inline-block;flex-shrink:0"></span>
-      ${q.name}
-    </label>`).join('');
+  const legend = Object.entries(NEWS_CATEGORIES).map(([, c]) =>
+    `<div style="display:flex;align-items:center;gap:7px;font-size:12px;color:var(--text);padding:4px 0">
+      <span style="width:8px;height:8px;border-radius:50%;background:${c.color};flex-shrink:0"></span>${c.label}
+    </div>`).join('');
 
   document.getElementById('content').innerHTML = `
-    <div class="news-filter-bar">${topicBtns}</div>
+    <div class="news-filter-bar">${catBtns}</div>
     <div class="news-layout">
       <div>
         <div id="news-feed" class="news-feed">
@@ -3146,17 +3017,17 @@ function renderNews() {
       </div>
       <div class="news-sidebar">
         <div class="news-source-filter">
-          <h4>Topics / Sources</h4>
-          ${sourceChecks}
+          <h4>Topics</h4>
+          ${legend}
         </div>
         <div class="news-archive-card">
-          <h4>Archive</h4>
-          <div id="news-archive-list"></div>
+          <h4>Scan Status</h4>
+          <div id="news-scan-status"><p style="font-size:12px;color:var(--muted)">Loading…</p></div>
         </div>
       </div>
     </div>`;
 
-  fetchAndShowNews(todayStr());
+  loadNewsArticles();
 }
 
 
@@ -5616,24 +5487,27 @@ function loadPendingCount() {
   } catch(e) { console.error('loadPendingCount:', e); }
 }
 
-function loadNewsCount() {
+async function loadNewsCount() {
+  const el = document.getElementById('news-count');
+  const sub = document.getElementById('news-sub');
   try {
+    const res = await fetch('/netherlands-crm/data/news.json?t=' + Date.now());
+    const articles = res.ok ? await res.json() : [];
+    const list = Array.isArray(articles) ? articles : [];
     const today = todayStr();
-    let d = today, articles = getNewsForDate(today);
-    if (!articles) {
-      const dates = getStoredNewsDates();
-      if (dates.length) { d = dates[0]; articles = getNewsForDate(d); }
-    }
-    const count = Array.isArray(articles) ? articles.length : 0;
-    const el = document.getElementById('news-count');
-    const sub = document.getElementById('news-sub');
-    if (el) el.textContent = articles ? count : '—';
+    const todayCount = list.filter(a => a.foundDate === today).length;
+    if (el) el.textContent = list.length ? list.length : '—';
     if (sub) {
-      if (!articles) sub.textContent = 'Not fetched yet';
-      else if (d === today) sub.textContent = count === 1 ? '1 story today' : count + ' stories today';
-      else sub.textContent = count + ' stories · ' + new Date(d).toLocaleDateString('en-GB', {day:'numeric', month:'short'});
+      if (!list.length) sub.textContent = 'Not scanned yet';
+      else sub.textContent = todayCount > 0
+        ? (todayCount === 1 ? '1 new today' : todayCount + ' new today')
+        : list.length + ' tracked total';
     }
-  } catch(e) { console.error('loadNewsCount:', e); }
+  } catch(e) {
+    console.error('loadNewsCount:', e);
+    if (el) el.textContent = '—';
+    if (sub) sub.textContent = 'Not scanned yet';
+  }
 }
 
 async function renderPendingContacts() {
