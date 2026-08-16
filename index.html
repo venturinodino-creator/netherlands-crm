@@ -2034,8 +2034,12 @@ function renderDashboard() {
         <div class="stat-icon-box" style="background:rgba(168,85,247,.15);border:1px solid rgba(168,85,247,.25)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#a855f7" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg></div>
         <div class="stat-text"><div class="stat-label">New Contacts Today</div><div class="stat-value" id="pending-count">—</div><div class="stat-sub" id="pending-sub">Awaiting review</div></div>
       </div>`,
+    'sc-news': `<div class="stat-card" data-sc-id="sc-news" draggable="true" onclick="nav('news')" title="View Netherlands research news" style="border-color:rgba(59,130,246,.25)">
+        <div class="stat-icon-box" style="background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.25)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3b82f6" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg></div>
+        <div class="stat-text"><div class="stat-label">News</div><div class="stat-value" id="news-count">—</div><div class="stat-sub" id="news-sub">Loading…</div></div>
+      </div>`,
   };
-  const _defaultStatOrder = ['sc-institutions','sc-contacts','sc-pending'];
+  const _defaultStatOrder = ['sc-institutions','sc-contacts','sc-pending','sc-news'];
   let _statOrder; try { _statOrder = JSON.parse(localStorage.getItem('nl_crm_stat_order')); if(!Array.isArray(_statOrder)||!_statOrder.length) _statOrder=null; } catch(e){ _statOrder=null; }
   _statOrder = (_statOrder||[]).filter(id=>_statCards[id]);
   if(_statOrder.length < _defaultStatOrder.length) { _defaultStatOrder.forEach(id=>{ if(!_statOrder.includes(id)) _statOrder.push(id); }); }
@@ -2051,6 +2055,7 @@ function renderDashboard() {
   initStatCardDrag();
   // Load pending contacts count
   loadPendingCount();
+  loadNewsCount();
   initDashMiniMap();
   syncAgentStatus();
 }
@@ -5586,6 +5591,26 @@ function loadPendingCount() {
     const badge = document.getElementById('nav-pending-badge');
     if (badge) { badge.textContent = count; badge.style.display = count > 0 ? 'inline-block' : 'none'; }
   } catch(e) { console.error('loadPendingCount:', e); }
+}
+
+function loadNewsCount() {
+  try {
+    const today = todayStr();
+    let d = today, articles = getNewsForDate(today);
+    if (!articles) {
+      const dates = getStoredNewsDates();
+      if (dates.length) { d = dates[0]; articles = getNewsForDate(d); }
+    }
+    const count = Array.isArray(articles) ? articles.length : 0;
+    const el = document.getElementById('news-count');
+    const sub = document.getElementById('news-sub');
+    if (el) el.textContent = articles ? count : '—';
+    if (sub) {
+      if (!articles) sub.textContent = 'Not fetched yet';
+      else if (d === today) sub.textContent = count === 1 ? '1 story today' : count + ' stories today';
+      else sub.textContent = count + ' stories · ' + new Date(d).toLocaleDateString('en-GB', {day:'numeric', month:'short'});
+    }
+  } catch(e) { console.error('loadNewsCount:', e); }
 }
 
 async function renderPendingContacts() {
