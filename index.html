@@ -2895,30 +2895,43 @@ function exportCSV() {
 
 //  NEWS PAGE 
 // Uses Google News RSS via allorigins.win proxy — no API key needed
-// Every query is scoped to one of the CRM's 4 tracked institution types
-// (university / medical / research / ngo) crossed with either AI & research
-// or a theme directly relevant to Elsevier's business (research infrastructure,
-// bibliometrics, funding, open access policy) — not generic campus news.
+// Each "AI & Research" source is batched into per-institution-name OR queries
+// (chunked to keep query URLs short) so results are about a NAMED Dutch
+// institution's own AI work/adoption — not generic "Netherlands AI" news.
+// Funding and policy get their own dedicated, institution-agnostic queries so
+// "who got funded" and "what's the policy" are each their own lens.
+function _chunk(arr, size) {
+  const out = [];
+  for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
+  return out;
+}
+function _namesOrQuery(names) {
+  return '(' + names.map(n => `"${n}"`).join(' OR ') + ')';
+}
+const NL_UNI_NAMES      = SEED_INSTITUTIONS.filter(i => i.type === 'university').map(i => i.name);
+const NL_MEDICAL_NAMES  = SEED_INSTITUTIONS.filter(i => i.type === 'medical').map(i => i.name);
+const NL_RESEARCH_NAMES = SEED_INSTITUTIONS.filter(i => i.type === 'research').map(i => i.name);
+
 const NEWS_QUERIES = [
   {id:'uni_ai',        name:'Universities · AI & Research',            color:'#1d4ed8',
-   q:'Netherlands university artificial intelligence research'},
+   qs: _chunk(NL_UNI_NAMES, 6).map(b => _namesOrQuery(b) + ' (AI OR "artificial intelligence")')},
   {id:'medical_ai',    name:'Medical Centers · AI & Research',         color:'#0369a1',
-   q:'Netherlands medical center hospital AI research'},
+   qs: _chunk(NL_MEDICAL_NAMES, 6).map(b => _namesOrQuery(b) + ' (AI OR "artificial intelligence")')},
   {id:'research_ai',   name:'Research Institutes · AI & Research',     color:'#166534',
-   q:'Netherlands research institute KNAW TNO artificial intelligence'},
-  {id:'ngo_funding',   name:'NGOs & Funders',                          color:'#7c3aed',
-   q:'Netherlands NWO ZonMw research funding grant'},
+   qs: _chunk(NL_RESEARCH_NAMES, 6).map(b => _namesOrQuery(b) + ' (AI OR "artificial intelligence")')},
+  {id:'inst_funding',  name:'Institution Funding Received',            color:'#059669',
+   qs: ['Netherlands university research institute grant funding awarded miljoen subsidie NWO ZonMw']},
+  {id:'nl_policy',     name:'Netherlands Research Policy',             color:'#991b1b',
+   qs: ['Netherlands higher education research policy ministry OCW universities regulation']},
   {id:'research_infra',name:'Research Infrastructure & Publishing',    color:'#b45309',
-   q:'Netherlands university Scopus SciVal bibliometrics research information system'},
-  {id:'oa_policy',     name:'Open Access & Policy',                    color:'#991b1b',
-   q:'Netherlands open access research policy universities'},
+   qs: ['Netherlands university Scopus SciVal bibliometrics research information system']},
 ];
 
 const NEWS_TOPICS = {
   'AI & Technology':['ai','artificial intelligence','machine learning','deep learning','chatgpt','llm','generative','neural','digital','algorithm','data science','robotics','automation','tech','software','quantum'],
   'Research Infrastructure':['scopus','scival','pure','bibliometric','research information system','cris','open access','subscription','licence','license','licensing','database','elsevier','clarivate','web of science','publisher','publishing'],
-  'Policy & Funding':['policy','regulation','law','governance','legislation','nwo','zonmw','subsidy','grant','funding','minister','ministry','parliament','eu','european'],
-  'Research & Discovery':['research','study','publication','discovery','findings','paper','journal','experiment','breakthrough','innovation','project','prize','award'],
+  'Policy':['policy','regulation','law','governance','legislation','minister','ministry','parliament','eu','european','ocw'],
+  'Funding':['nwo','zonmw','subsidy','subsidie','grant','funding','financiering','miljoen','million','awarded','award'],
 };
 
 function detectTopics(text) {
@@ -2966,8 +2979,8 @@ const PROXY = 'https://api.allorigins.win/raw?url=';
 // (NL Times, DutchNews.nl, university press pages, etc.) more consistently.
 const GN_BASE = 'https://news.google.com/rss/search?hl=en-NL&gl=NL&ceid=NL:en&q=';
 
-async function fetchQueryFeed(qObj) {
-  const rssUrl = GN_BASE + encodeURIComponent(qObj.q);
+async function fetchOneQuery(qObj, queryStr) {
+  const rssUrl = GN_BASE + encodeURIComponent(queryStr);
   const proxyUrl = PROXY + encodeURIComponent(rssUrl);
   try {
     const res = await fetch(proxyUrl, { signal: AbortSignal.timeout(12000) });
@@ -2986,6 +2999,16 @@ async function fetchQueryFeed(qObj) {
       return { title, description: desc, url: link, pubDate, sourceName: source, query: qObj, topics: detectTopics(title + ' ' + desc) };
     }).filter(a => a.title && a.url && isNLRelevant(a.title + ' ' + a.description));
   } catch(e) { return []; }
+}
+
+// A "source" (qObj) can carry multiple underlying search strings (qs) — e.g.
+// institution-name batches chunked to stay under Google News' query length —
+// fetched in parallel and merged back under the same source for filtering/UI.
+async function fetchQueryFeed(qObj) {
+  const results = await Promise.allSettled(qObj.qs.map(q => fetchOneQuery(qObj, q)));
+  const out = [];
+  results.forEach(r => { if (r.status === 'fulfilled') out.push(...r.value); });
+  return out;
 }
 
 let _newsActiveTopic   = 'all';
