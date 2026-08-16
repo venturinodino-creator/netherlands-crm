@@ -4032,7 +4032,14 @@ function renderOpenAlex() {
     none:       { label: 'Not engaged',         color: '#475569', bg: 'rgba(255,255,255,0.02)', border: 'rgba(255,255,255,0.07)' },
   };
 
-  const nlTableRows = NL_ALL.map(d => {
+  // Paying subscribers first, then free-tier/active users, then not-engaged —
+  // regardless of the order institutions happen to appear in NL_ALL (which
+  // also gets rows appended by the auto-discovery merge above).
+  const STATUS_SORT_ORDER = { subscriber: 0, active: 1, none: 2 };
+  const NL_ALL_SORTED = [...NL_ALL].sort((a, b) =>
+    (STATUS_SORT_ORDER[a.status] ?? 3) - (STATUS_SORT_ORDER[b.status] ?? 3));
+
+  const nlTableRows = NL_ALL_SORTED.map(d => {
     const sc = STATUS_CFG[d.status];
     const tierParts = (d.tier || '').split(/[—-]/).map(s => s.trim());
     const tierWord = tierParts[0] || ''; // "Member — $5,000/yr" -> "Member"
