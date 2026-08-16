@@ -4135,7 +4135,9 @@ function renderOpenAlex() {
     const sc = STATUS_CFG[d.status];
     const tierParts = (d.tier || '').split(/[—-]/).map(s => s.trim());
     const tierWord = tierParts[0] || ''; // "Member — $5,000/yr" -> "Member"
-    const feeText = tierParts.slice(1).join(' - ').trim(); // "Member — $5,000/yr" -> "$5,000/yr"
+    // Only treat the text after the dash as a real fee for confirmed subscribers —
+    // for 'active'/'none' rows it's a qualifier like "likely", not an amount.
+    const feeText = d.status === 'subscriber' ? tierParts.slice(1).join(' - ').trim() : '';
     const label = d.status === 'subscriber' && tierWord ? `${sc.label} — ${tierWord}` : sc.label;
     const badge = `<span style="background:${sc.bg};color:${sc.color};border:1px solid ${sc.border};border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700;white-space:nowrap">${label}</span>`;
     const feeCell = feeText
