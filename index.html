@@ -4139,20 +4139,20 @@ function renderOpenAlex() {
     // for 'active'/'none' rows it's a qualifier like "likely", not an amount.
     const feeText = d.status === 'subscriber' ? tierParts.slice(1).join(' - ').trim() : '';
     const label = d.status === 'subscriber' && tierWord ? `${sc.label} — ${tierWord}` : sc.label;
-    const badge = `<span style="background:${sc.bg};color:${sc.color};border:1px solid ${sc.border};border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700;white-space:nowrap">${label}</span>`;
+    const badge = `<span style="display:inline-block;background:${sc.bg};color:${sc.color};border:1px solid ${sc.border};border-radius:6px;padding:3px 9px;font-size:11px;font-weight:700;line-height:1.4">${label}</span>`;
     const feeCell = feeText
-      ? `<span style="color:#e2e8f0;font-weight:700;font-size:12px;white-space:nowrap">${feeText}</span>`
+      ? `<span style="color:#e2e8f0;font-weight:700;font-size:12px">${feeText}</span>`
       : `<span style="color:#334155;font-size:12px">${d.status === 'subscriber' ? 'Not disclosed' : '—'}</span>`;
     const srcLinks = d.sources.length
-      ? d.sources.map(s => `<a href="${s.url}" target="_blank" rel="noopener" style="color:#60a5fa;font-size:11px;text-decoration:none;display:inline-block;margin-right:8px">↗ ${s.label}</a>`).join('')
+      ? d.sources.map(s => `<a href="${s.url}" target="_blank" rel="noopener" style="color:#60a5fa;font-size:11px;text-decoration:none;display:block;margin-bottom:5px">↗ ${s.label}</a>`).join('')
       : `<span style="color:#334155;font-size:11px">—</span>`;
     return `<tr style="border-bottom:1px solid rgba(255,255,255,0.05)">
-      <td style="padding:11px 14px;color:#e2e8f0;font-weight:600;font-size:13px;white-space:nowrap">${d.inst}</td>
-      <td style="padding:11px 14px;color:#64748b;font-size:12px;white-space:nowrap">${d.type}</td>
-      <td style="padding:11px 14px">${badge}</td>
-      <td style="padding:11px 14px">${feeCell}</td>
-      <td style="padding:11px 14px;color:#94a3b8;font-size:12px;line-height:1.5">${d.signal}</td>
-      <td style="padding:11px 14px">${srcLinks}</td>
+      <td style="padding:14px;color:#e2e8f0;font-weight:600;font-size:13px;line-height:1.4;vertical-align:top">${d.inst}</td>
+      <td style="padding:14px;color:#64748b;font-size:12px;line-height:1.4;vertical-align:top">${d.type}</td>
+      <td style="padding:14px;vertical-align:top">${badge}</td>
+      <td style="padding:14px;vertical-align:top">${feeCell}</td>
+      <td style="padding:14px;color:#94a3b8;font-size:12px;line-height:1.6;vertical-align:top">${d.signal}</td>
+      <td style="padding:14px;vertical-align:top">${srcLinks}</td>
     </tr>`;
   }).join('');
 
@@ -4171,7 +4171,15 @@ function renderOpenAlex() {
     <!-- Full NL institution table -->
     <h2 style="color:#e2e8f0;font-size:14px;font-weight:700;margin:28px 0 12px;text-transform:uppercase;letter-spacing:.6px">🇳🇱 All Dutch Institutions — OpenAlex Status</h2>
     <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;margin-bottom:10px">
-      <table style="width:100%;border-collapse:collapse;font-size:13px">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed">
+        <colgroup>
+          <col style="width:15%">
+          <col style="width:9%">
+          <col style="width:13%">
+          <col style="width:11%">
+          <col style="width:36%">
+          <col style="width:16%">
+        </colgroup>
         <thead>
           <tr style="background:rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.1)">
             <th style="padding:10px 14px;text-align:left;color:#64748b;font-size:11px;text-transform:uppercase;letter-spacing:.5px">Institution</th>
