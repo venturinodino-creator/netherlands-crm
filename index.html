@@ -4142,10 +4142,8 @@ function renderSubscriptionMatrix() {
   };
 
   const isEditing = _matrixEditMode;
-  const hasOverrides = Object.keys(window.matrixOverrides||{}).length > 0;
 
   document.getElementById('topbar-actions').innerHTML = `<div style="display:flex;gap:8px;align-items:center">
-    ${hasOverrides?`<button class="btn btn-outline" onclick="clearAllOverrides()" style="font-size:11px;padding:5px 12px;color:#ef4444;border-color:#ef4444">Clear overrides</button>`:''}
     <button class="btn ${isEditing?'btn-primary':'btn-outline'}" onclick="toggleMatrixEdit()" style="font-size:12px;padding:6px 14px">
       ${isEditing?'✓ Done editing':'Edit Matrix'}
     </button>
