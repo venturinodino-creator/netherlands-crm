@@ -2954,7 +2954,7 @@ function renderNewsArticles() {
     feed.innerHTML = `<div class="news-empty">
       <div style="font-size:32px;margin-bottom:10px">­</div>
       No articles yet.<br>
-      <small>The daily scan runs at 07:00 UTC — or trigger "Run scan now" above and check back in a couple of minutes.</small>
+      <small>The daily scan runs at 07:00 UTC — check back after that, or run it manually from GitHub Actions.</small>
     </div>`;
     return;
   }
@@ -2995,8 +2995,7 @@ async function renderNewsScanStatus() {
 function renderNews() {
   document.getElementById('page-title').textContent = 'Netherlands Research News';
   document.getElementById('page-sub').textContent = 'AI adoption, funding, and policy news for the institutions you track — curated daily via Claude web search';
-  document.getElementById('topbar-actions').innerHTML = `
-    <a class="btn btn-outline btn-sm" href="https://github.com/venturinodino-creator/netherlands-crm/actions/workflows/news-scan.yml" target="_blank" rel="noopener" style="text-decoration:none">↻ Run scan now</a>`;
+  document.getElementById('topbar-actions').innerHTML = '';
 
   const allCats = ['all', ...Object.keys(NEWS_CATEGORIES)];
   const catBtns = allCats.map(c => {
