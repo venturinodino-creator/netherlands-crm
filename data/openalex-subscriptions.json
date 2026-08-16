@@ -1,1 +1,62 @@
-[]
+[
+  {
+    "id": "maastricht-university",
+    "inst": "Maastricht University",
+    "type": "University",
+    "status": "subscriber",
+    "tier": "Partner",
+    "annualFee": "Custom — price not disclosed",
+    "announceDate": "2026-05-28",
+    "effectiveDate": null,
+    "notes": "Maastricht University Library announced it is investing in a Partner-tier subscription with OpenAlex, framed as an investment in open research information. In the same announcement the library confirmed it is cancelling its Scopus licence with effect from 1 January 2027, while stressing that access to Elsevier journals is unaffected. Both decisions are tied to UM's Open Science commitments and the Barcelona Declaration on Open Research Information, which Rector Magnificus Jan Smits signed on behalf of UM on 12 June 2026. No fee amount is stated in the announcement or on the university's Barcelona Declaration page.",
+    "signal": "CONFIRMED PAYING. Partner tier, fee not disclosed; announced May 2026 alongside Scopus cancellation effective 2027-01-01.",
+    "sources": [
+      {
+        "label": "Maastricht University Library — news",
+        "url": "https://library.maastrichtuniversity.nl/news/investing-in-open-research-information-openalex-partnership-and-end-of-scopus-license/"
+      }
+    ],
+    "autoDiscovered": true,
+    "foundDate": "2026-08-16"
+  },
+  {
+    "id": "delft-university-of-technology",
+    "inst": "Delft University of Technology (TU Delft)",
+    "type": "University",
+    "status": "active",
+    "tier": null,
+    "annualFee": null,
+    "announceDate": null,
+    "effectiveDate": null,
+    "notes": "TU Delft Library confirmed it is discontinuing its subscription to the Web of Science Core Collection and related databases, and published a transition guide pointing researchers to alternative resources. The library's Library4Research blog runs a dedicated OpenAlex tag and a June 2025 post promoting OpenAlex for TU Delft researchers, noting OpenAlex underpins the CWTS Leiden Ranking Open Edition. No paid OpenAlex Member/Member+/Partner subscription is disclosed on any TU Delft page surfaced.",
+    "signal": "ACTIVE, NOT CONFIRMED PAYING. Web of Science Core Collection cancelled; library promotes OpenAlex as alternative.",
+    "sources": [
+      {
+        "label": "TU Delft Library4Research blog — 'open alex' tag",
+        "url": "https://library4research.tudl.tudelft.nl/tag/open-alex/"
+      }
+    ],
+    "autoDiscovered": true,
+    "foundDate": "2026-08-16"
+  },
+  {
+    "id": "leiden-university",
+    "inst": "Leiden University (CWTS)",
+    "type": "University",
+    "status": "active",
+    "tier": null,
+    "annualFee": null,
+    "announceDate": null,
+    "effectiveDate": null,
+    "notes": "Leiden University announced (news item dated July 2026) that its Centre for Science and Technology Studies (CWTS) will discontinue its use of Clarivate Web of Science data, per a joint CWTS–Clarivate statement, leaving only the Leiden Ranking Open Edition. The Open Edition, launched in 2024 with OurResearch, COKI and Sesame Open Science, computes its bibliometric indicators entirely from OpenAlex data. The university itself still holds a Web of Science database subscription, and no paid OpenAlex subscription tier or fee is disclosed.",
+    "signal": "ACTIVE, NOT CONFIRMED PAYING. CWTS dropping Web of Science data; Leiden Ranking Open Edition runs entirely on OpenAlex.",
+    "sources": [
+      {
+        "label": "Leiden University — news",
+        "url": "https://www.universiteitleiden.nl/en/news/2026/07/cwts-takes-next-step-in-open-research-information-transition"
+      }
+    ],
+    "autoDiscovered": true,
+    "foundDate": "2026-08-16"
+  }
+]
