@@ -21,4 +21,5 @@ jobs:
           git config user.name "GitHub Actions"
           git add data/pending-contacts.json data/discovery-state.json
           git diff --staged --quiet || git commit -m "contacts: auto-discover $(date +%Y-%m-%d)"
+          git pull --rebase origin main
           git push

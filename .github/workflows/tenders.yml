@@ -26,6 +26,7 @@ jobs:
           git config user.name "GitHub Actions"
           git add data/tenders.json data/tenders-scan-state.json
           git diff --staged --quiet || git commit -m "tenders: auto-scan $(date +%Y-%m-%d)"
+          git pull --rebase origin main
           git push
       - name: Open notification issue for new tenders
         if: steps.scan.outputs.new_count
