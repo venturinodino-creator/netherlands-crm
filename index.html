@@ -1355,6 +1355,7 @@ let state = {
   contacts: [],
   opportunities: [],
   interactions: [],
+  rfps: [],
   currentRole: null, // 'admin' | 'viewer' | null (not signed in yet)
   view: 'dashboard',
   pipelineStage: 'all',
@@ -1504,6 +1505,33 @@ async function supaUpsertOpp(opp) {
   });
 }
 
+// Map DB row  RFP/tender object (camelCase, matches the shape scraper JSON already uses)
+function dbToRfp(r) {
+  return {
+    id: r.id, title: r.title, institution: r.institution||'',
+    publishedDate: r.published_date||'', deadline: r.deadline||'',
+    status: r.status||'identified', value: r.value != null ? String(r.value) : '',
+    product: r.product||'', competitor: r.competitor||'', url: r.url||'',
+    notes: r.notes||'', source: r.source||'',
+  };
+}
+
+// Upsert a single RFP/tender to Supabase
+async function supaUpsertRfp(r) {
+  const row = {
+    id: r.id, title: r.title, institution: r.institution||null,
+    published_date: r.publishedDate||null, deadline: r.deadline||null,
+    status: r.status||'identified', value: r.value ? parseFloat(r.value) : null,
+    product: r.product||null, competitor: r.competitor||null, url: r.url||null,
+    notes: r.notes||null, source: r.source||null,
+  };
+  await supaFetch('crm_tenders?on_conflict=id', {
+    method: 'POST',
+    headers: {'Prefer': 'resolution=merge-duplicates,return=representation'},
+    body: JSON.stringify(row)
+  });
+}
+
 // Upsert interaction
 async function supaUpsertInteraction(log) {
   const row = {
@@ -1533,11 +1561,12 @@ function syncBadge(show, err) {
 async function load() {
   showLoadingScreen();
   try {
-    const [instRows, contRows, oppRows, intRows] = await Promise.all([
+    const [instRows, contRows, oppRows, intRows, rfpRows] = await Promise.all([
       supaFetch('crm_institutions?select=*&order=name'),
       supaFetch('crm_contacts?select=*&order=last'),
       supaFetch('crm_opportunities?select=*&order=created_at'),
       supaFetch('crm_interactions?select=*&order=date.desc'),
+      supaFetch('crm_tenders?select=*&order=created_at.desc'),
     ]);
     state.institutions = instRows.map(dbToInst)
       .filter(x => x.type !== 'university' || APPROVED_UNIVERSITIES.has(x.id));
@@ -1554,11 +1583,25 @@ async function load() {
       id: n.id, instId: n.inst_id, contactId: n.contact_id||'',
       date: n.date||'', type: n.type||'other', summary: n.summary||''
     }));
+    if (rfpRows.length) {
+      state.rfps = rfpRows.map(dbToRfp);
+    } else {
+      // One-time migration: crm_tenders is new — if this browser has RFPs
+      // saved locally that Supabase doesn't know about yet, push them up
+      // so every device converges on the same list going forward.
+      let local = [];
+      try { local = JSON.parse(localStorage.getItem('nl_crm_rfp') || '[]'); } catch(e) {}
+      if (local.length) {
+        await Promise.all(local.map(r => supaUpsertRfp(r).catch(e => console.warn('RFP migrate failed', r.id, e))));
+      }
+      state.rfps = local;
+    }
     // Also cache locally as fallback
     localStorage.setItem('nl_crm_institutions', JSON.stringify(state.institutions));
     localStorage.setItem('nl_crm_contacts', JSON.stringify(state.contacts));
     localStorage.setItem('nl_crm_opps', JSON.stringify(state.opportunities));
     localStorage.setItem('nl_crm_interactions', JSON.stringify(state.interactions));
+    localStorage.setItem('nl_crm_rfp', JSON.stringify(state.rfps));
     localStorage.setItem('nl_crm_version', SEED_VERSION);
   } catch(e) {
     console.warn('Supabase load failed, falling back to localStorage:', e);
@@ -1568,17 +1611,20 @@ async function load() {
       const ct = localStorage.getItem('nl_crm_contacts');
       const _o = localStorage.getItem('nl_crm_opps');
       const _n = localStorage.getItem('nl_crm_interactions');
+      const _r = localStorage.getItem('nl_crm_rfp');
       state.institutions = i ? JSON.parse(i) : JSON.parse(JSON.stringify(SEED_INSTITUTIONS));
       state.institutions = state.institutions.filter(x => x.type !== 'university' || APPROVED_UNIVERSITIES.has(x.id));
       const allContacts = ct ? JSON.parse(ct) : JSON.parse(JSON.stringify(SEED_CONTACTS));
       state.contacts = allContacts.filter(x => x.quality === 'verified');
       state.opportunities = _o ? JSON.parse(_o) : [];
       state.interactions = _n ? JSON.parse(_n) : [];
+      state.rfps = _r ? JSON.parse(_r) : [];
     } catch(e2) {
       state.institutions = JSON.parse(JSON.stringify(SEED_INSTITUTIONS));
       state.contacts = JSON.parse(JSON.stringify(SEED_CONTACTS)).filter(x => x.quality === 'verified');
       state.opportunities = [];
       state.interactions = [];
+      state.rfps = [];
     }
     toast('Working offline — changes will sync when connection restores', 'warn');
   }
@@ -3261,8 +3307,8 @@ async function saveInstAccount() {
 
 //  PIPELINE PAGE 
 // ── RFP OPPS ──────────────────────────────────────────────────────────────────
-function getRFPs() { try { return JSON.parse(localStorage.getItem('nl_crm_rfp') || '[]'); } catch(e) { return []; } }
-function saveRFPs(list) { localStorage.setItem('nl_crm_rfp', JSON.stringify(list)); }
+function getRFPs() { return state.rfps || []; }
+function saveRFPs(list) { state.rfps = list; localStorage.setItem('nl_crm_rfp', JSON.stringify(list)); }
 
 const RFP_STATUSES = {
   identified: { label: 'Monitoring',   color: '#64748b', bg: 'rgba(100,116,139,.15)' },
@@ -3286,7 +3332,7 @@ function refreshTenders() {
       const existing = getRFPs();
       const existingMap = {};
       existing.forEach(function(r){ existingMap[r.id] = r; });
-      var added = 0, updated = 0;
+      var added = 0, updated = 0, touched = [];
       remote.forEach(function(t) {
         if (existingMap[t.id]) {
           // Merge new fields into existing entry
@@ -3294,12 +3340,13 @@ function refreshTenders() {
           ['url','publishedDate','product','competitor','notes','source'].forEach(function(k){
             if (t[k] && !existingMap[t.id][k]) { existingMap[t.id][k] = t[k]; changed = true; }
           });
-          if (changed) updated++;
+          if (changed) { updated++; touched.push(existingMap[t.id]); }
         } else {
-          existing.unshift(t); existingMap[t.id] = t; added++;
+          existing.unshift(t); existingMap[t.id] = t; added++; touched.push(t);
         }
       });
       saveRFPs(existing);
+      Promise.all(touched.map(r => supaUpsertRfp(r).catch(e => console.warn('RFP sync failed', r.id, e))));
       var msg = added > 0 ? added+' new tenders loaded!' : updated > 0 ? 'Tenders updated!' : 'Up to date';
       try { if (typeof toast==='function') toast(msg,'ok'); } catch(e){}
       renderRFPOpps();
@@ -3418,6 +3465,7 @@ function renderRFPOpps() {
 function deleteRFP(id) {
   if (!confirm('Delete this RFP opportunity?')) return;
   saveRFPs(getRFPs().filter(r => r.id !== id));
+  supaDelete('crm_tenders', id).catch(e => console.error(e));
   renderRFPOpps();
 }
 
