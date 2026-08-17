@@ -58,5 +58,65 @@
     ],
     "autoDiscovered": true,
     "foundDate": "2026-08-16"
+  },
+  {
+    "id": "dutch-research-council",
+    "inst": "Dutch Research Council (NWO)",
+    "type": "NGO / Funder",
+    "status": "subscriber",
+    "tier": null,
+    "annualFee": "$12,500 USD / year",
+    "announceDate": null,
+    "effectiveDate": null,
+    "notes": "NWO's own 'Open science infrastructure support' page lists OpenAlex (run by non-profit OurResearch, also behind Unpaywall) among the open infrastructures it financially supports, stating a duration of 2024-2025 and an annual amount of 12,500 dollars. The amount is explicitly disclosed by the funder, but NWO describes it as infrastructure support and does not map it to any of OpenAlex's named Member/Member+/Partner tiers, so tier is left null. The same page lists comparable support for OpenCitations, indicating a portfolio approach to open metadata infrastructure rather than a single product subscription. No renewal beyond 2025 was found in this search.",
+    "signal": "CONFIRMED PAYING. $12,500/yr open-infrastructure support to OpenAlex, listed for 2024-2025; tier not named.",
+    "sources": [
+      {
+        "label": "NWO - Open science infrastructure support",
+        "url": "https://www.nwo.nl/en/open-science-infrastructure-support"
+      }
+    ],
+    "autoDiscovered": true,
+    "foundDate": "2026-08-17"
+  },
+  {
+    "id": "utrecht-university",
+    "inst": "Utrecht University",
+    "type": "University",
+    "status": "active",
+    "tier": null,
+    "annualFee": null,
+    "announceDate": null,
+    "effectiveDate": null,
+    "notes": "Utrecht University Library maintains a dedicated OpenAlex LibGuide describing OpenAlex as a free and open catalogue of the world's scholarly research system run by a non-profit, and directing users to contact the library for support. The university separately published a background interview with its open science specialist Jeroen Bosman assessing whether OpenAlex could replace expensive commercial subscriptions. No paid Member, Member+ or Partner subscription was found for Utrecht in this search, so status is active rather than subscriber.",
+    "signal": "ACTIVE, UNPAID. Library runs a dedicated OpenAlex LibGuide; no paid subscription found.",
+    "sources": [
+      {
+        "label": "Utrecht University Library - OpenAlex LibGuide",
+        "url": "https://libguides.library.uu.nl/openalex"
+      }
+    ],
+    "autoDiscovered": true,
+    "foundDate": "2026-08-17"
+  },
+  {
+    "id": "university-of-groningen",
+    "inst": "University of Groningen",
+    "type": "University",
+    "status": "active",
+    "tier": null,
+    "annualFee": null,
+    "announceDate": "2026-04-20",
+    "effectiveDate": "2026-12-31",
+    "notes": "The University of Groningen library announced that access to Web of Science will end on 31 December 2026, and points users to alternatives including the open databases OpenAlex and The Lens. Importantly, the library names Scopus (retained) as the suitable alternative for systematic literature reviews and states that OpenAlex and The Lens are less suitable for that use case, so OpenAlex is a partial rather than full replacement. The announce date is taken from the library news item's own dated URL. No OpenAlex subscription or fee is mentioned, so no paid status is claimed.",
+    "signal": "NO SUBSCRIPTION CONFIRMED. Web of Science ends 31 Dec 2026; OpenAlex named as an open alternative (Scopus retained).",
+    "sources": [
+      {
+        "label": "University of Groningen Library news",
+        "url": "https://www.rug.nl/library/news/20260420-end-web-of-science?lang=en"
+      }
+    ],
+    "autoDiscovered": true,
+    "foundDate": "2026-08-17"
   }
 ]
