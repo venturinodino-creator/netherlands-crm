@@ -1110,6 +1110,29 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
   </div>
 </div>
 
+<!-- MODAL: GITHUB TOKEN FOR AGENT RUN NOW -->
+<div class="overlay" id="modal-gh-token">
+  <div class="modal" style="max-width:460px">
+    <div class="mh"><h3>Connect GitHub to run agents</h3><button class="modal-close" onclick="closeModal('modal-gh-token')"></button></div>
+    <div class="mc">
+      <p style="font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.6">
+        "Run now" triggers the agent's GitHub Actions workflow directly from your browser — no redirect. This needs a GitHub token with <strong style="color:var(--text)">Actions: Read and write</strong> access to this repo only.
+      </p>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.6">
+        Create one: <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">github.com/settings/personal-access-tokens/new</a> → Resource owner: your account → Repository access: <em>Only</em> <strong style="color:var(--text)">netherlands-crm</strong> → Permissions: <strong style="color:var(--text)">Actions: Read and write</strong>. Nothing else needed.
+      </p>
+      <p style="font-size:11px;color:var(--muted);margin-bottom:12px;line-height:1.6">
+        The token is saved only in this browser's local storage — it's never written into the site's files.
+      </p>
+      <div class="fg"><label>GitHub token</label><input type="password" id="gh-token-input" placeholder="github_pat_…" autocomplete="off"></div>
+    </div>
+    <div class="mf">
+      <button class="btn btn-outline" onclick="clearGhToken()">Remove saved token</button>
+      <button class="btn btn-primary" onclick="saveGhToken()">Save</button>
+    </div>
+  </div>
+</div>
+
 <!-- MODAL: IMPORT CONTACTS -->
 <div class="overlay" id="modal-sync-contacts">
   <div class="modal" style="max-width:500px">
@@ -1883,6 +1906,80 @@ function toast(msg, type='') {
 function closeModal(id) { document.getElementById(id).classList.remove('open'); }
 function openModal(id) { document.getElementById(id).classList.add('open'); }
 
+//  AGENT "RUN NOW" — dispatches the GitHub Actions workflow directly from the browser
+const GH_AGENTS_REPO = 'venturinodino-creator/netherlands-crm';
+const GH_TOKEN_KEY = 'nl_crm_gh_token';
+let _pendingAgentRun = null; // {workflow, btnId, name} — resumed after a token is saved
+
+function getGhToken() { return localStorage.getItem(GH_TOKEN_KEY) || ''; }
+
+function manageGhToken() {
+  const input = document.getElementById('gh-token-input');
+  if (input) input.value = getGhToken();
+  openModal('modal-gh-token');
+}
+
+function saveGhToken() {
+  const val = document.getElementById('gh-token-input').value.trim();
+  if (!val) { toast('Enter a token first', 'err'); return; }
+  localStorage.setItem(GH_TOKEN_KEY, val);
+  closeModal('modal-gh-token');
+  toast('GitHub token saved to this browser', 'ok');
+  if (_pendingAgentRun) {
+    const { workflow, btnId, name } = _pendingAgentRun;
+    _pendingAgentRun = null;
+    runAgentNow(workflow, btnId, name);
+  }
+}
+
+function clearGhToken() {
+  localStorage.removeItem(GH_TOKEN_KEY);
+  document.getElementById('gh-token-input').value = '';
+  toast('GitHub token removed from this browser');
+}
+
+async function runAgentNow(workflow, btnId, name) {
+  const token = getGhToken();
+  if (!token) {
+    _pendingAgentRun = { workflow, btnId, name };
+    manageGhToken();
+    return;
+  }
+  const btn = document.getElementById(btnId);
+  const original = btn ? btn.textContent : '';
+  if (btn) { btn.disabled = true; btn.textContent = 'Starting…'; }
+  try {
+    const res = await fetch(`https://api.github.com/repos/${GH_AGENTS_REPO}/actions/workflows/${workflow}/dispatches`, {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Accept': 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ ref: 'main' }),
+    });
+    if (res.status === 204) {
+      toast(`${name} triggered — it'll show up in the run history shortly`, 'ok');
+      if (btn) { btn.textContent = 'Started ✓'; setTimeout(()=>{ btn.textContent = original; btn.disabled = false; }, 4000); }
+    } else if (res.status === 401 || res.status === 403) {
+      toast('GitHub rejected the token — check it has "Actions: write" access to this repo', 'err');
+      if (btn) { btn.textContent = original; btn.disabled = false; }
+      _pendingAgentRun = { workflow, btnId, name };
+      manageGhToken();
+    } else {
+      const body = await res.text().catch(()=> '');
+      toast(`Couldn't trigger ${name} (HTTP ${res.status})`, 'err');
+      console.warn('workflow dispatch failed', res.status, body);
+      if (btn) { btn.textContent = original; btn.disabled = false; }
+    }
+  } catch (e) {
+    toast(`Network error triggering ${name}`, 'err');
+    console.warn('workflow dispatch error', e);
+    if (btn) { btn.textContent = original; btn.disabled = false; }
+  }
+}
+
 // Close modal on overlay click
 document.querySelectorAll('.overlay').forEach(el=>{
   el.addEventListener('click', e=>{ if(e.target===el) el.classList.remove('open'); });
@@ -2009,18 +2106,17 @@ function renderDashboard() {
       statusEl: 'agent-news-lastrun', view: 'news', workflow: 'news-scan.yml',
     },
   ];
-  const AGENTS_REPO = 'venturinodino-creator/netherlands-crm';
   const agentRows = AGENTS.map(a=>{
     const live = a.status === 'active';
     const dot = live ? '#4ade80' : 'rgba(255,255,255,.3)';
     const badgeBg = live ? 'rgba(74,222,128,.12)' : 'rgba(255,255,255,.05)';
     const badgeColor = live ? '#4ade80' : 'var(--muted)';
     const badgeLabel = live ? 'Active' : 'Manual';
-    const runUrl = `https://github.com/${AGENTS_REPO}/actions/workflows/${a.workflow}`;
+    const btnId = `run-btn-${a.id}`;
     return `<div class="recent-row" style="cursor:pointer" onclick="nav('${a.view}')">
       <div class="av" style="background:rgba(255,255,255,.06);position:relative">${a.icon}<span style="position:absolute;bottom:-1px;right:-1px;width:9px;height:9px;border-radius:50%;background:${dot};border:1.5px solid var(--card,#111a2e);box-shadow:0 0 6px ${dot}"></span></div>
       <div class="ri"><h4>${esc(a.name)}</h4><p>${esc(a.source)} · ${esc(a.cadence)}${a.statusEl ? ` · <span id="${a.statusEl}">checking…</span>` : ''}</p></div>
-      <a class="btn btn-xs btn-outline" href="${runUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" title="Opens this workflow's GitHub Actions page — click &quot;Run workflow&quot; there to run it now instead of waiting for the daily schedule">Run now</a>
+      <button class="btn btn-xs btn-outline" id="${btnId}" onclick="event.stopPropagation(); runAgentNow('${a.workflow}','${btnId}','${esc(a.name)}')" title="Triggers this agent's GitHub Actions workflow immediately, right from the CRM">Run now</button>
       <span class="badge" style="background:${badgeBg};color:${badgeColor};border-color:${badgeColor}33">${badgeLabel}</span>
     </div>`;
   }).join('');
@@ -2157,7 +2253,7 @@ function buildDashWidgets(typeRows, hpRows, agentRows) {
       ${hpRows}
     </div>`,
     'w-agents': `<div class="card dash-widget" data-widget-id="w-agents" draggable="true">
-      <div class="card-header"><span class="card-title">Agents Working For You</span>${handle}</div>
+      <div class="card-header"><span class="card-title">Agents Working For You</span><button class="btn btn-xs btn-outline" onclick="event.stopPropagation(); manageGhToken()" title="Connect or update the GitHub token used by Run now">${getGhToken() ? 'GitHub connected' : 'Connect GitHub'}</button>${handle}</div>
       ${agentRows}
     </div>`,
     'w-map': `<div class="card dash-widget" data-widget-id="w-map" draggable="true">
