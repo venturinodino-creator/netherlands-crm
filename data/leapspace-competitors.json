@@ -115,5 +115,19 @@
     "sourceUrl": "https://paperguide.ai/blog/ai-tools-for-literature-review/",
     "sourceName": "Paperguide product blog",
     "autoDiscovered": true
+  },
+  {
+    "id": "auto-igi-global-scientific-publishing-igi-global-ai-assistant-research-discovery-tool",
+    "company": "IGI Global Scientific Publishing",
+    "product": "IGI Global AI Assistant (research discovery tool)",
+    "addedDate": "2026-08-18",
+    "elements": [
+      "literatureSearch",
+      "readingAssistant"
+    ],
+    "howItCompetes": "IGI Global Scientific Publishing has introduced an AI Assistant research tool aimed at research discovery across its own book and journal content platform, per trade coverage published within the last month. As a publisher-owned, licensed-content AI layer, it follows the same 'trusted corpus' positioning as LeapSpace and challenges the Literature Search & Discovery tab, and — because the assistant sits on top of specific publisher titles — the Reading Assistant tab as well. It is narrower than LeapSpace in corpus size and does not appear to cover author, funding, or claim-verification workflows.",
+    "sourceUrl": "https://www.knowledgespeak.com/news/igi-global-scientific-publishing-introduces-ai-assistant-research-tool-for-research-discovery/",
+    "sourceName": "Knowledgespeak",
+    "autoDiscovered": true
   }
 ]
