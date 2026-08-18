@@ -1,5 +1,18 @@
 [
   {
+    "id": "news-utn4tc",
+    "title": "FAO, Wageningen Researchers Review Broad Range of AI Food Safety Applications",
+    "description": "Researchers from the UN Food and Agriculture Organization and Wageningen published a review surveying the range of artificial intelligence applications being used across food safety. The review covers AI use cases relevant to food safety monitoring and assessment.",
+    "institution": "Wageningen University & Research",
+    "category": "ai_adoption",
+    "categoryLabel": "AI Development & Adoption",
+    "url": "https://www.food-safety.com/articles/11737-fao-wageningen-researchers-review-broad-range-of-ai-food-safety-applications",
+    "sourceName": "Food Safety Magazine",
+    "publishedDate": "2026-08-17",
+    "foundDate": "2026-08-18",
+    "autoDiscovered": true
+  },
+  {
     "id": "news-ap7mbp",
     "title": "Leidse onderzoekers ontvangen miljoen voor onderzoek borstkankerbehandeling",
     "description": "Researchers in Leiden have been awarded a grant of around one million euros for research into the treatment of breast cancer tumours, according to local news outlet Sleutelstad. The report was published on 13 August 2026.",
