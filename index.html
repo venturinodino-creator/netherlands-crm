@@ -1637,15 +1637,7 @@ function save() {
   localStorage.setItem('nl_crm_opps', JSON.stringify(state.opportunities));
   localStorage.setItem('nl_crm_interactions', JSON.stringify(state.interactions));
 }
-function resetData() {
-  if(!confirm('Reset all data to seed data? This will delete all your changes.')) return;
-  localStorage.removeItem('nl_crm_institutions');
-  localStorage.removeItem('nl_crm_contacts');
-  load().then(()=>render());
-  toast('Data reset to seed data');
-}
-
-//  OPENALEX SYNC 
+//  OPENALEX SYNC
 function syncOpenAlex() {
   document.getElementById('sync-progress').style.display = 'none';
   document.getElementById('sync-result').style.display = 'none';
@@ -2075,7 +2067,7 @@ function applyRoleUI() {
 function renderDashboard() {
   document.getElementById('page-title').textContent = 'Dashboard';
   document.getElementById('page-sub').textContent = 'Overview of your Netherlands research network';
-  document.getElementById('topbar-actions').innerHTML = `<button class="btn btn-outline btn-sm" data-admin-only onclick="resetData()"> Reset to Seed Data</button>`;
+  document.getElementById('topbar-actions').innerHTML = '';
 
   const inst = state.institutions;
   const cont = state.contacts;
