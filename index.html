@@ -6248,38 +6248,53 @@ function render4GU() {
   document.getElementById('page-title').textContent = '4GU';
   document.getElementById('page-sub').textContent = '4th Generation University community — an innovation-ecosystem network for universities, with Elsevier as a supporting partner';
 
-  const BOARD = [
-    { name:'Torrens University',                              country:'Australia',    rep:'Aleks Subic (Chair)', instId:null },
-    { name:'Strathclyde University',                          country:'UK',            rep:'Tim Bedford',         instId:null },
-    { name:'Newcastle University',                            country:'UK',            rep:'Chris Day',           instId:null },
-    { name:'University of Auckland',                          country:'New Zealand',   rep:'Dawn Freshwater',     instId:null },
-    { name:'Universidade Estadual de Campinas',                country:'Brazil',        rep:'Renato Garcia',       instId:null },
-    { name:'Karlsruhe Institute of Technology',                country:'Germany',       rep:'Jan Hesthaven',       instId:null },
-    { name:'Japan Advanced Institute of Science and Technology',country:'Japan',        rep:'Amane Koizumi',       instId:null },
-    { name:'Aalto University',                                 country:'Finland',       rep:'Janne Laine',         instId:null },
-    { name:'Eindhoven University of Technology',               country:'Netherlands',   rep:'Silvia Lenaerts',     instId:'tue' },
-    { name:'Okinawa Institute of Science and Technology',      country:'Japan',         rep:'Karen Markides',      instId:null },
-    { name:'Shenzhen Institute of Advanced Technology',        country:'China',         rep:'Wei Zhao',            instId:null },
-  ];
+  // 4thgenuniversity.com never publishes its full "80+ university members from
+  // 30+ countries" roster. These are the only two named, sourced institution
+  // lists that exist: the current board (4thgenuniversity.com/members) and the
+  // founding group that helped draft the 4GU framework (4GU-Brochure.pdf). An
+  // institution can appear on either, both, or neither — 'roles' tracks which.
+  const MEMBERS = [
+    { name:'Aalto University',                                  country:'Finland',         roles:['Board','Founding Group'], rep:'Janne Laine',        instId:null },
+    { name:'Brno University of Technology',                     country:'Czech Republic',  roles:['Founding Group'],         rep:null,                  instId:null },
+    { name:'Eindhoven University of Technology',                country:'Netherlands',     roles:['Board','Founding Group'], rep:'Silvia Lenaerts',     instId:'tue' },
+    { name:'Japan Advanced Institute of Science and Technology',country:'Japan',           roles:['Board'],                  rep:'Amane Koizumi',       instId:null },
+    { name:'Karlsruhe Institute of Technology',                 country:'Germany',         roles:['Board','Founding Group'], rep:'Jan Hesthaven',       instId:null },
+    { name:'Newcastle University',                              country:'UK',              roles:['Board','Founding Group'], rep:'Chris Day',           instId:null },
+    { name:'Okinawa Institute of Science and Technology',       country:'Japan',           roles:['Board'],                  rep:'Karen Markides',      instId:null },
+    { name:'Purdue University',                                 country:'United States',   roles:['Founding Group'],         rep:null,                  instId:null },
+    { name:'Shenzhen Institute of Advanced Technology',         country:'China',           roles:['Board','Founding Group'], rep:'Wei Zhao',            instId:null },
+    { name:'Strathclyde University',                            country:'UK',              roles:['Board','Founding Group'], rep:'Tim Bedford',         instId:null },
+    { name:'Torrens University',                                country:'Australia',       roles:['Board'],                  rep:'Aleks Subic (Chair)', instId:null },
+    { name:'TU Wien (Vienna University of Technology)',         country:'Austria',         roles:['Founding Group'],         rep:null,                  instId:null },
+    { name:'Universidade Estadual de Campinas',                 country:'Brazil',          roles:['Board','Founding Group'], rep:'Renato Garcia',       instId:null },
+    { name:'University College Dublin',                         country:'Ireland',         roles:['Founding Group'],         rep:null,                  instId:null },
+    { name:'University of Auckland',                            country:'New Zealand',     roles:['Board','Founding Group'], rep:'Dawn Freshwater',     instId:null },
+    { name:'Western Sydney University',                         country:'Australia',       roles:['Founding Group'],         rep:null,                  instId:null },
+  ].sort((a,b) => a.name.localeCompare(b.name));
 
-  const nlBoardCount = BOARD.filter(b => b.instId).length;
+  const nlCount = MEMBERS.filter(m => m.instId).length;
   const flagUrl = country => `https://flagcdn.com/24x18/${({
     'Australia':'au','UK':'gb','New Zealand':'nz','Brazil':'br','Germany':'de','Japan':'jp',
-    'Finland':'fi','Netherlands':'nl','China':'cn'
+    'Finland':'fi','Netherlands':'nl','China':'cn','Czech Republic':'cz','United States':'us',
+    'Austria':'at','Ireland':'ie'
   }[country] || 'xx')}.png`;
+  const roleBadge = { Board:{bg:'rgba(96,165,250,.12)',fg:'#60a5fa'}, 'Founding Group':{bg:'rgba(167,139,250,.12)',fg:'#a78bfa'} };
 
-  const rows = BOARD.map(b => {
-    const isTracked = !!b.instId;
+  const rows = MEMBERS.map(m => {
+    const isTracked = !!m.instId;
     const onclick = isTracked
-      ? `onclick="nav('detail',{instId:'${b.instId}'})" style="cursor:pointer"`
+      ? `onclick="nav('detail',{instId:'${m.instId}'})" style="cursor:pointer"`
       : `onclick="window.open('https://4thgenuniversity.com/members','_blank')" style="cursor:pointer"`;
     return `<tr ${onclick} style="border-bottom:1px solid rgba(255,255,255,0.05)" onmouseover="this.style.background='rgba(255,255,255,.02)'" onmouseout="this.style.background=''">
       <td style="padding:11px 14px">
-        <div style="color:#e2e8f0;font-size:13px;font-weight:600">${esc(b.name)}</div>
-        <div style="color:#64748b;font-size:11px;margin-top:2px">${esc(b.rep)}</div>
+        <div style="color:#e2e8f0;font-size:13px;font-weight:600">${esc(m.name)}</div>
+        ${m.rep ? `<div style="color:#64748b;font-size:11px;margin-top:2px">${esc(m.rep)}</div>` : ''}
       </td>
       <td style="padding:11px 14px;color:#94a3b8;font-size:12px;white-space:nowrap">
-        ${b.country !== 'Supporting org' ? `<img src="${flagUrl(b.country)}" width="18" height="13" style="vertical-align:middle;margin-right:6px;border-radius:2px" onerror="this.style.display='none'">` : ''}${esc(b.country)}
+        <img src="${flagUrl(m.country)}" width="18" height="13" style="vertical-align:middle;margin-right:6px;border-radius:2px" onerror="this.style.display='none'">${esc(m.country)}
+      </td>
+      <td style="padding:11px 14px;white-space:nowrap">
+        ${m.roles.map(r => `<span style="background:${roleBadge[r].bg};color:${roleBadge[r].fg};font-size:10px;font-weight:700;border-radius:5px;padding:2px 7px;margin-right:4px;white-space:nowrap;display:inline-block">${r}</span>`).join('')}
       </td>
       <td style="padding:11px 14px;white-space:nowrap">
         ${isTracked
@@ -6299,34 +6314,34 @@ function render4GU() {
 
     <div style="display:flex;gap:14px;margin-bottom:24px;flex-wrap:wrap">
       <div style="background:rgba(96,165,250,0.08);border:1px solid rgba(96,165,250,0.25);border-radius:12px;padding:16px 22px;flex:1;min-width:150px">
-        <div style="font-size:11px;color:#60a5fa;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Board institutions</div>
-        <div style="font-size:30px;font-weight:800;color:#e2e8f0">${BOARD.length}</div>
-        <div style="font-size:11px;color:#94a3b8;margin-top:2px">named on 4thgenuniversity.com</div>
+        <div style="font-size:11px;color:#60a5fa;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Named institutions</div>
+        <div style="font-size:30px;font-weight:800;color:#e2e8f0">${MEMBERS.length}</div>
+        <div style="font-size:11px;color:#94a3b8;margin-top:2px">board + founding group, deduped</div>
       </div>
       <div style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.25);border-radius:12px;padding:16px 22px;flex:1;min-width:150px">
         <div style="font-size:11px;color:#10b981;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">In your CRM</div>
-        <div style="font-size:30px;font-weight:800;color:#e2e8f0">${nlBoardCount}</div>
-        <div style="font-size:11px;color:#94a3b8;margin-top:2px">TU/e — founding board seat</div>
+        <div style="font-size:30px;font-weight:800;color:#e2e8f0">${nlCount}</div>
+        <div style="font-size:11px;color:#94a3b8;margin-top:2px">TU/e — board seat + founding group</div>
       </div>
       <div style="background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.25);border-radius:12px;padding:16px 22px;flex:1;min-width:150px">
         <div style="font-size:11px;color:#a78bfa;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Wider community</div>
         <div style="font-size:30px;font-weight:800;color:#e2e8f0">80<span style="font-size:16px;color:#64748b">+</span></div>
-        <div style="font-size:11px;color:#94a3b8;margin-top:2px">universities, 30+ countries — names not public</div>
+        <div style="font-size:11px;color:#94a3b8;margin-top:2px">universities, 30+ countries — full roster not public</div>
       </div>
     </div>
 
     <div style="background:rgba(96,165,250,0.05);border:1px solid rgba(96,165,250,0.2);border-radius:10px;padding:14px 18px;margin-bottom:22px;display:flex;gap:12px;align-items:flex-start">
       <span style="font-size:18px;flex-shrink:0">🌐</span>
       <div style="font-size:13px;color:#94a3b8;line-height:1.6">
-        <strong style="color:#93c5fd">What 4GU is:</strong> a community for universities that want to "orchestrate regional innovation ecosystems, achieving societal and economic impact through partnerships with industry, government, and civil society." Elsevier is a supporting organisation on the board. Eindhoven University of Technology (TU/e) holds one of the 11 board seats, represented by Silvia Lenaerts.
-        <br>The site names its board but not the full 80+ member roster — treat the table below as confirmed board membership, not the complete community.
+        <strong style="color:#93c5fd">What 4GU is:</strong> a community for universities that want to "orchestrate regional innovation ecosystems, achieving societal and economic impact through partnerships with industry, government, and civil society." Elsevier is a supporting organisation. Eindhoven University of Technology (TU/e) sits on both the board and the original founding group, represented by Silvia Lenaerts.
+        <br>4thgenuniversity.com states the community has "80+ university members from 30+ countries" but never names them individually — only its 11-seat board (member page) and its 13-institution founding group (official brochure PDF) are published by name. The table below is the union of those two sourced lists, not the full community.
         <br><a href="https://4thgenuniversity.com/members" target="_blank" style="color:#60a5fa">Meet the 4GU board →</a> · <a href="https://4thgenuniversity.com/join-the-community" target="_blank" style="color:#60a5fa">Join the community →</a>
       </div>
     </div>
 
     <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:14px;overflow:hidden;margin-bottom:24px">
       <div style="padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:space-between">
-        <span style="color:#e2e8f0;font-weight:700;font-size:14px">4GU Board</span>
+        <span style="color:#e2e8f0;font-weight:700;font-size:14px">4GU Named Institutions</span>
         <a href="https://4thgenuniversity.com/members" target="_blank" style="font-size:12px;color:#60a5fa;text-decoration:none">Source: 4thgenuniversity.com/members →</a>
       </div>
       <div style="overflow-x:auto">
@@ -6334,6 +6349,7 @@ function render4GU() {
           <thead><tr>
             <th style="${thStyle}">Institution</th>
             <th style="${thStyle}">Country</th>
+            <th style="${thStyle}">Role</th>
             <th style="${thStyle}">Status</th>
             <th style="${thStyle}"></th>
           </tr></thead>
@@ -6343,7 +6359,7 @@ function render4GU() {
     </div>
 
     <div style="font-size:11px;color:#475569;text-align:center">
-      Source: <a href="https://4thgenuniversity.com/members" target="_blank" style="color:#60a5fa">4thgenuniversity.com/members</a> · Last checked August 2026
+      Sources: <a href="https://4thgenuniversity.com/members" target="_blank" style="color:#60a5fa">4thgenuniversity.com/members</a> (board) · <a href="https://4thgenuniversity.com/wp-content/uploads/2025/01/4GU-Brochure.pdf" target="_blank" style="color:#60a5fa">4GU Brochure PDF</a> (founding group) · Last checked August 2026
     </div>
   </div>`;
 }
