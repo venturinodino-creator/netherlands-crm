@@ -3558,6 +3558,12 @@ async function onSignedIn(session) {
   }
   setUserBadge(session.user.email, state.currentRole);
   await load();
+  const requestedView = new URLSearchParams(location.search).get('view');
+  if (requestedView && document.querySelector(`[data-view="${requestedView}"]`)) {
+    state.view = requestedView;
+    document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active'));
+    document.querySelector(`[data-view="${requestedView}"]`).classList.add('active');
+  }
   render();
 }
 async function bootstrapApp() {
