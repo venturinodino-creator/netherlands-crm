@@ -1515,7 +1515,7 @@ function dbToRfp(r) {
     publishedDate: r.published_date||'', deadline: r.deadline||'',
     status: r.status||'identified', value: r.value != null ? String(r.value) : '',
     product: r.product||'', competitor: r.competitor||'', url: r.url||'',
-    notes: r.notes||'', source: r.source||'',
+    notes: r.notes||'', source: r.source||'', createdAt: r.created_at||'',
   };
 }
 
@@ -2199,8 +2199,91 @@ function renderDashboard() {
   // Load pending contacts count
   loadPendingCount();
   loadNewsCount();
+  loadAttentionFeed();
   initDashMiniMap();
   syncAgentStatus();
+}
+
+// "Needs Your Attention" widget — merges three signals that otherwise live on
+// three separate tabs (News, RFP Opps, institution Account Info) into one
+// feed, ordered by urgency rather than strict chronology: overdue renewals
+// first, then renewals due soon, then newly-added tenders, then fresh news.
+function daysBetween(fromISODate, toISODate) {
+  const a = new Date(fromISODate + 'T00:00:00');
+  const b = new Date(toISODate + 'T00:00:00');
+  return Math.round((b - a) / 86400000);
+}
+async function loadAttentionFeed() {
+  const body = document.getElementById('attn-feed-body');
+  if (!body) return;
+  const todayISO = new Date().toISOString().slice(0,10);
+
+  const renewalItems = state.institutions
+    .filter(i => i.renewalDate)
+    .map(i => ({ inst: i, days: daysBetween(todayISO, i.renewalDate) }))
+    .filter(x => x.days <= 30)
+    .sort((a,b) => a.days - b.days)
+    .slice(0, 6)
+    .map(x => ({
+      kind: 'renewal',
+      onclick: `nav('detail',{instId:'${x.inst.id}'})`,
+      title: `${x.inst.name} renewal ${x.days < 0 ? `overdue by ${-x.days}d` : x.days === 0 ? 'due today' : `due in ${x.days}d`}`,
+      sub: x.inst.renewalDate,
+      urgent: x.days <= 7,
+    }));
+
+  const newTenders = getRFPs()
+    .filter(r => r.product && r.product !== '—' && !['won','lost'].includes(r.status))
+    .filter(r => (r.createdAt || r.publishedDate) && daysBetween((r.createdAt||r.publishedDate).slice(0,10), todayISO) <= 14)
+    .sort((a,b) => new Date(b.createdAt||b.publishedDate) - new Date(a.createdAt||a.publishedDate))
+    .slice(0, 5)
+    .map(r => ({
+      kind: 'tender',
+      onclick: r.url ? `window.open('${r.url.replace(/'/g,'%27')}','_blank')` : `nav('rfp')`,
+      title: r.title,
+      sub: `${r.institution || ''} · ${r.product}`,
+      urgent: false,
+    }));
+
+  let newsItems = [];
+  try {
+    const res = await fetch('/netherlands-crm/data/news.json?t=' + Date.now());
+    const articles = res.ok ? await res.json() : [];
+    newsItems = (Array.isArray(articles) ? articles : [])
+      .filter(a => a.foundDate && daysBetween(a.foundDate, todayISO) <= 7)
+      .sort((a,b) => new Date(b.foundDate) - new Date(a.foundDate))
+      .slice(0, 5)
+      .map(a => ({
+        kind: 'news',
+        onclick: `window.open('${(a.url||'').replace(/'/g,'%27')}','_blank')`,
+        title: a.title,
+        sub: a.institution || a.categoryLabel || '',
+        urgent: false,
+      }));
+  } catch(e) { /* offline / feed unavailable — just show what we have */ }
+
+  const all = [...renewalItems, ...newTenders, ...newsItems];
+  const countEl = document.getElementById('attn-count');
+  if (countEl) countEl.innerHTML = all.length ? `<span class="badge" style="background:rgba(255,255,255,.06);color:var(--muted)">${all.length}</span>` : '';
+
+  if (!all.length) {
+    body.innerHTML = `<div style="padding:20px 0;text-align:center;color:var(--muted);font-size:12px">✓ All caught up — nothing new to review.</div>`;
+    return;
+  }
+
+  const KIND_META = {
+    renewal: { icon: '⏰', color: '#f97316', bg: 'rgba(249,115,22,.12)' },
+    tender:  { icon: '📄', color: '#6366f1', bg: 'rgba(99,102,241,.12)' },
+    news:    { icon: '📰', color: '#3b82f6', bg: 'rgba(59,130,246,.12)' },
+  };
+  body.innerHTML = all.map(item => {
+    const m = KIND_META[item.kind];
+    return `<div class="recent-row" style="cursor:pointer" onclick="${item.onclick}">
+      <div class="av" style="background:${m.bg};color:${m.color}">${m.icon}</div>
+      <div class="ri"><h4>${esc(item.title)}</h4><p>${esc(item.sub||'')}</p></div>
+      ${item.urgent ? `<span class="badge" style="background:rgba(239,68,68,.12);color:#ef4444;border-color:rgba(239,68,68,.3)">Urgent</span>` : ''}
+    </div>`;
+  }).join('');
 }
 
 function _relativeTime(iso) {
@@ -2269,7 +2352,7 @@ function initStatCardDrag() {
   });
 }
 
-const DASH_WIDGET_DEFAULT_ORDER = ['w-types','w-highprio','w-map','w-agents'];
+const DASH_WIDGET_DEFAULT_ORDER = ['w-attention','w-types','w-highprio','w-map','w-agents'];
 function getDashWidgetOrder() {
   let order;
   try { order = JSON.parse(localStorage.getItem('nl_crm_widget_order')); if(!Array.isArray(order)||!order.length) order=null; }
@@ -2286,6 +2369,12 @@ function buildDashWidgets(typeRows, hpRows, agentRows) {
   const handle = '';
   const _td2 = new Date().toISOString().slice(0,10);
   const WIDGETS = {
+    'w-attention': `<div class="card dash-widget" data-widget-id="w-attention" draggable="true">
+      <div class="card-header"><span class="card-title">Needs Your Attention</span><span id="attn-count"></span>${handle}</div>
+      <div id="attn-feed-body" style="display:flex;flex-direction:column;gap:2px">
+        <div style="padding:20px 0;text-align:center;color:var(--muted);font-size:12px">Loading…</div>
+      </div>
+    </div>`,
     'w-types': `<div class="card dash-widget" data-widget-id="w-types" draggable="true">
       <div class="card-header"><span class="card-title">Institutions by Type</span>${handle}</div>
       <div style="display:flex;flex-direction:column;gap:4px">${typeRows}</div>
@@ -2615,6 +2704,19 @@ function renderDetail() {
   if(!inst.id) { nav('institutions'); return; }
   const contacts = contactsForInst(inst.id);
 
+  // Cross-reference against the same sourced lists that back the 4GU and
+  // Barcelona Declaration tabs, so membership/signatory status surfaces
+  // directly on the institution card instead of requiring a separate visit
+  // to those tabs to notice the connection.
+  const fourGUEntry = FOURGU_MEMBERS.find(m => m.instId === inst.id);
+  const barcelonaSigned = BARCELONA_SIGNED.find(s => s.instId === inst.id);
+  const barcelonaNotSigned = !barcelonaSigned && BARCELONA_NOT_SIGNED.find(s => s.instId === inst.id);
+  const networkBadges = [
+    fourGUEntry ? `<span onclick="event.stopPropagation();nav('4gu')" style="cursor:pointer;background:rgba(96,165,250,.12);color:#60a5fa;border:1px solid rgba(96,165,250,.3);border-radius:20px;padding:3px 10px;font-size:11px;font-weight:700;display:inline-flex;align-items:center;gap:4px" title="View 4GU tab">🌐 4GU ${esc(fourGUEntry.roles.join(' + '))}</span>` : '',
+    barcelonaSigned ? `<span onclick="event.stopPropagation();nav('barcelona')" style="cursor:pointer;background:rgba(139,92,246,.12);color:#a78bfa;border:1px solid rgba(139,92,246,.3);border-radius:20px;padding:3px 10px;font-size:11px;font-weight:700;display:inline-flex;align-items:center;gap:4px" title="View Barcelona Declaration tab">📋 Barcelona Decl. signed</span>`
+      : barcelonaNotSigned ? `<span onclick="event.stopPropagation();nav('barcelona')" style="cursor:pointer;background:rgba(255,255,255,.05);color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 10px;font-size:11px;font-weight:600" title="View Barcelona Declaration tab">📋 Barcelona Decl. not signed</span>` : '',
+  ].filter(Boolean).join('');
+
   document.getElementById('page-title').textContent = inst.short || inst.name;
   document.getElementById('page-sub').textContent = inst.city + ' · ' + (TYPE_LABEL[inst.type]||inst.type);
   document.getElementById('topbar-actions').innerHTML = `
@@ -2668,6 +2770,7 @@ function renderDetail() {
               <span class="badge b-${inst.type}">${TYPE_LABEL[inst.type]||inst.type}</span>
               <span style="font-size:12px;color:var(--muted)"><span style="display:inline-flex;vertical-align:middle;margin-right:3px;opacity:.55"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span> ${esc(inst.city)}</span>
               ${inst.founded?`<span style="font-size:12px;color:var(--muted)">Est. ${inst.founded}</span>`:''}
+              ${networkBadges}
             </div>
           </div>
         </div>
@@ -6080,44 +6183,50 @@ window.discardPending = function(id) {
 
 /* ═══════════════════════════════════════════════════════════════════════════
    FEATURE 2 — BARCELONA DECLARATION TRACKER
+   BARCELONA_SIGNED / BARCELONA_NOT_SIGNED are top-level (not local to
+   renderBarcelonaDecl) so renderDetail() can cross-reference an institution's
+   signatory status by instId when rendering its own page.
    ═══════════════════════════════════════════════════════════════════════════ */
+// Full Dutch signatory data (source: barcelona-declaration.org/signatories/)
+const BARCELONA_SIGNED = [
+    { name:'Delft University of Technology',          instId:'tudelft', type:'university', date:'2024-04-16', scopusRisk:'High', source:'https://barcelona-declaration.org/signatories/', note:'Launch-day signatory.' },
+    { name:'Leiden University',                        instId:'leiden', type:'university', date:'2024-04-16', scopusRisk:'High', source:'https://barcelona-declaration.org/signatories/', note:'Launch-day signatory, co-drafter.' },
+    { name:'University of Amsterdam',                  instId:'uva', type:'university', date:'2024-04-16', scopusRisk:'High', source:'https://barcelona-declaration.org/signatories/', note:'Launch-day signatory.' },
+    { name:'University of Groningen',                  instId:'rug', type:'university', date:'2024-04-16', scopusRisk:'High', source:'https://www.rug.nl/about-ug/latest-news/news/archief2024/nieuwsberichten/0416-barcelona-declaration', note:'Signed on launch day.' },
+    { name:'Utrecht University',                       instId:'uu', type:'university', date:'2024-04-16', scopusRisk:'High', source:'https://barcelona-declaration.org/signatories/', note:'Launch-day signatory.' },
+    { name:'Vrije Universiteit Amsterdam',             instId:'vu', type:'university', date:'2024-04-16', scopusRisk:'High', source:'https://vu.nl/en/news/2024/barcelona-declaration-important-step-for-vu-towards-open-research-information', note:'Signed on launch day.' },
+    { name:'Maastricht University',                    instId:'um', type:'university', date:'2026-06-12', scopusRisk:'Critical', source:'https://www.maastrichtuniversity.nl/news/maastricht-university-signs-barcelona-declaration-open-research-information-0', note:'Signed Jun 2026. Also cancelling Scopus from Jan 2027 and signed OpenAlex Partner subscription.' },
+    { name:'Universities of the Netherlands (UNL)',    instId:null, type:'association', date:'2024-04-16', scopusRisk:'High', source:'https://barcelona-declaration.org/signatories/', note:'National umbrella — implies sector-wide intent.' },
+    { name:'Netherlands Association of UAS',           instId:null, type:'association', date:'2024-04-16', scopusRisk:'Medium', source:'https://barcelona-declaration.org/signatories/', note:'Hogescholen network.' },
+    { name:'Dutch Research Council (NWO)',             instId:'nwo', type:'funder',     date:'2024-04-16', scopusRisk:'High', source:'https://barcelona-declaration.org/signatories/', note:'Major research funder — will shape grant conditions.' },
+    { name:'ZonMw',                                    instId:null, type:'funder',     date:'2024-04-16', scopusRisk:'Medium', source:'https://barcelona-declaration.org/signatories/', note:'Health research funder.' },
+    { name:'Taskforce for Applied Research SIA',       instId:null, type:'funder',     date:'2024-04-16', scopusRisk:'Medium', source:'https://barcelona-declaration.org/signatories/', note:'' },
+    { name:'KNAW',                                     instId:'knaw', type:'academy',    date:'2024-04-16', scopusRisk:'Medium', source:'https://barcelona-declaration.org/signatories/', note:'Royal Netherlands Academy.' },
+    { name:'Netherlands eScience Center',              instId:'esc', type:'research',   date:'2024-04-16', scopusRisk:'Medium', source:'https://barcelona-declaration.org/signatories/', note:'' },
+    { name:'SURF',                                     instId:null, type:'infra',      date:'2024-04-16', scopusRisk:'Low',    source:'https://barcelona-declaration.org/signatories/', note:'National IT infrastructure.' },
+    { name:'KB – National Library of Netherlands',     instId:null, type:'library',    date:'2024-04-16', scopusRisk:'Low',    source:'https://barcelona-declaration.org/signatories/', note:'' },
+    { name:'Digital Competence Center (DCC-PO)',       instId:null, type:'other',      date:'2024-04-16', scopusRisk:'Low',    source:'https://barcelona-declaration.org/signatories/', note:'' },
+    { name:'Dutch Reproducibility Network (NLRN)',     instId:null, type:'other',      date:'2024-04-16', scopusRisk:'Low',    source:'https://barcelona-declaration.org/signatories/', note:'' },
+];
+
+const BARCELONA_NOT_SIGNED = [
+    { name:'Erasmus University Rotterdam',         instId:'eur', type:'university', note:'No public commitment yet.' },
+    { name:'Wageningen University & Research',     instId:'wur', type:'university', note:'No public commitment yet.' },
+    { name:'University of Twente',                 instId:'ut', type:'university', note:'No public commitment yet.' },
+    { name:'Eindhoven University of Technology',   instId:'tue', type:'university', note:'No public commitment yet.' },
+    { name:'Radboud University',                   instId:'ru', type:'university', note:'No public commitment yet.' },
+    { name:'Tilburg University',                   instId:'tiu', type:'university', note:'No public commitment yet.' },
+    { name:'Amsterdam UMC',                        instId:'aumc', type:'medical',    note:'Medical centres not yet on declaration.' },
+    { name:'Erasmus MC',                           instId:'erasmusmc', type:'medical',    note:'Medical centres not yet on declaration.' },
+    { name:'UMC Utrecht',                          instId:'umcutrecht', type:'medical',    note:'Medical centres not yet on declaration.' },
+];
+
 function renderBarcelonaDecl() {
   document.getElementById('page-title').textContent = 'Barcelona Declaration';
   document.getElementById('page-sub').textContent = 'Tracking which Dutch institutions have committed to open research information — a direct threat to Scopus';
 
-  // Full Dutch signatory data (source: barcelona-declaration.org/signatories/)
-  const SIGNED = [
-    { name:'Delft University of Technology',          type:'university', date:'2024-04-16', scopusRisk:'High', source:'https://barcelona-declaration.org/signatories/', note:'Launch-day signatory.' },
-    { name:'Leiden University',                        type:'university', date:'2024-04-16', scopusRisk:'High', source:'https://barcelona-declaration.org/signatories/', note:'Launch-day signatory, co-drafter.' },
-    { name:'University of Amsterdam',                  type:'university', date:'2024-04-16', scopusRisk:'High', source:'https://barcelona-declaration.org/signatories/', note:'Launch-day signatory.' },
-    { name:'University of Groningen',                  type:'university', date:'2024-04-16', scopusRisk:'High', source:'https://www.rug.nl/about-ug/latest-news/news/archief2024/nieuwsberichten/0416-barcelona-declaration', note:'Signed on launch day.' },
-    { name:'Utrecht University',                       type:'university', date:'2024-04-16', scopusRisk:'High', source:'https://barcelona-declaration.org/signatories/', note:'Launch-day signatory.' },
-    { name:'Vrije Universiteit Amsterdam',             type:'university', date:'2024-04-16', scopusRisk:'High', source:'https://vu.nl/en/news/2024/barcelona-declaration-important-step-for-vu-towards-open-research-information', note:'Signed on launch day.' },
-    { name:'Maastricht University',                    type:'university', date:'2026-06-12', scopusRisk:'Critical', source:'https://www.maastrichtuniversity.nl/news/maastricht-university-signs-barcelona-declaration-open-research-information-0', note:'Signed Jun 2026. Also cancelling Scopus from Jan 2027 and signed OpenAlex Partner subscription.' },
-    { name:'Universities of the Netherlands (UNL)',    type:'association', date:'2024-04-16', scopusRisk:'High', source:'https://barcelona-declaration.org/signatories/', note:'National umbrella — implies sector-wide intent.' },
-    { name:'Netherlands Association of UAS',           type:'association', date:'2024-04-16', scopusRisk:'Medium', source:'https://barcelona-declaration.org/signatories/', note:'Hogescholen network.' },
-    { name:'Dutch Research Council (NWO)',             type:'funder',     date:'2024-04-16', scopusRisk:'High', source:'https://barcelona-declaration.org/signatories/', note:'Major research funder — will shape grant conditions.' },
-    { name:'ZonMw',                                    type:'funder',     date:'2024-04-16', scopusRisk:'Medium', source:'https://barcelona-declaration.org/signatories/', note:'Health research funder.' },
-    { name:'Taskforce for Applied Research SIA',       type:'funder',     date:'2024-04-16', scopusRisk:'Medium', source:'https://barcelona-declaration.org/signatories/', note:'' },
-    { name:'KNAW',                                     type:'academy',    date:'2024-04-16', scopusRisk:'Medium', source:'https://barcelona-declaration.org/signatories/', note:'Royal Netherlands Academy.' },
-    { name:'Netherlands eScience Center',              type:'research',   date:'2024-04-16', scopusRisk:'Medium', source:'https://barcelona-declaration.org/signatories/', note:'' },
-    { name:'SURF',                                     type:'infra',      date:'2024-04-16', scopusRisk:'Low',    source:'https://barcelona-declaration.org/signatories/', note:'National IT infrastructure.' },
-    { name:'KB – National Library of Netherlands',     type:'library',    date:'2024-04-16', scopusRisk:'Low',    source:'https://barcelona-declaration.org/signatories/', note:'' },
-    { name:'Digital Competence Center (DCC-PO)',       type:'other',      date:'2024-04-16', scopusRisk:'Low',    source:'https://barcelona-declaration.org/signatories/', note:'' },
-    { name:'Dutch Reproducibility Network (NLRN)',     type:'other',      date:'2024-04-16', scopusRisk:'Low',    source:'https://barcelona-declaration.org/signatories/', note:'' },
-  ];
-
-  const NOT_SIGNED = [
-    { name:'Erasmus University Rotterdam',         type:'university', note:'No public commitment yet.' },
-    { name:'Wageningen University & Research',     type:'university', note:'No public commitment yet.' },
-    { name:'University of Twente',                 type:'university', note:'No public commitment yet.' },
-    { name:'Eindhoven University of Technology',   type:'university', note:'No public commitment yet.' },
-    { name:'Radboud University',                   type:'university', note:'No public commitment yet.' },
-    { name:'Tilburg University',                   type:'university', note:'No public commitment yet.' },
-    { name:'Amsterdam UMC',                        type:'medical',    note:'Medical centres not yet on declaration.' },
-    { name:'Erasmus MC',                           type:'medical',    note:'Medical centres not yet on declaration.' },
-    { name:'UMC Utrecht',                          type:'medical',    note:'Medical centres not yet on declaration.' },
-  ];
+  const SIGNED = BARCELONA_SIGNED;
+  const NOT_SIGNED = BARCELONA_NOT_SIGNED;
 
   const riskColor = { Critical:'#ef4444', High:'#f97316', Medium:'#f59e0b', Low:'#10b981' };
   const typeIcon = { university:'🎓', funder:'💰', academy:'🏛', research:'🔬', infra:'🖥', library:'📚', association:'🤝', other:'•', medical:'🏥' };
@@ -6242,18 +6351,16 @@ function renderBarcelonaDecl() {
    4thgenuniversity.com only publishes its 11-seat board roster by name; the
    wider "80+ university members from 30+ countries" isn't listed anywhere on
    the site, so this tracks board membership (the only verifiable member data)
-   and cross-checks it against our own tracked institutions.
+   and cross-checks it against our own tracked institutions. FOURGU_MEMBERS is
+   top-level (not local to render4GU) so renderDetail() can cross-reference an
+   institution's 4GU role by instId when rendering its own page.
    ═══════════════════════════════════════════════════════════════════════════ */
-function render4GU() {
-  document.getElementById('page-title').textContent = '4GU';
-  document.getElementById('page-sub').textContent = '4th Generation University community — an innovation-ecosystem network for universities, with Elsevier as a supporting partner';
-
-  // 4thgenuniversity.com never publishes its full "80+ university members from
-  // 30+ countries" roster. These are the only two named, sourced institution
-  // lists that exist: the current board (4thgenuniversity.com/members) and the
-  // founding group that helped draft the 4GU framework (4GU-Brochure.pdf). An
-  // institution can appear on either, both, or neither — 'roles' tracks which.
-  const MEMBERS = [
+// 4thgenuniversity.com never publishes its full "80+ university members from
+// 30+ countries" roster. These are the only two named, sourced institution
+// lists that exist: the current board (4thgenuniversity.com/members) and the
+// founding group that helped draft the 4GU framework (4GU-Brochure.pdf). An
+// institution can appear on either, both, or neither — 'roles' tracks which.
+const FOURGU_MEMBERS = [
     { name:'Aalto University',                                  country:'Finland',         roles:['Board','Founding Group'], rep:'Janne Laine',        instId:null },
     { name:'Brno University of Technology',                     country:'Czech Republic',  roles:['Founding Group'],         rep:null,                  instId:null },
     { name:'Eindhoven University of Technology',                country:'Netherlands',     roles:['Board','Founding Group'], rep:'Silvia Lenaerts',     instId:'tue' },
@@ -6270,8 +6377,13 @@ function render4GU() {
     { name:'University College Dublin',                         country:'Ireland',         roles:['Founding Group'],         rep:null,                  instId:null },
     { name:'University of Auckland',                            country:'New Zealand',     roles:['Board','Founding Group'], rep:'Dawn Freshwater',     instId:null },
     { name:'Western Sydney University',                         country:'Australia',       roles:['Founding Group'],         rep:null,                  instId:null },
-  ].sort((a,b) => a.name.localeCompare(b.name));
+].sort((a,b) => a.name.localeCompare(b.name));
 
+function render4GU() {
+  document.getElementById('page-title').textContent = '4GU';
+  document.getElementById('page-sub').textContent = '4th Generation University community — an innovation-ecosystem network for universities, with Elsevier as a supporting partner';
+
+  const MEMBERS = FOURGU_MEMBERS;
   const nlCount = MEMBERS.filter(m => m.instId).length;
   const flagUrl = country => `https://flagcdn.com/24x18/${({
     'Australia':'au','UK':'gb','New Zealand':'nz','Brazil':'br','Germany':'de','Japan':'jp',
