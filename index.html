@@ -948,6 +948,9 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
     <div class="nav-item" data-view="openalex" onclick="nav('openalex')">
       <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><line x1="2" y1="12" x2="22" y2="12"/></svg></div> OpenAlex
     </div>
+    <div class="nav-item" data-view="4gu" onclick="nav('4gu')">
+      <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.2"/><circle cx="5" cy="19" r="2.2"/><circle cx="19" cy="19" r="2.2"/><line x1="10.8" y1="6.8" x2="6.2" y2="17.2"/><line x1="13.2" y1="6.8" x2="17.8" y2="17.2"/><line x1="7.2" y1="19" x2="16.8" y2="19"/></svg></div> 4GU
+    </div>
     <div class="sb-divider"></div>
     <div class="nav-section">Data</div>
     <div class="nav-item nav-item-sync-contacts" data-admin-only onclick="syncContacts()" title="Import new contacts from CSV">
@@ -2049,6 +2052,7 @@ function render() {
     'ai-insights': renderCompetitorInsights,
     openalex: renderOpenAlex,
     barcelona: renderBarcelonaDecl,
+    '4gu': render4GU,
   };
   (views[state.view] || renderDashboard)();
   applyRoleUI();
@@ -6229,6 +6233,118 @@ function renderBarcelonaDecl() {
 
     <div style="font-size:11px;color:#475569;text-align:center">
       Source: <a href="https://barcelona-declaration.org/signatories/" target="_blank" style="color:#60a5fa">barcelona-declaration.org/signatories/</a> · Last checked August 2026
+    </div>
+  </div>`;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FEATURE 2b — 4GU (4TH GENERATION UNIVERSITY) COMMUNITY TRACKER
+   4thgenuniversity.com only publishes its 11-seat board roster by name; the
+   wider "80+ university members from 30+ countries" isn't listed anywhere on
+   the site, so this tracks board membership (the only verifiable member data)
+   and cross-checks it against our own tracked institutions.
+   ═══════════════════════════════════════════════════════════════════════════ */
+function render4GU() {
+  document.getElementById('page-title').textContent = '4GU';
+  document.getElementById('page-sub').textContent = '4th Generation University community — an innovation-ecosystem network for universities, with Elsevier as a supporting partner';
+
+  const BOARD = [
+    { name:'Torrens University',                              country:'Australia',    rep:'Aleks Subic (Chair)', instId:null },
+    { name:'Strathclyde University',                          country:'UK',            rep:'Tim Bedford',         instId:null },
+    { name:'Newcastle University',                            country:'UK',            rep:'Chris Day',           instId:null },
+    { name:'University of Auckland',                          country:'New Zealand',   rep:'Dawn Freshwater',     instId:null },
+    { name:'Universidade Estadual de Campinas',                country:'Brazil',        rep:'Renato Garcia',       instId:null },
+    { name:'Karlsruhe Institute of Technology',                country:'Germany',       rep:'Jan Hesthaven',       instId:null },
+    { name:'Japan Advanced Institute of Science and Technology',country:'Japan',        rep:'Amane Koizumi',       instId:null },
+    { name:'Aalto University',                                 country:'Finland',       rep:'Janne Laine',         instId:null },
+    { name:'Eindhoven University of Technology',               country:'Netherlands',   rep:'Silvia Lenaerts',     instId:'tue' },
+    { name:'Okinawa Institute of Science and Technology',      country:'Japan',         rep:'Karen Markides',      instId:null },
+    { name:'Shenzhen Institute of Advanced Technology',        country:'China',         rep:'Wei Zhao',            instId:null },
+    { name:'Elsevier',                                         country:'Supporting org',rep:'Nick Fowler',         instId:null },
+  ];
+
+  const nlBoardCount = BOARD.filter(b => b.instId).length;
+  const flagUrl = country => `https://flagcdn.com/24x18/${({
+    'Australia':'au','UK':'gb','New Zealand':'nz','Brazil':'br','Germany':'de','Japan':'jp',
+    'Finland':'fi','Netherlands':'nl','China':'cn'
+  }[country] || 'xx')}.png`;
+
+  const rows = BOARD.map(b => {
+    const isTracked = !!b.instId;
+    const onclick = isTracked
+      ? `onclick="nav('detail',{instId:'${b.instId}'})" style="cursor:pointer"`
+      : `onclick="window.open('https://4thgenuniversity.com/members','_blank')" style="cursor:pointer"`;
+    return `<tr ${onclick} style="border-bottom:1px solid rgba(255,255,255,0.05)" onmouseover="this.style.background='rgba(255,255,255,.02)'" onmouseout="this.style.background=''">
+      <td style="padding:11px 14px">
+        <div style="color:#e2e8f0;font-size:13px;font-weight:600">${esc(b.name)}</div>
+        <div style="color:#64748b;font-size:11px;margin-top:2px">${esc(b.rep)}</div>
+      </td>
+      <td style="padding:11px 14px;color:#94a3b8;font-size:12px;white-space:nowrap">
+        ${b.country !== 'Supporting org' ? `<img src="${flagUrl(b.country)}" width="18" height="13" style="vertical-align:middle;margin-right:6px;border-radius:2px" onerror="this.style.display='none'">` : ''}${esc(b.country)}
+      </td>
+      <td style="padding:11px 14px;white-space:nowrap">
+        ${isTracked
+          ? `<span style="background:rgba(16,185,129,.1);color:#10b981;font-size:11px;font-weight:700;border:1px solid rgba(16,185,129,.3);border-radius:6px;padding:2px 9px">✓ In your CRM</span>`
+          : `<span style="background:rgba(255,255,255,.05);color:#64748b;font-size:11px;border:1px solid rgba(255,255,255,.08);border-radius:6px;padding:2px 9px">Not tracked</span>`}
+      </td>
+      <td style="padding:11px 14px">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" style="opacity:.6"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 0 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </td>
+    </tr>`;
+  }).join('');
+
+  const thStyle = 'padding:9px 14px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#475569;border-bottom:1px solid rgba(255,255,255,.08);white-space:nowrap';
+
+  document.getElementById('content').innerHTML = `
+  <div style="padding:24px;max-width:1050px">
+
+    <div style="display:flex;gap:14px;margin-bottom:24px;flex-wrap:wrap">
+      <div style="background:rgba(96,165,250,0.08);border:1px solid rgba(96,165,250,0.25);border-radius:12px;padding:16px 22px;flex:1;min-width:150px">
+        <div style="font-size:11px;color:#60a5fa;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Board institutions</div>
+        <div style="font-size:30px;font-weight:800;color:#e2e8f0">${BOARD.length}</div>
+        <div style="font-size:11px;color:#94a3b8;margin-top:2px">named on 4thgenuniversity.com</div>
+      </div>
+      <div style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.25);border-radius:12px;padding:16px 22px;flex:1;min-width:150px">
+        <div style="font-size:11px;color:#10b981;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">In your CRM</div>
+        <div style="font-size:30px;font-weight:800;color:#e2e8f0">${nlBoardCount}</div>
+        <div style="font-size:11px;color:#94a3b8;margin-top:2px">TU/e — founding board seat</div>
+      </div>
+      <div style="background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.25);border-radius:12px;padding:16px 22px;flex:1;min-width:150px">
+        <div style="font-size:11px;color:#a78bfa;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Wider community</div>
+        <div style="font-size:30px;font-weight:800;color:#e2e8f0">80<span style="font-size:16px;color:#64748b">+</span></div>
+        <div style="font-size:11px;color:#94a3b8;margin-top:2px">universities, 30+ countries — names not public</div>
+      </div>
+    </div>
+
+    <div style="background:rgba(96,165,250,0.05);border:1px solid rgba(96,165,250,0.2);border-radius:10px;padding:14px 18px;margin-bottom:22px;display:flex;gap:12px;align-items:flex-start">
+      <span style="font-size:18px;flex-shrink:0">🌐</span>
+      <div style="font-size:13px;color:#94a3b8;line-height:1.6">
+        <strong style="color:#93c5fd">What 4GU is:</strong> a community for universities that want to "orchestrate regional innovation ecosystems, achieving societal and economic impact through partnerships with industry, government, and civil society." Elsevier is a supporting organisation on the board. Eindhoven University of Technology (TU/e) holds one of the 11 board seats, represented by Silvia Lenaerts.
+        <br>The site names its board but not the full 80+ member roster — treat the table below as confirmed board membership, not the complete community.
+        <br><a href="https://4thgenuniversity.com/members" target="_blank" style="color:#60a5fa">Meet the 4GU board →</a> · <a href="https://4thgenuniversity.com/join-the-community" target="_blank" style="color:#60a5fa">Join the community →</a>
+      </div>
+    </div>
+
+    <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:14px;overflow:hidden;margin-bottom:24px">
+      <div style="padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:space-between">
+        <span style="color:#e2e8f0;font-weight:700;font-size:14px">4GU Board</span>
+        <a href="https://4thgenuniversity.com/members" target="_blank" style="font-size:12px;color:#60a5fa;text-decoration:none">Source: 4thgenuniversity.com/members →</a>
+      </div>
+      <div style="overflow-x:auto">
+        <table style="width:100%;border-collapse:collapse">
+          <thead><tr>
+            <th style="${thStyle}">Institution</th>
+            <th style="${thStyle}">Country</th>
+            <th style="${thStyle}">Status</th>
+            <th style="${thStyle}"></th>
+          </tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+    </div>
+
+    <div style="font-size:11px;color:#475569;text-align:center">
+      Source: <a href="https://4thgenuniversity.com/members" target="_blank" style="color:#60a5fa">4thgenuniversity.com/members</a> · Last checked August 2026
     </div>
   </div>`;
 }
