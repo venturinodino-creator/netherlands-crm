@@ -1,5 +1,18 @@
 [
   {
+    "id": "news-x3kz6g",
+    "title": "UMC Utrecht krijgt 2,8 miljoen voor kankeronderzoek",
+    "description": "UMC Utrecht has been awarded €2.8 million in funding for cancer research. The award was reported by healthcare outlet Zorgvisie/Skipr in mid-August 2026.",
+    "institution": "UMC Utrecht",
+    "category": "funding",
+    "categoryLabel": "Funding Received",
+    "url": "https://www.zorgvisie.nl/skipr/umc-utrecht-krijgt-28-miljoen-voor-kankeronderzoek/",
+    "sourceName": "Zorgvisie (Skipr)",
+    "publishedDate": null,
+    "foundDate": "2026-08-19",
+    "autoDiscovered": true
+  },
+  {
     "id": "news-utn4tc",
     "title": "FAO, Wageningen Researchers Review Broad Range of AI Food Safety Applications",
     "description": "Researchers from the UN Food and Agriculture Organization and Wageningen published a review surveying the range of artificial intelligence applications being used across food safety. The review covers AI use cases relevant to food safety monitoring and assessment.",
