@@ -1131,7 +1131,7 @@ function renderList(list){
     const score = SCORES[inst.id] || 70;
     const badge = BADGE_CLASS[inst.type] || 'badge-research';
     const label = BADGE_LABEL[inst.type] || inst.type;
-    return `<a class="inst-row" href="index.html?view=institutions" title="View ${inst.name} in CRM">
+    return `<a class="inst-row" href="index.html?view=detail&inst=${encodeURIComponent(inst.id)}" title="View ${inst.name} in CRM">
       <div class="score-ring">${scoreRing(score)}</div>
       <div class="inst-info">
         <div class="inst-name">${inst.name}</div>

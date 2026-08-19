@@ -3558,8 +3558,14 @@ async function onSignedIn(session) {
   }
   setUserBadge(session.user.email, state.currentRole);
   await load();
-  const requestedView = new URLSearchParams(location.search).get('view');
-  if (requestedView && document.querySelector(`[data-view="${requestedView}"]`)) {
+  const urlParams = new URLSearchParams(location.search);
+  const requestedView = urlParams.get('view');
+  const requestedInst = urlParams.get('inst');
+  if (requestedView === 'detail' && requestedInst && getInst(requestedInst).id) {
+    state.view = 'detail';
+    state.detailInstId = requestedInst;
+    document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active'));
+  } else if (requestedView && document.querySelector(`[data-view="${requestedView}"]`)) {
     state.view = requestedView;
     document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active'));
     document.querySelector(`[data-view="${requestedView}"]`).classList.add('active');
