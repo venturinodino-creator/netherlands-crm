@@ -1355,6 +1355,7 @@ const SEED_CONTACTS = [
 //  STATE 
 let state = {
   institutions: [],
+  researchFocus: {}, // instId -> {fields, sourceUrl, worksCount, ...} from data/research-focus.json
   contacts: [],
   opportunities: [],
   interactions: [],
@@ -1561,8 +1562,27 @@ function syncBadge(show, err) {
   el.style.color = err ? '#991b1b' : '#166534';
   el.textContent = err ? '  Sync error' : ' Synced';
 }
+// Loads data/research-focus.json (real OpenAlex-sourced research output data,
+// see scripts/research-focus-scan.js). Kept independent of the Supabase load
+// below — a Supabase outage shouldn't block this, and vice versa.
+async function loadResearchFocus() {
+  try {
+    const res = await fetch('/netherlands-crm/data/research-focus.json?t=' + Date.now());
+    if (res.ok) {
+      const json = await res.json();
+      state.researchFocus = (json && json.institutions) || {};
+      localStorage.setItem('nl_crm_research_focus', JSON.stringify(state.researchFocus));
+      return;
+    }
+  } catch (e) { /* fall through to cache below */ }
+  try {
+    const cached = localStorage.getItem('nl_crm_research_focus');
+    if (cached) state.researchFocus = JSON.parse(cached);
+  } catch (e) {}
+}
 async function load() {
   showLoadingScreen();
+  const researchFocusPromise = loadResearchFocus();
   try {
     const [instRows, contRows, oppRows, intRows, rfpRows] = await Promise.all([
       supaFetch('crm_institutions?select=*&order=name'),
@@ -1631,6 +1651,7 @@ async function load() {
     }
     toast('Working offline — changes will sync when connection restores', 'warn');
   }
+  await researchFocusPromise;
   hideLoadingScreen();
 }
 function save() {
@@ -1833,68 +1854,30 @@ function esc(s) { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').repl
 const TYPE_ICON = {university:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v12H2V10"/><path d="M6 10V3h12v7"/><path d="M12 10v12"/><path d="M2 10l10-7 10 7"/></svg>`, medical:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6v4"/><path d="M14 14h-4"/><path d="M14 18h-4"/><path d="M14 8h-4"/><path d="M18 12h2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2h2"/><path d="M18 22V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v18"/></svg>`, research:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/></svg>`, ngo:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`};
 const TYPE_LABEL = {university:'University', medical:'Medical Center', research:'Research Inst.', ngo:'NGO / Foundation'};
 const TYPE_COLORS_MAP = {university:'#1d4ed8', medical:'#991b1b', research:'#166534', ngo:'#7c3aed'};
-const RESEARCH_PALETTE = {'Engineering':'#3b82f6','Life Sciences':'#22c55e','Medicine':'#dc2626','Environment':'#16a34a','Social Sciences':'#f59e0b','Humanities':'#ec4899','Physics':'#8b5cf6','AI & Computing':'#06b6d4','Economics':'#ea580c','Agriculture':'#84cc16','Law & Policy':'#64748b','Mathematics':'#0ea5e9'};
-const INST_RESEARCH_FOCUS = {
-  // UNIVERSITIES
-  uva:[['Social Sciences',2],['Humanities',2],['AI & Computing',2],['Law & Policy',1],['Economics',1],['Life Sciences',1]],
-  vu:[['Social Sciences',2],['Life Sciences',2],['Medicine',1],['Humanities',1],['Economics',1],['Environment',1]],
-  eur:[['Economics',3],['Medicine',2],['Law & Policy',2],['Social Sciences',1],['Humanities',1]],
-  uu:[['Life Sciences',2],['Social Sciences',2],['Humanities',2],['Environment',1],['Medicine',1],['Law & Policy',1]],
-  leiden:[['Humanities',3],['Social Sciences',2],['Life Sciences',2],['Law & Policy',1],['Physics',1]],
-  rug:[['Life Sciences',2],['Social Sciences',2],['Medicine',1],['Economics',1],['Engineering',1],['Physics',1]],
-  ru:[['Social Sciences',2],['Life Sciences',2],['Medicine',2],['Humanities',1],['Physics',1],['AI & Computing',1]],
-  tudelft:[['Engineering',4],['AI & Computing',2],['Physics',2],['Mathematics',1],['Environment',1]],
-  tue:[['Engineering',3],['AI & Computing',2],['Physics',1],['Mathematics',1],['Life Sciences',1]],
-  ut:[['Engineering',3],['AI & Computing',2],['Physics',1],['Social Sciences',1],['Medicine',1]],
-  tiu:[['Social Sciences',3],['Law & Policy',2],['Economics',2],['Humanities',1],['AI & Computing',1]],
-  um:[['Medicine',2],['Economics',1],['Social Sciences',1],['Law & Policy',1],['Life Sciences',1]],
-  wur:[['Agriculture',4],['Life Sciences',3],['Environment',2],['Economics',1],['Social Sciences',1]],
-  ou:[['Social Sciences',3],['Humanities',2],['AI & Computing',1],['Law & Policy',1],['Economics',1]],
-
-  // MEDICAL CENTERS
-  aumc:[['Medicine',5],['Life Sciences',2],['AI & Computing',1],['Social Sciences',1],['Economics',1]],
-  erasmusmc:[['Medicine',5],['Life Sciences',2],['Economics',1],['AI & Computing',1],['Social Sciences',1]],
-  umcutrecht:[['Medicine',4],['Life Sciences',2],['AI & Computing',1],['Social Sciences',1],['Engineering',1]],
-  lumc:[['Medicine',4],['Life Sciences',2],['AI & Computing',1],['Social Sciences',1],['Engineering',1]],
-  umcg:[['Medicine',4],['Life Sciences',2],['AI & Computing',1],['Social Sciences',1],['Economics',1]],
-  radboudumc:[['Medicine',4],['Life Sciences',2],['AI & Computing',1],['Social Sciences',1],['Engineering',1]],
-  mumc:[['Medicine',4],['Life Sciences',2],['Social Sciences',1],['Economics',1],['AI & Computing',1]],
-  maxima:[['Medicine',5],['Life Sciences',3],['AI & Computing',1],['Social Sciences',1],['Law & Policy',1]],
-  nki:[['Medicine',4],['Life Sciences',2],['Physics',1],['AI & Computing',1],['Social Sciences',1]],
-  mmc:[['Medicine',4],['Life Sciences',1],['AI & Computing',1],['Engineering',1],['Social Sciences',1]],
-  sanquin:[['Medicine',3],['Life Sciences',3],['AI & Computing',1],['Social Sciences',1],['Engineering',1]],
-  aighd:[['Medicine',3],['Social Sciences',2],['Economics',1],['Law & Policy',1],['Life Sciences',1]],
-  princesmaxima:[['Medicine',5],['Life Sciences',3],['AI & Computing',1],['Social Sciences',1],['Law & Policy',1]],
-
-  // RESEARCH INSTITUTIONS
-  nwo:[['Engineering',1],['Life Sciences',1],['Medicine',1],['Social Sciences',1],['Humanities',1],['Economics',1],['AI & Computing',1]],
-  tno:[['Engineering',4],['AI & Computing',2],['Environment',2],['Physics',1],['Life Sciences',1]],
-  knaw:[['Humanities',3],['Social Sciences',2],['Life Sciences',2],['Environment',1],['Medicine',1]],
-  hubrecht:[['Life Sciences',5],['Medicine',2],['AI & Computing',1],['Physics',1],['Mathematics',1]],
-  nin:[['Medicine',4],['Life Sciences',2],['AI & Computing',1],['Physics',1],['Social Sciences',1]],
-  rivm:[['Medicine',3],['Environment',2],['Life Sciences',1],['AI & Computing',1],['Social Sciences',1]],
-  cwi:[['Mathematics',3],['AI & Computing',3],['Physics',1],['Engineering',1],['Life Sciences',1]],
-  esc:[['AI & Computing',4],['Engineering',2],['Environment',1],['Life Sciences',1],['Physics',1]],
-  deltares:[['Environment',4],['Engineering',2],['AI & Computing',1],['Life Sciences',1],['Mathematics',1]],
-  sron:[['Physics',4],['Environment',2],['Engineering',1],['AI & Computing',1],['Mathematics',1]],
-  nikhef:[['Physics',5],['Mathematics',1],['AI & Computing',1],['Engineering',1],['Medicine',1]],
-  astron:[['Physics',4],['Engineering',2],['AI & Computing',2],['Mathematics',1],['Environment',1]],
-  nioz:[['Environment',4],['Life Sciences',2],['Physics',1],['Engineering',1],['AI & Computing',1]],
-  knmi:[['Environment',4],['Physics',2],['Mathematics',1],['AI & Computing',1],['Engineering',1]],
-  naturalis:[['Life Sciences',4],['Environment',2],['AI & Computing',1],['Humanities',1],['Agriculture',1]],
-  nlr:[['Engineering',4],['AI & Computing',1],['Physics',1],['Environment',1],['Mathematics',1]],
-  pbl:[['Environment',3],['Social Sciences',2],['Economics',1],['Law & Policy',1],['Agriculture',1]],
-  cpb:[['Economics',4],['Social Sciences',1],['Law & Policy',1],['Mathematics',1],['Environment',1]],
-  rathenau:[['Social Sciences',4],['AI & Computing',1],['Law & Policy',1],['Humanities',1],['Medicine',1]],
-  scp:[['Social Sciences',5],['Economics',1],['Law & Policy',1],['Humanities',1],['Medicine',1]],
-
-  // NGOs / INTERNATIONAL LAW & POLICY BODIES
-  clingendael:[['Law & Policy',3],['Social Sciences',2],['Economics',1],['Environment',1],['Humanities',1]],
-  hiil:[['Law & Policy',4],['Social Sciences',1],['Economics',1],['AI & Computing',1],['Humanities',1]],
-  oxfamnovib:[['Social Sciences',3],['Law & Policy',2],['Economics',2],['Environment',1],['Agriculture',1]],
-  icj:[['Law & Policy',5],['Social Sciences',1],['Environment',1],['Economics',1],['Humanities',1]],
-  iiss:[['Law & Policy',3],['Social Sciences',2],['Humanities',1],['Economics',1],['Environment',1]],
+// Research Focus donut colors, keyed by OpenAlex "field" name (the standard
+// 26-field taxonomy OpenAlex classifies every work into). Data itself comes
+// from data/research-focus.json, generated by scripts/research-focus-scan.js
+// straight from the OpenAlex API — see buildInstResearchDonut() below.
+const OA_FIELD_COLORS = {
+  'Medicine':'#dc2626','Biochemistry, Genetics and Molecular Biology':'#22c55e',
+  'Computer Science':'#06b6d4','Engineering':'#3b82f6','Physics and Astronomy':'#8b5cf6',
+  'Environmental Science':'#16a34a','Social Sciences':'#f59e0b','Arts and Humanities':'#ec4899',
+  'Economics, Econometrics and Finance':'#ea580c','Business, Management and Accounting':'#f97316',
+  'Psychology':'#d946ef','Agricultural and Biological Sciences':'#84cc16','Chemistry':'#eab308',
+  'Materials Science':'#a3a3a3','Mathematics':'#0ea5e9','Earth and Planetary Sciences':'#15803d',
+  'Neuroscience':'#c026d3','Immunology and Microbiology':'#f43f5e','Pharmacology, Toxicology and Pharmaceutics':'#fb7185',
+  'Health Professions':'#f472b6','Nursing':'#fda4af','Dentistry':'#fbbf24','Veterinary':'#65a30d',
+  'Decision Sciences':'#7c3aed','Energy':'#facc15','Chemical Engineering':'#2563eb','Multidisciplinary':'#94a3b8',
 };
+// Deterministic fallback for any field name not in the curated map above, so
+// colors stay stable across reloads without needing every taxonomy label listed.
+const OA_FALLBACK_COLORS = ['#3b82f6','#22c55e','#dc2626','#f59e0b','#8b5cf6','#06b6d4','#ec4899','#84cc16'];
+function colorForField(name) {
+  if (OA_FIELD_COLORS[name]) return OA_FIELD_COLORS[name];
+  let h = 0;
+  for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) >>> 0;
+  return OA_FALLBACK_COLORS[h % OA_FALLBACK_COLORS.length];
+}
 const INST_COORDS = {
   uva:[52.3676,4.9041], vu:[52.3328,4.8651], eur:[51.9225,4.4792], uu:[52.0907,5.1214],
   leiden:[52.1601,4.4970], rug:[53.2194,6.5665], ru:[51.8126,5.8372], tudelft:[51.9986,4.3736],
@@ -2419,29 +2402,59 @@ function buildDashWidgets(typeRows, hpRows, agentRows) {
   return getDashWidgetOrder().map(id => WIDGETS[id] || '').join('');
 }
 
+// Research Focus donut, sourced from data/research-focus.json (real OpenAlex
+// institution.topic_share data — see scripts/research-focus-scan.js). Every
+// state this can be in links back to how the number was produced, so nothing
+// shown here is ever an unsourced guess.
 function buildInstResearchDonut(instId) {
-  const areas = INST_RESEARCH_FOCUS[instId];
-  if (!areas || !areas.length) return '';
-  const total = areas.reduce((s,[,w]) => s+w, 0);
-  if (!total) return '';
+  const rf = (state.researchFocus || {})[instId];
+  const foot = (inner) => '<div style="margin-top:10px;padding-top:8px;border-top:1px solid var(--border);font-size:10px;color:var(--muted)">'+inner+'</div>';
+
+  if (!rf) {
+    return '<div style="font-size:12px;color:var(--muted)">Research focus data hasn\'t loaded yet.</div>' +
+      foot('Source: <a href="https://openalex.org/institutions?search='+encodeURIComponent(getInst(instId).name||'')+'" target="_blank" style="color:var(--primary)">search OpenAlex</a> for this institution');
+  }
+  if (rf.fetchError) {
+    return '<div style="font-size:12px;color:var(--muted)">Research focus data temporarily unavailable (fetch error on last scan).</div>' +
+      foot('Source: <a href="https://openalex.org/institutions?search='+encodeURIComponent(getInst(instId).name||'')+'" target="_blank" style="color:var(--primary)">search OpenAlex</a> for this institution');
+  }
+  if (rf.notFound) {
+    return '<div style="font-size:12px;color:var(--muted)">'+(rf.reason ? esc(rf.reason) : 'No OpenAlex institution record found for this organisation.')+'</div>' +
+      foot('<a href="'+esc(rf.searchUrl||('https://openalex.org/institutions?search='+encodeURIComponent(getInst(instId).name||'')))+'" target="_blank" style="color:var(--primary)">Search OpenAlex directly ↗</a>');
+  }
+  const fields = rf.fields || [];
+  if (!fields.length) {
+    return '<div style="font-size:12px;color:var(--muted)">OpenAlex has no topic data indexed for this institution yet.</div>' +
+      foot('<a href="'+esc(rf.sourceUrl)+'" target="_blank" style="color:var(--primary)">View institution on OpenAlex ↗</a>');
+  }
+
+  const shown = fields.map(f => ({ name: f.name, pct: f.pct, color: colorForField(f.name) }));
+  const shownTotal = shown.reduce((s, f) => s + f.pct, 0);
+  const remainder = Math.round((100 - shownTotal) * 10) / 10;
+  const slices = remainder >= 1 ? shown.concat([{ name: 'Other fields', pct: remainder, color: '#475569' }]) : shown;
+
   const cx = 60, cy = 60, R = 48, r = 26;
   let angle = -Math.PI / 2, paths = '';
-  areas.forEach(([label, weight]) => {
-    const color = RESEARCH_PALETTE[label] || '#999';
-    const sweep = (weight / total) * 2 * Math.PI;
+  slices.forEach(s => {
+    const sweep = (s.pct / 100) * 2 * Math.PI;
     const end = angle + sweep;
     const large = sweep > Math.PI ? 1 : 0;
     const c0 = Math.cos(angle), s0 = Math.sin(angle), c1 = Math.cos(end), s1 = Math.sin(end);
-    paths += '<path d="M'+(cx+R*c0)+' '+(cy+R*s0)+' A'+R+' '+R+' 0 '+large+' 1 '+(cx+R*c1)+' '+(cy+R*s1)+' L'+(cx+r*c1)+' '+(cy+r*s1)+' A'+r+' '+r+' 0 '+large+' 0 '+(cx+r*c0)+' '+(cy+r*s0)+'Z" fill="'+color+'"/>';
+    paths += '<path d="M'+(cx+R*c0)+' '+(cy+R*s0)+' A'+R+' '+R+' 0 '+large+' 1 '+(cx+R*c1)+' '+(cy+R*s1)+' L'+(cx+r*c1)+' '+(cy+r*s1)+' A'+r+' '+r+' 0 '+large+' 0 '+(cx+r*c0)+' '+(cy+r*s0)+'Z" fill="'+s.color+'"/>';
     angle = end;
   });
   const svg = '<svg width="120" height="120" viewBox="0 0 120 120" style="flex-shrink:0">'+paths+'</svg>';
-  const legend = areas.map(([label, weight]) => {
-    const color = RESEARCH_PALETTE[label] || '#999';
-    const pct = Math.round(weight / total * 100);
-    return '<div style="display:flex;align-items:center;gap:6px"><div style="width:8px;height:8px;border-radius:2px;background:'+color+';flex-shrink:0"></div><span style="font-size:11px;color:var(--muted);flex:1">'+label+'</span><span style="font-size:11px;font-weight:600;color:var(--text)">'+pct+'%</span></div>';
+  const legend = slices.map(s => {
+    return '<div style="display:flex;align-items:center;gap:6px"><div style="width:8px;height:8px;border-radius:2px;background:'+s.color+';flex-shrink:0"></div><span style="font-size:11px;color:var(--muted);flex:1">'+esc(s.name)+'</span><span style="font-size:11px;font-weight:600;color:var(--text)">'+Math.round(s.pct)+'%</span></div>';
   }).join('');
-  return '<div style="display:flex;align-items:center;gap:16px">'+svg+'<div style="flex:1;display:flex;flex-direction:column;gap:5px">'+legend+'</div></div>';
+
+  const updated = rf.generatedAt ? new Date(rf.generatedAt).toLocaleDateString('en-GB',{year:'numeric',month:'short',day:'numeric'}) : '';
+  const footer = foot(
+    (rf.worksCount ? (rf.worksCount.toLocaleString()+' works indexed &middot; ') : '') +
+    'Source: <a href="'+esc(rf.sourceUrl)+'" target="_blank" style="color:var(--primary)">OpenAlex institution profile ↗</a>' +
+    (updated ? ' &middot; scanned '+updated : '')
+  );
+  return '<div><div style="display:flex;align-items:center;gap:16px">'+svg+'<div style="flex:1;display:flex;flex-direction:column;gap:5px">'+legend+'</div></div>'+footer+'</div>';
 }
 
 let _dashDragSrc = null;

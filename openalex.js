@@ -106,22 +106,27 @@
     });
   }
 
-  /* -- OpenAlex data ------------------------------------------------------ */
+  /* -- OpenAlex data -------------------------------------------------------
+     Re-verified against the live OpenAlex API on 2026-08-20 — every id in
+     this table previously either 404'd or pointed at the wrong institution
+     (e.g. 'University of Amsterdam' resolved to VU Amsterdam, and 'TU Delft'
+     resolved to UC Berkeley). See data/research-focus.json / scripts/
+     research-focus-scan.js for the same verified ids, refreshed weekly. --- */
   var DB = {
-    'Erasmus University Rotterdam':        { oa: 'I114027177', ror: '03h7bdz00', works: '121K' },
-    'Leiden University':                   { oa: 'I165104084', ror: '027bh9e22', works: '229K' },
-    'Radboud University':                  { oa: 'I145872427', ror: '016xsfp80', works: '163K' },
-    'Maastricht University':               { oa: 'I107981792', ror: '02jz4aj89', works: '91K'  },
-    'University of Groningen':             { oa: 'I114526713', ror: '012p63287', works: '211K' },
-    'University of Amsterdam':             { oa: 'I865915315', ror: '04dkp9463', works: '279K' },
-    'Eindhoven University of Technology':  { oa: 'I59714227',  ror: '000b6qs89', works: '111K' },
-    'Tilburg University':                  { oa: 'I41510801',  ror: '04b8v1s79', works: '53K'  },
-    'Wageningen University & Research':    { oa: 'I887414861', ror: '024jd2p48', works: '184K' },
-    'Open Universiteit':                   { oa: 'I154530485', ror: '031m71144', works: '17K'  },
-    'VU Amsterdam':                        { oa: 'I865747412', ror: '008xxew50', works: '176K' },
-    'Utrecht University':                  { oa: 'I151185163', ror: '04pp8hn57', works: '290K' },
-    'TU Delft':                            { oa: 'I95457486',  ror: '02e2c7k09', works: '155K' },
-    'University of Twente':                { oa: 'I33779607',  ror: '006hf6230', works: '77K'  },
+    'Erasmus University Rotterdam':        { oa: 'I913958620', ror: '057w15z03', works: '122K' },
+    'Leiden University':                   { oa: 'I121797337', ror: '027bh9e22', works: '151K' },
+    'Radboud University':                  { oa: 'I145872427', ror: '016xsfp80', works: '211K' },
+    'Maastricht University':               { oa: 'I34352273',  ror: '02jz4aj89', works: '130K' },
+    'University of Groningen':             { oa: 'I169381384', ror: '012p63287', works: '185K' },
+    'University of Amsterdam':             { oa: 'I887064364', ror: '04dkp9463', works: '241K' },
+    'Eindhoven University of Technology':  { oa: 'I83019370',  ror: '02c2kyt77', works: '98K'  },
+    'Tilburg University':                  { oa: 'I193700539', ror: '04b8v1s79', works: '49K'  },
+    'Wageningen University & Research':    { oa: 'I913481162', ror: '04qw24q55', works: '129K' },
+    'Open Universiteit':                   { oa: 'I7876267',   ror: '018dfmf50', works: '9K'   },
+    'VU Amsterdam':                        { oa: 'I865915315', ror: '008xxew50', works: '138K' },
+    'Utrecht University':                  { oa: 'I193662353', ror: '04pp8hn57', works: '241K' },
+    'TU Delft':                            { oa: 'I98358874',  ror: '02e2c7k09', works: '179K' },
+    'University of Twente':                { oa: 'I94624287',  ror: '006hf6230', works: '91K'  },
   };
 
   /* -- Observer + init ---------------------------------------------------- */
