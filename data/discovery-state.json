@@ -141,13 +141,31 @@
       "p12",
       "p13"
     ],
-    "leiden_page": 14
+    "leiden_page": 14,
+    "aumc_oa_id": "https://openalex.org/I2802928900",
+    "aumc": ["p1"],
+    "aumc_page": 2,
+    "erasmusmc_oa_id": "https://openalex.org/I2801952686",
+    "erasmusmc": ["p1"],
+    "erasmusmc_page": 2,
+    "umcutrecht_oa_id": "https://openalex.org/I3018483916",
+    "umcutrecht": ["p1"],
+    "umcutrecht_page": 2,
+    "umcg_oa_id": "https://openalex.org/I1334415907",
+    "umcg": ["p1"],
+    "umcg_page": 2,
+    "lumc_oa_id": "https://openalex.org/I2800006345",
+    "lumc": ["p1"],
+    "lumc_page": 2,
+    "radboudumc_oa_id": "https://openalex.org/I2802934949",
+    "radboudumc": ["p1"],
+    "radboudumc_page": 2,
+    "mumc_oa_id": "https://openalex.org/I2800191616",
+    "mumc": ["p1"],
+    "mumc_page": 2
   },
-  "lastRun": "2026-08-19T18:00:29.997Z",
+  "lastRun": "2026-08-20T00:00:00.000Z",
   "lastTypes": [
-    "university",
-    "medical",
-    "research",
-    "ngo"
+    "medical"
   ]
 }
