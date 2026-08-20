@@ -2454,7 +2454,7 @@ function buildInstResearchDonut(instId) {
     'Source: <a href="'+esc(rf.sourceUrl)+'" target="_blank" style="color:var(--primary)">OpenAlex institution profile ↗</a>' +
     (updated ? ' &middot; scanned '+updated : '')
   );
-  return '<div><div style="display:flex;align-items:center;gap:16px">'+svg+'<div style="flex:1;display:flex;flex-direction:column;gap:5px">'+legend+'</div></div>'+footer+'</div>';
+  return '<div><div style="display:flex;align-items:center;gap:16px;max-width:380px">'+svg+'<div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:5px">'+legend+'</div></div>'+footer+'</div>';
 }
 
 let _dashDragSrc = null;
