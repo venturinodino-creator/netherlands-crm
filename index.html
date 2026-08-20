@@ -2391,7 +2391,7 @@ function buildDashWidgets(typeRows, hpRows, agentRows) {
       ${hpRows}
     </div>`,
     'w-agents': `<div class="card dash-widget" data-widget-id="w-agents" draggable="true">
-      <div class="card-header"><span class="card-title">Agents Working For You</span><button class="btn btn-xs btn-outline" onclick="event.stopPropagation(); manageGhToken()" title="Connect or update the GitHub token used by Run now">${getGhToken() ? 'GitHub connected' : 'Connect GitHub'}</button>${handle}</div>
+      <div class="card-header"><span class="card-title">Agents Working For You</span>${handle}</div>
       ${agentRows}
     </div>`,
     'w-map': `<div class="card dash-widget" data-widget-id="w-map" draggable="true">
