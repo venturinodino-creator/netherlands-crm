@@ -1,3 +1,12 @@
+/**
+ * discover.js — NOT currently used by the cron. See .github/workflows/discover.yml,
+ * which now runs contact discovery as a Claude Code agent that reads real
+ * institution staff/library/research-office pages for a name+title+email
+ * together. This script is structurally unable to do that: its only source,
+ * the OpenAlex authors API, never returns an email address, and the CRM
+ * requires one before a contact enters the review queue — so every run here
+ * finds candidates and then discards all of them. Kept for reference only.
+ */
 import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 
 const PENDING_FILE = 'data/pending-contacts.json';
