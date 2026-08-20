@@ -16,10 +16,102 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Run OpenAlex subscription scan
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: node scripts/openalex-subscription-scan.js
+
+      # Runs as a Claude Code agent authenticated via a Claude Pro/Max
+      # subscription OAuth token (billed against subscription usage), not the
+      # pay-per-token Anthropic API. Generate the token locally with
+      # `claude setup-token` and store it as the CLAUDE_CODE_OAUTH_TOKEN repo secret.
+      - name: Run OpenAlex subscription scan (Claude Code agent)
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          claude_args: |
+            --max-turns 30
+            --allowedTools "Read,Edit,Write,WebSearch,Bash(node -e:*),Bash(date:*)"
+          prompt: |
+            You are researching OpenAlex (the open scholarly metadata index run by
+            OurResearch) subscription status for Netherlands research institutions,
+            for data/openalex-subscriptions.json in this repo's sales-intelligence CRM
+            (used by a competing publisher).
+
+            OpenAlex has four tiers: Free/API ($1/day rate-limited), Member
+            ($5,000/yr — admin dashboard, affiliation editor, unsub access), Member+
+            ($20,000/yr — increased API quotas, consulting hours), and Partner
+            (custom pricing — product roadmap influence, dedicated support).
+
+            Read data/openalex-subscriptions.json (a JSON array) — this is what's
+            already tracked for these institutions:
+            Eindhoven University of Technology (TU/e), Erasmus University Rotterdam,
+            Leiden University, Maastricht University, Open Universiteit, Radboud
+            University, Tilburg University, TU Delft, University of Amsterdam (UvA),
+            University of Groningen, University of Twente, Utrecht University, VU
+            Amsterdam, Wageningen University & Research, Amsterdam UMC, Erasmus MC,
+            UMC Utrecht, University Medical Center Groningen (UMCG), Radboudumc,
+            Maastricht UMC+, Leiden University Medical Centre (LUMC), Netherlands
+            Cancer Institute (NKI), Princess Máxima Center, Máxima Medical Centre,
+            Sanquin Research, Amsterdam Institute for Global Health and Development
+            (AIGHD), Dutch Research Council (NWO), Royal Netherlands Academy of Arts
+            and Sciences (KNAW), TNO, Centrum Wiskunde & Informatica (CWI),
+            Netherlands eScience Center, Netherlands Institute for Neuroscience,
+            Nikhef, RIVM, ASTRON, NIOZ, KNMI, Naturalis Biodiversity Center, NLR —
+            Netherlands Aerospace Centre, PBL Environmental Assessment Agency, CPB
+            Bureau for Economic Policy Analysis, Rathenau Institute, SCP, Clingendael
+            Institute, HiiL.
+
+            Search the web (institution library pages and news sections, press
+            releases, procurement/tender notices, OpenAlex's own blog and Community
+            Advisory Board notes on GitHub, LinkedIn posts from library staff,
+            relevant EU/NL open-science coverage) for CURRENT, VERIFIABLE evidence of:
+            1. Any of the above institutions confirming an OpenAlex Member/Member+/
+               Partner subscription that isn't already correctly recorded (a new
+               subscriber, a status upgrade, or a previously-unconfirmed price now
+               disclosed).
+            2. Any Dutch university, medical centre, or research institute NOT in the
+               list above that has confirmed an OpenAlex subscription.
+
+            The price/fee and the announcement or effective date are the most
+            important facts to capture — always include them if the source states
+            them, and use "not disclosed" if the source confirms a subscription but
+            not the amount. Never guess a price.
+
+            Rules:
+            - Never invent a subscription, price, or source. Only report what your
+              search actually surfaces, with a working source URL.
+            - For each genuinely new or updated finding, either append a new object
+              or update the existing matching one (matched by a slugified version of
+              the institution name) in data/openalex-subscriptions.json, with exactly
+              these fields:
+              {"id": "<slugified institution name, lowercase, hyphenated>", "inst":
+              "institution name", "type": "University"|"Medical Centre"|"NGO / Funder"|
+              "NGO / Research", "status": "subscriber"|"active", "tier": "Member"|
+              "Member+"|"Partner"|null, "annualFee": "e.g. $5,000 USD / year, or
+              Custom — price not disclosed, or null if status is not subscriber",
+              "announceDate": "YYYY-MM-DD or null", "effectiveDate": "YYYY-MM-DD or
+              null", "notes": "2-4 factual sentences: what was confirmed, by whom,
+              and any related signal like a Scopus/Web of Science cancellation",
+              "signal": "one short sentence for a table cell, e.g. 'CONFIRMED PAYING.
+              Member tier at $5,000/yr, effective March 2026.'", "sources": [{"label":
+              "...", "url": "..."}], "autoDiscovered": true, "foundDate": "today's
+              date, YYYY-MM-DD"}
+              Use status "active" only for an institution publicly and substantially
+              engaging with OpenAlex (e.g. built a library guide on it, cancelled
+              Scopus/WoS explicitly citing OpenAlex as the replacement) without a
+              confirmed paid subscription. When updating an existing entry, append
+              the new source to its "sources" array rather than discarding prior ones.
+            - Keep all other existing entries untouched.
+            - Overwrite data/openalex-scan-state.json with: {"lastRun": "<current UTC
+              ISO timestamp>", "lastAddedCount": <new entries added>,
+              "lastUpdatedCount": <existing entries updated>, "source": "Claude Code
+              agent (subscription)"}. Get the current timestamp by running `date -u
+              +%Y-%m-%dT%H:%M:%S.000Z` via Bash — don't guess it.
+            - Before finishing, validate both JSON files parse correctly by running
+              `node -e "JSON.parse(require('fs').readFileSync('data/openalex-subscriptions.json','utf8'))"`
+              and the same for data/openalex-scan-state.json. Fix any JSON syntax
+              errors before finishing.
+            - If you find nothing genuinely new or updated, still update
+              data/openalex-scan-state.json with lastAddedCount: 0,
+              lastUpdatedCount: 0, and the current timestamp — do not leave it stale.
+
       - name: Commit new OpenAlex subscription findings
         run: |
           git config user.email "actions@github.com"

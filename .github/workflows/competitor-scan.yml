@@ -16,10 +16,77 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Run competitor scan
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: node scripts/competitor-scan.js
+
+      # Runs as a Claude Code agent authenticated via a Claude Pro/Max
+      # subscription OAuth token (billed against subscription usage), not the
+      # pay-per-token Anthropic API. Generate the token locally with
+      # `claude setup-token` and store it as the CLAUDE_CODE_OAUTH_TOKEN repo secret.
+      - name: Run competitor scan (Claude Code agent)
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          claude_args: |
+            --max-turns 30
+            --allowedTools "Read,Edit,Write,WebSearch,Bash(node -e:*),Bash(date:*)"
+          prompt: |
+            You are the daily competitor-intelligence agent for this repo's CRM,
+            used by an Elsevier LeapSpace sales team.
+
+            LeapSpace is Elsevier's AI-assisted research workspace (launched Nov
+            2025), combining agentic AI, generative AI and retrieval-augmented
+            generation over ScienceDirect/Scopus content. It has 8 named
+            tabs/features, each with a fixed key used below:
+            - literatureSearch — Literature Search & Discovery: AI search returning
+              structured, referenced answers
+            - authorSearch — Author Search: finds collaborators, mentors, topic
+              contributors
+            - fundingDiscovery — Funding Discovery: active/recurring funding
+              opportunities from government/private funders
+            - writingCoach — Writing Coach: private drafting workspace that
+              pressure-tests claims and arguments
+            - trustClaimRadar — Trust Cards & Claim Radar: checks how a claim
+              aligns with its sources and the wider research landscape
+            - deepResearchReports — Deep Research Reports: longer-form analyses
+              surfacing patterns, contradictions and evidence gaps
+            - readingAssistant — Reading Assistant: conversational Q&A grounded in
+              one specific article or book chapter
+            - compareFeature — Compare: side-by-side tables breaking down papers by
+              goals, methods and results
+
+            Read data/leapspace-competitors.json (a JSON array) — this is what's
+            already tracked. Search the web for AI-powered research tools/products
+            (launched, updated, or newly relevant in roughly the last 30 days) that
+            compete with one or more of the features above. Real competitors only —
+            established companies or credible new launches, not speculative or
+            unrelated tools. Don't repeat an already-tracked company+product unless
+            reporting a significant new feature under a genuinely distinct product
+            name.
+
+            Rules:
+            - Never invent a company, product, URL, or fact. Only report what your
+              search actually surfaces, with a working source URL.
+            - For each new competing solution, append an object to data/leapspace-competitors.json
+              with exactly these fields:
+              {"id": "auto-<company>-<product>, lowercase, hyphenated, max 90 chars>",
+              "company": "...", "product": "...", "addedDate": "today's date,
+              YYYY-MM-DD", "elements": [one or more of the 8 keys above],
+              "howItCompetes": "2-4 factual sentences on what it does and which
+              LeapSpace tab(s) it challenges", "sourceUrl": "...", "sourceName": "...",
+              "autoDiscovered": true}
+            - Keep all existing entries untouched — only append new ones.
+            - Overwrite data/competitor-scan-state.json with: {"lastRun": "<current
+              UTC ISO timestamp>", "lastAddedCount": <number added this run>,
+              "source": "Claude Code agent (subscription)"}. Get the current
+              timestamp by running `date -u +%Y-%m-%dT%H:%M:%S.000Z` via Bash —
+              don't guess it.
+            - Before finishing, validate both JSON files parse correctly by running
+              `node -e "JSON.parse(require('fs').readFileSync('data/leapspace-competitors.json','utf8'))"`
+              and the same for data/competitor-scan-state.json. Fix any JSON syntax
+              errors before finishing.
+            - If you find zero genuinely new competitors, still update
+              data/competitor-scan-state.json with lastAddedCount: 0 and the current
+              timestamp — do not leave it stale.
+
       - name: Commit new competitor insights
         run: |
           git config user.email "actions@github.com"

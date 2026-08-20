@@ -1,15 +1,25 @@
 /**
- * news-scan.js — Daily Netherlands research news scan
- * Calls the Claude API (web search tool) to find recent news specifically
- * naming the CRM's tracked Dutch institutions — AI development/adoption,
- * funding received, and Netherlands research policy — and writes findings
- * to data/news.json.
+ * news-scan.js — Daily Netherlands research news scan (NOT currently used by
+ * the cron — see .github/workflows/news-scan.yml, which now runs this task
+ * as a Claude Code agent billed against a Claude subscription instead of a
+ * metered API key). Kept as a free, zero-dependency fallback: queries Google
+ * News RSS directly (per institution, per category) and keyword-filters the
+ * results, matching institution names against tracked SEED_INSTITUTIONS.
+ * Writes findings to data/news.json.
  *
- * Replaces the old client-side approach (scraping Google News RSS from the
- * browser via a public CORS proxy), which broke when news.google.com started
- * rate-limiting/blocking proxy traffic outright.
+ * This is the same Google News RSS approach the CRM originally used, but run
+ * server-side (GitHub Actions) instead of client-side — the earlier version
+ * broke because a browser can't fetch news.google.com directly (CORS) and
+ * had to go through a public proxy that started rate-limiting/blocking it.
+ * A server-side fetch has no CORS restriction, so no proxy is needed and no
+ * API key or paid service is involved.
  *
- * Requires ANTHROPIC_API_KEY in the environment.
+ * Trade-off vs. the Claude agent version: no AI summarization or judgment
+ * call on relevance — this reports raw matching headlines, keyword-
+ * categorized, for a human to skim. Categorization is a heuristic, not a
+ * verified read of the article. Useful as a manual/offline check if the
+ * Claude agent workflow is ever unavailable.
+ *
  * Run: node scripts/news-scan.js
  */
 
@@ -17,9 +27,9 @@ import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 
 const DATA_FILE = 'data/news.json';
 const STATE_FILE = 'data/news-scan-state.json';
-const API_KEY = process.env.ANTHROPIC_API_KEY;
-const MODEL = 'claude-opus-5';
 const MAX_STORED_ARTICLES = 300;
+const MAX_AGE_DAYS = 14;
+const REQUEST_DELAY_MS = 350;
 
 // Keep in sync with SEED_INSTITUTIONS in index.html
 const NL_UNIVERSITIES = [
@@ -36,14 +46,14 @@ const NL_MEDICAL = [
   'Sanquin Research', 'Amsterdam Institute for Global Health and Development',
 ];
 const NL_RESEARCH = [
-  'Dutch Research Council (NWO)', 'TNO', 'Royal Netherlands Academy of Arts and Sciences (KNAW)',
+  'Dutch Research Council', 'TNO', 'Royal Netherlands Academy of Arts and Sciences',
   'Hubrecht Institute', 'Netherlands Institute for Neuroscience', 'RIVM',
-  'Centrum Wiskunde & Informatica (CWI)', 'Netherlands eScience Center', 'Deltares',
+  'Centrum Wiskunde & Informatica', 'Netherlands eScience Center', 'Deltares',
   'SRON Netherlands Institute for Space Research', 'Nikhef',
-  'ASTRON — Netherlands Institute for Radio Astronomy', 'NIOZ Royal Netherlands Institute for Sea Research',
-  'KNMI', 'Naturalis Biodiversity Center', 'NLR — Netherlands Aerospace Centre',
+  'ASTRON', 'NIOZ Royal Netherlands Institute for Sea Research',
+  'KNMI', 'Naturalis Biodiversity Center', 'NLR Netherlands Aerospace Centre',
   'PBL Netherlands Environmental Assessment Agency', 'CPB Netherlands Bureau for Economic Policy Analysis',
-  'Rathenau Institute', 'SCP — Netherlands Institute for Social Research',
+  'Rathenau Institute', 'SCP Netherlands Institute for Social Research',
 ];
 const ALL_INSTITUTIONS = [...NL_UNIVERSITIES, ...NL_MEDICAL, ...NL_RESEARCH];
 
@@ -51,17 +61,25 @@ const CATEGORIES = [
   {
     key: 'ai_adoption',
     label: 'AI Development & Adoption',
-    instructions: `Search for recent (last ~14 days) news specifically about ONE of these named Dutch institutions developing, piloting, adopting, or announcing an AI system, tool, or AI-driven research initiative. The article MUST name one of these institutions specifically — do NOT include generic "Netherlands AI" stories that don't name one of them:\n${ALL_INSTITUTIONS.join(', ')}`,
+    perInstitution: true,
+    queryFor: (inst) => `"${inst}" (AI OR "artificial intelligence" OR "machine learning")`,
   },
   {
     key: 'funding',
     label: 'Funding Received',
-    instructions: `Search for recent (last ~14 days) news about ONE of these named Dutch institutions receiving a research grant, subsidy, or funding award — from NWO, ZonMw, the EU, a foundation, or any other funder. The article MUST name the specific institution, and should mention the amount if reported:\n${ALL_INSTITUTIONS.join(', ')}`,
+    perInstitution: true,
+    queryFor: (inst) => `"${inst}" (funding OR grant OR subsidy OR million OR investment)`,
   },
   {
     key: 'policy',
     label: 'Netherlands Research Policy',
-    instructions: `Search for recent (last ~14 days) Netherlands national government or ministry (OCW) policy news affecting higher education and research institutions generally — research funding policy changes, open access/open science mandates, research assessment reform, science/immigration visa policy for researchers, or similar national-level policy affecting Dutch universities and research institutes. This category does not need to name one specific institution.`,
+    perInstitution: false,
+    queries: [
+      'Netherlands research funding policy OCW',
+      'Netherlands universities "open access" OR "open science" policy',
+      'Netherlands research assessment reform',
+      'Netherlands science visa researchers immigration policy',
+    ],
   },
 ];
 
@@ -78,61 +96,66 @@ function makeId(url) {
   for (let i = 0; i < url.length; i++) { hash = ((hash << 5) - hash + url.charCodeAt(i)) | 0; }
   return 'news-' + Math.abs(hash).toString(36);
 }
-function extractText(response) {
-  return (response.content || []).filter(b => b.type === 'text').map(b => b.text).join('\n');
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+function decodeEntities(s) {
+  return String(s || '')
+    .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'").replace(/&apos;/g, "'").replace(/&amp;/g, '&');
 }
-function parseJSONL(text) {
+function stripCdata(s) {
+  const m = String(s || '').match(/<!\[CDATA\[([\s\S]*?)\]\]>/);
+  return decodeEntities(m ? m[1] : s);
+}
+
+// Minimal RSS 2.0 <item> parser via regex — Google News RSS is well-formed
+// enough that a full XML parser isn't worth the extra dependency.
+function parseRssItems(xml) {
   const items = [];
-  for (const line of text.split('\n')) {
-    const trimmed = line.trim();
-    if (!trimmed.startsWith('{')) continue;
-    try { items.push(JSON.parse(trimmed)); } catch { /* skip malformed lines */ }
+  const itemBlocks = xml.match(/<item>[\s\S]*?<\/item>/g) || [];
+  for (const block of itemBlocks) {
+    const title = stripCdata((block.match(/<title>([\s\S]*?)<\/title>/) || [])[1]);
+    const link = stripCdata((block.match(/<link>([\s\S]*?)<\/link>/) || [])[1]);
+    const pubDate = stripCdata((block.match(/<pubDate>([\s\S]*?)<\/pubDate>/) || [])[1]);
+    const source = stripCdata((block.match(/<source[^>]*>([\s\S]*?)<\/source>/) || [])[1]);
+    const description = stripCdata((block.match(/<description>([\s\S]*?)<\/description>/) || [])[1]);
+    if (title && link) items.push({ title, link, pubDate, source, description });
   }
   return items;
 }
 
-async function callClaude(category, existingUrls) {
-  const prompt = `You are researching Netherlands academic/research institution news for a CRM used by an Elsevier sales team that tracks these institutions.
-
-${category.instructions}
-
-Already covered — do not repeat these URLs:
-${[...existingUrls].slice(0, 80).join('\n') || '(none yet)'}
-
-For each genuinely new, on-topic article you find, respond with one JSON object per line (JSONL), each with exactly these fields:
-{"title": "...", "description": "one to two factual sentences summarizing the article", "institution": "the specific named institution this is about, or null if a general policy story", "url": "...", "sourceName": "...", "publishedDate": "YYYY-MM-DD if known, else null"}
-
-Only report real articles with a verifiable source URL you found via search — never invent a title, institution, or URL. If you find nothing genuinely new and on-topic, output nothing at all.`;
-
-  const res = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: {
-      'x-api-key': API_KEY,
-      'anthropic-version': '2023-06-01',
-      'content-type': 'application/json',
-    },
-    body: JSON.stringify({
-      model: MODEL,
-      max_tokens: 4096,
-      tools: [{ type: 'web_search_20260209', name: 'web_search', max_uses: 10 }],
-      messages: [{ role: 'user', content: prompt }],
-    }),
-  });
-
-  if (!res.ok) {
-    const body = await res.text();
-    throw new Error(`Anthropic API ${res.status}: ${body.slice(0, 500)}`);
+async function fetchGoogleNewsRss(query) {
+  const url = `https://news.google.com/rss/search?q=${encodeURIComponent(query)}&hl=en-US&gl=NL&ceid=NL:en`;
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 15000);
+  try {
+    const res = await fetch(url, {
+      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; NL-CRM-NewsBot/1.0; +mailto:venturino.dino@gmail.com)' },
+      signal: ctrl.signal,
+    });
+    clearTimeout(timer);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const xml = await res.text();
+    return parseRssItems(xml);
+  } catch (e) {
+    clearTimeout(timer);
+    console.warn(`  ! RSS fetch failed for "${query}": ${e.message}`);
+    return [];
   }
-  return res.json();
+}
+
+function isRecent(pubDate) {
+  if (!pubDate) return true; // don't drop items Google didn't date
+  const d = new Date(pubDate);
+  if (isNaN(d)) return true;
+  return (Date.now() - d.getTime()) / 86400000 <= MAX_AGE_DAYS;
+}
+
+function toISODate(pubDate) {
+  const d = new Date(pubDate);
+  return isNaN(d) ? null : d.toISOString().slice(0, 10);
 }
 
 async function main() {
-  if (!API_KEY) {
-    console.log('[news-scan] ANTHROPIC_API_KEY not set — skipping scan until it is configured.');
-    saveJSON(STATE_FILE, { lastRun: new Date().toISOString(), lastAddedCount: 0, error: 'missing_api_key' });
-    return;
-  }
-
   const articles = readJSON(DATA_FILE, []);
   const existingUrls = new Set(articles.map(a => a.url));
   const candidateCounts = {};
@@ -140,46 +163,45 @@ async function main() {
 
   for (const category of CATEGORIES) {
     console.log(`[news-scan] Searching: ${category.label}...`);
-    let response;
-    try {
-      response = await callClaude(category, existingUrls);
-    } catch (e) {
-      console.error(`[news-scan] ${category.label} failed:`, e.message);
-      candidateCounts[category.key] = 0;
-      continue;
-    }
+    let categoryCandidates = 0;
 
-    if (response.stop_reason === 'refusal') {
-      console.log(`[news-scan] ${category.label}: request declined by safety classifiers — no results this run.`);
-      candidateCounts[category.key] = 0;
-      continue;
-    }
+    const jobs = category.perInstitution
+      ? ALL_INSTITUTIONS.map(inst => ({ inst, query: category.queryFor(inst) }))
+      : category.queries.map(q => ({ inst: null, query: q }));
 
-    const text = extractText(response);
-    const found = parseJSONL(text);
-    candidateCounts[category.key] = found.length;
-    console.log(`[news-scan] ${category.label}: model returned ${found.length} candidate(s).`);
+    for (const job of jobs) {
+      const items = await fetchGoogleNewsRss(job.query);
+      await sleep(REQUEST_DELAY_MS);
+      categoryCandidates += items.length;
 
-    for (const item of found) {
-      if (!item.title || !item.url) continue;
-      if (existingUrls.has(item.url)) continue;
-      articles.unshift({
-        id: makeId(item.url),
-        title: String(item.title).slice(0, 200),
-        description: String(item.description || '').slice(0, 400),
-        institution: item.institution ? String(item.institution).slice(0, 150) : null,
-        category: category.key,
-        categoryLabel: category.label,
-        url: String(item.url).slice(0, 500),
-        sourceName: String(item.sourceName || '').slice(0, 150),
-        publishedDate: item.publishedDate || null,
-        foundDate: new Date().toISOString().slice(0, 10),
-        autoDiscovered: true,
-      });
-      existingUrls.add(item.url);
-      totalAdded++;
-      console.log(`  + [${category.key}] ${item.title}`);
+      for (const item of items) {
+        if (!isRecent(item.pubDate)) continue;
+        if (existingUrls.has(item.link)) continue;
+        // For per-institution queries, require the institution name to actually
+        // appear in the title/description — Google News RSS relevance ranking is loose.
+        if (job.inst && !new RegExp(job.inst.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i').test(item.title + ' ' + item.description)) {
+          continue;
+        }
+
+        articles.unshift({
+          id: makeId(item.link),
+          title: String(item.title).slice(0, 200),
+          description: String(item.description || '').replace(/<[^>]*>/g, '').slice(0, 400),
+          institution: job.inst,
+          category: category.key,
+          categoryLabel: category.label,
+          url: String(item.link).slice(0, 500),
+          sourceName: String(item.source || '').slice(0, 150),
+          publishedDate: toISODate(item.pubDate),
+          foundDate: new Date().toISOString().slice(0, 10),
+          autoDiscovered: true,
+        });
+        existingUrls.add(item.link);
+        totalAdded++;
+        console.log(`  + [${category.key}] ${item.title}`);
+      }
     }
+    candidateCounts[category.key] = categoryCandidates;
   }
 
   const trimmed = articles.slice(0, MAX_STORED_ARTICLES);
@@ -189,6 +211,7 @@ async function main() {
     lastRun: new Date().toISOString(),
     lastAddedCount: totalAdded,
     candidateCounts,
+    source: 'Google News RSS (free, no API key)',
   });
   console.log(`[news-scan] Done — ${totalAdded} new article(s) added.`);
 }

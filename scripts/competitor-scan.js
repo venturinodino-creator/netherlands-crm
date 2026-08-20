@@ -1,5 +1,12 @@
 /**
  * competitor-scan.js — Daily LeapSpace competitor scan
+ * NOT currently used by the cron — see .github/workflows/competitor-scan.yml,
+ * which now runs this same task as a Claude Code agent billed against a
+ * Claude subscription (via CLAUDE_CODE_OAUTH_TOKEN) instead of this script's
+ * metered ANTHROPIC_API_KEY call. Kept as a reference/manual fallback if the
+ * Claude Code agent workflow is ever unavailable and you're willing to pay
+ * per-token API costs directly.
+ *
  * Calls the Claude API (web search tool) to research new AI solutions that
  * compete with Elsevier LeapSpace, and appends genuinely new findings to
  * data/leapspace-competitors.json. Entries are marked autoDiscovered: true
