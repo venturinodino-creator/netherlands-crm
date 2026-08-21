@@ -1957,7 +1957,7 @@ function openModal(id) { document.getElementById(id).classList.add('open'); }
 //  AGENT "RUN NOW" — dispatches the GitHub Actions workflow directly from the browser
 const GH_AGENTS_REPO = 'venturinodino-creator/netherlands-crm';
 const GH_TOKEN_KEY = 'nl_crm_gh_token';
-let _pendingAgentRun = null; // {workflow, btnId, name} — resumed after a token is saved
+let _pendingAgentRun = null; // {workflow, btnId, name} or {resume:'discovery'} — resumed after a token is saved
 
 function getGhToken() { return localStorage.getItem(GH_TOKEN_KEY) || ''; }
 
@@ -1974,9 +1974,13 @@ function saveGhToken() {
   closeModal('modal-gh-token');
   toast('GitHub token saved to this browser', 'ok');
   if (_pendingAgentRun) {
-    const { workflow, btnId, name } = _pendingAgentRun;
+    const pending = _pendingAgentRun;
     _pendingAgentRun = null;
-    runAgentNow(workflow, btnId, name);
+    if (pending.resume === 'discovery' && typeof window.runContactDiscovery === 'function') {
+      window.runContactDiscovery();
+    } else {
+      runAgentNow(pending.workflow, pending.btnId, pending.name);
+    }
   }
 }
 
@@ -5931,7 +5935,7 @@ async function runContactDiscovery() {
 </script>
 <script src="animations.js?v=5"></script>
     <script src="openalex.js?v=8"></script>
-  <script src="discovery.js?v=12"></script>
+  <script src="discovery.js?v=13"></script>
 
 <script>
 // Override renderPendingContacts to use localStorage nl_crm_pending
