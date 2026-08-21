@@ -1,9 +1,5 @@
 {
-  "lastRun": "2026-08-20T07:35:21.248Z",
-  "lastAddedCount": 0,
-  "candidateCounts": {
-    "ai_adoption": 0,
-    "funding": 0,
-    "policy": 0
-  }
+  "lastRun": "2026-08-21T18:19:43.000Z",
+  "lastAddedCount": 3,
+  "source": "Claude Code agent (subscription)"
 }
