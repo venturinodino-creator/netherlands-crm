@@ -2148,5 +2148,181 @@
     "source": "https://openalex.org/A5028947637",
     "research": "ORCID: https://orcid.org/0000-0001-5058-7012",
     "id": "disc_leiden_1786694851307_9g7s"
+  },
+  {
+    "id": "disc_aumc_1787336565139_wbja",
+    "first": "Diane",
+    "last": "Scholler",
+    "title": "Impact developer",
+    "dept": "Amsterdam Public Health (APH)",
+    "email": "d.scholler@amsterdamumc.nl",
+    "instId": "aumc",
+    "source": "https://www.amsterdamumc.org/en/research/institutes/amsterdam-public-health/about.htm",
+    "research": ""
+  },
+  {
+    "id": "disc_aumc_1787336565139_sufn",
+    "first": "Martijn",
+    "last": "Oudijk",
+    "title": "Director, Amsterdam Reproduction & Development research institute",
+    "dept": "AR&D Office",
+    "email": "m.a.oudijk@amsterdamumc.nl",
+    "instId": "aumc",
+    "source": "https://www.amsterdamumc.org/en/research/institutes/amsterdam-reproduction-development/about/ard-office.htm",
+    "research": ""
+  },
+  {
+    "id": "disc_aumc_1787336565139_v3er",
+    "first": "Anita",
+    "last": "Boelen",
+    "title": "Co-director, Amsterdam Gastroenterology Endocrinology & Metabolism Research Institute",
+    "dept": "AGEM Office",
+    "email": "a.boelen@amsterdamumc.nl",
+    "instId": "aumc",
+    "source": "https://www.amsterdamumc.org/en/research/institutes/amsterdam-gastroenterology-endocrinology-metabolism/about/contact-information-1.htm",
+    "research": ""
+  },
+  {
+    "id": "disc_erasmusmc_1787336565139_lbdj",
+    "first": "Adrian",
+    "last": "Cohen",
+    "title": "Head of the Medical Library",
+    "dept": "Medical Library",
+    "email": "a.cohen@erasmusmc.nl",
+    "instId": "erasmusmc",
+    "source": "https://medbib.erasmusmc.nl/en/contact-us/",
+    "research": ""
+  },
+  {
+    "id": "disc_erasmusmc_1787336565139_e3ku",
+    "first": "Ismaela",
+    "last": "Nieuwenhuijs-Stöteler",
+    "title": "Manager RDO",
+    "dept": "Erasmus Research Development Office (RDO)",
+    "email": "i.nieuwenhuijs@erasmusmc.nl",
+    "instId": "erasmusmc",
+    "source": "https://www.erasmusmc-rdo.nl/about-us/",
+    "research": ""
+  },
+  {
+    "id": "disc_erasmusmc_1787336565139_1z8u",
+    "first": "Pim",
+    "last": "Jansen",
+    "title": "Coordinator NL Funding",
+    "dept": "Erasmus Research Development Office (RDO), Team NL",
+    "email": "p.h.f.jansen@erasmusmc.nl",
+    "instId": "erasmusmc",
+    "source": "https://www.erasmusmc-rdo.nl/about-us/",
+    "research": ""
+  },
+  {
+    "id": "disc_umcutrecht_1787336565139_h66v",
+    "first": "Roy",
+    "last": "Hoitink",
+    "title": "Subject Specialist (Medicine faculty)",
+    "dept": "UMC Utrecht Library",
+    "email": "L.D.Hoitink@uu.nl",
+    "instId": "umcutrecht",
+    "source": "https://www.umcutrecht.nl/en/library",
+    "research": ""
+  },
+  {
+    "id": "disc_lumc_1787336565139_md45",
+    "first": "Petra",
+    "last": "van Overveld",
+    "title": "Senior advisor / data stewardship expert",
+    "dept": "Directorate of Research Policy",
+    "email": "p.overveld@lumc.nl",
+    "instId": "lumc",
+    "source": "https://www.universiteitleiden.nl/open-science-community-leiden/members/medicine---leiden-university-medical-center/medicine---lumc",
+    "research": ""
+  },
+  {
+    "id": "disc_lumc_1787336565139_rf5k",
+    "first": "Niek",
+    "last": "van Ulzen",
+    "title": "FAIR data steward",
+    "dept": "Biomedical Data Sciences",
+    "email": "n.r.van_ulzen@lumc.nl",
+    "instId": "lumc",
+    "source": "https://www.universiteitleiden.nl/open-science-community-leiden/members/medicine---leiden-university-medical-center/medicine---lumc",
+    "research": ""
+  },
+  {
+    "id": "disc_lumc_1787336565139_yd0p",
+    "first": "Judith",
+    "last": "Mannien",
+    "title": "Coordinator medical research data management",
+    "dept": "Biomedical Data Sciences",
+    "email": "j.mannien@lumc.nl",
+    "instId": "lumc",
+    "source": "https://www.universiteitleiden.nl/open-science-community-leiden/members/medicine---leiden-university-medical-center/medicine---lumc",
+    "research": ""
+  },
+  {
+    "id": "disc_umcg_1787336565139_b9u7",
+    "first": "Peter",
+    "last": "Braun",
+    "title": "Open Access Officer",
+    "dept": "Medical Library, UMCG",
+    "email": "p.g.braun@umcg.nl",
+    "instId": "umcg",
+    "source": "https://www.rug.nl/staff/p.g.braun/",
+    "research": ""
+  },
+  {
+    "id": "disc_umcg_1787336565139_g18y",
+    "first": "Guus",
+    "last": "van den Brekel",
+    "title": "Medical Information Specialist (Research Impact, Analytics and Support)",
+    "dept": "Medical Library, UMCG",
+    "email": "a.j.p.van.den.brekel@umcg.nl",
+    "instId": "umcg",
+    "source": "https://www.rug.nl/staff/a.j.p.van.den.brekel/",
+    "research": ""
+  },
+  {
+    "id": "disc_mumc_1787336565139_bf8w",
+    "first": "Erik",
+    "last": "Lammers",
+    "title": "Information Manager",
+    "dept": "Research Support Network - Faculty of Health, Medicine and Life Sciences (FHML)",
+    "email": "erik.lammers@maastrichtuniversity.nl",
+    "instId": "mumc",
+    "source": "https://library.maastrichtuniversity.nl/research/rdm/data-stewards-contacts/",
+    "research": ""
+  },
+  {
+    "id": "disc_mumc_1787336565139_az6z",
+    "first": "Els",
+    "last": "Swennen",
+    "title": "Policy Advisor",
+    "dept": "Research Support Network - FHML",
+    "email": "els.swennen@maastrichtuniversity.nl",
+    "instId": "mumc",
+    "source": "https://library.maastrichtuniversity.nl/research/rdm/data-stewards-contacts/",
+    "research": ""
+  },
+  {
+    "id": "disc_mumc_1787336565139_rx2g",
+    "first": "Hellen",
+    "last": "Steinbusch",
+    "title": "Data Steward (division 3)",
+    "dept": "MHeNs (School for Mental Health and Neuroscience), Maastricht UMC+",
+    "email": "he.steinbusch@maastrichtuniversity.nl",
+    "instId": "mumc",
+    "source": "https://library.maastrichtuniversity.nl/research/rdm/data-stewards-contacts/",
+    "research": ""
+  },
+  {
+    "id": "disc_nwo_1787336565139_mwku",
+    "first": "Hans",
+    "last": "de Jonge",
+    "title": "Director",
+    "dept": "Open Science NL",
+    "email": "h.dejonge@nwo.nl",
+    "instId": "nwo",
+    "source": "https://www.nwo.nl/en/open-science-nl",
+    "research": ""
   }
 ]
