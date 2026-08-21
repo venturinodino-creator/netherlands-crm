@@ -114,9 +114,14 @@ jobs:
               timestamp — do not leave it stale.
 
       - name: Commit new contacts
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
+          # The claude-code-action step above leaves the checkout's persisted
+          # credential unusable for a plain git push, so re-set it here.
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
           git add data/pending-contacts.json data/discovery-state.json
           git diff --staged --quiet || git commit -m "contacts: auto-discover $(date +%Y-%m-%d)"
           git pull --rebase origin main

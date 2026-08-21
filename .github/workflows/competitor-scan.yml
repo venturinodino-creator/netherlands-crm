@@ -27,7 +27,7 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           claude_args: |
-            --max-turns 30
+            --max-turns 60
             --allowedTools "Read,Edit,Write,WebSearch,Bash(node -e:*),Bash(date:*)"
           prompt: |
             You are the daily competitor-intelligence agent for this repo's CRM,
@@ -89,9 +89,14 @@ jobs:
               timestamp — do not leave it stale.
 
       - name: Commit new competitor insights
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
+          # The claude-code-action step above leaves the checkout's persisted
+          # credential unusable for a plain git push, so re-set it here.
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
           git add data/leapspace-competitors.json data/competitor-scan-state.json
           git diff --staged --quiet || git commit -m "competitor-scan: auto-scan $(date +%Y-%m-%d)"
           git pull --rebase origin main
