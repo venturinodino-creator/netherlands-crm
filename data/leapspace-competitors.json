@@ -129,5 +129,21 @@
     "sourceUrl": "https://www.knowledgespeak.com/news/igi-global-scientific-publishing-introduces-ai-assistant-research-tool-for-research-discovery/",
     "sourceName": "Knowledgespeak",
     "autoDiscovered": true
+  },
+  {
+    "id": "auto-openai-chatgpt-for-academic-researchers",
+    "company": "OpenAI",
+    "product": "ChatGPT for Academic Researchers",
+    "addedDate": "2026-08-21",
+    "elements": [
+      "literatureSearch",
+      "deepResearchReports",
+      "writingCoach",
+      "fundingDiscovery"
+    ],
+    "howItCompetes": "Launched 29 July 2026, this is OpenAI's free 12-month program giving verified faculty and postdoc teams a dedicated ChatGPT workspace (GPT-5.6 models, ChatGPT Work, Codex) with expanded Deep Research, higher usage limits and larger context windows; by 10 August 2026 OpenAI had over 13,000 applications covering up to 65,000 researcher seats under review. Deep Research runs a multi-step agentic search-and-read process over the web and uploaded PDFs and compiles a cited report, directly challenging Literature Search & Discovery and Deep Research Reports. ChatGPT Work is pitched for longer projects including finding funding opportunities and preparing grant applications (Funding Discovery) and drafting manuscripts (Writing Coach). Unlike LeapSpace it is not grounded in a licensed ScienceDirect/Scopus corpus, instead drawing on open web content and whatever documents a researcher uploads.",
+    "sourceUrl": "https://openai.com/index/chatgpt-for-academic-researchers/",
+    "sourceName": "OpenAI — Accelerating scientific discovery with ChatGPT for Academic Researchers",
+    "autoDiscovered": true
   }
 ]
