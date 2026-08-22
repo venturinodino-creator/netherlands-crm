@@ -1,11 +1,24 @@
 /**
- * news-scan.js — Daily Netherlands research news scan. Free, zero-API-key:
- * queries Google News RSS directly (per institution, per category) and
- * keyword-filters the results against tracked SEED_INSTITUTIONS. Runs
- * server-side (GitHub Actions) instead of client-side, since a browser can't
- * fetch news.google.com directly (CORS) without a proxy. No AI summarization
- * or relevance judgment — reports raw matching headlines, keyword-
- * categorized, for a human to skim.
+ * news-scan.js — Daily Netherlands research news scan for Elsevier's
+ * competitive/business interests specifically (not general science news).
+ *
+ * Two stages:
+ * 1. Free discovery: queries Google News RSS per institution/category,
+ *    keyword-filtered against tracked SEED_INSTITUTIONS, with query terms
+ *    scoped to research-information/scholarly-publishing/AI-for-research
+ *    topics rather than any AI or funding mention. Runs server-side
+ *    (GitHub Actions) since a browser can't fetch news.google.com directly
+ *    (CORS) without a proxy.
+ * 2. Relevance filter: keyword matching alone still lets through stories
+ *    that are topically AI/funding but irrelevant to Elsevier's business
+ *    (e.g. an AI model for gambling-harm prediction, a childhood-cancer
+ *    treatment grant) — a single batched Claude Haiku call judges each
+ *    freshly-discovered candidate against Elsevier's actual business
+ *    (scholarly publishing, research information, AI research tools,
+ *    library/database subscriptions) and drops anything irrelevant, tagging
+ *    keepers with a one-line "why it matters" note. Requires
+ *    ANTHROPIC_API_KEY; skipped (keyword matches kept as-is) if unset, same
+ *    fallback pattern as competitor-scan.js.
  *
  * Run: node scripts/news-scan.js
  */
@@ -17,6 +30,11 @@ const STATE_FILE = 'data/news-scan-state.json';
 const MAX_STORED_ARTICLES = 300;
 const MAX_AGE_DAYS = 14;
 const REQUEST_DELAY_MS = 350;
+const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
+const RELEVANCE_MODEL = 'claude-haiku-4-5';
+const MAX_RELEVANCE_BATCH = 60;
+
+const ELSEVIER_CONTEXT = `Elsevier is a scholarly research information and analytics company: ScienceDirect (full-text journal platform), Scopus (abstract/citation database), and LeapSpace (Elsevier's new AI-assisted research workspace — literature search, author search, funding discovery, writing coach, claim-checking, deep research reports, reading assistant, paper comparison). Its business depends on universities, medical centres, and research institutes subscribing to and using these tools, and on staying ahead of competitors like Clarivate/Web of Science, Digital Science/Dimensions, Springer Nature, Wiley, OpenAlex, Google Scholar, Semantic Scholar, and AI research-assistant tools (Elicit, scite, Consensus, SciSpace).`;
 
 // Keep in sync with SEED_INSTITUTIONS in index.html
 const NL_UNIVERSITIES = [
@@ -49,13 +67,19 @@ const CATEGORIES = [
     key: 'ai_adoption',
     label: 'AI Development & Adoption',
     perInstitution: true,
-    queryFor: (inst) => `"${inst}" (AI OR "artificial intelligence" OR "machine learning")`,
+    // Scoped to AI *for research/publishing* specifically — not any AI story
+    // that happens to mention a tracked institution (e.g. an AI model for
+    // an unrelated domain built by one of its researchers).
+    queryFor: (inst) => `"${inst}" (AI OR "artificial intelligence" OR "machine learning") (research OR literature OR "scientific discovery" OR publishing OR library OR database OR "research assistant")`,
   },
   {
     key: 'funding',
     label: 'Funding Received',
     perInstitution: true,
-    queryFor: (inst) => `"${inst}" (funding OR grant OR subsidy OR million OR investment)`,
+    // Scoped to funding for research infrastructure/information/AI tools —
+    // not any grant (e.g. a clinical treatment trial has nothing to do with
+    // Elsevier's business even though it's "funding" and "research").
+    queryFor: (inst) => `"${inst}" (funding OR grant OR investment) ("research infrastructure" OR library OR database OR subscription OR "open access" OR "research information" OR "AI tools" OR bibliometric OR CRIS)`,
   },
   {
     key: 'policy',
@@ -65,7 +89,7 @@ const CATEGORIES = [
       'Netherlands research funding policy OCW',
       'Netherlands universities "open access" OR "open science" policy',
       'Netherlands research assessment reform',
-      'Netherlands science visa researchers immigration policy',
+      'Netherlands library Scopus OR "Web of Science" OR subscription cancellation',
     ],
   },
 ];
@@ -142,11 +166,71 @@ function toISODate(pubDate) {
   return isNaN(d) ? null : d.toISOString().slice(0, 10);
 }
 
+async function filterRelevance(candidates) {
+  if (!candidates.length) return candidates;
+  if (!ANTHROPIC_API_KEY) {
+    console.log('[news-scan] ANTHROPIC_API_KEY not set — skipping Elsevier-relevance filter, keeping all keyword matches.');
+    return candidates;
+  }
+
+  const batch = candidates.slice(0, MAX_RELEVANCE_BATCH);
+  const overflow = candidates.length - batch.length;
+  if (overflow > 0) {
+    console.log(`[news-scan] ${overflow} candidate(s) beyond the relevance-filter batch cap deferred to a future run.`);
+  }
+
+  const prompt = `${ELSEVIER_CONTEXT}
+
+For each numbered article below, decide whether it is genuinely relevant to Elsevier's business and competitive interests as described above — i.e. about scholarly publishing, research information infrastructure, AI research/discovery tools, library or database subscriptions, bibliometrics, or funding/policy specifically tied to those areas. Mark irrelevant anything that is just general research findings, medical/scientific results, or an AI application unrelated to research infrastructure — even if it mentions a tracked institution, "AI", or "funding".
+
+${batch.map((c, i) => `${i + 1}. [${c.categoryLabel}] "${c.title}" — ${c.description || '(no description)'}`).join('\n')}
+
+Respond with ONLY a JSON array, one object per article in the same order, each exactly: {"relevant": true|false, "reason": "one short sentence explaining why it matters to Elsevier, only if relevant — omit or empty string if not relevant"}`;
+
+  let res;
+  try {
+    res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'x-api-key': ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
+      body: JSON.stringify({ model: RELEVANCE_MODEL, max_tokens: 2048, messages: [{ role: 'user', content: prompt }] }),
+    });
+  } catch (e) {
+    console.warn(`[news-scan] Relevance filter request failed (${e.message}) — keeping all keyword matches unfiltered.`);
+    return candidates;
+  }
+  if (!res.ok) {
+    console.warn(`[news-scan] Relevance filter API call failed (HTTP ${res.status}) — keeping all keyword matches unfiltered.`);
+    return candidates;
+  }
+
+  const data = await res.json();
+  const text = (data.content || []).filter(b => b.type === 'text').map(b => b.text).join('\n');
+  let verdicts;
+  try {
+    const jsonMatch = text.match(/\[[\s\S]*\]/);
+    verdicts = JSON.parse(jsonMatch ? jsonMatch[0] : text);
+  } catch (e) {
+    console.warn('[news-scan] Could not parse relevance filter response — keeping all keyword matches unfiltered.');
+    return candidates;
+  }
+
+  const kept = [];
+  batch.forEach((c, i) => {
+    const v = verdicts[i];
+    if (v && v.relevant) {
+      kept.push({ ...c, elsevierRelevance: String(v.reason || '').slice(0, 200) });
+    } else {
+      console.log(`  - filtered out (not Elsevier-relevant): ${c.title}`);
+    }
+  });
+  return kept;
+}
+
 async function main() {
   const articles = readJSON(DATA_FILE, []);
   const existingUrls = new Set(articles.map(a => a.url));
   const candidateCounts = {};
-  let totalAdded = 0;
+  const freshCandidates = [];
 
   for (const category of CATEGORIES) {
     console.log(`[news-scan] Searching: ${category.label}...`);
@@ -170,7 +254,7 @@ async function main() {
           continue;
         }
 
-        articles.unshift({
+        freshCandidates.push({
           id: makeId(item.link),
           title: String(item.title).slice(0, 200),
           description: String(item.description || '').replace(/<[^>]*>/g, '').slice(0, 400),
@@ -184,12 +268,16 @@ async function main() {
           autoDiscovered: true,
         });
         existingUrls.add(item.link);
-        totalAdded++;
         console.log(`  + [${category.key}] ${item.title}`);
       }
     }
     candidateCounts[category.key] = categoryCandidates;
   }
+
+  console.log(`[news-scan] ${freshCandidates.length} keyword-matched candidate(s) found — running Elsevier-relevance filter...`);
+  const relevant = await filterRelevance(freshCandidates);
+  for (const article of relevant) articles.unshift(article);
+  const totalAdded = relevant.length;
 
   const trimmed = articles.slice(0, MAX_STORED_ARTICLES);
   if (totalAdded > 0) saveJSON(DATA_FILE, trimmed);
@@ -197,10 +285,13 @@ async function main() {
   saveJSON(STATE_FILE, {
     lastRun: new Date().toISOString(),
     lastAddedCount: totalAdded,
+    lastCandidateCount: freshCandidates.length,
     candidateCounts,
-    source: 'Google News RSS (free, no API key)',
+    source: ANTHROPIC_API_KEY
+      ? 'Google News RSS (discovery) + Claude Haiku (Elsevier-relevance filter)'
+      : 'Google News RSS (free, no API key — relevance filter skipped)',
   });
-  console.log(`[news-scan] Done — ${totalAdded} new article(s) added.`);
+  console.log(`[news-scan] Done — ${totalAdded} new article(s) added (${freshCandidates.length} candidates found).`);
 }
 
 main().catch(e => {
