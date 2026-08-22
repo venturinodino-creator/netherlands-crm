@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-daily_summary.py — builds the 2-page "Daily Summary" executive PDF report
+daily_summary.py — builds the 3-page "Daily Summary" executive PDF report
 from the JSON blob produced by scripts/extract-crm-data.js.
 
 Usage: python3 scripts/daily_summary.py <input.json> <output.pdf>
@@ -38,6 +38,19 @@ TYPE_COLORS = {
 TYPE_LABELS = {'university': 'University', 'medical': 'Medical Center', 'research': 'Research Inst.', 'ngo': 'NGO / Foundation'}
 PRIORITY_COLORS = {'high': colors.HexColor('#ef4444'), 'medium': colors.HexColor('#f59e0b'), 'low': colors.HexColor('#64748b')}
 ACCENT = colors.HexColor('#0891b2')
+LINK_COLOR = colors.HexColor('#0891b2')
+
+NEWS_CATEGORY_COLORS = {
+    'ai_adoption': colors.HexColor('#1d4ed8'),
+    'funding': colors.HexColor('#059669'),
+    'policy': colors.HexColor('#991b1b'),
+}
+NEWS_CATEGORY_LABELS = {
+    'ai_adoption': 'AI Development & Adoption',
+    'funding': 'Funding Received',
+    'policy': 'Netherlands Research Policy',
+}
+TOTAL_PAGES = 3
 
 
 def wrap_text(text, font, size, max_width):
@@ -63,6 +76,23 @@ def truncate(text, font, size, max_w):
     while text and stringWidth(text + '…', font, size) > max_w:
         text = text[:-1]
     return text + '…'
+
+
+def draw_link(c, x, y, text, url, font='Helvetica', size=8, color=LINK_COLOR):
+    """Draws visible, underlined source-link text and makes it clickable in
+    the PDF (canvas.linkURL overlays an invisible clickable rect — the URL
+    text itself stays printed/readable for anyone reading on paper)."""
+    text = truncate(text, font, size, CONTENT_W)
+    c.setFillColor(color)
+    c.setFont(font, size)
+    c.drawString(x, y, text)
+    w = stringWidth(text, font, size)
+    c.setStrokeColor(color)
+    c.setLineWidth(0.5)
+    c.line(x, y - 1.5, x + w, y - 1.5)
+    if url:
+        c.linkURL(url, (x, y - 2, x + w, y + size), relative=0)
+    return w
 
 
 def draw_header(c, title, subtitle, page_num, total_pages):
@@ -178,6 +208,124 @@ def draw_table(c, x, y, w, headers, rows, col_ratios, row_h=16, header_h=17, fon
     return ry
 
 
+def draw_callout(c, x, y, w, label, headline, body, source_name, source_url, color=ACCENT):
+    """A highlighted single-story callout box for the single most important
+    news item — the one thing a board member should read even if nothing
+    else on the page. Returns the y position just below the box."""
+    pad = 12
+    headline_lines = wrap_text(headline, 'Helvetica-Bold', 11.5, w - 2 * pad)[:2]
+    body_lines = wrap_text(body, 'Helvetica', 9, w - 2 * pad)[:2] if body else []
+    box_h = pad + 12 + len(headline_lines) * 15 + (len(body_lines) * 12 + 4 if body_lines else 0) + 15 + pad
+    top = y
+    c.setFillColor(colors.HexColor('#f8fafc'))
+    c.roundRect(x, top - box_h, w, box_h, 5, fill=1, stroke=0)
+    c.setStrokeColor(color)
+    c.setLineWidth(3)
+    c.line(x + 1.5, top - box_h, x + 1.5, top)
+    ty = top - pad - 9
+    c.setFillColor(color)
+    c.setFont('Helvetica-Bold', 8)
+    c.drawString(x + pad, ty, label.upper())
+    ty -= 16
+    c.setFillColor(INK)
+    c.setFont('Helvetica-Bold', 11.5)
+    for line in headline_lines:
+        c.drawString(x + pad, ty, line)
+        ty -= 15
+    if body_lines:
+        c.setFillColor(MUTED)
+        c.setFont('Helvetica', 9)
+        for line in body_lines:
+            c.drawString(x + pad, ty, line)
+            ty -= 12
+        ty -= 4
+    if source_url:
+        draw_link(c, x + pad, ty, f'{source_name or "Source"} — {source_url}', source_url, size=7.5)
+    elif source_name:
+        c.setFillColor(MUTED)
+        c.setFont('Helvetica', 7.5)
+        c.drawString(x + pad, ty, source_name)
+    return top - box_h - 16
+
+
+def draw_news_summary(c, x, y, w, articles, max_items=6):
+    """Renders each article as a compact card: headline, one-line summary
+    (elsevierRelevance when the relevance filter tagged it, else the scraped
+    description), category badge, and a clickable source link."""
+    ny = y
+    for n in articles[:max_items]:
+        title = n.get('title') or '—'
+        title_lines = wrap_text(title, 'Helvetica-Bold', 10, w)[:2]
+        cat = n.get('category')
+        cat_color = NEWS_CATEGORY_COLORS.get(cat, MUTED)
+        cat_label = n.get('categoryLabel') or NEWS_CATEGORY_LABELS.get(cat, 'News')
+
+        c.setFillColor(cat_color)
+        c.setFont('Helvetica-Bold', 7)
+        badge = cat_label.upper()
+        c.drawString(x, ny, badge)
+        badge_w = stringWidth(badge, 'Helvetica-Bold', 7)
+        meta_bits = list(filter(None, [n.get('institution'), n.get('foundDate') or n.get('publishedDate')]))
+        if meta_bits:
+            c.setFillColor(MUTED)
+            c.setFont('Helvetica', 7)
+            c.drawString(x + badge_w + 8, ny, ' · '.join(meta_bits))
+        ny -= 13
+
+        c.setFillColor(INK)
+        c.setFont('Helvetica-Bold', 10)
+        for line in title_lines:
+            c.drawString(x, ny, line)
+            ny -= 12
+        ny -= 1
+
+        summary = n.get('elsevierRelevance') or n.get('description') or ''
+        summary = summary.replace('&nbsp;', ' ').strip()
+        if summary:
+            c.setFillColor(MUTED)
+            c.setFont('Helvetica', 8.5)
+            for line in wrap_text(summary, 'Helvetica', 8.5, w)[:2]:
+                c.drawString(x, ny, line)
+                ny -= 11
+        ny -= 2
+
+        url = n.get('url')
+        if url:
+            draw_link(c, x, ny, n.get('sourceName') or url, url, size=7.5)
+        ny -= 16
+    return ny
+
+
+def draw_competitor_watch(c, x, y, w, competitors, max_items=5):
+    cy = y
+    for comp in competitors[:max_items]:
+        label = f"{comp.get('company', '—')} — {comp.get('product', '—')}"
+        c.setFillColor(INK)
+        c.setFont('Helvetica-Bold', 9.5)
+        c.drawString(x, cy, truncate(label, 'Helvetica-Bold', 9.5, w))
+        cy -= 12
+
+        elements = comp.get('elements') or []
+        if elements:
+            tag_labels = {
+                'literatureSearch': 'Literature Search', 'authorSearch': 'Author Search',
+                'fundingDiscovery': 'Funding Discovery', 'writingCoach': 'Writing Coach',
+                'trustClaimRadar': 'Trust/Claim Radar', 'deepResearchReports': 'Deep Research',
+                'readingAssistant': 'Reading Assistant', 'compareFeature': 'Compare',
+            }
+            tags = ' · '.join(tag_labels.get(e, e) for e in elements[:3])
+            c.setFillColor(colors.HexColor('#7c3aed'))
+            c.setFont('Helvetica', 7.5)
+            c.drawString(x, cy, f'Challenges: {tags}')
+            cy -= 11
+
+        source_url = comp.get('sourceUrl')
+        if source_url:
+            draw_link(c, x, cy, comp.get('sourceName') or source_url, source_url, size=7.5)
+        cy -= 15
+    return cy
+
+
 def compose_summary(stats):
     parts = []
     parts.append(
@@ -260,11 +408,17 @@ def build_report(data, out_path):
     generated_dt = datetime.now(timezone.utc)
     generated_at = generated_dt.strftime('%d %b %Y, %H:%M UTC')
 
+    news_sorted = sorted(news, key=lambda n: n.get('foundDate') or n.get('publishedDate') or '', reverse=True)
+    # The single most important story leads page 1 — prefer a policy-category
+    # item (subscription/licensing/assessment-reform news directly touches
+    # Elsevier's own business) over a generic AI-adoption or funding item.
+    top_story = next((n for n in news_sorted if n.get('category') == 'policy'), None) or (news_sorted[0] if news_sorted else None)
+
     c = canvas.Canvas(out_path, pagesize=A4)
 
-    # ---------- PAGE 1 ----------
+    # ---------- PAGE 1 — EXECUTIVE SUMMARY ----------
     draw_header(c, 'Research CRM — Daily Summary',
-                f'Netherlands Academic & Research Network · {generated_dt.strftime("%A, %d %B %Y")}', 1, 2)
+                f'Netherlands Academic & Research Network · {generated_dt.strftime("%A, %d %B %Y")}', 1, TOTAL_PAGES)
 
     summary_text = compose_summary(stats)
     c.setFillColor(INK)
@@ -274,7 +428,18 @@ def build_report(data, out_path):
         c.drawString(MARGIN, y, line)
         y -= 14
 
-    tiles_y = y - 18
+    if top_story:
+        y = draw_callout(
+            c, MARGIN, y - 6, CONTENT_W, 'This week\'s top story',
+            top_story.get('title', '—'),
+            (top_story.get('elsevierRelevance') or top_story.get('description') or '').replace('&nbsp;', ' ').strip(),
+            top_story.get('sourceName'), top_story.get('url'),
+            color=NEWS_CATEGORY_COLORS.get(top_story.get('category'), ACCENT),
+        )
+    else:
+        y -= 10
+
+    tiles_y = y - 4
     tile_w = (CONTENT_W - 3 * 10) / 4
     tile_h = 60
     pending_label = 'awaiting review' if stats['pending_is_live'] else 'discovered to date'
@@ -302,64 +467,48 @@ def build_report(data, out_path):
 
     charts_top = tiles2_y - tile_h - 34
     chart_w = (CONTENT_W - 24) / 2
-    chart_h = 175
+    chart_h = 165
     draw_bar_chart(c, MARGIN, charts_top - chart_h, chart_w, chart_h,
                     'Institutions by Type', inst_type_counts, TYPE_COLORS)
     draw_bar_chart(c, MARGIN + chart_w + 24, charts_top - chart_h, chart_w, chart_h,
                     'Contacts by Priority', contact_priority_counts, PRIORITY_COLORS,
                     label_fn=lambda k: k.title())
 
-    top_insts = sorted(contacts_per_inst.items(), key=lambda kv: kv[1], reverse=True)[:4]
-    list_top = charts_top - chart_h - 34
-    c.setFillColor(INK)
-    c.setFont('Helvetica-Bold', 11)
-    c.drawString(MARGIN, list_top, 'Top Institutions by Contact Count')
-    ly = list_top - 20
-    bar_area_w = CONTENT_W - 170
-    max_c = top_insts[0][1] if top_insts else 1
-    for inst_id, cnt in top_insts:
-        name = resolve_name(inst_id, inst_id)
-        c.setFillColor(INK)
-        c.setFont('Helvetica', 9)
-        c.drawString(MARGIN, ly + 3, truncate(name, 'Helvetica', 9, 150))
-        bw = (cnt / max_c) * bar_area_w if max_c else 0
-        c.setFillColor(colors.HexColor('#0891b2'))
-        c.roundRect(MARGIN + 160, ly, max(bw, 4), 11, 2, fill=1, stroke=0)
-        c.setFillColor(INK)
-        c.setFont('Helvetica-Bold', 9)
-        c.drawString(MARGIN + 160 + bw + 6, ly + 3, str(cnt))
-        ly -= 20
-
-    top_news = sorted(news, key=lambda n: n.get('foundDate') or n.get('publishedDate') or '', reverse=True)[:2]
-    if top_news:
-        news_top = ly - 26
-        c.setFillColor(INK)
-        c.setFont('Helvetica-Bold', 11)
-        c.drawString(MARGIN, news_top, 'Top News')
-        ny = news_top - 20
-        for n in top_news:
-            c.setFillColor(INK)
-            c.setFont('Helvetica-Bold', 9.5)
-            c.drawString(MARGIN, ny, truncate(n.get('title', '—'), 'Helvetica-Bold', 9.5, CONTENT_W))
-            ny -= 13
-            meta = ' · '.join(filter(None, [
-                n.get('institution'),
-                n.get('categoryLabel') or n.get('category'),
-                n.get('foundDate') or n.get('publishedDate'),
-            ]))
-            c.setFillColor(ACCENT)
-            c.setFont('Helvetica', 8)
-            c.drawString(MARGIN, ny, truncate(meta, 'Helvetica', 8, CONTENT_W))
-            ny -= 19
-
     pending_note = None if stats['pending_is_live'] else 'New Contacts total is from the local scrape audit trail, not live Supabase status — see the Summary archive for context.'
     draw_footer(c, generated_at, pending_note)
     c.showPage()
 
-    # ---------- PAGE 2 ----------
-    draw_header(c, 'Recent Activity', 'Latest new contacts, news, and open opportunities', 2, 2)
+    # ---------- PAGE 2 — PIPELINE & INSTITUTIONS ----------
+    draw_header(c, 'Pipeline & Institutions', 'Where contact coverage is strongest, and what needs review', 2, TOTAL_PAGES)
 
-    y2 = PAGE_H - MARGIN - 50
+    top_insts = sorted(contacts_per_inst.items(), key=lambda kv: kv[1], reverse=True)[:6]
+    list_top = PAGE_H - MARGIN - 50
+    c.setFillColor(INK)
+    c.setFont('Helvetica-Bold', 12)
+    c.drawString(MARGIN, list_top, 'Top Institutions by Contact Count')
+    ly = list_top - 24
+    bar_area_w = CONTENT_W - 170
+    max_c = top_insts[0][1] if top_insts else 1
+    if top_insts:
+        for inst_id, cnt in top_insts:
+            name = resolve_name(inst_id, inst_id)
+            c.setFillColor(INK)
+            c.setFont('Helvetica', 9)
+            c.drawString(MARGIN, ly + 3, truncate(name, 'Helvetica', 9, 150))
+            bw = (cnt / max_c) * bar_area_w if max_c else 0
+            c.setFillColor(colors.HexColor('#0891b2'))
+            c.roundRect(MARGIN + 160, ly, max(bw, 4), 11, 2, fill=1, stroke=0)
+            c.setFillColor(INK)
+            c.setFont('Helvetica-Bold', 9)
+            c.drawString(MARGIN + 160 + bw + 6, ly + 3, str(cnt))
+            ly -= 20
+    else:
+        c.setFillColor(MUTED)
+        c.setFont('Helvetica', 9)
+        c.drawString(MARGIN, ly, 'No contacts recorded yet.')
+        ly -= 20
+
+    y2 = ly - 20
     c.setFillColor(INK)
     c.setFont('Helvetica-Bold', 12)
     c.drawString(MARGIN, y2, 'Latest New Contacts')
@@ -378,24 +527,6 @@ def build_report(data, out_path):
         c.setFillColor(MUTED)
         c.setFont('Helvetica', 9)
         c.drawString(MARGIN, y2 - 4, 'No pending contacts recorded.')
-        y2 -= 30
-
-    c.setFillColor(INK)
-    c.setFont('Helvetica-Bold', 12)
-    c.drawString(MARGIN, y2, 'Latest News')
-    y2 -= 22
-    recent_news = sorted(news, key=lambda n: n.get('foundDate') or n.get('publishedDate') or '', reverse=True)[:6]
-    if recent_news:
-        rows = [[n.get('title', '—'), n.get('institution') or '—', n.get('categoryLabel') or n.get('category') or '—',
-                  n.get('foundDate') or n.get('publishedDate') or '—'] for n in recent_news]
-        end_y = draw_table(c, MARGIN, y2, CONTENT_W,
-                            ['Headline', 'Institution', 'Category', 'Date'], rows,
-                            [0.42, 0.24, 0.20, 0.14])
-        y2 = end_y - 28
-    else:
-        c.setFillColor(MUTED)
-        c.setFont('Helvetica', 9)
-        c.drawString(MARGIN, y2 - 4, 'No news items tracked yet.')
         y2 -= 30
 
     col_w = (CONTENT_W - 24) / 2
@@ -425,20 +556,70 @@ def build_report(data, out_path):
 
     c.setFillColor(INK)
     c.setFont('Helvetica-Bold', 12)
-    c.drawString(MARGIN + col_w + 24, y2, 'Competitor Watch')
+    c.drawString(MARGIN + col_w + 24, y2, 'Institutions by Contact Coverage')
+    cov_bins = Counter()
+    for i in institutions:
+        n = contacts_per_inst.get(i['id'], 0)
+        cov_bins['0'] += 1 if n == 0 else 0
+        cov_bins['1-2'] += 1 if 1 <= n <= 2 else 0
+        cov_bins['3-5'] += 1 if 3 <= n <= 5 else 0
+        cov_bins['6+'] += 1 if n >= 6 else 0
+    cov_labels = {'0': 'No contacts', '1-2': '1–2 contacts', '3-5': '3–5 contacts', '6+': '6+ contacts'}
+    cov_colors = {'0': colors.HexColor('#ef4444'), '1-2': colors.HexColor('#f59e0b'),
+                  '3-5': colors.HexColor('#10b981'), '6+': colors.HexColor('#0891b2')}
     cy = y2 - 22
-    if competitors:
-        for comp in competitors[:6]:
-            c.setFillColor(INK)
-            c.setFont('Helvetica-Bold', 9)
-            label = f"{comp.get('company','—')} — {comp.get('product','—')}"
-            c.drawString(MARGIN + col_w + 24, cy, truncate(label, 'Helvetica-Bold', 9, col_w))
-            cy -= 16
+    cov_max = max(cov_bins.values()) if cov_bins else 1
+    for key in ['0', '1-2', '3-5', '6+']:
+        cnt = cov_bins.get(key, 0)
+        c.setFillColor(INK)
+        c.setFont('Helvetica', 9)
+        c.drawString(MARGIN + col_w + 24, cy + 3, cov_labels[key])
+        bar_w = col_w - 70
+        bw = (cnt / cov_max) * bar_w if cov_max else 0
+        c.setFillColor(cov_colors[key])
+        c.roundRect(MARGIN + col_w + 24 + 88, cy, max(bw, 4) if cnt else 0, 11, 2, fill=1, stroke=0)
+        c.setFillColor(INK)
+        c.setFont('Helvetica-Bold', 9)
+        c.drawString(MARGIN + col_w + 24 + 88 + bw + 6, cy + 3, str(cnt))
+        cy -= 20
+
+    draw_footer(c, generated_at)
+    c.showPage()
+
+    # ---------- PAGE 3 — NEWS & MARKET INTELLIGENCE ----------
+    draw_header(c, 'News & Market Intelligence',
+                'This week\'s key stories with sourced links, plus tracked LeapSpace competitor activity', 3, TOTAL_PAGES)
+
+    y3 = PAGE_H - MARGIN - 50
+    c.setFillColor(INK)
+    c.setFont('Helvetica-Bold', 12)
+    c.drawString(MARGIN, y3, 'Top Stories This Week')
+    y3 -= 22
+    if news_sorted:
+        y3 = draw_news_summary(c, MARGIN, y3, CONTENT_W, news_sorted, max_items=5)
     else:
         c.setFillColor(MUTED)
         c.setFont('Helvetica', 9)
-        c.drawString(MARGIN + col_w + 24, cy, 'None tracked yet.')
-        cy -= 16
+        c.drawString(MARGIN, y3, 'No news items tracked yet.')
+        y3 -= 20
+
+    y3 -= 8
+    c.setStrokeColor(LINE)
+    c.setLineWidth(1)
+    c.line(MARGIN, y3, PAGE_W - MARGIN, y3)
+    y3 -= 22
+
+    c.setFillColor(INK)
+    c.setFont('Helvetica-Bold', 12)
+    c.drawString(MARGIN, y3, 'Competitor Watch — LeapSpace')
+    y3 -= 22
+    if competitors:
+        comp_sorted = sorted(competitors, key=lambda x: x.get('addedDate') or '', reverse=True)
+        draw_competitor_watch(c, MARGIN, y3, CONTENT_W, comp_sorted, max_items=5)
+    else:
+        c.setFillColor(MUTED)
+        c.setFont('Helvetica', 9)
+        c.drawString(MARGIN, y3, 'None tracked yet.')
 
     draw_footer(c, generated_at)
     c.showPage()
