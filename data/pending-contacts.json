@@ -32,7 +32,7 @@
   },
   {
     "first": "Pablo",
-    "last": "César",
+    "last": "C\u00e9sar",
     "title": "Researcher",
     "dept": "Mathematics & Computer Science",
     "email": "",
@@ -143,7 +143,7 @@
     "notes": "Discovered: 2026-08-05 | Source: https://openalex.org/A5083188322"
   },
   {
-    "first": "Daniël",
+    "first": "Dani\u00ebl",
     "last": "H. van Raalte",
     "title": "Researcher",
     "dept": "Mathematics & Computer Science",
@@ -240,7 +240,7 @@
   },
   {
     "first": "C.",
-    "last": "Làj",
+    "last": "L\u00e0j",
     "title": "Researcher",
     "dept": "Science & Technology Studies",
     "email": "",
@@ -352,7 +352,7 @@
   },
   {
     "first": "Peter",
-    "last": "Grünwald",
+    "last": "Gr\u00fcnwald",
     "title": "Researcher",
     "dept": "Mathematics & Computer Science",
     "email": "",
@@ -654,7 +654,7 @@
     "id": "disc_rathenau_1786090031411_iqti"
   },
   {
-    "first": "Asaël",
+    "first": "Asa\u00ebl",
     "last": "Berger",
     "title": "Researcher",
     "dept": "Science & Technology Studies",
@@ -787,7 +787,7 @@
   },
   {
     "first": "Marina",
-    "last": "D’Angelo",
+    "last": "D\u2019Angelo",
     "title": "Researcher",
     "dept": "Science & Technology Studies",
     "email": "",
@@ -842,7 +842,7 @@
   },
   {
     "first": "Syver",
-    "last": "Døving Agdestein",
+    "last": "D\u00f8ving Agdestein",
     "title": "Researcher",
     "dept": "Mathematics & Computer Science",
     "email": "",
@@ -1083,7 +1083,7 @@
     "id": "disc_rathenau_1786350071928_90u3"
   },
   {
-    "first": "Frédéric",
+    "first": "Fr\u00e9d\u00e9ric",
     "last": "Medina",
     "title": "Researcher",
     "dept": "Science & Technology Studies",
@@ -1436,7 +1436,7 @@
   },
   {
     "first": "H.",
-    "last": "J. A. Röttgering",
+    "last": "J. A. R\u00f6ttgering",
     "title": "Researcher",
     "dept": "Research",
     "email": "",
@@ -1491,7 +1491,7 @@
   },
   {
     "first": "Valentina",
-    "last": "Azzarà",
+    "last": "Azzar\u00e0",
     "title": "Researcher",
     "dept": "Research Software Engineering",
     "email": "",
@@ -1535,7 +1535,7 @@
   },
   {
     "first": "Lorena",
-    "last": "Pajares Sánchez",
+    "last": "Pajares S\u00e1nchez",
     "title": "Researcher",
     "dept": "Science & Technology Studies",
     "email": "",
@@ -1546,7 +1546,7 @@
   },
   {
     "first": "Guillaume",
-    "last": "Pisché",
+    "last": "Pisch\u00e9",
     "title": "Researcher",
     "dept": "Science & Technology Studies",
     "email": "",
@@ -1733,7 +1733,7 @@
   },
   {
     "first": "Pablo",
-    "last": "Rodríguez‐Sánchez",
+    "last": "Rodr\u00edguez\u2010S\u00e1nchez",
     "title": "Researcher",
     "dept": "Research Software Engineering",
     "email": "",
@@ -1776,7 +1776,7 @@
     "id": "disc_rathenau_1786608685324_z9nb"
   },
   {
-    "first": "Mariëtte",
+    "first": "Mari\u00ebtte",
     "last": "van Huijstee",
     "title": "Researcher",
     "dept": "Science & Technology Studies",
@@ -1887,7 +1887,7 @@
   },
   {
     "first": "Thomas",
-    "last": "Bäck",
+    "last": "B\u00e4ck",
     "title": "Researcher",
     "dept": "Research",
     "email": "",
@@ -1930,8 +1930,8 @@
     "id": "disc_cwi_1786694851307_kzfo"
   },
   {
-    "first": "Gábor",
-    "last": "Závodszky",
+    "first": "G\u00e1bor",
+    "last": "Z\u00e1vodszky",
     "title": "Researcher",
     "dept": "Mathematics & Computer Science",
     "email": "",
@@ -1975,7 +1975,7 @@
   },
   {
     "first": "Malte",
-    "last": "Lüken",
+    "last": "L\u00fcken",
     "title": "Researcher",
     "dept": "Research Software Engineering",
     "email": "",
@@ -2019,7 +2019,7 @@
   },
   {
     "first": "Robert",
-    "last": "Landewé",
+    "last": "Landew\u00e9",
     "title": "Researcher",
     "dept": "Research",
     "email": "",
@@ -2084,7 +2084,7 @@
     "id": "disc_vu_1786694851307_ecfb"
   },
   {
-    "first": "Gert‐Jan",
+    "first": "Gert\u2010Jan",
     "last": "Reichart",
     "title": "Researcher",
     "dept": "Research",
@@ -2196,7 +2196,7 @@
   {
     "id": "disc_erasmusmc_1787336565139_e3ku",
     "first": "Ismaela",
-    "last": "Nieuwenhuijs-Stöteler",
+    "last": "Nieuwenhuijs-St\u00f6teler",
     "title": "Manager RDO",
     "dept": "Erasmus Research Development Office (RDO)",
     "email": "i.nieuwenhuijs@erasmusmc.nl",
@@ -2405,7 +2405,7 @@
   },
   {
     "first": "Geert",
-    "last": "D’Haens",
+    "last": "D\u2019Haens",
     "title": "Researcher",
     "dept": "Research",
     "email": "geert.dhaens@uva.nl",
@@ -2545,5 +2545,181 @@
     "research": "ORCID: https://orcid.org/0000-0001-5434-5942",
     "constructed": true,
     "id": "disc_leiden_1787399556640_zlpv"
+  },
+  {
+    "first": "Tom",
+    "last": "van der Poll",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "",
+    "instId": "aumc",
+    "source": "https://openalex.org/A5048965254",
+    "research": "ORCID: https://orcid.org/0000-0002-9199-5079",
+    "id": "disc_aumc_1787209286071_nt9s"
+  },
+  {
+    "first": "Albert",
+    "last": "Hofman",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "",
+    "instId": "erasmusmc",
+    "source": "https://openalex.org/A5039611937",
+    "research": "ORCID: https://orcid.org/0000-0002-9865-121X",
+    "id": "disc_erasmusmc_1787209286071_f362"
+  },
+  {
+    "first": "Cornelia",
+    "last": "M. van Duijn",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "",
+    "instId": "erasmusmc",
+    "source": "https://openalex.org/A5017009749",
+    "research": "ORCID: https://orcid.org/0000-0002-2374-9204",
+    "id": "disc_erasmusmc_1787209286071_v8gs"
+  },
+  {
+    "first": "M.",
+    "last": "Arfan Ikram",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "",
+    "instId": "erasmusmc",
+    "source": "https://openalex.org/A5036303967",
+    "research": "ORCID: https://orcid.org/0000-0003-0372-8585",
+    "id": "disc_erasmusmc_1787209286071_ns7k"
+  },
+  {
+    "first": "Ewout",
+    "last": "W. Steyerberg",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "",
+    "instId": "umcutrecht",
+    "source": "https://openalex.org/A5091435927",
+    "research": "ORCID: https://orcid.org/0000-0002-7787-0122",
+    "id": "disc_umcutrecht_1787209286071_fz7b"
+  },
+  {
+    "first": "P.",
+    "last": "J. van Diest",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "",
+    "instId": "umcutrecht",
+    "source": "https://openalex.org/A5034061890",
+    "research": "ORCID: https://orcid.org/0000-0003-0658-2745",
+    "id": "disc_umcutrecht_1787209286071_oobc"
+  },
+  {
+    "first": "Ellen",
+    "last": "A. A. Nollen",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "",
+    "instId": "umcg",
+    "source": "https://openalex.org/A5088064718",
+    "research": "ORCID: https://orcid.org/0000-0003-3740-6373",
+    "id": "disc_umcg_1787209286071_krr6"
+  },
+  {
+    "first": "Peter",
+    "last": "Paul De Deyn",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "",
+    "instId": "umcg",
+    "source": "https://openalex.org/A5027033208",
+    "research": "ORCID: https://orcid.org/0000-0002-2228-2964",
+    "id": "disc_umcg_1787209286071_75sw"
+  },
+  {
+    "first": "Maarten",
+    "last": "J. Postma",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "",
+    "instId": "umcg",
+    "source": "https://openalex.org/A5016565734",
+    "research": "ORCID: https://orcid.org/0000-0002-6306-3653",
+    "id": "disc_umcg_1787209286071_btri"
+  },
+  {
+    "first": "E.",
+    "last": "R. de Kloet",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "",
+    "instId": "lumc",
+    "source": "https://openalex.org/A5085514973",
+    "research": "ORCID: https://orcid.org/0000-0001-9176-1830",
+    "id": "disc_lumc_1787209286071_4xp2"
+  },
+  {
+    "first": "T.",
+    "last": "Huizinga",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "",
+    "instId": "lumc",
+    "source": "https://openalex.org/A5052842332",
+    "research": "ORCID: https://orcid.org/0000-0001-7033-7520",
+    "id": "disc_lumc_1787209286071_qzgs"
+  },
+  {
+    "first": "Mihai",
+    "last": "G. Netea",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "",
+    "instId": "radboudumc",
+    "source": "https://openalex.org/A5027955775",
+    "research": "ORCID: https://orcid.org/0000-0003-2421-6052",
+    "id": "disc_radboudumc_1787209286071_h2oh"
+  },
+  {
+    "first": "Jan",
+    "last": "K. Buitelaar",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "",
+    "instId": "radboudumc",
+    "source": "https://openalex.org/A5009149756",
+    "research": "ORCID: https://orcid.org/0000-0001-8288-7757",
+    "id": "disc_radboudumc_1787209286071_4ch5"
+  },
+  {
+    "first": "Hugo",
+    "last": "Ten Cate",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "",
+    "instId": "mumc",
+    "source": "https://openalex.org/A5034309539",
+    "research": "ORCID: https://orcid.org/0000-0001-7796-4463",
+    "id": "disc_mumc_1787209286071_44p5"
+  },
+  {
+    "first": "Christian",
+    "last": "Weber",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "",
+    "instId": "mumc",
+    "source": "https://openalex.org/A5100603203",
+    "research": "ORCID: https://orcid.org/0000-0003-4610-8714",
+    "id": "disc_mumc_1787209286071_zv56"
+  },
+  {
+    "first": "Christopher",
+    "last": "B. Granger",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "",
+    "instId": "mumc",
+    "source": "https://openalex.org/A5014449865",
+    "research": "ORCID: https://orcid.org/0000-0002-0045-3291",
+    "id": "disc_mumc_1787209286071_ylvh"
   }
 ]

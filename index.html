@@ -5805,6 +5805,55 @@ async function loadNewsCount() {
   }
 }
 
+const SCRAPE_TYPES_ALL = ['university','medical','research','ngo'];
+
+// Which institution types the next scrape (daily 07:00 UTC run, or "Find
+// contacts now") targets — read/written on scrape_config (id=1) in Supabase.
+// RLS restricts writes to admins; the discover.js workflow reads this same
+// row to decide which institutions to walk.
+async function getScrapeTypes() {
+  try {
+    const rows = await supaFetch('scrape_config?select=types&id=eq.1');
+    if (rows && rows[0] && Array.isArray(rows[0].types) && rows[0].types.length) return rows[0].types;
+  } catch(e) { console.error(e); }
+  return SCRAPE_TYPES_ALL.slice();
+}
+
+async function setScrapeTypes(t) {
+  if (state.currentRole !== 'admin') return;
+  const types = t === 'all' ? SCRAPE_TYPES_ALL.slice() : [t];
+  try {
+    await supaFetch('scrape_config?id=eq.1', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ types, updated_at: new Date().toISOString() })
+    });
+    toast('Next scrape will target: ' + (t === 'all' ? 'all institution types' : (TYPE_LABEL[t]||t)), 'ok');
+    renderPendingContacts();
+  } catch(e) {
+    console.error(e);
+    toast('Failed to save scrape target', 'err');
+  }
+}
+
+function buildScrapeTargetBar(currentTypes) {
+  const selected = (currentTypes.length === SCRAPE_TYPES_ALL.length) ? 'all'
+    : (currentTypes.length === 1 ? currentTypes[0] : null);
+  const opts = [{ key:'all', label:'All institution types', color:'#f1f5f9' }]
+    .concat(SCRAPE_TYPES_ALL.map(t => ({ key:t, label:TYPE_LABEL[t]||t, color:TYPE_COLORS_MAP[t]||'#94a3b8' })));
+  const pills = opts.map(o => {
+    const active = o.key === selected;
+    return `<button data-admin-only onclick="setScrapeTypes('${o.key}')" style="` +
+      `border:1.5px solid ${active ? o.color : 'var(--border)'};` +
+      `background:${active ? o.color+'22' : 'transparent'};` +
+      `color:${active ? o.color : 'var(--muted)'};` +
+      `border-radius:16px;padding:4px 12px;cursor:pointer;font-size:11px;font-weight:600;white-space:nowrap">${esc(o.label)}</button>`;
+  }).join('');
+  return `<div data-admin-only style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+    <span style="font-size:11px;color:var(--muted);font-weight:600">Scrape target:</span>${pills}
+  </div>`;
+}
+
 async function renderPendingContacts() {
   document.getElementById('page-title').textContent = 'New Contacts';
   document.getElementById('page-sub').textContent = 'AI-discovered contacts awaiting your review — accept to add to CRM, delete to discard';
@@ -5820,13 +5869,18 @@ async function renderPendingContacts() {
     pending = rows || [];
   } catch(e) { console.error(e); }
 
+  const currentTypes = await getScrapeTypes();
+  const targetBar = buildScrapeTargetBar(currentTypes);
+
   if (!pending.length) {
     document.getElementById('content').innerHTML = `
-      <div class="empty" style="margin-top:40px">
+      <div style="padding:24px 0">${targetBar}</div>
+      <div class="empty" style="margin-top:0">
         <div class="ei"><svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg></div>
         <h3>No pending contacts</h3>
         <p>The daily agent will find new contacts automatically. Click "Find contacts now" to run it manually.</p>
       </div>`;
+    applyRoleUI();
     return;
   }
 
@@ -5851,6 +5905,7 @@ async function renderPendingContacts() {
     </tr>`).join('');
 
   document.getElementById('content').innerHTML = `
+    ${targetBar}
     <div class="table-wrap" style="margin-top:8px">
       <table style="width:100%;border-collapse:collapse">
         <thead><tr style="background:var(--surface)">
@@ -5866,6 +5921,7 @@ async function renderPendingContacts() {
         <tbody>${rows}</tbody>
       </table>
     </div>`;
+  applyRoleUI();
 }
 
 function getInstType(id) {
