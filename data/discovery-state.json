@@ -1,8 +1,8 @@
 {
-  "lastRun": "2026-08-22T13:22:17.260Z",
-  "lastAddedCount": 11,
+  "lastRun": "2026-08-22T13:28:25.312Z",
+  "lastAddedCount": 21,
   "lastTypes": [
-    "university"
+    "medical"
   ],
   "source": "Claude Code agent (subscription)",
   "scraped": {
@@ -69,63 +69,70 @@
       "p2",
       "p3",
       "p4",
-      "p5"
+      "p5",
+      "p6"
     ],
-    "aumc_page": 6,
+    "aumc_page": 7,
     "erasmusmc_oa_id": "https://openalex.org/I2801952686",
     "erasmusmc": [
       "p1",
       "p2",
       "p3",
       "p4",
-      "p5"
+      "p5",
+      "p6"
     ],
-    "erasmusmc_page": 6,
+    "erasmusmc_page": 7,
     "umcutrecht_oa_id": "https://openalex.org/I3018483916",
     "umcutrecht": [
       "p1",
       "p2",
       "p3",
       "p4",
-      "p5"
+      "p5",
+      "p6"
     ],
-    "umcutrecht_page": 6,
+    "umcutrecht_page": 7,
     "umcg_oa_id": "https://openalex.org/I1334415907",
     "umcg": [
       "p1",
       "p2",
       "p3",
       "p4",
-      "p5"
+      "p5",
+      "p6"
     ],
-    "umcg_page": 6,
+    "umcg_page": 7,
     "lumc_oa_id": "https://openalex.org/I2800006345",
     "lumc": [
       "p1",
       "p2",
       "p3",
       "p4",
-      "p5"
+      "p5",
+      "p6"
     ],
-    "lumc_page": 6,
+    "lumc_page": 7,
     "radboudumc_oa_id": "https://openalex.org/I2802934949",
     "radboudumc": [
       "p1",
       "p2",
       "p3",
       "p4",
-      "p5"
+      "p5",
+      "p6"
     ],
-    "radboudumc_page": 6,
+    "radboudumc_page": 7,
     "mumc_oa_id": "https://openalex.org/I2800191616",
     "mumc": [
       "p1",
       "p2",
       "p3",
       "p4",
-      "p5"
+      "p5",
+      "p6"
     ],
-    "mumc_page": 6,
+    "mumc_page": 7,
     "eur_oa_id": "https://openalex.org/I913958620",
     "eur": [
       "p1",
