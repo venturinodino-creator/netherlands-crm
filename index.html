@@ -3250,6 +3250,7 @@ function renderNewsArticles() {
       </div>
       <h3>${esc(a.title)}</h3>
       ${a.description ? `<p>${esc(a.description)}</p>` : ''}
+      ${a.elsevierRelevance ? `<p style="color:#38bdf8;font-size:12px;font-style:italic;margin-top:6px">Why it matters: ${esc(a.elsevierRelevance)}</p>` : ''}
       <div class="news-card-footer">
         <a href="${safeUrl}" target="_blank" onclick="event.stopPropagation()">Read full article </a>
         ${a.sourceName ? `<span style="color:var(--muted);font-size:11px">· ${esc(a.sourceName)}</span>` : ''}
@@ -3273,8 +3274,12 @@ async function renderNewsScanStatus() {
 
 function renderNews() {
   document.getElementById('page-title').textContent = 'Netherlands Research News';
-  document.getElementById('page-sub').textContent = 'AI adoption, funding, and policy news for the institutions you track — curated daily via Claude web search';
-  document.getElementById('topbar-actions').innerHTML = '';
+  document.getElementById('page-sub').textContent = 'AI, funding, and policy news relevant to Elsevier\'s business — scanned daily, filtered for relevance';
+  document.getElementById('topbar-actions').innerHTML = `
+    <button class="btn btn-outline" onclick="nav('ai-insights')" style="font-size:12px">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:5px"><path d="M12 2a5 5 0 0 0-5 5c0 1.7.7 2.6 1.5 3.5.6.6 1 1.2 1.2 2.1M12 2a5 5 0 0 1 5 5c0 1.7-.7 2.6-1.5 3.5-.6.6-1 1.2-1.2 2.1M9.7 12.6h4.6M9.9 16h4.2M10.5 19h3"/></svg>
+      Competitor Insights
+    </button>`;
 
   const allCats = ['all', ...Object.keys(NEWS_CATEGORIES)];
   const catBtns = allCats.map(c => {
