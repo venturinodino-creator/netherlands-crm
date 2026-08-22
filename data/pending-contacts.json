@@ -4281,5 +4281,70 @@
     "research": "ORCID: https://orcid.org/0000-0001-7420-0898",
     "constructed": true,
     "id": "disc_mumc_1787405305185_6aqi"
+  },
+  {
+    "first": "Tristan",
+    "last": "van Leeuwen",
+    "title": "Researcher",
+    "dept": "Mathematics & Computer Science",
+    "email": "tristan.vanleeuwen@cwi.nl",
+    "instId": "cwi",
+    "instName": "Centrum Wiskunde & Informatica",
+    "source": "https://openalex.org/A5008696762",
+    "research": "ORCID: https://orcid.org/0000-0002-8794-6426",
+    "constructed": true,
+    "id": "disc_cwi_1787405339866_65dg"
+  },
+  {
+    "first": "Gijs",
+    "last": "van den Oord",
+    "title": "Researcher",
+    "dept": "Research Software Engineering",
+    "email": "gijs.vandenoord@esciencecenter.nl",
+    "instId": "esc",
+    "instName": "Netherlands eScience Center",
+    "source": "https://openalex.org/A5055520945",
+    "research": "ORCID: https://orcid.org/0000-0001-8367-1333",
+    "constructed": true,
+    "id": "disc_esc_1787405339866_uipu"
+  },
+  {
+    "first": "Laurent",
+    "last": "Soucasse",
+    "title": "Researcher",
+    "dept": "Research Software Engineering",
+    "email": "laurent.soucasse@esciencecenter.nl",
+    "instId": "esc",
+    "instName": "Netherlands eScience Center",
+    "source": "https://openalex.org/A5077972500",
+    "research": "ORCID: https://orcid.org/0000-0002-5422-8794",
+    "constructed": true,
+    "id": "disc_esc_1787405339866_igvf"
+  },
+  {
+    "first": "Paul",
+    "last": "Diederen",
+    "title": "Researcher",
+    "dept": "Science & Technology Studies",
+    "email": "paul.diederen@rathenau.nl",
+    "instId": "rathenau",
+    "instName": "Rathenau Instituut",
+    "source": "https://openalex.org/A5011805831",
+    "research": "",
+    "constructed": true,
+    "id": "disc_rathenau_1787405339866_rlaf"
+  },
+  {
+    "first": "Giulia",
+    "last": "Grieco",
+    "title": "Researcher",
+    "dept": "Science & Technology Studies",
+    "email": "giulia.grieco@rathenau.nl",
+    "instId": "rathenau",
+    "instName": "Rathenau Instituut",
+    "source": "https://openalex.org/A5062255375",
+    "research": "",
+    "constructed": true,
+    "id": "disc_rathenau_1787405339866_hfuv"
   }
 ]

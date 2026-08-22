@@ -1,8 +1,8 @@
 {
-  "lastRun": "2026-08-22T13:28:25.312Z",
-  "lastAddedCount": 21,
+  "lastRun": "2026-08-22T13:29:00.233Z",
+  "lastAddedCount": 5,
   "lastTypes": [
-    "medical"
+    "research"
   ],
   "source": "Claude Code agent (subscription)",
   "scraped": {
@@ -10,23 +10,26 @@
     "cwi": [
       "p1",
       "p2",
-      "p3"
+      "p3",
+      "p4"
     ],
-    "cwi_page": 4,
+    "cwi_page": 5,
     "esc_oa_id": "https://openalex.org/I4210095242",
     "esc": [
       "p1",
       "p2",
-      "p3"
+      "p3",
+      "p4"
     ],
-    "esc_page": 4,
+    "esc_page": 5,
     "rathenau_oa_id": "https://openalex.org/I2800109292",
     "rathenau": [
       "p1",
       "p2",
-      "p3"
+      "p3",
+      "p4"
     ],
-    "rathenau_page": 4,
+    "rathenau_page": 5,
     "uva_oa_id": "https://openalex.org/I887064364",
     "uva": [
       "p1",
