@@ -309,7 +309,7 @@ def build_report(data, out_path):
                     'Contacts by Priority', contact_priority_counts, PRIORITY_COLORS,
                     label_fn=lambda k: k.title())
 
-    top_insts = sorted(contacts_per_inst.items(), key=lambda kv: kv[1], reverse=True)[:5]
+    top_insts = sorted(contacts_per_inst.items(), key=lambda kv: kv[1], reverse=True)[:4]
     list_top = charts_top - chart_h - 34
     c.setFillColor(INK)
     c.setFont('Helvetica-Bold', 11)
@@ -329,6 +329,28 @@ def build_report(data, out_path):
         c.setFont('Helvetica-Bold', 9)
         c.drawString(MARGIN + 160 + bw + 6, ly + 3, str(cnt))
         ly -= 20
+
+    top_news = sorted(news, key=lambda n: n.get('foundDate') or n.get('publishedDate') or '', reverse=True)[:2]
+    if top_news:
+        news_top = ly - 26
+        c.setFillColor(INK)
+        c.setFont('Helvetica-Bold', 11)
+        c.drawString(MARGIN, news_top, 'Top News')
+        ny = news_top - 20
+        for n in top_news:
+            c.setFillColor(INK)
+            c.setFont('Helvetica-Bold', 9.5)
+            c.drawString(MARGIN, ny, truncate(n.get('title', '—'), 'Helvetica-Bold', 9.5, CONTENT_W))
+            ny -= 13
+            meta = ' · '.join(filter(None, [
+                n.get('institution'),
+                n.get('categoryLabel') or n.get('category'),
+                n.get('foundDate') or n.get('publishedDate'),
+            ]))
+            c.setFillColor(ACCENT)
+            c.setFont('Helvetica', 8)
+            c.drawString(MARGIN, ny, truncate(meta, 'Helvetica', 8, CONTENT_W))
+            ny -= 19
 
     pending_note = None if stats['pending_is_live'] else 'New Contacts total is from the local scrape audit trail, not live Supabase status — see the Summary archive for context.'
     draw_footer(c, generated_at, pending_note)
