@@ -32,7 +32,7 @@
   },
   {
     "first": "Pablo",
-    "last": "C\u00e9sar",
+    "last": "César",
     "title": "Researcher",
     "dept": "Mathematics & Computer Science",
     "email": "",
@@ -143,7 +143,7 @@
     "notes": "Discovered: 2026-08-05 | Source: https://openalex.org/A5083188322"
   },
   {
-    "first": "Dani\u00ebl",
+    "first": "Daniël",
     "last": "H. van Raalte",
     "title": "Researcher",
     "dept": "Mathematics & Computer Science",
@@ -240,7 +240,7 @@
   },
   {
     "first": "C.",
-    "last": "L\u00e0j",
+    "last": "Làj",
     "title": "Researcher",
     "dept": "Science & Technology Studies",
     "email": "",
@@ -352,7 +352,7 @@
   },
   {
     "first": "Peter",
-    "last": "Gr\u00fcnwald",
+    "last": "Grünwald",
     "title": "Researcher",
     "dept": "Mathematics & Computer Science",
     "email": "",
@@ -654,7 +654,7 @@
     "id": "disc_rathenau_1786090031411_iqti"
   },
   {
-    "first": "Asa\u00ebl",
+    "first": "Asaël",
     "last": "Berger",
     "title": "Researcher",
     "dept": "Science & Technology Studies",
@@ -787,7 +787,7 @@
   },
   {
     "first": "Marina",
-    "last": "D\u2019Angelo",
+    "last": "D’Angelo",
     "title": "Researcher",
     "dept": "Science & Technology Studies",
     "email": "",
@@ -842,7 +842,7 @@
   },
   {
     "first": "Syver",
-    "last": "D\u00f8ving Agdestein",
+    "last": "Døving Agdestein",
     "title": "Researcher",
     "dept": "Mathematics & Computer Science",
     "email": "",
@@ -1083,7 +1083,7 @@
     "id": "disc_rathenau_1786350071928_90u3"
   },
   {
-    "first": "Fr\u00e9d\u00e9ric",
+    "first": "Frédéric",
     "last": "Medina",
     "title": "Researcher",
     "dept": "Science & Technology Studies",
@@ -1436,7 +1436,7 @@
   },
   {
     "first": "H.",
-    "last": "J. A. R\u00f6ttgering",
+    "last": "J. A. Röttgering",
     "title": "Researcher",
     "dept": "Research",
     "email": "",
@@ -1491,7 +1491,7 @@
   },
   {
     "first": "Valentina",
-    "last": "Azzar\u00e0",
+    "last": "Azzarà",
     "title": "Researcher",
     "dept": "Research Software Engineering",
     "email": "",
@@ -1535,7 +1535,7 @@
   },
   {
     "first": "Lorena",
-    "last": "Pajares S\u00e1nchez",
+    "last": "Pajares Sánchez",
     "title": "Researcher",
     "dept": "Science & Technology Studies",
     "email": "",
@@ -1546,7 +1546,7 @@
   },
   {
     "first": "Guillaume",
-    "last": "Pisch\u00e9",
+    "last": "Pisché",
     "title": "Researcher",
     "dept": "Science & Technology Studies",
     "email": "",
@@ -1733,7 +1733,7 @@
   },
   {
     "first": "Pablo",
-    "last": "Rodr\u00edguez\u2010S\u00e1nchez",
+    "last": "Rodríguez‐Sánchez",
     "title": "Researcher",
     "dept": "Research Software Engineering",
     "email": "",
@@ -1776,7 +1776,7 @@
     "id": "disc_rathenau_1786608685324_z9nb"
   },
   {
-    "first": "Mari\u00ebtte",
+    "first": "Mariëtte",
     "last": "van Huijstee",
     "title": "Researcher",
     "dept": "Science & Technology Studies",
@@ -1887,7 +1887,7 @@
   },
   {
     "first": "Thomas",
-    "last": "B\u00e4ck",
+    "last": "Bäck",
     "title": "Researcher",
     "dept": "Research",
     "email": "",
@@ -1930,8 +1930,8 @@
     "id": "disc_cwi_1786694851307_kzfo"
   },
   {
-    "first": "G\u00e1bor",
-    "last": "Z\u00e1vodszky",
+    "first": "Gábor",
+    "last": "Závodszky",
     "title": "Researcher",
     "dept": "Mathematics & Computer Science",
     "email": "",
@@ -1975,7 +1975,7 @@
   },
   {
     "first": "Malte",
-    "last": "L\u00fcken",
+    "last": "Lüken",
     "title": "Researcher",
     "dept": "Research Software Engineering",
     "email": "",
@@ -2019,7 +2019,7 @@
   },
   {
     "first": "Robert",
-    "last": "Landew\u00e9",
+    "last": "Landewé",
     "title": "Researcher",
     "dept": "Research",
     "email": "",
@@ -2084,7 +2084,7 @@
     "id": "disc_vu_1786694851307_ecfb"
   },
   {
-    "first": "Gert\u2010Jan",
+    "first": "Gert‐Jan",
     "last": "Reichart",
     "title": "Researcher",
     "dept": "Research",
@@ -2196,7 +2196,7 @@
   {
     "id": "disc_erasmusmc_1787336565139_e3ku",
     "first": "Ismaela",
-    "last": "Nieuwenhuijs-St\u00f6teler",
+    "last": "Nieuwenhuijs-Stöteler",
     "title": "Manager RDO",
     "dept": "Erasmus Research Development Office (RDO)",
     "email": "i.nieuwenhuijs@erasmusmc.nl",
@@ -2405,7 +2405,7 @@
   },
   {
     "first": "Geert",
-    "last": "D\u2019Haens",
+    "last": "D’Haens",
     "title": "Researcher",
     "dept": "Research",
     "email": "geert.dhaens@uva.nl",
@@ -2721,5 +2721,265 @@
     "source": "https://openalex.org/A5014449865",
     "research": "ORCID: https://orcid.org/0000-0002-0045-3291",
     "id": "disc_mumc_1787209286071_ylvh"
+  },
+  {
+    "first": "Jan",
+    "last": "G.P. Tijssen",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "jan.gptijssen@amsterdamumc.nl",
+    "instId": "aumc",
+    "instName": "Amsterdam UMC",
+    "source": "https://openalex.org/A5108097313",
+    "research": "",
+    "constructed": true,
+    "id": "disc_aumc_1787400035957_a77p"
+  },
+  {
+    "first": "Ronald",
+    "last": "van Ree",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "ronald.vanree@amsterdamumc.nl",
+    "instId": "aumc",
+    "instName": "Amsterdam UMC",
+    "source": "https://openalex.org/A5035034281",
+    "research": "ORCID: https://orcid.org/0000-0003-0767-0894",
+    "constructed": true,
+    "id": "disc_aumc_1787400035957_wb9f"
+  },
+  {
+    "first": "Gert",
+    "last": "J. Ossenkoppele",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "gert.jossenkoppele@amsterdamumc.nl",
+    "instId": "aumc",
+    "instName": "Amsterdam UMC",
+    "source": "https://openalex.org/A5108882243",
+    "research": "",
+    "constructed": true,
+    "id": "disc_aumc_1787400035957_yal7"
+  },
+  {
+    "first": "Nicolas",
+    "last": "M. Van Mieghem",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "nicolas.mvanmieghem@erasmusmc.nl",
+    "instId": "erasmusmc",
+    "instName": "Erasmus MC",
+    "source": "https://openalex.org/A5001295240",
+    "research": "ORCID: https://orcid.org/0000-0002-2732-1205",
+    "constructed": true,
+    "id": "disc_erasmusmc_1787400035957_xijn"
+  },
+  {
+    "first": "Bas",
+    "last": "Groot Koerkamp",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "bas.grootkoerkamp@erasmusmc.nl",
+    "instId": "erasmusmc",
+    "instName": "Erasmus MC",
+    "source": "https://openalex.org/A5027294559",
+    "research": "ORCID: https://orcid.org/0000-0003-1917-6973",
+    "constructed": true,
+    "id": "disc_erasmusmc_1787400035957_il11"
+  },
+  {
+    "first": "Eric",
+    "last": "Boersma",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "eric.boersma@erasmusmc.nl",
+    "instId": "erasmusmc",
+    "instName": "Erasmus MC",
+    "source": "https://openalex.org/A5088988397",
+    "research": "ORCID: https://orcid.org/0000-0002-2559-7128",
+    "constructed": true,
+    "id": "disc_erasmusmc_1787400035957_4ik1"
+  },
+  {
+    "first": "Heleen",
+    "last": "B. M. Boos",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "heleen.bmboos@umcutrecht.nl",
+    "instId": "umcutrecht",
+    "instName": "UMC Utrecht",
+    "source": "https://openalex.org/A5107851625",
+    "research": "",
+    "constructed": true,
+    "id": "disc_umcutrecht_1787400035958_kn30"
+  },
+  {
+    "first": "Tiny",
+    "last": "Jaarsma",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "tiny.jaarsma@umcutrecht.nl",
+    "instId": "umcutrecht",
+    "instName": "UMC Utrecht",
+    "source": "https://openalex.org/A5046767891",
+    "research": "ORCID: https://orcid.org/0000-0002-4197-4026",
+    "constructed": true,
+    "id": "disc_umcutrecht_1787400035958_tljq"
+  },
+  {
+    "first": "Cisca",
+    "last": "Wijmenga",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "cisca.wijmenga@umcutrecht.nl",
+    "instId": "umcutrecht",
+    "instName": "UMC Utrecht",
+    "source": "https://openalex.org/A5035504682",
+    "research": "ORCID: https://orcid.org/0000-0002-5635-1614",
+    "constructed": true,
+    "id": "disc_umcutrecht_1787400035958_l3ax"
+  },
+  {
+    "first": "Cornelis",
+    "last": "J.�H. van de Velde",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "cornelis.jhvandevelde@lumc.nl",
+    "instId": "lumc",
+    "instName": "Leiden University Medical Centre",
+    "source": "https://openalex.org/A5026031837",
+    "research": "ORCID: https://orcid.org/0000-0003-0104-1800",
+    "constructed": true,
+    "id": "disc_lumc_1787400035958_ax3b"
+  },
+  {
+    "first": "Ling",
+    "last": "Qin",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "ling.qin@lumc.nl",
+    "instId": "lumc",
+    "instName": "Leiden University Medical Centre",
+    "source": "https://openalex.org/A5086264545",
+    "research": "ORCID: https://orcid.org/0000-0001-6173-6167",
+    "constructed": true,
+    "id": "disc_lumc_1787400035958_enyk"
+  },
+  {
+    "first": "Adriaan",
+    "last": "A. Lammertsma",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "adriaan.alammertsma@umcg.nl",
+    "instId": "umcg",
+    "instName": "University Medical Centre Groningen",
+    "source": "https://openalex.org/A5065258380",
+    "research": "ORCID: https://orcid.org/0000-0003-1237-2891",
+    "constructed": true,
+    "id": "disc_umcg_1787400035958_f73v"
+  },
+  {
+    "first": "Adriaan",
+    "last": "A. Voors",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "adriaan.avoors@umcg.nl",
+    "instId": "umcg",
+    "instName": "University Medical Centre Groningen",
+    "source": "https://openalex.org/A5074566771",
+    "research": "ORCID: https://orcid.org/0000-0002-5417-4415",
+    "constructed": true,
+    "id": "disc_umcg_1787400035958_v4w7"
+  },
+  {
+    "first": "Hiddo",
+    "last": "J.L. Heerspink",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "hiddo.jlheerspink@umcg.nl",
+    "instId": "umcg",
+    "instName": "University Medical Centre Groningen",
+    "source": "https://openalex.org/A5031624913",
+    "research": "ORCID: https://orcid.org/0000-0002-3126-3730",
+    "constructed": true,
+    "id": "disc_umcg_1787400035958_1cqp"
+  },
+  {
+    "first": "Leo",
+    "last": "A. B. Joosten",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "leo.abjoosten@radboudumc.nl",
+    "instId": "radboudumc",
+    "instName": "Radboud University Medical Center",
+    "source": "https://openalex.org/A5036752858",
+    "research": "ORCID: https://orcid.org/0000-0001-6166-9830",
+    "constructed": true,
+    "id": "disc_radboudumc_1787400035958_21zo"
+  },
+  {
+    "first": "Sybren",
+    "last": "de Hoog",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "sybren.dehoog@radboudumc.nl",
+    "instId": "radboudumc",
+    "instName": "Radboud University Medical Center",
+    "source": "https://openalex.org/A5085601234",
+    "research": "ORCID: https://orcid.org/0000-0002-5344-257X",
+    "constructed": true,
+    "id": "disc_radboudumc_1787400035958_cbmk"
+  },
+  {
+    "first": "Roshan",
+    "last": "Cools",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "roshan.cools@radboudumc.nl",
+    "instId": "radboudumc",
+    "instName": "Radboud University Medical Center",
+    "source": "https://openalex.org/A5072571980",
+    "research": "ORCID: https://orcid.org/0000-0001-8994-5534",
+    "constructed": true,
+    "id": "disc_radboudumc_1787400035958_eqco"
+  },
+  {
+    "first": "Roberto",
+    "last": "Lorusso",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "roberto.lorusso@mumc.nl",
+    "instId": "mumc",
+    "instName": "Maastricht UMC+",
+    "source": "https://openalex.org/A5043650751",
+    "research": "ORCID: https://orcid.org/0000-0002-1777-2045",
+    "constructed": true,
+    "id": "disc_mumc_1787400035958_nu60"
+  },
+  {
+    "first": "Charles",
+    "last": "B.L.M. Majoie",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "charles.blmmajoie@mumc.nl",
+    "instId": "mumc",
+    "instName": "Maastricht UMC+",
+    "source": "https://openalex.org/A5024309954",
+    "research": "ORCID: https://orcid.org/0000-0002-7600-9568",
+    "constructed": true,
+    "id": "disc_mumc_1787400035958_c7jf"
+  },
+  {
+    "first": "Carla",
+    "last": "Kallen",
+    "title": "Researcher",
+    "dept": "Medical Research",
+    "email": "carla.kallen@mumc.nl",
+    "instId": "mumc",
+    "instName": "Maastricht UMC+",
+    "source": "https://openalex.org/A5067603301",
+    "research": "ORCID: https://orcid.org/0000-0003-1468-8793",
+    "constructed": true,
+    "id": "disc_mumc_1787400035958_uouh"
   }
 ]
