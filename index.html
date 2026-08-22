@@ -5807,12 +5807,23 @@ async function loadNewsCount() {
 
 const SCRAPE_TYPES_ALL = ['university','medical','research','ngo'];
 
-// Client-side only: which institution type the New Contacts table is
-// currently filtered to. Separate from scrape_config in Supabase (the next
-// scrape's target) — selecting a pill filters the visible list for everyone,
-// and additionally updates scrape_config as a side effect for admins, same
-// as the old localStorage-based UI this replaced.
-let _pendingFilterType = 'all';
+// Client-side view filter, decoupled from scrape_config in Supabase (the
+// next scrape's target) so selecting a pill filters the visible list for
+// everyone, not just admins. null = not yet hydrated from scrape_config —
+// without this, a page reload always reset to "All" on screen while
+// scrape_config in the database still held whatever a pill click had last
+// set it to, so "Find contacts now" could silently scrape a different type
+// than whatever pill looked selected.
+let _pendingFilterType = null;
+
+async function ensurePendingFilterType() {
+  if (_pendingFilterType !== null) return;
+  try {
+    const rows = await supaFetch('scrape_config?select=types&id=eq.1');
+    const types = rows && rows[0] && Array.isArray(rows[0].types) ? rows[0].types : null;
+    _pendingFilterType = (types && types.length === 1 && SCRAPE_TYPES_ALL.includes(types[0])) ? types[0] : 'all';
+  } catch(e) { console.error(e); _pendingFilterType = 'all'; }
+}
 
 async function selectPendingType(t) {
   _pendingFilterType = t;
@@ -5853,6 +5864,8 @@ async function renderPendingContacts() {
   document.getElementById('page-title').textContent = 'New Contacts';
   document.getElementById('page-sub').textContent = 'AI-discovered contacts awaiting your review — accept to add to CRM, delete to discard';
 
+  await ensurePendingFilterType();
+
   let pending = [];
   try {
     const rows = await supaFetch('pending_contacts?status=eq.pending&order=created_at.desc');
@@ -5865,11 +5878,12 @@ async function renderPendingContacts() {
 
   const selType = SCRAPE_TYPES_ALL.includes(_pendingFilterType) ? _pendingFilterType : 'all';
   const filtered = selType === 'all' ? pending : pending.filter(c => getInstType(c.institution_id) === selType);
+  const findLabel = selType === 'all' ? 'Find contacts now' : `Find ${TYPE_LABEL[selType]||selType} contacts now`;
 
   document.getElementById('topbar-actions').innerHTML = `
     <button class="btn btn-outline" onclick="runContactDiscovery()" style="font-size:12px">
       <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:5px"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-      Find contacts now
+      ${esc(findLabel)}
     </button>
     ${filtered.length ? `<button class="btn btn-accent" id="accept-all-btn" onclick="acceptAllPendingContacts(this, '${selType}')" style="font-size:12px;margin-left:8px">Accept All (${filtered.length})</button>` : ''}`;
 
