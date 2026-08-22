@@ -1,8 +1,8 @@
 {
-  "lastRun": "2026-08-22T13:31:14.751Z",
-  "lastAddedCount": 18,
+  "lastRun": "2026-08-22T13:31:48.527Z",
+  "lastAddedCount": 20,
   "lastTypes": [
-    "university"
+    "ngo"
   ],
   "source": "Claude Code agent (subscription)",
   "scraped": {
@@ -160,6 +160,21 @@
       "p2",
       "p3"
     ],
-    "ru_page": 4
+    "ru_page": 4,
+    "knaw_oa_id": "https://openalex.org/I1322597698",
+    "knaw": [
+      "p1"
+    ],
+    "knaw_page": 2,
+    "nwo_oa_id": "https://openalex.org/I148297040",
+    "nwo": [
+      "p1"
+    ],
+    "nwo_page": 2,
+    "zonmw_oa_id": "https://openalex.org/I4210113026",
+    "zonmw": [
+      "p1"
+    ],
+    "zonmw_page": 2
   }
 }
