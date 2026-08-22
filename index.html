@@ -2041,6 +2041,25 @@ async function runAgentNow(workflow, btnId, name) {
 // runAgentNow, then actively polls the manifest for its generatedAt
 // timestamp to advance and re-renders the page once it does, so "Run report
 // now" visibly produces a fresh report instead of appearing to do nothing.
+// Reads data/summary-reports.json straight from the GitHub Contents API
+// (a commit's file content is visible here within a second or two) instead
+// of the live GitHub Pages URL, which has its own separate build+publish
+// step after every push — typically 30-90s on top of the workflow's own
+// ~15-20s runtime. That gap was the real cause of "Run report now" feeling
+// slow: the workflow itself was already done well before the page noticed.
+async function fetchManifestFresh(token) {
+  const res = await fetch(`https://api.github.com/repos/${GH_AGENTS_REPO}/contents/data/summary-reports.json?ref=main`, {
+    headers: {
+      'Authorization': 'Bearer ' + token,
+      'Accept': 'application/vnd.github.raw+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+    },
+  });
+  if (!res.ok) throw new Error('HTTP ' + res.status);
+  const data = JSON.parse(await res.text());
+  return Array.isArray(data) ? data : [];
+}
+
 async function runSummaryReportNow(btnId) {
   const token = getGhToken();
   if (!token) {
@@ -2052,12 +2071,21 @@ async function runSummaryReportNow(btnId) {
   const original = btn ? btn.textContent : '';
   if (btn) { btn.disabled = true; btn.textContent = 'Starting…'; }
 
+  let useContentsApi = true;
   let beforeGeneratedAt = null;
   try {
-    const res0 = await fetch('/netherlands-crm/data/summary-reports.json?t=' + Date.now());
-    const data0 = res0.ok ? await res0.json() : [];
-    if (Array.isArray(data0) && data0[0]) beforeGeneratedAt = data0[0].generatedAt;
-  } catch (e) { /* fine — poll will just wait for any entry to appear */ }
+    const manifest0 = await fetchManifestFresh(token);
+    if (manifest0[0]) beforeGeneratedAt = manifest0[0].generatedAt;
+  } catch (e) {
+    // Token likely lacks Contents:read (fine-grained PAT) — fall back to
+    // polling the public Pages URL like before, just slower.
+    useContentsApi = false;
+    try {
+      const res0 = await fetch('/netherlands-crm/data/summary-reports.json?t=' + Date.now());
+      const data0 = res0.ok ? await res0.json() : [];
+      if (Array.isArray(data0) && data0[0]) beforeGeneratedAt = data0[0].generatedAt;
+    } catch (e2) { /* fine — poll will just wait for any entry to appear */ }
+  }
 
   try {
     const res = await fetch(`https://api.github.com/repos/${GH_AGENTS_REPO}/actions/workflows/daily-summary.yml/dispatches`, {
@@ -2087,28 +2115,36 @@ async function runSummaryReportNow(btnId) {
     return;
   }
 
-  toast('Generating today\'s report — this usually takes under a minute…', 'ok');
-  const deadline = Date.now() + 110000;
+  toast(useContentsApi ? 'Generating today\'s report…' : 'Generating today\'s report — this usually takes under a minute…', 'ok');
+  const pollIntervalMs = useContentsApi ? 3000 : 8000;
+  const deadline = Date.now() + (useContentsApi ? 45000 : 110000);
   let found = false;
+  let freshData = null;
   while (Date.now() < deadline) {
     const secsLeft = Math.max(0, Math.round((deadline - Date.now()) / 1000));
     if (btn) { btn.textContent = `Running… (${secsLeft}s)`; }
-    await new Promise(r => setTimeout(r, 8000));
+    await new Promise(r => setTimeout(r, pollIntervalMs));
     try {
-      const res = await fetch('/netherlands-crm/data/summary-reports.json?t=' + Date.now());
-      const data = res.ok ? await res.json() : [];
-      const latest = Array.isArray(data) && data[0] ? data[0].generatedAt : null;
-      if (latest && latest !== beforeGeneratedAt) { found = true; break; }
+      let data, latest;
+      if (useContentsApi) {
+        data = await fetchManifestFresh(token);
+        latest = data[0] ? data[0].generatedAt : null;
+      } else {
+        const res = await fetch('/netherlands-crm/data/summary-reports.json?t=' + Date.now());
+        data = res.ok ? await res.json() : [];
+        latest = Array.isArray(data) && data[0] ? data[0].generatedAt : null;
+      }
+      if (latest && latest !== beforeGeneratedAt) { found = true; freshData = data; break; }
     } catch (e) { /* keep polling */ }
   }
 
   if (btn) { btn.textContent = original; btn.disabled = false; }
   if (found) {
-    toast('New report ready — refreshing', 'ok');
+    toast('New report ready', 'ok');
   } else {
-    toast('Still running on GitHub Actions — refreshing with the latest available report', 'warn');
+    toast('Still running on GitHub Actions — check back shortly', 'warn');
   }
-  if (document.getElementById('page-title')?.textContent === 'Summary') renderSummaryReports();
+  if (document.getElementById('page-title')?.textContent === 'Summary') renderSummaryReports(freshData);
 }
 
 // Close modal on overlay click
@@ -3457,7 +3493,7 @@ function renderNews() {
 }
 
 //  DAILY SUMMARY REPORTS
-async function renderSummaryReports() {
+async function renderSummaryReports(preloadedReports) {
   document.getElementById('page-title').textContent = 'Summary';
   document.getElementById('page-sub').textContent = 'Daily 3-page executive PDF of institutions, contacts, news, tenders, and competitor activity';
   document.getElementById('topbar-actions').innerHTML = `
@@ -3466,12 +3502,20 @@ async function renderSummaryReports() {
       Run report now
     </button>`;
 
+  // A refresh right after triggering a new run passes the manifest it
+  // already fetched (via the Contents API, so it's guaranteed current) —
+  // skips a redundant fetch and avoids briefly showing stale Pages-cached
+  // data while GitHub Pages is still publishing the new commit.
   let reports = [];
-  try {
-    const res = await fetch('/netherlands-crm/data/summary-reports.json?t=' + Date.now());
-    const data = res.ok ? await res.json() : [];
-    reports = Array.isArray(data) ? data : [];
-  } catch(e) { console.error(e); }
+  if (Array.isArray(preloadedReports)) {
+    reports = preloadedReports;
+  } else {
+    try {
+      const res = await fetch('/netherlands-crm/data/summary-reports.json?t=' + Date.now());
+      const data = res.ok ? await res.json() : [];
+      reports = Array.isArray(data) ? data : [];
+    } catch(e) { console.error(e); }
+  }
 
   if (!reports.length) {
     document.getElementById('content').innerHTML = `

@@ -52,6 +52,15 @@ NEWS_CATEGORY_LABELS = {
 }
 TOTAL_PAGES = 3
 
+WOS_BUCKET_ORDER = ['Active', 'Cancelled', 'Expiring', 'Unknown']
+WOS_BUCKET_MAP = {'yes': 'Active', 'cancelled': 'Cancelled', 'expiring': 'Expiring'}
+WOS_BUCKET_COLORS = {
+    'Active': colors.HexColor('#a78bfa'),
+    'Cancelled': colors.HexColor('#ef4444'),
+    'Expiring': colors.HexColor('#f59e0b'),
+    'Unknown': colors.HexColor('#64748b'),
+}
+
 
 def wrap_text(text, font, size, max_width):
     words = text.split()
@@ -351,6 +360,11 @@ def compose_summary(stats):
             f"{stats['openalex_subscribers']} of {stats['openalex_total']} monitored institutions "
             f"are confirmed OpenAlex subscribers."
         )
+    if stats.get('comp_matrix_total'):
+        parts.append(
+            f"Scopus remains active at {stats['scopus_active']} of {stats['comp_matrix_total']} tracked NL "
+            f"universities; Clarivate's Web of Science is cancelled or expiring at {stats['wos_at_risk']} of them."
+        )
     return ' '.join(parts)
 
 
@@ -379,6 +393,15 @@ def build_report(data, out_path):
 
     pending_type_counts = Counter(resolve_type(p.get('instId', '')) for p in pending)
 
+    comp_matrix = data.get('competitorMatrix') or {}
+    wos_counts = {b: 0 for b in WOS_BUCKET_ORDER}
+    scopus_active = 0
+    for row in comp_matrix.values():
+        wos_counts[WOS_BUCKET_MAP.get((row or {}).get('wos'), 'Unknown')] += 1
+        if (row or {}).get('scopus') == 'yes':
+            scopus_active += 1
+    comp_matrix_total = len(comp_matrix)
+
     today = datetime.now(timezone.utc).strftime('%Y-%m-%d')
     news_today = sum(1 for n in news if (n.get('foundDate') or n.get('publishedDate') or '') == today)
     tenders_open = sum(1 for t in tenders if t.get('status') in ('identified', 'inprogress'))
@@ -403,6 +426,9 @@ def build_report(data, out_path):
         'competitors_total': len(competitors),
         'openalex_total': len(openalex),
         'openalex_subscribers': openalex_subscribers,
+        'comp_matrix_total': comp_matrix_total,
+        'scopus_active': scopus_active,
+        'wos_at_risk': wos_counts['Cancelled'] + wos_counts['Expiring'],
     }
 
     generated_dt = datetime.now(timezone.utc)
@@ -470,9 +496,14 @@ def build_report(data, out_path):
     chart_h = 165
     draw_bar_chart(c, MARGIN, charts_top - chart_h, chart_w, chart_h,
                     'Institutions by Type', inst_type_counts, TYPE_COLORS)
-    draw_bar_chart(c, MARGIN + chart_w + 24, charts_top - chart_h, chart_w, chart_h,
-                    'Contacts by Priority', contact_priority_counts, PRIORITY_COLORS,
-                    label_fn=lambda k: k.title())
+    if comp_matrix_total:
+        draw_bar_chart(c, MARGIN + chart_w + 24, charts_top - chart_h, chart_w, chart_h,
+                        'Web of Science Status — Clarivate (NL Universities)', wos_counts, WOS_BUCKET_COLORS,
+                        label_fn=lambda k: k)
+    else:
+        draw_bar_chart(c, MARGIN + chart_w + 24, charts_top - chart_h, chart_w, chart_h,
+                        'Contacts by Priority', contact_priority_counts, PRIORITY_COLORS,
+                        label_fn=lambda k: k.title())
 
     pending_note = None if stats['pending_is_live'] else 'New Contacts total is from the local scrape audit trail, not live Supabase status — see the Summary archive for context.'
     draw_footer(c, generated_at, pending_note)
