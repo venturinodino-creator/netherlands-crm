@@ -41,6 +41,27 @@ function extractArrayLiteral(src, varName) {
   return new Function(`return ${literal};`)();
 }
 
+function extractObjectLiteral(src, marker) {
+  const start = src.indexOf(marker);
+  if (start === -1) return null;
+  const openBrace = start + marker.length - 1;
+  let depth = 0, i = openBrace, inStr = null;
+  for (; i < src.length; i++) {
+    const ch = src[i];
+    if (inStr) {
+      if (ch === '\\') { i++; continue; }
+      if (ch === inStr) inStr = null;
+      continue;
+    }
+    if (ch === "'" || ch === '"' || ch === '`') { inStr = ch; continue; }
+    if (ch === '{') depth++;
+    else if (ch === '}') { depth--; if (depth === 0) { i++; break; } }
+  }
+  const literal = src.slice(openBrace, i);
+  // eslint-disable-next-line no-new-func
+  return new Function(`return ${literal};`)();
+}
+
 function readJSON(path, fallback) {
   try { return JSON.parse(readFileSync(path, 'utf8')); } catch { return fallback; }
 }
@@ -77,6 +98,11 @@ async function main() {
   const html = readFileSync('index.html', 'utf8');
   const institutions = extractArrayLiteral(html, 'SEED_INSTITUTIONS');
   const seedContacts = extractArrayLiteral(html, 'SEED_CONTACTS').filter(c => c.quality === 'verified');
+  // Per-institution Elsevier (Scopus/SciVal/Pure) vs Clarivate (Web of
+  // Science) subscription status — same object the Competitor Matrix page
+  // renders from, reused here so the daily report's charts reflect real
+  // subscription intelligence instead of a generic CRM metric.
+  const competitorMatrix = extractObjectLiteral(html, 'window.COMP_DATA = {') || {};
 
   const liveContacts = await fetchLiveContacts();
   const contactsSource = liveContacts ? 'supabase' : 'seed';
@@ -111,6 +137,7 @@ async function main() {
   const out = {
     generatedAt: new Date().toISOString(),
     institutions,
+    competitorMatrix,
     contacts,
     contactsSource,
     pending,
