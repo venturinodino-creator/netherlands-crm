@@ -5857,17 +5857,19 @@ function buildScrapeTargetBar(currentTypes) {
 async function renderPendingContacts() {
   document.getElementById('page-title').textContent = 'New Contacts';
   document.getElementById('page-sub').textContent = 'AI-discovered contacts awaiting your review — accept to add to CRM, delete to discard';
-  document.getElementById('topbar-actions').innerHTML = `
-    <button class="btn btn-outline" onclick="runContactDiscovery()" style="font-size:12px">
-      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:5px"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-      Find contacts now
-    </button>`;
 
   let pending = [];
   try {
     const rows = await supaFetch('pending_contacts?status=eq.pending&order=created_at.desc');
     pending = rows || [];
   } catch(e) { console.error(e); }
+
+  document.getElementById('topbar-actions').innerHTML = `
+    <button class="btn btn-outline" onclick="runContactDiscovery()" style="font-size:12px">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:5px"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      Find contacts now
+    </button>
+    ${pending.length ? `<button class="btn btn-accent" id="accept-all-btn" onclick="acceptAllPendingContacts(this)" style="font-size:12px;margin-left:8px">Accept All (${pending.length})</button>` : ''}`;
 
   const currentTypes = await getScrapeTypes();
   const targetBar = buildScrapeTargetBar(currentTypes);
@@ -5929,13 +5931,10 @@ function getInstType(id) {
   return inst ? inst.type : 'research';
 }
 
-async function acceptPendingContact(id, btn) {
-  btn.disabled = true; btn.textContent = 'Saving...';
-  const res = await supaFetch('pending_contacts?id=eq.' + id);
-  const [c] = await res.json();
-  if (!c) { toast('Contact not found', 'err'); return; }
-
-  // Create in crm_contacts
+// Shared by acceptPendingContact and acceptAllPendingContacts — takes an
+// already-fetched pending_contacts row (not an id) so bulk accept doesn't
+// need to re-fetch each row one at a time.
+async function acceptOnePendingContact(c) {
   const newContact = {
     id: uid(),
     first: c.first, last: c.last, title: c.title,
@@ -5950,18 +5949,52 @@ async function acceptPendingContact(id, btn) {
   save();
   try { await supaUpsertContact(newContact); } catch(e) { console.error(e); }
 
-  // Mark as accepted in pending_contacts
-  await supaFetch('pending_contacts?id=eq.' + id, {
+  await supaFetch('pending_contacts?id=eq.' + c.id, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ status: 'accepted' })
   });
+}
+
+async function acceptPendingContact(id, btn) {
+  btn.disabled = true; btn.textContent = 'Saving...';
+  const rows = await supaFetch('pending_contacts?id=eq.' + id);
+  const [c] = rows || [];
+  if (!c) { toast('Contact not found', 'err'); return; }
+
+  await acceptOnePendingContact(c);
 
   btn.closest('tr').style.opacity = '0.4';
   btn.closest('tr').style.pointerEvents = 'none';
   btn.textContent = '✓ Added';
   toast(c.first + ' ' + c.last + ' added to contacts', 'ok');
   loadPendingCount();
+}
+
+async function acceptAllPendingContacts(btn) {
+  if (btn) { btn.disabled = true; }
+  let pending = [];
+  try {
+    const rows = await supaFetch('pending_contacts?status=eq.pending&order=created_at.desc');
+    pending = rows || [];
+  } catch(e) { console.error(e); }
+  if (!pending.length) { if (btn) btn.disabled = false; return; }
+
+  const total = pending.length;
+  let done = 0, failed = 0;
+  if (btn) btn.textContent = `Accepting 0/${total}...`;
+
+  await Promise.all(pending.map(async c => {
+    try { await acceptOnePendingContact(c); }
+    catch(e) { console.error(e); failed++; }
+    done++;
+    if (btn) btn.textContent = `Accepting ${done}/${total}...`;
+  }));
+
+  const added = total - failed;
+  toast(added + ' contact' + (added !== 1 ? 's' : '') + ' added to contacts' + (failed ? `, ${failed} failed` : ''), failed ? 'err' : 'ok');
+  loadPendingCount();
+  renderPendingContacts();
 }
 
 async function deletePendingContact(id, btn) {
