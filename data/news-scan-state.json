@@ -1,5 +1,11 @@
 {
-  "lastRun": "2026-08-22T07:30:20.000Z",
-  "lastAddedCount": 1,
-  "source": "Claude Code agent (subscription)"
+  "lastRun": "2026-08-22T14:06:26.907Z",
+  "lastAddedCount": 2,
+  "lastCandidateCount": 2,
+  "candidateCounts": {
+    "ai_adoption": 1550,
+    "funding": 963,
+    "policy": 112
+  },
+  "source": "Google News RSS (free, no API key — relevance filter skipped)"
 }
