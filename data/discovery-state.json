@@ -1,8 +1,8 @@
 {
-  "lastRun": "2026-08-22T12:23:58.494Z",
-  "lastAddedCount": 20,
+  "lastRun": "2026-08-22T13:16:22.862Z",
+  "lastAddedCount": 8,
   "lastTypes": [
-    "medical"
+    "university"
   ],
   "source": "Claude Code agent (subscription)",
   "scraped": {
@@ -31,30 +31,34 @@
     "uva": [
       "p1",
       "p2",
-      "p3"
+      "p3",
+      "p4"
     ],
-    "uva_page": 4,
+    "uva_page": 5,
     "vu_oa_id": "https://openalex.org/I865915315",
     "vu": [
       "p1",
       "p2",
-      "p3"
+      "p3",
+      "p4"
     ],
-    "vu_page": 4,
+    "vu_page": 5,
     "uu_oa_id": "https://openalex.org/I193662353",
     "uu": [
       "p1",
       "p2",
-      "p3"
+      "p3",
+      "p4"
     ],
-    "uu_page": 4,
+    "uu_page": 5,
     "leiden_oa_id": "https://openalex.org/I121797337",
     "leiden": [
       "p1",
       "p2",
-      "p3"
+      "p3",
+      "p4"
     ],
-    "leiden_page": 4,
+    "leiden_page": 5,
     "aumc_oa_id": "https://openalex.org/I2802928900",
     "aumc": [
       "p1",
@@ -117,6 +121,21 @@
       "p4",
       "p5"
     ],
-    "mumc_page": 6
+    "mumc_page": 6,
+    "eur_oa_id": "https://openalex.org/I913958620",
+    "eur": [
+      "p1"
+    ],
+    "eur_page": 2,
+    "rug_oa_id": "https://openalex.org/I169381384",
+    "rug": [
+      "p1"
+    ],
+    "rug_page": 2,
+    "ru_oa_id": "https://openalex.org/I145872427",
+    "ru": [
+      "p1"
+    ],
+    "ru_page": 2
   }
 }
