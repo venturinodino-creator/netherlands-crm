@@ -1,6 +1,6 @@
 // Fetches each institution's real research-output mix from the OpenAlex API
 // (institution.topic_share, aggregated to OpenAlex "field" level) and writes
-// data/research-focus.json. Run daily by .github/workflows/research-focus-scan.yml,
+// data/research-focus.json. Run weekly by .github/workflows/research-focus-scan.yml,
 // same pattern as the other scripts/*.js scanners in this repo.
 //
 // Why this exists: the Research Focus donut on each institution page used to

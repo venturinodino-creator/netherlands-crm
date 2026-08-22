@@ -2836,7 +2836,7 @@ function renderDetail() {
 
     <div class="card-header" style="margin-bottom:12px">
       <span class="card-title">Contacts at ${esc(inst.short||inst.name)}</span>
-      <button class="btn btn-accent btn-sm" onclick="openAddContact('INST_ID_PLACEHOLDER')">+ Add Contact</button>
+      <button class="btn btn-accent btn-sm" onclick="openAddContact('${inst.id}')">+ Add Contact</button>
     </div>
 
     <div class="table-wrap">
@@ -3007,13 +3007,15 @@ async function saveInstitution() {
     website: document.getElementById('mi-website').value.trim(),
     description: document.getElementById('mi-desc').value.trim(),
   };
+  let savedInst;
   if(state.editInstId) {
     const idx = state.institutions.findIndex(i=>i.id===state.editInstId);
-    if(idx>=0) state.institutions[idx] = {...state.institutions[idx], ...data};
+    if(idx>=0) { state.institutions[idx] = {...state.institutions[idx], ...data}; savedInst = state.institutions[idx]; }
     toast('Institution updated','ok');
   } else {
     data.id = uid();
     state.institutions.push(data);
+    savedInst = data;
     toast('Institution added','ok');
   }
   // Save competitor data
@@ -3037,7 +3039,7 @@ async function saveInstitution() {
     });
     localStorage.setItem('nl_crm_comp_data', JSON.stringify(window.COMP_DATA));
   }
-  save(); try { await supaUpsertInst(inst); syncBadge(true); } catch(e){ console.error(e); syncBadge(true,'err'); } closeModal('modal-inst'); render();
+  save(); try { await supaUpsertInst(savedInst); syncBadge(true); } catch(e){ console.error(e); syncBadge(true,'err'); } closeModal('modal-inst'); render();
 }
 
 function confirmDeleteInst(id) {
@@ -3637,7 +3639,7 @@ function renderPipeline() {
     <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px">
       <div class="acct-cell" style="flex:1;min-width:130px"><div class="acct-label">Open Deals</div><div class="acct-val">${openOpps2.length}</div></div>
       <div class="acct-cell" style="flex:1;min-width:130px"><div class="acct-label">Pipeline Value</div><div class="acct-val">${totalVal>0?'\u20ac'+totalVal.toLocaleString():'—'}</div></div>
-      <div class="acct-cell" style="flex:1;min-width:130px"><div class="acct-label">Avg Deal</div><div class="acct-val">'€'+Math.round(avgVal).toLocaleString():'—'}</div></div>
+      <div class="acct-cell" style="flex:1;min-width:130px"><div class="acct-label">Avg Deal</div><div class="acct-val">${avgVal>0?'€'+Math.round(avgVal).toLocaleString():'—'}</div></div>
       <div class="acct-cell" style="flex:1;min-width:130px"><div class="acct-label">Closed Won</div><div class="acct-val">${state.opportunities.filter(o=>o.stage==='closed-won').length}</div></div>
     </div>
     <div class="pipeline-board">${cols}</div>`;
@@ -6180,7 +6182,7 @@ function renderBarcelonaDecl() {
         </div>
       </td>
       <td style="padding:11px 14px;white-space:nowrap">
-        <span style="background:#0f2,background:rgba(16,185,129,.1);color:#10b981;font-size:11px;font-weight:700;border:1px solid rgba(16,185,129,.3);border-radius:6px;padding:2px 9px">✓ Signed</span>
+        <span style="background:rgba(16,185,129,.1);color:#10b981;font-size:11px;font-weight:700;border:1px solid rgba(16,185,129,.3);border-radius:6px;padding:2px 9px">✓ Signed</span>
       </td>
       <td style="padding:11px 14px;color:#94a3b8;font-size:12px;white-space:nowrap">${fmtDate(s.date)}</td>
       <td style="padding:11px 14px">
