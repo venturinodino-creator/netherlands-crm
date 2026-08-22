@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-08-22T07:34:00.000Z",
-  "lastAddedCount": 1,
-  "source": "Claude Code agent (subscription)"
+  "lastRun": "2026-08-22T14:08:07.447Z",
+  "lastAddedCount": 0,
+  "error": "missing_api_key"
 }
