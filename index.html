@@ -331,6 +331,8 @@ a.ext-link:hover{color:var(--text)}
 .news-filter-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
 .news-filter-btn{font-size:11px;padding:4px 11px;border-radius:14px;border:1px solid var(--border2);background:var(--bg3);color:var(--text);cursor:pointer;transition:all .15s}
 .news-filter-btn.active{background:var(--accent);border-color:var(--accent);color:#060a12}
+.news-filter-btn-insights{margin-left:auto;color:#38bdf8;border-color:#38bdf833;background:#38bdf815}
+.news-filter-btn-insights:hover{background:#38bdf826;border-color:#38bdf866}
 .news-empty{text-align:center;padding:40px 20px;color:var(--muted);font-size:13px}
 .news-loading{display:flex;align-items:center;gap:10px;padding:20px;color:var(--muted);font-size:13px}
 .news-spinner{width:18px;height:18px;border:2px solid var(--border2);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
@@ -3275,18 +3277,15 @@ async function renderNewsScanStatus() {
 function renderNews() {
   document.getElementById('page-title').textContent = 'Netherlands Research News';
   document.getElementById('page-sub').textContent = 'AI, funding, and policy news relevant to Elsevier\'s business — scanned daily, filtered for relevance';
-  document.getElementById('topbar-actions').innerHTML = `
-    <button class="btn btn-outline" onclick="nav('ai-insights')" style="font-size:12px">
-      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:5px"><path d="M12 2a5 5 0 0 0-5 5c0 1.7.7 2.6 1.5 3.5.6.6 1 1.2 1.2 2.1M12 2a5 5 0 0 1 5 5c0 1.7-.7 2.6-1.5 3.5-.6.6-1 1.2-1.2 2.1M9.7 12.6h4.6M9.9 16h4.2M10.5 19h3"/></svg>
-      Competitor Insights
-    </button>`;
+  document.getElementById('topbar-actions').innerHTML = '';
 
   const allCats = ['all', ...Object.keys(NEWS_CATEGORIES)];
   const catBtns = allCats.map(c => {
     const safeId = 'nf-' + c.replace(/[^a-z0-9]/gi, '_');
     const label = c === 'all' ? 'All Topics' : NEWS_CATEGORIES[c].label;
     return `<button id="${safeId}" class="news-filter-btn${c === _newsActiveCategory ? ' active' : ''}" onclick="setNewsCategory('${c}')">${label}</button>`;
-  }).join('');
+  }).join('') + `<button class="news-filter-btn news-filter-btn-insights" onclick="nav('ai-insights')" title="View tracked LeapSpace competitor activity">
+      <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:5px;vertical-align:-2px"><path d="M12 2a5 5 0 0 0-5 5c0 1.7.7 2.6 1.5 3.5.6.6 1 1.2 1.2 2.1M12 2a5 5 0 0 1 5 5c0 1.7-.7 2.6-1.5 3.5-.6.6-1 1.2-1.2 2.1M9.7 12.6h4.6M9.9 16h4.2M10.5 19h3"/></svg>Competitor Insights</button>`;
 
   const legend = Object.entries(NEWS_CATEGORIES).map(([, c]) =>
     `<div style="display:flex;align-items:center;gap:7px;font-size:12px;color:var(--text);padding:4px 0">
