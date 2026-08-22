@@ -1,15 +1,15 @@
 [
   {
     "date": "2026-08-22",
-    "generatedAt": "2026-08-22T13:47:55.145388+00:00",
+    "generatedAt": "2026-08-22T15:38:40.513196+00:00",
     "file": "reports/summary-2026-08-22.pdf",
-    "summary": "Research CRM tracks 52 institutions across the Netherlands (14 universities, 13 medical centres, 20 research institutes, 5 NGOs/foundations) and 380 verified contacts (138 high priority). 83 candidate contacts are awaiting review right now. 8 news items are being tracked, 1 new today. 2 of 2 tracked tenders/RFPs are still open. 2 of 6 monitored institutions are confirmed OpenAlex subscribers.",
+    "summary": "Research CRM tracks 52 institutions across the Netherlands (14 universities, 13 medical centres, 20 research institutes, 5 NGOs/foundations) and 456 verified contacts (138 high priority). 15 news items are being tracked, 8 new today. 2 of 2 tracked tenders/RFPs are still open. 2 of 6 monitored institutions are confirmed OpenAlex subscribers.",
     "stats": {
       "institutions": 52,
-      "contacts": 380,
-      "pending": 83,
+      "contacts": 456,
+      "pending": 0,
       "pendingIsLive": true,
-      "news": 8,
+      "news": 15,
       "tendersOpen": 2
     }
   }
