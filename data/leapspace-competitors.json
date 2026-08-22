@@ -131,32 +131,118 @@
     "autoDiscovered": true
   },
   {
-    "id": "auto-openai-chatgpt-for-academic-researchers",
-    "company": "OpenAI",
-    "product": "ChatGPT for Academic Researchers",
-    "addedDate": "2026-08-21",
-    "elements": [
-      "literatureSearch",
-      "deepResearchReports",
-      "writingCoach",
-      "fundingDiscovery"
-    ],
-    "howItCompetes": "Launched 29 July 2026, this is OpenAI's free 12-month program giving verified faculty and postdoc teams a dedicated ChatGPT workspace (GPT-5.6 models, ChatGPT Work, Codex) with expanded Deep Research, higher usage limits and larger context windows; by 10 August 2026 OpenAI had over 13,000 applications covering up to 65,000 researcher seats under review. Deep Research runs a multi-step agentic search-and-read process over the web and uploaded PDFs and compiles a cited report, directly challenging Literature Search & Discovery and Deep Research Reports. ChatGPT Work is pitched for longer projects including finding funding opportunities and preparing grant applications (Funding Discovery) and drafting manuscripts (Writing Coach). Unlike LeapSpace it is not grounded in a licensed ScienceDirect/Scopus corpus, instead drawing on open web content and whatever documents a researcher uploads.",
-    "sourceUrl": "https://openai.com/index/chatgpt-for-academic-researchers/",
-    "sourceName": "OpenAI — Accelerating scientific discovery with ChatGPT for Academic Researchers",
-    "autoDiscovered": true
-  },
-  {
-    "id": "auto-digital-science-papers-ai",
-    "company": "Digital Science",
-    "product": "Papers AI",
+    "id": "clarivate-web-of-science-research-intelligence",
+    "company": "Clarivate",
+    "product": "Web of Science Research Intelligence",
     "addedDate": "2026-08-22",
     "elements": [
-      "writingCoach"
+      "fundingDiscovery",
+      "deepResearchReports"
     ],
-    "howItCompetes": "Launched in early August 2026 and built by the team behind Overleaf (20M+ users), Papers AI is an AI-native researcher workspace where a context-aware assistant reads a project's drafts, datasets and references together, so researchers don't have to re-upload files or re-explain context each time they return to the work. It supports Word, Markdown, Typst and LaTeX documents alongside Jupyter notebooks, CSVs and Kanban boards in one project, with every AI-suggested change surfaced as a reviewable edit the researcher can accept, reject or adjust. That project-wide, always-in-context drafting workspace goes head-to-head with LeapSpace's Writing Coach tab, though Papers AI is framed around general research writing and data organization rather than specifically pressure-testing claims and arguments; it also offers a fully local mode where no data leaves the user's hardware.",
-    "sourceUrl": "https://www.digital-science.com/press-releases/digital-science-launches-papers-ai-researcher-workspace/",
-    "sourceName": "Digital Science press release — Papers AI launch",
-    "autoDiscovered": true
+    "howItCompetes": "Globally launched 6 May 2026 after development with 50+ partners and early adopters across 20 countries — Clarivate's most direct, institution-facing rival to LeapSpace's strategic-analysis ambitions. An AI-native platform connecting publications, patents, funding, policy documents and clinical trials into one foundation for funding, strategy and impact decisions, plus a multidimensional Societal Impact Framework that goes beyond citation metrics to track how research shapes policy and practice. AI-guided workflows are explicitly built to put this kind of analysis in front of non-specialist users across an institution, not just a bibliometrics team — directly challenging Deep Research Reports' promise of surfacing patterns and evidence gaps for a broad researcher audience, and Funding Discovery's job of connecting research to funding strategy.",
+    "elementNotes": {
+      "fundingDiscovery": "Built explicitly to connect curated research, funding and policy data into strategic decision-making — the institutional-strategy layer LeapSpace's Funding Discovery only partially covers.",
+      "deepResearchReports": "AI-guided workflows produce on-demand, provenance-backed strategic analyses (benchmarking, impact, policy influence) that previously took weeks of commissioned analyst work — same longer-form synthesis territory as Deep Research Reports, at institutional rather than individual-researcher scale."
+    },
+    "sourceUrl": "https://clarivate.com/academia-government/blog/announcing-the-global-launch-of-web-of-science-research-intelligence-an-ai-powered-research-intelligence-platform-for-funding-strategy-and-impact/",
+    "sourceName": "Clarivate — global launch announcement (6 May 2026)"
+  },
+  {
+    "id": "wiley-ai-gateway",
+    "company": "Wiley",
+    "product": "Wiley AI Gateway",
+    "addedDate": "2026-08-22",
+    "elements": [
+      "literatureSearch",
+      "readingAssistant"
+    ],
+    "howItCompetes": "Billed as the industry's first AI-native research intelligence platform, the AI Gateway pipes Wiley's trusted scholarly content through a single endpoint directly into Claude, Mistral AI's Le Chat, Perplexity and the AWS marketplace — a distribution-first strategy that puts Wiley content inside the AI tools researchers already use, rather than building its own destination workspace like LeapSpace. Competes with Literature Search & Discovery by making Wiley content the grounding source for third-party AI search, and with Reading Assistant by letting those same tools answer questions against specific Wiley articles. Has already generated $100M+ in AI licensing revenue since 2024, showing real commercial traction for the content-licensing-to-AI-vendors model.",
+    "elementNotes": {
+      "literatureSearch": "Positions Wiley content as the grounding source inside third-party AI assistants doing literature search — same end job as Literature Search & Discovery, delivered via other companies' interfaces instead of Wiley's own.",
+      "readingAssistant": "The single-endpoint integration lets connected AI tools answer questions against specific Wiley articles — the same grounded Q&A job as Reading Assistant."
+    },
+    "sourceUrl": "https://newsroom.wiley.com/press-releases/press-release-details/2025/Wiley-Launches-Interoperable-Platform-to-Power-Scientific-Discovery-in-Worlds-Leading-AI-Technologies/default.aspx",
+    "sourceName": "Wiley newsroom — AI Gateway launch"
+  },
+  {
+    "id": "wiley-atypon-ai-suite",
+    "company": "Wiley",
+    "product": "Atypon AI Suite (AI Companion + AI Summaries)",
+    "addedDate": "2026-08-22",
+    "elements": [
+      "readingAssistant",
+      "literatureSearch"
+    ],
+    "howItCompetes": "Embedded directly into the Atypon Experience Platform — the hosting infrastructure Wiley sells to many other publishers, not just its own journals — so this competes at platform scale. AI Companion lets researchers ask questions and clarify concepts directly against hosted content, matching Reading Assistant's conversational Q&A grounded in one article; AI Summaries speeds up scanning search results, competing with Literature Search & Discovery's structured, referenced answers.",
+    "elementNotes": {
+      "readingAssistant": "AI Companion enables direct conversational Q&A against specific hosted articles — same job as Reading Assistant.",
+      "literatureSearch": "AI Summaries help researchers quickly assess relevance across search results — a lighter-weight version of Literature Search & Discovery's structured answers."
+    },
+    "sourceUrl": "https://www.researchinformation.info/news/wiley-launches-atypon-ai-suite-to-enhance-research-discovery/",
+    "sourceName": "Research Information — Wiley Atypon AI Suite"
+  },
+  {
+    "id": "google-scholar-labs",
+    "company": "Google",
+    "product": "Google Scholar Labs",
+    "addedDate": "2026-08-22",
+    "elements": [
+      "literatureSearch"
+    ],
+    "howItCompetes": "The largest-scale global threat to Literature Search & Discovery by sheer reach — an experimental AI layer on top of Google Scholar's entire index, free to any researcher. Breaks a complex research question into its key topics, aspects and relationships, searches across all of them, evaluates which papers best answer the question as a whole, and returns an AI-generated summary explaining why each result matters — with conversational follow-up to refine the query. Rolling out in phases (waitlist-gated) since its November 2025 launch; still English-only and requires a Google login, so not yet a full-scale institutional replacement, but the free, universal-index version of exactly what LeapSpace's Literature Search tab does on ScienceDirect/Scopus.",
+    "elementNotes": {
+      "literatureSearch": "Directly matches Literature Search & Discovery's job — turning a research question into a structured, referenced, AI-summarized answer — but against Google Scholar's much larger and free index rather than a paid subscription corpus."
+    },
+    "sourceUrl": "https://www.edtechinnovationhub.com/news/google-introduces-scholar-labs-to-enhance-ai-driven-academic-search-and-research-discovery",
+    "sourceName": "EdTech Innovation Hub — Google Scholar Labs"
+  },
+  {
+    "id": "ieee-xplore-ai-research-suite",
+    "company": "IEEE",
+    "product": "IEEE Xplore AI Research Suite",
+    "addedDate": "2026-08-22",
+    "elements": [
+      "literatureSearch",
+      "readingAssistant"
+    ],
+    "howItCompetes": "Completed alpha/beta testing in May 2026 after over a year of trials, giving IEEE Xplore natural-language search, AI-powered results with time-saving summary overviews, AI-generated topic and article summaries, and in-context definitions for unfamiliar concepts. A domain-focused (engineering/computer science/STEM) but well-resourced challenge to Literature Search & Discovery and Reading Assistant, run by one of the field's own major publishers rather than a third-party AI startup.",
+    "elementNotes": {
+      "literatureSearch": "Natural-language search with AI-powered relevance and summary overviews across IEEE and other STEM publishers — same core job as Literature Search & Discovery.",
+      "readingAssistant": "AI-generated article summaries and in-context definitions help researchers quickly grasp a specific paper's content — same territory as Reading Assistant's grounded Q&A."
+    },
+    "sourceUrl": "https://innovate.ieee.org/ieee_xplore_ai_research_suite/",
+    "sourceName": "IEEE Innovate — IEEE Xplore AI Research Suite"
+  },
+  {
+    "id": "ai2-asta-scholarqa",
+    "company": "Allen Institute for AI (Ai2)",
+    "product": "Asta (incorporating Scholar QA)",
+    "addedDate": "2026-08-22",
+    "elements": [
+      "literatureSearch",
+      "deepResearchReports"
+    ],
+    "howItCompetes": "A free, nonprofit-built, open-source-backed unified research assistant — the most direct threat to LeapSpace's pricing model rather than its feature set. Asta folds in Scholar QA, which runs a RAG-based multi-step workflow over 108M+ abstracts and 12M+ full-text papers (Semantic Scholar plus a dedicated full-text index) to find, summarize and analyze scientific evidence with attribution. Matches Literature Search & Discovery's structured, referenced-answer format and Deep Research Reports' longer-form synthesis, at zero cost to the researcher — a real pressure point for LeapSpace's subscription-bundled positioning.",
+    "elementNotes": {
+      "literatureSearch": "Scholar QA answers research questions from 108M+ abstracts and 12M+ full-text papers with attribution — same structured, referenced-answer job as Literature Search & Discovery, free and open.",
+      "deepResearchReports": "Organized literature synthesis with attribution across a large full-text index — same longer-form evidence-gathering role as Deep Research Reports."
+    },
+    "sourceUrl": "https://allenai.org/blog/ai2-scholarqa",
+    "sourceName": "Allen Institute for AI — Ai2 ScholarQA / Asta"
+  },
+  {
+    "id": "springer-nature-ai-integrity-suite",
+    "company": "Springer Nature",
+    "product": "AI research-integrity tools (Geppetto + reference-relevance checker)",
+    "addedDate": "2026-08-22",
+    "elements": [
+      "trustClaimRadar"
+    ],
+    "howItCompetes": "Nearly 60 AI tools now support screening, editorial evaluation and integrity checks across Springer Nature's portfolio (1.5M+ papers touched in 2025, with a further 25% expansion planned for 2026). Geppetto detects AI-generated text characteristic of paper-mill activity, and a newly launched reference-relevance tool flags irrelevant or fabricated citations across nearly all Springer Nature journals and books. Different framing from LeapSpace's Trust Cards & Claim Radar (publisher-side integrity policing vs. researcher-side claim verification), but the same underlying problem — is this content, and are its citations, actually trustworthy — at large scale from a direct publishing competitor.",
+    "elementNotes": {
+      "trustClaimRadar": "Detects AI-fabricated content and citations that don't actually support what they're attached to — the publisher-side mirror of Claim Radar's claim-to-source verification, applied at submission/editorial stage rather than at research time."
+    },
+    "sourceUrl": "https://group.springernature.com/gp/group/media/press-releases/new-research-integrity-tools-using-ai/27200740",
+    "sourceName": "Springer Nature Group — research integrity AI tools press release"
   }
 ]
