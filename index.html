@@ -963,8 +963,11 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
     <div class="nav-item" onclick="exportCSV()">
       <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div> Export CSV
     </div>
+    <div class="nav-item" data-view="summary" onclick="nav('summary')">
+      <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="10" y1="13" x2="14" y2="13"/><line x1="10" y1="17" x2="14" y2="17"/></svg></div> Summary
+    </div>
   </div>
-  
+
 </nav>
 
 <div class="main">
@@ -2064,6 +2067,7 @@ function render() {
     openalex: renderOpenAlex,
     barcelona: renderBarcelonaDecl,
     '4gu': render4GU,
+    summary: renderSummaryReports,
   };
   (views[state.view] || renderDashboard)();
   applyRoleUI();
@@ -2157,6 +2161,11 @@ function renderDashboard() {
       id: 'agent-news', name: 'Netherlands Research News Scan', icon: '📰',
       status: 'active', cadence: 'Daily · 07:00 UTC · GitHub Actions', source: 'Claude API (web search)',
       statusEl: 'agent-news-lastrun', view: 'news', workflow: 'news-scan.yml',
+    },
+    {
+      id: 'agent-summary', name: 'Daily CRM Summary Report', icon: '📊',
+      status: 'active', cadence: 'Daily · 08:00 UTC · GitHub Actions', source: 'Institutions, contacts, news, tenders, competitors',
+      statusEl: null, view: 'summary', workflow: 'daily-summary.yml',
     },
   ];
   const agentRows = AGENTS.map(a=>{
@@ -3302,8 +3311,62 @@ function renderNews() {
   loadNewsArticles();
 }
 
+//  DAILY SUMMARY REPORTS
+async function renderSummaryReports() {
+  document.getElementById('page-title').textContent = 'Summary';
+  document.getElementById('page-sub').textContent = 'Daily 2-page executive PDF of institutions, contacts, news, tenders, and competitor activity';
+  document.getElementById('topbar-actions').innerHTML = `
+    <button class="btn btn-outline" data-admin-only id="run-btn-summary" onclick="runAgentNow('daily-summary.yml','run-btn-summary','Daily Summary')" style="font-size:12px" title="Triggers today's report generation right now via GitHub Actions">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:5px"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      Run report now
+    </button>`;
 
-//  OPPORTUNITY HELPERS 
+  let reports = [];
+  try {
+    const res = await fetch('/netherlands-crm/data/summary-reports.json?t=' + Date.now());
+    const data = res.ok ? await res.json() : [];
+    reports = Array.isArray(data) ? data : [];
+  } catch(e) { console.error(e); }
+
+  if (!reports.length) {
+    document.getElementById('content').innerHTML = `
+      <div class="empty" style="margin-top:40px">
+        <div class="ei"><svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <h3>No reports yet</h3>
+        <p>A new summary generates automatically every day at 08:00 UTC. Click "Run report now" to generate the first one.</p>
+      </div>`;
+    applyRoleUI();
+    return;
+  }
+
+  const cards = reports.map(r => {
+    const d = new Date(r.generatedAt || r.date);
+    const dateLabel = isNaN(d) ? r.date : d.toLocaleDateString('en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    const s = r.stats || {};
+    const pendingNote = s.pendingIsLive === false ? ' (audit trail)' : '';
+    return `<div class="card" style="margin-bottom:14px;padding:18px 20px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap">
+        <div style="flex:1;min-width:240px">
+          <div style="font-weight:700;font-size:14px;color:var(--text)">${esc(dateLabel)}</div>
+          <p style="font-size:12.5px;color:var(--text2);margin-top:6px;line-height:1.5">${esc(r.summary || '')}</p>
+          <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;font-size:11px;color:var(--muted)">
+            <span>${s.institutions ?? '—'} institutions</span>
+            <span>${s.contacts ?? '—'} contacts</span>
+            <span>${s.pending ?? '—'} new contacts${esc(pendingNote)}</span>
+            <span>${s.news ?? '—'} news items</span>
+            <span>${s.tendersOpen ?? '—'} open tenders</span>
+          </div>
+        </div>
+        <a class="btn btn-primary" style="font-size:12px;white-space:nowrap" href="/netherlands-crm/data/${esc(r.file)}" target="_blank">View PDF</a>
+      </div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('content').innerHTML = `<div style="max-width:820px">${cards}</div>`;
+  applyRoleUI();
+}
+
+//  OPPORTUNITY HELPERS
 function openAddOpp(instId) {
   document.getElementById('mo-id').value = '';
   document.getElementById('mo-inst-id').value = instId||'';
