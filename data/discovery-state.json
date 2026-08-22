@@ -1,8 +1,8 @@
 {
-  "lastRun": "2026-08-22T13:29:00.233Z",
-  "lastAddedCount": 5,
+  "lastRun": "2026-08-22T13:31:14.751Z",
+  "lastAddedCount": 18,
   "lastTypes": [
-    "research"
+    "university"
   ],
   "source": "Claude Code agent (subscription)",
   "scraped": {
@@ -36,36 +36,40 @@
       "p2",
       "p3",
       "p4",
-      "p5"
+      "p5",
+      "p6"
     ],
-    "uva_page": 6,
+    "uva_page": 7,
     "vu_oa_id": "https://openalex.org/I865915315",
     "vu": [
       "p1",
       "p2",
       "p3",
       "p4",
-      "p5"
+      "p5",
+      "p6"
     ],
-    "vu_page": 6,
+    "vu_page": 7,
     "uu_oa_id": "https://openalex.org/I193662353",
     "uu": [
       "p1",
       "p2",
       "p3",
       "p4",
-      "p5"
+      "p5",
+      "p6"
     ],
-    "uu_page": 6,
+    "uu_page": 7,
     "leiden_oa_id": "https://openalex.org/I121797337",
     "leiden": [
       "p1",
       "p2",
       "p3",
       "p4",
-      "p5"
+      "p5",
+      "p6"
     ],
-    "leiden_page": 6,
+    "leiden_page": 7,
     "aumc_oa_id": "https://openalex.org/I2802928900",
     "aumc": [
       "p1",
@@ -139,20 +143,23 @@
     "eur_oa_id": "https://openalex.org/I913958620",
     "eur": [
       "p1",
-      "p2"
+      "p2",
+      "p3"
     ],
-    "eur_page": 3,
+    "eur_page": 4,
     "rug_oa_id": "https://openalex.org/I169381384",
     "rug": [
       "p1",
-      "p2"
+      "p2",
+      "p3"
     ],
-    "rug_page": 3,
+    "rug_page": 4,
     "ru_oa_id": "https://openalex.org/I145872427",
     "ru": [
       "p1",
-      "p2"
+      "p2",
+      "p3"
     ],
-    "ru_page": 3
+    "ru_page": 4
   }
 }
