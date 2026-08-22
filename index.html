@@ -2035,6 +2035,82 @@ async function runAgentNow(workflow, btnId, name) {
   }
 }
 
+// Same-day re-runs of the daily summary overwrite that day's single manifest
+// entry rather than adding a new card — from the report list alone that
+// looks identical before and after. This triggers the workflow like
+// runAgentNow, then actively polls the manifest for its generatedAt
+// timestamp to advance and re-renders the page once it does, so "Run report
+// now" visibly produces a fresh report instead of appearing to do nothing.
+async function runSummaryReportNow(btnId) {
+  const token = getGhToken();
+  if (!token) {
+    _pendingAgentRun = { workflow: 'daily-summary.yml', btnId, name: 'Daily Summary' };
+    manageGhToken();
+    return;
+  }
+  const btn = document.getElementById(btnId);
+  const original = btn ? btn.textContent : '';
+  if (btn) { btn.disabled = true; btn.textContent = 'Starting…'; }
+
+  let beforeGeneratedAt = null;
+  try {
+    const res0 = await fetch('/netherlands-crm/data/summary-reports.json?t=' + Date.now());
+    const data0 = res0.ok ? await res0.json() : [];
+    if (Array.isArray(data0) && data0[0]) beforeGeneratedAt = data0[0].generatedAt;
+  } catch (e) { /* fine — poll will just wait for any entry to appear */ }
+
+  try {
+    const res = await fetch(`https://api.github.com/repos/${GH_AGENTS_REPO}/actions/workflows/daily-summary.yml/dispatches`, {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Accept': 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ ref: 'main' }),
+    });
+    if (res.status !== 204) {
+      if (res.status === 401 || res.status === 403) {
+        toast('GitHub rejected the token — check it has "Actions: write" access to this repo', 'err');
+        _pendingAgentRun = { workflow: 'daily-summary.yml', btnId, name: 'Daily Summary' };
+        manageGhToken();
+      } else {
+        toast(`Couldn't trigger Daily Summary (HTTP ${res.status})`, 'err');
+      }
+      if (btn) { btn.textContent = original; btn.disabled = false; }
+      return;
+    }
+  } catch (e) {
+    toast('Network error triggering Daily Summary', 'err');
+    if (btn) { btn.textContent = original; btn.disabled = false; }
+    return;
+  }
+
+  toast('Generating today\'s report — this usually takes under a minute…', 'ok');
+  const deadline = Date.now() + 110000;
+  let found = false;
+  while (Date.now() < deadline) {
+    const secsLeft = Math.max(0, Math.round((deadline - Date.now()) / 1000));
+    if (btn) { btn.textContent = `Running… (${secsLeft}s)`; }
+    await new Promise(r => setTimeout(r, 8000));
+    try {
+      const res = await fetch('/netherlands-crm/data/summary-reports.json?t=' + Date.now());
+      const data = res.ok ? await res.json() : [];
+      const latest = Array.isArray(data) && data[0] ? data[0].generatedAt : null;
+      if (latest && latest !== beforeGeneratedAt) { found = true; break; }
+    } catch (e) { /* keep polling */ }
+  }
+
+  if (btn) { btn.textContent = original; btn.disabled = false; }
+  if (found) {
+    toast('New report ready — refreshing', 'ok');
+  } else {
+    toast('Still running on GitHub Actions — refreshing with the latest available report', 'warn');
+  }
+  if (document.getElementById('page-title')?.textContent === 'Summary') renderSummaryReports();
+}
+
 // Close modal on overlay click
 document.querySelectorAll('.overlay').forEach(el=>{
   el.addEventListener('click', e=>{ if(e.target===el) el.classList.remove('open'); });
@@ -3383,9 +3459,9 @@ function renderNews() {
 //  DAILY SUMMARY REPORTS
 async function renderSummaryReports() {
   document.getElementById('page-title').textContent = 'Summary';
-  document.getElementById('page-sub').textContent = 'Daily 2-page executive PDF of institutions, contacts, news, tenders, and competitor activity';
+  document.getElementById('page-sub').textContent = 'Daily 3-page executive PDF of institutions, contacts, news, tenders, and competitor activity';
   document.getElementById('topbar-actions').innerHTML = `
-    <button class="btn btn-outline" data-admin-only id="run-btn-summary" onclick="runAgentNow('daily-summary.yml','run-btn-summary','Daily Summary')" style="font-size:12px" title="Triggers today's report generation right now via GitHub Actions">
+    <button class="btn btn-outline" data-admin-only id="run-btn-summary" onclick="runSummaryReportNow('run-btn-summary')" style="font-size:12px" title="Triggers today's report generation right now via GitHub Actions">
       <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:5px"><polygon points="5 3 19 12 5 21 5 3"/></svg>
       Run report now
     </button>`;
@@ -3416,7 +3492,7 @@ async function renderSummaryReports() {
     return `<div class="card" style="margin-bottom:14px;padding:18px 20px">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap">
         <div style="flex:1;min-width:240px">
-          <div style="font-weight:700;font-size:14px;color:var(--text)">${esc(dateLabel)}</div>
+          <div style="font-weight:700;font-size:14px;color:var(--text)">${esc(dateLabel)}${r.generatedAt ? ` <span style="font-weight:500;font-size:11px;color:var(--muted)">· generated ${esc(_relativeTime(r.generatedAt))}</span>` : ''}</div>
           <p style="font-size:12.5px;color:var(--text2);margin-top:6px;line-height:1.5">${esc(r.summary || '')}</p>
           <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;font-size:11px;color:var(--muted)">
             <span>${s.institutions ?? '—'} institutions</span>
