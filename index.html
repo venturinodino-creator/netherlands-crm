@@ -5807,19 +5807,16 @@ async function loadNewsCount() {
 
 const SCRAPE_TYPES_ALL = ['university','medical','research','ngo'];
 
-// Which institution types the next scrape (daily 07:00 UTC run, or "Find
-// contacts now") targets — read/written on scrape_config (id=1) in Supabase.
-// RLS restricts writes to admins; the discover.js workflow reads this same
-// row to decide which institutions to walk.
-async function getScrapeTypes() {
-  try {
-    const rows = await supaFetch('scrape_config?select=types&id=eq.1');
-    if (rows && rows[0] && Array.isArray(rows[0].types) && rows[0].types.length) return rows[0].types;
-  } catch(e) { console.error(e); }
-  return SCRAPE_TYPES_ALL.slice();
-}
+// Client-side only: which institution type the New Contacts table is
+// currently filtered to. Separate from scrape_config in Supabase (the next
+// scrape's target) — selecting a pill filters the visible list for everyone,
+// and additionally updates scrape_config as a side effect for admins, same
+// as the old localStorage-based UI this replaced.
+let _pendingFilterType = 'all';
 
-async function setScrapeTypes(t) {
+async function selectPendingType(t) {
+  _pendingFilterType = t;
+  renderPendingContacts();
   if (state.currentRole !== 'admin') return;
   const types = t === 'all' ? SCRAPE_TYPES_ALL.slice() : [t];
   try {
@@ -5828,29 +5825,27 @@ async function setScrapeTypes(t) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ types, updated_at: new Date().toISOString() })
     });
-    toast('Next scrape will target: ' + (t === 'all' ? 'all institution types' : (TYPE_LABEL[t]||t)), 'ok');
-    renderPendingContacts();
+    toast('Showing ' + (t === 'all' ? 'all institution types' : (TYPE_LABEL[t]||t)) + ' · next scrape will target the same', 'ok');
   } catch(e) {
     console.error(e);
-    toast('Failed to save scrape target', 'err');
+    toast('Filtered the view, but failed to save scrape target', 'err');
   }
 }
 
-function buildScrapeTargetBar(currentTypes) {
-  const selected = (currentTypes.length === SCRAPE_TYPES_ALL.length) ? 'all'
-    : (currentTypes.length === 1 ? currentTypes[0] : null);
+function buildScrapeTargetBar(selType, counts) {
   const opts = [{ key:'all', label:'All institution types', color:'#f1f5f9' }]
     .concat(SCRAPE_TYPES_ALL.map(t => ({ key:t, label:TYPE_LABEL[t]||t, color:TYPE_COLORS_MAP[t]||'#94a3b8' })));
   const pills = opts.map(o => {
-    const active = o.key === selected;
-    return `<button data-admin-only onclick="setScrapeTypes('${o.key}')" style="` +
+    const active = o.key === selType;
+    const count = o.key === 'all' ? counts.all : (counts[o.key]||0);
+    return `<button onclick="selectPendingType('${o.key}')" style="` +
       `border:1.5px solid ${active ? o.color : 'var(--border)'};` +
       `background:${active ? o.color+'22' : 'transparent'};` +
       `color:${active ? o.color : 'var(--muted)'};` +
-      `border-radius:16px;padding:4px 12px;cursor:pointer;font-size:11px;font-weight:600;white-space:nowrap">${esc(o.label)}</button>`;
+      `border-radius:16px;padding:4px 12px;cursor:pointer;font-size:11px;font-weight:600;white-space:nowrap">${esc(o.label)} (${count})</button>`;
   }).join('');
-  return `<div data-admin-only style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:14px">
-    <span style="font-size:11px;color:var(--muted);font-weight:600">Scrape target:</span>${pills}
+  return `<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+    <span style="font-size:11px;color:var(--muted);font-weight:600">Filter / next scrape target:</span>${pills}
   </div>`;
 }
 
@@ -5864,15 +5859,21 @@ async function renderPendingContacts() {
     pending = rows || [];
   } catch(e) { console.error(e); }
 
+  const counts = { all: pending.length };
+  SCRAPE_TYPES_ALL.forEach(t => { counts[t] = 0; });
+  pending.forEach(c => { const t = getInstType(c.institution_id); if (counts[t] != null) counts[t]++; });
+
+  const selType = SCRAPE_TYPES_ALL.includes(_pendingFilterType) ? _pendingFilterType : 'all';
+  const filtered = selType === 'all' ? pending : pending.filter(c => getInstType(c.institution_id) === selType);
+
   document.getElementById('topbar-actions').innerHTML = `
     <button class="btn btn-outline" onclick="runContactDiscovery()" style="font-size:12px">
       <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:5px"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
       Find contacts now
     </button>
-    ${pending.length ? `<button class="btn btn-accent" id="accept-all-btn" onclick="acceptAllPendingContacts(this)" style="font-size:12px;margin-left:8px">Accept All (${pending.length})</button>` : ''}`;
+    ${filtered.length ? `<button class="btn btn-accent" id="accept-all-btn" onclick="acceptAllPendingContacts(this, '${selType}')" style="font-size:12px;margin-left:8px">Accept All (${filtered.length})</button>` : ''}`;
 
-  const currentTypes = await getScrapeTypes();
-  const targetBar = buildScrapeTargetBar(currentTypes);
+  const targetBar = buildScrapeTargetBar(selType, counts);
 
   if (!pending.length) {
     document.getElementById('content').innerHTML = `
@@ -5886,7 +5887,17 @@ async function renderPendingContacts() {
     return;
   }
 
-  const rows = pending.map(c => `
+  if (!filtered.length) {
+    document.getElementById('content').innerHTML = `
+      <div style="padding:24px 0">${targetBar}</div>
+      <div class="empty" style="margin-top:0">
+        <p style="font-size:13px;color:var(--muted)">No <b>${esc(TYPE_LABEL[selType]||selType)}</b> contacts pending. Try another filter.</p>
+      </div>`;
+    applyRoleUI();
+    return;
+  }
+
+  const rows = filtered.map(c => `
     <tr>
       <td style="padding:12px 14px">
         <div style="font-weight:600;font-size:13px">${esc(c.first)} ${esc(c.last)}</div>
@@ -5971,13 +5982,14 @@ async function acceptPendingContact(id, btn) {
   loadPendingCount();
 }
 
-async function acceptAllPendingContacts(btn) {
+async function acceptAllPendingContacts(btn, selType) {
   if (btn) { btn.disabled = true; }
   let pending = [];
   try {
     const rows = await supaFetch('pending_contacts?status=eq.pending&order=created_at.desc');
     pending = rows || [];
   } catch(e) { console.error(e); }
+  if (selType && selType !== 'all') pending = pending.filter(c => getInstType(c.institution_id) === selType);
   if (!pending.length) { if (btn) btn.disabled = false; return; }
 
   const total = pending.length;
