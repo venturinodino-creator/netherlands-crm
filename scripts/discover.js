@@ -1,21 +1,22 @@
 /**
- * discover.js — NOT currently used by the cron. See .github/workflows/discover.yml,
- * which now runs contact discovery as a Claude Code agent that reads real
- * institution staff/library/research-office pages for a name+title+email
- * together. This script is structurally unable to do that: its only source,
- * the OpenAlex authors API, never returns an email address, and the CRM
- * requires one before a contact enters the review queue — so every run here
- * finds candidates and then discards all of them. Kept for reference only.
+ * discover.js — Daily contact discovery scan.
+ * Free, zero-Claude-cost: scrapes OpenAlex for researchers at each enabled
+ * institution and constructs a plausible institutional email per contact
+ * (OpenAlex itself never provides one), flagging it for manual verification.
+ * Writes new candidates straight into Supabase's pending_contacts table
+ * (requires SUPABASE_SERVICE_ROLE_KEY — RLS restricts inserts to admins,
+ * which the service key bypasses). Run: node scripts/discover.js
  */
 import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 
-const PENDING_FILE = 'data/pending-contacts.json';
+const PENDING_FILE = 'data/pending-contacts.json'; // local audit trail only — the app no longer reads this
 const STATE_FILE   = 'data/discovery-state.json';
 const CONFIG_FILE  = 'data/scrape-config.json';
 const TARGET       = 20;
 
 const SUPA_URL = 'https://cfhljbexesdrabmadpcc.supabase.co';
 const SUPA_KEY = 'sb_publishable_PE2Yc0ivOT4F4fE80CXJUw_kbch9TpZ'; // publishable key — read-only here, safe to embed
+const SUPA_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY; // required to write pending_contacts (RLS: insert requires is_admin())
 
 // The admin sets scrape targets from the CRM's "New Contacts" page, which
 // writes to this table. Falls back to the local CONFIG_FILE if Supabase is
@@ -34,42 +35,84 @@ async function fetchScrapeConfig() {
   return null;
 }
 
+// Existing pending_contacts (any status) — used to dedup against what the
+// service role key can see. RLS blocks the publishable key from reading this,
+// so this always uses the service key.
+async function fetchExistingPending() {
+  if (!SUPA_SERVICE_KEY) return [];
+  try {
+    const res = await fetch(`${SUPA_URL}/rest/v1/pending_contacts?select=first,last,email`, {
+      headers: { apikey: SUPA_SERVICE_KEY, Authorization: `Bearer ${SUPA_SERVICE_KEY}` }
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } catch (e) {
+    console.warn('Could not fetch existing pending_contacts:', e.message);
+    return [];
+  }
+}
+
+async function insertPendingContacts(rows) {
+  if (!rows.length) return 0;
+  if (!SUPA_SERVICE_KEY) {
+    console.warn('SUPABASE_SERVICE_ROLE_KEY not set — skipping Supabase insert (add it as a GitHub Actions secret).');
+    return 0;
+  }
+  const res = await fetch(`${SUPA_URL}/rest/v1/pending_contacts`, {
+    method: 'POST',
+    headers: {
+      apikey: SUPA_SERVICE_KEY,
+      Authorization: `Bearer ${SUPA_SERVICE_KEY}`,
+      'Content-Type': 'application/json',
+      Prefer: 'return=minimal',
+    },
+    body: JSON.stringify(rows),
+  });
+  if (!res.ok) {
+    const body = await res.text().catch(() => '');
+    throw new Error(`Supabase insert failed: HTTP ${res.status} ${body}`);
+  }
+  return rows.length;
+}
+
 // ── Institution definitions by type ────────────────────────────────────────
+// emailDomain is used to construct a plausible (unverified) email since
+// OpenAlex never provides one — flagged in `notes` for the user to confirm.
 const INSTITUTIONS = {
   research: [
-    { key: 'cwi',      name: 'Centrum Wiskunde & Informatica',              instId: 'cwi',       dept: 'Mathematics & Computer Science' },
-    { key: 'esc',      name: 'Netherlands eScience Center',                 instId: 'esc',       dept: 'Research Software Engineering' },
-    { key: 'pbl',      name: 'PBL Netherlands Environmental Assessment Agency', instId: 'pbl',  dept: 'Environmental Assessment' },
-    { key: 'rathenau', name: 'Rathenau Instituut',                          instId: 'rathenau',  dept: 'Science & Technology Studies' },
+    { key: 'cwi',      name: 'Centrum Wiskunde & Informatica',              instId: 'cwi',       dept: 'Mathematics & Computer Science', emailDomain: 'cwi.nl' },
+    { key: 'esc',      name: 'Netherlands eScience Center',                 instId: 'esc',       dept: 'Research Software Engineering',  emailDomain: 'esciencecenter.nl' },
+    { key: 'pbl',      name: 'PBL Netherlands Environmental Assessment Agency', instId: 'pbl',  dept: 'Environmental Assessment',        emailDomain: 'pbl.nl' },
+    { key: 'rathenau', name: 'Rathenau Instituut',                          instId: 'rathenau',  dept: 'Science & Technology Studies',    emailDomain: 'rathenau.nl' },
   ],
   university: [
-    { key: 'uva',     name: 'University of Amsterdam',               instId: 'uva',     dept: 'Research' },
-    { key: 'vu',      name: 'Vrije Universiteit Amsterdam',          instId: 'vu',      dept: 'Research' },
-    { key: 'uu',      name: 'Utrecht University',                    instId: 'uu',      dept: 'Research' },
-    { key: 'leiden',  name: 'Leiden University',                     instId: 'leiden',  dept: 'Research' },
-    { key: 'eur',     name: 'Erasmus University Rotterdam',          instId: 'eur',     dept: 'Research' },
-    { key: 'rug',     name: 'University of Groningen',               instId: 'rug',     dept: 'Research' },
-    { key: 'ru',      name: 'Radboud University',                    instId: 'ru',      dept: 'Research' },
-    { key: 'tudelft', name: 'Delft University of Technology',        instId: 'tudelft', dept: 'Research' },
-    { key: 'tue',     name: 'Eindhoven University of Technology',    instId: 'tue',     dept: 'Research' },
-    { key: 'ut',      name: 'University of Twente',                  instId: 'ut',      dept: 'Research' },
-    { key: 'wur',     name: 'Wageningen University',                 instId: 'wur',     dept: 'Research' },
-    { key: 'um',      name: 'Maastricht University',                 instId: 'um',      dept: 'Research' },
-    { key: 'tiu',     name: 'Tilburg University',                    instId: 'tiu',     dept: 'Research' },
+    { key: 'uva',     name: 'University of Amsterdam',               instId: 'uva',     dept: 'Research', emailDomain: 'uva.nl' },
+    { key: 'vu',      name: 'Vrije Universiteit Amsterdam',          instId: 'vu',      dept: 'Research', emailDomain: 'vu.nl' },
+    { key: 'uu',      name: 'Utrecht University',                    instId: 'uu',      dept: 'Research', emailDomain: 'uu.nl' },
+    { key: 'leiden',  name: 'Leiden University',                     instId: 'leiden',  dept: 'Research', emailDomain: 'leidenuniv.nl' },
+    { key: 'eur',     name: 'Erasmus University Rotterdam',          instId: 'eur',     dept: 'Research', emailDomain: 'eur.nl' },
+    { key: 'rug',     name: 'University of Groningen',               instId: 'rug',     dept: 'Research', emailDomain: 'rug.nl' },
+    { key: 'ru',      name: 'Radboud University',                    instId: 'ru',      dept: 'Research', emailDomain: 'ru.nl' },
+    { key: 'tudelft', name: 'Delft University of Technology',        instId: 'tudelft', dept: 'Research', emailDomain: 'tudelft.nl' },
+    { key: 'tue',     name: 'Eindhoven University of Technology',    instId: 'tue',     dept: 'Research', emailDomain: 'tue.nl' },
+    { key: 'ut',      name: 'University of Twente',                  instId: 'ut',      dept: 'Research', emailDomain: 'utwente.nl' },
+    { key: 'wur',     name: 'Wageningen University',                 instId: 'wur',     dept: 'Research', emailDomain: 'wur.nl' },
+    { key: 'um',      name: 'Maastricht University',                 instId: 'um',      dept: 'Research', emailDomain: 'maastrichtuniversity.nl' },
+    { key: 'tiu',     name: 'Tilburg University',                    instId: 'tiu',     dept: 'Research', emailDomain: 'tilburguniversity.edu' },
   ],
   medical: [
-    { key: 'aumc',       name: 'Amsterdam UMC',                          instId: 'aumc',       dept: 'Medical Research' },
-    { key: 'erasmusmc',  name: 'Erasmus MC',                             instId: 'erasmusmc',  dept: 'Medical Research' },
-    { key: 'umcutrecht', name: 'UMC Utrecht',                           instId: 'umcutrecht', dept: 'Medical Research' },
-    { key: 'lumc',       name: 'Leiden University Medical Centre',       instId: 'lumc',       dept: 'Medical Research' },
-    { key: 'umcg',       name: 'University Medical Centre Groningen',    instId: 'umcg',       dept: 'Medical Research' },
-    { key: 'radboudumc', name: 'Radboud University Medical Center',      instId: 'radboudumc', dept: 'Medical Research' },
-    { key: 'mumc',       name: 'Maastricht UMC+',                        instId: 'mumc',       dept: 'Medical Research' },
+    { key: 'aumc',       name: 'Amsterdam UMC',                          instId: 'aumc',       dept: 'Medical Research', emailDomain: 'amsterdamumc.nl' },
+    { key: 'erasmusmc',  name: 'Erasmus MC',                             instId: 'erasmusmc',  dept: 'Medical Research', emailDomain: 'erasmusmc.nl' },
+    { key: 'umcutrecht', name: 'UMC Utrecht',                           instId: 'umcutrecht', dept: 'Medical Research', emailDomain: 'umcutrecht.nl' },
+    { key: 'lumc',       name: 'Leiden University Medical Centre',       instId: 'lumc',       dept: 'Medical Research', emailDomain: 'lumc.nl' },
+    { key: 'umcg',       name: 'University Medical Centre Groningen',    instId: 'umcg',       dept: 'Medical Research', emailDomain: 'umcg.nl' },
+    { key: 'radboudumc', name: 'Radboud University Medical Center',      instId: 'radboudumc', dept: 'Medical Research', emailDomain: 'radboudumc.nl' },
+    { key: 'mumc',       name: 'Maastricht UMC+',                        instId: 'mumc',       dept: 'Medical Research', emailDomain: 'mumc.nl' },
   ],
   ngo: [
-    { key: 'knaw',   name: 'Royal Netherlands Academy of Arts and Sciences', instId: 'knaw',   dept: 'Scientific Research' },
-    { key: 'nwo',    name: 'Netherlands Organisation for Scientific Research', instId: 'nwo', dept: 'Research Funding' },
-    { key: 'zonmw',  name: 'ZonMw',                                           instId: 'zonmw',  dept: 'Health Research' },
+    { key: 'knaw',   name: 'Royal Netherlands Academy of Arts and Sciences', instId: 'knaw',   dept: 'Scientific Research', emailDomain: 'knaw.nl' },
+    { key: 'nwo',    name: 'Netherlands Organisation for Scientific Research', instId: 'nwo', dept: 'Research Funding',    emailDomain: 'nwo.nl' },
+    { key: 'zonmw',  name: 'ZonMw',                                           instId: 'zonmw',  dept: 'Health Research',   emailDomain: 'zonmw.nl' },
   ],
 };
 
@@ -83,6 +126,16 @@ function saveJSON(path, data) {
 }
 function makeId(key) {
   return `disc_${key}_${Date.now()}_${Math.random().toString(36).slice(2,6)}`;
+}
+function slugifyNamePart(s) {
+  return (s || '')
+    .normalize('NFD').replace(/[̀-ͯ]/g, '') // strip accents
+    .toLowerCase().replace(/[^a-z]/g, '');
+}
+function constructEmail(first, last, domain) {
+  const f = slugifyNamePart(first), l = slugifyNamePart(last);
+  if (!f || !l || !domain) return '';
+  return `${f}.${l}@${domain}`;
 }
 
 async function get(url) {
@@ -136,9 +189,11 @@ async function scrapeOpenAlex(scraped, inst, needed) {
       if (parts.length < 2) continue;
       const first = parts[0], last = parts.slice(1).join(' ');
       const orcid = author.orcid ? `ORCID: ${author.orcid}` : '';
+      const email = constructEmail(first, last, inst.emailDomain);
       contacts.push({
-        first, last, title: 'Researcher', dept: inst.dept, email: '',
-        instId: inst.instId, source: author.id || url, research: orcid,
+        first, last, title: 'Researcher', dept: inst.dept, email,
+        instId: inst.instId, instName: inst.name, source: author.id || url, research: orcid,
+        constructed: !!email,
       });
     }
     scraped[`${inst.key}_page`] = page + 1;
@@ -170,11 +225,16 @@ async function main() {
   }
   console.log(`Scraping ${toScrape.length} institutions: ${toScrape.map(i=>i.key).join(', ')}`);
 
-  const state   = readJSON(STATE_FILE, { scraped: {}, lastRun: null });
-  const pending = readJSON(PENDING_FILE, []);
+  const state = readJSON(STATE_FILE, { scraped: {}, lastRun: null });
 
-  const existingEmails = new Set(pending.map(c=>(c.email||'').toLowerCase().trim()).filter(Boolean));
-  const existingNames  = new Set(pending.map(c=>((c.first||'')+' '+(c.last||'')).toLowerCase().trim()));
+  const existingPendingRemote = await fetchExistingPending();
+  const localPending = readJSON(PENDING_FILE, []);
+  const existingEmails = new Set(
+    [...existingPendingRemote, ...localPending].map(c=>(c.email||'').toLowerCase().trim()).filter(Boolean)
+  );
+  const existingNames = new Set(
+    [...existingPendingRemote, ...localPending].map(c=>((c.first||'')+' '+(c.last||'')).toLowerCase().trim())
+  );
 
   const scraped = state.scraped || {};
   const contacts = [];
@@ -192,10 +252,11 @@ async function main() {
     }
   }
 
-  // Dedup and push to pending — an email address is required, not optional.
-  // OpenAlex (this scraper's only source) never provides one, so this will
-  // filter out every result until a source that does is added.
-  let added = 0, skippedNoEmail = 0;
+  // Dedup — email required (constructed emails count), matching the app's rule
+  // that unverified contacts still need a starting point for outreach.
+  const toInsert = [];
+  const localPendingOut = [...localPending];
+  let skippedNoEmail = 0;
   for (const c of contacts) {
     const el = (c.email||'').toLowerCase().trim();
     const nl = ((c.first||'')+' '+(c.last||'')).toLowerCase().trim();
@@ -203,18 +264,33 @@ async function main() {
     if (existingEmails.has(el)) continue;
     if (existingNames.has(nl)) continue;
     const id = makeId(c.instId || 'xx');
-    pending.push({ ...c, id });
-    existingEmails.add(el); existingNames.add(nl); added++;
+    toInsert.push({
+      id, first: c.first, last: c.last, title: c.title, department: c.dept,
+      institution_id: c.instId, institution_name: c.instName, email: c.email,
+      research: c.research, source_url: c.source,
+      notes: c.constructed ? 'Email constructed — please verify' : '',
+      status: 'pending',
+    });
+    localPendingOut.push({ ...c, id });
+    existingEmails.add(el); existingNames.add(nl);
   }
   if (skippedNoEmail) console.log(`Skipped ${skippedNoEmail} contact(s) with no email address`);
+
+  let added = 0;
+  try {
+    added = await insertPendingContacts(toInsert);
+  } catch (e) {
+    console.error('Supabase insert error:', e.message);
+  }
 
   state.scraped  = scraped;
   state.lastRun  = new Date().toISOString();
   state.lastTypes = [...enabledTypes];
+  state.lastAddedCount = added;
 
   saveJSON(STATE_FILE, state);
-  saveJSON(PENDING_FILE, pending);
-  console.log(`Done — added ${added} new contacts (total pending: ${pending.length})`);
+  saveJSON(PENDING_FILE, localPendingOut); // local audit trail only
+  console.log(`Done — added ${added} new contacts to Supabase pending_contacts (found ${toInsert.length} candidates)`);
 }
 
 main().catch(e => { console.error(e); process.exit(1); });

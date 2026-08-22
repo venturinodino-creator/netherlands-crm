@@ -1,24 +1,11 @@
 /**
- * news-scan.js — Daily Netherlands research news scan (NOT currently used by
- * the cron — see .github/workflows/news-scan.yml, which now runs this task
- * as a Claude Code agent billed against a Claude subscription instead of a
- * metered API key). Kept as a free, zero-dependency fallback: queries Google
- * News RSS directly (per institution, per category) and keyword-filters the
- * results, matching institution names against tracked SEED_INSTITUTIONS.
- * Writes findings to data/news.json.
- *
- * This is the same Google News RSS approach the CRM originally used, but run
- * server-side (GitHub Actions) instead of client-side — the earlier version
- * broke because a browser can't fetch news.google.com directly (CORS) and
- * had to go through a public proxy that started rate-limiting/blocking it.
- * A server-side fetch has no CORS restriction, so no proxy is needed and no
- * API key or paid service is involved.
- *
- * Trade-off vs. the Claude agent version: no AI summarization or judgment
- * call on relevance — this reports raw matching headlines, keyword-
- * categorized, for a human to skim. Categorization is a heuristic, not a
- * verified read of the article. Useful as a manual/offline check if the
- * Claude agent workflow is ever unavailable.
+ * news-scan.js — Daily Netherlands research news scan. Free, zero-API-key:
+ * queries Google News RSS directly (per institution, per category) and
+ * keyword-filters the results against tracked SEED_INSTITUTIONS. Runs
+ * server-side (GitHub Actions) instead of client-side, since a browser can't
+ * fetch news.google.com directly (CORS) without a proxy. No AI summarization
+ * or relevance judgment — reports raw matching headlines, keyword-
+ * categorized, for a human to skim.
  *
  * Run: node scripts/news-scan.js
  */

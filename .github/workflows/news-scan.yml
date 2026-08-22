@@ -7,7 +7,6 @@ on:
 
 permissions:
   contents: write
-  id-token: write
 
 jobs:
   scan:
@@ -17,98 +16,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-
-      # Runs as a Claude Code agent authenticated via a Claude Pro/Max
-      # subscription OAuth token (billed against subscription usage), not the
-      # pay-per-token Anthropic API. Generate the token locally with
-      # `claude setup-token` and store it as the CLAUDE_CODE_OAUTH_TOKEN repo secret.
-      - name: Run news scan (Claude Code agent)
-        uses: anthropics/claude-code-action@v1
-        with:
-          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          claude_args: |
-            --max-turns 80
-            --allowedTools "Read,Edit,Write,WebSearch,Bash(node -e:*),Bash(date:*)"
-          prompt: |
-            You are the daily news-discovery agent for a CRM (this repo) that tracks
-            Netherlands research institutions for an Elsevier sales team.
-
-            Read the current data/news.json (a JSON array) and data/news-scan-state.json.
-
-            Search the web for genuinely new articles in these three categories:
-
-            1. "ai_adoption" — recent (last ~14 days) news about ONE of the tracked
-               institutions below developing, piloting, adopting, or announcing an AI
-               system, tool, or AI-driven research initiative. The article MUST name
-               one of the institutions specifically — skip generic "Netherlands AI"
-               stories that don't name one of them.
-            2. "funding" — recent (last ~14 days) news about ONE of the tracked
-               institutions receiving a research grant, subsidy, or funding award
-               (NWO, ZonMw, EU, a foundation, or any other funder). Must name the
-               specific institution; include the amount if reported.
-            3. "policy" — recent (last ~14 days) Netherlands national government/
-               ministry (OCW) policy news affecting higher education and research
-               generally — funding policy changes, open access/open science mandates,
-               research assessment reform, science/immigration visa policy, or similar
-               national-level policy. Does not need to name one specific institution.
-
-            Tracked institutions:
-            University of Amsterdam, VU Amsterdam, Erasmus University Rotterdam,
-            Utrecht University, Leiden University, University of Groningen,
-            Radboud University, TU Delft, Eindhoven University of Technology,
-            University of Twente, Tilburg University, Maastricht University,
-            Wageningen University & Research, Open Universiteit, Amsterdam UMC,
-            Erasmus MC, UMC Utrecht, Leiden University Medical Centre,
-            University Medical Centre Groningen, Radboudumc, Maastricht UMC+,
-            Princess Máxima Center, Netherlands Cancer Institute, Máxima Medical Centre,
-            Sanquin Research, Amsterdam Institute for Global Health and Development,
-            Dutch Research Council (NWO), TNO, Royal Netherlands Academy of Arts and
-            Sciences (KNAW), Hubrecht Institute, Netherlands Institute for Neuroscience,
-            RIVM, Centrum Wiskunde & Informatica (CWI), Netherlands eScience Center,
-            Deltares, SRON Netherlands Institute for Space Research, Nikhef,
-            ASTRON — Netherlands Institute for Radio Astronomy, NIOZ Royal Netherlands
-            Institute for Sea Research, KNMI, Naturalis Biodiversity Center,
-            NLR — Netherlands Aerospace Centre, PBL Netherlands Environmental Assessment
-            Agency, CPB Netherlands Bureau for Economic Policy Analysis, Rathenau
-            Institute, SCP — Netherlands Institute for Social Research.
-
-            Rules:
-            - Never invent a title, institution, URL, or date. Only report real
-              articles you actually found via search, with a working source URL.
-            - Skip any article whose URL is already present in data/news.json.
-            - For each genuinely new article, prepend an object to the START of the
-              data/news.json array with exactly these fields:
-              {"id": "news-<short unique slug>", "title": "...", "description": "one
-              to two factual sentences", "institution": "the specific named
-              institution, or null for a general policy story", "category":
-              "ai_adoption"|"funding"|"policy", "categoryLabel": "AI Development &
-              Adoption"|"Funding Received"|"Netherlands Research Policy", "url": "...",
-              "sourceName": "...", "publishedDate": "YYYY-MM-DD or null", "foundDate":
-              "today's date, YYYY-MM-DD", "autoDiscovered": true}
-            - Keep all existing entries untouched (only add new ones to the front).
-            - After adding new entries, keep only the first 300 entries in the array
-              (most recent first).
-            - Overwrite data/news-scan-state.json with: {"lastRun": "<current UTC ISO
-              timestamp>", "lastAddedCount": <number added this run>, "source": "Claude
-              Code agent (subscription)"}. Get the current timestamp by running `date
-              -u +%Y-%m-%dT%H:%M:%S.000Z` via Bash — don't guess it.
-            - Before finishing, validate both JSON files parse correctly by running
-              `node -e "JSON.parse(require('fs').readFileSync('data/news.json','utf8'))"`
-              and the same for data/news-scan-state.json. Fix any JSON syntax errors
-              before finishing.
-            - If you find zero new qualifying articles, still update
-              data/news-scan-state.json with lastAddedCount: 0 and the current
-              timestamp — do not leave it stale.
-
+      - name: Run news scan
+        run: node scripts/news-scan.js
       - name: Commit new news findings
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
-          # The claude-code-action step above leaves the checkout's persisted
-          # credential unusable for a plain git push, so re-set it here.
-          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
           git add data/news.json data/news-scan-state.json
           git diff --staged --quiet || git commit -m "news-scan: auto-scan $(date +%Y-%m-%d)"
           git pull --rebase origin main

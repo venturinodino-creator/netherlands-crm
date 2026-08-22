@@ -7,7 +7,6 @@ on:
 
 permissions:
   contents: write
-  id-token: write
 
 jobs:
   discover:
@@ -17,111 +16,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-
-      # Runs as a Claude Code agent authenticated via a Claude Pro/Max
-      # subscription OAuth token (billed against subscription usage), not a
-      # metered API key. Generate the token locally with `claude setup-token`
-      # and store it as the CLAUDE_CODE_OAUTH_TOKEN repo secret.
-      #
-      # Replaces the old OpenAlex-authors-API scraper (scripts/discover.js),
-      # which is structurally unable to find contacts: OpenAlex author
-      # records never include an email address, and the CRM requires one
-      # before a scraped contact enters the review queue — so that pipeline
-      # always found candidates and then discarded every single one. An
-      # agent that actually reads institution staff/library/research-office
-      # pages can find a real name attached to a real published email.
-      - name: Run contact discovery (Claude Code agent)
-        uses: anthropics/claude-code-action@v1
-        with:
-          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          claude_args: |
-            --max-turns 40
-            --allowedTools "Read,Edit,Write,WebSearch,WebFetch,Bash(node -e:*),Bash(date:*),Bash(curl:*)"
-          prompt: |
-            You are the daily contact-discovery agent for this repo's CRM, used by
-            an Elsevier sales team that manages relationships with Netherlands
-            research institutions.
-
-            First, find out which institution types are currently enabled: run
-            `curl -s "https://cfhljbexesdrabmadpcc.supabase.co/rest/v1/scrape_config?select=types&id=eq.1" -H "apikey: sb_publishable_PE2Yc0ivOT4F4fE80CXJUw_kbch9TpZ" -H "Authorization: Bearer sb_publishable_PE2Yc0ivOT4F4fE80CXJUw_kbch9TpZ"`
-            (this is a read-only publishable key, safe to use). It returns
-            [{"types": [...]}] with a subset of "research", "university", "medical",
-            "ngo". If the request fails or returns no types, default to ["research"].
-
-            Institutions by type (id: name, city):
-            university: uva: University of Amsterdam (Amsterdam); vu: VU Amsterdam
-            (Amsterdam); eur: Erasmus University Rotterdam (Rotterdam); uu: Utrecht
-            University (Utrecht); leiden: Leiden University (Leiden); rug: University
-            of Groningen (Groningen); ru: Radboud University (Nijmegen); tudelft: TU
-            Delft (Delft); tue: Eindhoven University of Technology (Eindhoven); ut:
-            University of Twente (Enschede); tiu: Tilburg University (Tilburg); um:
-            Maastricht University (Maastricht); wur: Wageningen University & Research
-            (Wageningen); ou: Open Universiteit (Heerlen)
-            medical: aumc: Amsterdam UMC (Amsterdam); erasmusmc: Erasmus MC
-            (Rotterdam); umcutrecht: UMC Utrecht (Utrecht); lumc: Leiden University
-            Medical Centre (Leiden); umcg: University Medical Centre Groningen
-            (Groningen); radboudumc: Radboudumc (Nijmegen); mumc: Maastricht UMC+
-            (Maastricht)
-            research: cwi: Centrum Wiskunde & Informatica (Amsterdam); esc:
-            Netherlands eScience Center (Amsterdam); pbl: PBL Netherlands
-            Environmental Assessment Agency (The Hague); rathenau: Rathenau
-            Instituut (The Hague)
-            ngo: knaw: Royal Netherlands Academy of Arts and Sciences (Amsterdam);
-            nwo: Dutch Research Council (The Hague); zonmw: ZonMw (The Hague)
-
-            Only search institutions whose type is in the enabled list from the
-            config above.
-
-            For each enabled institution, search its official website (library
-            staff pages, research support/research office pages, open science/
-            research data team pages, or a named researcher's institutional profile
-            page — including PURE research-portal profiles where the institution
-            uses one, e.g. research.vu.nl, pure.uva.nl, research-portal.uu.nl,
-            research.tudelft.nl, and similar) for real staff members whose full
-            name, job title, and a working email address are ALL publicly listed on
-            that page. Aim for roughly 1-3 new people per enabled institution, up to
-            about 20 total this run. Prefer library directors, research support/
-            office staff, open access or research data specialists, and similar
-            research-administration roles — these are the CRM's actual sales
-            contacts, and are far more likely to have a public email than an
-            individual paper author.
-
-            Rules:
-            - Never invent a name, title, email, or source URL. Only report a
-              person whose name, title, and email you actually found together on a
-              real page, and record that page's URL as the source.
-            - Read data/pending-contacts.json (a JSON array) first. Skip anyone
-              whose email (case-insensitive) or full name already appears in it.
-            - For each new person, append an object to data/pending-contacts.json
-              with exactly these fields: {"id": "disc_<instId>_<short unique
-              suffix>", "first": "...", "last": "...", "title": "their real job
-              title", "dept": "their department/team name", "email": "...",
-              "instId": "<the institution id from the list above>", "source": "the
-              exact URL where you found this", "research": ""}
-            - Keep all existing entries in data/pending-contacts.json untouched —
-              only append new ones.
-            - Overwrite data/discovery-state.json with: {"lastRun": "<current UTC
-              ISO timestamp>", "lastAddedCount": <number added this run>,
-              "lastTypes": <the enabled types array from the config>, "source":
-              "Claude Code agent (subscription)"}. Get the current timestamp by
-              running `date -u +%Y-%m-%dT%H:%M:%S.000Z` via Bash — don't guess it.
-            - Before finishing, validate both JSON files parse correctly by running
-              `node -e "JSON.parse(require('fs').readFileSync('data/pending-contacts.json','utf8'))"`
-              and the same for data/discovery-state.json. Fix any JSON syntax
-              errors before finishing.
-            - If you find zero qualifying new contacts, still update
-              data/discovery-state.json with lastAddedCount: 0 and the current
-              timestamp — do not leave it stale.
-
-      - name: Commit new contacts
+      - name: Run contact discovery
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/discover.js
+      - name: Commit state
         run: |
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
-          # The claude-code-action step above leaves the checkout's persisted
-          # credential unusable for a plain git push, so re-set it here.
-          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
           git add data/pending-contacts.json data/discovery-state.json
           git diff --staged --quiet || git commit -m "contacts: auto-discover $(date +%Y-%m-%d)"
           git pull --rebase origin main
