@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-08-22T15:38:47.228Z",
+  "lastRun": "2026-08-22T15:41:31.780Z",
   "lastAddedCount": 17,
   "lastTypes": [
     "university",
@@ -15,27 +15,30 @@
       "p2",
       "p3",
       "p4",
-      "p5"
+      "p5",
+      "p6"
     ],
-    "cwi_page": 6,
+    "cwi_page": 7,
     "esc_oa_id": "https://openalex.org/I4210095242",
     "esc": [
       "p1",
       "p2",
       "p3",
       "p4",
-      "p5"
+      "p5",
+      "p6"
     ],
-    "esc_page": 6,
+    "esc_page": 7,
     "rathenau_oa_id": "https://openalex.org/I2800109292",
     "rathenau": [
       "p1",
       "p2",
       "p3",
       "p4",
-      "p5"
+      "p5",
+      "p6"
     ],
-    "rathenau_page": 6,
+    "rathenau_page": 7,
     "uva_oa_id": "https://openalex.org/I887064364",
     "uva": [
       "p1",
@@ -44,9 +47,10 @@
       "p4",
       "p5",
       "p6",
-      "p7"
+      "p7",
+      "p8"
     ],
-    "uva_page": 8,
+    "uva_page": 9,
     "vu_oa_id": "https://openalex.org/I865915315",
     "vu": [
       "p1",
@@ -55,9 +59,10 @@
       "p4",
       "p5",
       "p6",
-      "p7"
+      "p7",
+      "p8"
     ],
-    "vu_page": 8,
+    "vu_page": 9,
     "uu_oa_id": "https://openalex.org/I193662353",
     "uu": [
       "p1",
@@ -66,9 +71,10 @@
       "p4",
       "p5",
       "p6",
-      "p7"
+      "p7",
+      "p8"
     ],
-    "uu_page": 8,
+    "uu_page": 9,
     "leiden_oa_id": "https://openalex.org/I121797337",
     "leiden": [
       "p1",
@@ -77,9 +83,10 @@
       "p4",
       "p5",
       "p6",
-      "p7"
+      "p7",
+      "p8"
     ],
-    "leiden_page": 8,
+    "leiden_page": 9,
     "aumc_oa_id": "https://openalex.org/I2802928900",
     "aumc": [
       "p1",
