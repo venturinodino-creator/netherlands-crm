@@ -263,9 +263,14 @@ async function main() {
     if (!el) { skippedNoEmail++; continue; }
     if (existingEmails.has(el)) continue;
     if (existingNames.has(nl)) continue;
+    // id is local-only (audit trail): pending_contacts.id is a Postgres uuid
+    // column with its own default, and this disc_<key>_<ts>_<rand> format
+    // isn't a valid uuid — sending it as the row's id makes every insert
+    // fail with 22P02 ("invalid input syntax for type uuid"). Let Postgres
+    // generate the real id and keep this one only in the local JSON file.
     const id = makeId(c.instId || 'xx');
     toInsert.push({
-      id, first: c.first, last: c.last, title: c.title, department: c.dept,
+      first: c.first, last: c.last, title: c.title, department: c.dept,
       institution_id: c.instId, institution_name: c.instName, email: c.email,
       research: c.research, source_url: c.source,
       notes: c.constructed ? 'Email constructed — please verify' : '',
