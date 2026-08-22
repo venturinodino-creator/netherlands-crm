@@ -3484,16 +3484,29 @@ async function renderSummaryReports() {
     return;
   }
 
-  const cards = reports.map(r => {
+  const fullTimestamp = r => {
     const d = new Date(r.generatedAt || r.date);
-    const dateLabel = isNaN(d) ? r.date : d.toLocaleDateString('en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    if (isNaN(d)) return r.date;
+    return d.toLocaleString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+  };
+
+  // Every "Run report now" click produces its own manifest entry now (no
+  // more same-day overwrite), always inserted newest-first — so reports[0]
+  // is always the latest run regardless of how many happened today.
+  const [latest, ...older] = reports;
+
+  const heroCard = (r => {
     const s = r.stats || {};
     const pendingNote = s.pendingIsLive === false ? ' (audit trail)' : '';
-    return `<div class="card" style="margin-bottom:14px;padding:18px 20px">
+    return `<div class="card" style="margin-bottom:14px;padding:18px 20px;border-color:var(--accent)">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap">
         <div style="flex:1;min-width:240px">
-          <div style="font-weight:700;font-size:14px;color:var(--text)">${esc(dateLabel)}${r.generatedAt ? ` <span style="font-weight:500;font-size:11px;color:var(--muted)">· generated ${esc(_relativeTime(r.generatedAt))}</span>` : ''}</div>
-          <p style="font-size:12.5px;color:var(--text2);margin-top:6px;line-height:1.5">${esc(r.summary || '')}</p>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <span style="font-size:10px;font-weight:700;letter-spacing:.05em;color:var(--accent);background:color-mix(in srgb, var(--accent) 15%, transparent);padding:2px 8px;border-radius:10px">LATEST</span>
+            <span style="font-weight:700;font-size:14px;color:var(--text)">${esc(fullTimestamp(r))}</span>
+            <span style="font-size:11px;color:var(--muted)">· ${esc(_relativeTime(r.generatedAt))}</span>
+          </div>
+          <p style="font-size:12.5px;color:var(--text2);margin-top:8px;line-height:1.5">${esc(r.summary || '')}</p>
           <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;font-size:11px;color:var(--muted)">
             <span>${s.institutions ?? '—'} institutions</span>
             <span>${s.contacts ?? '—'} contacts</span>
@@ -3505,10 +3518,39 @@ async function renderSummaryReports() {
         <a class="btn btn-primary" style="font-size:12px;white-space:nowrap" href="/netherlands-crm/data/${esc(r.file)}" target="_blank">View PDF</a>
       </div>
     </div>`;
+  })(latest);
+
+  const olderRows = older.map(r => {
+    const s = r.stats || {};
+    return `<div style="display:flex;justify-content:space-between;align-items:center;gap:14px;padding:11px 16px;border-bottom:1px solid var(--border)">
+      <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
+        <span style="font-size:12.5px;font-weight:600;color:var(--text)">${esc(fullTimestamp(r))}</span>
+        <span style="font-size:11px;color:var(--muted)">${s.institutions ?? '—'} institutions · ${s.contacts ?? '—'} contacts · ${s.pending ?? '—'} new · ${s.news ?? '—'} news</span>
+      </div>
+      <a class="btn btn-outline" style="font-size:11px;white-space:nowrap;flex-shrink:0" href="/netherlands-crm/data/${esc(r.file)}" target="_blank">View PDF</a>
+    </div>`;
   }).join('');
 
-  document.getElementById('content').innerHTML = `<div style="max-width:820px">${cards}</div>`;
+  const olderSection = older.length ? `
+    <div class="card" style="padding:0;overflow:hidden">
+      <button onclick="toggleOlderReports()" style="width:100%;display:flex;justify-content:space-between;align-items:center;padding:13px 16px;background:none;border:none;cursor:pointer;color:var(--text);font-size:12.5px;font-weight:600">
+        <span>Previous reports (${older.length})</span>
+        <svg id="older-reports-chevron" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" style="transition:transform .15s"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div id="older-reports-list" style="display:none">${olderRows}</div>
+    </div>` : '';
+
+  document.getElementById('content').innerHTML = `<div style="max-width:820px">${heroCard}${olderSection}</div>`;
   applyRoleUI();
+}
+
+function toggleOlderReports() {
+  const list = document.getElementById('older-reports-list');
+  const chevron = document.getElementById('older-reports-chevron');
+  if (!list) return;
+  const open = list.style.display !== 'none';
+  list.style.display = open ? 'none' : 'block';
+  if (chevron) chevron.style.transform = open ? '' : 'rotate(180deg)';
 }
 
 //  OPPORTUNITY HELPERS
