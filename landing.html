@@ -645,6 +645,7 @@
       <div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:transparent"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 22" width="22" height="13"><defs><linearGradient id="inf-lg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#3b82f6"/></linearGradient></defs><path d="M20 11C20 5 25 2 30 2C35 2 38 6 38 11C38 16 35 20 30 20C25 20 22 17 20 11C18 5 15 2 10 2C5 2 2 6 2 11C2 16 5 20 10 20C15 20 18 17 20 11Z" fill="none" stroke="url(#inf-lg)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       Research<span>CRM</span>
     </div>
+    <div id="region-switcher" style="display:flex;gap:6px;margin-left:28px;padding:3px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:9px"></div>
     <nav class="topbar-right">
       <a href="index.html" class="btn-primary">Sign in</a>
     </nav>
@@ -1060,6 +1061,67 @@
 
   window.addEventListener('resize', ()=>{ resize(); });
   init(); draw();
+})();
+
+// ── Regions ──────────────────────────────────────────────────────────────
+// Single source of truth for which regions exist and whether each is live
+// yet. Denmark/Belgium will flip to status:'live', url:'denmark/landing.html'
+// (etc.) once those builds are ready — nothing else on this page needs to
+// change when that happens.
+const REGIONS = [
+  { id: 'netherlands', label: 'Netherlands', status: 'live', url: 'landing.html' },
+  { id: 'denmark',     label: 'Denmark',     status: 'coming_soon', url: null },
+  { id: 'belgium',     label: 'Belgium',     status: 'coming_soon', url: null },
+];
+
+function renderRegionSwitcher() {
+  const el = document.getElementById('region-switcher');
+  if (!el) return;
+  el.innerHTML = REGIONS.map(r => {
+    const active = r.id === 'netherlands'; // this page is currently rendering the NL view
+    const live = r.status === 'live';
+    const style = `padding:6px 13px;border-radius:6px;font-size:12px;font-weight:600;cursor:${live ? 'pointer' : 'default'};` +
+      (active ? 'background:linear-gradient(135deg,var(--accent2),var(--accent3));color:#04141f;'
+              : live ? 'color:var(--text);' : 'color:var(--muted);opacity:.55;');
+    const badge = !live ? ' <span style="font-size:8px;letter-spacing:.5px;text-transform:uppercase;opacity:.8">· soon</span>' : '';
+    return live
+      ? `<a href="${r.url}" style="text-decoration:none;display:inline-block;${style}">${r.label}${badge}</a>`
+      : `<span onclick="notifyComingSoon('${r.label}')" style="display:inline-block;${style}">${r.label}${badge}</span>`;
+  }).join('');
+}
+window.notifyComingSoon = function(label) {
+  try { toast(label + ' is in development — check back soon.'); } catch(e) { alert(label + ' is in development — check back soon.'); }
+};
+function toast(msg) {
+  const el = document.getElementById('toast');
+  const m = document.getElementById('toast-msg');
+  if (!el || !m) return;
+  m.textContent = msg;
+  el.style.opacity = '1';
+  el.style.display = 'flex';
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(() => { el.style.transition = 'opacity .5s'; el.style.opacity = '0'; }, 5000);
+}
+renderRegionSwitcher();
+
+// Live counts, straight from Supabase, region-scoped — replaces the
+// previously hardcoded "56 institutions / 300+ contacts" placeholder figures.
+(async function loadLiveStats() {
+  try {
+    const SUPA_URL = 'https://cfhljbexesdrabmadpcc.supabase.co';
+    const SUPA_KEY = 'sb_publishable_PE2Yc0ivOT4F4fE80CXJUw_kbch9TpZ';
+    const res = await fetch(`${SUPA_URL}/rest/v1/crm_contacts?select=id&region=eq.netherlands`, {
+      headers: { apikey: SUPA_KEY, Authorization: `Bearer ${SUPA_KEY}`, Prefer: 'count=exact', Range: '0-0' },
+    });
+    const range = res.headers.get('content-range'); // "0-0/<total>"
+    const total = range ? parseInt(range.split('/')[1], 10) : null;
+    if (total != null && !isNaN(total)) {
+      const statEl = document.getElementById('stat-contacts');
+      const ctaEl  = document.getElementById('cta-contacts');
+      if (statEl) statEl.innerHTML = total + '<span class="unit">+</span>';
+      if (ctaEl)  ctaEl.textContent = total + '+ contacts';
+    }
+  } catch (e) { /* keep the static fallback figure already in the markup */ }
 })();
 
 // ── Institution data ────────────────────────────────────────────────────────
