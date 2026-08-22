@@ -1,5 +1,57 @@
 [
   {
+    "id": "news-p7qzkt",
+    "title": "KWF awards €2.7 million to three new childhood cancer research projects at Princess Máxima Center",
+    "description": "The Dutch Cancer Society (KWF) awarded €2.7 million to fund three new research projects at the Princess Máxima Center, two of them Young Investigator Grants for early-career researchers, aimed at safer and more personalized treatments for children with cancer.",
+    "institution": "Princess Máxima Center",
+    "category": "funding",
+    "categoryLabel": "Funding Received",
+    "url": "https://www.prinsesmaximacentrum.nl/en/news/three-new-research-projects-with-support-from-kwf",
+    "sourceName": "Prinses Máxima Centrum",
+    "publishedDate": "2026-08-11",
+    "foundDate": "2026-08-22",
+    "autoDiscovered": true
+  },
+  {
+    "id": "news-gk9v2p",
+    "title": "Amsterdam UMC onderzoekt gokschade met ZonMw-subsidie",
+    "description": "Amsterdam UMC has received ZonMw funding for a five-year research programme on vulnerability to gambling harm, led by professor Ruth van Holst in collaboration with Radboud University, Maastricht University, University of Amsterdam and Erasmus University Rotterdam.",
+    "institution": "Amsterdam UMC",
+    "category": "funding",
+    "categoryLabel": "Funding Received",
+    "url": "https://casinobeats.com/nl/2026/08/20/amsterdam-umc-subsidie-onderzoek-gokschade/",
+    "sourceName": "CasinoBeats Nederland",
+    "publishedDate": "2026-08-20",
+    "foundDate": "2026-08-21",
+    "autoDiscovered": true
+  },
+  {
+    "id": "news-w4mfxb",
+    "title": "Open source-model geeft nieuw zicht op risicogedrag bij online gokken",
+    "description": "University of Amsterdam researchers Reinout Wiers and Johan Bollen released a free, open-source AI model that estimates online casino players' risk of problem gambling, trained on two years of betting data from 13 Dutch operators.",
+    "institution": "University of Amsterdam",
+    "category": "ai_adoption",
+    "categoryLabel": "AI Development & Adoption",
+    "url": "https://www.uva.nl/content/nieuws/persberichten/2026/08/open-source-model-geeft-nieuw-zicht-op-risicogedrag-bij-online-gokken.html",
+    "sourceName": "Universiteit van Amsterdam",
+    "publishedDate": "2026-08-18",
+    "foundDate": "2026-08-21",
+    "autoDiscovered": true
+  },
+  {
+    "id": "news-tq7hde",
+    "title": "ZonMw kent € 2,5 miljoen toe voor onderzoek naar gokschade",
+    "description": "ZonMw awarded €2.5 million to a five-year research programme on prediction, prevention and early detection of gambling harm, led by Tranzo at Tilburg University.",
+    "institution": "Tilburg University",
+    "category": "funding",
+    "categoryLabel": "Funding Received",
+    "url": "https://www.casinonieuws.nl/online/zonmw-gokschade/",
+    "sourceName": "CasinoNieuws.nl",
+    "publishedDate": "2026-08-07",
+    "foundDate": "2026-08-21",
+    "autoDiscovered": true
+  },
+  {
     "id": "news-x3kz6g",
     "title": "UMC Utrecht krijgt 2,8 miljoen voor kankeronderzoek",
     "description": "UMC Utrecht has been awarded €2.8 million in funding for cancer research. The award was reported by healthcare outlet Zorgvisie/Skipr in mid-August 2026.",

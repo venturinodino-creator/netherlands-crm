@@ -1,8 +1,8 @@
-name: Daily Netherlands Research News Scan
+name: Weekly Research Focus Scan
 
 on:
   schedule:
-    - cron: '0 7 * * *'
+    - cron: '0 5 * * 1'
   workflow_dispatch:
 
 permissions:
@@ -16,13 +16,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Run news scan
-        run: node scripts/news-scan.js
-      - name: Commit new news findings
+      - name: Run research focus scan
+        run: node scripts/research-focus-scan.js
+      - name: Commit updated research focus data
         run: |
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
-          git add data/news.json data/news-scan-state.json
-          git diff --staged --quiet || git commit -m "news-scan: auto-scan $(date +%Y-%m-%d)"
+          git add data/research-focus.json
+          git diff --staged --quiet || git commit -m "research-focus: auto-scan $(date +%Y-%m-%d)"
           git pull --rebase origin main
           git push

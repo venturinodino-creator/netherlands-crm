@@ -129,5 +129,34 @@
     "sourceUrl": "https://www.knowledgespeak.com/news/igi-global-scientific-publishing-introduces-ai-assistant-research-tool-for-research-discovery/",
     "sourceName": "Knowledgespeak",
     "autoDiscovered": true
+  },
+  {
+    "id": "auto-openai-chatgpt-for-academic-researchers",
+    "company": "OpenAI",
+    "product": "ChatGPT for Academic Researchers",
+    "addedDate": "2026-08-21",
+    "elements": [
+      "literatureSearch",
+      "deepResearchReports",
+      "writingCoach",
+      "fundingDiscovery"
+    ],
+    "howItCompetes": "Launched 29 July 2026, this is OpenAI's free 12-month program giving verified faculty and postdoc teams a dedicated ChatGPT workspace (GPT-5.6 models, ChatGPT Work, Codex) with expanded Deep Research, higher usage limits and larger context windows; by 10 August 2026 OpenAI had over 13,000 applications covering up to 65,000 researcher seats under review. Deep Research runs a multi-step agentic search-and-read process over the web and uploaded PDFs and compiles a cited report, directly challenging Literature Search & Discovery and Deep Research Reports. ChatGPT Work is pitched for longer projects including finding funding opportunities and preparing grant applications (Funding Discovery) and drafting manuscripts (Writing Coach). Unlike LeapSpace it is not grounded in a licensed ScienceDirect/Scopus corpus, instead drawing on open web content and whatever documents a researcher uploads.",
+    "sourceUrl": "https://openai.com/index/chatgpt-for-academic-researchers/",
+    "sourceName": "OpenAI — Accelerating scientific discovery with ChatGPT for Academic Researchers",
+    "autoDiscovered": true
+  },
+  {
+    "id": "auto-digital-science-papers-ai",
+    "company": "Digital Science",
+    "product": "Papers AI",
+    "addedDate": "2026-08-22",
+    "elements": [
+      "writingCoach"
+    ],
+    "howItCompetes": "Launched in early August 2026 and built by the team behind Overleaf (20M+ users), Papers AI is an AI-native researcher workspace where a context-aware assistant reads a project's drafts, datasets and references together, so researchers don't have to re-upload files or re-explain context each time they return to the work. It supports Word, Markdown, Typst and LaTeX documents alongside Jupyter notebooks, CSVs and Kanban boards in one project, with every AI-suggested change surfaced as a reviewable edit the researcher can accept, reject or adjust. That project-wide, always-in-context drafting workspace goes head-to-head with LeapSpace's Writing Coach tab, though Papers AI is framed around general research writing and data organization rather than specifically pressure-testing claims and arguments; it also offers a fully local mode where no data leaves the user's hardware.",
+    "sourceUrl": "https://www.digital-science.com/press-releases/digital-science-launches-papers-ai-researcher-workspace/",
+    "sourceName": "Digital Science press release — Papers AI launch",
+    "autoDiscovered": true
   }
 ]

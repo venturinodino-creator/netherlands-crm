@@ -5,7 +5,7 @@
   /* -- CSS ---------------------------------------------------------------- */
   var style = document.createElement('style');
   style.textContent = [
-    '.stat-card[onclick`*="pipeline"]{display:none!important}',
+    '.stat-card[onclick*="pipeline"]{display:none!important}',
     'table.sub-matrix td:first-child,table.sub-matrix th.uni-header{position:sticky;left:0;z-index:2;background:rgba(12,19,32,.97)}',
     'table.sub-matrix thead tr:first-child th:first-child{position:sticky;left:0;z-index:3;background:rgba(12,19,32,.97)}',
     'table.sub-matrix th{font-size:11px!important}',
@@ -34,7 +34,7 @@
   var NAV = {
     dashboard:     stroke('<path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/>'),
     institutions:  stroke('<path d="M3 21h18M3 10h18M5 10V21M19 10V21M9 10V21M15 10V21M12 3L3 10h12L12 3z"/>'),
-    contacts:      stroke('<path d="M17 21v-2a4 4 0 00-4-AH5`4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>'),
+    contacts:      stroke('<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>'),
     map:           stroke('<polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/>'),
     news:          stroke('<path d="M4 22h16a2 2 0 002-2V4a2 2 0 00-2-2H8a2 2 0 00-2 2v16a4 4 0 01-4-4V6a2 2 0 012-2"/><path d="M18 14h-8M15 18h-5"/><rect x="10" y="6" width="8" height="4"/>'),
     subscriptions: stroke('<rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/>'),
@@ -106,22 +106,27 @@
     });
   }
 
-  /* -- OpenAlex data ------------------------------------------------------ */
+  /* -- OpenAlex data -------------------------------------------------------
+     Re-verified against the live OpenAlex API on 2026-08-20 — every id in
+     this table previously either 404'd or pointed at the wrong institution
+     (e.g. 'University of Amsterdam' resolved to VU Amsterdam, and 'TU Delft'
+     resolved to UC Berkeley). See data/research-focus.json / scripts/
+     research-focus-scan.js for the same verified ids, refreshed weekly. --- */
   var DB = {
-    'Erasmus University Rotterdam':        { oa: 'I114027177', ror: '03h7bdz00', works: '121K' },
-    'Leiden University':                   { oa: 'I165104084', ror: '027bh9e22', works: '229K' },
-    'Radboud University':                  { oa: 'I145872427', ror: '016xsfp80', works: '163K' },
-    'Maastricht University':               { oa: 'I107981792', ror: '02jz4aj89', works: '91K'  },
-    'University of Groningen':             { oa: 'I114526713', ror: '012p63287', works: '211K' },
-    'University of Amsterdam':             { oa: 'I865915315', ror: '04dkp9463', works: '279K' },
-    'Eindhoven University of Technology':  { oa: 'I59714227',  ror: '000b6qs89', works: '111K' },
-    'Tilburg University':                  { oa: 'I41510801',  ror: '04b8v1s79', works: '53K'  },
-    'Wageningen University & Research':    { oa: 'I887414861', ror: '024jd2p48', works: '184K' },
-    'Open Universiteit':                   { oa: 'I154530485', ror: '031m71144', works: '17K'  },
-    'VU Amsterdam':                        { oa: 'I865747412', ror: '008xxew50', works: '176K' },
-    'Utrecht University':                  { oa: 'I151185163', ror: '04pp8hn57', works: '290K' },
-    'TU Delft':                            { oa: 'I95457486',  ror: '02e2c7k09', works: '155K' },
-    'University of Twente':                { oa: 'I33779607',  ror: '006hf6230', works: '77K'  },
+    'Erasmus University Rotterdam':        { oa: 'I913958620', ror: '057w15z03', works: '122K' },
+    'Leiden University':                   { oa: 'I121797337', ror: '027bh9e22', works: '151K' },
+    'Radboud University':                  { oa: 'I145872427', ror: '016xsfp80', works: '211K' },
+    'Maastricht University':               { oa: 'I34352273',  ror: '02jz4aj89', works: '130K' },
+    'University of Groningen':             { oa: 'I169381384', ror: '012p63287', works: '185K' },
+    'University of Amsterdam':             { oa: 'I887064364', ror: '04dkp9463', works: '241K' },
+    'Eindhoven University of Technology':  { oa: 'I83019370',  ror: '02c2kyt77', works: '98K'  },
+    'Tilburg University':                  { oa: 'I193700539', ror: '04b8v1s79', works: '49K'  },
+    'Wageningen University & Research':    { oa: 'I913481162', ror: '04qw24q55', works: '129K' },
+    'Open Universiteit':                   { oa: 'I7876267',   ror: '018dfmf50', works: '9K'   },
+    'VU Amsterdam':                        { oa: 'I865915315', ror: '008xxew50', works: '138K' },
+    'Utrecht University':                  { oa: 'I193662353', ror: '04pp8hn57', works: '241K' },
+    'TU Delft':                            { oa: 'I98358874',  ror: '02e2c7k09', works: '179K' },
+    'University of Twente':                { oa: 'I94624287',  ror: '006hf6230', works: '91K'  },
   };
 
   /* -- Observer + init ---------------------------------------------------- */

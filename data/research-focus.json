@@ -1,0 +1,1560 @@
+{
+  "generatedAt": "2026-08-20T16:55:03.341Z",
+  "source": "OpenAlex API (institution.topic_share)",
+  "institutions": {
+    "uva": {
+      "openalexId": "I887064364",
+      "openalexName": "University of Amsterdam",
+      "ror": "04dkp9463",
+      "worksCount": 240919,
+      "fields": [
+        {
+          "name": "Social Sciences",
+          "pct": 41.8
+        },
+        {
+          "name": "Physics and Astronomy",
+          "pct": 22.2
+        },
+        {
+          "name": "Computer Science",
+          "pct": 12.7
+        },
+        {
+          "name": "Psychology",
+          "pct": 3.9
+        },
+        {
+          "name": "Environmental Science",
+          "pct": 3.5
+        },
+        {
+          "name": "Materials Science",
+          "pct": 3.3
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I887064364",
+      "apiUrl": "https://api.openalex.org/institutions/I887064364"
+    },
+    "vu": {
+      "openalexId": "I865915315",
+      "openalexName": "Vrije Universiteit Amsterdam",
+      "ror": "008xxew50",
+      "worksCount": 138346,
+      "fields": [
+        {
+          "name": "Neuroscience",
+          "pct": 17.5
+        },
+        {
+          "name": "Social Sciences",
+          "pct": 16.4
+        },
+        {
+          "name": "Psychology",
+          "pct": 16.2
+        },
+        {
+          "name": "Economics, Econometrics and Finance",
+          "pct": 10.7
+        },
+        {
+          "name": "Medicine",
+          "pct": 10.6
+        },
+        {
+          "name": "Arts and Humanities",
+          "pct": 8.7
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I865915315",
+      "apiUrl": "https://api.openalex.org/institutions/I865915315"
+    },
+    "eur": {
+      "openalexId": "I913958620",
+      "openalexName": "Erasmus University Rotterdam",
+      "ror": "057w15z03",
+      "worksCount": 121924,
+      "fields": [
+        {
+          "name": "Business, Management and Accounting",
+          "pct": 34.7
+        },
+        {
+          "name": "Social Sciences",
+          "pct": 18.3
+        },
+        {
+          "name": "Economics, Econometrics and Finance",
+          "pct": 14.3
+        },
+        {
+          "name": "Medicine",
+          "pct": 14.1
+        },
+        {
+          "name": "Decision Sciences",
+          "pct": 10.1
+        },
+        {
+          "name": "Environmental Science",
+          "pct": 5.5
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I913958620",
+      "apiUrl": "https://api.openalex.org/institutions/I913958620"
+    },
+    "uu": {
+      "openalexId": "I193662353",
+      "openalexName": "Utrecht University",
+      "ror": "04pp8hn57",
+      "worksCount": 240822,
+      "fields": [
+        {
+          "name": "Environmental Science",
+          "pct": 25.8
+        },
+        {
+          "name": "Veterinary",
+          "pct": 21.7
+        },
+        {
+          "name": "Earth and Planetary Sciences",
+          "pct": 14
+        },
+        {
+          "name": "Social Sciences",
+          "pct": 13.4
+        },
+        {
+          "name": "Computer Science",
+          "pct": 11.3
+        },
+        {
+          "name": "Medicine",
+          "pct": 10.8
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I193662353",
+      "apiUrl": "https://api.openalex.org/institutions/I193662353"
+    },
+    "leiden": {
+      "openalexId": "I121797337",
+      "openalexName": "Leiden University",
+      "ror": "027bh9e22",
+      "worksCount": 150664,
+      "fields": [
+        {
+          "name": "Physics and Astronomy",
+          "pct": 57.6
+        },
+        {
+          "name": "Social Sciences",
+          "pct": 17.6
+        },
+        {
+          "name": "Arts and Humanities",
+          "pct": 8.9
+        },
+        {
+          "name": "Environmental Science",
+          "pct": 5.5
+        },
+        {
+          "name": "Chemistry",
+          "pct": 4.4
+        },
+        {
+          "name": "Decision Sciences",
+          "pct": 3.4
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I121797337",
+      "apiUrl": "https://api.openalex.org/institutions/I121797337"
+    },
+    "rug": {
+      "openalexId": "I169381384",
+      "openalexName": "University of Groningen",
+      "ror": "012p63287",
+      "worksCount": 185225,
+      "fields": [
+        {
+          "name": "Physics and Astronomy",
+          "pct": 29.4
+        },
+        {
+          "name": "Medicine",
+          "pct": 19.1
+        },
+        {
+          "name": "Social Sciences",
+          "pct": 16
+        },
+        {
+          "name": "Environmental Science",
+          "pct": 9.4
+        },
+        {
+          "name": "Psychology",
+          "pct": 7.1
+        },
+        {
+          "name": "Engineering",
+          "pct": 5.5
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I169381384",
+      "apiUrl": "https://api.openalex.org/institutions/I169381384"
+    },
+    "ru": {
+      "openalexId": "I145872427",
+      "openalexName": "Radboud University Nijmegen",
+      "ror": "016xsfp80",
+      "worksCount": 211299,
+      "fields": [
+        {
+          "name": "Psychology",
+          "pct": 21.9
+        },
+        {
+          "name": "Neuroscience",
+          "pct": 19.9
+        },
+        {
+          "name": "Medicine",
+          "pct": 15.9
+        },
+        {
+          "name": "Social Sciences",
+          "pct": 11.7
+        },
+        {
+          "name": "Biochemistry, Genetics and Molecular Biology",
+          "pct": 7.9
+        },
+        {
+          "name": "Immunology and Microbiology",
+          "pct": 7.6
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I145872427",
+      "apiUrl": "https://api.openalex.org/institutions/I145872427"
+    },
+    "tudelft": {
+      "openalexId": "I98358874",
+      "openalexName": "Delft University of Technology",
+      "ror": "02e2c7k09",
+      "worksCount": 178623,
+      "fields": [
+        {
+          "name": "Engineering",
+          "pct": 50.9
+        },
+        {
+          "name": "Environmental Science",
+          "pct": 15.1
+        },
+        {
+          "name": "Social Sciences",
+          "pct": 9.7
+        },
+        {
+          "name": "Psychology",
+          "pct": 7.8
+        },
+        {
+          "name": "Computer Science",
+          "pct": 7.1
+        },
+        {
+          "name": "Earth and Planetary Sciences",
+          "pct": 5.6
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I98358874",
+      "apiUrl": "https://api.openalex.org/institutions/I98358874"
+    },
+    "tue": {
+      "openalexId": "I83019370",
+      "openalexName": "Eindhoven University of Technology",
+      "ror": "02c2kyt77",
+      "worksCount": 98354,
+      "fields": [
+        {
+          "name": "Computer Science",
+          "pct": 43.3
+        },
+        {
+          "name": "Engineering",
+          "pct": 25.4
+        },
+        {
+          "name": "Business, Management and Accounting",
+          "pct": 16.6
+        },
+        {
+          "name": "Medicine",
+          "pct": 4.6
+        },
+        {
+          "name": "Decision Sciences",
+          "pct": 3.6
+        },
+        {
+          "name": "Materials Science",
+          "pct": 3.5
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I83019370",
+      "apiUrl": "https://api.openalex.org/institutions/I83019370"
+    },
+    "ut": {
+      "openalexId": "I94624287",
+      "openalexName": "University of Twente",
+      "ror": "006hf6230",
+      "worksCount": 90821,
+      "fields": [
+        {
+          "name": "Engineering",
+          "pct": 32.3
+        },
+        {
+          "name": "Computer Science",
+          "pct": 26.4
+        },
+        {
+          "name": "Business, Management and Accounting",
+          "pct": 11.1
+        },
+        {
+          "name": "Materials Science",
+          "pct": 9.5
+        },
+        {
+          "name": "Social Sciences",
+          "pct": 7.3
+        },
+        {
+          "name": "Decision Sciences",
+          "pct": 4.6
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I94624287",
+      "apiUrl": "https://api.openalex.org/institutions/I94624287"
+    },
+    "tiu": {
+      "openalexId": "I193700539",
+      "openalexName": "Tilburg University",
+      "ror": "04b8v1s79",
+      "worksCount": 49428,
+      "fields": [
+        {
+          "name": "Social Sciences",
+          "pct": 39.7
+        },
+        {
+          "name": "Economics, Econometrics and Finance",
+          "pct": 28.5
+        },
+        {
+          "name": "Decision Sciences",
+          "pct": 12
+        },
+        {
+          "name": "Business, Management and Accounting",
+          "pct": 9.8
+        },
+        {
+          "name": "Psychology",
+          "pct": 7
+        },
+        {
+          "name": "Environmental Science",
+          "pct": 3
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I193700539",
+      "apiUrl": "https://api.openalex.org/institutions/I193700539"
+    },
+    "um": {
+      "openalexId": "I34352273",
+      "openalexName": "Maastricht University",
+      "ror": "02jz4aj89",
+      "worksCount": 130360,
+      "fields": [
+        {
+          "name": "Social Sciences",
+          "pct": 29.5
+        },
+        {
+          "name": "Medicine",
+          "pct": 20.3
+        },
+        {
+          "name": "Economics, Econometrics and Finance",
+          "pct": 16.6
+        },
+        {
+          "name": "Psychology",
+          "pct": 15.3
+        },
+        {
+          "name": "Health Professions",
+          "pct": 6.6
+        },
+        {
+          "name": "Nursing",
+          "pct": 4.1
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I34352273",
+      "apiUrl": "https://api.openalex.org/institutions/I34352273"
+    },
+    "wur": {
+      "openalexId": "I913481162",
+      "openalexName": "Wageningen University & Research",
+      "ror": "04qw24q55",
+      "worksCount": 129220,
+      "fields": [
+        {
+          "name": "Agricultural and Biological Sciences",
+          "pct": 43.1
+        },
+        {
+          "name": "Environmental Science",
+          "pct": 38.6
+        },
+        {
+          "name": "Energy",
+          "pct": 6.6
+        },
+        {
+          "name": "Veterinary",
+          "pct": 3.9
+        },
+        {
+          "name": "Medicine",
+          "pct": 2.7
+        },
+        {
+          "name": "Social Sciences",
+          "pct": 2.6
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I913481162",
+      "apiUrl": "https://api.openalex.org/institutions/I913481162"
+    },
+    "ou": {
+      "openalexId": "I7876267",
+      "openalexName": "Open University of the Netherlands",
+      "ror": "018dfmf50",
+      "worksCount": 8982,
+      "fields": [
+        {
+          "name": "Psychology",
+          "pct": 36.6
+        },
+        {
+          "name": "Social Sciences",
+          "pct": 30
+        },
+        {
+          "name": "Computer Science",
+          "pct": 25
+        },
+        {
+          "name": "Business, Management and Accounting",
+          "pct": 5.9
+        },
+        {
+          "name": "Environmental Science",
+          "pct": 2.5
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I7876267",
+      "apiUrl": "https://api.openalex.org/institutions/I7876267"
+    },
+    "aumc": {
+      "openalexId": "I4210151833",
+      "openalexName": "Amsterdam University Medical Centers",
+      "ror": "05grdyy37",
+      "worksCount": 62376,
+      "fields": [
+        {
+          "name": "Medicine",
+          "pct": 72
+        },
+        {
+          "name": "Biochemistry, Genetics and Molecular Biology",
+          "pct": 12.9
+        },
+        {
+          "name": "Social Sciences",
+          "pct": 4.6
+        },
+        {
+          "name": "Health Professions",
+          "pct": 4
+        },
+        {
+          "name": "Neuroscience",
+          "pct": 3.3
+        },
+        {
+          "name": "Immunology and Microbiology",
+          "pct": 3.2
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I4210151833",
+      "apiUrl": "https://api.openalex.org/institutions/I4210151833"
+    },
+    "erasmusmc": {
+      "openalexId": "I2801952686",
+      "openalexName": "Erasmus MC",
+      "ror": "018906e22",
+      "worksCount": 101084,
+      "fields": [
+        {
+          "name": "Medicine",
+          "pct": 75.2
+        },
+        {
+          "name": "Biochemistry, Genetics and Molecular Biology",
+          "pct": 13.8
+        },
+        {
+          "name": "Social Sciences",
+          "pct": 3.9
+        },
+        {
+          "name": "Environmental Science",
+          "pct": 3.6
+        },
+        {
+          "name": "Economics, Econometrics and Finance",
+          "pct": 3.4
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I2801952686",
+      "apiUrl": "https://api.openalex.org/institutions/I2801952686"
+    },
+    "umcutrecht": {
+      "openalexId": "I3018483916",
+      "openalexName": "University Medical Center Utrecht",
+      "ror": "0575yy874",
+      "worksCount": 95632,
+      "fields": [
+        {
+          "name": "Medicine",
+          "pct": 82.2
+        },
+        {
+          "name": "Biochemistry, Genetics and Molecular Biology",
+          "pct": 11.1
+        },
+        {
+          "name": "Physics and Astronomy",
+          "pct": 3.4
+        },
+        {
+          "name": "Neuroscience",
+          "pct": 3.3
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I3018483916",
+      "apiUrl": "https://api.openalex.org/institutions/I3018483916"
+    },
+    "lumc": {
+      "openalexId": "I2800006345",
+      "openalexName": "Leiden University Medical Center",
+      "ror": "05xvt9f17",
+      "worksCount": 89134,
+      "fields": [
+        {
+          "name": "Medicine",
+          "pct": 75.9
+        },
+        {
+          "name": "Biochemistry, Genetics and Molecular Biology",
+          "pct": 14.2
+        },
+        {
+          "name": "Immunology and Microbiology",
+          "pct": 6.8
+        },
+        {
+          "name": "Neuroscience",
+          "pct": 3.1
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I2800006345",
+      "apiUrl": "https://api.openalex.org/institutions/I2800006345"
+    },
+    "umcg": {
+      "openalexId": "I1334415907",
+      "openalexName": "University Medical Center Groningen",
+      "ror": "03cv38k47",
+      "worksCount": 82596,
+      "fields": [
+        {
+          "name": "Medicine",
+          "pct": 76.3
+        },
+        {
+          "name": "Biochemistry, Genetics and Molecular Biology",
+          "pct": 4.6
+        },
+        {
+          "name": "Social Sciences",
+          "pct": 4.4
+        },
+        {
+          "name": "Neuroscience",
+          "pct": 3.7
+        },
+        {
+          "name": "Psychology",
+          "pct": 3.7
+        },
+        {
+          "name": "Immunology and Microbiology",
+          "pct": 3.6
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I1334415907",
+      "apiUrl": "https://api.openalex.org/institutions/I1334415907"
+    },
+    "radboudumc": {
+      "openalexId": "I2802934949",
+      "openalexName": "Radboud University Medical Center",
+      "ror": "05wg1m734",
+      "worksCount": 92840,
+      "fields": [
+        {
+          "name": "Medicine",
+          "pct": 53.5
+        },
+        {
+          "name": "Biochemistry, Genetics and Molecular Biology",
+          "pct": 20
+        },
+        {
+          "name": "Immunology and Microbiology",
+          "pct": 10
+        },
+        {
+          "name": "Health Professions",
+          "pct": 4.9
+        },
+        {
+          "name": "Neuroscience",
+          "pct": 4.3
+        },
+        {
+          "name": "Nursing",
+          "pct": 4
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I2802934949",
+      "apiUrl": "https://api.openalex.org/institutions/I2802934949"
+    },
+    "mumc": {
+      "openalexId": "I2800191616",
+      "openalexName": "Maastricht University Medical Centre",
+      "ror": "02d9ce178",
+      "worksCount": 38656,
+      "fields": [
+        {
+          "name": "Medicine",
+          "pct": 85.7
+        },
+        {
+          "name": "Biochemistry, Genetics and Molecular Biology",
+          "pct": 6.3
+        },
+        {
+          "name": "Social Sciences",
+          "pct": 4.1
+        },
+        {
+          "name": "Engineering",
+          "pct": 4
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I2800191616",
+      "apiUrl": "https://api.openalex.org/institutions/I2800191616"
+    },
+    "maxima": {
+      "openalexId": "I4210127118",
+      "openalexName": "Princess Máxima Center",
+      "ror": "02aj7yc53",
+      "worksCount": 6532,
+      "fields": [
+        {
+          "name": "Medicine",
+          "pct": 75.8
+        },
+        {
+          "name": "Biochemistry, Genetics and Molecular Biology",
+          "pct": 20.1
+        },
+        {
+          "name": "Social Sciences",
+          "pct": 2.2
+        },
+        {
+          "name": "Health Professions",
+          "pct": 1.9
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I4210127118",
+      "apiUrl": "https://api.openalex.org/institutions/I4210127118"
+    },
+    "nki": {
+      "openalexId": "I2898336195",
+      "openalexName": "The Netherlands Cancer Institute",
+      "ror": "03xqtf034",
+      "worksCount": 29820,
+      "fields": [
+        {
+          "name": "Medicine",
+          "pct": 74.7
+        },
+        {
+          "name": "Biochemistry, Genetics and Molecular Biology",
+          "pct": 20.9
+        },
+        {
+          "name": "Physics and Astronomy",
+          "pct": 4.4
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I2898336195",
+      "apiUrl": "https://api.openalex.org/institutions/I2898336195"
+    },
+    "mmc": {
+      "openalexId": "I4210126394",
+      "openalexName": "Máxima Medisch Centrum",
+      "ror": "02x6rcb77",
+      "worksCount": 4895,
+      "fields": [
+        {
+          "name": "Medicine",
+          "pct": 90.5
+        },
+        {
+          "name": "Biochemistry, Genetics and Molecular Biology",
+          "pct": 6.2
+        },
+        {
+          "name": "Engineering",
+          "pct": 3.3
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I4210126394",
+      "apiUrl": "https://api.openalex.org/institutions/I4210126394"
+    },
+    "sanquin": {
+      "openalexId": "I3020210244",
+      "openalexName": "Sanquin",
+      "ror": "01fm2fv39",
+      "worksCount": 6663,
+      "fields": [
+        {
+          "name": "Medicine",
+          "pct": 63.1
+        },
+        {
+          "name": "Immunology and Microbiology",
+          "pct": 18.3
+        },
+        {
+          "name": "Business, Management and Accounting",
+          "pct": 15
+        },
+        {
+          "name": "Biochemistry, Genetics and Molecular Biology",
+          "pct": 3.6
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I3020210244",
+      "apiUrl": "https://api.openalex.org/institutions/I3020210244"
+    },
+    "aighd": {
+      "openalexId": "I4210124406",
+      "openalexName": "Amsterdam Institute for Global Health and Development",
+      "ror": "037n2rm85",
+      "worksCount": 2925,
+      "fields": [
+        {
+          "name": "Medicine",
+          "pct": 65.2
+        },
+        {
+          "name": "Social Sciences",
+          "pct": 12
+        },
+        {
+          "name": "Immunology and Microbiology",
+          "pct": 11.2
+        },
+        {
+          "name": "Economics, Econometrics and Finance",
+          "pct": 7
+        },
+        {
+          "name": "Health Professions",
+          "pct": 4.7
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I4210124406",
+      "apiUrl": "https://api.openalex.org/institutions/I4210124406"
+    },
+    "princesmaxima": {
+      "openalexId": "I4210127118",
+      "openalexName": "Princess Máxima Center",
+      "ror": "02aj7yc53",
+      "worksCount": 6532,
+      "fields": [
+        {
+          "name": "Medicine",
+          "pct": 75.8
+        },
+        {
+          "name": "Biochemistry, Genetics and Molecular Biology",
+          "pct": 20.1
+        },
+        {
+          "name": "Social Sciences",
+          "pct": 2.2
+        },
+        {
+          "name": "Health Professions",
+          "pct": 1.9
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I4210127118",
+      "apiUrl": "https://api.openalex.org/institutions/I4210127118"
+    },
+    "nwo": {
+      "openalexId": "I2800991832",
+      "openalexName": "Dutch Research Council",
+      "ror": "04jsz6e67",
+      "worksCount": 1339,
+      "fields": [
+        {
+          "name": "Materials Science",
+          "pct": 24.7
+        },
+        {
+          "name": "Physics and Astronomy",
+          "pct": 20.4
+        },
+        {
+          "name": "Arts and Humanities",
+          "pct": 14.8
+        },
+        {
+          "name": "Social Sciences",
+          "pct": 11.1
+        },
+        {
+          "name": "Business, Management and Accounting",
+          "pct": 9.1
+        },
+        {
+          "name": "Decision Sciences",
+          "pct": 7.2
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I2800991832",
+      "apiUrl": "https://api.openalex.org/institutions/I2800991832"
+    },
+    "tno": {
+      "openalexId": "I148297040",
+      "openalexName": "Netherlands Organisation for Applied Scientific Research",
+      "ror": "01bnjb948",
+      "worksCount": 17741,
+      "fields": [
+        {
+          "name": "Engineering",
+          "pct": 30.2
+        },
+        {
+          "name": "Environmental Science",
+          "pct": 23.2
+        },
+        {
+          "name": "Earth and Planetary Sciences",
+          "pct": 13.1
+        },
+        {
+          "name": "Health Professions",
+          "pct": 7.9
+        },
+        {
+          "name": "Medicine",
+          "pct": 6.9
+        },
+        {
+          "name": "Physics and Astronomy",
+          "pct": 4.9
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I148297040",
+      "apiUrl": "https://api.openalex.org/institutions/I148297040"
+    },
+    "knaw": {
+      "openalexId": "I1322597698",
+      "openalexName": "Royal Netherlands Academy of Arts and Sciences",
+      "ror": "043c0p156",
+      "worksCount": 5541,
+      "fields": [
+        {
+          "name": "Neuroscience",
+          "pct": 30.9
+        },
+        {
+          "name": "Computer Science",
+          "pct": 15.8
+        },
+        {
+          "name": "Business, Management and Accounting",
+          "pct": 12.9
+        },
+        {
+          "name": "Psychology",
+          "pct": 12.7
+        },
+        {
+          "name": "Biochemistry, Genetics and Molecular Biology",
+          "pct": 11.7
+        },
+        {
+          "name": "Arts and Humanities",
+          "pct": 9.2
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I1322597698",
+      "apiUrl": "https://api.openalex.org/institutions/I1322597698"
+    },
+    "hubrecht": {
+      "openalexId": "I4210115206",
+      "openalexName": "Hubrecht Institute for Developmental Biology and Stem Cell Research",
+      "ror": "023qc4a07",
+      "worksCount": 3811,
+      "fields": [
+        {
+          "name": "Biochemistry, Genetics and Molecular Biology",
+          "pct": 89
+        },
+        {
+          "name": "Medicine",
+          "pct": 8.8
+        },
+        {
+          "name": "Immunology and Microbiology",
+          "pct": 2.2
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I4210115206",
+      "apiUrl": "https://api.openalex.org/institutions/I4210115206"
+    },
+    "nin": {
+      "openalexId": "I1295801184",
+      "openalexName": "Netherlands Institute for Neuroscience",
+      "ror": "05csn2x06",
+      "worksCount": 9033,
+      "fields": [
+        {
+          "name": "Neuroscience",
+          "pct": 71.5
+        },
+        {
+          "name": "Psychology",
+          "pct": 16.3
+        },
+        {
+          "name": "Medicine",
+          "pct": 8.3
+        },
+        {
+          "name": "Biochemistry, Genetics and Molecular Biology",
+          "pct": 3.9
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I1295801184",
+      "apiUrl": "https://api.openalex.org/institutions/I1295801184"
+    },
+    "rivm": {
+      "openalexId": "I4210104433",
+      "openalexName": "National Institute for Public Health and the Environment",
+      "ror": "01cesdt21",
+      "worksCount": 24224,
+      "fields": [
+        {
+          "name": "Medicine",
+          "pct": 29.6
+        },
+        {
+          "name": "Immunology and Microbiology",
+          "pct": 24.9
+        },
+        {
+          "name": "Agricultural and Biological Sciences",
+          "pct": 17.4
+        },
+        {
+          "name": "Environmental Science",
+          "pct": 16.7
+        },
+        {
+          "name": "Veterinary",
+          "pct": 4.6
+        },
+        {
+          "name": "Social Sciences",
+          "pct": 3.6
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I4210104433",
+      "apiUrl": "https://api.openalex.org/institutions/I4210104433"
+    },
+    "cwi": {
+      "openalexId": "I1341640284",
+      "openalexName": "Centrum Wiskunde & Informatica",
+      "ror": "00x7ekv49",
+      "worksCount": 13986,
+      "fields": [
+        {
+          "name": "Computer Science",
+          "pct": 77.9
+        },
+        {
+          "name": "Decision Sciences",
+          "pct": 7.9
+        },
+        {
+          "name": "Business, Management and Accounting",
+          "pct": 7
+        },
+        {
+          "name": "Social Sciences",
+          "pct": 4
+        },
+        {
+          "name": "Biochemistry, Genetics and Molecular Biology",
+          "pct": 3.3
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I1341640284",
+      "apiUrl": "https://api.openalex.org/institutions/I1341640284"
+    },
+    "esc": {
+      "openalexId": "I4210095242",
+      "openalexName": "Netherlands eScience Center",
+      "ror": "00rbjv475",
+      "worksCount": 5950,
+      "fields": [
+        {
+          "name": "Computer Science",
+          "pct": 30.6
+        },
+        {
+          "name": "Decision Sciences",
+          "pct": 15.7
+        },
+        {
+          "name": "Social Sciences",
+          "pct": 14.7
+        },
+        {
+          "name": "Business, Management and Accounting",
+          "pct": 10.9
+        },
+        {
+          "name": "Earth and Planetary Sciences",
+          "pct": 9.8
+        },
+        {
+          "name": "Environmental Science",
+          "pct": 4.6
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I4210095242",
+      "apiUrl": "https://api.openalex.org/institutions/I4210095242"
+    },
+    "deltares": {
+      "openalexId": "I4210103266",
+      "openalexName": "Deltares",
+      "ror": "01deh9c76",
+      "worksCount": 9205,
+      "fields": [
+        {
+          "name": "Environmental Science",
+          "pct": 49
+        },
+        {
+          "name": "Earth and Planetary Sciences",
+          "pct": 30.3
+        },
+        {
+          "name": "Engineering",
+          "pct": 16.4
+        },
+        {
+          "name": "Decision Sciences",
+          "pct": 2.4
+        },
+        {
+          "name": "Social Sciences",
+          "pct": 1.9
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I4210103266",
+      "apiUrl": "https://api.openalex.org/institutions/I4210103266"
+    },
+    "sron": {
+      "openalexId": "I49206369",
+      "openalexName": "Space Research Organisation Netherlands",
+      "ror": "02wc0kq10",
+      "worksCount": 9131,
+      "fields": [
+        {
+          "name": "Physics and Astronomy",
+          "pct": 72.1
+        },
+        {
+          "name": "Engineering",
+          "pct": 10.3
+        },
+        {
+          "name": "Earth and Planetary Sciences",
+          "pct": 7.7
+        },
+        {
+          "name": "Environmental Science",
+          "pct": 5.4
+        },
+        {
+          "name": "Chemistry",
+          "pct": 4.4
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I49206369",
+      "apiUrl": "https://api.openalex.org/institutions/I49206369"
+    },
+    "nikhef": {
+      "openalexId": "I4210093566",
+      "openalexName": "National Institute for Subatomic Physics",
+      "ror": "00f9tz983",
+      "worksCount": 12296,
+      "fields": [
+        {
+          "name": "Physics and Astronomy",
+          "pct": 92.3
+        },
+        {
+          "name": "Engineering",
+          "pct": 3.9
+        },
+        {
+          "name": "Computer Science",
+          "pct": 2.4
+        },
+        {
+          "name": "Social Sciences",
+          "pct": 1.4
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I4210093566",
+      "apiUrl": "https://api.openalex.org/institutions/I4210093566"
+    },
+    "astron": {
+      "openalexId": "I922237871",
+      "openalexName": "Netherlands Institute for Radio Astronomy",
+      "ror": "000k1q888",
+      "worksCount": 13246,
+      "fields": [
+        {
+          "name": "Physics and Astronomy",
+          "pct": 87.1
+        },
+        {
+          "name": "Engineering",
+          "pct": 10.5
+        },
+        {
+          "name": "Computer Science",
+          "pct": 0.8
+        },
+        {
+          "name": "Chemistry",
+          "pct": 0.8
+        },
+        {
+          "name": "Earth and Planetary Sciences",
+          "pct": 0.8
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I922237871",
+      "apiUrl": "https://api.openalex.org/institutions/I922237871"
+    },
+    "nioz": {
+      "openalexId": "I4210107283",
+      "openalexName": "Royal Netherlands Institute for Sea Research",
+      "ror": "01gntjh03",
+      "worksCount": 12412,
+      "fields": [
+        {
+          "name": "Earth and Planetary Sciences",
+          "pct": 51.5
+        },
+        {
+          "name": "Environmental Science",
+          "pct": 48.5
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I4210107283",
+      "apiUrl": "https://api.openalex.org/institutions/I4210107283"
+    },
+    "knmi": {
+      "openalexId": "I1309140791",
+      "openalexName": "Royal Netherlands Meteorological Institute",
+      "ror": "05dfgh554",
+      "worksCount": 9193,
+      "fields": [
+        {
+          "name": "Earth and Planetary Sciences",
+          "pct": 48.9
+        },
+        {
+          "name": "Environmental Science",
+          "pct": 43.9
+        },
+        {
+          "name": "Engineering",
+          "pct": 1.9
+        },
+        {
+          "name": "Agricultural and Biological Sciences",
+          "pct": 1.9
+        },
+        {
+          "name": "Decision Sciences",
+          "pct": 1.7
+        },
+        {
+          "name": "Computer Science",
+          "pct": 1.6
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I1309140791",
+      "apiUrl": "https://api.openalex.org/institutions/I1309140791"
+    },
+    "naturalis": {
+      "openalexId": "I1295562517",
+      "openalexName": "Naturalis Biodiversity Center",
+      "ror": "0566bfb96",
+      "worksCount": 28154,
+      "fields": [
+        {
+          "name": "Agricultural and Biological Sciences",
+          "pct": 56.5
+        },
+        {
+          "name": "Biochemistry, Genetics and Molecular Biology",
+          "pct": 14.7
+        },
+        {
+          "name": "Earth and Planetary Sciences",
+          "pct": 14.5
+        },
+        {
+          "name": "Environmental Science",
+          "pct": 7.1
+        },
+        {
+          "name": "Materials Science",
+          "pct": 3.8
+        },
+        {
+          "name": "Medicine",
+          "pct": 3.4
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I1295562517",
+      "apiUrl": "https://api.openalex.org/institutions/I1295562517"
+    },
+    "nlr": {
+      "openalexId": "I184851948",
+      "openalexName": "Netherlands Aerospace Centre",
+      "ror": "022sw4578",
+      "worksCount": 2875,
+      "fields": [
+        {
+          "name": "Engineering",
+          "pct": 80.8
+        },
+        {
+          "name": "Environmental Science",
+          "pct": 7.2
+        },
+        {
+          "name": "Psychology",
+          "pct": 4.1
+        },
+        {
+          "name": "Mathematics",
+          "pct": 3
+        },
+        {
+          "name": "Economics, Econometrics and Finance",
+          "pct": 2.7
+        },
+        {
+          "name": "Decision Sciences",
+          "pct": 2.2
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I184851948",
+      "apiUrl": "https://api.openalex.org/institutions/I184851948"
+    },
+    "pbl": {
+      "openalexId": "I1326018075",
+      "openalexName": "Netherlands Environmental Assessment Agency",
+      "ror": "052x1hs80",
+      "worksCount": 3431,
+      "fields": [
+        {
+          "name": "Environmental Science",
+          "pct": 63.8
+        },
+        {
+          "name": "Economics, Econometrics and Finance",
+          "pct": 15.9
+        },
+        {
+          "name": "Energy",
+          "pct": 7.8
+        },
+        {
+          "name": "Agricultural and Biological Sciences",
+          "pct": 4.8
+        },
+        {
+          "name": "Decision Sciences",
+          "pct": 3.1
+        },
+        {
+          "name": "Social Sciences",
+          "pct": 2.5
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I1326018075",
+      "apiUrl": "https://api.openalex.org/institutions/I1326018075"
+    },
+    "cpb": {
+      "openalexId": "I2800425962",
+      "openalexName": "CPB Netherlands Bureau for Economic Policy Analysis",
+      "ror": "04rjxzd30",
+      "worksCount": 1630,
+      "fields": [
+        {
+          "name": "Economics, Econometrics and Finance",
+          "pct": 57.4
+        },
+        {
+          "name": "Social Sciences",
+          "pct": 21.1
+        },
+        {
+          "name": "Business, Management and Accounting",
+          "pct": 10.1
+        },
+        {
+          "name": "Decision Sciences",
+          "pct": 5.7
+        },
+        {
+          "name": "Health Professions",
+          "pct": 5.6
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I2800425962",
+      "apiUrl": "https://api.openalex.org/institutions/I2800425962"
+    },
+    "rathenau": {
+      "openalexId": "I2800109292",
+      "openalexName": "Rathenau Instituut",
+      "ror": "04crnd335",
+      "worksCount": 1409,
+      "fields": [
+        {
+          "name": "Social Sciences",
+          "pct": 33.9
+        },
+        {
+          "name": "Economics, Econometrics and Finance",
+          "pct": 21.3
+        },
+        {
+          "name": "Decision Sciences",
+          "pct": 12.3
+        },
+        {
+          "name": "Energy",
+          "pct": 8.6
+        },
+        {
+          "name": "Medicine",
+          "pct": 4.9
+        },
+        {
+          "name": "Environmental Science",
+          "pct": 4.6
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I2800109292",
+      "apiUrl": "https://api.openalex.org/institutions/I2800109292"
+    },
+    "scp": {
+      "openalexId": "I4210151519",
+      "openalexName": "Netherlands Institute for Social Research",
+      "ror": "04tagjk85",
+      "worksCount": 1718,
+      "fields": [
+        {
+          "name": "Social Sciences",
+          "pct": 78
+        },
+        {
+          "name": "Economics, Econometrics and Finance",
+          "pct": 11
+        },
+        {
+          "name": "Agricultural and Biological Sciences",
+          "pct": 7.9
+        },
+        {
+          "name": "Environmental Science",
+          "pct": 3.1
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I4210151519",
+      "apiUrl": "https://api.openalex.org/institutions/I4210151519"
+    },
+    "clingendael": {
+      "openalexId": "I152878082",
+      "openalexName": "Netherlands Institute of International Relations Clingendael",
+      "ror": "04vbm7a71",
+      "worksCount": 388,
+      "fields": [
+        {
+          "name": "Social Sciences",
+          "pct": 85.4
+        },
+        {
+          "name": "Economics, Econometrics and Finance",
+          "pct": 7.6
+        },
+        {
+          "name": "Arts and Humanities",
+          "pct": 3.5
+        },
+        {
+          "name": "Energy",
+          "pct": 3.5
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I152878082",
+      "apiUrl": "https://api.openalex.org/institutions/I152878082"
+    },
+    "hiil": {
+      "notFound": true,
+      "reason": "No OpenAlex institution record found — HiiL publishes policy reports, not indexed scholarly output.",
+      "searchUrl": "https://openalex.org/institutions?search=HiiL"
+    },
+    "oxfamnovib": {
+      "notFound": true,
+      "reason": "No OpenAlex institution record for the Dutch Oxfam Novib entity specifically (only Oxfam GB and other national affiliates are indexed).",
+      "searchUrl": "https://openalex.org/institutions?search=Oxfam%20Novib"
+    },
+    "icj": {
+      "notFound": true,
+      "reason": "No OpenAlex institution record — the ICJ is a judicial body, not a research-output producer indexed by OpenAlex.",
+      "searchUrl": "https://openalex.org/institutions?search=International%20Court%20of%20Justice"
+    },
+    "iiss": {
+      "openalexId": "I217960723",
+      "openalexName": "Asser Institute",
+      "ror": "04tdptw32",
+      "worksCount": 1146,
+      "fields": [
+        {
+          "name": "Social Sciences",
+          "pct": 88.7
+        },
+        {
+          "name": "Business, Management and Accounting",
+          "pct": 8.1
+        },
+        {
+          "name": "Decision Sciences",
+          "pct": 3.2
+        }
+      ],
+      "ambiguous": false,
+      "sourceUrl": "https://openalex.org/institutions/I217960723",
+      "apiUrl": "https://api.openalex.org/institutions/I217960723"
+    }
+  }
+}

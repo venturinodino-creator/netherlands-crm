@@ -1,171 +1,97 @@
 {
+  "lastRun": "2026-08-22T11:52:36.640Z",
+  "lastAddedCount": 0,
+  "lastTypes": [
+    "university",
+    "medical",
+    "research",
+    "ngo"
+  ],
+  "source": "Claude Code agent (subscription)",
   "scraped": {
     "cwi_oa_id": "https://openalex.org/I1341640284",
     "cwi": [
       "p1",
       "p2",
-      "p3",
-      "p4",
-      "p5",
-      "p6",
-      "p7",
-      "p8",
-      "p9",
-      "p10",
-      "p11",
-      "p12",
-      "p13",
-      "p14",
-      "p15",
-      "p16",
-      "p17",
-      "p18"
+      "p3"
     ],
-    "cwi_page": 19,
+    "cwi_page": 4,
     "esc_oa_id": "https://openalex.org/I4210095242",
     "esc": [
       "p1",
       "p2",
-      "p3",
-      "p4",
-      "p5",
-      "p6",
-      "p7",
-      "p8",
-      "p9",
-      "p10",
-      "p11",
-      "p12",
-      "p13",
-      "p14",
-      "p15",
-      "p16",
-      "p17",
-      "p18"
+      "p3"
     ],
-    "esc_page": 19,
-    "pbl": [
-      "https://www.pbl.nl/en/about-pbl/staff",
-      "marian-abels-van-overveld",
-      "rob-alkemade",
-      "https://www.pbl.nl/en/about-pbl/staff?page=1",
-      "ioannis-dafnomilis",
-      "anteneh-dagnachew"
-    ],
+    "esc_page": 4,
     "rathenau_oa_id": "https://openalex.org/I2800109292",
     "rathenau": [
       "p1",
       "p2",
-      "p3",
-      "p4",
-      "p5",
-      "p6",
-      "p7",
-      "p8",
-      "p9",
-      "p10",
-      "p11",
-      "p12",
-      "p13",
-      "p14",
-      "p15",
-      "p16",
-      "p17",
-      "p18"
+      "p3"
     ],
-    "rathenau_page": 19,
+    "rathenau_page": 4,
     "uva_oa_id": "https://openalex.org/I887064364",
     "uva": [
       "p1",
       "p2",
-      "p3",
-      "p4",
-      "p5",
-      "p6",
-      "p7",
-      "p8",
-      "p9",
-      "p10",
-      "p11",
-      "p12",
-      "p13"
+      "p3"
     ],
-    "uva_page": 14,
+    "uva_page": 4,
     "vu_oa_id": "https://openalex.org/I865915315",
     "vu": [
       "p1",
       "p2",
-      "p3",
-      "p4",
-      "p5",
-      "p6",
-      "p7",
-      "p8",
-      "p9",
-      "p10",
-      "p11",
-      "p12",
-      "p13"
+      "p3"
     ],
-    "vu_page": 14,
+    "vu_page": 4,
     "uu_oa_id": "https://openalex.org/I193662353",
     "uu": [
       "p1",
       "p2",
-      "p3",
-      "p4",
-      "p5",
-      "p6",
-      "p7",
-      "p8",
-      "p9",
-      "p10",
-      "p11",
-      "p12",
-      "p13"
+      "p3"
     ],
-    "uu_page": 14,
+    "uu_page": 4,
     "leiden_oa_id": "https://openalex.org/I121797337",
     "leiden": [
       "p1",
       "p2",
-      "p3",
-      "p4",
-      "p5",
-      "p6",
-      "p7",
-      "p8",
-      "p9",
-      "p10",
-      "p11",
-      "p12",
-      "p13"
+      "p3"
     ],
-    "leiden_page": 14,
+    "leiden_page": 4,
     "aumc_oa_id": "https://openalex.org/I2802928900",
-    "aumc": ["p1"],
+    "aumc": [
+      "p1"
+    ],
     "aumc_page": 2,
     "erasmusmc_oa_id": "https://openalex.org/I2801952686",
-    "erasmusmc": ["p1"],
+    "erasmusmc": [
+      "p1"
+    ],
     "erasmusmc_page": 2,
     "umcutrecht_oa_id": "https://openalex.org/I3018483916",
-    "umcutrecht": ["p1"],
+    "umcutrecht": [
+      "p1"
+    ],
     "umcutrecht_page": 2,
     "umcg_oa_id": "https://openalex.org/I1334415907",
-    "umcg": ["p1"],
+    "umcg": [
+      "p1"
+    ],
     "umcg_page": 2,
     "lumc_oa_id": "https://openalex.org/I2800006345",
-    "lumc": ["p1"],
+    "lumc": [
+      "p1"
+    ],
     "lumc_page": 2,
     "radboudumc_oa_id": "https://openalex.org/I2802934949",
-    "radboudumc": ["p1"],
+    "radboudumc": [
+      "p1"
+    ],
     "radboudumc_page": 2,
     "mumc_oa_id": "https://openalex.org/I2800191616",
-    "mumc": ["p1"],
+    "mumc": [
+      "p1"
+    ],
     "mumc_page": 2
-  },
-  "lastRun": "2026-08-20T00:00:00.000Z",
-  "lastTypes": [
-    "medical"
-  ]
+  }
 }

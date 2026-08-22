@@ -1,4 +1,4 @@
-/* discovery.js v11 — NL Research CRM contact discovery */
+/* discovery.js v13 — NL Research CRM contact discovery */
 (function () {
   'use strict';
 
@@ -289,12 +289,97 @@
     render();
   };
 
-  /* ── "Find contacts now" ──────────────────────────────────────────────── */
-  window.runContactDiscovery = function() {
+  /* ── "Find contacts now" — live scrape ───────────────────────────────────
+     Dispatches the discover.yml GitHub Action right now (honoring whichever
+     institution-type pill is currently selected, since that's what the
+     Action reads from scrape_config), waits for it to finish, then syncs the
+     results in. The daily 07:00 UTC schedule in discover.yml is untouched —
+     this is purely an on-demand path in addition to it. Needs a GitHub token
+     saved via the same "Run now" token flow used on the Agents page; if none
+     is saved yet, prompts for one and resumes automatically once it's saved.
+     Falls back to a plain file sync (the old behavior) if no token is ever
+     provided, or if the dispatch/poll fails for any reason. ──────────────── */
+  var _discoveryInFlight = false;
+
+  function pollDiscoveryRun(token, since) {
+    var deadline = Date.now() + 4 * 60 * 1000; // 4 min ceiling — real runs take ~2
+    function check() {
+      return fetch('https://api.github.com/repos/' + GH_AGENTS_REPO + '/actions/workflows/discover.yml/runs?event=workflow_dispatch&per_page=5', {
+        headers: {
+          'Authorization': 'Bearer ' + token,
+          'Accept': 'application/vnd.github+json',
+          'X-GitHub-Api-Version': '2022-11-28',
+        },
+      }).then(function(r) { return r.json(); }).then(function(data) {
+        var runs = data.workflow_runs || [];
+        // workflow_dispatch's own response carries no run id, so find the
+        // newest run created at/after the moment we dispatched.
+        var run = runs.find(function(r) { return new Date(r.created_at).getTime() >= since - 5000; });
+        if (run && run.status === 'completed') return run.conclusion === 'success';
+        if (Date.now() > deadline) return false;
+        return new Promise(function(resolve) { setTimeout(resolve, 8000); }).then(check);
+      });
+    }
+    return check();
+  }
+
+  function syncOnly() {
     try { if (typeof toast==='function') toast('Checking for new contacts…','ok'); } catch(e){}
     syncFromFile().then(function(n) {
       try { if (typeof toast==='function') toast(n > 0 ? n + ' new contacts found!' : 'No new contacts — next scrape at 07:00 UTC','ok'); } catch(e){}
       if (n > 0) render();
+    });
+  }
+
+  window.runContactDiscovery = function() {
+    if (_discoveryInFlight) {
+      try { if (typeof toast==='function') toast('Already scraping — hang tight…','ok'); } catch(e){}
+      return;
+    }
+    var token = (typeof getGhToken === 'function') ? getGhToken() : '';
+    if (!token) {
+      if (typeof manageGhToken === 'function') {
+        _pendingAgentRun = { resume: 'discovery' };
+        manageGhToken();
+      } else {
+        syncOnly();
+      }
+      return;
+    }
+
+    _discoveryInFlight = true;
+    var since = Date.now();
+    var selType = getT();
+    var label = selType === 'all' ? 'all institution types' : (TM[selType]||{label:selType}).label;
+    try { if (typeof toast==='function') toast('Scraping ' + label + ' now — this takes about 2 minutes…','ok'); } catch(e){}
+
+    fetch('https://api.github.com/repos/' + GH_AGENTS_REPO + '/actions/workflows/discover.yml/dispatches', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Accept': 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ ref: 'main' }),
+    }).then(function(res) {
+      if (res.status !== 204) throw new Error('GitHub rejected the trigger (HTTP ' + res.status + ')');
+      return pollDiscoveryRun(token, since);
+    }).then(function(ok) {
+      _discoveryInFlight = false;
+      if (!ok) {
+        try { if (typeof toast==='function') toast('Scrape timed out or failed — check the Actions tab','err'); } catch(e){}
+        return;
+      }
+      return syncFromFile().then(function(n) {
+        try { if (typeof toast==='function') toast(n > 0 ? 'Scrape complete — ' + n + ' new contact' + (n!==1?'s':'') + ' found!' : 'Scrape complete — no new contacts this time','ok'); } catch(e){}
+        render();
+      });
+    }).catch(function(e) {
+      _discoveryInFlight = false;
+      console.error('[NL CRM] live scrape failed:', e);
+      try { if (typeof toast==='function') toast('Live scrape failed (' + e.message + ') — syncing existing data instead','err'); } catch(e2){}
+      syncOnly();
     });
   };
 

@@ -1355,6 +1355,7 @@ const SEED_CONTACTS = [
 //  STATE 
 let state = {
   institutions: [],
+  researchFocus: {}, // instId -> {fields, sourceUrl, worksCount, ...} from data/research-focus.json
   contacts: [],
   opportunities: [],
   interactions: [],
@@ -1561,8 +1562,27 @@ function syncBadge(show, err) {
   el.style.color = err ? '#991b1b' : '#166534';
   el.textContent = err ? '  Sync error' : ' Synced';
 }
+// Loads data/research-focus.json (real OpenAlex-sourced research output data,
+// see scripts/research-focus-scan.js). Kept independent of the Supabase load
+// below — a Supabase outage shouldn't block this, and vice versa.
+async function loadResearchFocus() {
+  try {
+    const res = await fetch('/netherlands-crm/data/research-focus.json?t=' + Date.now());
+    if (res.ok) {
+      const json = await res.json();
+      state.researchFocus = (json && json.institutions) || {};
+      localStorage.setItem('nl_crm_research_focus', JSON.stringify(state.researchFocus));
+      return;
+    }
+  } catch (e) { /* fall through to cache below */ }
+  try {
+    const cached = localStorage.getItem('nl_crm_research_focus');
+    if (cached) state.researchFocus = JSON.parse(cached);
+  } catch (e) {}
+}
 async function load() {
   showLoadingScreen();
+  const researchFocusPromise = loadResearchFocus();
   try {
     const [instRows, contRows, oppRows, intRows, rfpRows] = await Promise.all([
       supaFetch('crm_institutions?select=*&order=name'),
@@ -1631,6 +1651,7 @@ async function load() {
     }
     toast('Working offline — changes will sync when connection restores', 'warn');
   }
+  await researchFocusPromise;
   hideLoadingScreen();
 }
 function save() {
@@ -1833,44 +1854,30 @@ function esc(s) { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').repl
 const TYPE_ICON = {university:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v12H2V10"/><path d="M6 10V3h12v7"/><path d="M12 10v12"/><path d="M2 10l10-7 10 7"/></svg>`, medical:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6v4"/><path d="M14 14h-4"/><path d="M14 18h-4"/><path d="M14 8h-4"/><path d="M18 12h2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2h2"/><path d="M18 22V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v18"/></svg>`, research:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/></svg>`, ngo:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`};
 const TYPE_LABEL = {university:'University', medical:'Medical Center', research:'Research Inst.', ngo:'NGO / Foundation'};
 const TYPE_COLORS_MAP = {university:'#1d4ed8', medical:'#991b1b', research:'#166534', ngo:'#7c3aed'};
-const RESEARCH_PALETTE = {'Engineering':'#3b82f6','Life Sciences':'#22c55e','Medicine':'#dc2626','Environment':'#16a34a','Social Sciences':'#f59e0b','Humanities':'#ec4899','Physics':'#8b5cf6','AI & Computing':'#06b6d4','Economics':'#ea580c','Agriculture':'#84cc16','Law & Policy':'#64748b','Mathematics':'#0ea5e9'};
-const INST_RESEARCH_FOCUS = {
-  uva:[['Social Sciences',2],['Humanities',2],['Life Sciences',1],['Law & Policy',1],['Economics',1]],
-  vu:[['Social Sciences',2],['Life Sciences',1],['Humanities',1],['Medicine',1],['Economics',1]],
-  eur:[['Economics',3],['Medicine',2],['Law & Policy',2],['Social Sciences',1]],
-  uu:[['Life Sciences',2],['Social Sciences',2],['Humanities',2],['Engineering',1],['Law & Policy',1]],
-  leiden:[['Humanities',3],['Social Sciences',2],['Life Sciences',2],['Law & Policy',1],['Physics',1]],
-  rug:[['Life Sciences',2],['Social Sciences',2],['Economics',1],['Engineering',1],['Medicine',1]],
-  ru:[['Social Sciences',2],['Life Sciences',2],['Medicine',1],['Humanities',1]],
-  tudelft:[['Engineering',4],['AI & Computing',2],['Mathematics',1]],
-  tue:[['Engineering',3],['AI & Computing',2],['Physics',1]],
-  ut:[['Engineering',3],['AI & Computing',2],['Social Sciences',1]],
-  tiu:[['Social Sciences',3],['Law & Policy',2],['Economics',2],['Humanities',1]],
-  um:[['Medicine',2],['Economics',1],['Social Sciences',1],['Law & Policy',1]],
-  wur:[['Agriculture',4],['Life Sciences',3],['Environment',2]],
-  ou:[['Social Sciences',3],['Humanities',2]],
-  aumc:[['Medicine',5]], erasmusmc:[['Medicine',5]], umcutrecht:[['Medicine',4],['Life Sciences',1]],
-  lumc:[['Medicine',4],['Life Sciences',1]], umcg:[['Medicine',4],['Life Sciences',1]],
-  radboudumc:[['Medicine',4],['Life Sciences',1]], mumc:[['Medicine',4],['Life Sciences',1]],
-  maxima:[['Medicine',5]], nki:[['Medicine',4],['Life Sciences',1]], mmc:[['Medicine',4],['Life Sciences',1]],
-  sanquin:[['Medicine',3],['Life Sciences',2]], aighd:[['Medicine',3],['Life Sciences',1],['Social Sciences',1]],
-  princesmaxima:[['Medicine',5]],
-  nwo:[['Engineering',1],['Life Sciences',1],['Medicine',1],['Social Sciences',1],['Humanities',1],['Economics',1]],
-  tno:[['Engineering',4],['AI & Computing',2],['Environment',1]],
-  knaw:[['Humanities',3],['Social Sciences',2],['Life Sciences',2]],
-  hubrecht:[['Life Sciences',5]], nin:[['Medicine',4],['Life Sciences',1]],
-  rivm:[['Medicine',3],['Environment',2],['Life Sciences',1]],
-  cwi:[['Mathematics',3],['AI & Computing',3]], esc:[['AI & Computing',4],['Engineering',2]],
-  deltares:[['Environment',4],['Engineering',2]], sron:[['Physics',4],['Engineering',1]],
-  nikhef:[['Physics',5]], astron:[['Physics',4],['Engineering',1]],
-  nioz:[['Environment',4],['Life Sciences',1]], knmi:[['Environment',4],['Mathematics',1]],
-  naturalis:[['Life Sciences',4],['Environment',2]], nlr:[['Engineering',4],['AI & Computing',1],['Physics',1]],
-  pbl:[['Environment',3],['Social Sciences',2]], cpb:[['Economics',4],['Social Sciences',1]],
-  rathenau:[['Social Sciences',4],['AI & Computing',1]], scp:[['Social Sciences',5]],
-  clingendael:[['Law & Policy',3],['Social Sciences',2]], hiil:[['Law & Policy',4],['Social Sciences',1]],
-  oxfamnovib:[['Social Sciences',3],['Law & Policy',2]], icj:[['Law & Policy',5]],
-  iiss:[['Law & Policy',3],['Social Sciences',2]],
+// Research Focus donut colors, keyed by OpenAlex "field" name (the standard
+// 26-field taxonomy OpenAlex classifies every work into). Data itself comes
+// from data/research-focus.json, generated by scripts/research-focus-scan.js
+// straight from the OpenAlex API — see buildInstResearchDonut() below.
+const OA_FIELD_COLORS = {
+  'Medicine':'#dc2626','Biochemistry, Genetics and Molecular Biology':'#22c55e',
+  'Computer Science':'#06b6d4','Engineering':'#3b82f6','Physics and Astronomy':'#8b5cf6',
+  'Environmental Science':'#16a34a','Social Sciences':'#f59e0b','Arts and Humanities':'#ec4899',
+  'Economics, Econometrics and Finance':'#ea580c','Business, Management and Accounting':'#f97316',
+  'Psychology':'#d946ef','Agricultural and Biological Sciences':'#84cc16','Chemistry':'#eab308',
+  'Materials Science':'#a3a3a3','Mathematics':'#0ea5e9','Earth and Planetary Sciences':'#15803d',
+  'Neuroscience':'#c026d3','Immunology and Microbiology':'#f43f5e','Pharmacology, Toxicology and Pharmaceutics':'#fb7185',
+  'Health Professions':'#f472b6','Nursing':'#fda4af','Dentistry':'#fbbf24','Veterinary':'#65a30d',
+  'Decision Sciences':'#7c3aed','Energy':'#facc15','Chemical Engineering':'#2563eb','Multidisciplinary':'#94a3b8',
 };
+// Deterministic fallback for any field name not in the curated map above, so
+// colors stay stable across reloads without needing every taxonomy label listed.
+const OA_FALLBACK_COLORS = ['#3b82f6','#22c55e','#dc2626','#f59e0b','#8b5cf6','#06b6d4','#ec4899','#84cc16'];
+function colorForField(name) {
+  if (OA_FIELD_COLORS[name]) return OA_FIELD_COLORS[name];
+  let h = 0;
+  for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) >>> 0;
+  return OA_FALLBACK_COLORS[h % OA_FALLBACK_COLORS.length];
+}
 const INST_COORDS = {
   uva:[52.3676,4.9041], vu:[52.3328,4.8651], eur:[51.9225,4.4792], uu:[52.0907,5.1214],
   leiden:[52.1601,4.4970], rug:[53.2194,6.5665], ru:[51.8126,5.8372], tudelft:[51.9986,4.3736],
@@ -1950,7 +1957,7 @@ function openModal(id) { document.getElementById(id).classList.add('open'); }
 //  AGENT "RUN NOW" — dispatches the GitHub Actions workflow directly from the browser
 const GH_AGENTS_REPO = 'venturinodino-creator/netherlands-crm';
 const GH_TOKEN_KEY = 'nl_crm_gh_token';
-let _pendingAgentRun = null; // {workflow, btnId, name} — resumed after a token is saved
+let _pendingAgentRun = null; // {workflow, btnId, name} or {resume:'discovery'} — resumed after a token is saved
 
 function getGhToken() { return localStorage.getItem(GH_TOKEN_KEY) || ''; }
 
@@ -1967,9 +1974,13 @@ function saveGhToken() {
   closeModal('modal-gh-token');
   toast('GitHub token saved to this browser', 'ok');
   if (_pendingAgentRun) {
-    const { workflow, btnId, name } = _pendingAgentRun;
+    const pending = _pendingAgentRun;
     _pendingAgentRun = null;
-    runAgentNow(workflow, btnId, name);
+    if (pending.resume === 'discovery' && typeof window.runContactDiscovery === 'function') {
+      window.runContactDiscovery();
+    } else {
+      runAgentNow(pending.workflow, pending.btnId, pending.name);
+    }
   }
 }
 
@@ -2384,7 +2395,7 @@ function buildDashWidgets(typeRows, hpRows, agentRows) {
       ${hpRows}
     </div>`,
     'w-agents': `<div class="card dash-widget" data-widget-id="w-agents" draggable="true">
-      <div class="card-header"><span class="card-title">Agents Working For You</span><button class="btn btn-xs btn-outline" onclick="event.stopPropagation(); manageGhToken()" title="Connect or update the GitHub token used by Run now">${getGhToken() ? 'GitHub connected' : 'Connect GitHub'}</button>${handle}</div>
+      <div class="card-header"><span class="card-title">Agents Working For You</span>${handle}</div>
       ${agentRows}
     </div>`,
     'w-map': `<div class="card dash-widget" data-widget-id="w-map" draggable="true">
@@ -2395,29 +2406,59 @@ function buildDashWidgets(typeRows, hpRows, agentRows) {
   return getDashWidgetOrder().map(id => WIDGETS[id] || '').join('');
 }
 
+// Research Focus donut, sourced from data/research-focus.json (real OpenAlex
+// institution.topic_share data — see scripts/research-focus-scan.js). Every
+// state this can be in links back to how the number was produced, so nothing
+// shown here is ever an unsourced guess.
 function buildInstResearchDonut(instId) {
-  const areas = INST_RESEARCH_FOCUS[instId];
-  if (!areas || !areas.length) return '';
-  const total = areas.reduce((s,[,w]) => s+w, 0);
-  if (!total) return '';
+  const rf = (state.researchFocus || {})[instId];
+  const foot = (inner) => '<div style="margin-top:10px;padding-top:8px;border-top:1px solid var(--border);font-size:10px;color:var(--muted)">'+inner+'</div>';
+
+  if (!rf) {
+    return '<div style="font-size:12px;color:var(--muted)">Research focus data hasn\'t loaded yet.</div>' +
+      foot('Source: <a href="https://openalex.org/institutions?search='+encodeURIComponent(getInst(instId).name||'')+'" target="_blank" style="color:var(--primary)">search OpenAlex</a> for this institution');
+  }
+  if (rf.fetchError) {
+    return '<div style="font-size:12px;color:var(--muted)">Research focus data temporarily unavailable (fetch error on last scan).</div>' +
+      foot('Source: <a href="https://openalex.org/institutions?search='+encodeURIComponent(getInst(instId).name||'')+'" target="_blank" style="color:var(--primary)">search OpenAlex</a> for this institution');
+  }
+  if (rf.notFound) {
+    return '<div style="font-size:12px;color:var(--muted)">'+(rf.reason ? esc(rf.reason) : 'No OpenAlex institution record found for this organisation.')+'</div>' +
+      foot('<a href="'+esc(rf.searchUrl||('https://openalex.org/institutions?search='+encodeURIComponent(getInst(instId).name||'')))+'" target="_blank" style="color:var(--primary)">Search OpenAlex directly ↗</a>');
+  }
+  const fields = rf.fields || [];
+  if (!fields.length) {
+    return '<div style="font-size:12px;color:var(--muted)">OpenAlex has no topic data indexed for this institution yet.</div>' +
+      foot('<a href="'+esc(rf.sourceUrl)+'" target="_blank" style="color:var(--primary)">View institution on OpenAlex ↗</a>');
+  }
+
+  const shown = fields.map(f => ({ name: f.name, pct: f.pct, color: colorForField(f.name) }));
+  const shownTotal = shown.reduce((s, f) => s + f.pct, 0);
+  const remainder = Math.round((100 - shownTotal) * 10) / 10;
+  const slices = remainder >= 1 ? shown.concat([{ name: 'Other fields', pct: remainder, color: '#475569' }]) : shown;
+
   const cx = 60, cy = 60, R = 48, r = 26;
   let angle = -Math.PI / 2, paths = '';
-  areas.forEach(([label, weight]) => {
-    const color = RESEARCH_PALETTE[label] || '#999';
-    const sweep = (weight / total) * 2 * Math.PI;
+  slices.forEach(s => {
+    const sweep = (s.pct / 100) * 2 * Math.PI;
     const end = angle + sweep;
     const large = sweep > Math.PI ? 1 : 0;
     const c0 = Math.cos(angle), s0 = Math.sin(angle), c1 = Math.cos(end), s1 = Math.sin(end);
-    paths += '<path d="M'+(cx+R*c0)+' '+(cy+R*s0)+' A'+R+' '+R+' 0 '+large+' 1 '+(cx+R*c1)+' '+(cy+R*s1)+' L'+(cx+r*c1)+' '+(cy+r*s1)+' A'+r+' '+r+' 0 '+large+' 0 '+(cx+r*c0)+' '+(cy+r*s0)+'Z" fill="'+color+'"/>';
+    paths += '<path d="M'+(cx+R*c0)+' '+(cy+R*s0)+' A'+R+' '+R+' 0 '+large+' 1 '+(cx+R*c1)+' '+(cy+R*s1)+' L'+(cx+r*c1)+' '+(cy+r*s1)+' A'+r+' '+r+' 0 '+large+' 0 '+(cx+r*c0)+' '+(cy+r*s0)+'Z" fill="'+s.color+'"/>';
     angle = end;
   });
   const svg = '<svg width="120" height="120" viewBox="0 0 120 120" style="flex-shrink:0">'+paths+'</svg>';
-  const legend = areas.map(([label, weight]) => {
-    const color = RESEARCH_PALETTE[label] || '#999';
-    const pct = Math.round(weight / total * 100);
-    return '<div style="display:flex;align-items:center;gap:6px"><div style="width:8px;height:8px;border-radius:2px;background:'+color+';flex-shrink:0"></div><span style="font-size:11px;color:var(--muted);flex:1">'+label+'</span><span style="font-size:11px;font-weight:600;color:var(--text)">'+pct+'%</span></div>';
+  const legend = slices.map(s => {
+    return '<div style="display:flex;align-items:center;gap:6px"><div style="width:8px;height:8px;border-radius:2px;background:'+s.color+';flex-shrink:0"></div><span style="font-size:11px;color:var(--muted);flex:1">'+esc(s.name)+'</span><span style="font-size:11px;font-weight:600;color:var(--text)">'+Math.round(s.pct)+'%</span></div>';
   }).join('');
-  return '<div style="display:flex;align-items:center;gap:16px">'+svg+'<div style="flex:1;display:flex;flex-direction:column;gap:5px">'+legend+'</div></div>';
+
+  const updated = rf.generatedAt ? new Date(rf.generatedAt).toLocaleDateString('en-GB',{year:'numeric',month:'short',day:'numeric'}) : '';
+  const footer = foot(
+    (rf.worksCount ? (rf.worksCount.toLocaleString()+' works indexed &middot; ') : '') +
+    'Source: <a href="'+esc(rf.sourceUrl)+'" target="_blank" style="color:var(--primary)">OpenAlex institution profile ↗</a>' +
+    (updated ? ' &middot; scanned '+updated : '')
+  );
+  return '<div><div style="display:flex;align-items:center;gap:16px;max-width:380px">'+svg+'<div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:5px">'+legend+'</div></div>'+footer+'</div>';
 }
 
 let _dashDragSrc = null;
@@ -2792,39 +2833,10 @@ function renderDetail() {
       ${statsHtml}
     </div>
     ${_rfHtml}
-    <!-- ACCOUNT INFO -->
-    <div class="card" style="margin-bottom:16px;padding:14px 18px">
-      <div class="card-header" style="margin-bottom:8px">
-        <span class="card-title">Account Info</span>
-        <button class="btn btn-xs btn-outline" onclick="openEditInstAccount('INST_ID_PLACEHOLDER')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
-      </div>
-      <div class="acct-grid">
-        <div class="acct-cell">
-          <div class="acct-label">Relationship</div>
-          <div class="acct-val">${inst.warmth ? `<span class="badge-${esc(inst.warmth)}">${inst.warmth==='hot'?' Hot':inst.warmth==='warm'?' Warm':' Cold'}</span>` : '<span style="color:var(--muted)">—</span>'}</div>
-        </div>
-        <div class="acct-cell">
-          <div class="acct-label">Contract Value</div>
-          <div class="acct-val">${inst.contractValue ? '€' + parseFloat(inst.contractValue).toLocaleString() : '—'}</div>
-        </div>
-        <div class="acct-cell">
-          <div class="acct-label">Renewal Date</div>
-          <div class="acct-val" style="${inst.renewalDate && inst.renewalDate < new Date(Date.now()+90*864e5).toISOString().slice(0,10) ? 'color:#dc2626' : ''}">${inst.renewalDate || '—'}</div>
-        </div>
-        <div class="acct-cell">
-          <div class="acct-label">Products</div>
-          <div class="acct-val" style="font-size:12px">${esc(inst.products||'—')}</div>
-        </div>
-      </div>
-      ${inst.nextAction ? `<div style="margin-top:8px;padding:8px 10px;background:var(--surface);border-radius:7px;border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center">
-        <div><span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)">Next Action</span><div style="font-size:13px;font-weight:600;margin-top:2px">${esc(inst.nextAction)}</div></div>
-        <span style="font-size:11px;color:var(--muted)">${inst.nextActionDate||''}</span>
-      </div>` : ''}
-    </div>
 
     <div class="card-header" style="margin-bottom:12px">
       <span class="card-title">Contacts at ${esc(inst.short||inst.name)}</span>
-      <button class="btn btn-accent btn-sm" onclick="openAddContact('INST_ID_PLACEHOLDER')">+ Add Contact</button>
+      <button class="btn btn-accent btn-sm" onclick="openAddContact('${inst.id}')">+ Add Contact</button>
     </div>
 
     <div class="table-wrap">
@@ -2995,13 +3007,15 @@ async function saveInstitution() {
     website: document.getElementById('mi-website').value.trim(),
     description: document.getElementById('mi-desc').value.trim(),
   };
+  let savedInst;
   if(state.editInstId) {
     const idx = state.institutions.findIndex(i=>i.id===state.editInstId);
-    if(idx>=0) state.institutions[idx] = {...state.institutions[idx], ...data};
+    if(idx>=0) { state.institutions[idx] = {...state.institutions[idx], ...data}; savedInst = state.institutions[idx]; }
     toast('Institution updated','ok');
   } else {
     data.id = uid();
     state.institutions.push(data);
+    savedInst = data;
     toast('Institution added','ok');
   }
   // Save competitor data
@@ -3025,7 +3039,7 @@ async function saveInstitution() {
     });
     localStorage.setItem('nl_crm_comp_data', JSON.stringify(window.COMP_DATA));
   }
-  save(); try { await supaUpsertInst(inst); syncBadge(true); } catch(e){ console.error(e); syncBadge(true,'err'); } closeModal('modal-inst'); render();
+  save(); try { await supaUpsertInst(savedInst); syncBadge(true); } catch(e){ console.error(e); syncBadge(true,'err'); } closeModal('modal-inst'); render();
 }
 
 function confirmDeleteInst(id) {
@@ -3625,7 +3639,7 @@ function renderPipeline() {
     <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px">
       <div class="acct-cell" style="flex:1;min-width:130px"><div class="acct-label">Open Deals</div><div class="acct-val">${openOpps2.length}</div></div>
       <div class="acct-cell" style="flex:1;min-width:130px"><div class="acct-label">Pipeline Value</div><div class="acct-val">${totalVal>0?'\u20ac'+totalVal.toLocaleString():'—'}</div></div>
-      <div class="acct-cell" style="flex:1;min-width:130px"><div class="acct-label">Avg Deal</div><div class="acct-val">'€'+Math.round(avgVal).toLocaleString():'—'}</div></div>
+      <div class="acct-cell" style="flex:1;min-width:130px"><div class="acct-label">Avg Deal</div><div class="acct-val">${avgVal>0?'€'+Math.round(avgVal).toLocaleString():'—'}</div></div>
       <div class="acct-cell" style="flex:1;min-width:130px"><div class="acct-label">Closed Won</div><div class="acct-val">${state.opportunities.filter(o=>o.stage==='closed-won').length}</div></div>
     </div>
     <div class="pipeline-board">${cols}</div>`;
@@ -5755,10 +5769,10 @@ document.addEventListener('keydown', e => { if (e.key==='Escape') closeGlobalSea
 <script>
 // ── PENDING CONTACTS ─────────────────────────────────────────────────────────
 
-function loadPendingCount() {
+async function loadPendingCount() {
   try {
-    const pending = JSON.parse(localStorage.getItem('nl_crm_pending') || '[]');
-    const count = Array.isArray(pending) ? pending.length : 0;
+    const rows = await supaFetch('pending_contacts?select=id&status=eq.pending');
+    const count = Array.isArray(rows) ? rows.length : 0;
     const el = document.getElementById('pending-count');
     const sub = document.getElementById('pending-sub');
     if (el) el.textContent = count;
@@ -5902,155 +5916,73 @@ async function deletePendingContact(id, btn) {
   loadPendingCount();
 }
 
+// Dispatches discover.yml right now, polls until it finishes (real runs take
+// ~1-2 min), then refreshes the Supabase-backed pending list. Needs a GitHub
+// token via the same "Run now" flow used on the Agents page — if none is
+// saved yet, prompts for one and resumes automatically once it's saved.
+let _discoveryInFlight = false;
+function _pollWorkflowRun(workflow, token, since) {
+  const deadline = Date.now() + 4 * 60 * 1000; // 4 min ceiling
+  function check() {
+    return fetch(`https://api.github.com/repos/${GH_AGENTS_REPO}/actions/workflows/${workflow}/runs?event=workflow_dispatch&per_page=5`, {
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Accept': 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28',
+      },
+    }).then(r => r.json()).then(data => {
+      const runs = data.workflow_runs || [];
+      const run = runs.find(r => new Date(r.created_at).getTime() >= since - 5000);
+      if (run && run.status === 'completed') return run.conclusion === 'success';
+      if (Date.now() > deadline) return false;
+      return new Promise(resolve => setTimeout(resolve, 8000)).then(check);
+    });
+  }
+  return check();
+}
+
 async function runContactDiscovery() {
-  toast('Checking for new contacts...', 'ok');
-  if (window.__crmDiscovery && window.__crmDiscovery.syncFromFile) {
-    try {
-      const n = await window.__crmDiscovery.syncFromFile();
-      if (n > 0) {
-        toast(n + ' new contact' + (n !== 1 ? 's' : '') + ' added!', 'ok');
-        if (typeof loadPendingCount === 'function') loadPendingCount();
-      } else {
-        toast('No new contacts found.', 'ok');
-      }
-    } catch(e) {
-      toast('Discovery failed: ' + e.message, 'error');
-    }
-  } else {
-    toast('Discovery not ready — try again in a moment.', 'ok');
+  if (_discoveryInFlight) { toast('Already scraping — hang tight…', 'ok'); return; }
+  const token = getGhToken();
+  if (!token) { _pendingAgentRun = { resume: 'discovery' }; manageGhToken(); return; }
+
+  _discoveryInFlight = true;
+  const since = Date.now();
+  toast('Scraping now — this takes about 1-2 minutes…', 'ok');
+  try {
+    const res = await fetch(`https://api.github.com/repos/${GH_AGENTS_REPO}/actions/workflows/discover.yml/dispatches`, {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Accept': 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ ref: 'main' }),
+    });
+    if (res.status !== 204) throw new Error('GitHub rejected the trigger (HTTP ' + res.status + ')');
+    const ok = await _pollWorkflowRun('discover.yml', token, since);
+    if (!ok) { toast('Scrape timed out or failed — check the Actions tab', 'err'); return; }
+    if (typeof loadPendingCount === 'function') await loadPendingCount();
+    if (typeof renderPendingContacts === 'function' && state.view === 'pending') await renderPendingContacts();
+    toast('Scrape complete — refresh to see new contacts', 'ok');
+  } catch (e) {
+    toast('Discovery failed: ' + e.message, 'err');
+  } finally {
+    _discoveryInFlight = false;
   }
 }
 </script>
 <script src="animations.js?v=5"></script>
     <script src="openalex.js?v=8"></script>
-  <script src="discovery.js?v=12"></script>
 
 <script>
-// Override renderPendingContacts to use localStorage nl_crm_pending
-window.renderPendingContacts = async function() {
-  const pending = JSON.parse(localStorage.getItem('nl_crm_pending') || '[]');
-  document.getElementById('page-title').textContent = 'New Contacts';
-  document.getElementById('page-sub').textContent = 'AI-discovered contacts awaiting your review';
-  const topbar = document.getElementById('topbar-actions');
-  if (topbar) topbar.innerHTML = '<div style="display:flex;gap:8px;align-items:center" data-admin-only>'
-    + '<button class="btn btn-outline" onclick="runContactDiscovery()" style="font-size:12px"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:5px"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>Find contacts now</button>'
-    + (pending.length ? '<button id="accept-all-btn" class="btn btn-accent" style="font-size:12px" onclick="window.acceptAllPending()">Accept All ('+pending.length+')</button>' : '')
-    + '</div>';
-  const content = document.getElementById('content');
-  if (!pending.length) {
-    content.innerHTML = '<div class="empty" style="margin-top:40px"><div class="ei"><svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg></div><h3>No pending contacts</h3><p>The daily agent will find new contacts automatically.</p></div>';
-    return;
-  }
-  const cards = pending.map(c => {
-    const initials = ((c.first||'?')[0]+(c.last||'?')[0]).toUpperCase();
-    const instLabel = (c.instId||'').toUpperCase();
-    return `<div id="card-${c.id}" style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:12px;display:flex;align-items:center;gap:16px;transition:opacity .3s">`
-      + `<div style="width:48px;height:48px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;flex-shrink:0;color:#000">${initials}</div>`
-      + `<div style="flex:1;min-width:0">`
-      + `<div style="font-weight:600;font-size:15px">${c.first} ${c.last}</div>`
-      + `<div style="color:var(--text2);font-size:13px">${c.title||'Researcher'}${c.dept?' · '+c.dept:''}</div>`
-      + `<div style="color:var(--muted);font-size:12px;margin-top:4px">${instLabel}${c.email?' · '+c.email:''}</div>`
-      + (c.source && c.source.includes('openalex.org') ? `<div style="color:#6366f1;font-size:11px;margin-top:3px">⚡ OpenAlex · details scraped on accept</div>` : '')
-      + `</div>`
-      + `<div style="display:flex;gap:8px;flex-shrink:0">`
-      + `<button class="btn btn-primary" style="font-size:12px;padding:6px 14px" onclick="window.acceptPending('${c.id}')">Accept</button>`
-      + `<button class="btn btn-outline" style="font-size:12px;padding:6px 14px;color:var(--danger)" onclick="window.discardPending('${c.id}')">Discard</button>`
-      + `</div></div>`;
-  }).join('');
-  content.innerHTML = '<div style="padding:24px;max-width:800px"><h2 style="margin-bottom:4px">New Contacts</h2><p style="color:var(--text2);margin-bottom:20px">'+pending.length+' contact'+(pending.length!==1?'s':'')+' awaiting review</p>'+cards+'</div>';
-};
-async function enrichViaOpenAlex(contact) {
-  // contact.source is the OpenAlex author URL e.g. https://openalex.org/A1234567890
-  if (!contact.source || !contact.source.includes('openalex.org/A')) return contact;
-  try {
-    const oaId = contact.source.replace('https://openalex.org/', '');
-    const resp = await fetch(`https://api.openalex.org/authors/${oaId}?mailto=venturino.dino@gmail.com`);
-    if (!resp.ok) return contact;
-    const a = await resp.json();
-    contact.worksCount    = a.works_count  || 0;
-    contact.citedByCount  = a.cited_by_count || 0;
-    contact.hIndex        = a.summary_stats?.h_index || null;
-    contact.orcid         = a.orcid || contact.orcid || '';
-    contact.topics        = (a.topics || []).slice(0,3).map(t=>t.display_name).join('; ');
-    const inst = a.last_known_institutions?.[0];
-    if (inst) { contact.institutionFull = inst.display_name; contact.rorId = inst.ror; }
-    contact.enrichedAt    = new Date().toISOString();
-    contact.enrichmentStatus = 'done';
-  } catch(e) {
-    contact.enrichmentStatus = 'failed';
-  }
-  return contact;
-}
-
-function updateContactInStorage(contact) {
-  const contacts = JSON.parse(localStorage.getItem('nl_crm_contacts')||'[]');
-  const i = contacts.findIndex(x => x.id === contact.id);
-  if (i !== -1) { contacts[i] = contact; localStorage.setItem('nl_crm_contacts', JSON.stringify(contacts)); }
-}
-
-window.acceptPending = async function(id) {
-  const pending = JSON.parse(localStorage.getItem('nl_crm_pending')||'[]');
-  const idx = pending.findIndex(c => c.id===id);
-  if (idx===-1) return;
-  const c = pending.splice(idx,1)[0];
-  c.status='active'; c.quality='verified'; c.enrichmentStatus='pending';
-  c.acceptedAt = new Date().toISOString();
-
-  // Save immediately so the badge count drops right away
-  const contacts = JSON.parse(localStorage.getItem('nl_crm_contacts')||'[]');
-  contacts.push(c);
-  localStorage.setItem('nl_crm_contacts', JSON.stringify(contacts));
-  localStorage.setItem('nl_crm_pending', JSON.stringify(pending));
-  window.renderPendingContacts();
-
-  // Show spinner on the card if still visible
-  const card = document.getElementById('card-'+id);
-  if (card) card.style.opacity = '0.4';
-
-  // Enrich via OpenAlex (non-blocking)
-  const enriched = await enrichViaOpenAlex(c);
-  updateContactInStorage(enriched);
-  if (card) card.style.opacity = '1';
-};
-
-window.acceptAllPending = async function() {
-  const pending = JSON.parse(localStorage.getItem('nl_crm_pending')||'[]');
-  if (!pending.length) return;
-  const btn = document.getElementById('accept-all-btn');
-  if (btn) { btn.textContent = 'Accepting…'; btn.disabled = true; }
-
-  const contacts = JSON.parse(localStorage.getItem('nl_crm_contacts')||'[]');
-  for (const c of pending) {
-    c.status='active'; c.quality='verified'; c.enrichmentStatus='pending';
-    c.acceptedAt = new Date().toISOString();
-    contacts.push(c);
-  }
-  localStorage.setItem('nl_crm_contacts', JSON.stringify(contacts));
-  localStorage.setItem('nl_crm_pending', JSON.stringify([]));
-
-  // Update live state so Contacts view refreshes immediately without reload
-  state.contacts = contacts.filter(c => c.quality === 'verified');
-
-  if (typeof loadPendingCount === 'function') loadPendingCount();
-  toast(pending.length + ' contact' + (pending.length!==1?'s':'') + ' added to CRM!', 'ok');
-  window.renderPendingContacts();
-
-  // Enrich all in the background (staggered to avoid rate limiting)
-  for (let i = 0; i < pending.length; i++) {
-    const enriched = await enrichViaOpenAlex(pending[i]);
-    updateContactInStorage(enriched);
-    // Also update in-memory state
-    const idx = state.contacts.findIndex(c => c.id === enriched.id);
-    if (idx !== -1) state.contacts[idx] = enriched;
-    await new Promise(r => setTimeout(r, 120)); // ~8/sec, within OpenAlex polite limit
-  }
-};
-
-window.discardPending = function(id) {
-  const pending = JSON.parse(localStorage.getItem('nl_crm_pending')||'[]').filter(c=>c.id!==id);
-  localStorage.setItem('nl_crm_pending',JSON.stringify(pending));
-  window.renderPendingContacts();
-};
+/* pending contacts now live entirely in Supabase's pending_contacts table
+   (see renderPendingContacts/acceptPendingContact/deletePendingContact
+   above) — the old localStorage-based nl_crm_pending path (discovery.js +
+   a second renderPendingContacts here) has been removed; it silently
+   shadowed the Supabase version, so discovered contacts never reached a
+   signed-in user's real queue. */
 
 /* ═══════════════════════════════════════════════════════════════════════════
    FEATURE 1 — GLOBAL ⌘K SEARCH
@@ -6250,7 +6182,7 @@ function renderBarcelonaDecl() {
         </div>
       </td>
       <td style="padding:11px 14px;white-space:nowrap">
-        <span style="background:#0f2,background:rgba(16,185,129,.1);color:#10b981;font-size:11px;font-weight:700;border:1px solid rgba(16,185,129,.3);border-radius:6px;padding:2px 9px">✓ Signed</span>
+        <span style="background:rgba(16,185,129,.1);color:#10b981;font-size:11px;font-weight:700;border:1px solid rgba(16,185,129,.3);border-radius:6px;padding:2px 9px">✓ Signed</span>
       </td>
       <td style="padding:11px 14px;color:#94a3b8;font-size:12px;white-space:nowrap">${fmtDate(s.date)}</td>
       <td style="padding:11px 14px">

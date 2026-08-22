@@ -1174,7 +1174,6 @@ document.getElementById('expiry-count').textContent = '8';
       var contacts = JSON.parse(raw);
       var count = Array.isArray(contacts) ? contacts.length : 0;
       if (count > 0) {
-        var label = count + (count % 100 < 11 || count % 100 > 19 ? '+' : '+');
         var statEl = document.getElementById('stat-contacts');
         var ctaEl  = document.getElementById('cta-contacts');
         if (statEl) statEl.innerHTML = count + '<span class="unit">+</span>';
