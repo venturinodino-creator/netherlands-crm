@@ -1,6 +1,48 @@
 {
-  "lastRun": "2026-08-21T18:22:51.000Z",
-  "lastAddedCount": 16,
-  "lastTypes": ["university", "medical", "research", "ngo"],
-  "source": "Claude Code agent (subscription)"
+  "lastRun": "2026-08-22T11:21:41.028Z",
+  "lastAddedCount": 0,
+  "lastTypes": [
+    "university",
+    "medical",
+    "research",
+    "ngo"
+  ],
+  "source": "Claude Code agent (subscription)",
+  "scraped": {
+    "cwi_oa_id": "https://openalex.org/I1341640284",
+    "cwi": [
+      "p1"
+    ],
+    "cwi_page": 2,
+    "esc_oa_id": "https://openalex.org/I4210095242",
+    "esc": [
+      "p1"
+    ],
+    "esc_page": 2,
+    "rathenau_oa_id": "https://openalex.org/I2800109292",
+    "rathenau": [
+      "p1"
+    ],
+    "rathenau_page": 2,
+    "uva_oa_id": "https://openalex.org/I887064364",
+    "uva": [
+      "p1"
+    ],
+    "uva_page": 2,
+    "vu_oa_id": "https://openalex.org/I865915315",
+    "vu": [
+      "p1"
+    ],
+    "vu_page": 2,
+    "uu_oa_id": "https://openalex.org/I193662353",
+    "uu": [
+      "p1"
+    ],
+    "uu_page": 2,
+    "leiden_oa_id": "https://openalex.org/I121797337",
+    "leiden": [
+      "p1"
+    ],
+    "leiden_page": 2
+  }
 }

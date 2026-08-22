@@ -2324,5 +2324,57 @@
     "instId": "nwo",
     "source": "https://www.nwo.nl/en/open-science-nl",
     "research": ""
+  },
+  {
+    "first": "Max",
+    "last": "Nieuwdorp",
+    "title": "Researcher",
+    "dept": "Mathematics & Computer Science",
+    "email": "max.nieuwdorp@cwi.nl",
+    "instId": "cwi",
+    "instName": "Centrum Wiskunde & Informatica",
+    "source": "https://openalex.org/A5040981713",
+    "research": "ORCID: https://orcid.org/0000-0002-1926-7659",
+    "constructed": true,
+    "id": "disc_cwi_1787397701027_41rr"
+  },
+  {
+    "first": "Petra",
+    "last": "Verhoef",
+    "title": "Researcher",
+    "dept": "Science & Technology Studies",
+    "email": "petra.verhoef@rathenau.nl",
+    "instId": "rathenau",
+    "instName": "Rathenau Instituut",
+    "source": "https://openalex.org/A5031242143",
+    "research": "ORCID: https://orcid.org/0000-0002-6927-6182",
+    "constructed": true,
+    "id": "disc_rathenau_1787397701027_z1z0"
+  },
+  {
+    "first": "Yi-Xiang",
+    "last": "Wang",
+    "title": "Researcher",
+    "dept": "Research",
+    "email": "yixiang.wang@leidenuniv.nl",
+    "instId": "leiden",
+    "instName": "Leiden University",
+    "source": "https://openalex.org/A5108047889",
+    "research": "ORCID: https://orcid.org/0000-0001-5697-0717",
+    "constructed": true,
+    "id": "disc_leiden_1787397701028_crtg"
+  },
+  {
+    "first": "Yuehua",
+    "last": "Chen",
+    "title": "Researcher",
+    "dept": "Research",
+    "email": "yuehua.chen@leidenuniv.nl",
+    "instId": "leiden",
+    "instName": "Leiden University",
+    "source": "https://openalex.org/A5101508336",
+    "research": "ORCID: https://orcid.org/0000-0002-4646-4017",
+    "constructed": true,
+    "id": "disc_leiden_1787397701028_rvtr"
   }
 ]
