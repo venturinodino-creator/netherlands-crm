@@ -629,12 +629,18 @@ def build_report(data, out_path):
 
 
 def update_manifest(report_path, stats, summary_text, generated_dt):
+    """Every run gets its own manifest entry — same-day re-runs no longer
+    overwrite each other. The newest run is always inserted first, so the
+    Summary page's "most recent report" is simply manifest[0]. Entries
+    beyond MAX_REPORTS are dropped and their PDF files deleted so the repo
+    doesn't grow unbounded from repeated manual runs."""
     manifest_path = 'data/summary-reports.json'
     try:
         manifest = json.load(open(manifest_path))
     except Exception:
         manifest = []
     entry = {
+        'id': generated_dt.strftime('%Y%m%dT%H%M%SZ'),
         'date': generated_dt.strftime('%Y-%m-%d'),
         'generatedAt': generated_dt.isoformat(),
         'file': report_path.replace('data/', '', 1) if report_path.startswith('data/') else report_path,
@@ -648,9 +654,21 @@ def update_manifest(report_path, stats, summary_text, generated_dt):
             'tendersOpen': stats['tenders_open'],
         },
     }
-    manifest = [e for e in manifest if e.get('date') != entry['date']]
     manifest.insert(0, entry)
-    manifest = manifest[:60]
+
+    MAX_REPORTS = 100
+    dropped, manifest = manifest[MAX_REPORTS:], manifest[:MAX_REPORTS]
+    for old in dropped:
+        old_file = old.get('file')
+        if not old_file:
+            continue
+        old_path = os.path.join('data', old_file)
+        try:
+            if os.path.isfile(old_path):
+                os.remove(old_path)
+        except OSError:
+            pass
+
     os.makedirs(os.path.dirname(manifest_path), exist_ok=True)
     with open(manifest_path, 'w') as f:
         json.dump(manifest, f, indent=2)

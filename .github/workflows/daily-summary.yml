@@ -28,12 +28,12 @@ jobs:
       - name: Build report
         run: |
           mkdir -p data/reports
-          python3 scripts/daily_summary.py /tmp/crm-data.json "data/reports/summary-$(date +%Y-%m-%d).pdf"
+          python3 scripts/daily_summary.py /tmp/crm-data.json "data/reports/summary-$(date -u +%Y-%m-%d-%H%M%S).pdf"
       - name: Commit report
         run: |
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
           git add data/reports data/summary-reports.json
-          git diff --staged --quiet || git commit -m "summary: daily report $(date +%Y-%m-%d)"
+          git diff --staged --quiet || git commit -m "summary: report $(date -u +%Y-%m-%dT%H:%M:%SZ)"
           git pull --rebase origin main
           git push
