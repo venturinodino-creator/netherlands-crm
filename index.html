@@ -1402,16 +1402,50 @@ async function initSupabase() {
   return supabaseClient;
 }
 
+// This app instance's region — every request through supaFetch() below is
+// automatically scoped to it, since the underlying Supabase tables are
+// shared across all region apps (Netherlands, Denmark, ...) via a `region`
+// column rather than separate databases per region.
+const CRM_REGION = 'netherlands';
+const REGION_SCOPED_TABLES = new Set([
+  'crm_institutions', 'crm_contacts', 'crm_opportunities',
+  'crm_interactions', 'crm_tenders', 'pending_contacts', 'scrape_config',
+]);
+
 // PostgREST fetch wrapper — attaches the signed-in user's session JWT when present,
 // so requests are evaluated as `authenticated` (with auth.uid()) rather than `anon`.
+// Also auto-scopes region-shared tables to CRM_REGION: reads/updates/deletes get
+// a `region=eq.<region>` filter appended, and inserts get `region` set on every
+// row in the body — so this app can never read, edit, or delete another
+// region's rows, and everything it writes is tagged correctly by construction.
 async function supaFetch(path, opts={}) {
+  const qIdx = path.indexOf('?');
+  const table = qIdx === -1 ? path : path.slice(0, qIdx);
+  const method = (opts.method || 'GET').toUpperCase();
+  let finalPath = path;
+  let body = opts.body;
+
+  if (REGION_SCOPED_TABLES.has(table)) {
+    const sep = qIdx === -1 ? '?' : '&';
+    finalPath = path + sep + 'region=eq.' + encodeURIComponent(CRM_REGION);
+    if (method === 'POST' && body) {
+      try {
+        const parsed = JSON.parse(body);
+        if (Array.isArray(parsed)) parsed.forEach(o => { o.region = CRM_REGION; });
+        else parsed.region = CRM_REGION;
+        body = JSON.stringify(parsed);
+      } catch (e) { /* not JSON — leave body untouched */ }
+    }
+  }
+
   let authKey = SUPA_KEY;
   if (supabaseClient) {
     const { data } = await supabaseClient.auth.getSession();
     if (data && data.session && data.session.access_token) authKey = data.session.access_token;
   }
-  const res = await fetch(SUPA_URL + '/rest/v1/' + path, {
+  const res = await fetch(SUPA_URL + '/rest/v1/' + finalPath, {
     ...opts,
+    body,
     headers: {
       'apikey': SUPA_KEY,
       'Authorization': 'Bearer ' + authKey,
