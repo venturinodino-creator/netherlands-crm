@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-08-22T11:21:41.028Z",
+  "lastRun": "2026-08-22T11:33:00.043Z",
   "lastAddedCount": 0,
   "lastTypes": [
     "university",
@@ -11,38 +11,45 @@
   "scraped": {
     "cwi_oa_id": "https://openalex.org/I1341640284",
     "cwi": [
-      "p1"
+      "p1",
+      "p2"
     ],
-    "cwi_page": 2,
+    "cwi_page": 3,
     "esc_oa_id": "https://openalex.org/I4210095242",
     "esc": [
-      "p1"
+      "p1",
+      "p2"
     ],
-    "esc_page": 2,
+    "esc_page": 3,
     "rathenau_oa_id": "https://openalex.org/I2800109292",
     "rathenau": [
-      "p1"
+      "p1",
+      "p2"
     ],
-    "rathenau_page": 2,
+    "rathenau_page": 3,
     "uva_oa_id": "https://openalex.org/I887064364",
     "uva": [
-      "p1"
+      "p1",
+      "p2"
     ],
-    "uva_page": 2,
+    "uva_page": 3,
     "vu_oa_id": "https://openalex.org/I865915315",
     "vu": [
-      "p1"
+      "p1",
+      "p2"
     ],
-    "vu_page": 2,
+    "vu_page": 3,
     "uu_oa_id": "https://openalex.org/I193662353",
     "uu": [
-      "p1"
+      "p1",
+      "p2"
     ],
-    "uu_page": 2,
+    "uu_page": 3,
     "leiden_oa_id": "https://openalex.org/I121797337",
     "leiden": [
-      "p1"
+      "p1",
+      "p2"
     ],
-    "leiden_page": 2
+    "leiden_page": 3
   }
 }

@@ -2376,5 +2376,70 @@
     "research": "ORCID: https://orcid.org/0000-0002-4646-4017",
     "constructed": true,
     "id": "disc_leiden_1787397701028_rvtr"
+  },
+  {
+    "first": "Ben",
+    "last": "van Werkhoven",
+    "title": "Researcher",
+    "dept": "Research Software Engineering",
+    "email": "ben.vanwerkhoven@esciencecenter.nl",
+    "instId": "esc",
+    "instName": "Netherlands eScience Center",
+    "source": "https://openalex.org/A5035572633",
+    "research": "ORCID: https://orcid.org/0000-0002-7508-3272",
+    "constructed": true,
+    "id": "disc_esc_1787398380043_7zjs"
+  },
+  {
+    "first": "Pierre",
+    "last": "Leddet",
+    "title": "Researcher",
+    "dept": "Science & Technology Studies",
+    "email": "pierre.leddet@rathenau.nl",
+    "instId": "rathenau",
+    "instName": "Rathenau Instituut",
+    "source": "https://openalex.org/A5043874485",
+    "research": "ORCID: https://orcid.org/0000-0002-2717-0961",
+    "constructed": true,
+    "id": "disc_rathenau_1787398380043_p021"
+  },
+  {
+    "first": "Geert",
+    "last": "D’Haens",
+    "title": "Researcher",
+    "dept": "Research",
+    "email": "geert.dhaens@uva.nl",
+    "instId": "uva",
+    "instName": "University of Amsterdam",
+    "source": "https://openalex.org/A5057899912",
+    "research": "ORCID: https://orcid.org/0000-0003-2784-4046",
+    "constructed": true,
+    "id": "disc_uva_1787398380043_z6k4"
+  },
+  {
+    "first": "Hein",
+    "last": "Putter",
+    "title": "Researcher",
+    "dept": "Research",
+    "email": "hein.putter@leidenuniv.nl",
+    "instId": "leiden",
+    "instName": "Leiden University",
+    "source": "https://openalex.org/A5073613763",
+    "research": "ORCID: https://orcid.org/0000-0001-5395-1422",
+    "constructed": true,
+    "id": "disc_leiden_1787398380043_dpot"
+  },
+  {
+    "first": "Sander",
+    "last": "Nieuwenhuis",
+    "title": "Researcher",
+    "dept": "Research",
+    "email": "sander.nieuwenhuis@leidenuniv.nl",
+    "instId": "leiden",
+    "instName": "Leiden University",
+    "source": "https://openalex.org/A5065568884",
+    "research": "ORCID: https://orcid.org/0000-0003-2418-3879",
+    "constructed": true,
+    "id": "disc_leiden_1787398380043_nww6"
   }
 ]
