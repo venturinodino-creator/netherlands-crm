@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-08-22T12:00:35.958Z",
+  "lastRun": "2026-08-22T12:06:12.145Z",
   "lastAddedCount": 0,
   "lastTypes": [
     "medical"
@@ -58,44 +58,51 @@
     "aumc_oa_id": "https://openalex.org/I2802928900",
     "aumc": [
       "p1",
-      "p2"
+      "p2",
+      "p3"
     ],
-    "aumc_page": 3,
+    "aumc_page": 4,
     "erasmusmc_oa_id": "https://openalex.org/I2801952686",
     "erasmusmc": [
       "p1",
-      "p2"
+      "p2",
+      "p3"
     ],
-    "erasmusmc_page": 3,
+    "erasmusmc_page": 4,
     "umcutrecht_oa_id": "https://openalex.org/I3018483916",
     "umcutrecht": [
       "p1",
-      "p2"
+      "p2",
+      "p3"
     ],
-    "umcutrecht_page": 3,
+    "umcutrecht_page": 4,
     "umcg_oa_id": "https://openalex.org/I1334415907",
     "umcg": [
       "p1",
-      "p2"
+      "p2",
+      "p3"
     ],
-    "umcg_page": 3,
+    "umcg_page": 4,
     "lumc_oa_id": "https://openalex.org/I2800006345",
     "lumc": [
       "p1",
-      "p2"
+      "p2",
+      "p3"
     ],
-    "lumc_page": 3,
+    "lumc_page": 4,
     "radboudumc_oa_id": "https://openalex.org/I2802934949",
     "radboudumc": [
       "p1",
-      "p2"
+      "p2",
+      "p3"
     ],
-    "radboudumc_page": 3,
+    "radboudumc_page": 4,
     "mumc_oa_id": "https://openalex.org/I2800191616",
     "mumc": [
       "p1",
-      "p2"
+      "p2",
+      "p3"
     ],
-    "mumc_page": 3
+    "mumc_page": 4
   }
 }
