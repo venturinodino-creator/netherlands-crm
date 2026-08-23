@@ -1,6 +1,6 @@
 {
-  "lastRun": "2026-08-22T15:41:31.780Z",
-  "lastAddedCount": 17,
+  "lastRun": "2026-08-23T07:25:13.273Z",
+  "lastAddedCount": 18,
   "lastTypes": [
     "university",
     "medical",
@@ -16,9 +16,10 @@
       "p3",
       "p4",
       "p5",
-      "p6"
+      "p6",
+      "p7"
     ],
-    "cwi_page": 7,
+    "cwi_page": 8,
     "esc_oa_id": "https://openalex.org/I4210095242",
     "esc": [
       "p1",
@@ -26,9 +27,10 @@
       "p3",
       "p4",
       "p5",
-      "p6"
+      "p6",
+      "p7"
     ],
-    "esc_page": 7,
+    "esc_page": 8,
     "rathenau_oa_id": "https://openalex.org/I2800109292",
     "rathenau": [
       "p1",
@@ -36,9 +38,10 @@
       "p3",
       "p4",
       "p5",
-      "p6"
+      "p6",
+      "p7"
     ],
-    "rathenau_page": 7,
+    "rathenau_page": 8,
     "uva_oa_id": "https://openalex.org/I887064364",
     "uva": [
       "p1",
@@ -48,9 +51,10 @@
       "p5",
       "p6",
       "p7",
-      "p8"
+      "p8",
+      "p9"
     ],
-    "uva_page": 9,
+    "uva_page": 10,
     "vu_oa_id": "https://openalex.org/I865915315",
     "vu": [
       "p1",
@@ -60,9 +64,10 @@
       "p5",
       "p6",
       "p7",
-      "p8"
+      "p8",
+      "p9"
     ],
-    "vu_page": 9,
+    "vu_page": 10,
     "uu_oa_id": "https://openalex.org/I193662353",
     "uu": [
       "p1",
@@ -72,9 +77,10 @@
       "p5",
       "p6",
       "p7",
-      "p8"
+      "p8",
+      "p9"
     ],
-    "uu_page": 9,
+    "uu_page": 10,
     "leiden_oa_id": "https://openalex.org/I121797337",
     "leiden": [
       "p1",
@@ -84,9 +90,10 @@
       "p5",
       "p6",
       "p7",
-      "p8"
+      "p8",
+      "p9"
     ],
-    "leiden_page": 9,
+    "leiden_page": 10,
     "aumc_oa_id": "https://openalex.org/I2802928900",
     "aumc": [
       "p1",
