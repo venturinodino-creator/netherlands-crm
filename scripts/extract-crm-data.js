@@ -69,7 +69,7 @@ function readJSON(path, fallback) {
 async function fetchLivePending() {
   if (!SUPA_SERVICE_KEY) return null;
   try {
-    const res = await fetch(`${SUPA_URL}/rest/v1/pending_contacts?select=id,first,last,institution_id,institution_name,department,created_at,status`, {
+    const res = await fetch(`${SUPA_URL}/rest/v1/pending_contacts?select=id,first,last,institution_id,institution_name,department,created_at,status&region=eq.netherlands`, {
       headers: { apikey: SUPA_SERVICE_KEY, Authorization: `Bearer ${SUPA_SERVICE_KEY}` }
     });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -83,7 +83,7 @@ async function fetchLivePending() {
 async function fetchLiveContacts() {
   if (!SUPA_SERVICE_KEY) return null;
   try {
-    const res = await fetch(`${SUPA_URL}/rest/v1/crm_contacts?select=id,status,priority,inst_id`, {
+    const res = await fetch(`${SUPA_URL}/rest/v1/crm_contacts?select=id,status,priority,inst_id&region=eq.netherlands`, {
       headers: { apikey: SUPA_SERVICE_KEY, Authorization: `Bearer ${SUPA_SERVICE_KEY}` }
     });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
