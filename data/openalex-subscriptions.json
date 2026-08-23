@@ -118,5 +118,25 @@
     ],
     "autoDiscovered": true,
     "foundDate": "2026-08-17"
+  },
+  {
+    "id": "vrije-universiteit-amsterdam",
+    "inst": "Vrije Universiteit Amsterdam",
+    "type": "University",
+    "status": "active",
+    "tier": null,
+    "annualFee": null,
+    "announceDate": null,
+    "effectiveDate": "2026-01-01",
+    "notes": "VU Amsterdam's University Library announced it will terminate its Clarivate Web of Science licence with effect from 1 January 2026, citing its commitment to the Barcelona Declaration on Open Research Information and the fact that Web of Science is a closed commercial system. The VU library's 'Search systems and reference tools' page lists OpenAlex as an open-source, freely accessible source of publication data offering citation, open-access and SDG indicators. No paid OpenAlex Member/Member+/Partner subscription is stated on either page, so this is engagement, not a confirmed contract.",
+    "signal": "NO PAID TIER CONFIRMED. Cancelled Web of Science eff. 2026-01-01 on open-research-information grounds; OpenAlex listed as library search tool.",
+    "sources": [
+      {
+        "label": "Vrije Universiteit Amsterdam — University Library news",
+        "url": "https://vu.nl/en/employee/university-library/termination-of-access-to-web-of-science-as-of-january-1-2026"
+      }
+    ],
+    "autoDiscovered": true,
+    "foundDate": "2026-08-23"
   }
 ]
