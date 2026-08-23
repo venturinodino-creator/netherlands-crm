@@ -244,5 +244,36 @@
     },
     "sourceUrl": "https://group.springernature.com/gp/group/media/press-releases/new-research-integrity-tools-using-ai/27200740",
     "sourceName": "Springer Nature Group — research integrity AI tools press release"
+  },
+  {
+    "id": "auto-digital-science-papers-ai",
+    "company": "Digital Science",
+    "product": "Papers AI",
+    "addedDate": "2026-08-23",
+    "elements": [
+      "literatureSearch",
+      "readingAssistant",
+      "deepResearchReports"
+    ],
+    "howItCompetes": "Digital Science launched Papers AI on 6 August 2026, described as an AI-native researcher workspace built around the research reading and reference workflow, developed with input and feedback from the research community. As an integrated AI workspace layered over a researcher's literature collection, it targets the same 'one environment for the whole research workflow' positioning as LeapSpace. It most directly challenges the Literature Search & Discovery and Reading Assistant tabs, and overlaps with Deep Research Reports where it supports synthesis across collected papers. This is a distinct product from Digital Science's already-tracked Dimensions Research Strategy.",
+    "sourceUrl": "https://publishingperspectives.com/2026/08/digital-science-launches-ai-native-researcher-workspace/",
+    "sourceName": "Publishing Perspectives",
+    "autoDiscovered": true
+  },
+  {
+    "id": "auto-openai-chatgpt-for-academic-researchers",
+    "company": "OpenAI",
+    "product": "ChatGPT for Academic Researchers",
+    "addedDate": "2026-08-23",
+    "elements": [
+      "literatureSearch",
+      "deepResearchReports",
+      "writingCoach",
+      "readingAssistant"
+    ],
+    "howItCompetes": "OpenAI launched ChatGPT for Academic Researchers on 29-30 July 2026, giving 100,000 researchers at selected academic institutions free access to its frontier models, starting with an initial cohort of 10,000 users and expanding through 2027. The program bundles research-specific capabilities including more than 75 life science skills spanning genetics, genomics, sequencing, single-cell analysis, protein modeling and drug discovery, plus hands-on support and a default exclusion of participant data from model training. It competes with LeapSpace's Literature Search & Discovery, Deep Research Reports, Writing Coach and Reading Assistant tabs by offering a general-purpose research copilot free to the same academic buyers Elsevier is targeting, though without LeapSpace's licensed ScienceDirect/",
+    "sourceUrl": "https://openai.com/index/chatgpt-for-academic-researchers/",
+    "sourceName": "OpenAI",
+    "autoDiscovered": true
   }
 ]
