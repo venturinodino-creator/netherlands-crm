@@ -275,5 +275,21 @@
     "sourceUrl": "https://openai.com/index/chatgpt-for-academic-researchers/",
     "sourceName": "OpenAI",
     "autoDiscovered": true
+  },
+  {
+    "id": "auto-anthropic-claude-science",
+    "company": "Anthropic",
+    "product": "Claude Science",
+    "addedDate": "2026-08-24",
+    "elements": [
+      "literatureSearch",
+      "deepResearchReports",
+      "writingCoach",
+      "readingAssistant"
+    ],
+    "howItCompetes": "Anthropic launched Claude Science on 30 June 2026 as an AI workbench for scientists, initially aimed at computational biology, bioinformatics and life-sciences labs. Coverage describes it as unifying scientific databases, code execution, HPC compute and manuscript drafting in a single agentic environment, and a Forbes reviewer reported using it to map an entire research field for roughly $26 in usage. That combination directly challenges LeapSpace's Literature Search & Discovery, Deep Research Reports, Reading Assistant and Writing Coach tabs, though it lacks LeapSpace's licensed ScienceDirect/Scopus corpus and has no equivalent of Author Search or Funding Discovery.",
+    "sourceUrl": "https://www.anthropic.com/news/claude-science-ai-workbench",
+    "sourceName": "Anthropic — Claude Science announcement",
+    "autoDiscovered": true
   }
 ]
