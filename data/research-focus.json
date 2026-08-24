@@ -1,24 +1,24 @@
 {
-  "generatedAt": "2026-08-20T16:55:03.341Z",
+  "generatedAt": "2026-08-24T05:27:41.611Z",
   "source": "OpenAlex API (institution.topic_share)",
   "institutions": {
     "uva": {
       "openalexId": "I887064364",
       "openalexName": "University of Amsterdam",
       "ror": "04dkp9463",
-      "worksCount": 240919,
+      "worksCount": 241031,
       "fields": [
         {
           "name": "Social Sciences",
-          "pct": 41.8
+          "pct": 42
         },
         {
           "name": "Physics and Astronomy",
-          "pct": 22.2
+          "pct": 22.1
         },
         {
           "name": "Computer Science",
-          "pct": 12.7
+          "pct": 12.8
         },
         {
           "name": "Psychology",
@@ -26,7 +26,7 @@
         },
         {
           "name": "Environmental Science",
-          "pct": 3.5
+          "pct": 3.4
         },
         {
           "name": "Materials Science",
@@ -41,19 +41,19 @@
       "openalexId": "I865915315",
       "openalexName": "Vrije Universiteit Amsterdam",
       "ror": "008xxew50",
-      "worksCount": 138346,
+      "worksCount": 138535,
       "fields": [
         {
           "name": "Neuroscience",
-          "pct": 17.5
+          "pct": 17.3
         },
         {
           "name": "Social Sciences",
-          "pct": 16.4
+          "pct": 16.8
         },
         {
           "name": "Psychology",
-          "pct": 16.2
+          "pct": 16
         },
         {
           "name": "Economics, Econometrics and Finance",
@@ -61,11 +61,11 @@
         },
         {
           "name": "Medicine",
-          "pct": 10.6
+          "pct": 10.5
         },
         {
-          "name": "Arts and Humanities",
-          "pct": 8.7
+          "name": "Environmental Science",
+          "pct": 9
         }
       ],
       "ambiguous": false,
@@ -76,11 +76,11 @@
       "openalexId": "I913958620",
       "openalexName": "Erasmus University Rotterdam",
       "ror": "057w15z03",
-      "worksCount": 121924,
+      "worksCount": 122000,
       "fields": [
         {
           "name": "Business, Management and Accounting",
-          "pct": 34.7
+          "pct": 34.8
         },
         {
           "name": "Social Sciences",
@@ -92,7 +92,7 @@
         },
         {
           "name": "Medicine",
-          "pct": 14.1
+          "pct": 14.2
         },
         {
           "name": "Decision Sciences",
@@ -100,7 +100,7 @@
         },
         {
           "name": "Environmental Science",
-          "pct": 5.5
+          "pct": 5.4
         }
       ],
       "ambiguous": false,
@@ -111,7 +111,7 @@
       "openalexId": "I193662353",
       "openalexName": "Utrecht University",
       "ror": "04pp8hn57",
-      "worksCount": 240822,
+      "worksCount": 241173,
       "fields": [
         {
           "name": "Environmental Science",
@@ -123,11 +123,11 @@
         },
         {
           "name": "Earth and Planetary Sciences",
-          "pct": 14
+          "pct": 14.1
         },
         {
           "name": "Social Sciences",
-          "pct": 13.4
+          "pct": 13.5
         },
         {
           "name": "Computer Science",
@@ -146,23 +146,23 @@
       "openalexId": "I121797337",
       "openalexName": "Leiden University",
       "ror": "027bh9e22",
-      "worksCount": 150664,
+      "worksCount": 150786,
       "fields": [
         {
           "name": "Physics and Astronomy",
-          "pct": 57.6
+          "pct": 57.2
         },
         {
           "name": "Social Sciences",
-          "pct": 17.6
+          "pct": 17.7
         },
         {
           "name": "Arts and Humanities",
-          "pct": 8.9
+          "pct": 9
         },
         {
           "name": "Environmental Science",
-          "pct": 5.5
+          "pct": 5.7
         },
         {
           "name": "Chemistry",
@@ -181,11 +181,11 @@
       "openalexId": "I169381384",
       "openalexName": "University of Groningen",
       "ror": "012p63287",
-      "worksCount": 185225,
+      "worksCount": 185316,
       "fields": [
         {
           "name": "Physics and Astronomy",
-          "pct": 29.4
+          "pct": 26.4
         },
         {
           "name": "Medicine",
@@ -193,15 +193,15 @@
         },
         {
           "name": "Social Sciences",
-          "pct": 16
-        },
-        {
-          "name": "Environmental Science",
-          "pct": 9.4
+          "pct": 16.1
         },
         {
           "name": "Psychology",
-          "pct": 7.1
+          "pct": 9.9
+        },
+        {
+          "name": "Environmental Science",
+          "pct": 9.5
         },
         {
           "name": "Engineering",
@@ -216,31 +216,31 @@
       "openalexId": "I145872427",
       "openalexName": "Radboud University Nijmegen",
       "ror": "016xsfp80",
-      "worksCount": 211299,
+      "worksCount": 211460,
       "fields": [
         {
           "name": "Psychology",
-          "pct": 21.9
+          "pct": 21.8
         },
         {
           "name": "Neuroscience",
-          "pct": 19.9
+          "pct": 19.8
         },
         {
           "name": "Medicine",
-          "pct": 15.9
+          "pct": 15.8
         },
         {
           "name": "Social Sciences",
-          "pct": 11.7
+          "pct": 12
         },
         {
           "name": "Biochemistry, Genetics and Molecular Biology",
-          "pct": 7.9
+          "pct": 7.8
         },
         {
           "name": "Immunology and Microbiology",
-          "pct": 7.6
+          "pct": 7.5
         }
       ],
       "ambiguous": false,
@@ -251,7 +251,7 @@
       "openalexId": "I98358874",
       "openalexName": "Delft University of Technology",
       "ror": "02e2c7k09",
-      "worksCount": 178623,
+      "worksCount": 179008,
       "fields": [
         {
           "name": "Engineering",
@@ -259,7 +259,7 @@
         },
         {
           "name": "Environmental Science",
-          "pct": 15.1
+          "pct": 15.2
         },
         {
           "name": "Social Sciences",
@@ -275,7 +275,7 @@
         },
         {
           "name": "Earth and Planetary Sciences",
-          "pct": 5.6
+          "pct": 5.5
         }
       ],
       "ambiguous": false,
@@ -286,7 +286,7 @@
       "openalexId": "I83019370",
       "openalexName": "Eindhoven University of Technology",
       "ror": "02c2kyt77",
-      "worksCount": 98354,
+      "worksCount": 98471,
       "fields": [
         {
           "name": "Computer Science",
@@ -306,7 +306,7 @@
         },
         {
           "name": "Decision Sciences",
-          "pct": 3.6
+          "pct": 3.5
         },
         {
           "name": "Materials Science",
@@ -321,7 +321,7 @@
       "openalexId": "I94624287",
       "openalexName": "University of Twente",
       "ror": "006hf6230",
-      "worksCount": 90821,
+      "worksCount": 90902,
       "fields": [
         {
           "name": "Engineering",
@@ -356,7 +356,7 @@
       "openalexId": "I193700539",
       "openalexName": "Tilburg University",
       "ror": "04b8v1s79",
-      "worksCount": 49428,
+      "worksCount": 49460,
       "fields": [
         {
           "name": "Social Sciences",
@@ -391,23 +391,23 @@
       "openalexId": "I34352273",
       "openalexName": "Maastricht University",
       "ror": "02jz4aj89",
-      "worksCount": 130360,
+      "worksCount": 130300,
       "fields": [
         {
           "name": "Social Sciences",
-          "pct": 29.5
+          "pct": 29.3
         },
         {
           "name": "Medicine",
-          "pct": 20.3
+          "pct": 20.1
         },
         {
           "name": "Economics, Econometrics and Finance",
-          "pct": 16.6
+          "pct": 17.3
         },
         {
           "name": "Psychology",
-          "pct": 15.3
+          "pct": 15.2
         },
         {
           "name": "Health Professions",
@@ -426,11 +426,11 @@
       "openalexId": "I913481162",
       "openalexName": "Wageningen University & Research",
       "ror": "04qw24q55",
-      "worksCount": 129220,
+      "worksCount": 129463,
       "fields": [
         {
           "name": "Agricultural and Biological Sciences",
-          "pct": 43.1
+          "pct": 42.9
         },
         {
           "name": "Environmental Science",
@@ -438,7 +438,7 @@
         },
         {
           "name": "Energy",
-          "pct": 6.6
+          "pct": 6.9
         },
         {
           "name": "Veterinary",
@@ -446,10 +446,10 @@
         },
         {
           "name": "Medicine",
-          "pct": 2.7
+          "pct": 2.6
         },
         {
-          "name": "Social Sciences",
+          "name": "Biochemistry, Genetics and Molecular Biology",
           "pct": 2.6
         }
       ],
@@ -461,15 +461,15 @@
       "openalexId": "I7876267",
       "openalexName": "Open University of the Netherlands",
       "ror": "018dfmf50",
-      "worksCount": 8982,
+      "worksCount": 9005,
       "fields": [
         {
           "name": "Psychology",
-          "pct": 36.6
+          "pct": 36.7
         },
         {
           "name": "Social Sciences",
-          "pct": 30
+          "pct": 29.9
         },
         {
           "name": "Computer Science",
@@ -477,7 +477,7 @@
         },
         {
           "name": "Business, Management and Accounting",
-          "pct": 5.9
+          "pct": 6
         },
         {
           "name": "Environmental Science",
@@ -492,7 +492,7 @@
       "openalexId": "I4210151833",
       "openalexName": "Amsterdam University Medical Centers",
       "ror": "05grdyy37",
-      "worksCount": 62376,
+      "worksCount": 62448,
       "fields": [
         {
           "name": "Medicine",
@@ -527,7 +527,7 @@
       "openalexId": "I2801952686",
       "openalexName": "Erasmus MC",
       "ror": "018906e22",
-      "worksCount": 101084,
+      "worksCount": 101032,
       "fields": [
         {
           "name": "Medicine",
@@ -585,7 +585,7 @@
       "openalexId": "I2800006345",
       "openalexName": "Leiden University Medical Center",
       "ror": "05xvt9f17",
-      "worksCount": 89134,
+      "worksCount": 89206,
       "fields": [
         {
           "name": "Medicine",
@@ -601,7 +601,7 @@
         },
         {
           "name": "Neuroscience",
-          "pct": 3.1
+          "pct": 3.2
         }
       ],
       "ambiguous": false,
@@ -612,7 +612,7 @@
       "openalexId": "I1334415907",
       "openalexName": "University Medical Center Groningen",
       "ror": "03cv38k47",
-      "worksCount": 82596,
+      "worksCount": 82669,
       "fields": [
         {
           "name": "Medicine",
@@ -624,19 +624,19 @@
         },
         {
           "name": "Social Sciences",
-          "pct": 4.4
-        },
-        {
-          "name": "Neuroscience",
-          "pct": 3.7
+          "pct": 4.3
         },
         {
           "name": "Psychology",
           "pct": 3.7
         },
         {
+          "name": "Neuroscience",
+          "pct": 3.7
+        },
+        {
           "name": "Immunology and Microbiology",
-          "pct": 3.6
+          "pct": 3.7
         }
       ],
       "ambiguous": false,
@@ -647,7 +647,7 @@
       "openalexId": "I2802934949",
       "openalexName": "Radboud University Medical Center",
       "ror": "05wg1m734",
-      "worksCount": 92840,
+      "worksCount": 92872,
       "fields": [
         {
           "name": "Medicine",
@@ -655,11 +655,15 @@
         },
         {
           "name": "Biochemistry, Genetics and Molecular Biology",
-          "pct": 20
+          "pct": 16.8
         },
         {
           "name": "Immunology and Microbiology",
           "pct": 10
+        },
+        {
+          "name": "Social Sciences",
+          "pct": 6.6
         },
         {
           "name": "Health Professions",
@@ -668,10 +672,6 @@
         {
           "name": "Neuroscience",
           "pct": 4.3
-        },
-        {
-          "name": "Nursing",
-          "pct": 4
         }
       ],
       "ambiguous": false,
@@ -682,7 +682,7 @@
       "openalexId": "I2800191616",
       "openalexName": "Maastricht University Medical Centre",
       "ror": "02d9ce178",
-      "worksCount": 38656,
+      "worksCount": 38683,
       "fields": [
         {
           "name": "Medicine",
@@ -709,15 +709,15 @@
       "openalexId": "I4210127118",
       "openalexName": "Princess Máxima Center",
       "ror": "02aj7yc53",
-      "worksCount": 6532,
+      "worksCount": 6543,
       "fields": [
         {
           "name": "Medicine",
-          "pct": 75.8
+          "pct": 75.9
         },
         {
           "name": "Biochemistry, Genetics and Molecular Biology",
-          "pct": 20.1
+          "pct": 20
         },
         {
           "name": "Social Sciences",
@@ -736,7 +736,7 @@
       "openalexId": "I2898336195",
       "openalexName": "The Netherlands Cancer Institute",
       "ror": "03xqtf034",
-      "worksCount": 29820,
+      "worksCount": 29798,
       "fields": [
         {
           "name": "Medicine",
@@ -759,7 +759,7 @@
       "openalexId": "I4210126394",
       "openalexName": "Máxima Medisch Centrum",
       "ror": "02x6rcb77",
-      "worksCount": 4895,
+      "worksCount": 4901,
       "fields": [
         {
           "name": "Medicine",
@@ -767,7 +767,7 @@
         },
         {
           "name": "Biochemistry, Genetics and Molecular Biology",
-          "pct": 6.2
+          "pct": 6.1
         },
         {
           "name": "Engineering",
@@ -782,7 +782,7 @@
       "openalexId": "I3020210244",
       "openalexName": "Sanquin",
       "ror": "01fm2fv39",
-      "worksCount": 6663,
+      "worksCount": 6664,
       "fields": [
         {
           "name": "Medicine",
@@ -794,7 +794,7 @@
         },
         {
           "name": "Business, Management and Accounting",
-          "pct": 15
+          "pct": 15.1
         },
         {
           "name": "Biochemistry, Genetics and Molecular Biology",
@@ -809,7 +809,7 @@
       "openalexId": "I4210124406",
       "openalexName": "Amsterdam Institute for Global Health and Development",
       "ror": "037n2rm85",
-      "worksCount": 2925,
+      "worksCount": 2928,
       "fields": [
         {
           "name": "Medicine",
@@ -817,7 +817,7 @@
         },
         {
           "name": "Social Sciences",
-          "pct": 12
+          "pct": 11.9
         },
         {
           "name": "Immunology and Microbiology",
@@ -840,15 +840,15 @@
       "openalexId": "I4210127118",
       "openalexName": "Princess Máxima Center",
       "ror": "02aj7yc53",
-      "worksCount": 6532,
+      "worksCount": 6543,
       "fields": [
         {
           "name": "Medicine",
-          "pct": 75.8
+          "pct": 75.9
         },
         {
           "name": "Biochemistry, Genetics and Molecular Biology",
-          "pct": 20.1
+          "pct": 20
         },
         {
           "name": "Social Sciences",
@@ -867,7 +867,7 @@
       "openalexId": "I2800991832",
       "openalexName": "Dutch Research Council",
       "ror": "04jsz6e67",
-      "worksCount": 1339,
+      "worksCount": 1348,
       "fields": [
         {
           "name": "Materials Science",
@@ -875,11 +875,11 @@
         },
         {
           "name": "Physics and Astronomy",
-          "pct": 20.4
+          "pct": 20.1
         },
         {
           "name": "Arts and Humanities",
-          "pct": 14.8
+          "pct": 15.3
         },
         {
           "name": "Social Sciences",
@@ -887,7 +887,7 @@
         },
         {
           "name": "Business, Management and Accounting",
-          "pct": 9.1
+          "pct": 9
         },
         {
           "name": "Decision Sciences",
@@ -902,7 +902,7 @@
       "openalexId": "I148297040",
       "openalexName": "Netherlands Organisation for Applied Scientific Research",
       "ror": "01bnjb948",
-      "worksCount": 17741,
+      "worksCount": 17815,
       "fields": [
         {
           "name": "Engineering",
@@ -910,7 +910,7 @@
         },
         {
           "name": "Environmental Science",
-          "pct": 23.2
+          "pct": 26.5
         },
         {
           "name": "Earth and Planetary Sciences",
@@ -926,7 +926,7 @@
         },
         {
           "name": "Physics and Astronomy",
-          "pct": 4.9
+          "pct": 4.8
         }
       ],
       "ambiguous": false,
@@ -937,19 +937,19 @@
       "openalexId": "I1322597698",
       "openalexName": "Royal Netherlands Academy of Arts and Sciences",
       "ror": "043c0p156",
-      "worksCount": 5541,
+      "worksCount": 5542,
       "fields": [
         {
           "name": "Neuroscience",
-          "pct": 30.9
+          "pct": 30.8
         },
         {
           "name": "Computer Science",
-          "pct": 15.8
+          "pct": 16
         },
         {
           "name": "Business, Management and Accounting",
-          "pct": 12.9
+          "pct": 13
         },
         {
           "name": "Psychology",
@@ -957,7 +957,7 @@
         },
         {
           "name": "Biochemistry, Genetics and Molecular Biology",
-          "pct": 11.7
+          "pct": 11.6
         },
         {
           "name": "Arts and Humanities",
@@ -972,11 +972,11 @@
       "openalexId": "I4210115206",
       "openalexName": "Hubrecht Institute for Developmental Biology and Stem Cell Research",
       "ror": "023qc4a07",
-      "worksCount": 3811,
+      "worksCount": 3797,
       "fields": [
         {
           "name": "Biochemistry, Genetics and Molecular Biology",
-          "pct": 89
+          "pct": 88.9
         },
         {
           "name": "Medicine",
@@ -984,7 +984,7 @@
         },
         {
           "name": "Immunology and Microbiology",
-          "pct": 2.2
+          "pct": 2.3
         }
       ],
       "ambiguous": false,
@@ -995,11 +995,11 @@
       "openalexId": "I1295801184",
       "openalexName": "Netherlands Institute for Neuroscience",
       "ror": "05csn2x06",
-      "worksCount": 9033,
+      "worksCount": 8996,
       "fields": [
         {
           "name": "Neuroscience",
-          "pct": 71.5
+          "pct": 71.4
         },
         {
           "name": "Psychology",
@@ -1007,7 +1007,7 @@
         },
         {
           "name": "Medicine",
-          "pct": 8.3
+          "pct": 8.4
         },
         {
           "name": "Biochemistry, Genetics and Molecular Biology",
@@ -1022,15 +1022,15 @@
       "openalexId": "I4210104433",
       "openalexName": "National Institute for Public Health and the Environment",
       "ror": "01cesdt21",
-      "worksCount": 24224,
+      "worksCount": 24220,
       "fields": [
         {
           "name": "Medicine",
-          "pct": 29.6
+          "pct": 29.5
         },
         {
           "name": "Immunology and Microbiology",
-          "pct": 24.9
+          "pct": 24.8
         },
         {
           "name": "Agricultural and Biological Sciences",
@@ -1038,7 +1038,7 @@
         },
         {
           "name": "Environmental Science",
-          "pct": 16.7
+          "pct": 16.9
         },
         {
           "name": "Veterinary",
@@ -1057,11 +1057,11 @@
       "openalexId": "I1341640284",
       "openalexName": "Centrum Wiskunde & Informatica",
       "ror": "00x7ekv49",
-      "worksCount": 13986,
+      "worksCount": 14010,
       "fields": [
         {
           "name": "Computer Science",
-          "pct": 77.9
+          "pct": 77.8
         },
         {
           "name": "Decision Sciences",
@@ -1069,7 +1069,7 @@
         },
         {
           "name": "Business, Management and Accounting",
-          "pct": 7
+          "pct": 6.9
         },
         {
           "name": "Social Sciences",
@@ -1088,11 +1088,11 @@
       "openalexId": "I4210095242",
       "openalexName": "Netherlands eScience Center",
       "ror": "00rbjv475",
-      "worksCount": 5950,
+      "worksCount": 5953,
       "fields": [
         {
           "name": "Computer Science",
-          "pct": 30.6
+          "pct": 32.5
         },
         {
           "name": "Decision Sciences",
@@ -1100,19 +1100,19 @@
         },
         {
           "name": "Social Sciences",
-          "pct": 14.7
+          "pct": 14.5
         },
         {
           "name": "Business, Management and Accounting",
-          "pct": 10.9
+          "pct": 11.2
         },
         {
           "name": "Earth and Planetary Sciences",
-          "pct": 9.8
+          "pct": 9.6
         },
         {
           "name": "Environmental Science",
-          "pct": 4.6
+          "pct": 4.8
         }
       ],
       "ambiguous": false,
@@ -1123,23 +1123,27 @@
       "openalexId": "I4210103266",
       "openalexName": "Deltares",
       "ror": "01deh9c76",
-      "worksCount": 9205,
+      "worksCount": 9321,
       "fields": [
         {
           "name": "Environmental Science",
-          "pct": 49
+          "pct": 50.5
         },
         {
           "name": "Earth and Planetary Sciences",
-          "pct": 30.3
+          "pct": 29.1
         },
         {
           "name": "Engineering",
-          "pct": 16.4
+          "pct": 14.3
         },
         {
           "name": "Decision Sciences",
-          "pct": 2.4
+          "pct": 2.3
+        },
+        {
+          "name": "Energy",
+          "pct": 1.9
         },
         {
           "name": "Social Sciences",
@@ -1154,15 +1158,15 @@
       "openalexId": "I49206369",
       "openalexName": "Space Research Organisation Netherlands",
       "ror": "02wc0kq10",
-      "worksCount": 9131,
+      "worksCount": 9187,
       "fields": [
         {
           "name": "Physics and Astronomy",
-          "pct": 72.1
+          "pct": 71.9
         },
         {
           "name": "Engineering",
-          "pct": 10.3
+          "pct": 10.4
         },
         {
           "name": "Earth and Planetary Sciences",
@@ -1170,11 +1174,11 @@
         },
         {
           "name": "Environmental Science",
-          "pct": 5.4
+          "pct": 5.5
         },
         {
           "name": "Chemistry",
-          "pct": 4.4
+          "pct": 4.5
         }
       ],
       "ambiguous": false,
@@ -1185,7 +1189,7 @@
       "openalexId": "I4210093566",
       "openalexName": "National Institute for Subatomic Physics",
       "ror": "00f9tz983",
-      "worksCount": 12296,
+      "worksCount": 12308,
       "fields": [
         {
           "name": "Physics and Astronomy",
@@ -1193,7 +1197,7 @@
         },
         {
           "name": "Engineering",
-          "pct": 3.9
+          "pct": 4
         },
         {
           "name": "Computer Science",
@@ -1212,11 +1216,11 @@
       "openalexId": "I922237871",
       "openalexName": "Netherlands Institute for Radio Astronomy",
       "ror": "000k1q888",
-      "worksCount": 13246,
+      "worksCount": 12810,
       "fields": [
         {
           "name": "Physics and Astronomy",
-          "pct": 87.1
+          "pct": 87.9
         },
         {
           "name": "Engineering",
@@ -1229,10 +1233,6 @@
         {
           "name": "Chemistry",
           "pct": 0.8
-        },
-        {
-          "name": "Earth and Planetary Sciences",
-          "pct": 0.8
         }
       ],
       "ambiguous": false,
@@ -1243,7 +1243,7 @@
       "openalexId": "I4210107283",
       "openalexName": "Royal Netherlands Institute for Sea Research",
       "ror": "01gntjh03",
-      "worksCount": 12412,
+      "worksCount": 12463,
       "fields": [
         {
           "name": "Earth and Planetary Sciences",
@@ -1262,15 +1262,15 @@
       "openalexId": "I1309140791",
       "openalexName": "Royal Netherlands Meteorological Institute",
       "ror": "05dfgh554",
-      "worksCount": 9193,
+      "worksCount": 9301,
       "fields": [
         {
           "name": "Earth and Planetary Sciences",
-          "pct": 48.9
+          "pct": 48.4
         },
         {
           "name": "Environmental Science",
-          "pct": 43.9
+          "pct": 44.4
         },
         {
           "name": "Engineering",
@@ -1282,7 +1282,7 @@
         },
         {
           "name": "Decision Sciences",
-          "pct": 1.7
+          "pct": 1.8
         },
         {
           "name": "Computer Science",
@@ -1297,7 +1297,7 @@
       "openalexId": "I1295562517",
       "openalexName": "Naturalis Biodiversity Center",
       "ror": "0566bfb96",
-      "worksCount": 28154,
+      "worksCount": 28162,
       "fields": [
         {
           "name": "Agricultural and Biological Sciences",
@@ -1309,7 +1309,7 @@
         },
         {
           "name": "Earth and Planetary Sciences",
-          "pct": 14.5
+          "pct": 14.4
         },
         {
           "name": "Environmental Science",
@@ -1332,7 +1332,7 @@
       "openalexId": "I184851948",
       "openalexName": "Netherlands Aerospace Centre",
       "ror": "022sw4578",
-      "worksCount": 2875,
+      "worksCount": 2880,
       "fields": [
         {
           "name": "Engineering",
@@ -1367,31 +1367,31 @@
       "openalexId": "I1326018075",
       "openalexName": "Netherlands Environmental Assessment Agency",
       "ror": "052x1hs80",
-      "worksCount": 3431,
+      "worksCount": 3434,
       "fields": [
         {
           "name": "Environmental Science",
-          "pct": 63.8
+          "pct": 64.4
         },
         {
           "name": "Economics, Econometrics and Finance",
-          "pct": 15.9
+          "pct": 15.4
         },
         {
           "name": "Energy",
-          "pct": 7.8
-        },
-        {
-          "name": "Agricultural and Biological Sciences",
-          "pct": 4.8
+          "pct": 9.9
         },
         {
           "name": "Decision Sciences",
           "pct": 3.1
         },
         {
+          "name": "Agricultural and Biological Sciences",
+          "pct": 2.7
+        },
+        {
           "name": "Social Sciences",
-          "pct": 2.5
+          "pct": 2.4
         }
       ],
       "ambiguous": false,
@@ -1402,7 +1402,7 @@
       "openalexId": "I2800425962",
       "openalexName": "CPB Netherlands Bureau for Economic Policy Analysis",
       "ror": "04rjxzd30",
-      "worksCount": 1630,
+      "worksCount": 1633,
       "fields": [
         {
           "name": "Economics, Econometrics and Finance",
@@ -1410,7 +1410,7 @@
         },
         {
           "name": "Social Sciences",
-          "pct": 21.1
+          "pct": 23.1
         },
         {
           "name": "Business, Management and Accounting",
@@ -1422,7 +1422,7 @@
         },
         {
           "name": "Health Professions",
-          "pct": 5.6
+          "pct": 3.7
         }
       ],
       "ambiguous": false,
@@ -1433,23 +1433,23 @@
       "openalexId": "I2800109292",
       "openalexName": "Rathenau Instituut",
       "ror": "04crnd335",
-      "worksCount": 1409,
+      "worksCount": 1390,
       "fields": [
         {
           "name": "Social Sciences",
-          "pct": 33.9
+          "pct": 35.8
         },
         {
           "name": "Economics, Econometrics and Finance",
-          "pct": 21.3
+          "pct": 21.4
         },
         {
           "name": "Decision Sciences",
-          "pct": 12.3
+          "pct": 12.1
         },
         {
           "name": "Energy",
-          "pct": 8.6
+          "pct": 8.7
         },
         {
           "name": "Medicine",
@@ -1468,7 +1468,7 @@
       "openalexId": "I4210151519",
       "openalexName": "Netherlands Institute for Social Research",
       "ror": "04tagjk85",
-      "worksCount": 1718,
+      "worksCount": 1726,
       "fields": [
         {
           "name": "Social Sciences",
@@ -1495,15 +1495,15 @@
       "openalexId": "I152878082",
       "openalexName": "Netherlands Institute of International Relations Clingendael",
       "ror": "04vbm7a71",
-      "worksCount": 388,
+      "worksCount": 390,
       "fields": [
         {
           "name": "Social Sciences",
-          "pct": 85.4
+          "pct": 85.1
         },
         {
           "name": "Economics, Econometrics and Finance",
-          "pct": 7.6
+          "pct": 7.9
         },
         {
           "name": "Arts and Humanities",
@@ -1511,7 +1511,7 @@
         },
         {
           "name": "Energy",
-          "pct": 3.5
+          "pct": 3.4
         }
       ],
       "ambiguous": false,
@@ -1537,11 +1537,11 @@
       "openalexId": "I217960723",
       "openalexName": "Asser Institute",
       "ror": "04tdptw32",
-      "worksCount": 1146,
+      "worksCount": 1157,
       "fields": [
         {
           "name": "Social Sciences",
-          "pct": 88.7
+          "pct": 88.8
         },
         {
           "name": "Business, Management and Accounting",
