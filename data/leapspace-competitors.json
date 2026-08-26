@@ -291,5 +291,33 @@
     "sourceUrl": "https://www.anthropic.com/news/claude-science-ai-workbench",
     "sourceName": "Anthropic — Claude Science announcement",
     "autoDiscovered": true
+  },
+  {
+    "id": "auto-clarivate-proquest-research-assistant",
+    "company": "Clarivate",
+    "product": "ProQuest Research Assistant",
+    "addedDate": "2026-08-26",
+    "elements": [
+      "literatureSearch",
+      "readingAssistant"
+    ],
+    "howItCompetes": "A generative-AI research assistant embedded in ProQuest platforms, made available across ProQuest Central in 2025 and highlighted again by Clarivate in a mid-November 2025 usage/adoption post. It returns AI-generated topic overviews with links back to source documents and, following a 2025 capability release, supports conversational interaction with individual documents. This challenges LeapSpace's Literature Search & Discovery tab and its Reading Assistant, and is a distinct product from the already-tracked Web of Science Research Assistant.",
+    "sourceUrl": "https://clarivate.com/academia-government/blog/how-proquest-research-assistant-is-powering-smarter-research/",
+    "sourceName": "Clarivate (Academia & Government blog)",
+    "autoDiscovered": true
+  },
+  {
+    "id": "auto-springer-nature-nature-research-assistant",
+    "company": "Springer Nature",
+    "product": "Nature Research Assistant",
+    "addedDate": "2026-08-26",
+    "elements": [
+      "literatureSearch",
+      "deepResearchReports"
+    ],
+    "howItCompetes": "A newly launched AI-led research assistant service from Springer Nature's Nature portfolio, positioned as an AI-powered assistant with an accompanying AI-led offering aimed at research decision-makers. It targets AI-assisted discovery and synthesis over Nature-branded research content rather than manuscript integrity checking. It competes with LeapSpace's Literature Search & Discovery and Deep Research Reports tabs, and is a separate product from the already-tracked Springer Nature research-integrity tools (Geppetto).",
+    "sourceUrl": "https://natureresearchassistant.com/",
+    "sourceName": "Nature Research Assistant (Springer Nature)",
+    "autoDiscovered": true
   }
 ]
