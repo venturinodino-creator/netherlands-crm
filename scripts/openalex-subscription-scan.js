@@ -37,6 +37,8 @@ const NL_INSTITUTIONS = [
   'Naturalis Biodiversity Center', 'NLR — Netherlands Aerospace Centre',
   'PBL Environmental Assessment Agency', 'CPB Bureau for Economic Policy Analysis',
   'Rathenau Institute', 'SCP', 'Clingendael Institute', 'HiiL',
+  'Hubrecht Institute', 'SRON Netherlands Institute for Space Research', 'Oxfam Novib',
+  'International Court of Justice', 'Asser Institute',
 ];
 
 function readJSON(path, fallback) {

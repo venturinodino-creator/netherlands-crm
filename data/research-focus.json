@@ -836,33 +836,6 @@
       "sourceUrl": "https://openalex.org/institutions/I4210124406",
       "apiUrl": "https://api.openalex.org/institutions/I4210124406"
     },
-    "princesmaxima": {
-      "openalexId": "I4210127118",
-      "openalexName": "Princess Máxima Center",
-      "ror": "02aj7yc53",
-      "worksCount": 6543,
-      "fields": [
-        {
-          "name": "Medicine",
-          "pct": 75.9
-        },
-        {
-          "name": "Biochemistry, Genetics and Molecular Biology",
-          "pct": 20
-        },
-        {
-          "name": "Social Sciences",
-          "pct": 2.2
-        },
-        {
-          "name": "Health Professions",
-          "pct": 1.9
-        }
-      ],
-      "ambiguous": false,
-      "sourceUrl": "https://openalex.org/institutions/I4210127118",
-      "apiUrl": "https://api.openalex.org/institutions/I4210127118"
-    },
     "nwo": {
       "openalexId": "I2800991832",
       "openalexName": "Dutch Research Council",

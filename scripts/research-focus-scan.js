@@ -46,7 +46,6 @@ const INSTITUTIONS = [
   { id: 'mmc', name: 'Máxima Medical Centre', city: 'Veldhoven' },
   { id: 'sanquin', name: 'Sanquin Research', city: 'Amsterdam' },
   { id: 'aighd', name: 'Amsterdam Institute for Global Health and Development', city: 'Amsterdam' },
-  { id: 'princesmaxima', name: 'Princess Máxima Center for Paediatric Oncology', city: 'Utrecht' },
 
   { id: 'nwo', name: 'Dutch Research Council', city: 'The Hague' },
   { id: 'tno', name: 'TNO', city: 'The Hague' },
