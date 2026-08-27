@@ -319,5 +319,21 @@
     "sourceUrl": "https://natureresearchassistant.com/",
     "sourceName": "Nature Research Assistant (Springer Nature)",
     "autoDiscovered": true
+  },
+  {
+    "id": "auto-google-notebooklm-dec-2025-update-deep-research-data-tables-gemini-3",
+    "company": "Google",
+    "product": "NotebookLM (Dec 2025 update: Deep Research, Data Tables, Gemini 3)",
+    "addedDate": "2026-08-27",
+    "elements": [
+      "literatureSearch",
+      "deepResearchReports",
+      "readingAssistant",
+      "compareFeature"
+    ],
+    "howItCompetes": "NotebookLM's December 2025 release added Data Tables, which synthesizes a user's uploaded sources into clean structured tables exportable to Google Sheets, and moved the product onto Gemini 3 for improved reasoning and multimodal understanding. A recently added Deep Research mode lets it act as an autonomous agent that searches the web to build a bibliography rather than being limited to manually uploaded documents. Combined with its core source-grounded chat, it directly challenges LeapSpace's Compare (structured side-by-side breakdowns of papers), Deep Research Reports, Reading Assistant (Q&A grounded in a specific document) and, via Deep Research, Literature Search & Discovery.",
+    "sourceUrl": "https://workspaceupdates.googleblog.com/2025/12/transform-sources-structured-data-tables-notebooklm.html",
+    "sourceName": "Google Workspace Updates blog",
+    "autoDiscovered": true
   }
 ]
