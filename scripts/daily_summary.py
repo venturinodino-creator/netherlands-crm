@@ -44,6 +44,7 @@ from matplotlib.patches import FancyBboxPatch, PathPatch
 from matplotlib.path import Path as MplPath
 
 REGION_LABEL = 'Netherlands'
+REGION_ARTICLE = 'the '  # 'the Netherlands' needs the article; 'Denmark'/'Belgium' don't
 TOTAL_PAGES = 3
 PAGE_SIZE = (8.27, 11.69)  # A4 portrait, inches
 
@@ -301,7 +302,7 @@ def link_list(fig, rect, title, rows, empty_text='No data yet'):
 def compose_summary(stats):
     parts = []
     parts.append(
-        f"Research CRM tracks {stats['inst_total']} institutions across the Netherlands "
+        f"Research CRM tracks {stats['inst_total']} institutions across {REGION_ARTICLE}{REGION_LABEL} "
         f"({stats['inst_university']} universities, {stats['inst_medical']} medical centres, "
         f"{stats['inst_research']} research institutes, {stats['inst_ngo']} NGOs/foundations) "
         f"and {stats['contacts_total']} verified contacts ({stats['contacts_high_priority']} high priority)."
