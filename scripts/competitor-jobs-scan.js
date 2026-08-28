@@ -47,10 +47,12 @@ const DATA_FILE = 'data/competitor-jobs.json';
 const STATE_FILE = 'data/competitor-jobs-scan-state.json';
 const REQUEST_TIMEOUT_MS = 20000;
 
-// Netherlands-relevant location match — city names + country name/abbrev.
-// Deliberately does NOT match generic "EMEA"/"Europe remote" postings:
-// those aren't NL-specific enough to be a reliable signal on their own.
-const NL_LOCATION_RE = /netherlands|nederland|amsterdam|utrecht|rotterdam|the hague|den haag|eindhoven|groningen|delft|leiden|maastricht|\bnl\b/i;
+// Netherlands-relevant location match — city names + country name/abbrev,
+// plus EMEA / "Europe remote" postings. A remote EMEA-scoped SAM/CSM/
+// Channel role plausibly covers Dutch accounts even without a Dutch city
+// in the listing, so it's included on purpose (broadened per explicit
+// request after strict NL-only matching returned zero results).
+const NL_LOCATION_RE = /netherlands|nederland|amsterdam|utrecht|rotterdam|the hague|den haag|eindhoven|groningen|delft|leiden|maastricht|\bnl\b|\bemea\b|remote[\s,-]*europe|europe[\s,-]*remote/i;
 
 // Only three role families matter to a sales agent tracking competitor
 // go-to-market headcount: Strategic/Senior Account Management, Customer
