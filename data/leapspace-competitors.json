@@ -16,7 +16,8 @@
       "deepResearchReports": "The multi-step literature review guide assembles a longer-form, evidence-based writeup — same output shape as Deep Research Reports."
     },
     "sourceUrl": "https://clarivate.com/academia-government/scientific-and-academic-research/research-discovery-and-referencing/web-of-science/web-of-science-research-assistant/",
-    "sourceName": "Clarivate — Web of Science AI Research Assistant"
+    "sourceName": "Clarivate — Web of Science AI Research Assistant",
+    "eventDateUnknown": true
   },
   {
     "id": "elicit-research-agent",
@@ -35,7 +36,8 @@
       "trustClaimRadar": "Weakest overlap of the three: the per-paper data extraction surfaces supporting evidence, which is a looser, unbranded version of claim-checking — Elicit has no dedicated claim-verification feature comparable to Trust Cards & Claim Radar."
     },
     "sourceUrl": "https://fast.io/resources/elicit-ai-review-2026/",
-    "sourceName": "Elicit AI Review 2026 (Fast.io)"
+    "sourceName": "Elicit AI Review 2026 (Fast.io)",
+    "eventDateUnknown": true
   },
   {
     "id": "scite-assistant",
@@ -50,7 +52,8 @@
       "trustClaimRadar": "Strongest match of any tracked competitor, and the only one with two features mapping onto LeapSpace's pairing: Smart Citations (1.6B+ citation statements classified Supporting/Mentioning/Contrasting) is the closest analog to Claim Radar's broader-literature check, while Reference Check (upload a manuscript, verify each citation backs its claim) mirrors Trust Cards' claim-to-source accuracy function."
     },
     "sourceUrl": "https://www.atlasworkspace.ai/blog/best-ai-research-assistants",
-    "sourceName": "Best AI Research Assistants 2026 — Atlas Workspace"
+    "sourceName": "Best AI Research Assistants 2026 — Atlas Workspace",
+    "eventDateUnknown": true
   },
   {
     "id": "consensus-ai",
@@ -67,7 +70,8 @@
       "trustClaimRadar": "Weaker match: Consensus Meter pulls ~20 papers for a yes/no question and shows how many support, contradict or are mixed on it — essentially a lighter-weight Claim Radar answering \"what does the evidence say\" rather than fact-checking a specific AI output. No Trust Card equivalent — there's no separate AI-generated answer needing claim-to-source verification, since the literature synthesis is the whole output."
     },
     "sourceUrl": "https://paperguide.ai/blog/scispace-vs-consensus/",
-    "sourceName": "SciSpace vs Consensus 2026 — Paperguide"
+    "sourceName": "SciSpace vs Consensus 2026 — Paperguide",
+    "eventDateUnknown": true
   },
   {
     "id": "scispace-workspace",
@@ -86,7 +90,8 @@
       "deepResearchReports": "BioMed Agent and Meta-Analysis Agent produce longer-form, domain-specific analyses — same category of output as Deep Research Reports."
     },
     "sourceUrl": "https://www.atlasworkspace.ai/blog/best-ai-research-assistants",
-    "sourceName": "Best AI Research Assistants 2026 — Atlas Workspace"
+    "sourceName": "Best AI Research Assistants 2026 — Atlas Workspace",
+    "eventDateUnknown": true
   },
   {
     "id": "auto-digital-science-dimensions-research-strategy",
@@ -100,7 +105,8 @@
     "howItCompetes": "Announced 6 July 2026 as an AI analytics platform that reasons through complex strategic research questions 'the way a skilled research domain expert would - on demand, at scale, with full provenance on every finding', with an Early Adopter Program opening in July 2026. At launch it targets two areas, Benchmarking and Expertise, replacing analyses that previously took weeks of commissioned work. The Expertise capability directly challenges LeapSpace's Author Search (identifying researchers/collaborators in a field), while the provenance-backed on-demand strategic analyses compete with Deep Research Reports.",
     "sourceUrl": "https://www.digital-science.com/press-releases/dimensions-research-strategy-ai-analytics-on-demand/",
     "sourceName": "Digital Science press release (6 July 2026)",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "eventDate": "2026-07-01"
   },
   {
     "id": "auto-paperguide-paperguide-literature-review-agent",
@@ -114,7 +120,8 @@
     "howItCompetes": "Documented in Paperguide's product blog updated within the last month, the Literature Review Agent runs a structured five-step, methodology-aware workflow covering discovery, screening, extraction and synthesis rather than simply generating review text. It positions itself against reference managers by doing the synthesis work end to end. This overlaps LeapSpace's Literature Search & Discovery (agentic search with referenced output) and Deep Research Reports (longer-form synthesis across a corpus).",
     "sourceUrl": "https://paperguide.ai/blog/ai-tools-for-literature-review/",
     "sourceName": "Paperguide product blog",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "eventDateUnknown": true
   },
   {
     "id": "auto-igi-global-scientific-publishing-igi-global-ai-assistant-research-discovery-tool",
@@ -128,7 +135,8 @@
     "howItCompetes": "IGI Global Scientific Publishing has introduced an AI Assistant research tool aimed at research discovery across its own book and journal content platform, per trade coverage published within the last month. As a publisher-owned, licensed-content AI layer, it follows the same 'trusted corpus' positioning as LeapSpace and challenges the Literature Search & Discovery tab, and — because the assistant sits on top of specific publisher titles — the Reading Assistant tab as well. It is narrower than LeapSpace in corpus size and does not appear to cover author, funding, or claim-verification workflows.",
     "sourceUrl": "https://www.knowledgespeak.com/news/igi-global-scientific-publishing-introduces-ai-assistant-research-tool-for-research-discovery/",
     "sourceName": "Knowledgespeak",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "eventDateUnknown": true
   },
   {
     "id": "clarivate-web-of-science-research-intelligence",
@@ -145,7 +153,8 @@
       "deepResearchReports": "AI-guided workflows produce on-demand, provenance-backed strategic analyses (benchmarking, impact, policy influence) that previously took weeks of commissioned analyst work — same longer-form synthesis territory as Deep Research Reports, at institutional rather than individual-researcher scale."
     },
     "sourceUrl": "https://clarivate.com/academia-government/blog/announcing-the-global-launch-of-web-of-science-research-intelligence-an-ai-powered-research-intelligence-platform-for-funding-strategy-and-impact/",
-    "sourceName": "Clarivate — global launch announcement (6 May 2026)"
+    "sourceName": "Clarivate — global launch announcement (6 May 2026)",
+    "eventDate": "2026-05-06"
   },
   {
     "id": "wiley-ai-gateway",
@@ -162,7 +171,8 @@
       "readingAssistant": "The single-endpoint integration lets connected AI tools answer questions against specific Wiley articles — the same grounded Q&A job as Reading Assistant."
     },
     "sourceUrl": "https://newsroom.wiley.com/press-releases/press-release-details/2025/Wiley-Launches-Interoperable-Platform-to-Power-Scientific-Discovery-in-Worlds-Leading-AI-Technologies/default.aspx",
-    "sourceName": "Wiley newsroom — AI Gateway launch"
+    "sourceName": "Wiley newsroom — AI Gateway launch",
+    "eventDateUnknown": true
   },
   {
     "id": "wiley-atypon-ai-suite",
@@ -179,7 +189,8 @@
       "literatureSearch": "AI Summaries help researchers quickly assess relevance across search results — a lighter-weight version of Literature Search & Discovery's structured answers."
     },
     "sourceUrl": "https://www.researchinformation.info/news/wiley-launches-atypon-ai-suite-to-enhance-research-discovery/",
-    "sourceName": "Research Information — Wiley Atypon AI Suite"
+    "sourceName": "Research Information — Wiley Atypon AI Suite",
+    "eventDateUnknown": true
   },
   {
     "id": "google-scholar-labs",
@@ -194,7 +205,8 @@
       "literatureSearch": "Directly matches Literature Search & Discovery's job — turning a research question into a structured, referenced, AI-summarized answer — but against Google Scholar's much larger and free index rather than a paid subscription corpus."
     },
     "sourceUrl": "https://www.edtechinnovationhub.com/news/google-introduces-scholar-labs-to-enhance-ai-driven-academic-search-and-research-discovery",
-    "sourceName": "EdTech Innovation Hub — Google Scholar Labs"
+    "sourceName": "EdTech Innovation Hub — Google Scholar Labs",
+    "eventDate": "2025-11-01"
   },
   {
     "id": "ieee-xplore-ai-research-suite",
@@ -211,7 +223,8 @@
       "readingAssistant": "AI-generated article summaries and in-context definitions help researchers quickly grasp a specific paper's content — same territory as Reading Assistant's grounded Q&A."
     },
     "sourceUrl": "https://innovate.ieee.org/ieee_xplore_ai_research_suite/",
-    "sourceName": "IEEE Innovate — IEEE Xplore AI Research Suite"
+    "sourceName": "IEEE Innovate — IEEE Xplore AI Research Suite",
+    "eventDate": "2026-05-01"
   },
   {
     "id": "ai2-asta-scholarqa",
@@ -228,7 +241,8 @@
       "deepResearchReports": "Organized literature synthesis with attribution across a large full-text index — same longer-form evidence-gathering role as Deep Research Reports."
     },
     "sourceUrl": "https://allenai.org/blog/ai2-scholarqa",
-    "sourceName": "Allen Institute for AI — Ai2 ScholarQA / Asta"
+    "sourceName": "Allen Institute for AI — Ai2 ScholarQA / Asta",
+    "eventDateUnknown": true
   },
   {
     "id": "springer-nature-ai-integrity-suite",
@@ -243,7 +257,8 @@
       "trustClaimRadar": "Detects AI-fabricated content and citations that don't actually support what they're attached to — the publisher-side mirror of Claim Radar's claim-to-source verification, applied at submission/editorial stage rather than at research time."
     },
     "sourceUrl": "https://group.springernature.com/gp/group/media/press-releases/new-research-integrity-tools-using-ai/27200740",
-    "sourceName": "Springer Nature Group — research integrity AI tools press release"
+    "sourceName": "Springer Nature Group — research integrity AI tools press release",
+    "eventDateUnknown": true
   },
   {
     "id": "auto-digital-science-papers-ai",
@@ -258,7 +273,8 @@
     "howItCompetes": "Digital Science launched Papers AI on 6 August 2026, described as an AI-native researcher workspace built around the research reading and reference workflow, developed with input and feedback from the research community. As an integrated AI workspace layered over a researcher's literature collection, it targets the same 'one environment for the whole research workflow' positioning as LeapSpace. It most directly challenges the Literature Search & Discovery and Reading Assistant tabs, and overlaps with Deep Research Reports where it supports synthesis across collected papers. This is a distinct product from Digital Science's already-tracked Dimensions Research Strategy.",
     "sourceUrl": "https://publishingperspectives.com/2026/08/digital-science-launches-ai-native-researcher-workspace/",
     "sourceName": "Publishing Perspectives",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "eventDate": "2026-08-06"
   },
   {
     "id": "auto-openai-chatgpt-for-academic-researchers",
@@ -274,7 +290,8 @@
     "howItCompetes": "OpenAI launched ChatGPT for Academic Researchers on 29-30 July 2026, giving 100,000 researchers at selected academic institutions free access to its frontier models, starting with an initial cohort of 10,000 users and expanding through 2027. The program bundles research-specific capabilities including more than 75 life science skills spanning genetics, genomics, sequencing, single-cell analysis, protein modeling and drug discovery, plus hands-on support and a default exclusion of participant data from model training. It competes with LeapSpace's Literature Search & Discovery, Deep Research Reports, Writing Coach and Reading Assistant tabs by offering a general-purpose research copilot free to the same academic buyers Elsevier is targeting, though without LeapSpace's licensed ScienceDirect/",
     "sourceUrl": "https://openai.com/index/chatgpt-for-academic-researchers/",
     "sourceName": "OpenAI",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "eventDate": "2026-07-29"
   },
   {
     "id": "auto-anthropic-claude-science",
@@ -290,7 +307,8 @@
     "howItCompetes": "Anthropic launched Claude Science on 30 June 2026 as an AI workbench for scientists, initially aimed at computational biology, bioinformatics and life-sciences labs. Coverage describes it as unifying scientific databases, code execution, HPC compute and manuscript drafting in a single agentic environment, and a Forbes reviewer reported using it to map an entire research field for roughly $26 in usage. That combination directly challenges LeapSpace's Literature Search & Discovery, Deep Research Reports, Reading Assistant and Writing Coach tabs, though it lacks LeapSpace's licensed ScienceDirect/Scopus corpus and has no equivalent of Author Search or Funding Discovery.",
     "sourceUrl": "https://www.anthropic.com/news/claude-science-ai-workbench",
     "sourceName": "Anthropic — Claude Science announcement",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "eventDate": "2026-06-30"
   },
   {
     "id": "auto-clarivate-proquest-research-assistant",
@@ -304,7 +322,8 @@
     "howItCompetes": "A generative-AI research assistant embedded in ProQuest platforms, made available across ProQuest Central in 2025 and highlighted again by Clarivate in a mid-November 2025 usage/adoption post. It returns AI-generated topic overviews with links back to source documents and, following a 2025 capability release, supports conversational interaction with individual documents. This challenges LeapSpace's Literature Search & Discovery tab and its Reading Assistant, and is a distinct product from the already-tracked Web of Science Research Assistant.",
     "sourceUrl": "https://clarivate.com/academia-government/blog/how-proquest-research-assistant-is-powering-smarter-research/",
     "sourceName": "Clarivate (Academia & Government blog)",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "eventDate": "2025-11-15"
   },
   {
     "id": "auto-springer-nature-nature-research-assistant",
@@ -318,7 +337,8 @@
     "howItCompetes": "A newly launched AI-led research assistant service from Springer Nature's Nature portfolio, positioned as an AI-powered assistant with an accompanying AI-led offering aimed at research decision-makers. It targets AI-assisted discovery and synthesis over Nature-branded research content rather than manuscript integrity checking. It competes with LeapSpace's Literature Search & Discovery and Deep Research Reports tabs, and is a separate product from the already-tracked Springer Nature research-integrity tools (Geppetto).",
     "sourceUrl": "https://natureresearchassistant.com/",
     "sourceName": "Nature Research Assistant (Springer Nature)",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "eventDateUnknown": true
   },
   {
     "id": "auto-google-notebooklm-dec-2025-update-deep-research-data-tables-gemini-3",
@@ -334,6 +354,7 @@
     "howItCompetes": "NotebookLM's December 2025 release added Data Tables, which synthesizes a user's uploaded sources into clean structured tables exportable to Google Sheets, and moved the product onto Gemini 3 for improved reasoning and multimodal understanding. A recently added Deep Research mode lets it act as an autonomous agent that searches the web to build a bibliography rather than being limited to manually uploaded documents. Combined with its core source-grounded chat, it directly challenges LeapSpace's Compare (structured side-by-side breakdowns of papers), Deep Research Reports, Reading Assistant (Q&A grounded in a specific document) and, via Deep Research, Literature Search & Discovery.",
     "sourceUrl": "https://workspaceupdates.googleblog.com/2025/12/transform-sources-structured-data-tables-notebooklm.html",
     "sourceName": "Google Workspace Updates blog",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "eventDate": "2025-12-01"
   }
 ]
