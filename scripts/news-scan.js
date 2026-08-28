@@ -32,6 +32,7 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 
 const DATA_FILE = 'data/news.json';
+const OVERVIEW_FILE = 'data/news-overview.json';
 const STATE_FILE = 'data/news-scan-state.json';
 const ARCHIVE_FILE = 'data/archive/news.json';
 const ARCHIVE_AGE_DAYS = 7;
@@ -40,7 +41,13 @@ const MAX_AGE_DAYS = 14;
 const REQUEST_DELAY_MS = 350;
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 const RELEVANCE_MODEL = 'claude-haiku-4-5';
-const MAX_RELEVANCE_BATCH = 60;
+// Each article now carries a full structured analysis (bottom line, key
+// findings, impact scoring, entities, action items) rather than a couple of
+// short strings, so a full-size batch would risk running past a safe output
+// budget — capped much lower than the old plain-summary pass, with max_tokens
+// raised to match.
+const MAX_ANALYSIS_BATCH = 20;
+const ANALYSIS_MAX_TOKENS = 8192;
 
 const ELSEVIER_CONTEXT = `Elsevier is a scholarly research information and analytics company: ScienceDirect (full-text journal platform), Scopus (abstract/citation database), and LeapSpace (Elsevier's new AI-assisted research workspace — literature search, author search, funding discovery, writing coach, claim-checking, deep research reports, reading assistant, paper comparison). Its business depends on universities, medical centres, and research institutes subscribing to and using these tools, and on staying ahead of competitors like Clarivate/Web of Science, Digital Science/Dimensions, Springer Nature, Wiley, OpenAlex, Google Scholar, Semantic Scholar, and AI research-assistant tools (Elicit, scite, Consensus, SciSpace).`;
 
@@ -178,6 +185,35 @@ function truncateClean(str, maxLen) {
   const lastSpace = cut.lastIndexOf(' ');
   return (lastSpace > maxLen * 0.6 ? cut.slice(0, lastSpace) : cut).trim() + '…';
 }
+function sanitizeStringArray(arr, maxItems, maxLen) {
+  if (!Array.isArray(arr)) return [];
+  return arr.filter(x => typeof x === 'string' && x.trim()).slice(0, maxItems).map(x => truncateClean(x, maxLen));
+}
+function sanitizeImpact(impact) {
+  const clamp = v => { const n = Math.round(Number(v)); return Number.isFinite(n) ? Math.min(5, Math.max(1, n)) : 3; };
+  const i = impact && typeof impact === 'object' ? impact : {};
+  return { novelty: clamp(i.novelty), commercial: clamp(i.commercial), threat: clamp(i.threat), urgency: clamp(i.urgency) };
+}
+function sanitizeSourceType(v) {
+  return v === 'primary' ? 'primary' : 'secondary';
+}
+// Shared JSON shape for one article's structured analysis — used in both
+// the relevance-filter prompt (fresh candidates) and the backfill prompt
+// (existing live articles that predate this schema or an older, thinner one).
+const ANALYSIS_SCHEMA_PROMPT = `"bottomLine": "one punchy sentence capturing the single most important takeaway", "keyFindings": ["3 to 5 short bullet points on what's new or what the article actually reports"], "whyItMatters": "1-2 sentences on the business/strategy implications for an Elsevier sales agent selling ScienceDirect/Scopus/LeapSpace here — name the institution/company and the angle", "impact": {"novelty": 1-5, "commercial": 1-5, "threat": 1-5, "urgency": 1-5} (your rating of technical novelty, commercial potential, competitive threat to Elsevier, and urgency to act — 1 low, 5 high), "entities": ["named companies, products/models, researchers, or papers mentioned — up to 6"], "actionItems": ["1 to 3 concrete follow-up actions or open questions for the sales team"], "sourceType": "primary" (this outlet is the original source — an official announcement, a university/company's own page, a press release) or "secondary" (third-party reporting/aggregation)`;
+
+function applyAnalysis(article, v) {
+  return {
+    ...article,
+    bottomLine: truncateClean(v.bottomLine, 220),
+    keyFindings: sanitizeStringArray(v.keyFindings, 5, 160),
+    whyItMatters: truncateClean(v.whyItMatters, 320),
+    impact: sanitizeImpact(v.impact),
+    entities: sanitizeStringArray(v.entities, 6, 60),
+    actionItems: sanitizeStringArray(v.actionItems, 3, 160),
+    sourceType: sanitizeSourceType(v.sourceType),
+  };
+}
 
 // Minimal RSS 2.0 <item> parser via regex — Google News RSS is well-formed
 // enough that a full XML parser isn't worth the extra dependency.
@@ -241,7 +277,7 @@ async function filterRelevance(candidates) {
     return candidates;
   }
 
-  const batch = candidates.slice(0, MAX_RELEVANCE_BATCH);
+  const batch = candidates.slice(0, MAX_ANALYSIS_BATCH);
   const overflow = candidates.length - batch.length;
   if (overflow > 0) {
     console.log(`[news-scan] ${overflow} candidate(s) beyond the relevance-filter batch cap deferred to a future run.`);
@@ -254,22 +290,22 @@ You are filtering this news feed for an Elsevier sales agent selling ScienceDire
 - [AI Development & Adoption]: keep only if it's a Netherlands institution (mainly universities, though a medical centre or major research institute counts too) either developing its own AI research/publishing tool, or adopting/rolling out one (in-house or third-party) — either signals what's live at that account. Reject AI news with no research/scholarly-tools angle (e.g. clinical diagnostic AI, unrelated campus IT).
 - [Funding Received]: keep ONLY if the money could plausibly be used to purchase or renew an Elsevier product — i.e. funding for research infrastructure, library systems, digital research tools, or an institutional research-support budget. Reject funding for a specific research project or study even if it mentions AI or "research" — that money never touches a library/subscription budget.
 - [Netherlands Research Policy]: keep only high-level, ministry/national-level policy (OCW, national funding agency, open-access mandates, VSNU/SURF national licensing negotiations, research assessment reform) that could move institutional purchasing power or affect existing Elsevier subscriptions. Reject individual-researcher or single-study policy stories.
-- [Competitor Announcements]: keep a genuine competitor product launch/update, OR a report that a Netherlands institution is adopting, piloting, or evaluating a competitor's product. For an adoption story, the reason must name the institution and what it means for the competitive landscape or an existing Elsevier relationship there.
+- [Competitor Announcements]: keep a genuine competitor product launch/update, OR a report that a Netherlands institution is adopting, piloting, or evaluating a competitor's product. For an adoption story, the angle must name the institution and what it means for the competitive landscape or an existing Elsevier relationship there.
 
 Mark irrelevant anything that's just general research findings or medical/scientific results, even if it mentions a tracked institution, "AI", or "funding".
 
 ${batch.map((c, i) => `${i + 1}. [${c.categoryLabel}] "${c.title}" — ${c.description || '(no description)'}`).join('\n')}
 
-Respond with ONLY a JSON array, one object per article in the same order, each exactly: {"relevant": true|false, "summary": "a neutral, complete summary of what the article actually reports, in AT MOST 3 short sentences — every sentence must be a complete sentence, never cut off mid-sentence, and the whole summary should stay under about 280 characters so it reads cleanly in a compact 3-line card — written so a reader can immediately understand what/who it's about without opening the article — only if relevant, omit or empty string if not relevant", "reason": "one short, specific sentence on why it matters to an Elsevier sales agent here — name the institution/company and the angle — only if relevant, omit or empty string if not relevant"}`;
+Respond with ONLY a JSON array, one object per article in the same order, each exactly: {"relevant": true|false, ${ANALYSIS_SCHEMA_PROMPT} — every field except "relevant" only if relevant, omit them (or use empty values) if not relevant}`;
 
   let res;
   const ctrl = new AbortController();
-  const timer = setTimeout(() => ctrl.abort(), 60000);
+  const timer = setTimeout(() => ctrl.abort(), 90000);
   try {
     res = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: { 'x-api-key': ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
-      body: JSON.stringify({ model: RELEVANCE_MODEL, max_tokens: 2048, messages: [{ role: 'user', content: prompt }] }),
+      body: JSON.stringify({ model: RELEVANCE_MODEL, max_tokens: ANALYSIS_MAX_TOKENS, messages: [{ role: 'user', content: prompt }] }),
       signal: ctrl.signal,
     });
   } catch (e) {
@@ -298,7 +334,7 @@ Respond with ONLY a JSON array, one object per article in the same order, each e
   batch.forEach((c, i) => {
     const v = verdicts[i];
     if (v && v.relevant) {
-      kept.push({ ...c, summary: truncateClean(v.summary, 480), elsevierRelevance: truncateClean(v.reason, 260) });
+      kept.push(applyAnalysis(c, v));
     } else {
       console.log(`  - filtered out (not Elsevier-relevant): ${c.title}`);
     }
@@ -306,28 +342,91 @@ Respond with ONLY a JSON array, one object per article in the same order, each e
   return kept;
 }
 
-// Articles saved before the "summary" field existed (or from a run where the
-// AI response omitted it) only carry the old one-line "reason" text, capped
-// short enough that it often reads as an abrupt mid-sentence cut in the News
-// Summary card. Re-run just those through a dedicated summary-only call —
-// unlike filterRelevance, this never drops an article: they already cleared
-// the relevance bar once and are already live/visible, so a second pass only
-// fills in the missing text.
-async function backfillSummaries(items) {
+// Articles saved before this structured-analysis schema existed (or an even
+// older plain-summary one) are missing bottomLine/keyFindings/etc. Re-run
+// just those through a dedicated analysis-only call — unlike filterRelevance,
+// this never drops an article: they already cleared the relevance bar once
+// and are already live/visible, so a second pass only fills in the missing
+// structure.
+async function backfillAnalysis(items) {
   if (!items.length || !ANTHROPIC_API_KEY) return new Map();
 
-  const batch = items.slice(0, MAX_RELEVANCE_BATCH);
+  const batch = items.slice(0, MAX_ANALYSIS_BATCH);
   const prompt = `${ELSEVIER_CONTEXT}
 
-For each numbered article below, write a neutral, complete summary of what it actually reports, in AT MOST 3 short sentences — every sentence must be complete, never cut off mid-sentence, and the whole summary should stay under about 280 characters so it reads cleanly in a compact 3-line card — written so a reader can immediately understand what/who it's about without opening the article.
+For each numbered article below, produce a structured analysis for an Elsevier sales agent selling ScienceDirect/Scopus/LeapSpace into Netherlands institutions.
 
 ${batch.map((c, i) => `${i + 1}. [${c.categoryLabel}] "${c.title}" — ${c.description || '(no description)'}`).join('\n')}
 
-Respond with ONLY a JSON array of strings, one summary per article in the same order.`;
+Respond with ONLY a JSON array, one object per article in the same order, each exactly: {${ANALYSIS_SCHEMA_PROMPT}}`;
 
   let res;
   const ctrl = new AbortController();
-  const timer = setTimeout(() => ctrl.abort(), 60000);
+  const timer = setTimeout(() => ctrl.abort(), 90000);
+  try {
+    res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'x-api-key': ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
+      body: JSON.stringify({ model: RELEVANCE_MODEL, max_tokens: ANALYSIS_MAX_TOKENS, messages: [{ role: 'user', content: prompt }] }),
+      signal: ctrl.signal,
+    });
+  } catch (e) {
+    console.warn(`[news-scan] Backfill analysis request failed (${e.message}) — skipping.`);
+    return new Map();
+  } finally {
+    clearTimeout(timer);
+  }
+  if (!res.ok) {
+    console.warn(`[news-scan] Backfill analysis API call failed (HTTP ${res.status}) — skipping.`);
+    return new Map();
+  }
+
+  const data = await res.json();
+  const text = (data.content || []).filter(b => b.type === 'text').map(b => b.text).join('\n');
+  let analyses;
+  try {
+    const jsonMatch = text.match(/\[[\s\S]*\]/);
+    analyses = JSON.parse(jsonMatch ? jsonMatch[0] : text);
+  } catch (e) {
+    console.warn('[news-scan] Could not parse backfill analysis response — skipping.');
+    return new Map();
+  }
+
+  const map = new Map();
+  batch.forEach((c, i) => { if (analyses[i]) map.set(c.id, analyses[i]); });
+  return map;
+}
+
+// One extra call per run that synthesizes ALL currently-live articles into a
+// single merged analysis (same shape as a per-article one) — the News
+// Summary modal's "Overview" reads this instead of trying to average
+// per-article fields itself, since only an LLM can actually reason across
+// the whole set (spot the throughline, roll up the real action items). Kept
+// as its own small file (not embedded in news.json) so the News page and
+// the summary modal can each fetch only what they need.
+async function generateOverview(liveArticles) {
+  if (!ANTHROPIC_API_KEY) return null;
+  if (!liveArticles.length) {
+    return { generatedAt: new Date().toISOString(), articleCount: 0, headline: '', bottomLine: 'No live stories to summarize yet.', keyFindings: [], whyItMatters: '', impact: sanitizeImpact({}), entities: [], actionItems: [] };
+  }
+
+  const digest = liveArticles.slice(0, 80).map((a, i) =>
+    `${i + 1}. [${a.categoryLabel || a.category}] "${a.title}" — ${a.bottomLine || a.whyItMatters || a.summary || a.description || ''}`
+  ).join('\n');
+
+  const OVERVIEW_SCHEMA_PROMPT = `"headline": "one short punchy headline for the whole set", "bottomLine": "one punchy sentence capturing the single most important takeaway across ALL of today's stories combined", "keyFindings": ["3 to 5 short bullet points synthesizing the most important developments across ALL the articles — not a per-article recap, a market-level rollup"], "whyItMatters": "2-3 sentences on the overall business/strategy implications for the sales team this period", "impact": {"novelty": 1-5, "commercial": 1-5, "threat": 1-5, "urgency": 1-5} (your rating of the OVERALL period: technical novelty, commercial potential, competitive threat to Elsevier, and urgency to act — 1 low, 5 high), "entities": ["the most-recurring or most-significant named companies, products/models, researchers, or institutions across all the articles — up to 8"], "actionItems": ["2 to 4 concrete follow-up actions or open questions for the sales team, prioritized"]`;
+
+  const prompt = `${ELSEVIER_CONTEXT}
+
+Below are the current live news items for an Elsevier sales agent selling ScienceDirect/Scopus/LeapSpace into Netherlands institutions. Synthesize them into ONE merged executive overview of the whole market/region picture right now — don't just describe one article, roll up the throughline across all of them.
+
+${digest}
+
+Respond with ONLY one JSON object, exactly: {${OVERVIEW_SCHEMA_PROMPT}}`;
+
+  let res;
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 90000);
   try {
     res = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
@@ -336,30 +435,38 @@ Respond with ONLY a JSON array of strings, one summary per article in the same o
       signal: ctrl.signal,
     });
   } catch (e) {
-    console.warn(`[news-scan] Backfill summary request failed (${e.message}) — skipping.`);
-    return new Map();
+    console.warn(`[news-scan] Overview generation request failed (${e.message}) — skipping.`);
+    return null;
   } finally {
     clearTimeout(timer);
   }
   if (!res.ok) {
-    console.warn(`[news-scan] Backfill summary API call failed (HTTP ${res.status}) — skipping.`);
-    return new Map();
+    console.warn(`[news-scan] Overview generation API call failed (HTTP ${res.status}) — skipping.`);
+    return null;
   }
 
   const data = await res.json();
   const text = (data.content || []).filter(b => b.type === 'text').map(b => b.text).join('\n');
-  let summaries;
+  let v;
   try {
-    const jsonMatch = text.match(/\[[\s\S]*\]/);
-    summaries = JSON.parse(jsonMatch ? jsonMatch[0] : text);
+    const jsonMatch = text.match(/\{[\s\S]*\}/);
+    v = JSON.parse(jsonMatch ? jsonMatch[0] : text);
   } catch (e) {
-    console.warn('[news-scan] Could not parse backfill summary response — skipping.');
-    return new Map();
+    console.warn('[news-scan] Could not parse overview response — skipping.');
+    return null;
   }
 
-  const map = new Map();
-  batch.forEach((c, i) => { if (summaries[i]) map.set(c.id, truncateClean(summaries[i], 480)); });
-  return map;
+  return {
+    generatedAt: new Date().toISOString(),
+    articleCount: liveArticles.length,
+    headline: truncateClean(v.headline, 140),
+    bottomLine: truncateClean(v.bottomLine, 240),
+    keyFindings: sanitizeStringArray(v.keyFindings, 5, 200),
+    whyItMatters: truncateClean(v.whyItMatters, 420),
+    impact: sanitizeImpact(v.impact),
+    entities: sanitizeStringArray(v.entities, 8, 60),
+    actionItems: sanitizeStringArray(v.actionItems, 4, 200),
+  };
 }
 
 async function main() {
@@ -368,15 +475,15 @@ async function main() {
   const candidateCounts = {};
   const freshCandidates = [];
 
-  const needsBackfill = articles.filter(a => !a.summary && a.elsevierRelevance);
+  const needsBackfill = articles.filter(a => !a.bottomLine || !a.keyFindings || !a.keyFindings.length);
   let backfilledCount = 0;
   if (needsBackfill.length) {
-    console.log(`[news-scan] ${needsBackfill.length} existing article(s) missing a clean summary — backfilling...`);
-    const map = await backfillSummaries(needsBackfill.map(a => ({ id: a.id, title: a.title, description: a.description, categoryLabel: a.categoryLabel })));
+    console.log(`[news-scan] ${needsBackfill.length} existing article(s) missing the structured analysis — backfilling...`);
+    const map = await backfillAnalysis(needsBackfill.map(a => ({ id: a.id, title: a.title, description: a.description, categoryLabel: a.categoryLabel })));
     for (const a of articles) {
-      if (map.has(a.id)) { a.summary = map.get(a.id); backfilledCount++; }
+      if (map.has(a.id)) { Object.assign(a, applyAnalysis(a, map.get(a.id))); backfilledCount++; }
     }
-    console.log(`[news-scan] Backfilled ${backfilledCount} summary/summaries.`);
+    console.log(`[news-scan] Backfilled ${backfilledCount} article(s).`);
   }
 
   for (const category of CATEGORIES) {
@@ -451,18 +558,34 @@ async function main() {
   const trimmed = live.slice(0, MAX_STORED_ARTICLES);
   if (totalAdded > 0 || archivedCount > 0 || backfilledCount > 0) saveJSON(DATA_FILE, trimmed);
 
+  // Regenerated every run regardless of whether anything changed above —
+  // the live set can shift (an article aging out to archive) even with zero
+  // new additions, and re-synthesizing is cheap next to the rest of the
+  // pipeline (one call, fixed-size output regardless of how many articles
+  // are live).
+  console.log('[news-scan] Generating merged overview...');
+  const overview = await generateOverview(trimmed);
+  let overviewGenerated = false;
+  if (overview) {
+    saveJSON(OVERVIEW_FILE, overview);
+    overviewGenerated = true;
+  } else {
+    console.log('[news-scan] Overview generation skipped or failed — leaving the previous overview file in place.');
+  }
+
   saveJSON(STATE_FILE, {
     lastRun: new Date().toISOString(),
     lastAddedCount: totalAdded,
     lastCandidateCount: freshCandidates.length,
     lastArchivedCount: archivedCount,
     lastBackfilledCount: backfilledCount,
+    lastOverviewGenerated: overviewGenerated,
     candidateCounts,
     source: ANTHROPIC_API_KEY
-      ? 'Google News RSS (discovery) + Claude Haiku (Elsevier-relevance filter)'
+      ? 'Google News RSS (discovery) + Claude Haiku (Elsevier-relevance filter + overview synthesis)'
       : 'Google News RSS (free, no API key — relevance filter skipped)',
   });
-  console.log(`[news-scan] Done — ${totalAdded} new article(s) added, ${archivedCount} archived, ${backfilledCount} backfilled (${freshCandidates.length} candidates found).`);
+  console.log(`[news-scan] Done — ${totalAdded} new article(s) added, ${archivedCount} archived, ${backfilledCount} backfilled, overview ${overviewGenerated ? 'refreshed' : 'unchanged'} (${freshCandidates.length} candidates found).`);
 }
 
 main().catch(e => {
