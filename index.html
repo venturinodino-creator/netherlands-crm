@@ -3426,10 +3426,26 @@ function setNewsCategory(cat) {
   document.querySelectorAll('.news-filter-btn').forEach(b => b.classList.remove('active'));
   const safeId = 'nf-' + cat.replace(/[^a-z0-9]/gi, '_');
   document.getElementById(safeId)?.classList.add('active');
-  renderNewsArticles();
+
+  const sub = document.getElementById('news-subfilter-bar');
+  if (cat === 'hiring') {
+    if (sub) sub.innerHTML = buildHiringSubfilterHTML();
+    renderHiringSidebarLegend();
+    _hiringFeedTarget = 'news-feed';
+    loadCompetitorJobs();
+  } else {
+    if (sub) sub.innerHTML = '';
+    renderNewsSidebarLegend();
+    renderNewsArticles();
+  }
 }
 
 async function toggleNewsArchiveView() {
+  // Archive is a news-only concept — bail back to the regular feed first if
+  // the hiring sub-view (a different data source entirely) is active.
+  if (_newsActiveCategory === 'hiring') {
+    setNewsCategory('all');
+  }
   _newsShowArchive = !_newsShowArchive;
   const btn = document.getElementById('toggle-archive-btn');
   if (btn) btn.innerHTML = _newsShowArchive
@@ -3510,6 +3526,51 @@ async function renderNewsScanStatus() {
   } catch(e) { el.innerHTML = '<p style="font-size:12px;color:var(--muted)">Status unavailable.</p>'; }
 }
 
+// Swaps the News page's right sidebar between its two modes: the regular
+// news topic legend, and the Competitor Hiring role-type legend (used when
+// the "Competitor Hiring" pill is active). Both share the #news-sidebar-content
+// container built once in renderNews().
+function renderNewsSidebarLegend() {
+  const sidebar = document.getElementById('news-sidebar-content');
+  if (!sidebar) return;
+  const legend = Object.entries(NEWS_CATEGORIES).map(([, c]) =>
+    `<div style="display:flex;align-items:center;gap:7px;font-size:12px;color:var(--text);padding:4px 0">
+      <span style="width:8px;height:8px;border-radius:50%;background:${c.color};flex-shrink:0"></span>${c.label}
+    </div>`).join('');
+  sidebar.innerHTML = `
+    <div class="news-source-filter">
+      <h4>Topics</h4>
+      ${legend}
+    </div>
+    <div class="news-archive-card">
+      <h4>Scan Status</h4>
+      <div id="news-scan-status"><p style="font-size:12px;color:var(--muted)">Loading…</p></div>
+    </div>`;
+  renderNewsScanStatus();
+}
+
+function renderHiringSidebarLegend() {
+  const sidebar = document.getElementById('news-sidebar-content');
+  if (!sidebar) return;
+  const legend = Object.entries(HIRING_CATEGORIES).map(([, c]) =>
+    `<div style="display:flex;align-items:center;gap:7px;font-size:12px;color:var(--text);padding:4px 0">
+      <span style="width:8px;height:8px;border-radius:50%;background:${c.color};flex-shrink:0"></span>${c.label}
+    </div>`).join('');
+  sidebar.innerHTML = `
+    <div class="news-source-filter">
+      <h4>Role Type</h4>
+      ${legend}
+    </div>
+    <div class="news-archive-card">
+      <h4>Scan Status</h4>
+      <div id="news-scan-status"><p style="font-size:12px;color:var(--muted)">Loading…</p></div>
+    </div>
+    <div class="news-archive-card">
+      <h4 title="No public careers-page API to pull from — not LinkedIn-scrapable either">Not Trackable</h4>
+      <div id="news-hiring-untracked"><p style="font-size:12px;color:var(--muted)">Loading…</p></div>
+    </div>`;
+}
+
 function renderNews() {
   document.getElementById('page-title').textContent = 'Netherlands Research News';
   document.getElementById('page-sub').textContent = 'AI, funding, policy, and competitor news relevant to Elsevier\'s business — scanned daily, filtered for relevance';
@@ -3529,34 +3590,28 @@ function renderNews() {
     const safeId = 'nf-' + c.replace(/[^a-z0-9]/gi, '_');
     const label = c === 'all' ? 'All Topics' : NEWS_CATEGORIES[c].label;
     return `<button id="${safeId}" class="news-filter-btn${c === _newsActiveCategory ? ' active' : ''}" onclick="setNewsCategory('${c}')">${label}</button>`;
-  }).join('');
-
-  const legend = Object.entries(NEWS_CATEGORIES).map(([, c]) =>
-    `<div style="display:flex;align-items:center;gap:7px;font-size:12px;color:var(--text);padding:4px 0">
-      <span style="width:8px;height:8px;border-radius:50%;background:${c.color};flex-shrink:0"></span>${c.label}
-    </div>`).join('');
+  }).join('') + `<button id="nf-hiring" class="news-filter-btn${_newsActiveCategory === 'hiring' ? ' active' : ''}" onclick="setNewsCategory('hiring')" title="Open roles at Elsevier RI competitors">Competitor Hiring</button>`;
 
   document.getElementById('content').innerHTML = `
     <div class="news-filter-bar">${catBtns}</div>
+    <div id="news-subfilter-bar">${_newsActiveCategory === 'hiring' ? buildHiringSubfilterHTML() : ''}</div>
     <div class="news-layout">
       <div>
         <div id="news-feed" class="news-feed">
           <div class="news-loading"><div class="news-spinner"></div>Loading…</div>
         </div>
       </div>
-      <div class="news-sidebar">
-        <div class="news-source-filter">
-          <h4>Topics</h4>
-          ${legend}
-        </div>
-        <div class="news-archive-card">
-          <h4>Scan Status</h4>
-          <div id="news-scan-status"><p style="font-size:12px;color:var(--muted)">Loading…</p></div>
-        </div>
-      </div>
+      <div class="news-sidebar" id="news-sidebar-content"></div>
     </div>`;
 
-  loadNewsArticles();
+  if (_newsActiveCategory === 'hiring') {
+    renderHiringSidebarLegend();
+    _hiringFeedTarget = 'news-feed';
+    loadCompetitorJobs();
+  } else {
+    renderNewsSidebarLegend();
+    loadNewsArticles();
+  }
 }
 
 //  DAILY SUMMARY REPORTS
@@ -5342,12 +5397,30 @@ const HIRING_CATEGORIES = {
   other:   { label: 'Other',                  color: '#64748b' },
 };
 
-let _hiringAllJobs       = [];
-let _hiringActiveCompany = 'all';
+let _hiringAllJobs        = [];
+let _hiringActiveCompany  = 'all';
 let _hiringActiveCategory = 'all';
+// Which #-id the hiring feed/status render into: 'hiring-feed' for the
+// standalone Competitor Hiring page, 'news-feed' when shown as a sub-view
+// of the News page (the "Competitor Hiring" topic pill). Both pages share
+// the exact same render logic below — only the target container differs.
+let _hiringFeedTarget = 'hiring-feed';
+
+function buildHiringSubfilterHTML() {
+  const catBtns = ['all', ...Object.keys(HIRING_CATEGORIES)].map(cat => {
+    const label = cat === 'all' ? 'All Roles' : HIRING_CATEGORIES[cat].label;
+    return `<button id="hc-${cat}" class="news-filter-btn hiring-cat-btn${cat === _hiringActiveCategory ? ' active' : ''}" onclick="setHiringCategory('${cat}')">${esc(label)}</button>`;
+  }).join('');
+  const companyBtns = ['all', ...HIRING_COMPANIES].map(co => {
+    const safeId = 'hf-' + co.replace(/[^a-z0-9]/gi, '_');
+    const label = co === 'all' ? 'All Companies' : co;
+    return `<button id="${safeId}" class="news-filter-btn hiring-company-btn${co === _hiringActiveCompany ? ' active' : ''}" onclick="setHiringCompany('${co}')">${esc(label)}</button>`;
+  }).join('');
+  return `<div class="news-filter-bar">${catBtns}</div><div class="news-filter-bar" style="margin-top:-6px">${companyBtns}</div>`;
+}
 
 async function loadCompetitorJobs() {
-  const feedEl = document.getElementById('hiring-feed');
+  const feedEl = document.getElementById(_hiringFeedTarget);
   if (feedEl) feedEl.innerHTML = `<div class="news-loading"><div class="news-spinner"></div>Loading…</div>`;
   try {
     const res = await fetch('/netherlands-crm/data/competitor-jobs.json?t=' + Date.now());
@@ -5374,7 +5447,7 @@ function setHiringCategory(cat) {
 }
 
 function renderHiringFeed() {
-  const feed = document.getElementById('hiring-feed');
+  const feed = document.getElementById(_hiringFeedTarget);
   if (!feed) return;
 
   const byCompany = _hiringActiveCompany === 'all' ? _hiringAllJobs : _hiringAllJobs.filter(j => j.company === _hiringActiveCompany);
@@ -5410,7 +5483,9 @@ function renderHiringFeed() {
 }
 
 async function renderHiringScanStatus() {
-  const el = document.getElementById('hiring-scan-status');
+  const statusId = _hiringFeedTarget === 'news-feed' ? 'news-scan-status' : 'hiring-scan-status';
+  const untrackedId = _hiringFeedTarget === 'news-feed' ? 'news-hiring-untracked' : 'hiring-untracked';
+  const el = document.getElementById(statusId);
   if (!el) return;
   try {
     const res = await fetch('/netherlands-crm/data/competitor-jobs-scan-state.json?t=' + Date.now());
@@ -5420,7 +5495,7 @@ async function renderHiringScanStatus() {
       <p style="font-size:12px;color:var(--muted);margin-top:3px">${state.totalOpenRoles || 0} open role${state.totalOpenRoles === 1 ? '' : 's'} tracked</p>
       ${state.error ? `<p style="font-size:11px;color:#f87171;margin-top:6px">${esc(state.error)}</p>` : ''}`;
 
-    const untrackedEl = document.getElementById('hiring-untracked');
+    const untrackedEl = document.getElementById(untrackedId);
     if (untrackedEl && Array.isArray(state.untracked) && state.untracked.length) {
       untrackedEl.innerHTML = state.untracked.map(u =>
         `<div style="font-size:11px;line-height:1.5;padding:5px 0;border-top:1px solid var(--border)">
@@ -5436,22 +5511,12 @@ function renderCompetitorHiring() {
   document.getElementById('page-sub').textContent = 'Open Netherlands-relevant roles at Elsevier RI competitors — sales/account hires signal a market push, product/engineering hires signal capability being built';
   _hiringActiveCompany = 'all';
   _hiringActiveCategory = 'all';
+  _hiringFeedTarget = 'hiring-feed';
   document.getElementById('topbar-actions').innerHTML = `
     <button class="btn btn-outline" data-admin-only id="run-btn-hiring" onclick="runAgentNow('competitor-jobs-scan.yml','run-btn-hiring','Competitor Hiring Scan')" style="font-size:12px" title="Pulls the latest open roles from tracked competitors' career pages right now via GitHub Actions">
       <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:5px"><polygon points="5 3 19 12 5 21 5 3"/></svg>
       Run hiring scan now
     </button>`;
-
-  const catBtns = ['all', ...Object.keys(HIRING_CATEGORIES)].map(cat => {
-    const label = cat === 'all' ? 'All Roles' : HIRING_CATEGORIES[cat].label;
-    return `<button id="hc-${cat}" class="news-filter-btn hiring-cat-btn${cat === _hiringActiveCategory ? ' active' : ''}" onclick="setHiringCategory('${cat}')">${esc(label)}</button>`;
-  }).join('');
-
-  const companyBtns = ['all', ...HIRING_COMPANIES].map(co => {
-    const safeId = 'hf-' + co.replace(/[^a-z0-9]/gi, '_');
-    const label = co === 'all' ? 'All Companies' : co;
-    return `<button id="${safeId}" class="news-filter-btn hiring-company-btn${co === _hiringActiveCompany ? ' active' : ''}" onclick="setHiringCompany('${co}')">${esc(label)}</button>`;
-  }).join('');
 
   const legend = Object.entries(HIRING_CATEGORIES).map(([, c]) =>
     `<div style="display:flex;align-items:center;gap:7px;font-size:12px;color:var(--text);padding:4px 0">
@@ -5459,8 +5524,7 @@ function renderCompetitorHiring() {
     </div>`).join('');
 
   document.getElementById('content').innerHTML = `
-    <div class="news-filter-bar">${catBtns}</div>
-    <div class="news-filter-bar" style="margin-top:-6px">${companyBtns}</div>
+    ${buildHiringSubfilterHTML()}
     <div class="news-layout">
       <div>
         <div id="hiring-feed" class="news-feed">
