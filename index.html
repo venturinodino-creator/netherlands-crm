@@ -5386,9 +5386,9 @@ const HIRING_COMPANIES = [
   'Google', 'OpenAI', 'Anthropic',
 ];
 const HIRING_CATEGORIES = {
-  sales:   { label: 'Sales & Account',        color: '#059669' },
-  product: { label: 'Product & Engineering',  color: '#1d4ed8' },
-  other:   { label: 'Other',                  color: '#64748b' },
+  sam:     { label: 'Strategic Account Mgmt', color: '#059669' },
+  csm:     { label: 'Customer Success',       color: '#1d4ed8' },
+  channel: { label: 'Channel & Partnerships', color: '#d97706' },
 };
 
 let _hiringAllJobs        = [];
@@ -5446,14 +5446,14 @@ function renderHiringFeed() {
   if (!sorted.length) {
     feed.innerHTML = `<div class="news-empty">
       <div style="font-size:32px;margin-bottom:10px">­</div>
-      No open roles tracked yet.<br>
-      <small>The daily scan runs at 07:00 UTC — check back after that, or run it manually from the button above.</small>
+      No open Strategic Account, Customer Success, or Channel roles tracked right now.<br>
+      <small>Scoped to Netherlands-based SAM/CSM/Channel hiring tied to each competitor's research-solutions line. The daily scan runs at 07:00 UTC — check back after that, or run it manually from the button above.</small>
     </div>`;
     return;
   }
 
   feed.innerHTML = sorted.slice(0, 100).map(j => {
-    const cat = HIRING_CATEGORIES[j.roleCategory] || HIRING_CATEGORIES.other;
+    const cat = HIRING_CATEGORIES[j.roleCategory] || { label: 'Other', color: '#64748b' };
     const safeUrl = (j.url || '').replace(/'/g, '%27');
     return `<div class="news-card" onclick="window.open('${safeUrl}','_blank')">
       <div class="news-card-top">

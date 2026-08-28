@@ -1,7 +1,11 @@
 /**
  * competitor-jobs-scan.js — Daily scan of open roles at Elsevier's named
- * Research Intelligence / scholarly-publishing competitors, scoped to
- * roles relevant to a Netherlands account manager.
+ * Research Intelligence / scholarly-publishing competitors, scoped to a
+ * Netherlands account manager's specific interest: Strategic/Senior
+ * Account Management (SAM), Customer Success (CSM), and Channel/
+ * Partnerships hiring tied to each competitor's research-solutions line
+ * (not engineering, product, editorial, ops, or unrelated business lines
+ * like a diversified competitor's IP/patent or clinical-regulatory arm).
  *
  * Deliberately NOT LinkedIn: LinkedIn requires login for job search and
  * actively blocks automated access, so there is no reliable or
@@ -48,13 +52,30 @@ const REQUEST_TIMEOUT_MS = 20000;
 // those aren't NL-specific enough to be a reliable signal on their own.
 const NL_LOCATION_RE = /netherlands|nederland|amsterdam|utrecht|rotterdam|the hague|den haag|eindhoven|groningen|delft|leiden|maastricht|\bnl\b/i;
 
-const SALES_TITLE_RE = /account (executive|manager|director)|\bsales\b|customer success|solutions? consultant|solutions? engineer|business development|partnerships?|revenue|customer success manager/i;
-const PRODUCT_TITLE_RE = /engineer|developer|scientist|\bresearch(er)?\b|product manager|machine learning|\bai\b|data scientist|software|infrastructure/i;
+// Only three role families matter to a sales agent tracking competitor
+// go-to-market headcount: Strategic/Senior Account Management, Customer
+// Success, and Channel/Partnerships. Everything else (engineering, product,
+// ops, editorial, support, etc.) is excluded entirely rather than tagged
+// "other" — a role that doesn't match one of these is not shown.
+const SAM_TITLE_RE = /\b(strategic account (manager|director|executive)|senior account (manager|executive)|key account (manager|director)|enterprise account (manager|executive)|account (manager|executive|director)|regional sales (manager|director))\b/i;
+const CSM_TITLE_RE = /\b(customer success (manager|director|lead)|client success (manager|director)|customer success)\b/i;
+const CHANNEL_TITLE_RE = /\b(channel (manager|director|sales|partnerships?)|partner(ship)? (manager|director|lead)|alliance(s)? (manager|director)|business development (manager|director))\b/i;
 
-function classifyRole(title) {
-  if (SALES_TITLE_RE.test(title)) return 'sales';
-  if (PRODUCT_TITLE_RE.test(title)) return 'product';
-  return 'other';
+// Once a title matches one of the three role families above, exclude it if
+// it's clearly scoped to a business line that doesn't compete with
+// Elsevier's Research Intelligence / scholarly-publishing solutions — e.g.
+// a diversified competitor's IP/patent, life-sciences-regulatory, or
+// clinical-consulting arm. Title/department-only data means this is a
+// best-effort keyword check, not a guarantee.
+const NON_RESEARCH_VERTICAL_RE = /\b(patent|trademark|intellectual property|ip (services|management|licensing)|regulatory affairs|clinical trial|pharmacovigilance|drug safety|life sciences consulting)\b/i;
+
+function classifyRole(title, department) {
+  const text = `${title} ${department || ''}`;
+  if (NON_RESEARCH_VERTICAL_RE.test(text)) return null;
+  if (SAM_TITLE_RE.test(title)) return 'sam';
+  if (CSM_TITLE_RE.test(title)) return 'csm';
+  if (CHANNEL_TITLE_RE.test(title)) return 'channel';
+  return null;
 }
 
 function readJSON(path, fallback) {
@@ -219,6 +240,8 @@ async function main() {
       for (const j of jobs) {
         if (!j.title || !j.url) continue;
         if (!NL_LOCATION_RE.test(j.location || '')) continue;
+        const roleCategory = classifyRole(j.title, j.department);
+        if (!roleCategory) continue; // not a SAM/CSM/Channel role in the research-solutions line
         perCompanyCounts[src.company].nl++;
         const key = j.company + '|' + j.url;
         const prior = existingByKey.get(key);
@@ -228,14 +251,14 @@ async function main() {
           title: j.title.slice(0, 200),
           location: String(j.location || '').slice(0, 150),
           department: String(j.department || '').slice(0, 100),
-          roleCategory: classifyRole(j.title),
+          roleCategory,
           url: j.url.slice(0, 500),
           postedDate: j.postedDate,
           foundDate: (prior && prior.foundDate) || new Date().toISOString().slice(0, 10),
           source: j.source,
         });
       }
-      console.log(`[competitor-jobs] ${src.company}: ${jobs.length} open role(s), ${perCompanyCounts[src.company].nl} Netherlands-relevant`);
+      console.log(`[competitor-jobs] ${src.company}: ${jobs.length} open role(s), ${perCompanyCounts[src.company].nl} Netherlands SAM/CSM/Channel matches`);
     } catch (e) {
       errors[src.company] = e.message;
       console.warn(`[competitor-jobs] ${src.company} failed: ${e.message}`);
@@ -253,7 +276,7 @@ async function main() {
     untracked: UNTRACKED_COMPANIES,
     source: 'Company career-page ATS APIs (Greenhouse/Ashby/SmartRecruiters/Pinpoint/Workday) — not LinkedIn, see file header',
   });
-  console.log(`[competitor-jobs] Done — ${allJobs.length} Netherlands-relevant open role(s) across ${SOURCES.length - Object.keys(errors).length}/${SOURCES.length} tracked companies.`);
+  console.log(`[competitor-jobs] Done — ${allJobs.length} Netherlands SAM/CSM/Channel role(s) across ${SOURCES.length - Object.keys(errors).length}/${SOURCES.length} tracked companies.`);
 }
 
 main().catch(e => {
