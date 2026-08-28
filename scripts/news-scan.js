@@ -200,17 +200,17 @@ function sanitizeSourceType(v) {
 // Shared JSON shape for one article's structured analysis — used in both
 // the relevance-filter prompt (fresh candidates) and the backfill prompt
 // (existing live articles that predate this schema or an older, thinner one).
-const ANALYSIS_SCHEMA_PROMPT = `"bottomLine": "one punchy sentence capturing the single most important takeaway", "keyFindings": ["3 to 5 short bullet points on what's new or what the article actually reports"], "whyItMatters": "1-2 sentences on the business/strategy implications for an Elsevier sales agent selling ScienceDirect/Scopus/LeapSpace here — name the institution/company and the angle", "impact": {"novelty": 1-5, "commercial": 1-5, "threat": 1-5, "urgency": 1-5} (your rating of technical novelty, commercial potential, competitive threat to Elsevier, and urgency to act — 1 low, 5 high), "entities": ["named companies, products/models, researchers, or papers mentioned — up to 6"], "actionItems": ["1 to 3 concrete follow-up actions or open questions for the sales team"], "sourceType": "primary" (this outlet is the original source — an official announcement, a university/company's own page, a press release) or "secondary" (third-party reporting/aggregation)`;
+const ANALYSIS_SCHEMA_PROMPT = `"bottomLine": "one punchy sentence capturing the single most important takeaway, under about 200 characters", "keyFindings": ["3 to 5 short, complete bullet points on what's new or what the article actually reports, each under about 140 characters — never cut a bullet off mid-sentence"], "whyItMatters": "1-2 complete sentences on the business/strategy implications for an Elsevier sales agent selling ScienceDirect/Scopus/LeapSpace here — name the institution/company and the angle — under about 260 characters total, never cut off mid-sentence", "impact": {"novelty": 1-5, "commercial": 1-5, "threat": 1-5, "urgency": 1-5} (your rating of technical novelty, commercial potential, competitive threat to Elsevier, and urgency to act — 1 low, 5 high), "entities": ["named companies, products/models, researchers, or papers mentioned — up to 6"], "actionItems": ["1 to 3 concrete, complete follow-up actions or open questions for the sales team, each under about 130 characters — never cut one off mid-sentence"], "sourceType": "primary" (this outlet is the original source — an official announcement, a university/company's own page, a press release) or "secondary" (third-party reporting/aggregation)`;
 
 function applyAnalysis(article, v) {
   return {
     ...article,
-    bottomLine: truncateClean(v.bottomLine, 220),
-    keyFindings: sanitizeStringArray(v.keyFindings, 5, 160),
-    whyItMatters: truncateClean(v.whyItMatters, 320),
+    bottomLine: truncateClean(v.bottomLine, 260),
+    keyFindings: sanitizeStringArray(v.keyFindings, 5, 200),
+    whyItMatters: truncateClean(v.whyItMatters, 420),
     impact: sanitizeImpact(v.impact),
     entities: sanitizeStringArray(v.entities, 6, 60),
-    actionItems: sanitizeStringArray(v.actionItems, 3, 160),
+    actionItems: sanitizeStringArray(v.actionItems, 3, 200),
     sourceType: sanitizeSourceType(v.sourceType),
   };
 }
@@ -414,7 +414,7 @@ async function generateOverview(liveArticles) {
     `${i + 1}. [${a.categoryLabel || a.category}] "${a.title}" — ${a.bottomLine || a.whyItMatters || a.summary || a.description || ''}`
   ).join('\n');
 
-  const OVERVIEW_SCHEMA_PROMPT = `"headline": "one short punchy headline for the whole set", "bottomLine": "one punchy sentence capturing the single most important takeaway across ALL of today's stories combined", "keyFindings": ["3 to 5 short bullet points synthesizing the most important developments across ALL the articles — not a per-article recap, a market-level rollup"], "whyItMatters": "2-3 sentences on the overall business/strategy implications for the sales team this period", "impact": {"novelty": 1-5, "commercial": 1-5, "threat": 1-5, "urgency": 1-5} (your rating of the OVERALL period: technical novelty, commercial potential, competitive threat to Elsevier, and urgency to act — 1 low, 5 high), "entities": ["the most-recurring or most-significant named companies, products/models, researchers, or institutions across all the articles — up to 8"], "actionItems": ["2 to 4 concrete follow-up actions or open questions for the sales team, prioritized"]`;
+  const OVERVIEW_SCHEMA_PROMPT = `"headline": "one short punchy headline for the whole set, under about 120 characters", "bottomLine": "one complete sentence capturing the single most important takeaway across ALL of today's stories combined, under about 220 characters", "keyFindings": ["3 to 5 short, complete bullet points synthesizing the most important developments across ALL the articles — not a per-article recap, a market-level rollup — each under about 180 characters, never cut off mid-sentence"], "whyItMatters": "2-3 complete sentences on the overall business/strategy implications for the sales team this period, under about 380 characters total, never cut off mid-sentence", "impact": {"novelty": 1-5, "commercial": 1-5, "threat": 1-5, "urgency": 1-5} (your rating of the OVERALL period: technical novelty, commercial potential, competitive threat to Elsevier, and urgency to act — 1 low, 5 high), "entities": ["the most-recurring or most-significant named companies, products/models, researchers, or institutions across all the articles — up to 8"], "actionItems": ["2 to 4 concrete, complete follow-up actions or open questions for the sales team, prioritized, each under about 170 characters, never cut off mid-sentence"]`;
 
   const prompt = `${ELSEVIER_CONTEXT}
 
