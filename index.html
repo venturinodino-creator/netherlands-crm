@@ -2248,15 +2248,20 @@ async function showNewsSummaryModal() {
   if (body) body.innerHTML = `<div class="news-loading"><div class="news-spinner"></div>Loading…</div>`;
   openModal('modal-news-summary');
 
-  let articles;
+  let articles, jobs;
   try {
-    const res = await fetch('/netherlands-crm/data/news.json?t=' + Date.now());
-    const data = res.ok ? await res.json() : [];
+    const [newsRes, jobsRes] = await Promise.all([
+      fetch('/netherlands-crm/data/news.json?t=' + Date.now()),
+      fetch('/netherlands-crm/data/competitor-jobs.json?t=' + Date.now()),
+    ]);
+    const newsData = newsRes.ok ? await newsRes.json() : [];
+    const jobsData = jobsRes.ok ? await jobsRes.json() : [];
     const dismissed = getDismissedNewsIds();
     const seenIds = new Set();
-    articles = (Array.isArray(data) ? data : [])
+    articles = (Array.isArray(newsData) ? newsData : [])
       .filter(a => !seenIds.has(a.id) && seenIds.add(a.id))
       .filter(a => !dismissed.includes(a.id));
+    jobs = Array.isArray(jobsData) ? jobsData : [];
   } catch (e) {
     if (body) body.innerHTML = `<div class="news-empty">Could not load news data.</div>`;
     return;
@@ -2277,6 +2282,16 @@ async function showNewsSummaryModal() {
     if (breakdown) overviewParts.push(`Breakdown: ${breakdown}.`);
     const comp = articles.find(a => a.category === 'competitor_announcements');
     if (comp) overviewParts.push(`Most recent competitor signal: ${esc(comp.institution || 'a competitor')} — "${esc(comp.title || '')}".`);
+  }
+
+  const hiringCatOrder = Object.keys(HIRING_CATEGORIES);
+  const hiringCounts = {};
+  jobs.forEach(j => { if (j.roleCategory) hiringCounts[j.roleCategory] = (hiringCounts[j.roleCategory] || 0) + 1; });
+  const hiringTotal = jobs.length;
+  const hiringCompanyCount = new Set(jobs.map(j => j.company).filter(Boolean)).size;
+  const hiringSorted = jobs.slice().sort((a, b) => (b.postedDate || b.foundDate || '').localeCompare(a.postedDate || a.foundDate || ''));
+  if (hiringTotal > 0) {
+    overviewParts.push(`${hiringTotal} competitor role${hiringTotal === 1 ? ' is' : 's are'} currently open across ${hiringCompanyCount} tracked compan${hiringCompanyCount === 1 ? 'y' : 'ies'}.`);
   }
 
   const tilesHtml = `<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin:14px 0">
@@ -2318,6 +2333,12 @@ async function showNewsSummaryModal() {
       snippet: firstClause(text, 170),
     };
   });
+  if (hiringTotal > 0) {
+    const topJob = hiringSorted[0];
+    const jobCat = HIRING_CATEGORIES[topJob.roleCategory] || { label: 'Role' };
+    const snippet = `${topJob.title || 'Open role'} at ${topJob.company || 'a tracked competitor'} (${jobCat.label}${topJob.location ? ', ' + topJob.location : ''}).`;
+    combinedItems.push({ label: 'Competitor Hiring', color: '#f87171', countNote: ` (${hiringTotal} open)`, snippet: firstClause(snippet, 170) });
+  }
   const combinedSummaryHtml = combinedItems.length ? `
     <div style="background:var(--bg3);border:1px solid var(--border2);border-left:3px solid var(--accent2);border-radius:10px;padding:12px 14px;margin:14px 0">
       <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:8px;letter-spacing:.3px">COMBINED SUMMARY</div>
@@ -2342,18 +2363,47 @@ async function showNewsSummaryModal() {
     </div>`;
   }).join('') : `<div class="news-empty">No live stories to summarize yet.</div>`;
 
+  const hiringTilesHtml = hiringTotal > 0 ? `<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin:14px 0">
+    <div style="background:var(--bg3);border-radius:10px;padding:12px;border-left:3px solid #f87171">
+      <div style="font-size:22px;font-weight:800;color:var(--text)">${hiringTotal}</div>
+      <div style="font-size:10px;color:var(--muted);font-weight:600;margin-top:2px">OPEN ROLES</div>
+    </div>
+    ${hiringCatOrder.map(k => `<div style="background:var(--bg3);border-radius:10px;padding:12px;border-left:3px solid ${HIRING_CATEGORIES[k].color}">
+      <div style="font-size:22px;font-weight:800;color:var(--text)">${hiringCounts[k] || 0}</div>
+      <div style="font-size:10px;color:var(--muted);font-weight:600;margin-top:2px">${esc(HIRING_CATEGORIES[k].label.toUpperCase())}</div>
+    </div>`).join('')}
+  </div>` : '';
+
+  const hiringListHtml = hiringSorted.length ? hiringSorted.slice(0, 20).map(j => {
+    const cat = HIRING_CATEGORIES[j.roleCategory] || { label: 'Other', color: '#64748b' };
+    const link = j.url ? `<a href="${esc(j.url)}" target="_blank" rel="noopener noreferrer" style="font-size:10.5px;color:var(--accent2);text-decoration:none;font-weight:600">View posting ↗</a>` : '';
+    return `<div style="padding:10px 0;border-bottom:1px solid var(--border)">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px">
+        <span class="news-topic-tag" style="background:#f8717122;color:#f87171">${esc(j.company || '')}</span>
+        <span class="news-topic-tag" style="background:${cat.color}22;color:${cat.color}">${esc(cat.label)}</span>
+        <span style="font-size:10.5px;color:var(--muted);margin-left:auto">${esc(j.postedDate || j.foundDate || '')}</span>
+      </div>
+      <div style="font-size:12.5px;font-weight:700;color:var(--text);margin-bottom:2px">${esc(j.title || '')}</div>
+      <p style="font-size:11.5px;color:var(--muted);line-height:1.45;margin:0 0 4px">${esc(j.location || 'Location not listed')}${j.department ? ' · ' + esc(j.department) : ''}</p>
+      ${link}
+    </div>`;
+  }).join('') : `<div class="news-empty">No open competitor roles tracked right now.</div>`;
+
   if (body) body.innerHTML = `
     <p style="font-size:12.5px;color:var(--text2);line-height:1.6;margin:0">${overviewParts.join(' ')}</p>
     ${combinedSummaryHtml}
     ${tilesHtml}
     ${barsHtml}
     <h4 style="font-size:12px;color:var(--text);margin:16px 0 4px">Today's Stories</h4>
-    <div>${storiesHtml}</div>`;
+    <div>${storiesHtml}</div>
+    <h4 style="font-size:12px;color:var(--text);margin:20px 0 4px">Competitor Hiring — Open Roles</h4>
+    ${hiringTilesHtml}
+    <div>${hiringListHtml}</div>`;
 
   // Cache the computed summary so the "Download PDF" button can render an
   // identical, source-linked report instantly via print-to-PDF, with no
   // re-fetch and no async gap that could detach it from the click gesture.
-  _newsSummaryPrintData = { total, catOrder, counts, overviewParts, combinedItems, sorted };
+  _newsSummaryPrintData = { total, catOrder, counts, overviewParts, combinedItems, sorted, hiringTotal, hiringCatOrder, hiringCounts, hiringSorted };
 }
 
 // Truncates at a word boundary (never mid-word) and marks the cut with an
@@ -2375,7 +2425,7 @@ let _newsSummaryPrintData = null;
 // triggered synchronously from the button click (no popup to block).
 function downloadNewsSummaryPdf() {
   if (!_newsSummaryPrintData) return;
-  const { total, catOrder, counts, overviewParts, combinedItems, sorted } = _newsSummaryPrintData;
+  const { total, catOrder, counts, overviewParts, combinedItems, sorted, hiringTotal, hiringCatOrder, hiringCounts, hiringSorted } = _newsSummaryPrintData;
 
   let printArea = document.getElementById('news-summary-print-area');
   if (!printArea) {
@@ -2417,6 +2467,31 @@ function downloadNewsSummaryPdf() {
     </div>`;
   }).join('') : `<div style="font-size:11px;color:#888">No live stories to summarize.</div>`;
 
+  const hiringTilesPrint = hiringTotal > 0 ? `<div style="display:flex;flex-wrap:wrap;gap:10px;margin:14px 0">
+    <div style="border:1px solid #ddd;border-left:3px solid #f87171;border-radius:6px;padding:8px 12px;min-width:100px">
+      <div style="font-size:18px;font-weight:800;color:#111">${hiringTotal}</div>
+      <div style="font-size:9px;color:#666;font-weight:600">OPEN ROLES</div>
+    </div>
+    ${hiringCatOrder.map(k => `<div style="border:1px solid #ddd;border-left:3px solid ${HIRING_CATEGORIES[k].color};border-radius:6px;padding:8px 12px;min-width:100px">
+      <div style="font-size:18px;font-weight:800;color:#111">${hiringCounts[k] || 0}</div>
+      <div style="font-size:9px;color:#666;font-weight:600">${esc(HIRING_CATEGORIES[k].label.toUpperCase())}</div>
+    </div>`).join('')}
+  </div>` : '';
+
+  const hiringListPrint = hiringSorted.length ? hiringSorted.slice(0, 20).map(j => {
+    const cat = HIRING_CATEGORIES[j.roleCategory] || { label: 'Other', color: '#64748b' };
+    return `<div style="padding:10px 0;border-bottom:1px solid #e5e5e5;page-break-inside:avoid">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px">
+        <span style="font-size:9px;padding:2px 7px;border-radius:10px;background:#f8717122;color:#f87171;border:1px solid #f8717155">${esc(j.company || '')}</span>
+        <span style="font-size:9px;padding:2px 7px;border-radius:10px;background:${cat.color}22;color:${cat.color};border:1px solid ${cat.color}55">${esc(cat.label)}</span>
+        <span style="font-size:10px;color:#888;margin-left:auto">${esc(j.postedDate || j.foundDate || '')}</span>
+      </div>
+      <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:2px">${esc(j.title || '')}</div>
+      <p style="font-size:11px;color:#444;line-height:1.45;margin:0 0 3px">${esc(j.location || 'Location not listed')}${j.department ? ' · ' + esc(j.department) : ''}</p>
+      ${j.url ? `<a href="${esc(j.url)}" style="font-size:10px;color:#1d4ed8">View posting</a>` : ''}
+    </div>`;
+  }).join('') : `<div style="font-size:11px;color:#888">No open competitor roles tracked right now.</div>`;
+
   printArea.innerHTML = `
     <div style="font-family:Arial,Helvetica,sans-serif;color:#111;max-width:720px;margin:0 auto;padding:32px 24px">
       <h1 style="font-size:19px;margin:0 0 2px">Netherlands — News Executive Summary</h1>
@@ -2426,6 +2501,9 @@ function downloadNewsSummaryPdf() {
       ${tilesPrint}
       <h2 style="font-size:13px;margin:18px 0 6px;border-bottom:1px solid #ccc;padding-bottom:4px">Today's Stories</h2>
       ${storiesPrint}
+      <h2 style="font-size:13px;margin:22px 0 6px;border-bottom:1px solid #ccc;padding-bottom:4px">Competitor Hiring — Open Roles</h2>
+      ${hiringTilesPrint}
+      ${hiringListPrint}
     </div>`;
 
   document.body.classList.add('printing-news-summary');
