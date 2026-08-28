@@ -53,5 +53,6 @@
   "oxfamnovib_reason": "No OpenAlex institution record for the Dutch Oxfam Novib entity specifically (only Oxfam GB and other national affiliates are indexed).",
   "icj": null,
   "icj_reason": "No OpenAlex institution record — the ICJ is a judicial body, not a research-output producer indexed by OpenAlex.",
-  "iiss": "I217960723"
+  "iiss": "I217960723",
+  "zonmw": "I4210113026"
 }

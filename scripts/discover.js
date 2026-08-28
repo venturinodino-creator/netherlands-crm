@@ -23,7 +23,7 @@ const SUPA_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY; // required to w
 // unreachable, so a scan never silently fails from a transient network issue.
 async function fetchScrapeConfig() {
   try {
-    const res = await fetch(`${SUPA_URL}/rest/v1/scrape_config?select=types&id=eq.1`, {
+    const res = await fetch(`${SUPA_URL}/rest/v1/scrape_config?select=types&region=eq.netherlands`, {
       headers: { apikey: SUPA_KEY, Authorization: `Bearer ${SUPA_KEY}` }
     });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -41,7 +41,7 @@ async function fetchScrapeConfig() {
 async function fetchExistingPending() {
   if (!SUPA_SERVICE_KEY) return [];
   try {
-    const res = await fetch(`${SUPA_URL}/rest/v1/pending_contacts?select=first,last,email`, {
+    const res = await fetch(`${SUPA_URL}/rest/v1/pending_contacts?select=first,last,email&region=eq.netherlands`, {
       headers: { apikey: SUPA_SERVICE_KEY, Authorization: `Bearer ${SUPA_SERVICE_KEY}` }
     });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -300,6 +300,7 @@ async function main() {
       research: c.research, source_url: c.source,
       notes: c.constructed ? 'Email constructed — please verify' : '',
       status: 'pending',
+      region: 'netherlands',
     });
     localPendingOut.push({ ...c, id });
     existingEmails.add(el); existingNames.add(nl);
@@ -307,10 +308,12 @@ async function main() {
   if (skippedNoEmail) console.log(`Skipped ${skippedNoEmail} contact(s) with no email address`);
 
   let added = 0;
+  let insertFailed = false;
   try {
     added = await insertPendingContacts(toInsert);
   } catch (e) {
     console.error('Supabase insert error:', e.message);
+    insertFailed = true;
   }
 
   state.scraped  = scraped;
@@ -319,7 +322,16 @@ async function main() {
   state.lastAddedCount = added;
 
   saveJSON(STATE_FILE, state);
-  saveJSON(PENDING_FILE, localPendingOut); // local audit trail only
+  // Only persist the audit trail if the insert actually succeeded — writing
+  // it after a failed insert would make these candidates look "already
+  // found" on every future run (existingEmails/existingNames is seeded from
+  // this file), permanently blacklisting contacts that were never actually
+  // saved to Supabase.
+  if (!insertFailed) {
+    saveJSON(PENDING_FILE, localPendingOut); // local audit trail only
+  } else {
+    console.warn(`Skipping local audit-trail write — Supabase insert failed, so these ${toInsert.length} candidate(s) will be retried next run.`);
+  }
   console.log(`Done — added ${added} new contacts to Supabase pending_contacts (found ${toInsert.length} candidates)`);
 }
 

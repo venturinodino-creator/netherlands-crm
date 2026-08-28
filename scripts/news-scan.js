@@ -60,6 +60,7 @@ const NL_RESEARCH = [
   'PBL Netherlands Environmental Assessment Agency', 'CPB Netherlands Bureau for Economic Policy Analysis',
   'Rathenau Institute', 'SCP Netherlands Institute for Social Research',
   'Clingendael Institute', 'HiiL', 'Oxfam Novib', 'International Court of Justice', 'Asser Institute',
+  'ZonMw',
 ];
 const ALL_INSTITUTIONS = [...NL_UNIVERSITIES, ...NL_MEDICAL, ...NL_RESEARCH];
 

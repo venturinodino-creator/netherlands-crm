@@ -48,6 +48,7 @@ const INSTITUTIONS = [
   { id: 'aighd', name: 'Amsterdam Institute for Global Health and Development', city: 'Amsterdam' },
 
   { id: 'nwo', name: 'Dutch Research Council', city: 'The Hague' },
+  { id: 'zonmw', name: 'ZonMw', city: 'The Hague' },
   { id: 'tno', name: 'TNO', city: 'The Hague' },
   { id: 'knaw', name: 'Royal Netherlands Academy of Arts and Sciences', city: 'Amsterdam' },
   { id: 'hubrecht', name: 'Hubrecht Institute', city: 'Utrecht' },
