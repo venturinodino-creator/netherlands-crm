@@ -1,6 +1,6 @@
 {
-  "lastRun": "2026-08-28T17:49:54.933Z",
-  "totalOpenRoles": 0,
+  "lastRun": "2026-08-28T17:51:57.276Z",
+  "totalOpenRoles": 18,
   "perCompanyCounts": {
     "Digital Science": {
       "total": 0,
@@ -19,12 +19,12 @@
       "nl": 0
     },
     "OpenAI": {
-      "total": 753,
-      "nl": 0
+      "total": 754,
+      "nl": 6
     },
     "Anthropic": {
       "total": 566,
-      "nl": 0
+      "nl": 12
     },
     "Clarivate": {
       "total": 162,
