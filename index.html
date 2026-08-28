@@ -931,9 +931,6 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
     <div class="nav-item" data-view="ai-insights" onclick="nav('ai-insights')">
       <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5c0 1.7.7 2.6 1.5 3.5.6.6 1 1.2 1.2 2.1M12 2a5 5 0 0 1 5 5c0 1.7-.7 2.6-1.5 3.5-.6.6-1 1.2-1.2 2.1M9.7 12.6h4.6M9.9 16h4.2M10.5 19h3"/></svg></div> Competitor Insights
     </div>
-    <div class="nav-item" data-view="hiring" onclick="nav('hiring')">
-      <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div> Competitor Hiring
-    </div>
     <div class="nav-item" data-view="rfp" onclick="nav('rfp')">
       <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div> RFP Opps
     </div>
@@ -2247,7 +2244,6 @@ function render() {
     pipeline: renderPipeline,
     subscriptions: renderSubscriptionMatrix,
     'ai-insights': renderCompetitorInsights,
-    hiring: renderCompetitorHiring,
     openalex: renderOpenAlex,
     barcelona: renderBarcelonaDecl,
     '4gu': render4GU,
@@ -2349,7 +2345,7 @@ function renderDashboard() {
     {
       id: 'agent-hiring', name: 'Competitor Hiring Scan', icon: '💼',
       status: 'active', cadence: 'Daily · 07:00 UTC · GitHub Actions', source: 'Competitor career-page ATS APIs',
-      statusEl: 'agent-hiring-lastrun', view: 'hiring', workflow: 'competitor-jobs-scan.yml',
+      statusEl: 'agent-hiring-lastrun', view: 'news', workflow: 'competitor-jobs-scan.yml',
     },
     {
       id: 'agent-summary', name: 'Daily CRM Summary Report', icon: '📊',
@@ -3431,7 +3427,6 @@ function setNewsCategory(cat) {
   if (cat === 'hiring') {
     if (sub) sub.innerHTML = buildHiringSubfilterHTML();
     renderHiringSidebarLegend();
-    _hiringFeedTarget = 'news-feed';
     loadCompetitorJobs();
   } else {
     if (sub) sub.innerHTML = '';
@@ -3606,7 +3601,6 @@ function renderNews() {
 
   if (_newsActiveCategory === 'hiring') {
     renderHiringSidebarLegend();
-    _hiringFeedTarget = 'news-feed';
     loadCompetitorJobs();
   } else {
     renderNewsSidebarLegend();
@@ -5400,11 +5394,6 @@ const HIRING_CATEGORIES = {
 let _hiringAllJobs        = [];
 let _hiringActiveCompany  = 'all';
 let _hiringActiveCategory = 'all';
-// Which #-id the hiring feed/status render into: 'hiring-feed' for the
-// standalone Competitor Hiring page, 'news-feed' when shown as a sub-view
-// of the News page (the "Competitor Hiring" topic pill). Both pages share
-// the exact same render logic below — only the target container differs.
-let _hiringFeedTarget = 'hiring-feed';
 
 function buildHiringSubfilterHTML() {
   const catBtns = ['all', ...Object.keys(HIRING_CATEGORIES)].map(cat => {
@@ -5420,7 +5409,7 @@ function buildHiringSubfilterHTML() {
 }
 
 async function loadCompetitorJobs() {
-  const feedEl = document.getElementById(_hiringFeedTarget);
+  const feedEl = document.getElementById('news-feed');
   if (feedEl) feedEl.innerHTML = `<div class="news-loading"><div class="news-spinner"></div>Loading…</div>`;
   try {
     const res = await fetch('/netherlands-crm/data/competitor-jobs.json?t=' + Date.now());
@@ -5447,7 +5436,7 @@ function setHiringCategory(cat) {
 }
 
 function renderHiringFeed() {
-  const feed = document.getElementById(_hiringFeedTarget);
+  const feed = document.getElementById('news-feed');
   if (!feed) return;
 
   const byCompany = _hiringActiveCompany === 'all' ? _hiringAllJobs : _hiringAllJobs.filter(j => j.company === _hiringActiveCompany);
@@ -5483,9 +5472,7 @@ function renderHiringFeed() {
 }
 
 async function renderHiringScanStatus() {
-  const statusId = _hiringFeedTarget === 'news-feed' ? 'news-scan-status' : 'hiring-scan-status';
-  const untrackedId = _hiringFeedTarget === 'news-feed' ? 'news-hiring-untracked' : 'hiring-untracked';
-  const el = document.getElementById(statusId);
+  const el = document.getElementById('news-scan-status');
   if (!el) return;
   try {
     const res = await fetch('/netherlands-crm/data/competitor-jobs-scan-state.json?t=' + Date.now());
@@ -5495,7 +5482,7 @@ async function renderHiringScanStatus() {
       <p style="font-size:12px;color:var(--muted);margin-top:3px">${state.totalOpenRoles || 0} open role${state.totalOpenRoles === 1 ? '' : 's'} tracked</p>
       ${state.error ? `<p style="font-size:11px;color:#f87171;margin-top:6px">${esc(state.error)}</p>` : ''}`;
 
-    const untrackedEl = document.getElementById(untrackedId);
+    const untrackedEl = document.getElementById('news-hiring-untracked');
     if (untrackedEl && Array.isArray(state.untracked) && state.untracked.length) {
       untrackedEl.innerHTML = state.untracked.map(u =>
         `<div style="font-size:11px;line-height:1.5;padding:5px 0;border-top:1px solid var(--border)">
@@ -5504,50 +5491,6 @@ async function renderHiringScanStatus() {
         </div>`).join('');
     }
   } catch(e) { el.innerHTML = '<p style="font-size:12px;color:var(--muted)">Status unavailable.</p>'; }
-}
-
-function renderCompetitorHiring() {
-  document.getElementById('page-title').textContent = 'Competitor Hiring';
-  document.getElementById('page-sub').textContent = 'Open Netherlands-relevant roles at Elsevier RI competitors — sales/account hires signal a market push, product/engineering hires signal capability being built';
-  _hiringActiveCompany = 'all';
-  _hiringActiveCategory = 'all';
-  _hiringFeedTarget = 'hiring-feed';
-  document.getElementById('topbar-actions').innerHTML = `
-    <button class="btn btn-outline" data-admin-only id="run-btn-hiring" onclick="runAgentNow('competitor-jobs-scan.yml','run-btn-hiring','Competitor Hiring Scan')" style="font-size:12px" title="Pulls the latest open roles from tracked competitors' career pages right now via GitHub Actions">
-      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:5px"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-      Run hiring scan now
-    </button>`;
-
-  const legend = Object.entries(HIRING_CATEGORIES).map(([, c]) =>
-    `<div style="display:flex;align-items:center;gap:7px;font-size:12px;color:var(--text);padding:4px 0">
-      <span style="width:8px;height:8px;border-radius:50%;background:${c.color};flex-shrink:0"></span>${c.label}
-    </div>`).join('');
-
-  document.getElementById('content').innerHTML = `
-    ${buildHiringSubfilterHTML()}
-    <div class="news-layout">
-      <div>
-        <div id="hiring-feed" class="news-feed">
-          <div class="news-loading"><div class="news-spinner"></div>Loading…</div>
-        </div>
-      </div>
-      <div class="news-sidebar">
-        <div class="news-source-filter">
-          <h4>Role Type</h4>
-          ${legend}
-        </div>
-        <div class="news-archive-card">
-          <h4>Scan Status</h4>
-          <div id="hiring-scan-status"><p style="font-size:12px;color:var(--muted)">Loading…</p></div>
-        </div>
-        <div class="news-archive-card">
-          <h4 title="These companies have no public careers-page API to pull from — not LinkedIn-scrapable either, see the page header note">Not Trackable</h4>
-          <div id="hiring-untracked"><p style="font-size:12px;color:var(--muted)">Loading…</p></div>
-        </div>
-      </div>
-    </div>`;
-
-  loadCompetitorJobs();
 }
 
 const COMPETITOR_PRODUCTS = {
