@@ -331,6 +331,9 @@ a.ext-link:hover{color:var(--text)}
 .news-filter-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
 .news-filter-btn{font-size:11px;padding:4px 11px;border-radius:14px;border:1px solid var(--border2);background:var(--bg3);color:var(--text);cursor:pointer;transition:all .15s}
 .news-filter-btn.active{background:var(--accent);border-color:var(--accent);color:#060a12}
+.news-summary-btn{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 13px 4px 10px;border-radius:14px;border:1px solid var(--accent2);background:var(--accent2);color:#fff;cursor:pointer;transition:all .15s;box-shadow:0 0 0 0 transparent}
+.news-summary-btn:hover{filter:brightness(1.08)}
+.news-summary-btn:disabled{opacity:.6;cursor:default}
 .news-empty{text-align:center;padding:40px 20px;color:var(--muted);font-size:13px}
 .news-loading{display:flex;align-items:center;gap:10px;padding:20px;color:var(--muted);font-size:13px}
 .news-spinner{width:18px;height:18px;border:2px solid var(--border2);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
@@ -2052,6 +2055,8 @@ function saveGhToken() {
     _pendingAgentRun = null;
     if (pending.resume === 'discovery' && typeof window.runContactDiscovery === 'function') {
       window.runContactDiscovery();
+    } else if (pending.resume === 'newsSummary') {
+      runNewsSummaryNow();
     } else {
       runAgentNow(pending.workflow, pending.btnId, pending.name);
     }
@@ -2216,6 +2221,109 @@ async function runSummaryReportNow(btnId) {
     toast('Still running on GitHub Actions — check back shortly', 'warn');
   }
   if (document.getElementById('page-title')?.textContent === 'Summary') renderSummaryReports(freshData);
+}
+
+// Same polling pattern as runSummaryReportNow(), but for the News page's
+// "Summary" button — once a fresh manifest entry lands, it opens the PDF
+// directly instead of re-rendering a page (there's no report-archive view
+// for this one, just "generate → open").
+async function fetchNewsSummaryManifestFresh(token) {
+  const res = await fetch(`https://api.github.com/repos/${GH_AGENTS_REPO}/contents/data/news-summary-reports.json?ref=main`, {
+    headers: {
+      'Authorization': 'Bearer ' + token,
+      'Accept': 'application/vnd.github.raw+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+    },
+  });
+  if (!res.ok) throw new Error('HTTP ' + res.status);
+  const data = JSON.parse(await res.text());
+  return Array.isArray(data) ? data : [];
+}
+
+async function runNewsSummaryNow() {
+  const btnId = 'news-summary-btn';
+  const token = getGhToken();
+  if (!token) {
+    _pendingAgentRun = { resume: 'newsSummary' };
+    manageGhToken();
+    return;
+  }
+  const btn = document.getElementById(btnId);
+  const original = btn ? btn.innerHTML : '';
+  if (btn) { btn.disabled = true; btn.innerHTML = 'Starting…'; }
+
+  let useContentsApi = true;
+  let beforeGeneratedAt = null;
+  try {
+    const manifest0 = await fetchNewsSummaryManifestFresh(token);
+    if (manifest0[0]) beforeGeneratedAt = manifest0[0].generatedAt;
+  } catch (e) {
+    useContentsApi = false;
+    try {
+      const res0 = await fetch('/netherlands-crm/data/news-summary-reports.json?t=' + Date.now());
+      const data0 = res0.ok ? await res0.json() : [];
+      if (Array.isArray(data0) && data0[0]) beforeGeneratedAt = data0[0].generatedAt;
+    } catch (e2) { /* fine — poll will just wait for any entry to appear */ }
+  }
+
+  try {
+    const res = await fetch(`https://api.github.com/repos/${GH_AGENTS_REPO}/actions/workflows/news-summary-report.yml/dispatches`, {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Accept': 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ ref: 'main' }),
+    });
+    if (res.status !== 204) {
+      if (res.status === 401 || res.status === 403) {
+        toast('GitHub rejected the token — check it has "Actions: write" access to this repo', 'err');
+        _pendingAgentRun = { resume: 'newsSummary' };
+        manageGhToken();
+      } else {
+        toast(`Couldn't trigger News Summary (HTTP ${res.status})`, 'err');
+      }
+      if (btn) { btn.innerHTML = original; btn.disabled = false; }
+      return;
+    }
+  } catch (e) {
+    toast('Network error triggering News Summary', 'err');
+    if (btn) { btn.innerHTML = original; btn.disabled = false; }
+    return;
+  }
+
+  toast('Generating executive summary…', 'ok');
+
+  const pollIntervalMs = useContentsApi ? 3000 : 8000;
+  const deadline = Date.now() + (useContentsApi ? 40000 : 100000);
+  let found = false;
+  let latestEntry = null;
+  while (Date.now() < deadline) {
+    const secsLeft = Math.max(0, Math.round((deadline - Date.now()) / 1000));
+    if (btn) { btn.innerHTML = `Generating… (${secsLeft}s)`; }
+    await new Promise(r => setTimeout(r, pollIntervalMs));
+    try {
+      let data;
+      if (useContentsApi) {
+        data = await fetchNewsSummaryManifestFresh(token);
+      } else {
+        const res = await fetch('/netherlands-crm/data/news-summary-reports.json?t=' + Date.now());
+        data = res.ok ? await res.json() : [];
+      }
+      const latest = Array.isArray(data) && data[0] ? data[0] : null;
+      if (latest && latest.generatedAt !== beforeGeneratedAt) { found = true; latestEntry = latest; break; }
+    } catch (e) { /* keep polling */ }
+  }
+
+  if (btn) { btn.innerHTML = original; btn.disabled = false; }
+  if (found && latestEntry) {
+    toast('Executive summary ready', 'ok');
+    window.open('/netherlands-crm/data/' + latestEntry.file, '_blank');
+  } else {
+    toast('Still generating on GitHub Actions — check back shortly', 'warn');
+  }
 }
 
 // Close modal on overlay click
@@ -3585,10 +3693,15 @@ function renderNews() {
     </button>`;
 
   const allCats = ['all', ...Object.keys(NEWS_CATEGORIES)];
-  const catBtns = allCats.map(c => {
+  const summaryBtn = `<button id="news-summary-btn" class="news-summary-btn" onclick="runNewsSummaryNow()" title="Generate a PDF executive summary of today's news">
+    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+    Summary
+  </button>`;
+  const catBtns = allCats.map((c, i) => {
     const safeId = 'nf-' + c.replace(/[^a-z0-9]/gi, '_');
     const label = c === 'all' ? 'All Topics' : NEWS_CATEGORIES[c].label;
-    return `<button id="${safeId}" class="news-filter-btn${c === _newsActiveCategory ? ' active' : ''}" onclick="setNewsCategory('${c}')">${label}</button>`;
+    const btn = `<button id="${safeId}" class="news-filter-btn${c === _newsActiveCategory ? ' active' : ''}" onclick="setNewsCategory('${c}')">${label}</button>`;
+    return i === 0 ? btn + summaryBtn : btn;
   }).join('') + `<button id="nf-hiring" class="news-filter-btn${_newsActiveCategory === 'hiring' ? ' active' : ''}" onclick="setNewsCategory('hiring')" title="Open roles at Elsevier RI competitors">Competitor Hiring</button>`;
 
   document.getElementById('content').innerHTML = `
