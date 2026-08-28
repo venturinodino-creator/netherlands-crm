@@ -47,12 +47,15 @@ const DATA_FILE = 'data/competitor-jobs.json';
 const STATE_FILE = 'data/competitor-jobs-scan-state.json';
 const REQUEST_TIMEOUT_MS = 20000;
 
-// Netherlands-relevant location match — city names + country name/abbrev,
-// plus EMEA / "Europe remote" postings. A remote EMEA-scoped SAM/CSM/
-// Channel role plausibly covers Dutch accounts even without a Dutch city
-// in the listing, so it's included on purpose (broadened per explicit
-// request after strict NL-only matching returned zero results).
-const NL_LOCATION_RE = /netherlands|nederland|amsterdam|utrecht|rotterdam|the hague|den haag|eindhoven|groningen|delft|leiden|maastricht|\bnl\b|\bemea\b|remote[\s,-]*europe|europe[\s,-]*remote/i;
+// Netherlands-relevant location match — Dutch city names + country
+// name/abbrev, plus EMEA/Europe-remote and the specific European hub
+// cities these companies actually staff EMEA sales/CSM/channel roles
+// out of (London, Dublin, Berlin, Paris, etc). A SAM/CSM/Channel role
+// based in one of those hubs, or explicitly remote-EMEA, plausibly
+// covers Dutch accounts even without a Dutch city in the listing — ATS
+// location fields are almost never literally "EMEA", they name a city,
+// so the city list matters more than the EMEA/Europe tokens alone.
+const NL_LOCATION_RE = /netherlands|nederland|amsterdam|utrecht|rotterdam|the hague|den haag|eindhoven|groningen|delft|leiden|maastricht|\bnl\b|\bemea\b|remote[\s,-]*europe|europe[\s,-]*remote|london|dublin|berlin|munich|frankfurt|paris|madrid|barcelona|lisbon|stockholm|copenhagen|zurich|milan|brussels|dubai/i;
 
 // Only three role families matter to a sales agent tracking competitor
 // go-to-market headcount: Strategic/Senior Account Management, Customer
