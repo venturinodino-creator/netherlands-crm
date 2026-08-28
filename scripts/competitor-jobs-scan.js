@@ -1,11 +1,21 @@
 /**
- * competitor-jobs-scan.js — Daily scan of open roles at Elsevier's named
- * Research Intelligence / scholarly-publishing competitors, scoped to a
- * Netherlands account manager's specific interest: Strategic/Senior
- * Account Management (SAM), Customer Success (CSM), and Channel/
- * Partnerships hiring tied to each competitor's research-solutions line
- * (not engineering, product, editorial, ops, or unrelated business lines
- * like a diversified competitor's IP/patent or clinical-regulatory arm).
+ * competitor-jobs-scan.js — Daily scan of open roles at companies that sell
+ * a product directly competing with one of Elsevier's named RI solutions
+ * (Scopus, SciVal, Pure, Insight Graph, 4GU reports, Digital Commons),
+ * scoped to a Netherlands account manager's specific interest:
+ * Strategic/Senior Account Management (SAM), Customer Success (CSM), and
+ * Channel/Partnerships hiring tied to that competing product line (not
+ * engineering, product, editorial, ops, or an unrelated business line like
+ * a diversified competitor's IP/patent or clinical-regulatory arm).
+ *
+ * Only 3 of the companies tracked elsewhere in this app (e.g. in
+ * news-scan.js's Competitor Announcements) actually qualify — see SOURCES
+ * below for the product-competitor mapping (Clarivate/Web of Science vs
+ * Scopus, etc). Companies that are broadly "an Elsevier competitor" but
+ * don't sell a Scopus/SciVal/Pure/Digital Commons-type product (OpenAI,
+ * Anthropic, Elicit, SciSpace, Springer Nature, Wiley) are deliberately
+ * excluded here even though they have a working ATS — see
+ * NOT_PRODUCT_COMPETITOR below.
  *
  * Deliberately NOT LinkedIn: LinkedIn requires login for job search and
  * actively blocks automated access, so there is no reliable or
@@ -206,17 +216,22 @@ async function fetchWorkday(company, host, tenant, site) {
   return jobs;
 }
 
-// Companies with a verified, queryable public ATS API.
+// Only companies that actually sell a product directly competing with one
+// of Elsevier's named RI solutions (Scopus, SciVal, Pure, Insight Graph,
+// 4GU reports, Digital Commons) are scanned for hiring roles — a company
+// being a broad "Elsevier competitor" (tracked elsewhere, e.g. in
+// news-scan.js's Competitor Announcements) is not enough on its own:
+//   - Clarivate: Web of Science (Scopus), InCites (SciVal), Converis (Pure)
+//   - Digital Science: Dimensions (Scopus/SciVal), Figshare (Digital
+//     Commons), Symplectic Elements (Pure)
+//   - Allen Institute for AI: Semantic Scholar (Scopus's discovery/
+//     citation-graph function)
+// Companies deliberately excluded even though they have a working ATS —
+// see NOT_PRODUCT_COMPETITOR below for why each one doesn't qualify.
 const SOURCES = [
   { company: 'Digital Science', fetch: () => fetchPinpoint('Digital Science', 'digitalscience') },
-  { company: 'Elicit', fetch: () => fetchAshby('Elicit', 'elicit') },
-  { company: 'SciSpace', fetch: () => fetchSmartRecruiters('SciSpace', 'Typesetio') },
   { company: 'Allen Institute for AI', fetch: () => fetchGreenhouse('Allen Institute for AI', 'thealleninstitute') },
-  { company: 'OpenAI', fetch: () => fetchAshby('OpenAI', 'openai') },
-  { company: 'Anthropic', fetch: () => fetchGreenhouse('Anthropic', 'anthropic') },
   { company: 'Clarivate', fetch: () => fetchWorkday('Clarivate', 'wd3', 'clarivate', 'Clarivate_Careers') },
-  { company: 'Springer Nature', fetch: () => fetchWorkday('Springer Nature', 'wd3', 'springernature', 'SpringerNatureCareers') },
-  { company: 'Wiley', fetch: () => fetchWorkday('Wiley', 'wd1', 'wiley', 'wiley_careers') },
 ];
 
 // Companies with no usable public API — surfaced in scan state so the UI
@@ -228,6 +243,19 @@ const UNTRACKED_COMPANIES = [
   { company: 'IGI Global Scientific Publishing', reason: 'Static list, applications by email', url: 'https://www.igi-global.com/about/staff/job-opportunities/' },
   { company: 'IEEE', reason: 'Oracle Taleo, session-based, no public JSON API', url: 'https://ieee.taleo.net/careersection/2/jobsearch.ftl' },
   { company: 'Google', reason: 'Proprietary/internal API, not public', url: 'https://careers.google.com/' },
+];
+
+// Companies that DO have a usable ATS but are excluded on purpose: nothing
+// they sell directly competes with Scopus/SciVal/Pure/Digital Commons, so
+// their SAM/CSM/Channel hiring isn't a signal for this feature even though
+// they're tracked elsewhere as broader Elsevier competitors.
+const NOT_PRODUCT_COMPETITOR = [
+  { company: 'OpenAI', reason: "General-purpose AI platform (Claude/GPT-style API) — no discrete product competing with Scopus/SciVal/Pure/Digital Commons", url: 'https://openai.com/careers/' },
+  { company: 'Anthropic', reason: "General-purpose AI platform — no discrete product competing with Scopus/SciVal/Pure/Digital Commons", url: 'https://anthropic.com/careers' },
+  { company: 'Elicit', reason: 'AI research-assistant tool, not a Scopus/SciVal/Pure/Digital Commons-type institutional platform', url: 'https://elicit.com/careers' },
+  { company: 'SciSpace', reason: 'AI research-assistant tool, not a Scopus/SciVal/Pure/Digital Commons-type institutional platform', url: 'https://typeset.io/careers' },
+  { company: 'Springer Nature', reason: 'Publisher — no discrete analytics/CRIS/repository product competing with Scopus/SciVal/Pure/Digital Commons', url: 'https://springernature.wd3.myworkdayjobs.com/SpringerNatureCareers' },
+  { company: 'Wiley', reason: 'Publisher — no discrete analytics/CRIS/repository product competing with Scopus/SciVal/Pure/Digital Commons', url: 'https://wiley.wd1.myworkdayjobs.com/wiley_careers' },
 ];
 
 async function main() {
@@ -278,7 +306,7 @@ async function main() {
     totalOpenRoles: allJobs.length,
     perCompanyCounts,
     errors,
-    untracked: UNTRACKED_COMPANIES,
+    untracked: [...UNTRACKED_COMPANIES, ...NOT_PRODUCT_COMPETITOR],
     source: 'Company career-page ATS APIs (Greenhouse/Ashby/SmartRecruiters/Pinpoint/Workday) — not LinkedIn, see file header',
   });
   console.log(`[competitor-jobs] Done — ${allJobs.length} Netherlands SAM/CSM/Channel role(s) across ${SOURCES.length - Object.keys(errors).length}/${SOURCES.length} tracked companies.`);
@@ -287,7 +315,7 @@ async function main() {
 main().catch(e => {
   console.error('[competitor-jobs] Failed:', e.message);
   try {
-    saveJSON(STATE_FILE, { lastRun: new Date().toISOString(), totalOpenRoles: 0, error: e.message, untracked: UNTRACKED_COMPANIES });
+    saveJSON(STATE_FILE, { lastRun: new Date().toISOString(), totalOpenRoles: 0, error: e.message, untracked: [...UNTRACKED_COMPANIES, ...NOT_PRODUCT_COMPETITOR] });
   } catch { /* ignore */ }
   process.exit(1);
 });
