@@ -1,12 +1,76 @@
 {
-  "lastRun": null,
-  "totalOpenRoles": 0,
+  "lastRun": "2026-08-28T17:23:36.663Z",
+  "totalOpenRoles": 3,
+  "perCompanyCounts": {
+    "Digital Science": {
+      "total": 0,
+      "nl": 0
+    },
+    "Elicit": {
+      "total": 10,
+      "nl": 0
+    },
+    "SciSpace": {
+      "total": 3,
+      "nl": 0
+    },
+    "Allen Institute for AI": {
+      "total": 22,
+      "nl": 0
+    },
+    "OpenAI": {
+      "total": 753,
+      "nl": 0
+    },
+    "Anthropic": {
+      "total": 566,
+      "nl": 0
+    },
+    "Clarivate": {
+      "total": 162,
+      "nl": 0
+    },
+    "Springer Nature": {
+      "total": 67,
+      "nl": 3
+    },
+    "Wiley": {
+      "total": 73,
+      "nl": 0
+    }
+  },
+  "errors": {},
   "untracked": [
-    { "company": "scite", "reason": "Not currently hiring (applications by email)", "url": "https://scite.ai/jobs" },
-    { "company": "Consensus", "reason": "Roles posted only to LinkedIn, no ATS board found", "url": "https://consensus.app/home/careers/" },
-    { "company": "Paperguide", "reason": "No formal careers page/ATS (small team, hires ad hoc via LinkedIn)", "url": "https://linkedin.com/company/paperguideai" },
-    { "company": "IGI Global Scientific Publishing", "reason": "Static list, applications by email", "url": "https://www.igi-global.com/about/staff/job-opportunities/" },
-    { "company": "IEEE", "reason": "Oracle Taleo, session-based, no public JSON API", "url": "https://ieee.taleo.net/careersection/2/jobsearch.ftl" },
-    { "company": "Google", "reason": "Proprietary/internal API, not public", "url": "https://careers.google.com/" }
-  ]
+    {
+      "company": "scite",
+      "reason": "Not currently hiring (applications by email)",
+      "url": "https://scite.ai/jobs"
+    },
+    {
+      "company": "Consensus",
+      "reason": "Roles posted only to LinkedIn, no ATS board found",
+      "url": "https://consensus.app/home/careers/"
+    },
+    {
+      "company": "Paperguide",
+      "reason": "No formal careers page/ATS (small team, hires ad hoc via LinkedIn)",
+      "url": "https://linkedin.com/company/paperguideai"
+    },
+    {
+      "company": "IGI Global Scientific Publishing",
+      "reason": "Static list, applications by email",
+      "url": "https://www.igi-global.com/about/staff/job-opportunities/"
+    },
+    {
+      "company": "IEEE",
+      "reason": "Oracle Taleo, session-based, no public JSON API",
+      "url": "https://ieee.taleo.net/careersection/2/jobsearch.ftl"
+    },
+    {
+      "company": "Google",
+      "reason": "Proprietary/internal API, not public",
+      "url": "https://careers.google.com/"
+    }
+  ],
+  "source": "Company career-page ATS APIs (Greenhouse/Ashby/SmartRecruiters/Pinpoint/Workday) — not LinkedIn, see file header"
 }
