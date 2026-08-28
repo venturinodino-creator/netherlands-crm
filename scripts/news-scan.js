@@ -48,6 +48,14 @@ const RELEVANCE_MODEL = 'claude-haiku-4-5';
 // raised to match.
 const MAX_ANALYSIS_BATCH = 20;
 const ANALYSIS_MAX_TOKENS = 8192;
+// Both filterRelevance and backfillAnalysis used to send their whole batch
+// (up to MAX_ANALYSIS_BATCH) in a single call. In production, a batch of 17
+// rich-schema items came back with only ~6-7 objects — the model just didn't
+// finish all of them, and the code accepted the short response as complete,
+// leaving the rest permanently un-analyzed. Chunking into small groups keeps
+// each single call's expected output well within budget so it reliably
+// returns one object per item.
+const CHUNK_SIZE = 8;
 
 const ELSEVIER_CONTEXT = `Elsevier is a scholarly research information and analytics company: ScienceDirect (full-text journal platform), Scopus (abstract/citation database), and LeapSpace (Elsevier's new AI-assisted research workspace — literature search, author search, funding discovery, writing coach, claim-checking, deep research reports, reading assistant, paper comparison). Its business depends on universities, medical centres, and research institutes subscribing to and using these tools, and on staying ahead of competitors like Clarivate/Web of Science, Digital Science/Dimensions, Springer Nature, Wiley, OpenAlex, Google Scholar, Semantic Scholar, and AI research-assistant tools (Elicit, scite, Consensus, SciSpace).`;
 
@@ -176,12 +184,23 @@ function stripCdata(s) {
   const m = String(s || '').match(/<!\[CDATA\[([\s\S]*?)\]\]>/);
   return decodeEntities(m ? m[1] : s);
 }
-// Truncates at a word boundary (never mid-word) and marks the cut with an
-// ellipsis, instead of a raw slice() that can chop off mid-sentence.
+// Truncates cleanly when the model overruns its length budget. Tries, in
+// order: (1) cut at the end of the last complete sentence, so the result
+// reads as a finished thought with no ellipsis; (2) if no sentence boundary
+// falls in a reasonable range, fall back to a word boundary (never mid-word)
+// with a trailing ellipsis. A raw slice() would chop off mid-sentence or
+// even mid-word, which is exactly what this exists to avoid.
 function truncateClean(str, maxLen) {
   const s = String(str || '').trim();
   if (s.length <= maxLen) return s;
   const cut = s.slice(0, maxLen);
+  const sentenceEnd = Math.max(cut.lastIndexOf('. '), cut.lastIndexOf('! '), cut.lastIndexOf('? '));
+  if (sentenceEnd > maxLen * 0.4) {
+    return cut.slice(0, sentenceEnd + 1).trim();
+  }
+  if (/[.!?]$/.test(cut.trim()) && cut.trim().length > maxLen * 0.4) {
+    return cut.trim();
+  }
   const lastSpace = cut.lastIndexOf(' ');
   return (lastSpace > maxLen * 0.6 ? cut.slice(0, lastSpace) : cut).trim() + '…';
 }
@@ -213,6 +232,50 @@ function applyAnalysis(article, v) {
     actionItems: sanitizeStringArray(v.actionItems, 3, 200),
     sourceType: sanitizeSourceType(v.sourceType),
   };
+}
+
+// De-duplicates by article id, keeping the richer copy when the same id
+// appears more than once (a stale bare entry from a failed/fallback run
+// alongside a later successfully-analyzed one) rather than just the first
+// or last occurrence.
+function dedupeArticles(list) {
+  const byId = new Map();
+  for (const a of list) {
+    const existing = byId.get(a.id);
+    if (!existing) { byId.set(a.id, a); continue; }
+    const existingHasAnalysis = !!(existing.bottomLine && existing.keyFindings && existing.keyFindings.length);
+    const currentHasAnalysis = !!(a.bottomLine && a.keyFindings && a.keyFindings.length);
+    if (currentHasAnalysis && !existingHasAnalysis) byId.set(a.id, a);
+  }
+  return Array.from(byId.values());
+}
+
+// Shared low-level call to the Messages API. Returns the concatenated text
+// content, or null (with a console.warn tagged by `context`) on any failure
+// — network error, non-2xx, or timeout — so callers can fall back safely.
+async function callHaiku(prompt, context, maxTokens = ANALYSIS_MAX_TOKENS) {
+  let res;
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 90000);
+  try {
+    res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'x-api-key': ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
+      body: JSON.stringify({ model: RELEVANCE_MODEL, max_tokens: maxTokens, messages: [{ role: 'user', content: prompt }] }),
+      signal: ctrl.signal,
+    });
+  } catch (e) {
+    console.warn(`[news-scan] ${context} request failed (${e.message}).`);
+    return null;
+  } finally {
+    clearTimeout(timer);
+  }
+  if (!res.ok) {
+    console.warn(`[news-scan] ${context} API call failed (HTTP ${res.status}).`);
+    return null;
+  }
+  const data = await res.json();
+  return (data.content || []).filter(b => b.type === 'text').map(b => b.text).join('\n');
 }
 
 // Minimal RSS 2.0 <item> parser via regex — Google News RSS is well-formed
@@ -270,20 +333,8 @@ function isOlderThanDays(dateStr, days) {
   return (Date.now() - d.getTime()) / 86400000 > days;
 }
 
-async function filterRelevance(candidates) {
-  if (!candidates.length) return candidates;
-  if (!ANTHROPIC_API_KEY) {
-    console.log('[news-scan] ANTHROPIC_API_KEY not set — skipping Elsevier-relevance filter, keeping all keyword matches.');
-    return candidates;
-  }
-
-  const batch = candidates.slice(0, MAX_ANALYSIS_BATCH);
-  const overflow = candidates.length - batch.length;
-  if (overflow > 0) {
-    console.log(`[news-scan] ${overflow} candidate(s) beyond the relevance-filter batch cap deferred to a future run.`);
-  }
-
-  const prompt = `${ELSEVIER_CONTEXT}
+function relevancePrompt(batch) {
+  return `${ELSEVIER_CONTEXT}
 
 You are filtering this news feed for an Elsevier sales agent selling ScienceDirect/Scopus/LeapSpace into Netherlands institutions. For each numbered article below, decide whether it's genuinely relevant using the category-specific bar for its bracketed category:
 
@@ -296,38 +347,23 @@ Mark irrelevant anything that's just general research findings or medical/scient
 
 ${batch.map((c, i) => `${i + 1}. [${c.categoryLabel}] "${c.title}" — ${c.description || '(no description)'}`).join('\n')}
 
-Respond with ONLY a JSON array, one object per article in the same order, each exactly: {"relevant": true|false, ${ANALYSIS_SCHEMA_PROMPT} — every field except "relevant" only if relevant, omit them (or use empty values) if not relevant}`;
+Respond with ONLY a JSON array of exactly ${batch.length} objects, one per article in the same order, each exactly: {"relevant": true|false, ${ANALYSIS_SCHEMA_PROMPT} — every field except "relevant" only if relevant, omit them (or use empty values) if not relevant}`;
+}
 
-  let res;
-  const ctrl = new AbortController();
-  const timer = setTimeout(() => ctrl.abort(), 90000);
-  try {
-    res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'x-api-key': ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
-      body: JSON.stringify({ model: RELEVANCE_MODEL, max_tokens: ANALYSIS_MAX_TOKENS, messages: [{ role: 'user', content: prompt }] }),
-      signal: ctrl.signal,
-    });
-  } catch (e) {
-    console.warn(`[news-scan] Relevance filter request failed (${e.message}) — keeping all keyword matches unfiltered.`);
-    return candidates;
-  } finally {
-    clearTimeout(timer);
-  }
-  if (!res.ok) {
-    console.warn(`[news-scan] Relevance filter API call failed (HTTP ${res.status}) — keeping all keyword matches unfiltered.`);
-    return candidates;
-  }
-
-  const data = await res.json();
-  const text = (data.content || []).filter(b => b.type === 'text').map(b => b.text).join('\n');
+async function filterRelevanceChunk(batch) {
+  const text = await callHaiku(relevancePrompt(batch), 'Relevance filter');
+  if (text === null) return batch; // network/API failure — keep unfiltered rather than lose candidates
   let verdicts;
   try {
     const jsonMatch = text.match(/\[[\s\S]*\]/);
     verdicts = JSON.parse(jsonMatch ? jsonMatch[0] : text);
   } catch (e) {
-    console.warn('[news-scan] Could not parse relevance filter response — keeping all keyword matches unfiltered.');
-    return candidates;
+    console.warn('[news-scan] Could not parse relevance filter response for a chunk — keeping that chunk unfiltered.');
+    return batch;
+  }
+  if (!Array.isArray(verdicts) || verdicts.length < batch.length) {
+    console.warn(`[news-scan] Relevance filter returned ${Array.isArray(verdicts) ? verdicts.length : 0}/${batch.length} verdicts for a chunk — keeping that chunk unfiltered rather than dropping the unanswered ones.`);
+    return batch;
   }
 
   const kept = [];
@@ -342,58 +378,75 @@ Respond with ONLY a JSON array, one object per article in the same order, each e
   return kept;
 }
 
-// Articles saved before this structured-analysis schema existed (or an even
-// older plain-summary one) are missing bottomLine/keyFindings/etc. Re-run
-// just those through a dedicated analysis-only call — unlike filterRelevance,
-// this never drops an article: they already cleared the relevance bar once
-// and are already live/visible, so a second pass only fills in the missing
-// structure.
-async function backfillAnalysis(items) {
-  if (!items.length || !ANTHROPIC_API_KEY) return new Map();
+async function filterRelevance(candidates) {
+  if (!candidates.length) return candidates;
+  if (!ANTHROPIC_API_KEY) {
+    console.log('[news-scan] ANTHROPIC_API_KEY not set — skipping Elsevier-relevance filter, keeping all keyword matches.');
+    return candidates;
+  }
 
-  const batch = items.slice(0, MAX_ANALYSIS_BATCH);
+  const batch = candidates.slice(0, MAX_ANALYSIS_BATCH);
+  const overflow = candidates.length - batch.length;
+  if (overflow > 0) {
+    console.log(`[news-scan] ${overflow} candidate(s) beyond the relevance-filter batch cap deferred to a future run.`);
+  }
+
+  const kept = [];
+  for (let i = 0; i < batch.length; i += CHUNK_SIZE) {
+    const chunk = batch.slice(i, i + CHUNK_SIZE);
+    kept.push(...await filterRelevanceChunk(chunk));
+    if (i + CHUNK_SIZE < batch.length) await sleep(REQUEST_DELAY_MS);
+  }
+  return kept;
+}
+
+async function backfillAnalysisChunk(batch) {
   const prompt = `${ELSEVIER_CONTEXT}
 
 For each numbered article below, produce a structured analysis for an Elsevier sales agent selling ScienceDirect/Scopus/LeapSpace into Netherlands institutions.
 
 ${batch.map((c, i) => `${i + 1}. [${c.categoryLabel}] "${c.title}" — ${c.description || '(no description)'}`).join('\n')}
 
-Respond with ONLY a JSON array, one object per article in the same order, each exactly: {${ANALYSIS_SCHEMA_PROMPT}}`;
+Respond with ONLY a JSON array of exactly ${batch.length} objects, one per article in the same order, each exactly: {${ANALYSIS_SCHEMA_PROMPT}}`;
 
-  let res;
-  const ctrl = new AbortController();
-  const timer = setTimeout(() => ctrl.abort(), 90000);
-  try {
-    res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'x-api-key': ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
-      body: JSON.stringify({ model: RELEVANCE_MODEL, max_tokens: ANALYSIS_MAX_TOKENS, messages: [{ role: 'user', content: prompt }] }),
-      signal: ctrl.signal,
-    });
-  } catch (e) {
-    console.warn(`[news-scan] Backfill analysis request failed (${e.message}) — skipping.`);
-    return new Map();
-  } finally {
-    clearTimeout(timer);
-  }
-  if (!res.ok) {
-    console.warn(`[news-scan] Backfill analysis API call failed (HTTP ${res.status}) — skipping.`);
-    return new Map();
-  }
-
-  const data = await res.json();
-  const text = (data.content || []).filter(b => b.type === 'text').map(b => b.text).join('\n');
+  const text = await callHaiku(prompt, 'Backfill analysis');
+  if (text === null) return new Map();
   let analyses;
   try {
     const jsonMatch = text.match(/\[[\s\S]*\]/);
     analyses = JSON.parse(jsonMatch ? jsonMatch[0] : text);
   } catch (e) {
-    console.warn('[news-scan] Could not parse backfill analysis response — skipping.');
+    console.warn('[news-scan] Could not parse backfill analysis response for a chunk — skipping that chunk.');
     return new Map();
+  }
+  if (!Array.isArray(analyses) || analyses.length < batch.length) {
+    console.warn(`[news-scan] Backfill analysis returned ${Array.isArray(analyses) ? analyses.length : 0}/${batch.length} for a chunk — the rest will retry on a future run.`);
   }
 
   const map = new Map();
-  batch.forEach((c, i) => { if (analyses[i]) map.set(c.id, analyses[i]); });
+  batch.forEach((c, i) => { if (analyses && analyses[i]) map.set(c.id, analyses[i]); });
+  return map;
+}
+
+// Articles saved before this structured-analysis schema existed (or an even
+// older plain-summary one) are missing bottomLine/keyFindings/etc. Re-run
+// just those through a dedicated analysis-only call — unlike filterRelevance,
+// this never drops an article: they already cleared the relevance bar once
+// and are already live/visible, so a second pass only fills in the missing
+// structure. Processed in small chunks (see CHUNK_SIZE) since a single big
+// batch was observed in production to come back with fewer objects than
+// requested, silently leaving the rest un-backfilled.
+async function backfillAnalysis(items) {
+  if (!items.length || !ANTHROPIC_API_KEY) return new Map();
+
+  const batch = items.slice(0, MAX_ANALYSIS_BATCH);
+  const map = new Map();
+  for (let i = 0; i < batch.length; i += CHUNK_SIZE) {
+    const chunk = batch.slice(i, i + CHUNK_SIZE);
+    const chunkMap = await backfillAnalysisChunk(chunk);
+    for (const [id, v] of chunkMap) map.set(id, v);
+    if (i + CHUNK_SIZE < batch.length) await sleep(REQUEST_DELAY_MS);
+  }
   return map;
 }
 
@@ -424,29 +477,8 @@ ${digest}
 
 Respond with ONLY one JSON object, exactly: {${OVERVIEW_SCHEMA_PROMPT}}`;
 
-  let res;
-  const ctrl = new AbortController();
-  const timer = setTimeout(() => ctrl.abort(), 90000);
-  try {
-    res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'x-api-key': ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
-      body: JSON.stringify({ model: RELEVANCE_MODEL, max_tokens: 2048, messages: [{ role: 'user', content: prompt }] }),
-      signal: ctrl.signal,
-    });
-  } catch (e) {
-    console.warn(`[news-scan] Overview generation request failed (${e.message}) — skipping.`);
-    return null;
-  } finally {
-    clearTimeout(timer);
-  }
-  if (!res.ok) {
-    console.warn(`[news-scan] Overview generation API call failed (HTTP ${res.status}) — skipping.`);
-    return null;
-  }
-
-  const data = await res.json();
-  const text = (data.content || []).filter(b => b.type === 'text').map(b => b.text).join('\n');
+  const text = await callHaiku(prompt, 'Overview generation', ANALYSIS_MAX_TOKENS);
+  if (text === null) return null;
   let v;
   try {
     const jsonMatch = text.match(/\{[\s\S]*\}/);
@@ -536,13 +568,20 @@ async function main() {
   for (const article of relevant) articles.unshift(article);
   const totalAdded = relevant.length;
 
+  // A stale bare entry (e.g. saved by an old fallback/error path) can end up
+  // sharing an id with a later, properly-analyzed copy — dedupe before
+  // archiving/trimming so only one survives, preferring the analyzed copy.
+  const deduped = dedupeArticles(articles);
+  const dedupedCount = articles.length - deduped.length;
+  if (dedupedCount > 0) console.log(`[news-scan] Removed ${dedupedCount} duplicate article id(s).`);
+
   // Move anything older than ARCHIVE_AGE_DAYS out of the live feed into a
   // standing archive file instead of just discarding it past
   // MAX_STORED_ARTICLES — keeps the News page recent while still preserving
   // history for later reference.
   const live = [];
   const toArchive = [];
-  for (const a of articles) {
+  for (const a of deduped) {
     (isOlderThanDays(a.publishedDate || a.foundDate, ARCHIVE_AGE_DAYS) ? toArchive : live).push(a);
   }
   let archivedCount = 0;
@@ -556,7 +595,7 @@ async function main() {
   }
 
   const trimmed = live.slice(0, MAX_STORED_ARTICLES);
-  if (totalAdded > 0 || archivedCount > 0 || backfilledCount > 0) saveJSON(DATA_FILE, trimmed);
+  if (totalAdded > 0 || archivedCount > 0 || backfilledCount > 0 || dedupedCount > 0) saveJSON(DATA_FILE, trimmed);
 
   // Regenerated every run regardless of whether anything changed above —
   // the live set can shift (an article aging out to archive) even with zero
