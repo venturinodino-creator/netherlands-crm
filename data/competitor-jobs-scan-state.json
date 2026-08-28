@@ -1,41 +1,17 @@
 {
-  "lastRun": "2026-08-28T17:51:57.276Z",
-  "totalOpenRoles": 18,
+  "lastRun": "2026-08-28T17:59:03.270Z",
+  "totalOpenRoles": 0,
   "perCompanyCounts": {
     "Digital Science": {
       "total": 0,
-      "nl": 0
-    },
-    "Elicit": {
-      "total": 10,
-      "nl": 0
-    },
-    "SciSpace": {
-      "total": 3,
       "nl": 0
     },
     "Allen Institute for AI": {
       "total": 22,
       "nl": 0
     },
-    "OpenAI": {
-      "total": 754,
-      "nl": 6
-    },
-    "Anthropic": {
-      "total": 566,
-      "nl": 12
-    },
     "Clarivate": {
       "total": 162,
-      "nl": 0
-    },
-    "Springer Nature": {
-      "total": 67,
-      "nl": 0
-    },
-    "Wiley": {
-      "total": 73,
       "nl": 0
     }
   },
@@ -70,6 +46,36 @@
       "company": "Google",
       "reason": "Proprietary/internal API, not public",
       "url": "https://careers.google.com/"
+    },
+    {
+      "company": "OpenAI",
+      "reason": "General-purpose AI platform (Claude/GPT-style API) — no discrete product competing with Scopus/SciVal/Pure/Digital Commons",
+      "url": "https://openai.com/careers/"
+    },
+    {
+      "company": "Anthropic",
+      "reason": "General-purpose AI platform — no discrete product competing with Scopus/SciVal/Pure/Digital Commons",
+      "url": "https://anthropic.com/careers"
+    },
+    {
+      "company": "Elicit",
+      "reason": "AI research-assistant tool, not a Scopus/SciVal/Pure/Digital Commons-type institutional platform",
+      "url": "https://elicit.com/careers"
+    },
+    {
+      "company": "SciSpace",
+      "reason": "AI research-assistant tool, not a Scopus/SciVal/Pure/Digital Commons-type institutional platform",
+      "url": "https://typeset.io/careers"
+    },
+    {
+      "company": "Springer Nature",
+      "reason": "Publisher — no discrete analytics/CRIS/repository product competing with Scopus/SciVal/Pure/Digital Commons",
+      "url": "https://springernature.wd3.myworkdayjobs.com/SpringerNatureCareers"
+    },
+    {
+      "company": "Wiley",
+      "reason": "Publisher — no discrete analytics/CRIS/repository product competing with Scopus/SciVal/Pure/Digital Commons",
+      "url": "https://wiley.wd1.myworkdayjobs.com/wiley_careers"
     }
   ],
   "source": "Company career-page ATS APIs (Greenhouse/Ashby/SmartRecruiters/Pinpoint/Workday) — not LinkedIn, see file header"
