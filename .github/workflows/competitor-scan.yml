@@ -28,7 +28,7 @@ jobs:
         run: |
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
-          git add data/leapspace-competitors.json data/competitor-scan-state.json
+          git add data/leapspace-competitors.json data/leapspace-battlecard.json data/competitor-scan-state.json
           if git diff --staged --quiet; then
             echo "Nothing to commit"
             exit 0

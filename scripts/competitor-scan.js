@@ -5,6 +5,16 @@
  * data/leapspace-competitors.json. Entries are marked autoDiscovered: true
  * so the UI can flag them as not yet manually reviewed.
  *
+ * Also writes data/leapspace-battlecard.json — a short "what they did" /
+ * "how LeapSpace counters" write-up per tracked competitor, generated from
+ * each entry's howItCompetes text (see generateBattleCard below). The
+ * LeapSpace Insights page reads both files: this one supplies the AI copy,
+ * the client decides which entries to actually surface (and in what order)
+ * based on a threat score it computes itself — see index.html's
+ * computeAutoThreat()/effectiveThreat(). Threat ranking isn't done here
+ * because a user's manual threat overrides live in that browser's
+ * localStorage, which this script has no access to.
+ *
  * Requires ANTHROPIC_API_KEY in the environment.
  * Run: node scripts/competitor-scan.js
  */
@@ -13,8 +23,11 @@ import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 
 const DATA_FILE = 'data/leapspace-competitors.json';
 const STATE_FILE = 'data/competitor-scan-state.json';
+const BATTLECARD_FILE = 'data/leapspace-battlecard.json';
 const API_KEY = process.env.ANTHROPIC_API_KEY;
 const MODEL = 'claude-opus-5';
+const SYNTHESIS_MODEL = 'claude-haiku-4-5';
+const CHUNK_SIZE = 8;
 
 const VALID_ELEMENTS = new Set([
   'literatureSearch', 'authorSearch', 'fundingDiscovery', 'writingCoach',
@@ -47,6 +60,7 @@ function makeId(company, product) {
 function extractText(response) {
   return (response.content || []).filter(b => b.type === 'text').map(b => b.text).join('\n');
 }
+async function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 function parseJSONL(text) {
   const items = [];
   for (const line of text.split('\n')) {
@@ -105,6 +119,94 @@ If you find nothing genuinely new and relevant, output nothing at all. Only repo
   return res.json();
 }
 
+// Pure synthesis over text this script already has — no web search needed,
+// so this uses the cheaper/faster Haiku model rather than Opus (same split
+// news-scan.js uses between discovery and its relevance-filter/overview
+// calls).
+async function callHaiku(prompt) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 90000);
+  let res;
+  try {
+    res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'x-api-key': API_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
+      body: JSON.stringify({ model: SYNTHESIS_MODEL, max_tokens: 2048, messages: [{ role: 'user', content: prompt }] }),
+      signal: ctrl.signal,
+    });
+  } catch (e) {
+    console.warn(`[competitor-scan] Battle card request failed (${e.message}).`);
+    return null;
+  } finally {
+    clearTimeout(timer);
+  }
+  if (!res.ok) {
+    console.warn(`[competitor-scan] Battle card API call failed (HTTP ${res.status}).`);
+    return null;
+  }
+  return extractText(await res.json());
+}
+
+function battleCardPrompt(batch) {
+  return `${LEAPSPACE_CONTEXT}
+
+For each competing solution below, write a short "battle card" entry for an Elsevier sales rep who needs to understand it in 10 seconds flat.
+
+${batch.map((c, i) => `${i + 1}. ${c.company} — ${c.product} (matches: ${(c.elements || []).join(', ') || 'none tagged'})\n   ${c.howItCompetes}`).join('\n')}
+
+Respond with ONLY a JSON array of exactly ${batch.length} objects, one per item in the same order, each exactly:
+{"whatTheyDid": "1-2 punchy sentences restating the competitive move — what changed and why it matters, written for someone skimming fast", "counter": "1-2 sentences on how to position LeapSpace against this specific move — name the actual LeapSpace tab or strength to lead with (see the 8 tabs above), never a generic 'we're better' claim"}`;
+}
+
+// Generates whatTheyDid/counter copy for any tracked competitor that
+// doesn't have it yet. Only backfills what's missing (same philosophy as
+// news-scan.js's backfillAnalysis) rather than regenerating everything
+// every run — keeps this cheap and keeps hand-edited howItCompetes text
+// from being silently overwritten by a stale cached write-up. Threat
+// ranking and which entries actually surface on the page are computed
+// client-side (see the file header comment) — this just makes sure the
+// copy exists for whichever candidates the client picks.
+async function generateBattleCard(competitors) {
+  const existing = readJSON(BATTLECARD_FILE, { generatedAt: null, entries: {} });
+  const entries = existing.entries || {};
+
+  const needsCard = competitors.filter(c => c.howItCompetes && !entries[c.id]);
+  if (!needsCard.length) {
+    console.log('[competitor-scan] Battle card up to date — nothing new to write up.');
+    return;
+  }
+  console.log(`[competitor-scan] Writing battle card copy for ${needsCard.length} competitor(s)...`);
+
+  for (let i = 0; i < needsCard.length; i += CHUNK_SIZE) {
+    const chunk = needsCard.slice(i, i + CHUNK_SIZE);
+    const text = await callHaiku(battleCardPrompt(chunk));
+    if (text === null) continue;
+    let parsed;
+    try {
+      const jsonMatch = text.match(/\[[\s\S]*\]/);
+      parsed = JSON.parse(jsonMatch ? jsonMatch[0] : text);
+    } catch {
+      console.warn('[competitor-scan] Could not parse battle card response for a chunk — skipping it.');
+      continue;
+    }
+    if (!Array.isArray(parsed) || parsed.length < chunk.length) {
+      console.warn(`[competitor-scan] Battle card call returned ${Array.isArray(parsed) ? parsed.length : 0}/${chunk.length} for a chunk — the rest will retry next run.`);
+    }
+    chunk.forEach((c, idx) => {
+      const v = parsed && parsed[idx];
+      if (v && v.whatTheyDid && v.counter) {
+        entries[c.id] = {
+          whatTheyDid: String(v.whatTheyDid).slice(0, 400),
+          counter: String(v.counter).slice(0, 400),
+        };
+      }
+    });
+    if (i + CHUNK_SIZE < needsCard.length) await sleep(1500);
+  }
+
+  saveJSON(BATTLECARD_FILE, { generatedAt: new Date().toISOString(), entries });
+}
+
 async function main() {
   if (!API_KEY) {
     // Not configured yet — log clearly but don't fail the workflow run over it.
@@ -121,6 +223,9 @@ async function main() {
 
   if (response.stop_reason === 'refusal') {
     console.log('[competitor-scan] Request was declined by safety classifiers — no results this run.');
+    // Still worth backfilling battle-card copy for whatever's already
+    // tracked — the refusal only affects this run's discovery step.
+    await generateBattleCard(competitors);
     saveJSON(STATE_FILE, { lastRun: new Date().toISOString(), lastAddedCount: 0, refused: true });
     return;
   }
@@ -152,6 +257,8 @@ async function main() {
   }
 
   if (added > 0) saveJSON(DATA_FILE, competitors);
+
+  await generateBattleCard(competitors);
 
   saveJSON(STATE_FILE, {
     lastRun: new Date().toISOString(),
