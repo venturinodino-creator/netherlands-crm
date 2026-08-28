@@ -91,10 +91,15 @@ const CATEGORIES = [
     // in-house — a build-vs-buy competitive signal — and (2) the institution
     // adopting/rolling out a (usually third-party) AI research tool, which
     // flags what's already in play at that account. Both matter to a sales
-    // agent positioning LeapSpace/ScienceDirect/Scopus.
+    // agent positioning LeapSpace/ScienceDirect/Scopus. Kept to the same
+    // 3-clause shape (institution + angle-terms + context-terms) as the
+    // rest of this file — a wider 5-clause version was tried and dropped:
+    // Google News RSS's matching goes loose/fuzzy on overly long boolean
+    // queries, so it returned huge raw hit counts that mostly didn't even
+    // contain the institution's literal name.
     queryFor: (inst) => [
-      `"${inst}" (develops OR "developing" OR builds OR "in-house" OR launches) (AI OR "artificial intelligence" OR "machine learning") (tool OR platform OR system OR assistant) (research OR literature OR publishing OR library OR "research data")`,
-      `"${inst}" (adopts OR "rolls out" OR partners OR selects OR licenses OR pilots OR subscribes) (AI OR "artificial intelligence") (tool OR platform OR assistant OR software) (research OR literature OR publishing OR library OR "research assistant")`,
+      `"${inst}" (develops OR builds OR "in-house AI") (research OR literature OR "scientific discovery" OR publishing OR library OR database OR "research assistant")`,
+      `"${inst}" (adopts OR "rolls out" OR partners OR selects) AI (research OR literature OR "scientific discovery" OR publishing OR library OR database OR "research assistant")`,
     ],
   },
   {
