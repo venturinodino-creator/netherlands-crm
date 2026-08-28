@@ -170,6 +170,7 @@ tbody td{padding:9px 14px;vertical-align:middle;color:var(--text)}
 .modal-close{background:rgba(255,255,255,.05);border:none;font-size:13px;cursor:pointer;color:var(--muted);width:24px;height:24px;border-radius:5px;display:flex;align-items:center;justify-content:center;transition:all .15s}
 .modal-close:hover{background:rgba(255,255,255,.09);color:var(--text)}
 #news-summary-print-area{display:none}
+.news-summary-clamp3{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 @media print{
   body.printing-news-summary > *{display:none !important}
   body.printing-news-summary #news-summary-print-area{display:block !important}
@@ -2302,23 +2303,48 @@ async function showNewsSummaryModal() {
   }).join('')}</div>`;
 
   const sorted = articles.slice().sort((a, b) => (b.publishedDate || b.foundDate || '').localeCompare(a.publishedDate || a.foundDate || ''));
+
+  // One-line-per-category rollup — the most recent story in each active
+  // category, condensed to a single clause — so the whole day's news can be
+  // read in a few seconds without scrolling through every story.
+  const combinedItems = catOrder.filter(k => counts[k] > 0).map(k => {
+    const catArticles = sorted.filter(a => a.category === k);
+    const top = catArticles[0];
+    const text = top.summary || top.elsevierRelevance || top.description || '';
+    return {
+      label: NEWS_CATEGORIES[k].label,
+      color: NEWS_CATEGORIES[k].color,
+      countNote: catArticles.length > 1 ? ` (+${catArticles.length - 1} more)` : '',
+      snippet: firstClause(text, 170),
+    };
+  });
+  const combinedSummaryHtml = combinedItems.length ? `
+    <div style="background:var(--bg3);border:1px solid var(--border2);border-left:3px solid var(--accent2);border-radius:10px;padding:12px 14px;margin:14px 0">
+      <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:8px;letter-spacing:.3px">COMBINED SUMMARY</div>
+      ${combinedItems.map(it => `<div style="display:flex;gap:8px;margin-bottom:7px;align-items:flex-start">
+        <span style="width:8px;height:8px;border-radius:50%;background:${it.color};margin-top:5px;flex-shrink:0"></span>
+        <div style="font-size:11.5px;color:var(--text2);line-height:1.5"><strong style="color:var(--text)">${esc(it.label)}${it.countNote}:</strong> ${esc(it.snippet)}</div>
+      </div>`).join('')}
+    </div>` : '';
+
   const storiesHtml = sorted.length ? sorted.slice(0, 40).map(a => {
     const cat = NEWS_CATEGORIES[a.category] || { label: a.categoryLabel || 'News', color: '#64748b' };
     const summaryText = a.summary || a.elsevierRelevance || a.description || 'No summary available.';
-    const sourceLink = a.url ? `<a href="${esc(a.url)}" target="_blank" rel="noopener noreferrer" style="font-size:10.5px;color:var(--accent2);text-decoration:none;font-weight:600">${esc(a.source || 'Source')} ↗</a>` : '';
+    const sourceLink = a.url ? `<a href="${esc(a.url)}" target="_blank" rel="noopener noreferrer" style="font-size:10.5px;color:var(--accent2);text-decoration:none;font-weight:600">${esc(a.sourceName || 'Source')} ↗</a>` : '';
     return `<div style="padding:10px 0;border-bottom:1px solid var(--border)">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px">
         <span class="news-topic-tag" style="background:${cat.color}22;color:${cat.color}">${esc(cat.label)}</span>
         <span style="font-size:10.5px;color:var(--muted);margin-left:auto">${esc(a.publishedDate || a.foundDate || '')}</span>
       </div>
       <div style="font-size:12.5px;font-weight:700;color:var(--text);margin-bottom:2px">${esc(a.title || '')}</div>
-      <p style="font-size:11.5px;color:var(--muted);line-height:1.45;margin:0 0 4px">${esc(summaryText)}</p>
+      <p class="news-summary-clamp3" style="font-size:11.5px;color:var(--muted);line-height:1.45;margin:0 0 4px">${esc(summaryText)}</p>
       ${sourceLink}
     </div>`;
   }).join('') : `<div class="news-empty">No live stories to summarize yet.</div>`;
 
   if (body) body.innerHTML = `
     <p style="font-size:12.5px;color:var(--text2);line-height:1.6;margin:0">${overviewParts.join(' ')}</p>
+    ${combinedSummaryHtml}
     ${tilesHtml}
     ${barsHtml}
     <h4 style="font-size:12px;color:var(--text);margin:16px 0 4px">Today's Stories</h4>
@@ -2327,7 +2353,18 @@ async function showNewsSummaryModal() {
   // Cache the computed summary so the "Download PDF" button can render an
   // identical, source-linked report instantly via print-to-PDF, with no
   // re-fetch and no async gap that could detach it from the click gesture.
-  _newsSummaryPrintData = { total, catOrder, counts, overviewParts, sorted };
+  _newsSummaryPrintData = { total, catOrder, counts, overviewParts, combinedItems, sorted };
+}
+
+// Truncates at a word boundary (never mid-word) and marks the cut with an
+// ellipsis — used for the Combined Summary card's per-category snippet.
+function firstClause(text, maxLen) {
+  const t = String(text || '').trim();
+  if (!t) return '';
+  if (t.length <= maxLen) return t;
+  const cut = t.slice(0, maxLen);
+  const lastSpace = cut.lastIndexOf(' ');
+  return (lastSpace > maxLen * 0.6 ? cut.slice(0, lastSpace) : cut).trim() + '…';
 }
 
 let _newsSummaryPrintData = null;
@@ -2338,7 +2375,7 @@ let _newsSummaryPrintData = null;
 // triggered synchronously from the button click (no popup to block).
 function downloadNewsSummaryPdf() {
   if (!_newsSummaryPrintData) return;
-  const { total, catOrder, counts, overviewParts, sorted } = _newsSummaryPrintData;
+  const { total, catOrder, counts, overviewParts, combinedItems, sorted } = _newsSummaryPrintData;
 
   let printArea = document.getElementById('news-summary-print-area');
   if (!printArea) {
@@ -2348,6 +2385,12 @@ function downloadNewsSummaryPdf() {
   }
 
   const dateStr = new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+
+  const combinedPrint = combinedItems.length ? `
+    <div style="background:#f8f8f8;border:1px solid #ddd;border-left:3px solid #1d4ed8;border-radius:8px;padding:12px 14px;margin:14px 0">
+      <div style="font-size:11px;font-weight:700;color:#111;margin-bottom:8px;letter-spacing:.3px">COMBINED SUMMARY</div>
+      ${combinedItems.map(it => `<div style="margin-bottom:6px;font-size:11px;color:#333;line-height:1.5"><strong style="color:#111">${esc(it.label)}${it.countNote}:</strong> ${esc(it.snippet)}</div>`).join('')}
+    </div>` : '';
 
   const tilesPrint = `<div style="display:flex;flex-wrap:wrap;gap:10px;margin:14px 0">
     <div style="border:1px solid #ddd;border-left:3px solid #1d4ed8;border-radius:6px;padding:8px 12px;min-width:100px">
@@ -2370,7 +2413,7 @@ function downloadNewsSummaryPdf() {
       </div>
       <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:2px">${esc(a.title || '')}</div>
       <p style="font-size:11px;color:#444;line-height:1.45;margin:0 0 3px">${esc(summaryText)}</p>
-      ${a.url ? `<a href="${esc(a.url)}" style="font-size:10px;color:#1d4ed8">${esc(a.source || a.url)}</a>` : ''}
+      ${a.url ? `<a href="${esc(a.url)}" style="font-size:10px;color:#1d4ed8">${esc(a.sourceName || a.url)}</a>` : ''}
     </div>`;
   }).join('') : `<div style="font-size:11px;color:#888">No live stories to summarize.</div>`;
 
@@ -2379,6 +2422,7 @@ function downloadNewsSummaryPdf() {
       <h1 style="font-size:19px;margin:0 0 2px">Netherlands — News Executive Summary</h1>
       <p style="font-size:10.5px;color:#666;margin:0 0 18px">${esc(dateStr)}</p>
       <p style="font-size:11.5px;line-height:1.6;margin:0">${overviewParts.join(' ')}</p>
+      ${combinedPrint}
       ${tilesPrint}
       <h2 style="font-size:13px;margin:18px 0 6px;border-bottom:1px solid #ccc;padding-bottom:4px">Today's Stories</h2>
       ${storiesPrint}
