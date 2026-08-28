@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -169,12 +170,7 @@ tbody td{padding:9px 14px;vertical-align:middle;color:var(--text)}
 .mf{padding:12px 20px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:7px}
 .modal-close{background:rgba(255,255,255,.05);border:none;font-size:13px;cursor:pointer;color:var(--muted);width:24px;height:24px;border-radius:5px;display:flex;align-items:center;justify-content:center;transition:all .15s}
 .modal-close:hover{background:rgba(255,255,255,.09);color:var(--text)}
-#news-summary-print-area{display:none}
 .news-summary-clamp3{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-@media print{
-  body.printing-news-summary > *{display:none !important}
-  body.printing-news-summary #news-summary-print-area{display:block !important}
-}
 /*  FORM  */
 .fg{display:flex;flex-direction:column;gap:4px;margin-bottom:12px}
 .fg label{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
@@ -2419,99 +2415,220 @@ function firstClause(text, maxLen) {
 
 let _newsSummaryPrintData = null;
 
-// Renders the cached summary into a hidden, light-themed print area and
-// invokes the browser's print dialog — "Save as PDF" there produces a
-// clean report with clickable source links, entirely client-side and
-// triggered synchronously from the button click (no popup to block).
+function _hexToRgb(hex) {
+  const h = String(hex || '#64748b').replace('#', '');
+  const full = h.length === 3 ? h.split('').map(c => c + c).join('') : h;
+  const n = parseInt(full, 16) || 0x64748b;
+  return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+}
+
+// Builds the News Executive Summary as a real PDF document (jsPDF) with
+// genuine clickable link annotations (doc.link()) on every source/posting
+// link. An earlier version rendered a hidden print area and called
+// window.print(), relying on the browser's "Save as PDF" to carry the <a>
+// tags over as links — that only works in some browsers, and not at all
+// through OS-level "print to PDF" drivers, so links often came through
+// dead. Building the PDF directly guarantees the links work everywhere.
 function downloadNewsSummaryPdf() {
   if (!_newsSummaryPrintData) return;
+  if (!window.jspdf || !window.jspdf.jsPDF) { toast('PDF library failed to load — check your connection and try again', 'warn'); return; }
   const { total, catOrder, counts, overviewParts, combinedItems, sorted, hiringTotal, hiringCatOrder, hiringCounts, hiringSorted } = _newsSummaryPrintData;
 
-  let printArea = document.getElementById('news-summary-print-area');
-  if (!printArea) {
-    printArea = document.createElement('div');
-    printArea.id = 'news-summary-print-area';
-    document.body.appendChild(printArea);
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: 'pt', format: 'a4' });
+  const pageW = doc.internal.pageSize.getWidth();
+  const pageH = doc.internal.pageSize.getHeight();
+  const marginX = 42, marginTop = 50, marginBottom = 46;
+  const contentW = pageW - marginX * 2;
+  let y = marginTop;
+
+  function ensureSpace(h) {
+    if (y + h > pageH - marginBottom) { doc.addPage(); y = marginTop; }
+  }
+
+  function sectionHeading(text) {
+    ensureSpace(26);
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(12); doc.setTextColor(17, 17, 17);
+    doc.text(text, marginX, y);
+    y += 6;
+    doc.setDrawColor(204, 204, 204); doc.setLineWidth(0.75);
+    doc.line(marginX, y, pageW - marginX, y);
+    y += 16;
+  }
+
+  function categoryTag(x, topY, label, colorHex) {
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(7.5);
+    const tw = doc.getTextWidth(label);
+    const padX = 5, h = 12;
+    const [r, g, b] = _hexToRgb(colorHex);
+    doc.setFillColor(Math.round(r * 0.15 + 255 * 0.85), Math.round(g * 0.15 + 255 * 0.85), Math.round(b * 0.15 + 255 * 0.85));
+    doc.roundedRect(x, topY, tw + padX * 2, h, 2.5, 2.5, 'F');
+    doc.setTextColor(r, g, b);
+    doc.text(label, x + padX, topY + h - 3.2);
+    return tw + padX * 2;
+  }
+
+  function tiles(items) {
+    const gap = 8, cols = 4;
+    const tileW = (contentW - gap * (cols - 1)) / cols;
+    const tileH = 42;
+    let col = 0;
+    items.forEach(it => {
+      if (col === 0) ensureSpace(tileH + 10);
+      const x = marginX + col * (tileW + gap);
+      doc.setDrawColor(221, 221, 221); doc.setLineWidth(0.75);
+      doc.rect(x, y, tileW, tileH);
+      const [r, g, b] = _hexToRgb(it.color);
+      doc.setFillColor(r, g, b);
+      doc.rect(x, y, 3, tileH, 'F');
+      doc.setFont('helvetica', 'bold'); doc.setFontSize(15); doc.setTextColor(17, 17, 17);
+      doc.text(String(it.count), x + 10, y + 19);
+      doc.setFont('helvetica', 'bold'); doc.setFontSize(6.5); doc.setTextColor(102, 102, 102);
+      doc.text(doc.splitTextToSize(it.label.toUpperCase(), tileW - 14), x + 10, y + 30);
+      col++;
+      if (col === cols) { y += tileH + 10; col = 0; }
+    });
+    if (col !== 0) y += tileH + 10;
+  }
+
+  function combinedSummaryBlock(items) {
+    if (!items.length) return;
+    const indent = 24, boxPad = 12, headerH = 18, bulletGap = 8;
+    const measured = items.map(it => {
+      doc.setFont('helvetica', 'bold'); doc.setFontSize(9);
+      const labelLines = doc.splitTextToSize(`${it.label}${it.countNote}:`, contentW - indent);
+      doc.setFont('helvetica', 'normal'); doc.setFontSize(9);
+      const snippetLines = doc.splitTextToSize(it.snippet, contentW - indent);
+      const h = (labelLines.length + snippetLines.length) * 12 + bulletGap;
+      return { ...it, labelLines, snippetLines, h };
+    });
+    const bodyH = measured.reduce((s, m) => s + m.h, 0);
+    const totalH = headerH + bodyH + boxPad * 2;
+    ensureSpace(totalH + 16);
+
+    const boxY = y;
+    doc.setFillColor(248, 248, 248);
+    doc.rect(marginX, boxY, contentW, totalH, 'F');
+    const [ar, ag, ab] = _hexToRgb('#7c3aed');
+    doc.setFillColor(ar, ag, ab);
+    doc.rect(marginX, boxY, 3, totalH, 'F');
+
+    let cy = boxY + boxPad;
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(8.5); doc.setTextColor(17, 17, 17);
+    doc.text('COMBINED SUMMARY', marginX + 14, cy + 6);
+    cy += headerH;
+
+    measured.forEach(m => {
+      const [r, g, b] = _hexToRgb(m.color);
+      doc.setFillColor(r, g, b);
+      doc.circle(marginX + indent - 6, cy + 3, 2, 'F');
+      doc.setFont('helvetica', 'bold'); doc.setFontSize(9); doc.setTextColor(17, 17, 17);
+      doc.text(m.labelLines, marginX + indent, cy + 5);
+      cy += m.labelLines.length * 12;
+      doc.setFont('helvetica', 'normal'); doc.setFontSize(9); doc.setTextColor(51, 51, 51);
+      doc.text(m.snippetLines, marginX + indent, cy + 5);
+      cy += m.snippetLines.length * 12 + bulletGap;
+    });
+
+    y = boxY + totalH + 16;
+  }
+
+  // Renders one story/role block: category tag(s) + date, title, body text,
+  // and an optional real clickable link (doc.link()) — heights are
+  // precomputed so the whole block is measured before ensureSpace() runs,
+  // guaranteeing it never splits awkwardly across a page break.
+  function entryBlock(tags, dateStr, title, bodyText, linkLabel, linkUrl) {
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(11);
+    const titleLines = doc.splitTextToSize(title || '(untitled)', contentW);
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(9.5);
+    const bodyLines = doc.splitTextToSize(bodyText || '', contentW);
+    const tagH = 16, titleH = titleLines.length * 13 + 2, bodyH = bodyLines.length * 12.5 + 4, linkH = linkUrl ? 14 : 0, dividerGap = 10;
+    const totalH = tagH + titleH + bodyH + linkH + dividerGap;
+    ensureSpace(totalH);
+
+    let tx = marginX;
+    tags.forEach(t => { tx += categoryTag(tx, y, t.label, t.color) + 6; });
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(8.5); doc.setTextColor(136, 136, 136);
+    const dateW = doc.getTextWidth(dateStr || '');
+    doc.text(dateStr || '', marginX + contentW - dateW, y + 9);
+    y += tagH;
+
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(11); doc.setTextColor(17, 17, 17);
+    doc.text(titleLines, marginX, y + 9);
+    y += titleH;
+
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(9.5); doc.setTextColor(68, 68, 68);
+    doc.text(bodyLines, marginX, y + 8);
+    y += bodyH;
+
+    if (linkUrl) {
+      doc.setFont('helvetica', 'bold'); doc.setFontSize(9); doc.setTextColor(29, 78, 216);
+      const lw = doc.getTextWidth(linkLabel);
+      doc.text(linkLabel, marginX, y + 8);
+      doc.setDrawColor(29, 78, 216); doc.setLineWidth(0.5);
+      doc.line(marginX, y + 9.5, marginX + lw, y + 9.5);
+      doc.link(marginX, y - 1, lw, 12, { url: linkUrl });
+      y += linkH;
+    }
+
+    y += dividerGap - 6;
+    doc.setDrawColor(229, 229, 229); doc.setLineWidth(0.5);
+    doc.line(marginX, y, marginX + contentW, y);
+    y += 6;
   }
 
   const dateStr = new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
 
-  const combinedPrint = combinedItems.length ? `
-    <div style="background:#f8f8f8;border:1px solid #ddd;border-left:3px solid #1d4ed8;border-radius:8px;padding:12px 14px;margin:14px 0">
-      <div style="font-size:11px;font-weight:700;color:#111;margin-bottom:8px;letter-spacing:.3px">COMBINED SUMMARY</div>
-      ${combinedItems.map(it => `<div style="margin-bottom:6px;font-size:11px;color:#333;line-height:1.5"><strong style="color:#111">${esc(it.label)}${it.countNote}:</strong> ${esc(it.snippet)}</div>`).join('')}
-    </div>` : '';
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(18); doc.setTextColor(17, 17, 17);
+  doc.text('Netherlands — News Executive Summary', marginX, y);
+  y += 16;
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(10); doc.setTextColor(102, 102, 102);
+  doc.text(dateStr, marginX, y);
+  y += 20;
 
-  const tilesPrint = `<div style="display:flex;flex-wrap:wrap;gap:10px;margin:14px 0">
-    <div style="border:1px solid #ddd;border-left:3px solid #1d4ed8;border-radius:6px;padding:8px 12px;min-width:100px">
-      <div style="font-size:18px;font-weight:800;color:#111">${total}</div>
-      <div style="font-size:9px;color:#666;font-weight:600">LIVE STORIES</div>
-    </div>
-    ${catOrder.map(k => `<div style="border:1px solid #ddd;border-left:3px solid ${NEWS_CATEGORIES[k].color};border-radius:6px;padding:8px 12px;min-width:100px">
-      <div style="font-size:18px;font-weight:800;color:#111">${counts[k] || 0}</div>
-      <div style="font-size:9px;color:#666;font-weight:600">${esc(NEWS_CATEGORIES[k].label.toUpperCase())}</div>
-    </div>`).join('')}
-  </div>`;
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(10.5); doc.setTextColor(51, 51, 51);
+  const overviewLines = doc.splitTextToSize(overviewParts.join(' '), contentW);
+  ensureSpace(overviewLines.length * 14);
+  doc.text(overviewLines, marginX, y + 9);
+  y += overviewLines.length * 14 + 8;
 
-  const storiesPrint = sorted.length ? sorted.slice(0, 40).map(a => {
-    const cat = NEWS_CATEGORIES[a.category] || { label: a.categoryLabel || 'News', color: '#64748b' };
-    const summaryText = a.summary || a.elsevierRelevance || a.description || 'No summary available.';
-    return `<div style="padding:10px 0;border-bottom:1px solid #e5e5e5;page-break-inside:avoid">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px">
-        <span style="font-size:9px;padding:2px 7px;border-radius:10px;background:${cat.color}22;color:${cat.color};border:1px solid ${cat.color}55">${esc(cat.label)}</span>
-        <span style="font-size:10px;color:#888;margin-left:auto">${esc(a.publishedDate || a.foundDate || '')}</span>
-      </div>
-      <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:2px">${esc(a.title || '')}</div>
-      <p style="font-size:11px;color:#444;line-height:1.45;margin:0 0 3px">${esc(summaryText)}</p>
-      ${a.url ? `<a href="${esc(a.url)}" style="font-size:10px;color:#1d4ed8">${esc(a.sourceName || a.url)}</a>` : ''}
-    </div>`;
-  }).join('') : `<div style="font-size:11px;color:#888">No live stories to summarize.</div>`;
+  combinedSummaryBlock(combinedItems);
 
-  const hiringTilesPrint = hiringTotal > 0 ? `<div style="display:flex;flex-wrap:wrap;gap:10px;margin:14px 0">
-    <div style="border:1px solid #ddd;border-left:3px solid #f87171;border-radius:6px;padding:8px 12px;min-width:100px">
-      <div style="font-size:18px;font-weight:800;color:#111">${hiringTotal}</div>
-      <div style="font-size:9px;color:#666;font-weight:600">OPEN ROLES</div>
-    </div>
-    ${hiringCatOrder.map(k => `<div style="border:1px solid #ddd;border-left:3px solid ${HIRING_CATEGORIES[k].color};border-radius:6px;padding:8px 12px;min-width:100px">
-      <div style="font-size:18px;font-weight:800;color:#111">${hiringCounts[k] || 0}</div>
-      <div style="font-size:9px;color:#666;font-weight:600">${esc(HIRING_CATEGORIES[k].label.toUpperCase())}</div>
-    </div>`).join('')}
-  </div>` : '';
+  tiles([{ count: total, label: 'Live Stories', color: '#1d4ed8' }, ...catOrder.map(k => ({ count: counts[k] || 0, label: NEWS_CATEGORIES[k].label, color: NEWS_CATEGORIES[k].color }))]);
+  y += 6;
 
-  const hiringListPrint = hiringSorted.length ? hiringSorted.slice(0, 20).map(j => {
-    const cat = HIRING_CATEGORIES[j.roleCategory] || { label: 'Other', color: '#64748b' };
-    return `<div style="padding:10px 0;border-bottom:1px solid #e5e5e5;page-break-inside:avoid">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px">
-        <span style="font-size:9px;padding:2px 7px;border-radius:10px;background:#f8717122;color:#f87171;border:1px solid #f8717155">${esc(j.company || '')}</span>
-        <span style="font-size:9px;padding:2px 7px;border-radius:10px;background:${cat.color}22;color:${cat.color};border:1px solid ${cat.color}55">${esc(cat.label)}</span>
-        <span style="font-size:10px;color:#888;margin-left:auto">${esc(j.postedDate || j.foundDate || '')}</span>
-      </div>
-      <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:2px">${esc(j.title || '')}</div>
-      <p style="font-size:11px;color:#444;line-height:1.45;margin:0 0 3px">${esc(j.location || 'Location not listed')}${j.department ? ' · ' + esc(j.department) : ''}</p>
-      ${j.url ? `<a href="${esc(j.url)}" style="font-size:10px;color:#1d4ed8">View posting</a>` : ''}
-    </div>`;
-  }).join('') : `<div style="font-size:11px;color:#888">No open competitor roles tracked right now.</div>`;
+  sectionHeading("Today's Stories");
+  if (sorted.length) {
+    sorted.slice(0, 40).forEach(a => {
+      const cat = NEWS_CATEGORIES[a.category] || { label: a.categoryLabel || 'News', color: '#64748b' };
+      const bodyText = a.summary || a.elsevierRelevance || a.description || 'No summary available.';
+      entryBlock([cat], a.publishedDate || a.foundDate || '', a.title, bodyText, a.url ? (a.sourceName || 'Source') : null, a.url);
+    });
+  } else {
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(10); doc.setTextColor(136, 136, 136);
+    ensureSpace(14);
+    doc.text('No live stories to summarize.', marginX, y + 9);
+    y += 20;
+  }
 
-  printArea.innerHTML = `
-    <div style="font-family:Arial,Helvetica,sans-serif;color:#111;max-width:720px;margin:0 auto;padding:32px 24px">
-      <h1 style="font-size:19px;margin:0 0 2px">Netherlands — News Executive Summary</h1>
-      <p style="font-size:10.5px;color:#666;margin:0 0 18px">${esc(dateStr)}</p>
-      <p style="font-size:11.5px;line-height:1.6;margin:0">${overviewParts.join(' ')}</p>
-      ${combinedPrint}
-      ${tilesPrint}
-      <h2 style="font-size:13px;margin:18px 0 6px;border-bottom:1px solid #ccc;padding-bottom:4px">Today's Stories</h2>
-      ${storiesPrint}
-      <h2 style="font-size:13px;margin:22px 0 6px;border-bottom:1px solid #ccc;padding-bottom:4px">Competitor Hiring — Open Roles</h2>
-      ${hiringTilesPrint}
-      ${hiringListPrint}
-    </div>`;
+  y += 10;
+  sectionHeading('Competitor Hiring — Open Roles');
+  if (hiringTotal > 0) {
+    tiles([{ count: hiringTotal, label: 'Open Roles', color: '#f87171' }, ...hiringCatOrder.map(k => ({ count: hiringCounts[k] || 0, label: HIRING_CATEGORIES[k].label, color: HIRING_CATEGORIES[k].color }))]);
+    y += 6;
+    hiringSorted.slice(0, 20).forEach(j => {
+      const cat = HIRING_CATEGORIES[j.roleCategory] || { label: 'Other', color: '#64748b' };
+      const bodyText = `${j.location || 'Location not listed'}${j.department ? ' · ' + j.department : ''}`;
+      entryBlock([{ label: j.company || '', color: '#f87171' }, cat], j.postedDate || j.foundDate || '', j.title, bodyText, j.url ? 'View posting' : null, j.url);
+    });
+  } else {
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(10); doc.setTextColor(136, 136, 136);
+    ensureSpace(14);
+    doc.text('No open competitor roles tracked right now.', marginX, y + 9);
+  }
 
-  document.body.classList.add('printing-news-summary');
-  window.print();
+  doc.save(`netherlands-news-summary-${new Date().toISOString().slice(0, 10)}.pdf`);
 }
-window.addEventListener('afterprint', () => {
-  document.body.classList.remove('printing-news-summary');
-});
 
 // Close modal on overlay click
 document.querySelectorAll('.overlay').forEach(el=>{
