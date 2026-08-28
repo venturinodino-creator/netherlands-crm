@@ -331,9 +331,8 @@ a.ext-link:hover{color:var(--text)}
 .news-filter-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
 .news-filter-btn{font-size:11px;padding:4px 11px;border-radius:14px;border:1px solid var(--border2);background:var(--bg3);color:var(--text);cursor:pointer;transition:all .15s}
 .news-filter-btn.active{background:var(--accent);border-color:var(--accent);color:#060a12}
-.news-summary-btn{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 13px 4px 10px;border-radius:14px;border:1px solid var(--accent2);background:var(--accent2);color:#fff;cursor:pointer;transition:all .15s;box-shadow:0 0 0 0 transparent}
+.news-summary-btn{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 13px 4px 10px;border-radius:14px;border:1px solid var(--accent2);background:var(--accent2);color:#fff;cursor:pointer;transition:all .15s}
 .news-summary-btn:hover{filter:brightness(1.08)}
-.news-summary-btn:disabled{opacity:.6;cursor:default}
 .news-empty{text-align:center;padding:40px 20px;color:var(--muted);font-size:13px}
 .news-loading{display:flex;align-items:center;gap:10px;padding:20px;color:var(--muted);font-size:13px}
 .news-spinner{width:18px;height:18px;border:2px solid var(--border2);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
@@ -1142,6 +1141,14 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
       <button class="btn btn-outline" onclick="clearGhToken()">Remove saved token</button>
       <button class="btn btn-primary" onclick="saveGhToken()">Save</button>
     </div>
+  </div>
+</div>
+
+<!-- MODAL: NEWS SUMMARY -->
+<div class="overlay" id="modal-news-summary">
+  <div class="modal" style="max-width:640px">
+    <div class="mh"><h3>News Executive Summary</h3><button class="modal-close" onclick="closeModal('modal-news-summary')"></button></div>
+    <div class="mc" id="news-summary-modal-body"></div>
   </div>
 </div>
 
@@ -2055,8 +2062,6 @@ function saveGhToken() {
     _pendingAgentRun = null;
     if (pending.resume === 'discovery' && typeof window.runContactDiscovery === 'function') {
       window.runContactDiscovery();
-    } else if (pending.resume === 'newsSummary') {
-      runNewsSummaryNow();
     } else {
       runAgentNow(pending.workflow, pending.btnId, pending.name);
     }
@@ -2223,107 +2228,90 @@ async function runSummaryReportNow(btnId) {
   if (document.getElementById('page-title')?.textContent === 'Summary') renderSummaryReports(freshData);
 }
 
-// Same polling pattern as runSummaryReportNow(), but for the News page's
-// "Summary" button — once a fresh manifest entry lands, it opens the PDF
-// directly instead of re-rendering a page (there's no report-archive view
-// for this one, just "generate → open").
-async function fetchNewsSummaryManifestFresh(token) {
-  const res = await fetch(`https://api.github.com/repos/${GH_AGENTS_REPO}/contents/data/news-summary-reports.json?ref=main`, {
-    headers: {
-      'Authorization': 'Bearer ' + token,
-      'Accept': 'application/vnd.github.raw+json',
-      'X-GitHub-Api-Version': '2022-11-28',
-    },
-  });
-  if (!res.ok) throw new Error('HTTP ' + res.status);
-  const data = JSON.parse(await res.text());
-  return Array.isArray(data) ? data : [];
-}
+// News page's "Summary" button — renders an instant in-app executive
+// summary from the already-scanned live feed (no GitHub Actions round trip,
+// no popup: a PDF-generate-then-window.open() flow was tried first but got
+// blocked by browsers as an untrusted popup once the open() call landed
+// after an async poll, well after the click's user-gesture context expired).
+async function showNewsSummaryModal() {
+  const body = document.getElementById('news-summary-modal-body');
+  if (body) body.innerHTML = `<div class="news-loading"><div class="news-spinner"></div>Loading…</div>`;
+  openModal('modal-news-summary');
 
-async function runNewsSummaryNow() {
-  const btnId = 'news-summary-btn';
-  const token = getGhToken();
-  if (!token) {
-    _pendingAgentRun = { resume: 'newsSummary' };
-    manageGhToken();
-    return;
-  }
-  const btn = document.getElementById(btnId);
-  const original = btn ? btn.innerHTML : '';
-  if (btn) { btn.disabled = true; btn.innerHTML = 'Starting…'; }
-
-  let useContentsApi = true;
-  let beforeGeneratedAt = null;
+  let articles;
   try {
-    const manifest0 = await fetchNewsSummaryManifestFresh(token);
-    if (manifest0[0]) beforeGeneratedAt = manifest0[0].generatedAt;
+    const res = await fetch('/netherlands-crm/data/news.json?t=' + Date.now());
+    const data = res.ok ? await res.json() : [];
+    const dismissed = getDismissedNewsIds();
+    const seenIds = new Set();
+    articles = (Array.isArray(data) ? data : [])
+      .filter(a => !seenIds.has(a.id) && seenIds.add(a.id))
+      .filter(a => !dismissed.includes(a.id));
   } catch (e) {
-    useContentsApi = false;
-    try {
-      const res0 = await fetch('/netherlands-crm/data/news-summary-reports.json?t=' + Date.now());
-      const data0 = res0.ok ? await res0.json() : [];
-      if (Array.isArray(data0) && data0[0]) beforeGeneratedAt = data0[0].generatedAt;
-    } catch (e2) { /* fine — poll will just wait for any entry to appear */ }
-  }
-
-  try {
-    const res = await fetch(`https://api.github.com/repos/${GH_AGENTS_REPO}/actions/workflows/news-summary-report.yml/dispatches`, {
-      method: 'POST',
-      headers: {
-        'Authorization': 'Bearer ' + token,
-        'Accept': 'application/vnd.github+json',
-        'X-GitHub-Api-Version': '2022-11-28',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ ref: 'main' }),
-    });
-    if (res.status !== 204) {
-      if (res.status === 401 || res.status === 403) {
-        toast('GitHub rejected the token — check it has "Actions: write" access to this repo', 'err');
-        _pendingAgentRun = { resume: 'newsSummary' };
-        manageGhToken();
-      } else {
-        toast(`Couldn't trigger News Summary (HTTP ${res.status})`, 'err');
-      }
-      if (btn) { btn.innerHTML = original; btn.disabled = false; }
-      return;
-    }
-  } catch (e) {
-    toast('Network error triggering News Summary', 'err');
-    if (btn) { btn.innerHTML = original; btn.disabled = false; }
+    if (body) body.innerHTML = `<div class="news-empty">Could not load news data.</div>`;
     return;
   }
 
-  toast('Generating executive summary…', 'ok');
+  const catOrder = Object.keys(NEWS_CATEGORIES);
+  const counts = {};
+  articles.forEach(a => { if (a.category) counts[a.category] = (counts[a.category] || 0) + 1; });
+  const total = articles.length;
+  const maxCount = Math.max(1, ...catOrder.map(k => counts[k] || 0));
 
-  const pollIntervalMs = useContentsApi ? 3000 : 8000;
-  const deadline = Date.now() + (useContentsApi ? 40000 : 100000);
-  let found = false;
-  let latestEntry = null;
-  while (Date.now() < deadline) {
-    const secsLeft = Math.max(0, Math.round((deadline - Date.now()) / 1000));
-    if (btn) { btn.innerHTML = `Generating… (${secsLeft}s)`; }
-    await new Promise(r => setTimeout(r, pollIntervalMs));
-    try {
-      let data;
-      if (useContentsApi) {
-        data = await fetchNewsSummaryManifestFresh(token);
-      } else {
-        const res = await fetch('/netherlands-crm/data/news-summary-reports.json?t=' + Date.now());
-        data = res.ok ? await res.json() : [];
-      }
-      const latest = Array.isArray(data) && data[0] ? data[0] : null;
-      if (latest && latest.generatedAt !== beforeGeneratedAt) { found = true; latestEntry = latest; break; }
-    } catch (e) { /* keep polling */ }
-  }
-
-  if (btn) { btn.innerHTML = original; btn.disabled = false; }
-  if (found && latestEntry) {
-    toast('Executive summary ready', 'ok');
-    window.open('/netherlands-crm/data/' + latestEntry.file, '_blank');
+  const overviewParts = [];
+  if (total === 0) {
+    overviewParts.push('No stories are currently live in the feed. The daily scan runs every morning at 07:00 UTC — check back after that, or run it manually.');
   } else {
-    toast('Still generating on GitHub Actions — check back shortly', 'warn');
+    overviewParts.push(`${total} stor${total === 1 ? 'y is' : 'ies are'} currently live in the feed.`);
+    const breakdown = catOrder.filter(k => counts[k]).map(k => `${counts[k]} ${NEWS_CATEGORIES[k].label.toLowerCase()}`).join(', ');
+    if (breakdown) overviewParts.push(`Breakdown: ${breakdown}.`);
+    const comp = articles.find(a => a.category === 'competitor_announcements');
+    if (comp) overviewParts.push(`Most recent competitor signal: ${esc(comp.institution || 'a competitor')} — "${esc(comp.title || '')}".`);
   }
+
+  const tilesHtml = `<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin:14px 0">
+    <div style="background:var(--bg3);border-radius:10px;padding:12px;border-left:3px solid var(--accent2)">
+      <div style="font-size:22px;font-weight:800;color:var(--text)">${total}</div>
+      <div style="font-size:10px;color:var(--muted);font-weight:600;margin-top:2px">LIVE STORIES</div>
+    </div>
+    ${catOrder.map(k => `<div style="background:var(--bg3);border-radius:10px;padding:12px;border-left:3px solid ${NEWS_CATEGORIES[k].color}">
+      <div style="font-size:22px;font-weight:800;color:var(--text)">${counts[k] || 0}</div>
+      <div style="font-size:10px;color:var(--muted);font-weight:600;margin-top:2px">${esc(NEWS_CATEGORIES[k].label.toUpperCase())}</div>
+    </div>`).join('')}
+  </div>`;
+
+  const barsHtml = `<div style="margin:14px 0">${catOrder.map(k => {
+    const v = counts[k] || 0;
+    const pct = Math.round((v / maxCount) * 100);
+    return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+      <span style="width:160px;font-size:11px;color:var(--muted);flex-shrink:0">${esc(NEWS_CATEGORIES[k].label)}</span>
+      <div style="flex:1;background:var(--bg3);border-radius:6px;height:14px;overflow:hidden">
+        <div style="width:${pct}%;height:100%;background:${NEWS_CATEGORIES[k].color}"></div>
+      </div>
+      <span style="width:20px;text-align:right;font-size:11px;font-weight:700;color:var(--text)">${v}</span>
+    </div>`;
+  }).join('')}</div>`;
+
+  const sorted = articles.slice().sort((a, b) => (b.publishedDate || b.foundDate || '').localeCompare(a.publishedDate || a.foundDate || ''));
+  const storiesHtml = sorted.length ? sorted.slice(0, 40).map(a => {
+    const cat = NEWS_CATEGORIES[a.category] || { label: a.categoryLabel || 'News', color: '#64748b' };
+    const summaryText = a.summary || a.elsevierRelevance || a.description || 'No summary available.';
+    return `<div style="padding:10px 0;border-bottom:1px solid var(--border)">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px">
+        <span class="news-topic-tag" style="background:${cat.color}22;color:${cat.color}">${esc(cat.label)}</span>
+        <span style="font-size:10.5px;color:var(--muted);margin-left:auto">${esc(a.publishedDate || a.foundDate || '')}</span>
+      </div>
+      <div style="font-size:12.5px;font-weight:700;color:var(--text);margin-bottom:2px">${esc(a.title || '')}</div>
+      <p style="font-size:11.5px;color:var(--muted);line-height:1.45;margin:0">${esc(summaryText)}</p>
+    </div>`;
+  }).join('') : `<div class="news-empty">No live stories to summarize yet.</div>`;
+
+  if (body) body.innerHTML = `
+    <p style="font-size:12.5px;color:var(--text2);line-height:1.6;margin:0">${overviewParts.join(' ')}</p>
+    ${tilesHtml}
+    ${barsHtml}
+    <h4 style="font-size:12px;color:var(--text);margin:16px 0 4px">Today's Stories</h4>
+    <div>${storiesHtml}</div>`;
 }
 
 // Close modal on overlay click
@@ -3693,7 +3681,7 @@ function renderNews() {
     </button>`;
 
   const allCats = ['all', ...Object.keys(NEWS_CATEGORIES)];
-  const summaryBtn = `<button id="news-summary-btn" class="news-summary-btn" onclick="runNewsSummaryNow()" title="Generate a PDF executive summary of today's news">
+  const summaryBtn = `<button id="news-summary-btn" class="news-summary-btn" onclick="showNewsSummaryModal()" title="Quick executive summary of today's news">
     <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
     Summary
   </button>`;
