@@ -1,12 +1,12 @@
 {
-  "lastRun": "2026-08-28T20:00:48.919Z",
-  "lastAddedCount": 1,
-  "lastCandidateCount": 25,
+  "lastRun": "2026-08-28T20:43:36.542Z",
+  "lastAddedCount": 0,
+  "lastCandidateCount": 26,
   "lastArchivedCount": 0,
-  "lastBackfilledCount": 6,
+  "lastBackfilledCount": 0,
   "candidateCounts": {
-    "ai_adoption": 1918,
-    "funding": 1129,
+    "ai_adoption": 1923,
+    "funding": 1099,
     "policy": 109,
     "competitor_announcements": 759
   },
