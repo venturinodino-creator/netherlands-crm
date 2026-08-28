@@ -169,6 +169,11 @@ tbody td{padding:9px 14px;vertical-align:middle;color:var(--text)}
 .mf{padding:12px 20px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:7px}
 .modal-close{background:rgba(255,255,255,.05);border:none;font-size:13px;cursor:pointer;color:var(--muted);width:24px;height:24px;border-radius:5px;display:flex;align-items:center;justify-content:center;transition:all .15s}
 .modal-close:hover{background:rgba(255,255,255,.09);color:var(--text)}
+#news-summary-print-area{display:none}
+@media print{
+  body.printing-news-summary > *{display:none !important}
+  body.printing-news-summary #news-summary-print-area{display:block !important}
+}
 /*  FORM  */
 .fg{display:flex;flex-direction:column;gap:4px;margin-bottom:12px}
 .fg label{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
@@ -1149,6 +1154,10 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
   <div class="modal" style="max-width:640px">
     <div class="mh"><h3>News Executive Summary</h3><button class="modal-close" onclick="closeModal('modal-news-summary')"></button></div>
     <div class="mc" id="news-summary-modal-body"></div>
+    <div class="mf">
+      <button class="btn btn-outline" onclick="downloadNewsSummaryPdf()">Download PDF</button>
+      <button class="btn btn-primary" onclick="closeModal('modal-news-summary')">Close</button>
+    </div>
   </div>
 </div>
 
@@ -2296,13 +2305,15 @@ async function showNewsSummaryModal() {
   const storiesHtml = sorted.length ? sorted.slice(0, 40).map(a => {
     const cat = NEWS_CATEGORIES[a.category] || { label: a.categoryLabel || 'News', color: '#64748b' };
     const summaryText = a.summary || a.elsevierRelevance || a.description || 'No summary available.';
+    const sourceLink = a.url ? `<a href="${esc(a.url)}" target="_blank" rel="noopener noreferrer" style="font-size:10.5px;color:var(--accent2);text-decoration:none;font-weight:600">${esc(a.source || 'Source')} ↗</a>` : '';
     return `<div style="padding:10px 0;border-bottom:1px solid var(--border)">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px">
         <span class="news-topic-tag" style="background:${cat.color}22;color:${cat.color}">${esc(cat.label)}</span>
         <span style="font-size:10.5px;color:var(--muted);margin-left:auto">${esc(a.publishedDate || a.foundDate || '')}</span>
       </div>
       <div style="font-size:12.5px;font-weight:700;color:var(--text);margin-bottom:2px">${esc(a.title || '')}</div>
-      <p style="font-size:11.5px;color:var(--muted);line-height:1.45;margin:0">${esc(summaryText)}</p>
+      <p style="font-size:11.5px;color:var(--muted);line-height:1.45;margin:0 0 4px">${esc(summaryText)}</p>
+      ${sourceLink}
     </div>`;
   }).join('') : `<div class="news-empty">No live stories to summarize yet.</div>`;
 
@@ -2312,7 +2323,73 @@ async function showNewsSummaryModal() {
     ${barsHtml}
     <h4 style="font-size:12px;color:var(--text);margin:16px 0 4px">Today's Stories</h4>
     <div>${storiesHtml}</div>`;
+
+  // Cache the computed summary so the "Download PDF" button can render an
+  // identical, source-linked report instantly via print-to-PDF, with no
+  // re-fetch and no async gap that could detach it from the click gesture.
+  _newsSummaryPrintData = { total, catOrder, counts, overviewParts, sorted };
 }
+
+let _newsSummaryPrintData = null;
+
+// Renders the cached summary into a hidden, light-themed print area and
+// invokes the browser's print dialog — "Save as PDF" there produces a
+// clean report with clickable source links, entirely client-side and
+// triggered synchronously from the button click (no popup to block).
+function downloadNewsSummaryPdf() {
+  if (!_newsSummaryPrintData) return;
+  const { total, catOrder, counts, overviewParts, sorted } = _newsSummaryPrintData;
+
+  let printArea = document.getElementById('news-summary-print-area');
+  if (!printArea) {
+    printArea = document.createElement('div');
+    printArea.id = 'news-summary-print-area';
+    document.body.appendChild(printArea);
+  }
+
+  const dateStr = new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+
+  const tilesPrint = `<div style="display:flex;flex-wrap:wrap;gap:10px;margin:14px 0">
+    <div style="border:1px solid #ddd;border-left:3px solid #1d4ed8;border-radius:6px;padding:8px 12px;min-width:100px">
+      <div style="font-size:18px;font-weight:800;color:#111">${total}</div>
+      <div style="font-size:9px;color:#666;font-weight:600">LIVE STORIES</div>
+    </div>
+    ${catOrder.map(k => `<div style="border:1px solid #ddd;border-left:3px solid ${NEWS_CATEGORIES[k].color};border-radius:6px;padding:8px 12px;min-width:100px">
+      <div style="font-size:18px;font-weight:800;color:#111">${counts[k] || 0}</div>
+      <div style="font-size:9px;color:#666;font-weight:600">${esc(NEWS_CATEGORIES[k].label.toUpperCase())}</div>
+    </div>`).join('')}
+  </div>`;
+
+  const storiesPrint = sorted.length ? sorted.slice(0, 40).map(a => {
+    const cat = NEWS_CATEGORIES[a.category] || { label: a.categoryLabel || 'News', color: '#64748b' };
+    const summaryText = a.summary || a.elsevierRelevance || a.description || 'No summary available.';
+    return `<div style="padding:10px 0;border-bottom:1px solid #e5e5e5;page-break-inside:avoid">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px">
+        <span style="font-size:9px;padding:2px 7px;border-radius:10px;background:${cat.color}22;color:${cat.color};border:1px solid ${cat.color}55">${esc(cat.label)}</span>
+        <span style="font-size:10px;color:#888;margin-left:auto">${esc(a.publishedDate || a.foundDate || '')}</span>
+      </div>
+      <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:2px">${esc(a.title || '')}</div>
+      <p style="font-size:11px;color:#444;line-height:1.45;margin:0 0 3px">${esc(summaryText)}</p>
+      ${a.url ? `<a href="${esc(a.url)}" style="font-size:10px;color:#1d4ed8">${esc(a.source || a.url)}</a>` : ''}
+    </div>`;
+  }).join('') : `<div style="font-size:11px;color:#888">No live stories to summarize.</div>`;
+
+  printArea.innerHTML = `
+    <div style="font-family:Arial,Helvetica,sans-serif;color:#111;max-width:720px;margin:0 auto;padding:32px 24px">
+      <h1 style="font-size:19px;margin:0 0 2px">Netherlands — News Executive Summary</h1>
+      <p style="font-size:10.5px;color:#666;margin:0 0 18px">${esc(dateStr)}</p>
+      <p style="font-size:11.5px;line-height:1.6;margin:0">${overviewParts.join(' ')}</p>
+      ${tilesPrint}
+      <h2 style="font-size:13px;margin:18px 0 6px;border-bottom:1px solid #ccc;padding-bottom:4px">Today's Stories</h2>
+      ${storiesPrint}
+    </div>`;
+
+  document.body.classList.add('printing-news-summary');
+  window.print();
+}
+window.addEventListener('afterprint', () => {
+  document.body.classList.remove('printing-news-summary');
+});
 
 // Close modal on overlay click
 document.querySelectorAll('.overlay').forEach(el=>{
