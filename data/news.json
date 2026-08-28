@@ -11,7 +11,8 @@
     "publishedDate": "2026-08-27",
     "foundDate": "2026-08-28",
     "autoDiscovered": true,
-    "elsevierRelevance": "Anthropic's Model Hardware Standard enables AI agents to control lab and manufacturing equipment, directly competing with Elsevier's positioning in research-workflow automation and institutional resea"
+    "elsevierRelevance": "Anthropic's Model Hardware Standard enables AI agents to control lab and manufacturing equipment, directly competing with Elsevier's positioning in research-workflow automation and institutional resea",
+    "summary": "Anthropic introduces a 'Model Hardware Standard' enabling AI agents to control laboratory and manufacturing equipment, expanding AI capabilities beyond software."
   },
   {
     "id": "news-9co3q8",
@@ -25,7 +26,8 @@
     "publishedDate": "2026-08-27",
     "foundDate": "2026-08-28",
     "autoDiscovered": true,
-    "elsevierRelevance": "Anthropic's Model Hardware Standard enables AI agents to control lab and manufacturing equipment—a direct competitive threat to Elsevier's research-infrastructure positioning if adopted by Dutch insti"
+    "elsevierRelevance": "Anthropic's Model Hardware Standard enables AI agents to control lab and manufacturing equipment—a direct competitive threat to Elsevier's research-infrastructure positioning if adopted by Dutch insti",
+    "summary": "Anthropic introduces a 'Model Hardware Standard' enabling AI agents to control laboratory and manufacturing equipment, expanding AI capabilities beyond software."
   },
   {
     "id": "news-5m7dqy",
@@ -39,7 +41,8 @@
     "publishedDate": "2026-08-27",
     "foundDate": "2026-08-28",
     "autoDiscovered": true,
-    "elsevierRelevance": "Anthropic expanding support for scientists signals active competition in the AI research-assistant space where LeapSpace operates."
+    "elsevierRelevance": "Anthropic expanding support for scientists signals active competition in the AI research-assistant space where LeapSpace operates.",
+    "summary": "Anthropic expands support for scientists, likely through new tools or integrations to assist with research workflows and scientific tasks."
   },
   {
     "id": "news-w5w2wy",
@@ -53,7 +56,8 @@
     "publishedDate": "2026-08-28",
     "foundDate": "2026-08-28",
     "autoDiscovered": true,
-    "elsevierRelevance": "Anthropic's standard for AI control of scientific equipment competes with LeapSpace's deep research and writing assistance features for research institutions."
+    "elsevierRelevance": "Anthropic's standard for AI control of scientific equipment competes with LeapSpace's deep research and writing assistance features for research institutions.",
+    "summary": "Anthropic launches a new standard to connect AI systems with scientific and industrial equipment, bridging AI and physical laboratory/manufacturing tools."
   },
   {
     "id": "news-qht4z9",
@@ -67,7 +71,8 @@
     "publishedDate": "2026-08-27",
     "foundDate": "2026-08-28",
     "autoDiscovered": true,
-    "elsevierRelevance": "Anthropic's Claude integration with scientific lab tools is a competitive threat to LeapSpace's positioning as an AI-assisted research workspace for institutional adoption."
+    "elsevierRelevance": "Anthropic's Claude integration with scientific lab tools is a competitive threat to LeapSpace's positioning as an AI-assisted research workspace for institutional adoption.",
+    "summary": "Anthropic tests a method for Claude to interface with robots and scientific lab equipment, enabling AI to interact with physical research tools."
   },
   {
     "id": "news-6e0j39",
@@ -81,6 +86,7 @@
     "publishedDate": "2026-08-27",
     "foundDate": "2026-08-28",
     "autoDiscovered": true,
-    "elsevierRelevance": "Anthropic launching AI tool for scientific experiments signals a direct competitor to LeapSpace's research-assistant positioning in the research workflow market."
+    "elsevierRelevance": "Anthropic launching AI tool for scientific experiments signals a direct competitor to LeapSpace's research-assistant positioning in the research workflow market.",
+    "summary": "Anthropic launches an AI tool capable of conducting scientific experiments, automating experimental workflows in research settings."
   }
 ]
