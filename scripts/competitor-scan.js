@@ -28,6 +28,16 @@ const API_KEY = process.env.ANTHROPIC_API_KEY;
 const MODEL = 'claude-opus-5';
 const SYNTHESIS_MODEL = 'claude-haiku-4-5';
 const CHUNK_SIZE = 8;
+// Board-facing views (the executive summary, "This Week's Read", the threat
+// leaderboard) should only ever describe genuinely current competitive
+// moves — never an old launch that just happens to look "recent" because
+// of when this CRM's scan discovered it. eventDate carries the actual
+// launch/update date so that distinction is possible at all; addedDate
+// only ever means "when we started tracking this," which is not the same
+// fact. Everything before the cutoff is still visible in the full
+// tracked-solution list/matrix — it's just excluded from anything framed
+// as current.
+const RECENCY_CUTOFF = '2026-07-01';
 
 const VALID_ELEMENTS = new Set([
   'literatureSearch', 'authorSearch', 'fundingDiscovery', 'writingCoach',
@@ -80,7 +90,7 @@ Already-tracked products (do not repeat these unless reporting a significant new
 ${existingProducts.map(p => `- ${p.company}: ${p.product}`).join('\n') || '(none yet)'}
 
 For each new competing solution you find, respond with one JSON object per line (JSONL), each with exactly these fields:
-{"company": "...", "product": "...", "elements": ["literatureSearch"|"authorSearch"|"fundingDiscovery"|"writingCoach"|"trustClaimRadar"|"deepResearchReports"|"readingAssistant"|"compareFeature", ...], "howItCompetes": "2-4 factual sentences on what it does and which LeapSpace tab(s) it challenges", "sourceUrl": "...", "sourceName": "..."}
+{"company": "...", "product": "...", "elements": ["literatureSearch"|"authorSearch"|"fundingDiscovery"|"writingCoach"|"trustClaimRadar"|"deepResearchReports"|"readingAssistant"|"compareFeature", ...], "howItCompetes": "2-4 factual sentences on what it does and which LeapSpace tab(s) it challenges", "eventDate": "YYYY-MM-DD — the actual date this launched or shipped the update you're describing, not today's date; use the first of the month if only a month is known", "sourceUrl": "...", "sourceName": "..."}
 
 If you find nothing genuinely new and relevant, output nothing at all. Only report what your search actually surfaces with a verifiable source URL — never invent a product or a source.`;
 
@@ -151,6 +161,58 @@ async function callHaiku(prompt) {
   return extractText(await res.json());
 }
 
+// Recovers eventDate for entries tracked before that field existed (or a
+// manual "+ Add Insight" entry, which never asks for one). Extraction only
+// — no web search — reading the actual date out of text this script
+// already has (product name, howItCompetes) via Haiku, so it's cheap
+// enough to run over the whole backlog at once rather than backfilling
+// gradually. A date the model can't find (or won't commit to) stays null;
+// computeAutoThreat's caller falls back to addedDate in that case, and the
+// entry just won't be treated as provably current.
+async function backfillEventDates(competitors) {
+  const needsDate = competitors.filter(c => !c.eventDate && !c.eventDateUnknown && (c.howItCompetes || c.product));
+  if (!needsDate.length) return false;
+  console.log(`[competitor-scan] Backfilling event dates for ${needsDate.length} competitor(s)...`);
+
+  const byId = new Map(competitors.map(c => [c.id, c]));
+  let changed = false;
+  for (let i = 0; i < needsDate.length; i += CHUNK_SIZE) {
+    const chunk = needsDate.slice(i, i + CHUNK_SIZE);
+    const prompt = `Today's date is ${new Date().toISOString().slice(0, 10)}. For each AI research tool below, find the actual date it launched or shipped the specific update described — look for a date, month, or season mentioned in the text itself (e.g. "Dec 2025 update", "launched in November").
+
+${chunk.map((c, idx) => `${idx + 1}. ${c.company} — ${c.product}\n   ${c.howItCompetes || '(no description)'}`).join('\n')}
+
+Respond with ONLY a JSON array of exactly ${chunk.length} objects, one per item in the same order, each exactly:
+{"eventDate": "YYYY-MM-DD if a date/month is clearly stated or strongly implied by the text (use the 1st of the month when only a month is known), or null if genuinely undeterminable — never guess"}`;
+
+    const text = await callHaiku(prompt);
+    if (text === null) continue;
+    let parsed;
+    try {
+      const jsonMatch = text.match(/\[[\s\S]*\]/);
+      parsed = JSON.parse(jsonMatch ? jsonMatch[0] : text);
+    } catch {
+      console.warn('[competitor-scan] Could not parse event-date backfill response for a chunk — skipping it.');
+      continue;
+    }
+    chunk.forEach((c, idx) => {
+      const v = parsed && parsed[idx];
+      const d = v && v.eventDate;
+      if (typeof d === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(d)) {
+        byId.get(c.id).eventDate = d;
+        changed = true;
+      } else {
+        // Explicit false, not left undefined — so this entry isn't
+        // re-sent to the model on every future run just because
+        // eventDate is still null.
+        byId.get(c.id).eventDateUnknown = true;
+      }
+    });
+    if (i + CHUNK_SIZE < needsDate.length) await sleep(1500);
+  }
+  return changed;
+}
+
 function battleCardPrompt(batch) {
   return `${LEAPSPACE_CONTEXT}
 
@@ -162,6 +224,49 @@ Respond with ONLY a JSON array of exactly ${batch.length} objects, one per item 
 {"whatTheyDid": "1-2 punchy sentences restating the competitive move — what changed and why it matters, written for someone skimming fast", "counter": "1-2 sentences on how to position LeapSpace against this specific move — name the actual LeapSpace tab or strength to lead with (see the 8 tabs above), never a generic 'we're better' claim"}`;
 }
 
+// A competitor counts as "current" for anything framed as today's
+// landscape (executive summary, This Week's Read, the threat leaderboard)
+// only if its actual event — not our tracking date — falls on/after
+// RECENCY_CUTOFF. See the RECENCY_CUTOFF comment up top for why addedDate
+// alone can't answer this.
+function isCurrent(c) {
+  return (c.eventDate || c.addedDate || '0000-00-00') >= RECENCY_CUTOFF;
+}
+
+// One-paragraph board-ready read of the current competitive landscape,
+// regenerated whenever the tracked set changes (a new competitor was
+// written up this run) or the summary doesn't exist yet. Kept separate
+// from the per-competitor entries so the page can render it standalone
+// with a copy-to-clipboard button for sharing upward.
+async function generateExecutiveSummary(competitors) {
+  const current = competitors.filter(c => c.howItCompetes && isCurrent(c));
+  const cutoffLabel = new Date(RECENCY_CUTOFF).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+  if (!current.length) {
+    return `No competitive moves have been confirmed since ${cutoffLabel} — nothing currently tracked meets the recency bar for a board-level update. ${competitors.length} older entries remain on file for reference but are excluded here as no longer current.`;
+  }
+  const facts = current.map(c =>
+    `- ${c.company} — ${c.product} (overlaps ${(c.elements || []).length}/8 LeapSpace tabs: ${(c.elements || []).join(', ') || 'none tagged'}; dated ${c.eventDate || c.addedDate})\n  ${String(c.howItCompetes).slice(0, 300)}`
+  ).join('\n');
+
+  const prompt = `${LEAPSPACE_CONTEXT}
+
+Below is every AI research tool with a confirmed competitive move dated ${cutoffLabel} or later — older entries have already been excluded, do not comment on or imply older history. Write an executive summary an Elsevier sales lead can paste into a board-of-directors update — quick, concise, factual.
+
+${facts}
+
+Structure it as exactly:
+1. One sentence stating the tracking criteria (AI research tools found via web search that overlap one or more of LeapSpace's 8 tabs above, dated ${cutoffLabel} or later) and the headline number: how many are tracked and how many companies.
+2. One sentence on where the pressure is concentrated (which LeapSpace tab(s) see the most overlap).
+3. One sentence each for the most serious threats among these (up to three), naming the company and product and why it specifically threatens LeapSpace.
+4. One closing sentence on LeapSpace's strongest defensible position against this field.
+
+Plain text only, no headings, no bullets, no markdown — exactly 6 sentences, under 1300 characters. Respond with ONLY the summary text.`;
+
+  const text = await callHaiku(prompt);
+  if (text === null) return null;
+  return String(text).trim().slice(0, 1400);
+}
+
 // Generates whatTheyDid/counter copy for any tracked competitor that
 // doesn't have it yet. Only backfills what's missing (same philosophy as
 // news-scan.js's backfillAnalysis) rather than regenerating everything
@@ -170,12 +275,19 @@ Respond with ONLY a JSON array of exactly ${batch.length} objects, one per item 
 // ranking and which entries actually surface on the page are computed
 // client-side (see the file header comment) — this just makes sure the
 // copy exists for whichever candidates the client picks.
-async function generateBattleCard(competitors) {
-  const existing = readJSON(BATTLECARD_FILE, { generatedAt: null, entries: {} });
+async function generateBattleCard(competitors, datesJustBackfilled) {
+  const existing = readJSON(BATTLECARD_FILE, { generatedAt: null, entries: {}, executiveSummary: null, executiveSummaryDate: null });
   const entries = existing.entries || {};
 
   const needsCard = competitors.filter(c => c.howItCompetes && !entries[c.id]);
-  if (!needsCard.length) {
+  // A dates backfill can flip which entries count as "current" (see
+  // isCurrent()) without adding a single new battle card, so it has to
+  // force a summary refresh on its own — otherwise a stale-but-recently-
+  // tracked entry (the NotebookLM "Dec 2025 update" case) keeps reading as
+  // current in the board summary until something else happens to trigger
+  // a regen.
+  const trackedSetChanged = needsCard.length > 0 || !!datesJustBackfilled;
+  if (!trackedSetChanged && existing.executiveSummary) {
     console.log('[competitor-scan] Battle card up to date — nothing new to write up.');
     return;
   }
@@ -208,7 +320,23 @@ async function generateBattleCard(competitors) {
     if (i + CHUNK_SIZE < needsCard.length) await sleep(1500);
   }
 
-  saveJSON(BATTLECARD_FILE, { generatedAt: new Date().toISOString(), entries });
+  // Regenerated only when the tracked set actually changed this run (a new
+  // competitor got written up above) or it's never existed — not every
+  // run — so a quiet day doesn't burn an extra call for identical output.
+  let executiveSummary = existing.executiveSummary || null;
+  let executiveSummaryDate = existing.executiveSummaryDate || null;
+  if (trackedSetChanged || !executiveSummary) {
+    console.log('[competitor-scan] Writing executive summary...');
+    const summary = await generateExecutiveSummary(competitors);
+    if (summary) {
+      executiveSummary = summary;
+      executiveSummaryDate = new Date().toISOString();
+    } else {
+      console.warn('[competitor-scan] Executive summary generation failed — keeping previous summary in place.');
+    }
+  }
+
+  saveJSON(BATTLECARD_FILE, { generatedAt: new Date().toISOString(), entries, executiveSummary, executiveSummaryDate });
 }
 
 async function main() {
@@ -222,6 +350,15 @@ async function main() {
   const competitors = readJSON(DATA_FILE, []);
   const existingIds = new Set(competitors.map(c => c.id));
 
+  // Runs regardless of how discovery goes below — it only reads/extracts
+  // from data already on disk, so it's worth doing even on a discovery
+  // failure or refusal.
+  async function backfillDatesAndSave() {
+    const changed = await backfillEventDates(competitors);
+    if (changed) saveJSON(DATA_FILE, competitors);
+    return changed;
+  }
+
   console.log('[competitor-scan] Calling Claude with web search...');
   // Discovery failing (timeout, transient API error) shouldn't kill the
   // whole run: battle-card generation is a separate, much cheaper call
@@ -234,7 +371,8 @@ async function main() {
   } catch (e) {
     console.warn(`[competitor-scan] Discovery call failed (${e.message}) — skipping discovery this run, continuing to battle-card generation.`);
     console.log(`::warning::competitor-scan discovery call failed (${e.message}); no new competitors this run, battle-card copy still refreshed.`);
-    await generateBattleCard(competitors);
+    const datesChanged = await backfillDatesAndSave();
+    await generateBattleCard(competitors, datesChanged);
     saveJSON(STATE_FILE, { lastRun: new Date().toISOString(), lastAddedCount: 0, error: `discovery: ${e.message}` });
     return;
   }
@@ -243,7 +381,8 @@ async function main() {
     console.log('[competitor-scan] Request was declined by safety classifiers — no results this run.');
     // Still worth backfilling battle-card copy for whatever's already
     // tracked — the refusal only affects this run's discovery step.
-    await generateBattleCard(competitors);
+    const datesChanged = await backfillDatesAndSave();
+    await generateBattleCard(competitors, datesChanged);
     saveJSON(STATE_FILE, { lastRun: new Date().toISOString(), lastAddedCount: 0, refused: true });
     return;
   }
@@ -263,6 +402,7 @@ async function main() {
       company: String(item.company).slice(0, 120),
       product: String(item.product).slice(0, 200),
       addedDate: new Date().toISOString().slice(0, 10),
+      eventDate: /^\d{4}-\d{2}-\d{2}$/.test(item.eventDate) ? item.eventDate : null,
       elements,
       howItCompetes: String(item.howItCompetes || '').slice(0, 800),
       sourceUrl: String(item.sourceUrl).slice(0, 500),
@@ -275,8 +415,9 @@ async function main() {
   }
 
   if (added > 0) saveJSON(DATA_FILE, competitors);
+  const datesChanged = await backfillDatesAndSave();
 
-  await generateBattleCard(competitors);
+  await generateBattleCard(competitors, datesChanged);
 
   saveJSON(STATE_FILE, {
     lastRun: new Date().toISOString(),
