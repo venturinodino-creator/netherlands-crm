@@ -1,0 +1,265 @@
+/**
+ * competitor-jobs-scan.js — Daily scan of open roles at Elsevier's named
+ * Research Intelligence / scholarly-publishing competitors, scoped to
+ * roles relevant to a Netherlands account manager.
+ *
+ * Deliberately NOT LinkedIn: LinkedIn requires login for job search and
+ * actively blocks automated access, so there is no reliable or
+ * ToS-compliant way to scrape it from a script (and no free public API —
+ * LinkedIn's Jobs/Talent API is enterprise/partnership-only). Instead this
+ * pulls straight from each company's own careers-page ATS, whose public
+ * JSON API is meant for exactly this kind of programmatic read — and since
+ * a LinkedIn job post is near-always just a syndicated copy of the ATS
+ * listing, this captures the same signal without the ToS problem.
+ *
+ * Per-company ATS coverage (verified by hand — see git history for the
+ * research this was built from; do not guess new endpoints without
+ * verifying the same way):
+ *   - Greenhouse, Ashby, SmartRecruiters, Pinpoint: simple GET, no auth.
+ *   - Workday (CXS API): requires a POST with a JSON search body — see
+ *     fetchWorkday() below.
+ *   - No usable public API found: scite (not hiring), Consensus (LinkedIn
+ *     only), Paperguide (no formal ATS), IGI Global (email-only), IEEE
+ *     (Taleo, session-based), Google (proprietary/internal API). These are
+ *     listed in UNTRACKED_COMPANIES so the UI can be upfront about the gap
+ *     instead of silently omitting them.
+ *
+ * Unlike news-scan.js, this does a full resync each run rather than an
+ * accumulating feed: a role no longer returned by a company's ATS has
+ * presumably closed, so it's dropped from the live list. foundDate is
+ * preserved across runs for a role that's still open, so "open since" is
+ * still visible.
+ *
+ * No ANTHROPIC_API_KEY needed — ATS results are already precise structured
+ * data, no relevance judgement call required, just deterministic
+ * location/title filtering.
+ *
+ * Run: node scripts/competitor-jobs-scan.js
+ */
+
+import { readFileSync, writeFileSync, mkdirSync } from 'fs';
+
+const DATA_FILE = 'data/competitor-jobs.json';
+const STATE_FILE = 'data/competitor-jobs-scan-state.json';
+const REQUEST_TIMEOUT_MS = 20000;
+
+// Netherlands-relevant location match — city names + country name/abbrev.
+// Deliberately does NOT match generic "EMEA"/"Europe remote" postings:
+// those aren't NL-specific enough to be a reliable signal on their own.
+const NL_LOCATION_RE = /netherlands|nederland|amsterdam|utrecht|rotterdam|the hague|den haag|eindhoven|groningen|delft|leiden|maastricht|\bnl\b/i;
+
+const SALES_TITLE_RE = /account (executive|manager|director)|\bsales\b|customer success|solutions? consultant|solutions? engineer|business development|partnerships?|revenue|customer success manager/i;
+const PRODUCT_TITLE_RE = /engineer|developer|scientist|\bresearch(er)?\b|product manager|machine learning|\bai\b|data scientist|software|infrastructure/i;
+
+function classifyRole(title) {
+  if (SALES_TITLE_RE.test(title)) return 'sales';
+  if (PRODUCT_TITLE_RE.test(title)) return 'product';
+  return 'other';
+}
+
+function readJSON(path, fallback) {
+  try { return JSON.parse(readFileSync(path, 'utf8')); } catch { return fallback; }
+}
+function saveJSON(path, data) {
+  const dir = path.split('/').slice(0, -1).join('/');
+  if (dir) mkdirSync(dir, { recursive: true });
+  writeFileSync(path, JSON.stringify(data, null, 2));
+}
+function makeId(company, url) {
+  let hash = 0;
+  const s = company + '|' + url;
+  for (let i = 0; i < s.length; i++) { hash = ((hash << 5) - hash + s.charCodeAt(i)) | 0; }
+  return 'job-' + Math.abs(hash).toString(36);
+}
+function toISODate(d) {
+  const dt = new Date(d);
+  return isNaN(dt) ? null : dt.toISOString().slice(0, 10);
+}
+
+async function fetchJSON(url, options = {}) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), REQUEST_TIMEOUT_MS);
+  try {
+    const res = await fetch(url, { ...options, signal: ctrl.signal });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+// -- Greenhouse: GET https://boards-api.greenhouse.io/v1/boards/<token>/jobs?content=true
+async function fetchGreenhouse(company, boardToken) {
+  const data = await fetchJSON(`https://boards-api.greenhouse.io/v1/boards/${boardToken}/jobs?content=true`);
+  return (data.jobs || []).map(j => ({
+    company,
+    title: String(j.title || '').trim(),
+    location: (j.location && j.location.name) || '',
+    department: (j.departments && j.departments[0] && j.departments[0].name) || '',
+    url: j.absolute_url || '',
+    postedDate: toISODate(j.updated_at || j.first_published),
+    source: 'Greenhouse',
+  }));
+}
+
+// -- Ashby: GET https://api.ashbyhq.com/posting-api/job-board/<boardName>
+async function fetchAshby(company, boardName) {
+  const data = await fetchJSON(`https://api.ashbyhq.com/posting-api/job-board/${boardName}`);
+  return (data.jobs || []).map(j => ({
+    company,
+    title: String(j.title || '').trim(),
+    location: j.location || (j.address && j.address.postalAddress && [j.address.postalAddress.addressLocality, j.address.postalAddress.addressCountry].filter(Boolean).join(', ')) || '',
+    department: j.department || j.team || '',
+    url: j.jobUrl || j.applyUrl || '',
+    postedDate: toISODate(j.publishedAt || j.publishedDate),
+    source: 'Ashby',
+  }));
+}
+
+// -- SmartRecruiters: GET https://api.smartrecruiters.com/v1/companies/<id>/postings
+async function fetchSmartRecruiters(company, companyId) {
+  const data = await fetchJSON(`https://api.smartrecruiters.com/v1/companies/${companyId}/postings`);
+  return (data.content || []).map(p => ({
+    company,
+    title: String(p.name || '').trim(),
+    location: p.location ? [p.location.city, p.location.region, p.location.country].filter(Boolean).join(', ') : '',
+    department: (p.department && p.department.label) || '',
+    url: p.applyUrl || p.postingUrl || `https://jobs.smartrecruiters.com/${companyId}/${p.id}`,
+    postedDate: toISODate(p.releasedDate),
+    source: 'SmartRecruiters',
+  }));
+}
+
+// -- Pinpoint: GET https://<slug>.pinpointhq.com/postings.json
+async function fetchPinpoint(company, slug) {
+  const data = await fetchJSON(`https://${slug}.pinpointhq.com/postings.json`);
+  const list = Array.isArray(data) ? data : (data.postings || data.jobs || []);
+  return list.map(p => ({
+    company,
+    title: String(p.title || '').trim(),
+    location: (p.location && (p.location.name || p.location)) || p.location_name || '',
+    department: (p.department && (p.department.name || p.department)) || '',
+    url: p.url || p.absolute_url || '',
+    postedDate: toISODate(p.published_at || p.created_at),
+    source: 'Pinpoint',
+  }));
+}
+
+// -- Workday CXS API: POST https://<tenant>.wd<N>.myworkdayjobs.com/wday/cxs/<tenant>/<site>/jobs
+// Paginates in pages of `limit`; loops until a page returns fewer than
+// requested or a safety cap is hit. postedOn is a relative string ("Posted
+// 3 Days Ago"), not a real date, so postedDate is left null — foundDate
+// covers it. Wrapped defensively since this is POST-based and its exact
+// response shape wasn't confirmed against live data before shipping.
+async function fetchWorkday(company, host, tenant, site) {
+  const base = `https://${tenant}.${host}.myworkdayjobs.com`;
+  const jobs = [];
+  const limit = 20;
+  let offset = 0;
+  for (let page = 0; page < 10; page++) {
+    const data = await fetchJSON(`${base}/wday/cxs/${tenant}/${site}/jobs`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ appliedFacets: {}, limit, offset, searchText: '' }),
+    });
+    const postings = data.jobPostings || [];
+    for (const j of postings) {
+      jobs.push({
+        company,
+        title: String(j.title || '').trim(),
+        location: j.locationsText || '',
+        department: '',
+        url: j.externalPath ? `${base}/${site}${j.externalPath}` : '',
+        postedDate: null,
+        source: 'Workday',
+      });
+    }
+    if (postings.length < limit) break;
+    offset += limit;
+  }
+  return jobs;
+}
+
+// Companies with a verified, queryable public ATS API.
+const SOURCES = [
+  { company: 'Digital Science', fetch: () => fetchPinpoint('Digital Science', 'digitalscience') },
+  { company: 'Elicit', fetch: () => fetchAshby('Elicit', 'elicit') },
+  { company: 'SciSpace', fetch: () => fetchSmartRecruiters('SciSpace', 'Typesetio') },
+  { company: 'Allen Institute for AI', fetch: () => fetchGreenhouse('Allen Institute for AI', 'thealleninstitute') },
+  { company: 'OpenAI', fetch: () => fetchAshby('OpenAI', 'openai') },
+  { company: 'Anthropic', fetch: () => fetchGreenhouse('Anthropic', 'anthropic') },
+  { company: 'Clarivate', fetch: () => fetchWorkday('Clarivate', 'wd3', 'clarivate', 'Clarivate_Careers') },
+  { company: 'Springer Nature', fetch: () => fetchWorkday('Springer Nature', 'wd3', 'springernature', 'SpringerNatureCareers') },
+  { company: 'Wiley', fetch: () => fetchWorkday('Wiley', 'wd1', 'wiley', 'wiley_careers') },
+];
+
+// Companies with no usable public API — surfaced in scan state so the UI
+// can be upfront about the gap instead of silently omitting them.
+const UNTRACKED_COMPANIES = [
+  { company: 'scite', reason: 'Not currently hiring (applications by email)', url: 'https://scite.ai/jobs' },
+  { company: 'Consensus', reason: 'Roles posted only to LinkedIn, no ATS board found', url: 'https://consensus.app/home/careers/' },
+  { company: 'Paperguide', reason: 'No formal careers page/ATS (small team, hires ad hoc via LinkedIn)', url: 'https://linkedin.com/company/paperguideai' },
+  { company: 'IGI Global Scientific Publishing', reason: 'Static list, applications by email', url: 'https://www.igi-global.com/about/staff/job-opportunities/' },
+  { company: 'IEEE', reason: 'Oracle Taleo, session-based, no public JSON API', url: 'https://ieee.taleo.net/careersection/2/jobsearch.ftl' },
+  { company: 'Google', reason: 'Proprietary/internal API, not public', url: 'https://careers.google.com/' },
+];
+
+async function main() {
+  const existing = readJSON(DATA_FILE, []);
+  const existingByKey = new Map(existing.map(j => [j.company + '|' + j.url, j]));
+
+  const allJobs = [];
+  const perCompanyCounts = {};
+  const errors = {};
+
+  for (const src of SOURCES) {
+    try {
+      const jobs = await src.fetch();
+      perCompanyCounts[src.company] = { total: jobs.length, nl: 0 };
+      for (const j of jobs) {
+        if (!j.title || !j.url) continue;
+        if (!NL_LOCATION_RE.test(j.location || '')) continue;
+        perCompanyCounts[src.company].nl++;
+        const key = j.company + '|' + j.url;
+        const prior = existingByKey.get(key);
+        allJobs.push({
+          id: makeId(j.company, j.url),
+          company: j.company,
+          title: j.title.slice(0, 200),
+          location: String(j.location || '').slice(0, 150),
+          department: String(j.department || '').slice(0, 100),
+          roleCategory: classifyRole(j.title),
+          url: j.url.slice(0, 500),
+          postedDate: j.postedDate,
+          foundDate: (prior && prior.foundDate) || new Date().toISOString().slice(0, 10),
+          source: j.source,
+        });
+      }
+      console.log(`[competitor-jobs] ${src.company}: ${jobs.length} open role(s), ${perCompanyCounts[src.company].nl} Netherlands-relevant`);
+    } catch (e) {
+      errors[src.company] = e.message;
+      console.warn(`[competitor-jobs] ${src.company} failed: ${e.message}`);
+    }
+  }
+
+  allJobs.sort((a, b) => (b.postedDate || b.foundDate || '').localeCompare(a.postedDate || a.foundDate || ''));
+  saveJSON(DATA_FILE, allJobs);
+
+  saveJSON(STATE_FILE, {
+    lastRun: new Date().toISOString(),
+    totalOpenRoles: allJobs.length,
+    perCompanyCounts,
+    errors,
+    untracked: UNTRACKED_COMPANIES,
+    source: 'Company career-page ATS APIs (Greenhouse/Ashby/SmartRecruiters/Pinpoint/Workday) — not LinkedIn, see file header',
+  });
+  console.log(`[competitor-jobs] Done — ${allJobs.length} Netherlands-relevant open role(s) across ${SOURCES.length - Object.keys(errors).length}/${SOURCES.length} tracked companies.`);
+}
+
+main().catch(e => {
+  console.error('[competitor-jobs] Failed:', e.message);
+  try {
+    saveJSON(STATE_FILE, { lastRun: new Date().toISOString(), totalOpenRoles: 0, error: e.message, untracked: UNTRACKED_COMPANIES });
+  } catch { /* ignore */ }
+  process.exit(1);
+});

@@ -5419,6 +5419,15 @@ async function renderHiringScanStatus() {
     el.innerHTML = `<p style="font-size:12px;color:var(--text)">Last scan: <strong>${_relativeTime(state.lastRun)}</strong></p>
       <p style="font-size:12px;color:var(--muted);margin-top:3px">${state.totalOpenRoles || 0} open role${state.totalOpenRoles === 1 ? '' : 's'} tracked</p>
       ${state.error ? `<p style="font-size:11px;color:#f87171;margin-top:6px">${esc(state.error)}</p>` : ''}`;
+
+    const untrackedEl = document.getElementById('hiring-untracked');
+    if (untrackedEl && Array.isArray(state.untracked) && state.untracked.length) {
+      untrackedEl.innerHTML = state.untracked.map(u =>
+        `<div style="font-size:11px;line-height:1.5;padding:5px 0;border-top:1px solid var(--border)">
+          <a href="${esc(u.url)}" target="_blank" style="color:var(--text);font-weight:600;text-decoration:none">${esc(u.company)}</a>
+          <div style="color:var(--muted)">${esc(u.reason)}</div>
+        </div>`).join('');
+    }
   } catch(e) { el.innerHTML = '<p style="font-size:12px;color:var(--muted)">Status unavailable.</p>'; }
 }
 
@@ -5466,6 +5475,10 @@ function renderCompetitorHiring() {
         <div class="news-archive-card">
           <h4>Scan Status</h4>
           <div id="hiring-scan-status"><p style="font-size:12px;color:var(--muted)">Loading…</p></div>
+        </div>
+        <div class="news-archive-card">
+          <h4 title="These companies have no public careers-page API to pull from — not LinkedIn-scrapable either, see the page header note">Not Trackable</h4>
+          <div id="hiring-untracked"><p style="font-size:12px;color:var(--muted)">Loading…</p></div>
         </div>
       </div>
     </div>`;

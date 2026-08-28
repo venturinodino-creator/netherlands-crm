@@ -1,4 +1,12 @@
 {
   "lastRun": null,
-  "totalOpenRoles": 0
+  "totalOpenRoles": 0,
+  "untracked": [
+    { "company": "scite", "reason": "Not currently hiring (applications by email)", "url": "https://scite.ai/jobs" },
+    { "company": "Consensus", "reason": "Roles posted only to LinkedIn, no ATS board found", "url": "https://consensus.app/home/careers/" },
+    { "company": "Paperguide", "reason": "No formal careers page/ATS (small team, hires ad hoc via LinkedIn)", "url": "https://linkedin.com/company/paperguideai" },
+    { "company": "IGI Global Scientific Publishing", "reason": "Static list, applications by email", "url": "https://www.igi-global.com/about/staff/job-opportunities/" },
+    { "company": "IEEE", "reason": "Oracle Taleo, session-based, no public JSON API", "url": "https://ieee.taleo.net/careersection/2/jobsearch.ftl" },
+    { "company": "Google", "reason": "Proprietary/internal API, not public", "url": "https://careers.google.com/" }
+  ]
 }
