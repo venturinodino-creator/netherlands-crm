@@ -931,6 +931,9 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
     <div class="nav-item" data-view="ai-insights" onclick="nav('ai-insights')">
       <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5c0 1.7.7 2.6 1.5 3.5.6.6 1 1.2 1.2 2.1M12 2a5 5 0 0 1 5 5c0 1.7-.7 2.6-1.5 3.5-.6.6-1 1.2-1.2 2.1M9.7 12.6h4.6M9.9 16h4.2M10.5 19h3"/></svg></div> Competitor Insights
     </div>
+    <div class="nav-item" data-view="hiring" onclick="nav('hiring')">
+      <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div> Competitor Hiring
+    </div>
     <div class="nav-item" data-view="rfp" onclick="nav('rfp')">
       <div class="nav-icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div> RFP Opps
     </div>
@@ -2244,6 +2247,7 @@ function render() {
     pipeline: renderPipeline,
     subscriptions: renderSubscriptionMatrix,
     'ai-insights': renderCompetitorInsights,
+    hiring: renderCompetitorHiring,
     openalex: renderOpenAlex,
     barcelona: renderBarcelonaDecl,
     '4gu': render4GU,
@@ -2341,6 +2345,11 @@ function renderDashboard() {
       id: 'agent-news', name: 'Netherlands Research News Scan', icon: '📰',
       status: 'active', cadence: 'Daily · 07:00 UTC · GitHub Actions', source: 'Claude API (web search)',
       statusEl: 'agent-news-lastrun', view: 'news', workflow: 'news-scan.yml',
+    },
+    {
+      id: 'agent-hiring', name: 'Competitor Hiring Scan', icon: '💼',
+      status: 'active', cadence: 'Daily · 07:00 UTC · GitHub Actions', source: 'Competitor career-page ATS APIs',
+      statusEl: 'agent-hiring-lastrun', view: 'hiring', workflow: 'competitor-jobs-scan.yml',
     },
     {
       id: 'agent-summary', name: 'Daily CRM Summary Report', icon: '📊',
@@ -2508,6 +2517,7 @@ function syncAgentStatus() {
   _syncAgentFrom('agent-competitor-lastrun', 'data/competitor-scan-state.json', d => d.error === 'missing_api_key' ? ' · needs ANTHROPIC_API_KEY' : d.lastAddedCount ? ` · +${d.lastAddedCount}` : '');
   _syncAgentFrom('agent-openalex-subs-lastrun', 'data/openalex-scan-state.json', d => d.error === 'missing_api_key' ? ' · needs ANTHROPIC_API_KEY' : d.lastAddedCount ? ` · +${d.lastAddedCount}` : '');
   _syncAgentFrom('agent-news-lastrun', 'data/news-scan-state.json', d => d.error === 'missing_api_key' ? ' · needs ANTHROPIC_API_KEY' : d.lastAddedCount ? ` · +${d.lastAddedCount}` : '');
+  _syncAgentFrom('agent-hiring-lastrun', 'data/competitor-jobs-scan-state.json', d => d.totalOpenRoles != null ? ` · ${d.totalOpenRoles} open` : '');
 }
 
 let _scDragSrc = null;
@@ -5307,6 +5317,160 @@ function renderCompetitorInsights() {
     <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px">${cardsHtml}</div>
     <p style="color:#334155;font-size:11px;margin:12px 0 0;text-align:right">Watching for new solutions that compete with LeapSpace · last scan ${new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}</p>
   </div>`;
+}
+
+//  COMPETITOR HIRING
+// Open roles at Elsevier's named RI/scholarly-publishing competitors, pulled
+// from each company's own careers-page ATS API (Greenhouse/Lever/etc — see
+// scripts/competitor-jobs-scan.js for exactly which companies are covered
+// and why). Deliberately NOT LinkedIn: LinkedIn requires login for job
+// search and blocks automated access, so there's no reliable or
+// ToS-compliant way to scrape it directly from a script. A company's own
+// careers page carries the same postings (LinkedIn listings are near-always
+// just a syndicated copy) without that problem.
+// Kept in sync manually with TRACKED_COMPETITORS in
+// scripts/competitor-jobs-scan.js.
+const HIRING_COMPANIES = [
+  'Clarivate', 'Digital Science', 'Springer Nature', 'Wiley', 'Elicit',
+  'scite', 'Consensus', 'SciSpace', 'Paperguide',
+  'IGI Global Scientific Publishing', 'IEEE', 'Allen Institute for AI',
+  'Google', 'OpenAI', 'Anthropic',
+];
+const HIRING_CATEGORIES = {
+  sales:   { label: 'Sales & Account',        color: '#059669' },
+  product: { label: 'Product & Engineering',  color: '#1d4ed8' },
+  other:   { label: 'Other',                  color: '#64748b' },
+};
+
+let _hiringAllJobs       = [];
+let _hiringActiveCompany = 'all';
+let _hiringActiveCategory = 'all';
+
+async function loadCompetitorJobs() {
+  const feedEl = document.getElementById('hiring-feed');
+  if (feedEl) feedEl.innerHTML = `<div class="news-loading"><div class="news-spinner"></div>Loading…</div>`;
+  try {
+    const res = await fetch('/netherlands-crm/data/competitor-jobs.json?t=' + Date.now());
+    const data = res.ok ? await res.json() : [];
+    _hiringAllJobs = Array.isArray(data) ? data : [];
+  } catch(e) { _hiringAllJobs = []; }
+  renderHiringFeed();
+  renderHiringScanStatus();
+}
+
+function setHiringCompany(co) {
+  _hiringActiveCompany = co;
+  document.querySelectorAll('.hiring-company-btn').forEach(b => b.classList.remove('active'));
+  const safeId = 'hf-' + co.replace(/[^a-z0-9]/gi, '_');
+  document.getElementById(safeId)?.classList.add('active');
+  renderHiringFeed();
+}
+
+function setHiringCategory(cat) {
+  _hiringActiveCategory = cat;
+  document.querySelectorAll('.hiring-cat-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('hc-' + cat)?.classList.add('active');
+  renderHiringFeed();
+}
+
+function renderHiringFeed() {
+  const feed = document.getElementById('hiring-feed');
+  if (!feed) return;
+
+  const byCompany = _hiringActiveCompany === 'all' ? _hiringAllJobs : _hiringAllJobs.filter(j => j.company === _hiringActiveCompany);
+  const filtered = _hiringActiveCategory === 'all' ? byCompany : byCompany.filter(j => j.roleCategory === _hiringActiveCategory);
+  const sorted = filtered.slice().sort((a, b) => (b.postedDate || '').localeCompare(a.postedDate || ''));
+
+  if (!sorted.length) {
+    feed.innerHTML = `<div class="news-empty">
+      <div style="font-size:32px;margin-bottom:10px">­</div>
+      No open roles tracked yet.<br>
+      <small>The daily scan runs at 07:00 UTC — check back after that, or run it manually from the button above.</small>
+    </div>`;
+    return;
+  }
+
+  feed.innerHTML = sorted.slice(0, 100).map(j => {
+    const cat = HIRING_CATEGORIES[j.roleCategory] || HIRING_CATEGORIES.other;
+    const safeUrl = (j.url || '').replace(/'/g, '%27');
+    return `<div class="news-card" onclick="window.open('${safeUrl}','_blank')">
+      <div class="news-card-top">
+        <span class="news-source-badge" style="background:#f8717122;color:#f87171">${esc(j.company || '')}</span>
+        <span class="news-topic-tag" style="background:${cat.color}22;color:${cat.color}">${esc(cat.label)}</span>
+        <span class="news-date">${esc(j.postedDate || j.foundDate || '')}</span>
+      </div>
+      <h3>${esc(j.title || '')}</h3>
+      <p>${esc(j.location || 'Location not listed')}${j.department ? ' · ' + esc(j.department) : ''}</p>
+      <div class="news-card-footer">
+        <a href="${safeUrl}" target="_blank" onclick="event.stopPropagation()">View posting </a>
+        ${j.source ? `<span style="color:var(--muted);font-size:11px">· ${esc(j.source)}</span>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+async function renderHiringScanStatus() {
+  const el = document.getElementById('hiring-scan-status');
+  if (!el) return;
+  try {
+    const res = await fetch('/netherlands-crm/data/competitor-jobs-scan-state.json?t=' + Date.now());
+    const state = res.ok ? await res.json() : null;
+    if (!state || !state.lastRun) { el.innerHTML = '<p style="font-size:12px;color:var(--muted)">No scan recorded yet.</p>'; return; }
+    el.innerHTML = `<p style="font-size:12px;color:var(--text)">Last scan: <strong>${_relativeTime(state.lastRun)}</strong></p>
+      <p style="font-size:12px;color:var(--muted);margin-top:3px">${state.totalOpenRoles || 0} open role${state.totalOpenRoles === 1 ? '' : 's'} tracked</p>
+      ${state.error ? `<p style="font-size:11px;color:#f87171;margin-top:6px">${esc(state.error)}</p>` : ''}`;
+  } catch(e) { el.innerHTML = '<p style="font-size:12px;color:var(--muted)">Status unavailable.</p>'; }
+}
+
+function renderCompetitorHiring() {
+  document.getElementById('page-title').textContent = 'Competitor Hiring';
+  document.getElementById('page-sub').textContent = 'Open Netherlands-relevant roles at Elsevier RI competitors — sales/account hires signal a market push, product/engineering hires signal capability being built';
+  _hiringActiveCompany = 'all';
+  _hiringActiveCategory = 'all';
+  document.getElementById('topbar-actions').innerHTML = `
+    <button class="btn btn-outline" data-admin-only id="run-btn-hiring" onclick="runAgentNow('competitor-jobs-scan.yml','run-btn-hiring','Competitor Hiring Scan')" style="font-size:12px" title="Pulls the latest open roles from tracked competitors' career pages right now via GitHub Actions">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:5px"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      Run hiring scan now
+    </button>`;
+
+  const catBtns = ['all', ...Object.keys(HIRING_CATEGORIES)].map(cat => {
+    const label = cat === 'all' ? 'All Roles' : HIRING_CATEGORIES[cat].label;
+    return `<button id="hc-${cat}" class="news-filter-btn hiring-cat-btn${cat === _hiringActiveCategory ? ' active' : ''}" onclick="setHiringCategory('${cat}')">${esc(label)}</button>`;
+  }).join('');
+
+  const companyBtns = ['all', ...HIRING_COMPANIES].map(co => {
+    const safeId = 'hf-' + co.replace(/[^a-z0-9]/gi, '_');
+    const label = co === 'all' ? 'All Companies' : co;
+    return `<button id="${safeId}" class="news-filter-btn hiring-company-btn${co === _hiringActiveCompany ? ' active' : ''}" onclick="setHiringCompany('${co}')">${esc(label)}</button>`;
+  }).join('');
+
+  const legend = Object.entries(HIRING_CATEGORIES).map(([, c]) =>
+    `<div style="display:flex;align-items:center;gap:7px;font-size:12px;color:var(--text);padding:4px 0">
+      <span style="width:8px;height:8px;border-radius:50%;background:${c.color};flex-shrink:0"></span>${c.label}
+    </div>`).join('');
+
+  document.getElementById('content').innerHTML = `
+    <div class="news-filter-bar">${catBtns}</div>
+    <div class="news-filter-bar" style="margin-top:-6px">${companyBtns}</div>
+    <div class="news-layout">
+      <div>
+        <div id="hiring-feed" class="news-feed">
+          <div class="news-loading"><div class="news-spinner"></div>Loading…</div>
+        </div>
+      </div>
+      <div class="news-sidebar">
+        <div class="news-source-filter">
+          <h4>Role Type</h4>
+          ${legend}
+        </div>
+        <div class="news-archive-card">
+          <h4>Scan Status</h4>
+          <div id="hiring-scan-status"><p style="font-size:12px;color:var(--muted)">Loading…</p></div>
+        </div>
+      </div>
+    </div>`;
+
+  loadCompetitorJobs();
 }
 
 const COMPETITOR_PRODUCTS = {
