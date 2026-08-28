@@ -88,9 +88,13 @@ If you find nothing genuinely new and relevant, output nothing at all. Only repo
   // indefinitely instead of failing fast — exactly what happened to
   // news-scan.js's relevance-filter call before it got the same guard (a
   // real ~20min hang in production, masked on some other repos only by an
-  // invalid API key failing fast instead).
+  // invalid API key failing fast instead). 300s, not the 120s this guard
+  // originally shipped with: an agentic Opus call making up to 8 web
+  // searches legitimately runs past 2 minutes (a production run was
+  // aborted at exactly 120s on 2026-08-28), and the timeout's job is to
+  // catch a hung connection, not to race a healthy long call.
   const ctrl = new AbortController();
-  const timer = setTimeout(() => ctrl.abort(), 120000);
+  const timer = setTimeout(() => ctrl.abort(), 300000);
   let res;
   try {
     res = await fetch('https://api.anthropic.com/v1/messages', {
@@ -219,7 +223,21 @@ async function main() {
   const existingIds = new Set(competitors.map(c => c.id));
 
   console.log('[competitor-scan] Calling Claude with web search...');
-  const response = await callClaude(competitors);
+  // Discovery failing (timeout, transient API error) shouldn't kill the
+  // whole run: battle-card generation is a separate, much cheaper call
+  // that can and should still complete and be committed — discovery
+  // self-heals on tomorrow's scheduled run anyway. The error is still
+  // recorded in the state file and surfaced as a workflow warning.
+  let response = null;
+  try {
+    response = await callClaude(competitors);
+  } catch (e) {
+    console.warn(`[competitor-scan] Discovery call failed (${e.message}) — skipping discovery this run, continuing to battle-card generation.`);
+    console.log(`::warning::competitor-scan discovery call failed (${e.message}); no new competitors this run, battle-card copy still refreshed.`);
+    await generateBattleCard(competitors);
+    saveJSON(STATE_FILE, { lastRun: new Date().toISOString(), lastAddedCount: 0, error: `discovery: ${e.message}` });
+    return;
+  }
 
   if (response.stop_reason === 'refusal') {
     console.log('[competitor-scan] Request was declined by safety classifiers — no results this run.');
