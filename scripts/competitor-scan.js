@@ -70,20 +70,33 @@ For each new competing solution you find, respond with one JSON object per line 
 
 If you find nothing genuinely new and relevant, output nothing at all. Only report what your search actually surfaces with a verifiable source URL — never invent a product or a source.`;
 
-  const res = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: {
-      'x-api-key': API_KEY,
-      'anthropic-version': '2023-06-01',
-      'content-type': 'application/json',
-    },
-    body: JSON.stringify({
-      model: MODEL,
-      max_tokens: 4096,
-      tools: [{ type: 'web_search_20260209', name: 'web_search', max_uses: 8 }],
-      messages: [{ role: 'user', content: prompt }],
-    }),
-  });
+  // A stalled connection here can otherwise hang the whole workflow run
+  // indefinitely instead of failing fast — exactly what happened to
+  // news-scan.js's relevance-filter call before it got the same guard (a
+  // real ~20min hang in production, masked on some other repos only by an
+  // invalid API key failing fast instead).
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 120000);
+  let res;
+  try {
+    res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'x-api-key': API_KEY,
+        'anthropic-version': '2023-06-01',
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: MODEL,
+        max_tokens: 4096,
+        tools: [{ type: 'web_search_20260209', name: 'web_search', max_uses: 8 }],
+        messages: [{ role: 'user', content: prompt }],
+      }),
+      signal: ctrl.signal,
+    });
+  } finally {
+    clearTimeout(timer);
+  }
 
   if (!res.ok) {
     const body = await res.text();
