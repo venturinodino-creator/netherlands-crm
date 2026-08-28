@@ -1,4 +1,85 @@
 {
-  "generatedAt": null,
-  "entries": {}
+  "generatedAt": "2026-08-28T23:36:51.616Z",
+  "entries": {
+    "clarivate-wos-research-assistant": {
+      "whatTheyDid": "Clarivate built an agentic research workspace on Web of Science to match LeapSpace's end-to-end literature discovery → funding → proposal workflow. They're now positioning as a direct institutional alternative with their own citation foundation and multi-step research guides.",
+      "counter": "LeapSpace's ScienceDirect/Scopus corpus is 40% larger and includes full-text access; lead with Literature Search & Discovery's structured answers *plus* the Trust Cards & Claim Radar tabs Clarivate doesn't have—claim verification is the gap in their literature-first model."
+    },
+    "elicit-research-agent": {
+      "whatTheyDid": "Elicit scales autonomous paper extraction (125M+ papers) into a populated research workspace, selling direct to individuals at a lower price point than institutional bundles. Their Research Agent does the read-extract-synthesize loop faster for solo researchers.",
+      "counter": "Position LeapSpace's Writing Coach + Trust Cards as the institutional advantage: Elicit surfaces volume, but LeapSpace adds pressure-testing of *your own arguments* and claim-to-source verification that catches hallucination—the two jobs individual researchers can't do alone at scale."
+    },
+    "scite-assistant": {
+      "whatTheyDid": "scite owns the single, high-confidence job of auditing whether citations actually support their claims—classifying 1.6B+ citation statements and offering manuscript reference checking. It's purpose-built where LeapSpace bundles claim verification as one tab among eight.",
+      "counter": "Lead with Trust Cards & Claim Radar's *workflow integration*: scite audits citations in isolation; LeapSpace surfaces claims *in context* of your literature search, writing, and research flow—you find the claim, verify it, and iterate without context-switching tools."
+    },
+    "consensus-ai": {
+      "whatTheyDid": "Consensus strips research Q&A down to its fastest form—direct answer from peer-reviewed literature with a lightweight yes/no consensus meter. It's winning on speed and simplicity for quick evidence checks, not deep work.",
+      "counter": "Consensus is 'search lite'; counter with Literature Search & Discovery's *structured synthesis*—LeapSpace returns not just an answer but the full evidence chain, methodology details, and contradictions via Deep Research Reports, suited to researchers who need to *justify* the answer, not just find it fast."
+    },
+    "scispace-workspace": {
+      "whatTheyDid": "SciSpace deployed multiple domain-specific agents (BioMed, Meta-Analysis, Manuscript Writer) across a 280M+ paper corpus, positioning as the broadest agent-based workspace. But independent reviewers flag hallucination risk in its explanations—the source-grounding problem.",
+      "counter": "Acknowledge SciSpace's breadth, then pivot to LeapSpace's Trust Cards & Claim Radar—the antidote to hallucination. Lead with: 'We don't just generate claims; we verify them against the source literature,' making LeapSpace the safer choice for high-stakes writing and proposals where false citations are institutional risk."
+    },
+    "auto-digital-science-dimensions-research-strategy": {
+      "whatTheyDid": "Digital Science announced a strategic-analysis platform (Dimensions Research Strategy, July 2026) that automates expertise mapping and complex benchmarking analyses that previously required weeks of commissioned research. They're moving from tools into domain expert substitution.",
+      "counter": "Lead with Author Search's *directness*—LeapSpace finds collaborators and topic leaders *now*, searchable by institution and network; Digital Science targets strategic analysis *depth*, not discovery speed. If the buyer needs quick expertise mapping, LeapSpace answers the question in minutes; if they need 8-week strategic consulting, Digital Science is the play."
+    },
+    "auto-paperguide-paperguide-literature-review-agent": {
+      "whatTheyDid": "Paperguide built a five-step agentic workflow (discovery → screening → extraction → synthesis) positioned against reference managers as an end-to-end literature review engine. They're competing on synthesis methodology, not just corpus size.",
+      "counter": "LeapSpace's Literature Search & Discovery + Deep Research Reports *already do* structured synthesis with full referencing; counter by emphasizing that LeapSpace integrates reviews into a *live workspace* with Writing Coach and Trust Cards, so researchers iterate on findings *within* the same environment instead of exporting to a separate reference tool."
+    },
+    "auto-igi-global-scientific-publishing-igi-global-ai-assistant-research-discovery-tool": {
+      "whatTheyDid": "IGI Global embedded an AI assistant into their own publisher platform, offering research discovery and conversational reading assistance on licensed content. It's a publisher-owned, walled-garden AI layer designed to increase platform stickiness.",
+      "counter": "Lead with LeapSpace's *corpus scale and independence*: ScienceDirect + Scopus + millions of open-access papers, versus IGI Global's book/journal titles alone. For institutions, position Reading Assistant + Literature Search as superior because they work across *all* research, not just one publisher's catalog—avoiding vendor lock-in while keeping the conversational reading experience."
+    },
+    "clarivate-web-of-science-research-intelligence": {
+      "whatTheyDid": "Clarivate launched a fully AI-native platform connecting publications, patents, funding and policy into one strategic-analysis engine, with explicit workflows for non-specialist users across institutions. Directly targets Deep Research Reports and Funding Discovery by positioning pattern-surfacing and funding strategy as enterprise-wide capabilities, not specialist tools.",
+      "counter": "LeapSpace bundles Deep Research Reports with Literature Search, Writing Coach and Trust Cards in one researcher-centric workspace — Clarivate's strength is institutional strategy, but LeapSpace owns the individual researcher's full writing-to-publication workflow. Lead with Writing Coach's ability to pressure-test claims before they enter the funding/strategy pipeline Clarivate targets."
+    },
+    "wiley-ai-gateway": {
+      "whatTheyDid": "Wiley AI Gateway distributes Wiley content to Claude, Mistral, Perplexity and AWS as a grounding source, letting researchers use third-party AI tools they already have open. A licensing-first strategy that undercuts destination-workspace positioning by embedding Wiley into tools researchers already trust.",
+      "counter": "LeapSpace's Literature Search & Discovery returns structured, referenced answers *within* a single environment where those results feed directly into Writing Coach, Reading Assistant and Trust Cards. Lead with integrated workflow: Wiley gives you content inside ChatGPT; LeapSpace gives you citation verification, claim-checking and draft pressure-testing without switching tabs."
+    },
+    "wiley-atypon-ai-suite": {
+      "whatTheyDid": "Atypon AI Suite embeds conversational AI directly into the journal-hosting platform Wiley sells to dozens of publishers, making it available at infrastructure scale. Matches Reading Assistant and Literature Search through platform ubiquity rather than a standalone product.",
+      "counter": "LeapSpace's Reading Assistant is grounded in *one* article at a time for depth; Atypon competes on breadth. Position LeapSpace's Compare tab as the differentiator—side-by-side analysis across papers within a single workspace beats scattered AI conversations across different publishers' platforms."
+    },
+    "google-scholar-labs": {
+      "whatTheyDid": "Google Scholar Labs added an AI layer to the world's largest free research index, breaking questions into topics, returning summaries with reasoning, and offering conversational follow-up. Free and universal-scale threat to Literature Search & Discovery, though still English-only and waitlist-gated.",
+      "counter": "LeapSpace's Literature Search runs over curated ScienceDirect + Scopus, not the entire open web—higher signal-to-noise for researchers in subscription-backed institutions. Lead with Trust Cards & Claim Radar: Google Scholar gives you AI summaries; LeapSpace verifies those summaries against the source and the wider evidence landscape."
+    },
+    "ieee-xplore-ai-research-suite": {
+      "whatTheyDid": "IEEE Xplore AI Research Suite completed beta in May 2026 with natural-language search, AI summaries, and in-context definitions across engineering and STEM. Domain-focused but well-resourced, matching Literature Search & Discovery and Reading Assistant in a vertical where IEEE controls the canonical index.",
+      "counter": "For IEEE-publishing researchers, position LeapSpace's Writing Coach and Author Search as the workflow extensions IEEE doesn't have—they search STEM content better, but LeapSpace helps you *draft* with confidence and *find collaborators* in your subfield. IEEE is search-only; LeapSpace is workspace."
+    },
+    "ai2-asta-scholarqa": {
+      "whatTheyDid": "Ai2's Asta folds free, nonprofit-backed Scholar QA into a unified research assistant, matching Literature Search & Discovery and Deep Research Reports over 108M+ abstracts and 12M+ full texts at zero cost. The pricing-model threat—same capability, no subscription.",
+      "counter": "LeapSpace bundles Literature Search with Writing Coach, Trust Cards, Claim Radar and Author Search; Asta is synthesis-only and free. Lead with integrated trust: Asta answers research questions faster and cheaper; LeapSpace *verifies* those answers against sources (Trust Cards) and *connects* you to collaborators (Author Search) in one workspace."
+    },
+    "springer-nature-ai-integrity-suite": {
+      "whatTheyDid": "Springer Nature deployed 60+ AI integrity tools across 1.5M+ papers in 2025, including Geppetto (AI-generated text detection) and a reference-relevance checker. Publisher-side integrity policing at scale, addressing the same underlying trust problem as Trust Cards & Claim Radar but from inside the publishing workflow.",
+      "counter": "Springer's tools police *publishers' inboxes*; LeapSpace's Trust Cards & Claim Radar verify claims *in your workspace* before you cite or build on them. Lead with researcher agency: you're not waiting for publishers to catch problems—you're checking sources and alignment yourself, in context, as you read and draft."
+    },
+    "auto-digital-science-papers-ai": {
+      "whatTheyDid": "Digital Science launched Papers AI on 6 August 2026 as an AI-native workspace for literature reading and reference management, developed with community input. Directly mirrors LeapSpace's 'one environment for the whole workflow' positioning and competes across Literature Search, Reading Assistant and Deep Research Reports.",
+      "counter": "Papers AI is built around existing collections; LeapSpace is built around *claims and arguments*. Lead with Writing Coach and Compare: Papers helps you manage PDFs you already have, LeapSpace helps you discover whether your arguments hold water (Writing Coach pressure-tests them, Compare lets you see gaps across papers you haven't found yet)."
+    },
+    "auto-openai-chatgpt-for-academic-researchers": {
+      "whatTheyDid": "OpenAI gave 100K academic researchers free access to ChatGPT with 75+ life-science skills, bundling literature search, deep analysis, writing support and document Q&A into a general-purpose copilot. It's free, frontier-grade, and targets the exact institutions Elsevier sells to.",
+      "counter": "LeapSpace's Literature Search & Discovery returns *cited, structured answers* from ScienceDirect/Scopus—not hallucinated synthesis. Pair that with Trust Cards & Claim Radar to show how claims stack against actual research, not just fluent guessing."
+    },
+    "auto-anthropic-claude-science": {
+      "whatTheyDid": "Anthropic's Claude Science bundles databases, code execution, HPC compute and manuscript drafting into one agentic workbench for life-sciences labs, mapping entire research fields for $26. It's cheap, unified, and skips the paywall problem.",
+      "counter": "LeapSpace owns *Author Search* and *Funding Discovery*—capabilities Claude Science doesn't have. Lead with the full research lifecycle: find collaborators and funding *first*, then Deep Research Reports to synthesize the field using licensed Scopus depth Claude can't match."
+    },
+    "auto-springer-nature-nature-research-assistant": {
+      "whatTheyDid": "Springer Nature launched Nature Research Assistant for AI-powered discovery and synthesis over Nature-branded content, positioning it as a decision-making tool for research leaders. It's native to premium, high-trust content.",
+      "counter": "LeapSpace's Deep Research Reports surface *patterns, contradictions and evidence gaps* across all of ScienceDirect/Scopus—not just one publisher's portfolio. Highlight the breadth: Springer Nature's assistant is a walled garden; LeapSpace sees the whole field."
+    },
+    "auto-google-notebooklm-dec-2025-update-deep-research-data-tables-gemini-3": {
+      "whatTheyDid": "Google upgraded NotebookLM with autonomous Deep Research mode (searches the web for bibliographies), Data Tables (structures papers into exportable tables), and Gemini 3 reasoning. It now covers literature discovery, synthesis, document Q&A and side-by-side comparison—all free.",
+      "counter": "NotebookLM is web-only and user-curated; LeapSpace's Compare tab and Deep Research Reports are *expert-licensed*, grounded in ScienceDirect/Scopus provenance, and include Trust Cards to validate claim-to-source fidelity. Lead with rigor and institutional trust, not feature count."
+    }
+  }
 }
