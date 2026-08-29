@@ -233,16 +233,27 @@ function isCurrent(c) {
   return (c.eventDate || c.addedDate || '0000-00-00') >= RECENCY_CUTOFF;
 }
 
-// One-paragraph board-ready read of the current competitive landscape,
+// Structured, board-ready read of the current competitive landscape,
 // regenerated whenever the tracked set changes (a new competitor was
 // written up this run) or the summary doesn't exist yet. Kept separate
 // from the per-competitor entries so the page can render it standalone
 // with a copy-to-clipboard button for sharing upward.
+//
+// Returns {headline, pressurePoint, topThreats: [...], strength} rather
+// than one paragraph — a board reader scans a summary, they don't read it
+// start to finish, so the shape needs to support that: one bolded headline
+// stat, then short independent bullets rather than a wall of prose that
+// buries the threats in the middle of a sentence.
 async function generateExecutiveSummary(competitors) {
   const current = competitors.filter(c => c.howItCompetes && isCurrent(c));
   const cutoffLabel = new Date(RECENCY_CUTOFF).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
   if (!current.length) {
-    return `No competitive moves have been confirmed since ${cutoffLabel} — nothing currently tracked meets the recency bar for a board-level update. ${competitors.length} older entries remain on file for reference but are excluded here as no longer current.`;
+    return {
+      headline: `No competitive moves confirmed since ${cutoffLabel} — nothing currently tracked meets the recency bar for a board update.`,
+      pressurePoint: '',
+      topThreats: [],
+      strength: `${competitors.length} older entries remain on file for reference but are excluded here as no longer current.`,
+    };
   }
   const facts = current.map(c =>
     `- ${c.company} — ${c.product} (overlaps ${(c.elements || []).length}/8 LeapSpace tabs: ${(c.elements || []).join(', ') || 'none tagged'}; dated ${c.eventDate || c.addedDate})\n  ${String(c.howItCompetes).slice(0, 300)}`
@@ -250,21 +261,38 @@ async function generateExecutiveSummary(competitors) {
 
   const prompt = `${LEAPSPACE_CONTEXT}
 
-Below is every AI research tool with a confirmed competitive move dated ${cutoffLabel} or later — older entries have already been excluded, do not comment on or imply older history. Write an executive summary an Elsevier sales lead can paste into a board-of-directors update — quick, concise, factual.
+Below is every AI research tool with a confirmed competitive move dated ${cutoffLabel} or later — older entries have already been excluded, do not comment on or imply older history. Write a board-ready competitive summary for an Elsevier sales lead — quick, concise, factual, built to be skimmed in 10 seconds, not read top to bottom.
 
 ${facts}
 
-Structure it as exactly:
-1. One sentence stating the tracking criteria (AI research tools found via web search that overlap one or more of LeapSpace's 8 tabs above, dated ${cutoffLabel} or later) and the headline number: how many are tracked and how many companies.
-2. One sentence on where the pressure is concentrated (which LeapSpace tab(s) see the most overlap).
-3. One sentence each for the most serious threats among these (up to three), naming the company and product and why it specifically threatens LeapSpace.
-4. One closing sentence on LeapSpace's strongest defensible position against this field.
-
-Plain text only, no headings, no bullets, no markdown — exactly 6 sentences, under 1300 characters. Respond with ONLY the summary text.`;
+Respond with ONLY a JSON object, exactly these fields:
+{
+  "headline": "One sentence: the tracking criteria (AI research tools found via web search that overlap one or more of LeapSpace's 8 tabs, dated ${cutoffLabel} or later) plus the headline number — how many tools, how many companies. Under 200 characters.",
+  "pressurePoint": "One sentence on where the pressure is concentrated — which LeapSpace tab(s) see the most overlap and by how much. Under 160 characters.",
+  "topThreats": ["One sentence per top threat, up to 3, each naming the company, product, and specifically why it threatens LeapSpace. Under 200 characters each. Order most severe first."],
+  "strength": "One closing sentence on LeapSpace's strongest defensible position against this field. Under 200 characters."
+}`;
 
   const text = await callHaiku(prompt);
   if (text === null) return null;
-  return String(text).trim().slice(0, 1400);
+  let parsed;
+  try {
+    const jsonMatch = text.match(/\{[\s\S]*\}/);
+    parsed = JSON.parse(jsonMatch ? jsonMatch[0] : text);
+  } catch {
+    console.warn('[competitor-scan] Could not parse executive summary response.');
+    return null;
+  }
+  if (!parsed || typeof parsed.headline !== 'string' || typeof parsed.strength !== 'string') {
+    console.warn('[competitor-scan] Executive summary response missing required fields.');
+    return null;
+  }
+  return {
+    headline: String(parsed.headline).slice(0, 300),
+    pressurePoint: String(parsed.pressurePoint || '').slice(0, 250),
+    topThreats: Array.isArray(parsed.topThreats) ? parsed.topThreats.slice(0, 3).map(t => String(t).slice(0, 250)) : [],
+    strength: String(parsed.strength).slice(0, 300),
+  };
 }
 
 // Generates whatTheyDid/counter copy for any tracked competitor that
@@ -285,9 +313,12 @@ async function generateBattleCard(competitors, datesJustBackfilled) {
   // force a summary refresh on its own — otherwise a stale-but-recently-
   // tracked entry (the NotebookLM "Dec 2025 update" case) keeps reading as
   // current in the board summary until something else happens to trigger
-  // a regen.
+  // a regen. A summary from before the headline/bullets schema (a plain
+  // string, not an object) also forces a regen — the client can't render
+  // the old shape.
   const trackedSetChanged = needsCard.length > 0 || !!datesJustBackfilled;
-  if (!trackedSetChanged && existing.executiveSummary) {
+  const summaryIsCurrentSchema = existing.executiveSummary && typeof existing.executiveSummary === 'object';
+  if (!trackedSetChanged && summaryIsCurrentSchema) {
     console.log('[competitor-scan] Battle card up to date — nothing new to write up.');
     return;
   }
@@ -321,10 +352,11 @@ async function generateBattleCard(competitors, datesJustBackfilled) {
   }
 
   // Regenerated only when the tracked set actually changed this run (a new
-  // competitor got written up above) or it's never existed — not every
-  // run — so a quiet day doesn't burn an extra call for identical output.
-  let executiveSummary = existing.executiveSummary || null;
-  let executiveSummaryDate = existing.executiveSummaryDate || null;
+  // competitor got written up above), it's never existed, or it's still the
+  // old plain-string schema — not every run — so a quiet day doesn't burn
+  // an extra call for identical output.
+  let executiveSummary = summaryIsCurrentSchema ? existing.executiveSummary : null;
+  let executiveSummaryDate = summaryIsCurrentSchema ? existing.executiveSummaryDate : null;
   if (trackedSetChanged || !executiveSummary) {
     console.log('[competitor-scan] Writing executive summary...');
     const summary = await generateExecutiveSummary(competitors);
