@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-28T23:50:48.989Z",
+  "generatedAt": "2026-08-29T10:28:01.770Z",
   "entries": {
     "clarivate-wos-research-assistant": {
       "whatTheyDid": "Clarivate built an agentic research workspace on Web of Science to match LeapSpace's end-to-end literature discovery → funding → proposal workflow. They're now positioning as a direct institutional alternative with their own citation foundation and multi-step research guides.",
@@ -86,6 +86,15 @@
       "counter": "LeapSpace's Literature Search & Discovery returns structured, referenced answers across ScienceDirect/Scopus with Trust Cards & Claim Radar validation—so users don't just get AI summaries, they get verification that claims actually match the source evidence. For deeper single-document work, Reading Assistant pairs with Deep Research Reports to surface contradictions and evidence gaps ProQuest's co"
     }
   },
-  "executiveSummary": "We are tracking 15 competitive AI research tools from 13 companies, all announced July 2026 or later, that overlap one or more of LeapSpace's 8 core tabs. The pressure concentrates on Literature Search & Discovery (9 overlaps) and Deep Research Reports (8 overlaps), with secondary threat to Reading Assistant (5 overlaps) and Trust/Claim Radar (4 overlaps). Clarivate's Web of Science Research Assistant poses the most direct threat as a 1:1 rival built on equivalent content (Web of Science vs. ScienceDirect/Scopus) with agentic workflows across discovery, funding, and synthesis. Elicit's Research Agent autonomously populates structured workspaces across 125M+ papers and clinical trials, directly competing with LeapSpace's core Literature Search and Deep Research tabs. Allen Institute for AI's free, open-source Asta folds Semantic Scholar and full-text access into a unified assistant, threatening LeapSpace's pricing model and accessibility positioning. LeapSpace's defensible strength is its integration across all 8 workflows within a single licensed workspace anchored to Elsevier's proprietary ScienceDirect and Scopus content, a breadth and depth of coverage none of these point-solution competitors currently match.",
-  "executiveSummaryDate": "2026-08-28T23:50:48.989Z"
+  "executiveSummary": {
+    "headline": "16 AI research tools from 15 companies (July–Aug 2026) now overlap LeapSpace's 8 tabs, with Literature Search & Discovery the most contested feature.",
+    "pressurePoint": "Literature Search & Discovery faces 10 direct overlaps; Trust Cards & Claim Radar faces 4; Deep Research Reports faces 6. Discovery is the battleground.",
+    "topThreats": [
+      "Clarivate Web of Science Research Assistant (Aug 2026): 1:1 flagship rival built on Web of Science Core Collection; agentic guides and topic exploration directly mirror LeapSpace's core workflow.",
+      "Elicit Research Agent Pro (Aug 2026): Autonomous extraction across 125M+ papers + 545K+ clinical trials into a structured workspace—faster ingestion than LeapSpace's RAG-first approach for literature synthesis.",
+      "SciSpace Research Workspace (Aug 2026): Broadest multi-agent challenger; 280M+ papers + Google Scholar + PubMed querying; covers literature search, writing coach, and deep research in one integrated platform."
+    ],
+    "strength": "LeapSpace bundles 8 integrated tabs with ScienceDirect + Scopus foundation and Elsevier's content trust; no competitor yet bundles this breadth—most target 1–3 tabs individually, leaving workflow fragmentation as LeapSpace's defensible ecosystem advantage."
+  },
+  "executiveSummaryDate": "2026-08-29T10:28:01.770Z"
 }
