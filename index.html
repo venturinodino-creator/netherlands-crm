@@ -1964,7 +1964,7 @@ function syncBadge(show, err) {
 // below — a Supabase outage shouldn't block this, and vice versa.
 async function loadResearchFocus() {
   try {
-    const res = await fetch('/netherlands-crm/data/research-focus.json?t=' + Date.now());
+    const res = await fetch('data/research-focus.json?t=' + Date.now());
     if (res.ok) {
       const json = await res.json();
       state.researchFocus = (json && json.institutions) || {};
@@ -2526,7 +2526,7 @@ async function runSummaryReportNow(btnId) {
     // polling the public Pages URL like before, just slower.
     useContentsApi = false;
     try {
-      const res0 = await fetch('/netherlands-crm/data/summary-reports.json?t=' + Date.now());
+      const res0 = await fetch('data/summary-reports.json?t=' + Date.now());
       const data0 = res0.ok ? await res0.json() : [];
       if (Array.isArray(data0) && data0[0]) beforeGeneratedAt = data0[0].generatedAt;
     } catch (e2) { /* fine — poll will just wait for any entry to appear */ }
@@ -2575,7 +2575,7 @@ async function runSummaryReportNow(btnId) {
         data = await fetchManifestFresh(token);
         latest = data[0] ? data[0].generatedAt : null;
       } else {
-        const res = await fetch('/netherlands-crm/data/summary-reports.json?t=' + Date.now());
+        const res = await fetch('data/summary-reports.json?t=' + Date.now());
         data = res.ok ? await res.json() : [];
         latest = Array.isArray(data) && data[0] ? data[0].generatedAt : null;
       }
@@ -2605,9 +2605,9 @@ async function showNewsSummaryModal() {
   let articles, jobs, overview;
   try {
     const [newsRes, jobsRes, overviewRes] = await Promise.all([
-      fetch('/netherlands-crm/data/news.json?t=' + Date.now()),
-      fetch('/netherlands-crm/data/competitor-jobs.json?t=' + Date.now()),
-      fetch('/netherlands-crm/data/news-overview.json?t=' + Date.now()),
+      fetch('data/news.json?t=' + Date.now()),
+      fetch('data/competitor-jobs.json?t=' + Date.now()),
+      fetch('data/news-overview.json?t=' + Date.now()),
     ]);
     const newsData = newsRes.ok ? await newsRes.json() : [];
     const jobsData = jobsRes.ok ? await jobsRes.json() : [];
@@ -3966,7 +3966,7 @@ async function loadAttentionFeed() {
 
   let newsItems = [];
   try {
-    const res = await fetch('/netherlands-crm/data/news.json?t=' + Date.now());
+    const res = await fetch('data/news.json?t=' + Date.now());
     const articles = res.ok ? await res.json() : [];
     newsItems = (Array.isArray(articles) ? articles : [])
       .filter(a => a.foundDate && daysBetween(a.foundDate, todayISO) <= 7)
@@ -4013,7 +4013,7 @@ function _relativeTime(iso) {
 function _syncAgentFrom(elId, jsonPath, extra) {
   const el = document.getElementById(elId);
   if (!el) return;
-  fetch('/netherlands-crm/' + jsonPath + '?t=' + Date.now())
+  fetch('' + jsonPath + '?t=' + Date.now())
     .then(r => r.ok ? r.json() : null)
     .then(data => {
       if (!data || !data.lastRun) { el.textContent = 'no run recorded yet'; return; }
@@ -5336,7 +5336,7 @@ async function loadNewsArticles() {
     // Always bypass cache — this file changes daily and a stale cached copy
     // (e.g. from before the first scan ever ran) would silently show 0
     // articles even once real data exists.
-    const res = await fetch('/netherlands-crm/data/news.json?t=' + Date.now());
+    const res = await fetch('data/news.json?t=' + Date.now());
     const data = res.ok ? await res.json() : [];
     _newsAllArticles = Array.isArray(data) ? data : [];
   } catch(e) { _newsAllArticles = []; }
@@ -5377,7 +5377,7 @@ async function toggleNewsArchiveView() {
     const feed = document.getElementById('news-feed');
     if (feed) feed.innerHTML = `<div class="news-loading"><div class="news-spinner"></div>Loading…</div>`;
     try {
-      const res = await fetch('/netherlands-crm/data/archive/news.json?t=' + Date.now());
+      const res = await fetch('data/archive/news.json?t=' + Date.now());
       const data = res.ok ? await res.json() : [];
       _newsArchiveArticles = Array.isArray(data) ? data : [];
     } catch(e) { _newsArchiveArticles = []; }
@@ -5439,7 +5439,7 @@ async function renderNewsScanStatus() {
   const el = document.getElementById('news-scan-status');
   if (!el) return;
   try {
-    const res = await fetch('/netherlands-crm/data/news-scan-state.json?t=' + Date.now());
+    const res = await fetch('data/news-scan-state.json?t=' + Date.now());
     const state = res.ok ? await res.json() : null;
     if (!state || !state.lastRun) { el.innerHTML = '<p style="font-size:12px;color:var(--muted)">No scan recorded yet.</p>'; return; }
     el.innerHTML = `<p style="font-size:12px;color:var(--text)">Last scan: <strong>${_relativeTime(state.lastRun)}</strong></p>
@@ -5559,7 +5559,7 @@ async function renderSummaryReports(preloadedReports) {
     reports = preloadedReports;
   } else {
     try {
-      const res = await fetch('/netherlands-crm/data/summary-reports.json?t=' + Date.now());
+      const res = await fetch('data/summary-reports.json?t=' + Date.now());
       const data = res.ok ? await res.json() : [];
       reports = Array.isArray(data) ? data : [];
     } catch(e) { console.error(e); }
@@ -5607,7 +5607,7 @@ async function renderSummaryReports(preloadedReports) {
             <span>${s.hiring ?? '—'} open competitor roles</span>
           </div>
         </div>
-        <a class="btn btn-primary" style="font-size:12px;white-space:nowrap" href="/netherlands-crm/data/${esc(r.file)}" target="_blank">View PDF</a>
+        <a class="btn btn-primary" style="font-size:12px;white-space:nowrap" href="data/${esc(r.file)}" target="_blank">View PDF</a>
       </div>
     </div>`;
   })(latest);
@@ -5619,7 +5619,7 @@ async function renderSummaryReports(preloadedReports) {
         <span style="font-size:12.5px;font-weight:600;color:var(--text)">${esc(fullTimestamp(r))}</span>
         <span style="font-size:11px;color:var(--muted)">${s.institutions ?? '—'} institutions · ${s.contacts ?? '—'} contacts · ${s.pending ?? '—'} new · ${s.news ?? '—'} news · ${s.hiring ?? '—'} open roles</span>
       </div>
-      <a class="btn btn-outline" style="font-size:11px;white-space:nowrap;flex-shrink:0" href="/netherlands-crm/data/${esc(r.file)}" target="_blank">View PDF</a>
+      <a class="btn btn-outline" style="font-size:11px;white-space:nowrap;flex-shrink:0" href="data/${esc(r.file)}" target="_blank">View PDF</a>
     </div>`;
   }).join('');
 
@@ -5805,7 +5805,7 @@ const RFP_STATUSES = {
 function refreshTenders() {
   const btn = document.getElementById('refresh-tenders-btn');
   if (btn) { btn.textContent = '↻ Refreshing...'; btn.disabled = true; }
-  fetch('/netherlands-crm/data/tenders.json?t=' + Date.now())
+  fetch('data/tenders.json?t=' + Date.now())
     .then(function(r){ return r.ok ? r.json() : []; })
     .then(function(remote) {
       if (!Array.isArray(remote) || !remote.length) {
@@ -6330,7 +6330,7 @@ function saveOpenAlexAutoSubs(list) { localStorage.setItem('nl_crm_openalex_subs
 function refreshOpenAlexSubs(silent) {
   const btn = document.getElementById('refresh-openalex-subs-btn');
   if (btn) { btn.textContent = '↻ Scanning...'; btn.disabled = true; }
-  fetch('/netherlands-crm/data/openalex-subscriptions.json?t=' + Date.now())
+  fetch('data/openalex-subscriptions.json?t=' + Date.now())
     .then(function(r){ return r.ok ? r.json() : []; })
     .then(function(remote) {
       if (!Array.isArray(remote)) remote = [];
@@ -7298,11 +7298,14 @@ function toggleDetailOpen() {
 }
 
 function refreshAIInsights(silent) {
+  // Overlapping runs would stack fetches and race each other into storage.
+  if (window._aiInsightsInFlight) return;
+  window._aiInsightsInFlight = true;
   const btn = document.getElementById('refresh-insights-btn');
   if (btn) { btn.textContent = '↻ Scanning...'; btn.disabled = true; }
   Promise.all([
-    fetch('/netherlands-crm/data/leapspace-competitors.json?t=' + Date.now()).then(function(r){ return r.ok ? r.json() : []; }),
-    fetch('/netherlands-crm/data/leapspace-battlecard.json?t=' + Date.now()).then(function(r){ return r.ok ? r.json() : null; }),
+    fetch('data/leapspace-competitors.json?t=' + Date.now()).then(function(r){ return r.ok ? r.json() : []; }),
+    fetch('data/leapspace-battlecard.json?t=' + Date.now()).then(function(r){ return r.ok ? r.json() : null; }),
   ])
     .then(function(results) {
       var remote = results[0], battleCard = results[1];
@@ -7329,11 +7332,13 @@ function refreshAIInsights(silent) {
         try { if (typeof toast==='function') toast(msg, added>0?'ok':'warn'); } catch(e){}
       }
       if (btn) { btn.textContent = '↻ Scan for New Solutions'; btn.disabled = false; }
+      window._aiInsightsInFlight = false;
       renderCompetitorInsights();
     })
     .catch(function() {
       if (!silent) { try { if (typeof toast==='function') toast('Could not reach insights feed','warn'); } catch(e){} }
       if (btn) { btn.textContent = '↻ Scan for New Solutions'; btn.disabled = false; }
+      window._aiInsightsInFlight = false;
     });
 }
 
@@ -7394,10 +7399,16 @@ function renderCompetitorInsights() {
   const content = document.getElementById('content');
   let list = getAIInsights();
   if (!list.length) {
-    refreshAIInsights(true);
+    // One attempt, and only one. refreshAIInsights() calls this function back
+    // on success, so an unguarded call here span the pair at roughly 53
+    // requests a second whenever the feed came back empty.
+    const alreadyTried = window._aiInsightsSeedTried;
+    if (!alreadyTried) { window._aiInsightsSeedTried = true; refreshAIInsights(true); }
     content.innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 24px;gap:16px">
       <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <p style="color:#475569;font-size:14px;margin:0">Loading known LeapSpace competitors...</p>
+      <p style="color:#475569;font-size:14px;margin:0">${alreadyTried
+        ? 'No competitor solutions in the feed yet. Use “Scan for New Solutions” to try again.'
+        : 'Loading known LeapSpace competitors...'}</p>
     </div>`;
     return;
   }
@@ -7725,7 +7736,7 @@ async function loadCompetitorJobs() {
   const feedEl = document.getElementById('news-feed');
   if (feedEl) feedEl.innerHTML = `<div class="news-loading"><div class="news-spinner"></div>Loading…</div>`;
   try {
-    const res = await fetch('/netherlands-crm/data/competitor-jobs.json?t=' + Date.now());
+    const res = await fetch('data/competitor-jobs.json?t=' + Date.now());
     const data = res.ok ? await res.json() : [];
     _hiringAllJobs = Array.isArray(data) ? data : [];
   } catch(e) { _hiringAllJobs = []; }
@@ -7788,7 +7799,7 @@ async function renderHiringScanStatus() {
   const el = document.getElementById('news-scan-status');
   if (!el) return;
   try {
-    const res = await fetch('/netherlands-crm/data/competitor-jobs-scan-state.json?t=' + Date.now());
+    const res = await fetch('data/competitor-jobs-scan-state.json?t=' + Date.now());
     const state = res.ok ? await res.json() : null;
     if (!state || !state.lastRun) { el.innerHTML = '<p style="font-size:12px;color:var(--muted)">No scan recorded yet.</p>'; return; }
     el.innerHTML = `<p style="font-size:12px;color:var(--text)">Last scan: <strong>${_relativeTime(state.lastRun)}</strong></p>
@@ -7917,7 +7928,7 @@ async function loadDigestNews() {
   const listEl = document.getElementById('digest-news-list');
   const countEl = document.getElementById('digest-news-count');
   try {
-    const res = await fetch('/netherlands-crm/data/news.json?t=' + Date.now());
+    const res = await fetch('data/news.json?t=' + Date.now());
     const data = res.ok ? await res.json() : [];
     const dismissed = getDismissedNewsIds();
     const seenIds = new Set();
@@ -7962,7 +7973,7 @@ async function loadDigestHiring() {
   const listEl = document.getElementById('digest-hiring-list');
   const countEl = document.getElementById('digest-hiring-count');
   try {
-    const res = await fetch('/netherlands-crm/data/competitor-jobs.json?t=' + Date.now());
+    const res = await fetch('data/competitor-jobs.json?t=' + Date.now());
     const data = res.ok ? await res.json() : [];
     const jobs = Array.isArray(data) ? data : [];
 
@@ -8872,7 +8883,7 @@ async function loadNewsCount() {
   const el = document.getElementById('news-count');
   const sub = document.getElementById('news-sub');
   try {
-    const res = await fetch('/netherlands-crm/data/news.json?t=' + Date.now());
+    const res = await fetch('data/news.json?t=' + Date.now());
     const articles = res.ok ? await res.json() : [];
     const list = Array.isArray(articles) ? articles : [];
     const today = todayStr();
