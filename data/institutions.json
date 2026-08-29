@@ -1,0 +1,366 @@
+[
+ {
+  "id": "aighd",
+  "name": "Amsterdam Institute for Global Health and Development",
+  "short": "AIGHD",
+  "type": "medical",
+  "city": "Amsterdam"
+ },
+ {
+  "id": "aumc",
+  "name": "Amsterdam UMC",
+  "short": "AUMC",
+  "type": "medical",
+  "city": "Amsterdam"
+ },
+ {
+  "id": "iiss",
+  "name": "Asser Institute",
+  "short": "Asser",
+  "type": "ngo",
+  "city": "The Hague"
+ },
+ {
+  "id": "astron",
+  "name": "ASTRON — Netherlands Institute for Radio Astronomy",
+  "short": "ASTRON",
+  "type": "research",
+  "city": "Dwingeloo"
+ },
+ {
+  "id": "cwi",
+  "name": "Centrum Wiskunde & Informatica",
+  "short": "CWI",
+  "type": "research",
+  "city": "Amsterdam"
+ },
+ {
+  "id": "clingendael",
+  "name": "Clingendael Institute",
+  "short": "Clingendael",
+  "type": "ngo",
+  "city": "The Hague"
+ },
+ {
+  "id": "cpb",
+  "name": "CPB Netherlands Bureau for Economic Policy Analysis",
+  "short": "CPB",
+  "type": "research",
+  "city": "The Hague"
+ },
+ {
+  "id": "deltares",
+  "name": "Deltares",
+  "short": "Deltares",
+  "type": "research",
+  "city": "Delft"
+ },
+ {
+  "id": "nwo",
+  "name": "Dutch Research Council",
+  "short": "NWO",
+  "type": "research",
+  "city": "The Hague"
+ },
+ {
+  "id": "tue",
+  "name": "Eindhoven University of Technology",
+  "short": "TU/e",
+  "type": "university",
+  "city": "Eindhoven"
+ },
+ {
+  "id": "erasmusmc",
+  "name": "Erasmus MC",
+  "short": "EMC",
+  "type": "medical",
+  "city": "Rotterdam"
+ },
+ {
+  "id": "eur",
+  "name": "Erasmus University Rotterdam",
+  "short": "EUR",
+  "type": "university",
+  "city": "Rotterdam"
+ },
+ {
+  "id": "hiil",
+  "name": "HiiL — Hague Institute for Innovation of Law",
+  "short": "HiiL",
+  "type": "ngo",
+  "city": "The Hague"
+ },
+ {
+  "id": "hubrecht",
+  "name": "Hubrecht Institute",
+  "short": "Hubrecht",
+  "type": "research",
+  "city": "Utrecht"
+ },
+ {
+  "id": "icj",
+  "name": "International Court of Justice",
+  "short": "ICJ",
+  "type": "ngo",
+  "city": "The Hague"
+ },
+ {
+  "id": "knmi",
+  "name": "KNMI — Royal Netherlands Meteorological Institute",
+  "short": "KNMI",
+  "type": "research",
+  "city": "De Bilt"
+ },
+ {
+  "id": "leiden",
+  "name": "Leiden University",
+  "short": "LU",
+  "type": "university",
+  "city": "Leiden"
+ },
+ {
+  "id": "lumc",
+  "name": "Leiden University Medical Centre",
+  "short": "LUMC",
+  "type": "medical",
+  "city": "Leiden"
+ },
+ {
+  "id": "mumc",
+  "name": "Maastricht UMC+",
+  "short": "MUMC+",
+  "type": "medical",
+  "city": "Maastricht"
+ },
+ {
+  "id": "um",
+  "name": "Maastricht University",
+  "short": "UM",
+  "type": "university",
+  "city": "Maastricht"
+ },
+ {
+  "id": "mmc",
+  "name": "Máxima Medical Centre",
+  "short": "MMC",
+  "type": "medical",
+  "city": "Veldhoven"
+ },
+ {
+  "id": "naturalis",
+  "name": "Naturalis Biodiversity Center",
+  "short": "Naturalis",
+  "type": "research",
+  "city": "Leiden"
+ },
+ {
+  "id": "nki",
+  "name": "Netherlands Cancer Institute",
+  "short": "NKI",
+  "type": "medical",
+  "city": "Amsterdam"
+ },
+ {
+  "id": "esc",
+  "name": "Netherlands eScience Center",
+  "short": "eScienceCenter",
+  "type": "research",
+  "city": "Amsterdam"
+ },
+ {
+  "id": "nin",
+  "name": "Netherlands Institute for Neuroscience",
+  "short": "NIN",
+  "type": "research",
+  "city": "Amsterdam"
+ },
+ {
+  "id": "nikhef",
+  "name": "Nikhef",
+  "short": "Nikhef",
+  "type": "research",
+  "city": "Amsterdam"
+ },
+ {
+  "id": "nioz",
+  "name": "NIOZ Royal Netherlands Institute for Sea Research",
+  "short": "NIOZ",
+  "type": "research",
+  "city": "Den Burg (Texel)"
+ },
+ {
+  "id": "nlr",
+  "name": "NLR — Netherlands Aerospace Centre",
+  "short": "NLR",
+  "type": "research",
+  "city": "Amsterdam"
+ },
+ {
+  "id": "ou",
+  "name": "Open Universiteit",
+  "short": "OU",
+  "type": "university",
+  "city": "Heerlen"
+ },
+ {
+  "id": "oxfamnovib",
+  "name": "Oxfam Novib",
+  "short": "Oxfam Novib",
+  "type": "ngo",
+  "city": "The Hague"
+ },
+ {
+  "id": "pbl",
+  "name": "PBL Netherlands Environmental Assessment Agency",
+  "short": "PBL",
+  "type": "research",
+  "city": "The Hague"
+ },
+ {
+  "id": "maxima",
+  "name": "Princess Máxima Center",
+  "short": "PMC",
+  "type": "medical",
+  "city": "Utrecht"
+ },
+ {
+  "id": "ru",
+  "name": "Radboud University",
+  "short": "RU",
+  "type": "university",
+  "city": "Nijmegen"
+ },
+ {
+  "id": "radboudumc",
+  "name": "Radboudumc",
+  "short": "Radboudumc",
+  "type": "medical",
+  "city": "Nijmegen"
+ },
+ {
+  "id": "rathenau",
+  "name": "Rathenau Institute",
+  "short": "Rathenau",
+  "type": "research",
+  "city": "The Hague"
+ },
+ {
+  "id": "rivm",
+  "name": "RIVM",
+  "short": "RIVM",
+  "type": "research",
+  "city": "Bilthoven"
+ },
+ {
+  "id": "knaw",
+  "name": "Royal Netherlands Academy of Arts and Sciences",
+  "short": "KNAW",
+  "type": "research",
+  "city": "Amsterdam"
+ },
+ {
+  "id": "sanquin",
+  "name": "Sanquin Research",
+  "short": "Sanquin",
+  "type": "medical",
+  "city": "Amsterdam"
+ },
+ {
+  "id": "scp",
+  "name": "SCP — Netherlands Institute for Social Research",
+  "short": "SCP",
+  "type": "research",
+  "city": "The Hague"
+ },
+ {
+  "id": "sron",
+  "name": "SRON Netherlands Institute for Space Research",
+  "short": "SRON",
+  "type": "research",
+  "city": "Leiden"
+ },
+ {
+  "id": "tiu",
+  "name": "Tilburg University",
+  "short": "TiU",
+  "type": "university",
+  "city": "Tilburg"
+ },
+ {
+  "id": "tno",
+  "name": "TNO",
+  "short": "TNO",
+  "type": "research",
+  "city": "The Hague"
+ },
+ {
+  "id": "tudelft",
+  "name": "TU Delft",
+  "short": "TU Delft",
+  "type": "university",
+  "city": "Delft"
+ },
+ {
+  "id": "umcutrecht",
+  "name": "UMC Utrecht",
+  "short": "UMCU",
+  "type": "medical",
+  "city": "Utrecht"
+ },
+ {
+  "id": "umcg",
+  "name": "University Medical Centre Groningen",
+  "short": "UMCG",
+  "type": "medical",
+  "city": "Groningen"
+ },
+ {
+  "id": "uva",
+  "name": "University of Amsterdam",
+  "short": "UvA",
+  "type": "university",
+  "city": "Amsterdam"
+ },
+ {
+  "id": "rug",
+  "name": "University of Groningen",
+  "short": "RUG",
+  "type": "university",
+  "city": "Groningen"
+ },
+ {
+  "id": "ut",
+  "name": "University of Twente",
+  "short": "UT",
+  "type": "university",
+  "city": "Enschede"
+ },
+ {
+  "id": "uu",
+  "name": "Utrecht University",
+  "short": "UU",
+  "type": "university",
+  "city": "Utrecht"
+ },
+ {
+  "id": "vu",
+  "name": "VU Amsterdam",
+  "short": "VU",
+  "type": "university",
+  "city": "Amsterdam"
+ },
+ {
+  "id": "wur",
+  "name": "Wageningen University & Research",
+  "short": "WUR",
+  "type": "university",
+  "city": "Wageningen"
+ },
+ {
+  "id": "zonmw",
+  "name": "ZonMw",
+  "short": "ZonMw",
+  "type": "ngo",
+  "city": "The Hague"
+ }
+]
