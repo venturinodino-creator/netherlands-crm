@@ -1,0 +1,112 @@
+[
+  {
+    "first": "Matthijs",
+    "last": "van Otegem",
+    "title": "University Library director",
+    "dept": "Library & Research Support",
+    "instId": "uu",
+    "instName": "Utrecht University",
+    "email": "m.vanotegem@uu.nl",
+    "constructed": false,
+    "source": "https://www.uu.nl/en/university-library/about-the-library/organisation"
+  },
+  {
+    "first": "Wenneke",
+    "last": "Meerstadt",
+    "title": "Publishing Support department head",
+    "dept": "Library & Research Support",
+    "instId": "uu",
+    "instName": "Utrecht University",
+    "email": "w.p.meerstadt@uu.nl",
+    "constructed": false,
+    "source": "https://www.uu.nl/en/university-library/about-the-library/organisation"
+  },
+  {
+    "first": "Stefan",
+    "last": "Einarson",
+    "title": "Research Data Support department head",
+    "dept": "Library & Research Support",
+    "instId": "uu",
+    "instName": "Utrecht University",
+    "email": "s.p.einarson@uu.nl",
+    "constructed": false,
+    "source": "https://www.uu.nl/en/university-library/about-the-library/organisation"
+  },
+  {
+    "first": "Arjan",
+    "last": "Grooters",
+    "title": "User Services department head",
+    "dept": "Library & Research Support",
+    "instId": "uu",
+    "instName": "Utrecht University",
+    "email": "a.h.j.grooters@uu.nl",
+    "constructed": false,
+    "source": "https://www.uu.nl/en/university-library/about-the-library/organisation"
+  },
+  {
+    "first": "Rogier",
+    "last": "Schumacher",
+    "title": "Collections & Access department head",
+    "dept": "Library & Research Support",
+    "instId": "uu",
+    "instName": "Utrecht University",
+    "email": "r.w.g.schumacher@uu.nl",
+    "constructed": false,
+    "source": "https://www.uu.nl/en/university-library/about-the-library/organisation"
+  },
+  {
+    "first": "Suzan",
+    "last": "Engels",
+    "title": "Special Collections department head",
+    "dept": "Library & Research Support",
+    "instId": "uu",
+    "instName": "Utrecht University",
+    "email": "s.a.s.engels@uu.nl",
+    "constructed": false,
+    "source": "https://www.uu.nl/en/university-library/about-the-library/organisation"
+  },
+  {
+    "first": "Marianne",
+    "last": "Renkema",
+    "title": "Information Management department head",
+    "dept": "Library & Research Support",
+    "instId": "uu",
+    "instName": "Utrecht University",
+    "email": "j.m.s.renkema@uu.nl",
+    "constructed": false,
+    "source": "https://www.uu.nl/en/university-library/about-the-library/organisation"
+  },
+  {
+    "first": "Katrien",
+    "last": "Pouwels",
+    "title": "Communications & Project Management department head",
+    "dept": "Library & Research Support",
+    "instId": "uu",
+    "instName": "Utrecht University",
+    "email": "k.p.m.pouwels@uu.nl",
+    "constructed": false,
+    "source": "https://www.uu.nl/en/university-library/about-the-library/organisation"
+  },
+  {
+    "first": "Carlos",
+    "last": "Reijnen",
+    "title": "Director of the University Library",
+    "dept": "Library & Research Support",
+    "instId": "uva",
+    "instName": "University of Amsterdam",
+    "email": "c.w.c.reijnen@uva.nl",
+    "constructed": false,
+    "source": "https://uba.uva.nl/en/contact/organisation/organisation.html"
+  },
+  {
+    "first": "Youssef",
+    "last": "Achahbar",
+    "title": "Adjunct Director of the University Library",
+    "dept": "Library & Research Support",
+    "instId": "uva",
+    "instName": "University of Amsterdam",
+    "email": "y.achahbar@uva.nl",
+    "constructed": false,
+    "source": "https://uba.uva.nl/en/contact/organisation/organisation.html"
+  }
+]
