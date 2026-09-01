@@ -7,7 +7,10 @@
       "instName": "Utrecht University",
       "emailDomain": "uu.nl",
       "urls": [
-        "https://www.uu.nl/en/university-library/about-the-library/organisation"
+        "https://www.uu.nl/en/university-library/about-the-library/organisation",
+        "https://www.uu.nl/en/research/ai-labs/contact",
+        "https://www.uu.nl/en/achtergrond/what-happens-at-the-knowledge-transfer-office-kto",
+        "https://www.uu.nl/en/organisation/centre-for-entrepreneurship"
       ]
     },
     {
@@ -15,7 +18,431 @@
       "instName": "University of Amsterdam",
       "emailDomain": "uva.nl",
       "urls": [
-        "https://uba.uva.nl/en/contact/organisation/organisation.html"
+        "https://uba.uva.nl/en/contact/organisation/organisation.html",
+        "https://grant-support.uva.nl/about-us/grant-support-services/services-funding-team.html",
+        "https://www.ixa.nl/about/team-overview/",
+        "https://www.uva.nl/en/research/research-at-the-uva/artificial-intelligence/artificial-intelligence.html"
+      ]
+    },
+    {
+      "instId": "tue",
+      "instName": "Eindhoven University of Technology",
+      "emailDomain": "tue.nl",
+      "urls": [
+        "https://www.tue.nl/en/our-university/about-the-university/support-services/library-and-information-services",
+        "https://www.tue.nl/en/our-university/about-the-university/support-services/research-support-valorization",
+        "https://www.tue.nl/en/research/institutes/eindhoven-artificial-intelligence-systems-institute/about-eaisi/"
+      ]
+    },
+    {
+      "instId": "eur",
+      "instName": "Erasmus University Rotterdam",
+      "emailDomain": "eur.nl",
+      "urls": [
+        "https://www.eur.nl/en/library/about/organisation",
+        "https://www.eur.nl/en/news/meet-michiel-new-director-engagement-and-research-services-eur",
+        "https://www.eur.nl/en/engagement/impact-engagement/engagement-board"
+      ]
+    },
+    {
+      "instId": "leiden",
+      "instName": "Leiden University",
+      "emailDomain": "universiteitleiden.nl",
+      "urls": [
+        "https://www.library.universiteitleiden.nl/about-us/library-organisation",
+        "https://www.organisatiegids.universiteitleiden.nl/en/service-units/luris"
+      ]
+    },
+    {
+      "instId": "um",
+      "instName": "Maastricht University",
+      "emailDomain": "maastrichtuniversity.nl",
+      "urls": [
+        "https://www.maastrichtuniversity.nl/about-um/service-centres/university-library/about-library/organisation",
+        "https://www.maastrichtuniversity.nl/research-support-office",
+        "https://cris.maastrichtuniversity.nl/en/organisations/grants-office/"
+      ]
+    },
+    {
+      "instId": "ou",
+      "instName": "Open Universiteit",
+      "emailDomain": "ou.nl",
+      "urls": [
+        "https://www.ou.nl/en/bestuur-en-organisatie",
+        "https://www.ou.nl/en/onderzoeksondersteuning"
+      ]
+    },
+    {
+      "instId": "ru",
+      "instName": "Radboud University",
+      "emailDomain": "ru.nl",
+      "urls": [
+        "https://www.ru.nl/en/departments/radboud-services/information-library-services",
+        "https://www.ru.nl/en/radboud-grant-support-experts",
+        "https://www.ru.nl/en/about-us/organisation/executive-board"
+      ]
+    },
+    {
+      "instId": "tiu",
+      "instName": "Tilburg University",
+      "emailDomain": "tilburguniversity.edu",
+      "urls": [
+        "https://www.tilburguniversity.edu/about/organization/university-services/library-it-services",
+        "https://www.tilburguniversity.edu/taxonomy/term/387",
+        "https://www.tilburguniversity.edu/research/research-support-portal/research-funding"
+      ]
+    },
+    {
+      "instId": "tudelft",
+      "instName": "TU Delft",
+      "emailDomain": "tudelft.nl",
+      "urls": [
+        "https://www.tudelft.nl/en/library/visit/about-the-library/our-organisation",
+        "https://www.tudelft.nl/en/innovation-impact",
+        "https://www.tudelft.nl/en/ai/tu-delft-ai-initiative"
+      ]
+    },
+    {
+      "instId": "rug",
+      "instName": "University of Groningen",
+      "emailDomain": "rug.nl",
+      "urls": [
+        "https://www.rug.nl/staff/departments/30019?lang=en",
+        "https://www.rug.nl/about-ug/organization/university-services/research-and-impact/?lang=en",
+        "https://www.rug.nl/about-us/organization/bureau-of-the-university/funding-team"
+      ]
+    },
+    {
+      "instId": "ut",
+      "instName": "University of Twente",
+      "emailDomain": "utwente.nl",
+      "urls": [
+        "https://www.utwente.nl/en/service-portal/services/lisa/about-us-contact/",
+        "https://www.utwente.nl/en/service-portal/business-entrepreneurship/knowledge-valorisation",
+        "https://www.utwente.nl/en/service-portal/services/sbd/about-us-contact/"
+      ]
+    },
+    {
+      "instId": "vu",
+      "instName": "VU Amsterdam",
+      "emailDomain": "vu.nl",
+      "urls": [
+        "https://vu.nl/en/about-vu/divisions/university-library/more-about/management-team-ub",
+        "https://vu.nl/en/employee/board-and-strategy/ixa-go-team",
+        "https://vu.nl/en/about-vu/more-about/vu-grants-office"
+      ]
+    },
+    {
+      "instId": "wur",
+      "instName": "Wageningen University & Research",
+      "emailDomain": "wur.nl",
+      "urls": [
+        "https://www.wur.nl/en/library/wur-library-at-a-glance",
+        "https://www.wur.nl/en/partner-up-for-impact/innovation-entrepreneurship",
+        "https://www.wur.nl/en/about-wur/management-organisation.htm"
+      ]
+    },
+    {
+      "instId": "astron",
+      "instName": "ASTRON — Netherlands Institute for Radio Astronomy",
+      "emailDomain": "astron.nl",
+      "urls": [
+        "https://www.astron.nl/about/organisation/management/"
+      ]
+    },
+    {
+      "instId": "cwi",
+      "instName": "Centrum Wiskunde & Informatica",
+      "emailDomain": "cwi.nl",
+      "urls": [
+        "https://www.cwi.nl/en/about/organization/director-and-management-team/"
+      ]
+    },
+    {
+      "instId": "cpb",
+      "instName": "CPB Netherlands Bureau for Economic Policy Analysis",
+      "emailDomain": "cpb.nl",
+      "urls": [
+        "https://www.cpb.nl/en/about-cpb",
+        "https://www.cpb.nl/en/staff-members-and-affiliations"
+      ]
+    },
+    {
+      "instId": "deltares",
+      "instName": "Deltares",
+      "emailDomain": "deltares.nl",
+      "urls": [
+        "https://www.deltares.nl/en/about-us/directors-and-councils"
+      ]
+    },
+    {
+      "instId": "nwo",
+      "instName": "Dutch Research Council (NWO)",
+      "emailDomain": "nwo.nl",
+      "urls": [
+        "https://www.nwo.nl/en/nwo-executive-board"
+      ]
+    },
+    {
+      "instId": "hubrecht",
+      "instName": "Hubrecht Institute",
+      "emailDomain": "hubrecht.eu",
+      "urls": [
+        "https://www.hubrecht.eu/about-us/"
+      ]
+    },
+    {
+      "instId": "knmi",
+      "instName": "KNMI",
+      "emailDomain": "knmi.nl",
+      "urls": [
+        "https://www.knmi.nl/over-het-knmi/bestuur",
+        "https://www.knmi.nl/over-het-knmi/about-knmi/knmi_supervisory_board"
+      ]
+    },
+    {
+      "instId": "naturalis",
+      "instName": "Naturalis Biodiversity Center",
+      "emailDomain": "naturalis.nl",
+      "urls": [
+        "https://www.naturalis.nl/en/about-us/management-and-trustees"
+      ]
+    },
+    {
+      "instId": "esc",
+      "instName": "Netherlands eScience Center",
+      "emailDomain": "esciencecenter.nl",
+      "urls": [
+        "https://www.esciencecenter.nl/meet-our-team/"
+      ]
+    },
+    {
+      "instId": "nin",
+      "instName": "Netherlands Institute for Neuroscience",
+      "emailDomain": "nin.nl",
+      "urls": [
+        "https://nin.nl/about-us/"
+      ]
+    },
+    {
+      "instId": "nikhef",
+      "instName": "Nikhef",
+      "emailDomain": "nikhef.nl",
+      "urls": [
+        "https://www.nikhef.nl/en/nikhef/organisation/",
+        "https://www.nikhef.nl/en/director/"
+      ]
+    },
+    {
+      "instId": "nioz",
+      "instName": "NIOZ Royal Netherlands Institute for Sea Research",
+      "emailDomain": "nioz.nl",
+      "urls": [
+        "https://www.nioz.nl/en/about/organisation/management",
+        "https://www.nioz.nl/en/about/organisation/board"
+      ]
+    },
+    {
+      "instId": "nlr",
+      "instName": "NLR — Netherlands Aerospace Centre",
+      "emailDomain": "nlr.nl",
+      "urls": [
+        "https://www.nlr.org/about-us/management-team/"
+      ]
+    },
+    {
+      "instId": "pbl",
+      "instName": "PBL Netherlands Environmental Assessment Agency",
+      "emailDomain": "pbl.nl",
+      "urls": [
+        "https://www.pbl.nl/en/about-pbl",
+        "https://www.pbl.nl/en/about-pbl/staff"
+      ]
+    },
+    {
+      "instId": "rathenau",
+      "instName": "Rathenau Institute",
+      "emailDomain": "rathenau.nl",
+      "urls": [
+        "https://www.rathenau.nl/en/about-us/who-we-are/our-board"
+      ]
+    },
+    {
+      "instId": "rivm",
+      "instName": "RIVM",
+      "emailDomain": "rivm.nl",
+      "urls": [
+        "https://www.rivm.nl/en/about-rivm/organisation"
+      ]
+    },
+    {
+      "instId": "knaw",
+      "instName": "Royal Netherlands Academy of Arts and Sciences",
+      "emailDomain": "knaw.nl",
+      "urls": [
+        "https://www.knaw.nl/en/about-knaw/organisation-board-and-management",
+        "https://www.knaw.nl/en/about-knaw/organisation-board-and-management/board-management"
+      ]
+    },
+    {
+      "instId": "scp",
+      "instName": "SCP — Netherlands Institute for Social Research",
+      "emailDomain": "scp.nl",
+      "urls": [
+        "https://english.scp.nl/about-scp/executive-board"
+      ]
+    },
+    {
+      "instId": "sron",
+      "instName": "SRON Netherlands Institute for Space Research",
+      "emailDomain": "sron.nl",
+      "urls": [
+        "https://www.sron.nl/en/pillars/our-people/"
+      ]
+    },
+    {
+      "instId": "tno",
+      "instName": "TNO",
+      "emailDomain": "tno.nl",
+      "urls": [
+        "https://www.tno.nl/en/about-tno/organisation/executive-board/"
+      ]
+    },
+    {
+      "instId": "aighd",
+      "instName": "Amsterdam Institute for Global Health and Development",
+      "emailDomain": "aighd.org",
+      "urls": [
+        "https://www.aighd.org/people/",
+        "https://www.amsterdamumc.org/en/about/organization/aighd-welcomes-a-new-board-of-directors.htm"
+      ]
+    },
+    {
+      "instId": "aumc",
+      "instName": "Amsterdam UMC",
+      "emailDomain": "amsterdamumc.org",
+      "urls": [
+        "https://www.amsterdamumc.org/en/research-support/grants/about-research-grant-support.htm",
+        "https://www.amsterdamumc.org/en/research-support/ixa"
+      ]
+    },
+    {
+      "instId": "erasmusmc",
+      "instName": "Erasmus MC",
+      "emailDomain": "erasmusmc.nl",
+      "urls": [
+        "https://www.erasmusmc.nl/en/technology-transfer-office/our-team",
+        "https://www.erasmusmc-rdo.nl/about-us/"
+      ]
+    },
+    {
+      "instId": "lumc",
+      "instName": "Leiden University Medical Centre",
+      "emailDomain": "lumc.nl",
+      "urls": [
+        "https://www.lumc.nl/en/about-lumc/het-lumc/management-and-organization/"
+      ]
+    },
+    {
+      "instId": "mumc",
+      "instName": "Maastricht UMC+",
+      "emailDomain": "mumc.nl",
+      "urls": [
+        "https://www.maastrichtuniversity.nl/about-um/other-offices/knowledge-transfer-office"
+      ]
+    },
+    {
+      "instId": "mmc",
+      "instName": "Máxima Medical Centre",
+      "emailDomain": "mmc.nl",
+      "urls": [
+        "https://www.mmc.nl/over-ons/organisatie/raad-van-bestuur/"
+      ]
+    },
+    {
+      "instId": "nki",
+      "instName": "Netherlands Cancer Institute",
+      "emailDomain": "nki.nl",
+      "urls": [
+        "https://www.nki.nl/research/technology-transfer"
+      ]
+    },
+    {
+      "instId": "maxima",
+      "instName": "Princess Máxima Center",
+      "emailDomain": "prinsesmaximacentrum.nl",
+      "urls": [
+        "https://www.prinsesmaximacentrum.nl/nl/over-ons/organisatie-bestuur-en-advies/raad-van-bestuur"
+      ]
+    },
+    {
+      "instId": "radboudumc",
+      "instName": "Radboudumc",
+      "emailDomain": "radboudumc.nl",
+      "urls": [
+        "https://www.radboudumc.nl/en/research/grant-support-office",
+        "https://www.radboudumc.nl/en/research/grant-support-office/gso-services"
+      ]
+    },
+    {
+      "instId": "sanquin",
+      "instName": "Sanquin Research",
+      "emailDomain": "sanquin.nl",
+      "urls": [
+        "https://www.sanquin.nl/en/about-sanquin/governance/executive-board-and-supervisory-board",
+        "https://www.sanquin.nl/en/about-sanquin/management-supervision"
+      ]
+    },
+    {
+      "instId": "umcutrecht",
+      "instName": "UMC Utrecht",
+      "emailDomain": "umcutrecht.nl",
+      "urls": [
+        "https://research.umcutrecht.nl/valorization-innovation/",
+        "https://research.umcutrecht.nl/medtech-valorization/"
+      ]
+    },
+    {
+      "instId": "umcg",
+      "instName": "University Medical Centre Groningen",
+      "emailDomain": "umcg.nl",
+      "urls": [
+        "https://www.umcg.nl/-/over-het-umcg/organisatie",
+        "https://umcgresearch.org/w/research-support-umcg"
+      ]
+    },
+    {
+      "instId": "iiss",
+      "instName": "Asser Institute",
+      "emailDomain": "asser.nl",
+      "urls": [
+        "https://www.asser.nl/about-us/mission-and-governance/",
+        "https://www.asser.nl/about-the-asser-institute/whos-who/"
+      ]
+    },
+    {
+      "instId": "clingendael",
+      "instName": "Clingendael Institute",
+      "emailDomain": "clingendael.org",
+      "urls": [
+        "https://www.clingendael.org/mission-organisation"
+      ]
+    },
+    {
+      "instId": "hiil",
+      "instName": "HiiL — Hague Institute for Innovation of Law",
+      "emailDomain": "hiil.org",
+      "urls": [
+        "https://www.hiil.org/who-we-are/",
+        "https://www.hiil.org/who-we-are/boards-2/"
+      ]
+    },
+    {
+      "instId": "zonmw",
+      "instName": "ZonMw",
+      "emailDomain": "zonmw.nl",
+      "urls": [
+        "https://www.zonmw.nl/en/about-zonmw/organisation"
       ]
     }
   ]
