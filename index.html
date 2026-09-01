@@ -4858,7 +4858,10 @@ function renderDetail() {
 
     <div class="card-header" style="margin-bottom:12px">
       <span class="card-title">Contacts at ${esc(inst.short||inst.name)}</span>
-      <button class="btn btn-accent btn-sm" onclick="openAddContact('${inst.id}')">+ Add Contact</button>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-outline btn-sm" onclick="nav('org-map',{instId:'${inst.id}'})" title="Visual org chart: who sits where">🗺 Org Map</button>
+        <button class="btn btn-accent btn-sm" onclick="openAddContact('${inst.id}')">+ Add Contact</button>
+      </div>
     </div>
 
     <div class="table-wrap">
