@@ -1,6 +1,103 @@
 {
-  "lastRun": "2026-08-31T15:19:21.743Z",
-  "lastAddedCount": 10,
-  "sources": 2,
-  "issues": []
+  "lastRun": "2026-09-01T19:04:42.426Z",
+  "lastAddedCount": 46,
+  "sources": 50,
+  "issues": [
+    {
+      "instId": "ou",
+      "note": "no people extracted"
+    },
+    {
+      "instId": "cpb",
+      "url": "https://www.cpb.nl/en/about-cpb",
+      "error": "HTTP 404"
+    },
+    {
+      "instId": "cpb",
+      "url": "https://www.cpb.nl/en/staff-members-and-affiliations",
+      "error": "HTTP 404"
+    },
+    {
+      "instId": "cpb",
+      "note": "no people extracted"
+    },
+    {
+      "instId": "hubrecht",
+      "note": "no people extracted"
+    },
+    {
+      "instId": "naturalis",
+      "note": "no people extracted"
+    },
+    {
+      "instId": "esc",
+      "note": "no people extracted"
+    },
+    {
+      "instId": "nikhef",
+      "url": "https://www.nikhef.nl/en/nikhef/organisation/",
+      "error": "fetch failed"
+    },
+    {
+      "instId": "nikhef",
+      "url": "https://www.nikhef.nl/en/director/",
+      "error": "fetch failed"
+    },
+    {
+      "instId": "nikhef",
+      "note": "no people extracted"
+    },
+    {
+      "instId": "knaw",
+      "url": "https://www.knaw.nl/en/about-knaw/organisation-board-and-management",
+      "error": "HTTP 403"
+    },
+    {
+      "instId": "knaw",
+      "url": "https://www.knaw.nl/en/about-knaw/organisation-board-and-management/board-management",
+      "error": "HTTP 403"
+    },
+    {
+      "instId": "knaw",
+      "note": "no people extracted"
+    },
+    {
+      "instId": "scp",
+      "note": "no people extracted"
+    },
+    {
+      "instId": "mmc",
+      "note": "no people extracted"
+    },
+    {
+      "instId": "nki",
+      "note": "no people extracted"
+    },
+    {
+      "instId": "maxima",
+      "note": "no people extracted"
+    },
+    {
+      "instId": "radboudumc",
+      "note": "no people extracted"
+    },
+    {
+      "instId": "umcg",
+      "url": "https://www.umcg.nl/-/over-het-umcg/organisatie",
+      "error": "HTTP 403"
+    },
+    {
+      "instId": "clingendael",
+      "url": "https://www.clingendael.org/mission-organisation",
+      "error": "HTTP 403"
+    },
+    {
+      "instId": "clingendael",
+      "note": "no people extracted"
+    },
+    {
+      "instId": "zonmw",
+      "note": "no people extracted"
+    }
+  ]
 }
