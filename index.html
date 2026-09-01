@@ -4927,31 +4927,60 @@ function cxRoleRank(c) {
 // accepted from the pending queue appears on the map the next time it's
 // rendered — nothing else to wire up for it to "auto-update".
 //
-// Checked most-specific-first so a Vice-/Deputy-/Associate- qualifier on an
-// otherwise senior word (Dean, Director, Rector, President) always wins over
-// the bare word it contains as a substring — e.g. "Vice-Dean" must not be
-// caught by the plain \bdean\b pattern below it, and "Deputy Director" must
-// not be caught by the plain \bdirector\b pattern below it.
+// Covers university, research-institute, medical/hospital and NGO titles —
+// the four institution types this CRM tracks — since the top job is spelled
+// differently in each ("Rector Magnificus", "Director-General", "CEO",
+// "Executive Director") and a department head likewise ("Dean", "Scientific
+// Director", "Medical Director", "Head of Department").
+//
+// A Vice-/Deputy-/Associate-/Assistant- qualifier demotes a title by one
+// tier, but "does the title contain 'vice' anywhere" isn't enough to decide
+// that: a compound title like "Rector Magnificus & Vice-President" carries
+// both an unqualified top word and a qualified one, and the unqualified one
+// should win (holding the senior title outright outranks also deputising a
+// peer position). orgNounQualification() resolves this by scanning for each
+// match of the tier's word list and checking only the text immediately
+// before THAT match for a qualifier, rather than the whole string — so
+// "Vice-Dean" is caught by its own local "vice", while "Dean & Vice Chair"
+// still reads as an (unqualified) Dean. "Interim"/"Acting" are deliberately
+// not treated as demoting qualifiers: an interim Rector still holds the
+// Rector's authority, unlike a Vice- or Deputy-.
 const ORG_TIER_LABEL = {
-  0: 'Rector / President', 1: 'Vice-President / Vice-Rector',
+  0: 'Rector / President / CEO', 1: 'Vice-President / Board Member',
   2: 'Dean / Director', 3: 'Vice-Dean / Deputy Director',
   4: 'Manager / Coordinator', 5: 'Officer / Specialist', 6: 'Other',
 };
+const ORG_QUAL_RE = /\b(?:vice|deputy|associate|assistant)\b/i;
+const ORG_TOP_NOUN_RE = /\b(?:rector(?:\s+magnificus)?|chancellor|director[-\s]+general|general[-\s]+director|general\s*(?:&|and)?\s*scientific\s+director|chief\s+executive\s+officer|ceo|executive\s+director|executive\s+chairman|chair\s+of\s+the\s+executive\s+board|president)\b/i;
+const ORG_DIR_NOUN_RE = /\b(?:dean|institute\s+director|scientific\s+director|medical\s+director|managing\s+director|domain\s+chair|chief\s+scientist|chief\s+\w+\s+officer|head\s+of\s+department|department\s+head|director)\b/i;
+function orgNounQualification(t, nounRe) {
+  const re = new RegExp(nounRe.source, 'gi');
+  let m, found = false, sawUnqualified = false;
+  while ((m = re.exec(t))) {
+    found = true;
+    if (!ORG_QUAL_RE.test(t.slice(Math.max(0, m.index - 20), m.index))) { sawUnqualified = true; break; }
+  }
+  return found ? (sawUnqualified ? 'unqualified' : 'qualified') : null;
+}
 function orgRank(title) {
   const t = String(title || '');
-  if (/\bvice[-\s]?president\b|\bvice[-\s]?rector\b|\bvice[-\s]?chancellor\b|\bdeputy\s+president\b/i.test(t)) return 1;
-  if (/\brector(\s+magnificus)?\b|\bpresident\s+of\s+the\s+executive\s+board\b|^\s*president\b|\bchancellor\b/i.test(t)) return 0;
-  if (/\bvice[-\s]?dean\b|\bdeputy\s+director\b|\bassociate\s+director\b|\bassistant\s+director\b/i.test(t)) return 3;
-  if (/\bdean\b|\bdirector\b|\bchief\s+\w+\s+officer\b/i.test(t)) return 2;
-  if (/\bhead\s+of\b|\bteam\s*lead(er)?\b|\bmanager\b|\bco[oö]rdinator\b/i.test(t)) return 4;
-  if (/\bofficer\b|\bspecialist\b|\badvisor\b|\bconsultant\b|\banalyst\b|\blibrarian\b|\bassistant\b/i.test(t)) return 5;
+  const top = orgNounQualification(t, ORG_TOP_NOUN_RE);
+  if (top === 'unqualified') return 0;
+  if (top === 'qualified') return 1;
+  if (/\bmember\s+of\s+the\s+(?:executive\s+)?board\b|\bboard\s+member\b/i.test(t)) return 1;
+  const dir = orgNounQualification(t, ORG_DIR_NOUN_RE);
+  if (dir === 'unqualified') return 2;
+  if (dir === 'qualified') return 3;
+  if (/\bvp\b|\bportfolio\s+holder\b/i.test(t)) return 3;
+  if (/\bhead\s+of\b|\bteam\s*lead(er)?\b|\bmanager\b|\bco[oö]rdinator\b|\bgroup\s+leader\b|\bprincipal\s+investigator\b|\bprogram(me)?\s+lead\b/i.test(t)) return 4;
+  if (/\bofficer\b|\bspecialist\b|\badvisor\b|\bconsultant\b|\banalyst\b|\blibrarian\b|\bassistant\b|\bresearcher\b|\bpostdoc(?:toral)?\b|\bphysician\b|\bnurse\b|\bfellow\b/i.test(t)) return 5;
   return 6;
 }
 // Executive-Board-type departments form the institution-wide leadership at
 // the top of the chart rather than a peer branch alongside Library/Research/
 // etc. — matches how Dutch universities' College van Bestuur / Executive
 // Board actually sits above the faculties, not beside them.
-const ORG_EXEC_DEPT_RE = /\bexecutive\s+(board|office)\b|\brectorate\b|\bboard\s+of\s+(directors|governors)\b|\bpresident'?s?\s+office\b|\bcollege\s+van\s+bestuur\b/i;
+const ORG_EXEC_DEPT_RE = /\bexecutive\s+(board|office)\b|\brectorate\b|\bboard\s+of\s+(directors|governors|trustees)\b|\bpresident'?s?\s+office\b|\bcollege\s+van\s+bestuur\b|\bmanagement\s+board\b|\boffice\s+of\s+the\s+(ceo|director[-\s]general)\b/i;
 function orgIsExecDept(dept) { return ORG_EXEC_DEPT_RE.test(String(dept || '')); }
 // Everything else becomes its own branch, keyed on the dept text as-written
 // (trimmed) so contacts sharing the exact same department string group
