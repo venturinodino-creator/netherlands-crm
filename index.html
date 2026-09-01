@@ -3232,11 +3232,12 @@ function navUrlFor(view, instId) {
   const p = new URLSearchParams(location.search);
   p.delete('view'); p.delete('inst');
   if (view && view !== 'dashboard') p.set('view', view);
-  if (view === 'detail' && instId) p.set('inst', instId);
+  if ((view === 'detail' || view === 'org-map') && instId) p.set('inst', instId);
   const q = p.toString();
   return location.pathname + (q ? '?' + q : '');
 }
 
+const INST_SCOPED_VIEWS = new Set(['detail', 'org-map']);
 function nav(view, extra={}, fromHistory=false) {
   if (view !== 'detail' || (extra.instId && extra.instId !== state.detailInstId)) window.IA_FILTER = null;
   state.view = view;
@@ -3247,7 +3248,7 @@ function nav(view, extra={}, fromHistory=false) {
   // Record the view so Back walks through screens instead of leaving the site.
   // Skipped when the move came *from* Back, or the entry would be re-added.
   if (!fromHistory) {
-    const instId = view === 'detail' ? (extra.instId || state.detailInstId) : null;
+    const instId = INST_SCOPED_VIEWS.has(view) ? (extra.instId || state.detailInstId) : null;
     const prev = history.state;
     if (!prev || prev.view !== view || prev.instId !== instId) {
       try { history.pushState({ view, instId }, '', navUrlFor(view, instId)); } catch(e) {}
@@ -3265,7 +3266,7 @@ addEventListener('popstate', e => {
     instId = p.get('inst');
   }
   // An institution may have been deleted since that entry was recorded.
-  if (view === 'detail' && !(instId && getInst(instId).id)) { view = 'institutions'; instId = null; }
+  if (INST_SCOPED_VIEWS.has(view) && !(instId && getInst(instId).id)) { view = 'institutions'; instId = null; }
   if (instId) state.detailInstId = instId;
   nav(view, instId ? { instId } : {}, true);
 });
@@ -3289,6 +3290,7 @@ function render() {
     contacts: renderContacts,
     pending: renderPendingContacts,
     detail: renderDetail,
+    'org-map': renderInstitutionOrgMap,
     rfp: renderRFPOpps,
     map: renderMap,
     news: renderNews,
@@ -4758,6 +4760,7 @@ function renderDetail() {
   document.getElementById('page-title').textContent = inst.short || inst.name;
   document.getElementById('page-sub').textContent = inst.city + ' · ' + (TYPE_LABEL[inst.type]||inst.type);
   document.getElementById('topbar-actions').innerHTML = `
+    <button class="btn btn-outline" onclick="nav('org-map',{instId:'${inst.id}'})" title="Visual org chart: who sits where">🗺 Org Map</button>
     <button class="btn btn-outline" data-admin-only onclick="openEditInstitution('${inst.id}')"> Edit</button>
     <button class="btn btn-accent" data-admin-only onclick="openAddContact('${inst.id}')">+ Add Contact</button>`;
 
@@ -4901,6 +4904,163 @@ function cxRoleRank(c) {
 }
 
 
+//  INSTITUTION ORG MAP
+// A per-institution org chart: institution-wide leadership at the top, then
+// one branch per department, each showing its people ordered by seniority.
+// Unlike cxRoleRank above (which ranks "who do I talk to about a sale" —
+// library leadership first, regardless of institution-wide rank), this is a
+// genuine hierarchy rank: a Rector/President always outranks a department
+// head. Purely a function of state.contacts, so a contact added, edited, or
+// accepted from the pending queue appears on the map the next time it's
+// rendered — nothing else to wire up for it to "auto-update".
+//
+// Checked most-specific-first so a Vice-/Deputy-/Associate- qualifier on an
+// otherwise senior word (Dean, Director, Rector, President) always wins over
+// the bare word it contains as a substring — e.g. "Vice-Dean" must not be
+// caught by the plain \bdean\b pattern below it, and "Deputy Director" must
+// not be caught by the plain \bdirector\b pattern below it.
+const ORG_TIER_LABEL = {
+  0: 'Rector / President', 1: 'Vice-President / Vice-Rector',
+  2: 'Dean / Director', 3: 'Vice-Dean / Deputy Director',
+  4: 'Manager / Coordinator', 5: 'Officer / Specialist', 6: 'Other',
+};
+function orgRank(title) {
+  const t = String(title || '');
+  if (/\bvice[-\s]?president\b|\bvice[-\s]?rector\b|\bvice[-\s]?chancellor\b|\bdeputy\s+president\b/i.test(t)) return 1;
+  if (/\brector(\s+magnificus)?\b|\bpresident\s+of\s+the\s+executive\s+board\b|^\s*president\b|\bchancellor\b/i.test(t)) return 0;
+  if (/\bvice[-\s]?dean\b|\bdeputy\s+director\b|\bassociate\s+director\b|\bassistant\s+director\b/i.test(t)) return 3;
+  if (/\bdean\b|\bdirector\b|\bchief\s+\w+\s+officer\b/i.test(t)) return 2;
+  if (/\bhead\s+of\b|\bteam\s*lead(er)?\b|\bmanager\b|\bco[oö]rdinator\b/i.test(t)) return 4;
+  if (/\bofficer\b|\bspecialist\b|\badvisor\b|\bconsultant\b|\banalyst\b|\blibrarian\b|\bassistant\b/i.test(t)) return 5;
+  return 6;
+}
+// Executive-Board-type departments form the institution-wide leadership at
+// the top of the chart rather than a peer branch alongside Library/Research/
+// etc. — matches how Dutch universities' College van Bestuur / Executive
+// Board actually sits above the faculties, not beside them.
+const ORG_EXEC_DEPT_RE = /\bexecutive\s+(board|office)\b|\brectorate\b|\bboard\s+of\s+(directors|governors)\b|\bpresident'?s?\s+office\b|\bcollege\s+van\s+bestuur\b/i;
+function orgIsExecDept(dept) { return ORG_EXEC_DEPT_RE.test(String(dept || '')); }
+// Everything else becomes its own branch, keyed on the dept text as-written
+// (trimmed) so contacts sharing the exact same department string group
+// together; a contact with no dept at all falls into a single catch-all
+// branch shown last rather than one branch per empty string.
+function orgBranchKey(c) {
+  const d = String((c && c.dept) || '').replace(/\s+/g, ' ').trim();
+  return d || '￿Unassigned';
+}
+
+function renderInstitutionOrgMap() {
+  const inst = getInst(state.detailInstId);
+  if (!inst.id) { nav('institutions'); return; }
+  const contacts = contactsForInst(inst.id);
+
+  document.getElementById('page-title').textContent = (inst.short || inst.name) + ' — Org Map';
+  document.getElementById('page-sub').textContent = 'Who sits where — a visual map of tracked contacts by department and seniority';
+  document.getElementById('topbar-actions').innerHTML = `
+    <button class="btn btn-outline" onclick="nav('detail',{instId:'${inst.id}'})">View Institution</button>
+    <button class="btn btn-accent" data-admin-only onclick="openAddContact('${inst.id}')">+ Add Contact</button>`;
+
+  if (!contacts.length) {
+    document.getElementById('content').innerHTML = `
+      <div class="empty" style="padding:60px 30px">
+        <div class="ei"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="9"/></svg></div>
+        <h3>No contacts yet at ${esc(inst.short || inst.name)}</h3>
+        <p>Add contacts on this institution's page and they'll appear here automatically, grouped by department and seniority.</p>
+        <p><button class="btn btn-accent btn-sm" data-admin-only onclick="openAddContact('${inst.id}')">+ Add first contact</button></p>
+      </div>`;
+    return;
+  }
+
+  const execContacts = contacts.filter(c => orgIsExecDept(c.dept))
+    .slice().sort((a, b) => orgRank(a.title) - orgRank(b.title) || (a.last || '').localeCompare(b.last || ''));
+
+  const branchMap = new Map();
+  contacts.filter(c => !orgIsExecDept(c.dept)).forEach(c => {
+    const key = orgBranchKey(c);
+    if (!branchMap.has(key)) branchMap.set(key, []);
+    branchMap.get(key).push(c);
+  });
+  const branches = Array.from(branchMap.entries())
+    .map(([key, list]) => ({
+      key, label: key === '￿Unassigned' ? 'Unassigned' : key,
+      list: list.slice().sort((a, b) => orgRank(a.title) - orgRank(b.title) || (a.last || '').localeCompare(b.last || '')),
+    }))
+    .sort((a, b) => a.key.localeCompare(b.key));
+
+  // Groups consecutive same-tier people in an exec row together, and drops a
+  // small tier-label divider between rank changes within a branch column —
+  // this is what actually shows "director, then manager, then coordinator"
+  // stacking within one department, per the org-map's whole point.
+  function execRowsHtml(list) {
+    const rows = [];
+    let cur = null;
+    list.forEach(c => {
+      const r = orgRank(c.title);
+      if (!cur || cur.rank !== r) { cur = { rank: r, people: [] }; rows.push(cur); }
+      cur.people.push(c);
+    });
+    return rows.map(row => `
+      <div class="orgmap-vline"></div>
+      <div class="orgmap-row">${row.people.map(orgCardHtml).join('')}</div>`).join('');
+  }
+
+  function orgCardHtml(c) {
+    const email = c.email ? `<div class="email"><a href="mailto:${esc(c.email)}" onclick="event.stopPropagation()">${esc(c.email)}</a></div>` : '';
+    return `<div class="orgmap-card" onclick="openEditContact('${c.id}')" title="Click to edit">
+      <div class="name">${esc(c.first)} ${esc(c.last)}</div>
+      <div class="title">${esc(c.title || 'No title on file')}</div>
+      ${email}
+    </div>`;
+  }
+
+  function branchColumnHtml(branch) {
+    const cards = [];
+    let lastRank = null;
+    branch.list.forEach(c => {
+      const r = orgRank(c.title);
+      if (r !== lastRank) { cards.push(`<div class="orgmap-tier-badge">${esc(ORG_TIER_LABEL[r] || 'Other')}</div>`); lastRank = r; }
+      cards.push(orgCardHtml(c));
+    });
+    return `<div class="orgmap-branch">
+      <div class="orgmap-branch-header">${esc(branch.label)}<span class="orgmap-branch-count">${branch.list.length}</span></div>
+      <div class="orgmap-branch-cards">${cards.join('')}</div>
+    </div>`;
+  }
+
+  const execHtml = execContacts.length ? execRowsHtml(execContacts) : '';
+  const branchesHtml = branches.length ? `
+    <div class="orgmap-vline"></div>
+    <div class="orgmap-branches">${branches.map(branchColumnHtml).join('')}</div>` : '';
+
+  document.getElementById('content').innerHTML = `
+    <style>
+      .orgmap-wrap{padding:10px 4px 50px;overflow-x:auto}
+      .orgmap-tree{display:flex;flex-direction:column;align-items:center;min-width:max-content;padding:24px 40px}
+      .orgmap-inst-node{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#04141f;font-weight:800;font-size:15px;padding:12px 30px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.35);white-space:nowrap}
+      .orgmap-vline{width:2px;height:24px;background:var(--border2)}
+      .orgmap-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+      .orgmap-card{background:var(--card);border:1px solid var(--border2);border-radius:10px;padding:10px 14px;min-width:170px;max-width:220px;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,.2);cursor:pointer;transition:transform .12s,border-color .12s}
+      .orgmap-card:hover{transform:translateY(-2px);border-color:var(--accent)}
+      .orgmap-card .name{font-weight:700;font-size:13px;color:var(--text2)}
+      .orgmap-card .title{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.35}
+      .orgmap-card .email a{font-size:10.5px;color:var(--accent);text-decoration:none}
+      .orgmap-card .email{margin-top:5px}
+      .orgmap-tier-badge{font-size:9.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:8px 0 2px}
+      .orgmap-branches{display:flex;gap:28px;align-items:flex-start;justify-content:center;flex-wrap:wrap}
+      .orgmap-branch{display:flex;flex-direction:column;align-items:center}
+      .orgmap-branch-header{background:rgba(0,245,196,.08);border:1px solid rgba(0,245,196,.3);color:var(--accent);font-weight:700;font-size:11.5px;padding:6px 10px 6px 14px;border-radius:8px;white-space:nowrap;margin-bottom:12px;text-transform:uppercase;letter-spacing:.03em;display:flex;align-items:center;gap:8px}
+      .orgmap-branch-count{background:rgba(0,245,196,.18);border-radius:10px;padding:1px 7px;font-size:10px}
+      .orgmap-branch-cards{display:flex;flex-direction:column;align-items:center;gap:8px}
+    </style>
+    <div class="orgmap-wrap"><div class="orgmap-tree">
+      <div class="orgmap-inst-node">${esc(inst.short || inst.name)}</div>
+      ${execHtml}
+      ${branchesHtml}
+    </div></div>
+    <p style="color:var(--muted);font-size:11px;margin:0 4px;text-align:right">${contacts.length} contact${contacts.length !== 1 ? 's' : ''} mapped · click a card to edit · updates automatically as contacts are added</p>`;
+}
+
+
 const CX_PRIORITY_META = {
   high:   {label:'High',   bg:'rgba(239,68,68,.10)',  fg:'#fca5a5', bd:'rgba(239,68,68,.35)'},
   medium: {label:'Medium', bg:'rgba(234,179,8,.10)',  fg:'#fde68a', bd:'rgba(234,179,8,.35)'},
@@ -5028,6 +5188,7 @@ function renderContacts() {
               <span style="font-size:11px;color:var(--muted);margin-left:8px">${esc(inst.city||'')}</span>
             </div>
             <div style="display:flex;gap:5px;align-items:center">
+              <button onclick="event.stopPropagation();nav('org-map',{instId:'${instId}'})" title="Visual org chart: who sits where" style="font-size:11px;font-weight:600;padding:3px 8px;border-radius:10px;background:rgba(0,245,196,.08);color:var(--accent);border:1px solid rgba(0,245,196,.25);cursor:pointer;display:flex;align-items:center;gap:4px">🗺 Org Map</button>
               ${['high','medium','low'].filter(p=>prioCounts[p]).map(p=>{const m=CX_PRIORITY_META[p];return `<span title="${m.label} priority" style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;background:${m.bg};color:${m.fg};border:1px solid ${m.bd}">${prioCounts[p]}</span>`;}).join('')}
               <span class="badge" style="background:rgba(255,255,255,.06);color:var(--muted2);border:1px solid var(--border2)">${list.length} contact${list.length!==1?'s':''}</span>
             </div>
