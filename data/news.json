@@ -1,5 +1,45 @@
 [
   {
+    "id": "news-jgfbho",
+    "title": "Digital Science's 2026 Catalyst Grant seeks agentic AI workflows you can trust - EurekAlert!",
+    "description": "Digital Science's 2026 Catalyst Grant seeks agentic AI workflows you can trust&nbsp;&nbsp;EurekAlert!",
+    "institution": "Digital Science",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1BWGtsdmNaUi1qNEVCd3RjV2kxbUxsMEgtRzNaNDZET3RLSUZKODEzLU5sb0VhMkNRYS1qMl94YV84RVlPV0NMX0IzRjYwZFFPQTUyVXZCNTVJRDBX?oc=5",
+    "sourceName": "EurekAlert!",
+    "publishedDate": "2026-09-01",
+    "foundDate": "2026-09-01",
+    "autoDiscovered": true,
+    "bottomLine": "Digital Science launches 2026 Catalyst Grant for agentic AI workflows, signaling competitive product investment in research-assistant space.",
+    "keyFindings": [
+      "Digital Science (major Elsevier competitor) is funding development of agentic AI workflows for research and scholarly purposes.",
+      "Grant program targets trustworthy, autonomous AI systems — a core capability area Elsevier is building into LeapSpace.",
+      "This represents Digital Science's competitive push into AI-assisted research tools alongside existing Dimensions platform.",
+      "Agentic AI workflows suggest automation of literature search, analysis, and synthesis — direct overlap with LeapSpace positioning.",
+      "2026 timeline indicates Digital Science expects material product/market traction in AI-research-assistant category by next year."
+    ],
+    "whyItMatters": "Digital Science is actively funding competitive R&D in agentic AI for research workflows — precisely the market Elsevier is targeting with LeapSpace. Monitor whether any Netherlands institutions apply or adopt resulting tools, as this signals accelerating competition in research-assistant space.",
+    "impact": {
+      "novelty": 3,
+      "commercial": 4,
+      "threat": 4,
+      "urgency": 4
+    },
+    "entities": [
+      "Digital Science",
+      "Catalyst Grant",
+      "Dimensions",
+      "agentic AI workflows"
+    ],
+    "actionItems": [
+      "Track which Netherlands institutions or research teams participate in Digital Science's 2026 Catalyst Grant program.",
+      "Benchmark LeapSpace's agentic AI capabilities (claim-checking, deep research reports, paper comparison) against what Digital Science delivers.",
+      "Accelerate LeapSpace rollout and case studies at key accounts to establish incumbency before Digital Science product launches."
+    ],
+    "sourceType": "secondary"
+  },
+  {
     "id": "news-9co3q8",
     "title": "Anthropic unveils ‘Model Hardware Standard’ to let AI agents control lab, manufacturing equipment - CNBC TV18",
     "description": "Anthropic unveils ‘Model Hardware Standard’ to let AI agents control lab, manufacturing equipment CNBC TV18",
@@ -50,7 +90,33 @@
     "sourceName": "ANI News",
     "publishedDate": "2026-08-28",
     "foundDate": "2026-08-31",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "bottomLine": "Anthropic releases Model Hardware Standard enabling AI agents to control physical lab and industrial devices, standardizing AI-device integration across research and manufacturing.",
+    "keyFindings": [
+      "Anthropic announces Model Hardware Standard for linking AI agents to physical devices in labs and industrial settings.",
+      "Framework includes open-source release with safety guidance to encourage adoption across research and manufacturing sectors.",
+      "Standard aims to enable AI agents to operate equipment directly, integrating AI into existing laboratory and industrial workflows.",
+      "Safety guidance provided to address security and control concerns in physical device automation."
+    ],
+    "whyItMatters": "Dutch research institutes and university labs integrating AI-powered workflows will need robust literature discovery and methodology verification via ScienceDirect/Scopus to validate AI-device integration approaches and track safety-critical research; LeapSpace's research workspace becomes essential for monitoring AI-hardware standards.",
+    "impact": {
+      "novelty": 4,
+      "commercial": 4,
+      "threat": 3,
+      "urgency": 3
+    },
+    "entities": [
+      "Anthropic",
+      "Model Hardware Standard",
+      "AI agents",
+      "Physical devices"
+    ],
+    "actionItems": [
+      "Map which Dutch universities and research institutes are developing AI-hardware integration; identify their current research discovery tools and gaps.",
+      "Position ScienceDirect/Scopus as the authoritative source for safety-critical AI-hardware research and methodology standards literature.",
+      "Develop LeapSpace case study on tracking AI safety frameworks and hardware standards adoption across European research institutions."
+    ],
+    "sourceType": "secondary"
   },
   {
     "id": "news-qlrw8i",
@@ -143,7 +209,33 @@
     "sourceName": "irishsun.com",
     "publishedDate": "2026-08-29",
     "foundDate": "2026-08-31",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "bottomLine": "Anthropic unveils AI-hardware linking standard positioning itself in the physical automation market, potentially expanding AI's reach into laboratory and industrial research workflows.",
+    "keyFindings": [
+      "Anthropic develops standard framework connecting AI agents to physical devices, addressing integration gaps in lab automation.",
+      "Framework targets laboratory and industrial device control, expanding AI utility beyond software-only applications.",
+      "Open-source approach aims to establish Anthropic's standard as the industry baseline for AI-device communication.",
+      "Initiative signals growing commercial focus on AI-enabled laboratory automation and hardware integration."
+    ],
+    "whyItMatters": "As Dutch biotech, pharmaceutical, and engineering institutions adopt AI-hardware integration for high-throughput research, they'll need ScienceDirect/Scopus to access foundational literature on automation standards, safety protocols, and methodology validation; LeapSpace can differentiate by tracking adoption of Anthropic's standard.",
+    "impact": {
+      "novelty": 4,
+      "commercial": 4,
+      "threat": 3,
+      "urgency": 3
+    },
+    "entities": [
+      "Anthropic",
+      "AI agents",
+      "Lab devices",
+      "Industrial devices"
+    ],
+    "actionItems": [
+      "Monitor Anthropic's adoption rate among research-intensive Dutch institutions; identify early adopters for targeted sales outreach.",
+      "Create Scopus research profile tracking papers on hardware standards, laboratory automation, and AI safety in physical systems.",
+      "Assess whether LeapSpace's 'deep research reports' feature can highlight methodology and safety literature for AI-hardware integration projects."
+    ],
+    "sourceType": "secondary"
   },
   {
     "id": "news-r857n0",
@@ -156,42 +248,31 @@
     "sourceName": "WTVB",
     "publishedDate": "2026-08-27",
     "foundDate": "2026-08-31",
-    "autoDiscovered": true
-  },
-  {
-    "id": "news-wfprou",
-    "title": "Google Cloud launches AI tools for legal and financial workflows - The News International",
-    "description": "Google Cloud launches AI tools for legal and financial workflows The News International",
-    "institution": "Google",
-    "category": "competitor_announcements",
-    "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQdVRqQlR1TGY0d3c3WWxNaG96VWlnbkFuRGs5WWhhSGJaSk1ia2NpQzJiRndBa2JsamtpampIeEI5cC1uVEw0Y205X2hZQTh0VzlIa3RXNjhEUWNPQXZFWnBwbTV0dmgyT3h6ME12Zzh2UzA1N0RkNzQ0dnhQZldoVVBpUGJUZ0QwQV93VFZ4S0hYNWx6Tng5UzlzVU1RZ0x3MU1HMFpWVEhkZ9IBpgFBVV95cUxPc3VFQnRSMTVQbk0zckpEYVVtcGRYTFBKRTN3eTFlajZXQnVySFoxM3BBM1ZJc29EaVNfVzB2LVZ5Yl9QUDRCdm9WbldlUWtENVNCVEFkdHVXLWhaSXFibWFKR1pjdjlEU1pvUGU2QXZSclVGeGJINy1zQ1V5VC11TFRadFVWcHRBQkw2Q2VqSHB6blNwQUFyLWp0MjdzLUpndVBvd3Jn?oc",
-    "sourceName": "The News International",
-    "publishedDate": "2026-08-25",
-    "foundDate": "2026-08-28",
     "autoDiscovered": true,
-    "bottomLine": "Google Cloud's legal and financial AI tools target vertical-specific workflows—direct threat to generic academic research discovery platforms.",
+    "bottomLine": "Anthropic releases framework enabling AI agents to operate physical laboratory and industrial devices, potentially reshaping how research workflows integrate computational and physical automation.",
     "keyFindings": [
-      "Google Cloud launches AI-powered tools specifically tailored for legal and financial sector workflows.",
-      "Vertical specialization signals move away from horizontal research platforms toward domain-specific solutions.",
-      "Tools designed to streamline document analysis, compliance, and decision-making in regulated industries.",
-      "Represents Google's strategy to embed AI deeper into enterprise workflows where Elsevier historically had research/citation leverage."
+      "Anthropic develops new framework for AI agents to directly control and operate physical laboratory equipment and industrial devices.",
+      "Framework targets research automation use cases, enabling integration of AI into existing lab and manufacturing workflows.",
+      "Release includes technical specifications and safety guidance to enable broad adoption across research and industrial sectors.",
+      "Initiative positions Anthropic as enabler of AI-driven laboratory automation and hardware integration."
     ],
-    "whyItMatters": "Dutch financial services, legal practices, and law/business schools using Elsevier platforms now see Google offering faster, domain-optimized alternatives. Sales teams must reframe ScienceDirect and LeapSpace as foundational research intelligence that feeds into vertical AI tools, not competitors to them.",
+    "whyItMatters": "Dutch medical centres and research institutes implementing AI-driven laboratory automation will require verified methodologies and safety literature from ScienceDirect/Scopus; LeapSpace's comparison and reading-assistant features become critical for evaluating competing automation frameworks and validating integration approaches.",
     "impact": {
-      "novelty": 3,
+      "novelty": 4,
       "commercial": 4,
-      "threat": 4,
-      "urgency": 4
+      "threat": 3,
+      "urgency": 3
     },
     "entities": [
-      "Google Cloud",
-      "The News International"
+      "Anthropic",
+      "AI agents",
+      "Framework",
+      "Laboratory devices"
     ],
     "actionItems": [
-      "Survey Dutch law and business schools on research discovery workflows—quantify overlap between legal AI needs and current Scopus/ScienceDirect usage.",
-      "Develop integration story: how LeapSpace research reports feed into downstream legal/financial AI applications.",
-      "Brief sales team on positioning Elsevier as the 'research backbone' beneath vertical AI solutions."
+      "Identify Dutch biomedical and materials-science institutes currently exploring lab automation; map their current literature-discovery workflows.",
+      "Package ScienceDirect/Scopus 'safety-critical research' content bundle for institutions adopting Anthropic's hardware standard.",
+      "Test LeapSpace's paper-comparison tool on competing automation frameworks to demonstrate differentiation."
     ],
     "sourceType": "secondary"
   },
@@ -206,7 +287,33 @@
     "sourceName": "AZoM",
     "publishedDate": "2026-08-26",
     "foundDate": "2026-08-31",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "bottomLine": "Wiley launches APIs extending spectral data and analytical intelligence into lab workflows, competing directly with research-data integration strategies Elsevier could target.",
+    "keyFindings": [
+      "Wiley releases new APIs providing direct access to gold-standard spectral data and analytical intelligence.",
+      "APIs integrate Wiley's spectral data into laboratory, vendor, and platform workflows, enabling seamless data access.",
+      "Initiative positions Wiley's analytical content as workflow-embedded rather than discovery-only, increasing lock-in potential.",
+      "Move represents competitive pivot toward operational integration in research-intensive environments."
+    ],
+    "whyItMatters": "Dutch chemistry, materials science, and pharmaceutical research labs now face a Wiley competitor offering embedded spectral data via APIs; Elsevier must accelerate ScienceDirect/Scopus integration into lab management systems and LeapSpace's ability to surface validated methodology and spectral data within active workflows.",
+    "impact": {
+      "novelty": 3,
+      "commercial": 5,
+      "threat": 4,
+      "urgency": 5
+    },
+    "entities": [
+      "Wiley",
+      "APIs",
+      "Spectral data",
+      "Analytical intelligence"
+    ],
+    "actionItems": [
+      "Audit current ScienceDirect/Scopus integration with major Dutch university lab-management systems (LIMS, ELN); identify functional gaps vs. Wiley's API strategy.",
+      "Develop Elsevier API roadmap for embedding ScienceDirect literature and methodology directly into lab workflows and analytical platforms.",
+      "Win competitive opportunities at institutions currently evaluating Wiley's spectral APIs; position Scopus + LeapSpace as superior for methodology validation and cross-disciplinary discovery."
+    ],
+    "sourceType": "secondary"
   },
   {
     "id": "news-j5dtxb",
@@ -219,7 +326,33 @@
     "sourceName": "ET Enterprise AI",
     "publishedDate": "2026-08-28",
     "foundDate": "2026-08-30",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "bottomLine": "Anthropic's Model Hardware Standard for linking AI agents to lab and industrial devices raises urgency for Elsevier to embed research validation into AI-driven automation workflows.",
+    "keyFindings": [
+      "Anthropic introduces Model Hardware Standard connecting AI agents to laboratory and industrial devices at scale.",
+      "Standard targets research automation and manufacturing, enabling AI to control equipment directly based on computational logic.",
+      "Open-source release with safety guidance intended to drive rapid adoption and establish Anthropic as standards-setter in AI hardware integration.",
+      "Framework directly impacts how research institutions will validate, verify, and document AI-driven experimental procedures."
+    ],
+    "whyItMatters": "As Dutch research institutions adopt AI agents controlling physical lab equipment, they must validate automation logic and safety protocols against peer-reviewed literature; ScienceDirect/Scopus/LeapSpace must position itself as the trusted research-verification layer embedded in AI-driven workflows to remain indispensable.",
+    "impact": {
+      "novelty": 4,
+      "commercial": 4,
+      "threat": 3,
+      "urgency": 4
+    },
+    "entities": [
+      "Anthropic",
+      "Model Hardware Standard",
+      "AI agents",
+      "Research automation"
+    ],
+    "actionItems": [
+      "Commission internal research on how Dutch labs currently validate AI-driven experimental protocols; assess ScienceDirect/Scopus current role.",
+      "Pitch integrated ScienceDirect + LeapSpace bundle to tech-forward research institutes: 'AI safety starts with validated literature.'",
+      "Explore partnership or API integration with Anthropic or competing AI-agent platforms to embed ScienceDirect literature verification into agent workflows."
+    ],
+    "sourceType": "secondary"
   },
   {
     "id": "news-3ir2yb",
@@ -723,45 +856,6 @@
       "Contact TU/e's technology transfer office and entrepreneurship center—pitch Elsevier tools as spin-off success infrastructure.",
       "Develop 'Translational Research' case study on using Scopus and ScienceDirect for competitive analysis and clinical evidence gathering in biomedical spin-offs.",
       "Offer discounted Scopus/ScienceDirect/LeapSpace subscriptions to TU/e spin-off companies as part of institutional research support package."
-    ],
-    "sourceType": "primary"
-  },
-  {
-    "id": "news-lxm916",
-    "title": "Symposium: Building public sector AI capacity - TU Delft",
-    "description": "Symposium: Building public sector AI capacity TU Delft",
-    "institution": "TU Delft",
-    "category": "ai_adoption",
-    "categoryLabel": "AI Development & Adoption",
-    "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPN25rX1g2NFYxbDhCWWcyZEFxbndmbElRaWxSY1hyZGVuVU42SFJ4TENuOWVjU25rZ2Rvbm90ZXZtU3BkN24zTmRfMThiaEN6UDN4V1U5dXlkQU8wdTl0U3FTV0gwQTAwMkVWaVhOWnVSR1ZlUVRWRm5yTDVFTXFwdkg3ZWZFdnhoYTFIM21JTQ?oc=5",
-    "sourceName": "TU Delft",
-    "publishedDate": "2026-08-25",
-    "foundDate": "2026-08-28",
-    "autoDiscovered": true,
-    "bottomLine": "TU Delft leads Dutch public sector AI capacity-building, creating urgent opportunity to embed research discovery tools into AI governance and policy infrastructure.",
-    "keyFindings": [
-      "TU Delft convening symposium on public sector AI capacity signals institutional leadership in AI policy and skills development across Dutch government.",
-      "Public sector AI adoption requires systematic access to research evidence, technical literature, and funding landscape—core Elsevier strengths.",
-      "Dutch government and public institutions likely seeking structured approaches to responsible AI development, necessitating curated research infrastructure.",
-      "TU Delft's convening power indicates they're becoming hub for AI governance conversations across Netherlands academia and policy."
-    ],
-    "whyItMatters": "TU Delft is positioning itself as the Netherlands' public sector AI authority. Elsevier can embed ScienceDirect/Scopus/LeapSpace into their AI capacity programmes, enabling government agencies and research institutes to discover, evaluate, and cite credible evidence—while building sticky institutional relationships across Dutch public administration.",
-    "impact": {
-      "novelty": 2,
-      "commercial": 4,
-      "threat": 3,
-      "urgency": 4
-    },
-    "entities": [
-      "TU Delft",
-      "Netherlands public sector",
-      "AI governance",
-      "Dutch government agencies"
-    ],
-    "actionItems": [
-      "Contact TU Delft's symposium organizers to explore sponsorship, speaking slot, or LeapSpace integration into AI capacity curriculum.",
-      "Identify which Dutch public institutions (ministries, agencies) are participants; map subscription gaps and decision-makers for targeted outreach.",
-      "Research competing solutions (OpenAlex, Semantic Scholar, Google Scholar) being used in Dutch policy AI contexts; develop differentiation narrative."
     ],
     "sourceType": "primary"
   },

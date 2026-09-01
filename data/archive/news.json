@@ -1,5 +1,81 @@
 [
   {
+    "id": "news-lxm916",
+    "title": "Symposium: Building public sector AI capacity - TU Delft",
+    "description": "Symposium: Building public sector AI capacity TU Delft",
+    "institution": "TU Delft",
+    "category": "ai_adoption",
+    "categoryLabel": "AI Development & Adoption",
+    "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPN25rX1g2NFYxbDhCWWcyZEFxbndmbElRaWxSY1hyZGVuVU42SFJ4TENuOWVjU25rZ2Rvbm90ZXZtU3BkN24zTmRfMThiaEN6UDN4V1U5dXlkQU8wdTl0U3FTV0gwQTAwMkVWaVhOWnVSR1ZlUVRWRm5yTDVFTXFwdkg3ZWZFdnhoYTFIM21JTQ?oc=5",
+    "sourceName": "TU Delft",
+    "publishedDate": "2026-08-25",
+    "foundDate": "2026-08-28",
+    "autoDiscovered": true,
+    "bottomLine": "TU Delft leads Dutch public sector AI capacity-building, creating urgent opportunity to embed research discovery tools into AI governance and policy infrastructure.",
+    "keyFindings": [
+      "TU Delft convening symposium on public sector AI capacity signals institutional leadership in AI policy and skills development across Dutch government.",
+      "Public sector AI adoption requires systematic access to research evidence, technical literature, and funding landscape—core Elsevier strengths.",
+      "Dutch government and public institutions likely seeking structured approaches to responsible AI development, necessitating curated research infrastructure.",
+      "TU Delft's convening power indicates they're becoming hub for AI governance conversations across Netherlands academia and policy."
+    ],
+    "whyItMatters": "TU Delft is positioning itself as the Netherlands' public sector AI authority. Elsevier can embed ScienceDirect/Scopus/LeapSpace into their AI capacity programmes, enabling government agencies and research institutes to discover, evaluate, and cite credible evidence—while building sticky institutional relationships across Dutch public administration.",
+    "impact": {
+      "novelty": 2,
+      "commercial": 4,
+      "threat": 3,
+      "urgency": 4
+    },
+    "entities": [
+      "TU Delft",
+      "Netherlands public sector",
+      "AI governance",
+      "Dutch government agencies"
+    ],
+    "actionItems": [
+      "Contact TU Delft's symposium organizers to explore sponsorship, speaking slot, or LeapSpace integration into AI capacity curriculum.",
+      "Identify which Dutch public institutions (ministries, agencies) are participants; map subscription gaps and decision-makers for targeted outreach.",
+      "Research competing solutions (OpenAlex, Semantic Scholar, Google Scholar) being used in Dutch policy AI contexts; develop differentiation narrative."
+    ],
+    "sourceType": "primary"
+  },
+  {
+    "id": "news-wfprou",
+    "title": "Google Cloud launches AI tools for legal and financial workflows - The News International",
+    "description": "Google Cloud launches AI tools for legal and financial workflows The News International",
+    "institution": "Google",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQdVRqQlR1TGY0d3c3WWxNaG96VWlnbkFuRGs5WWhhSGJaSk1ia2NpQzJiRndBa2JsamtpampIeEI5cC1uVEw0Y205X2hZQTh0VzlIa3RXNjhEUWNPQXZFWnBwbTV0dmgyT3h6ME12Zzh2UzA1N0RkNzQ0dnhQZldoVVBpUGJUZ0QwQV93VFZ4S0hYNWx6Tng5UzlzVU1RZ0x3MU1HMFpWVEhkZ9IBpgFBVV95cUxPc3VFQnRSMTVQbk0zckpEYVVtcGRYTFBKRTN3eTFlajZXQnVySFoxM3BBM1ZJc29EaVNfVzB2LVZ5Yl9QUDRCdm9WbldlUWtENVNCVEFkdHVXLWhaSXFibWFKR1pjdjlEU1pvUGU2QXZSclVGeGJINy1zQ1V5VC11TFRadFVWcHRBQkw2Q2VqSHB6blNwQUFyLWp0MjdzLUpndVBvd3Jn?oc",
+    "sourceName": "The News International",
+    "publishedDate": "2026-08-25",
+    "foundDate": "2026-08-28",
+    "autoDiscovered": true,
+    "bottomLine": "Google Cloud's legal and financial AI tools target vertical-specific workflows—direct threat to generic academic research discovery platforms.",
+    "keyFindings": [
+      "Google Cloud launches AI-powered tools specifically tailored for legal and financial sector workflows.",
+      "Vertical specialization signals move away from horizontal research platforms toward domain-specific solutions.",
+      "Tools designed to streamline document analysis, compliance, and decision-making in regulated industries.",
+      "Represents Google's strategy to embed AI deeper into enterprise workflows where Elsevier historically had research/citation leverage."
+    ],
+    "whyItMatters": "Dutch financial services, legal practices, and law/business schools using Elsevier platforms now see Google offering faster, domain-optimized alternatives. Sales teams must reframe ScienceDirect and LeapSpace as foundational research intelligence that feeds into vertical AI tools, not competitors to them.",
+    "impact": {
+      "novelty": 3,
+      "commercial": 4,
+      "threat": 4,
+      "urgency": 4
+    },
+    "entities": [
+      "Google Cloud",
+      "The News International"
+    ],
+    "actionItems": [
+      "Survey Dutch law and business schools on research discovery workflows—quantify overlap between legal AI needs and current Scopus/ScienceDirect usage.",
+      "Develop integration story: how LeapSpace research reports feed into downstream legal/financial AI applications.",
+      "Brief sales team on positioning Elsevier as the 'research backbone' beneath vertical AI solutions."
+    ],
+    "sourceType": "secondary"
+  },
+  {
     "id": "news-c98c8m",
     "title": "Google Cloud Announces Strategic Partnership with Verizon to Scale Enterprise AI - HPCwire",
     "description": "Google Cloud Announces Strategic Partnership with Verizon to Scale Enterprise AI HPCwire",
