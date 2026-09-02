@@ -234,7 +234,9 @@ async function fetchPinpoint(company, slug) {
     company,
     title: String(p.title || '').trim(),
     location: (p.location && (p.location.name || p.location)) || p.location_name || '',
-    department: (p.department && (p.department.name || p.department)) || '',
+    // Confirmed live shape: department lives at job.department.name, not a
+    // top-level field — the old fallback always came back blank.
+    department: (p.job && p.job.department && p.job.department.name) || (p.department && (p.department.name || p.department)) || '',
     url: p.url || p.absolute_url || '',
     postedDate: toISODate(p.published_at || p.created_at),
     source: 'Pinpoint',
