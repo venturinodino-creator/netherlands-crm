@@ -226,7 +226,10 @@ async function fetchSmartRecruiters(company, companyId) {
 // -- Pinpoint: GET https://<slug>.pinpointhq.com/postings.json
 async function fetchPinpoint(company, slug) {
   const data = await fetchJSON(`https://${slug}.pinpointhq.com/postings.json`);
-  const list = Array.isArray(data) ? data : (data.postings || data.jobs || []);
+  // Confirmed live shape (2026-09-02): { data: [...] }, not { postings }
+  // or { jobs } — those two were guessed at build time and never actually
+  // matched, so this fetch silently returned zero jobs on every run.
+  const list = Array.isArray(data) ? data : (data.data || data.postings || data.jobs || []);
   return list.map(p => ({
     company,
     title: String(p.title || '').trim(),
