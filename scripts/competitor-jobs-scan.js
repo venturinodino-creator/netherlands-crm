@@ -226,11 +226,12 @@ async function fetchSmartRecruiters(company, companyId) {
 // -- Pinpoint: GET https://<slug>.pinpointhq.com/postings.json
 async function fetchPinpoint(company, slug) {
   const data = await fetchJSON(`https://${slug}.pinpointhq.com/postings.json`);
+  const list = Array.isArray(data) ? data : (data.data || data.postings || data.jobs || []);
   if (process.env.DIAG) {
-    console.log(`[DIAG] Pinpoint raw response for ${company}: isArray=${Array.isArray(data)} keys=${JSON.stringify(Array.isArray(data) ? null : Object.keys(data || {}))}`);
-    console.log(`[DIAG] Pinpoint raw response sample: ${JSON.stringify(data).slice(0, 1500)}`);
+    console.log(`[DIAG] Pinpoint ${company}: list length=${list.length}`);
+    if (list[0]) console.log(`[DIAG] Pinpoint ${company} first item keys: ${JSON.stringify(Object.keys(list[0]))}`);
+    if (list[0]) console.log(`[DIAG] Pinpoint ${company} first item (trimmed): ${JSON.stringify({ ...list[0], benefits: undefined, description: undefined, content: undefined, description_html: undefined, requirements: undefined })}`);
   }
-  const list = Array.isArray(data) ? data : (data.postings || data.jobs || []);
   return list.map(p => ({
     company,
     title: String(p.title || '').trim(),
