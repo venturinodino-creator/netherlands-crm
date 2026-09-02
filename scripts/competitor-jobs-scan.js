@@ -226,6 +226,10 @@ async function fetchSmartRecruiters(company, companyId) {
 // -- Pinpoint: GET https://<slug>.pinpointhq.com/postings.json
 async function fetchPinpoint(company, slug) {
   const data = await fetchJSON(`https://${slug}.pinpointhq.com/postings.json`);
+  if (process.env.DIAG) {
+    console.log(`[DIAG] Pinpoint raw response for ${company}: isArray=${Array.isArray(data)} keys=${JSON.stringify(Array.isArray(data) ? null : Object.keys(data || {}))}`);
+    console.log(`[DIAG] Pinpoint raw response sample: ${JSON.stringify(data).slice(0, 1500)}`);
+  }
   const list = Array.isArray(data) ? data : (data.postings || data.jobs || []);
   return list.map(p => ({
     company,
@@ -359,7 +363,9 @@ async function main() {
           const locOk = NL_LOCATION_RE.test(j.location || '');
           if (locOk) {
             locPass++;
-            if (classifyRole(j.title, j.department)) rolePassAmongLocPass++;
+            const cat = classifyRole(j.title, j.department);
+            if (cat) rolePassAmongLocPass++;
+            console.log(`  [LOC-PASS] title=${JSON.stringify(j.title)} location=${JSON.stringify(j.location)} dept=${JSON.stringify(j.department)} roleCategory=${cat || 'NONE'}`);
           }
         }
         console.log(`[DIAG] ${src.company}: ${locPass}/${jobs.length} pass location filter; of those, ${rolePassAmongLocPass} also pass role filter.`);
