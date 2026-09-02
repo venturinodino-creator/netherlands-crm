@@ -21,6 +21,8 @@ jobs:
         with:
           node-version: '20'
       - name: Run competitor hiring scan
+        env:
+          DIAG: '1'
         run: node scripts/competitor-jobs-scan.js
       - name: Commit new hiring findings
         run: |

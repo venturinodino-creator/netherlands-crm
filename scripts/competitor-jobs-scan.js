@@ -348,6 +348,22 @@ async function main() {
     try {
       const jobs = await src.fetch();
       perCompanyCounts[src.company] = { total: jobs.length, nl: 0 };
+      if (process.env.DIAG) {
+        console.log(`\n[DIAG] ${src.company}: ${jobs.length} raw jobs. Sample (up to 15):`);
+        for (const j of jobs.slice(0, 15)) {
+          console.log(`  title=${JSON.stringify(j.title)} location=${JSON.stringify(j.location)} dept=${JSON.stringify(j.department)}`);
+        }
+        let locPass = 0, rolePassAmongLocPass = 0;
+        for (const j of jobs) {
+          if (!j.title || !j.url) continue;
+          const locOk = NL_LOCATION_RE.test(j.location || '');
+          if (locOk) {
+            locPass++;
+            if (classifyRole(j.title, j.department)) rolePassAmongLocPass++;
+          }
+        }
+        console.log(`[DIAG] ${src.company}: ${locPass}/${jobs.length} pass location filter; of those, ${rolePassAmongLocPass} also pass role filter.`);
+      }
       for (const j of jobs) {
         if (!j.title || !j.url) continue;
         if (!NL_LOCATION_RE.test(j.location || '')) continue;
