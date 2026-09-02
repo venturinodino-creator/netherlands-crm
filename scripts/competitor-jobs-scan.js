@@ -98,7 +98,7 @@ const SUPPORT_TITLE_RE = /\b(technical support (analyst|specialist|engineer|repr
 const SERVICE_TITLE_RE = /\b(customer service (representative|rep|associate|agent)|licen[cs]e administrator|licen[cs]ing administrator)\b/i;
 const TRAINING_TITLE_RE = /\b(training specialist|customer education (manager|specialist|lead)|training (manager|lead|coordinator))\b/i;
 const ANALYTICS_TITLE_RE = /\b(usage (&|and) reporting analyst|usage analyst|reporting analyst|usage \& reporting)\b/i;
-const MARKETING_TITLE_RE = /\b(product marketing manager|market development manager)\b/i;
+const MARKETING_TITLE_RE = /\b(product marketing (manager|director|lead)|market development manager|field marketing (manager|director|specialist|lead)|customer marketing (manager|director))\b/i;
 
 // Once a title matches one of the role families above, exclude it if it's
 // clearly scoped to a business line that doesn't compete with Elsevier's
