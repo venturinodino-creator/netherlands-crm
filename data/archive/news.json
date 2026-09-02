@@ -1,5 +1,193 @@
 [
   {
+    "id": "news-oq6tsz",
+    "title": "First MSc University of Twente Excellence Trajectories Start - Universiteit Twente",
+    "description": "First MSc University of Twente Excellence Trajectories Start Universiteit Twente",
+    "institution": "University of Twente",
+    "category": "ai_adoption",
+    "categoryLabel": "AI Development & Adoption",
+    "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQUWdPaW5RdUxBX2I3b3hac0JrTmo3aFJZOEtGYWhiWTNscjQxT0lMcWpMYVdkUkQtY0pCaWN1OG9ubUJwNlZCTlFYLWtGYmtuRHNubU5GQzZuaS1IUU5LejYxS0dPbVoyN1FBWWE4dm5UV09kdVAwdUxXdk4zdmstdFBVSGZOaXpJcXo1YnRkM1BNUGZkVkNGYS1wclZweXVzNWdnenlzQ1pzZy1ZdWtDS1VvR1F2enBkaXVIbDFyeXhUVk4yM3Z3anhxOGxZcE9kX2pv?oc=5",
+    "sourceName": "Universiteit Twente",
+    "publishedDate": "2026-08-26",
+    "foundDate": "2026-08-28",
+    "autoDiscovered": true,
+    "bottomLine": "University of Twente launches elite MSc excellence trajectories—signals premium research talent pipeline and high-impact research output expected.",
+    "keyFindings": [
+      "University of Twente launches first cohort of MSc Excellence Trajectory programs for high-potential students.",
+      "Excellence tracks are designed to accelerate research productivity and publication among top-tier students.",
+      "Programs likely to produce disproportionate research output and citation impact relative to student cohort size.",
+      "Signals institutional focus on research quality and researcher development."
+    ],
+    "whyItMatters": "UT's excellence scholars will be heavy users of literature discovery, competitive benchmarking, and research planning tools—and their research will drive citations and impact metrics tracked by Scopus. Elsevier should position Scopus and LeapSpace as essential infrastructure for excellence scholars, and position ScienceDirect access as competitive advantage for elite programs.",
+    "impact": {
+      "novelty": 2,
+      "commercial": 4,
+      "threat": 1,
+      "urgency": 4
+    },
+    "entities": [
+      "University of Twente",
+      "MSc Excellence Trajectories"
+    ],
+    "actionItems": [
+      "Request meeting with UT's graduate school director—pitch Elsevier tools as core research infrastructure for excellence scholars.",
+      "Offer free pilot access to LeapSpace for excellence cohort—demonstrate early and often for curriculum embedding.",
+      "Track first-cohort publications in Scopus—use as success metric and case study for future cohorts and other Dutch universities."
+    ],
+    "sourceType": "primary"
+  },
+  {
+    "id": "news-3ab1o2",
+    "title": "New funds for research and scientific talent at University of Twente - Universiteit Twente",
+    "description": "New funds for research and scientific talent at University of Twente Universiteit Twente",
+    "institution": "University of Twente",
+    "category": "ai_adoption",
+    "categoryLabel": "AI Development & Adoption",
+    "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNYTlrVlVNMXhpU0VsV1Vmb0ozUkZ3YnRlYk5jdTZpbVRwdDlXRGpScVhUWl9YY0hqNlVnN2pvSmhCTnpfN2pyWHZLMGxuX091VnN5Rl83Y1lIWTFCcWVSc3N5MC1qTjJyaG5KMF9HVXRSVEVrdFZvVVFiUWJFbW5iT005ZkRCV3pKWjA5TmRpRFlLVlU2djAta3FaMkw1R3N5NEhnby1SdFpmMHo2ZzNoOTdBNzF3bkVpQXJsTW00U0JGWEZ0TEJZczlfZ2FKNG42ZmFaRFdEV2lLRzRIV2xN?oc=5",
+    "sourceName": "Universiteit Twente",
+    "publishedDate": "2026-08-26",
+    "foundDate": "2026-08-28",
+    "autoDiscovered": true,
+    "bottomLine": "University of Twente receives fresh research funding—signals growth in research capacity and increased need for discovery and analytics tools.",
+    "keyFindings": [
+      "University of Twente announces new funding dedicated to research and scientific talent development.",
+      "Funding indicates institutional commitment to research expansion and recruitment of research talent.",
+      "Growing research capacity typically drives increased subscriptions to discovery, analytics, and collaboration tools.",
+      "Timing suggests new research groups and projects launching over coming 12–18 months."
+    ],
+    "whyItMatters": "University of Twente's research expansion creates direct commercial opportunity for Elsevier. New research groups will need Scopus for citation tracking, ScienceDirect for literature access, and LeapSpace for research planning and discovery. Sales team should contact research strategy and library leadership immediately to understand funding allocation and research priorities.",
+    "impact": {
+      "novelty": 1,
+      "commercial": 4,
+      "threat": 1,
+      "urgency": 5
+    },
+    "entities": [
+      "University of Twente"
+    ],
+    "actionItems": [
+      "Contact UT's research office and library director within 2 weeks—request briefing on funding allocation and new research area priorities.",
+      "Prepare product demo tailored to UT's research strategy—emphasize Scopus for competitive landscape and LeapSpace for research planning.",
+      "Propose multi-year research support package aligned with UT's 3–5 year research roadmap."
+    ],
+    "sourceType": "primary"
+  },
+  {
+    "id": "news-l3jnri",
+    "title": "Inside Silico’s AI Microscope That Makes Black Boxes Make More Sense - IEEE Spectrum",
+    "description": "Inside Silico’s AI Microscope That Makes Black Boxes Make More Sense IEEE Spectrum",
+    "institution": "IEEE",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9ic3FaRU11YXFLWDBtQlV3WlVZSF9GLTh4bHA1cXMwVDBPSHlEN1FBTmFTblJnckF6SUZEcGs2UW84S2V4Sl9sZEVrNXBrNHo5eDk5TWY1WGhOU2F4T2pGbkNB?oc=5",
+    "sourceName": "IEEE Spectrum",
+    "publishedDate": "2026-08-26",
+    "foundDate": "2026-08-28",
+    "autoDiscovered": true,
+    "bottomLine": "Silico's AI explainability microscope directly addresses AI transparency—research community demand for interpretability tools is rising sharply.",
+    "keyFindings": [
+      "Silico develops AI 'microscope' tool to explain and visualize how black-box AI models make decisions.",
+      "Addresses growing research and regulatory demand for AI model interpretability and transparency.",
+      "Represents emerging category of explainable AI (XAI) tooling gaining traction in academic and enterprise research.",
+      "Feature in IEEE Spectrum signals credibility and relevance to engineering and research communities."
+    ],
+    "whyItMatters": "Dutch universities and research institutes (especially those in AI ethics, machine learning, and regulated domains like healthcare and finance) now prioritize understanding AI model behavior. LeapSpace's research assistant must highlight Elsevier's coverage of XAI literature, funding, and author networks—positioning Scopus and ScienceDirect as essential for staying current on explainability research and methodology.",
+    "impact": {
+      "novelty": 4,
+      "commercial": 3,
+      "threat": 2,
+      "urgency": 3
+    },
+    "entities": [
+      "Silico",
+      "IEEE Spectrum",
+      "Black-box AI models"
+    ],
+    "actionItems": [
+      "Search Scopus for XAI and interpretability research clusters—identify top institutions and authors in Netherlands.",
+      "Pitch LeapSpace's claim-checking and reasoning-transparency features as aligned with explainability research priorities.",
+      "Develop webinar: 'Tracking the Explainable AI Research Frontier—How Scopus and ScienceDirect Support XAI Discovery.'"
+    ],
+    "sourceType": "secondary"
+  },
+  {
+    "id": "news-qgppti",
+    "title": "OpenAI enters hardware market with launch of 'Jalapeño' AI chip: Built to run AI workloads more efficiently... - Bhaskar English",
+    "description": "OpenAI enters hardware market with launch of 'Jalapeño' AI chip: Built to run AI workloads more efficiently... Bhaskar English",
+    "institution": "OpenAI",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPWjlLNGdORmVRTldPRE5PeGV6VkJFM0J2d1dlMGpuc3dpMTZ6UnJfSkRRTjJxdXk0VVdJdW5hb3ZTX0FxbUVsTFhpZHN0TlFBWV81cmJvd2IteU5tZWxSdkpSSW1wdldGcTBKcFFjcDdEQzQ4U0lMWlFubjUyZWJEYkgydEJXd1ZNVTFwNnR0SEhtM2xjbzhuamFTZjVnN01CdUJPVmZBMDl6bm8zX0Y1QnYtRHFYdExwakxrZdIBvAFBVV95cUxPWjlLNGdORmVRTldPRE5PeGV6VkJFM0J2d1dlMGpuc3dpMTZ6UnJfSkRRTjJxdXk0VVdJdW5hb3ZTX0FxbUVsTFhpZHN0TlFBWV81cmJvd2IteU5tZWxSdkpSSW1wdldGcTBKcFFjcDdEQzQ4U0lMWlFubjUyZWJEYkgydEJXd1ZNVTFwNnR0SEhtM2xjbzh",
+    "sourceName": "Bhaskar English",
+    "publishedDate": "2026-08-26",
+    "foundDate": "2026-08-28",
+    "autoDiscovered": true,
+    "bottomLine": "OpenAI's new Jalapeño chip signals hardware vertical integration—competitors innovating at infrastructure layer, not just software.",
+    "keyFindings": [
+      "OpenAI launches proprietary 'Jalapeño' AI chip designed to run AI workloads more efficiently than existing hardware.",
+      "Move represents OpenAI's expansion into hardware manufacturing and infrastructure control.",
+      "Signals arms race among AI leaders to own the full stack from chip design through application delivery.",
+      "Efficiency gains in custom silicon could lower operational costs and improve competitive positioning."
+    ],
+    "whyItMatters": "Dutch research institutions and their AI researchers now face accelerating infrastructure commoditization. Elsevier's research discovery and analytics tools must help Dutch institutions (TU Delft, University of Twente, TU/e) track and understand AI chip innovation trends, competitive landscapes, and funding implications for their own research strategies and partnerships.",
+    "impact": {
+      "novelty": 4,
+      "commercial": 4,
+      "threat": 3,
+      "urgency": 3
+    },
+    "entities": [
+      "OpenAI",
+      "Jalapeño AI chip",
+      "Bhaskar English"
+    ],
+    "actionItems": [
+      "Identify Dutch university AI research groups working on chip design or hardware optimization—position LeapSpace for real-time competitive intelligence.",
+      "Develop case study: how Scopus/ScienceDirect help Dutch AI researchers stay ahead of hardware innovation cycles.",
+      "Map OpenAI partnerships with Dutch institutions to uncover research collaboration and funding opportunities."
+    ],
+    "sourceType": "secondary"
+  },
+  {
+    "id": "news-pn76q0",
+    "title": "New APIs Extend Wiley's Gold-Standard Spectral Data and Analytical Intelligence Directly Into Lab, Vendor, and Platform Workflows - AZoM",
+    "description": "New APIs Extend Wiley's Gold-Standard Spectral Data and Analytical Intelligence Directly Into Lab, Vendor, and Platform Workflows&nbsp;&nbsp;AZoM",
+    "institution": "Wiley",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5NUFlzQnM0akhJekF3T3JJeC1OU3BCXy02Q1Q1eG1SNWZDZ2NaUHV4U0VzTDZ1bEhGYWI2ano5QkJNeEx5YmhCUnNIMUNpRE9pTTVyZlV3?oc=5",
+    "sourceName": "AZoM",
+    "publishedDate": "2026-08-26",
+    "foundDate": "2026-08-31",
+    "autoDiscovered": true,
+    "bottomLine": "Wiley launches APIs extending spectral data and analytical intelligence into lab workflows, competing directly with research-data integration strategies Elsevier could target.",
+    "keyFindings": [
+      "Wiley releases new APIs providing direct access to gold-standard spectral data and analytical intelligence.",
+      "APIs integrate Wiley's spectral data into laboratory, vendor, and platform workflows, enabling seamless data access.",
+      "Initiative positions Wiley's analytical content as workflow-embedded rather than discovery-only, increasing lock-in potential.",
+      "Move represents competitive pivot toward operational integration in research-intensive environments."
+    ],
+    "whyItMatters": "Dutch chemistry, materials science, and pharmaceutical research labs now face a Wiley competitor offering embedded spectral data via APIs; Elsevier must accelerate ScienceDirect/Scopus integration into lab management systems and LeapSpace's ability to surface validated methodology and spectral data within active workflows.",
+    "impact": {
+      "novelty": 3,
+      "commercial": 5,
+      "threat": 4,
+      "urgency": 5
+    },
+    "entities": [
+      "Wiley",
+      "APIs",
+      "Spectral data",
+      "Analytical intelligence"
+    ],
+    "actionItems": [
+      "Audit current ScienceDirect/Scopus integration with major Dutch university lab-management systems (LIMS, ELN); identify functional gaps vs. Wiley's API strategy.",
+      "Develop Elsevier API roadmap for embedding ScienceDirect literature and methodology directly into lab workflows and analytical platforms.",
+      "Win competitive opportunities at institutions currently evaluating Wiley's spectral APIs; position Scopus + LeapSpace as superior for methodology validation and cross-disciplinary discovery."
+    ],
+    "sourceType": "secondary"
+  },
+  {
     "id": "news-lxm916",
     "title": "Symposium: Building public sector AI capacity - TU Delft",
     "description": "Symposium: Building public sector AI capacity TU Delft",
