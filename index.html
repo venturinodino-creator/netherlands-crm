@@ -4527,16 +4527,22 @@ const WS_PURE_STATUS = {
   unknown:  { label: 'Unknown',    color: '#fbbf24' },
 };
 
-// Pure is sold into research-active institutions generally, not just
-// universities — a university medical centre or research hospital with its
-// own research output is just as much a Pure prospect. Kept as an explicit
-// whitelist (not "everything but ngo/research") since a research institute
-// or NGO isn't a realistic Pure buyer the same way.
-const WS_ELIGIBLE_TYPES = ['university', 'medical'];
+// Pure is sold into any research-active organisation, not just universities —
+// a medical centre, an independent research institute, or a research-producing
+// NGO with its own publication output is just as much a Pure prospect.
+const WS_ELIGIBLE_TYPES = ['university', 'medical', 'research', 'ngo'];
+
+// A handful of tracked "research"/"ngo"-typed entries are funders, judicial
+// bodies, or coordinating academies rather than organisations that publish
+// their own research output — they show up nowhere as a Pure (or any CRIS)
+// customer because they were never a CRIS candidate to begin with, not
+// because they're an overlooked sales target. Excluded from White Space so
+// the target list stays a real prospect list rather than noise.
+const WS_EXCLUDE_IDS = new Set(['nwo', 'zonmw', 'icj', 'clingendael', 'hiil']);
 
 function renderWhiteSpace() {
   document.getElementById('page-title').textContent = 'White Space';
-  document.getElementById('page-sub').textContent = 'Universities and medical centres with no active Pure subscription — outreach targets';
+  document.getElementById('page-sub').textContent = 'Universities, medical centres, research institutes and NGOs with no active Pure subscription — outreach targets';
   document.getElementById('topbar-actions').innerHTML = `
     <div class="view-toggle">
       <button class="vt-btn ${state.wsView==='grid'?'active':''}" onclick="state.wsView='grid';renderWhiteSpace()"> Grid</button>
@@ -4545,6 +4551,7 @@ function renderWhiteSpace() {
 
   const insts = state.institutions.filter(i => {
     if (!WS_ELIGIBLE_TYPES.includes(i.type)) return false;
+    if (WS_EXCLUDE_IDS.has(i.id)) return false;
     const pureStatus = getProductStatus(i.id, 'pure');
     if (!(pureStatus in WS_PURE_STATUS)) return false; // yes/likely/expiring already have or probably have Pure
     if (state.wsSearch && !`${i.name} ${i.short} ${i.city}`.toLowerCase().includes(state.wsSearch.toLowerCase())) return false;
@@ -4561,7 +4568,7 @@ function renderWhiteSpace() {
     </div>`;
 
   if (!insts.length) {
-    document.getElementById('content').innerHTML = toolbar + `<div class="empty"><div class="ei"></div><h3>No white space right now</h3><p>Every tracked university and medical centre either has Pure or is likely/expiring. Try adjusting your search.</p></div>`;
+    document.getElementById('content').innerHTML = toolbar + `<div class="empty"><div class="ei"></div><h3>No white space right now</h3><p>Every tracked institution either has Pure or is likely/expiring. Try adjusting your search.</p></div>`;
     return;
   }
 
@@ -4615,7 +4622,7 @@ function renderWhiteSpace() {
 function updateWhiteSpaceBadge() {
   const badge = document.getElementById('nav-whitespace-badge');
   if (!badge) return;
-  const count = state.institutions.filter(i => WS_ELIGIBLE_TYPES.includes(i.type) && getProductStatus(i.id, 'pure') in WS_PURE_STATUS).length;
+  const count = state.institutions.filter(i => WS_ELIGIBLE_TYPES.includes(i.type) && !WS_EXCLUDE_IDS.has(i.id) && getProductStatus(i.id, 'pure') in WS_PURE_STATUS).length;
   badge.textContent = count;
   badge.style.display = count > 0 ? 'inline-block' : 'none';
 }
@@ -6794,6 +6801,32 @@ if (!window.COMP_DATA) {
       dimensions:'unknown', converis:'unknown', symplectic:'unknown',
       proofWos: '', proofOpenalex: '',
     },
+    nwo:        { scopus:'unknown',scopusRenewal:'',scopusProof:'', scival:'unknown',scivalRenewal:'',scivalProof:'', pure:'unknown',pureRenewal:'',pureProof:'https://www.nwo.nl/en/what-does-the-dutch-research-council-do', wos:'unknown',wosRenewal:'',openalex:'unknown', dimensions:'unknown',converis:'unknown',symplectic:'unknown', proofWos:'',proofOpenalex:'' },
+    tno:        { scopus:'unknown',scopusRenewal:'',scopusProof:'', scival:'unknown',scivalRenewal:'',scivalProof:'', pure:'no',pureRenewal:'',pureProof:'https://repository.tno.nl/', wos:'unknown',wosRenewal:'',openalex:'unknown', dimensions:'unknown',converis:'unknown',symplectic:'unknown', proofWos:'',proofOpenalex:'' },
+    knaw:       { scopus:'unknown',scopusRenewal:'',scopusProof:'', scival:'unknown',scivalRenewal:'',scivalProof:'', pure:'yes',pureRenewal:'',pureProof:'https://pure.knaw.nl/portal/', wos:'unknown',wosRenewal:'',openalex:'unknown', dimensions:'unknown',converis:'unknown',symplectic:'unknown', proofWos:'',proofOpenalex:'' },
+    hubrecht:   { scopus:'unknown',scopusRenewal:'',scopusProof:'', scival:'unknown',scivalRenewal:'',scivalProof:'', pure:'yes',pureRenewal:'',pureProof:'https://pure.knaw.nl/portal/en/organisations/hubrecht-institute/', wos:'unknown',wosRenewal:'',openalex:'unknown', dimensions:'unknown',converis:'unknown',symplectic:'unknown', proofWos:'',proofOpenalex:'' },
+    nin:        { scopus:'unknown',scopusRenewal:'',scopusProof:'', scival:'unknown',scivalRenewal:'',scivalProof:'', pure:'yes',pureRenewal:'',pureProof:'https://pure.knaw.nl/portal/en/organisations/netherlands-institute-for-neuroscience-nin/', wos:'unknown',wosRenewal:'',openalex:'unknown', dimensions:'unknown',converis:'unknown',symplectic:'unknown', proofWos:'',proofOpenalex:'' },
+    rivm:       { scopus:'unknown',scopusRenewal:'',scopusProof:'', scival:'unknown',scivalRenewal:'',scivalProof:'', pure:'no',pureRenewal:'',pureProof:'https://rivm.openrepository.com/rivm/', wos:'unknown',wosRenewal:'',openalex:'unknown', dimensions:'unknown',converis:'unknown',symplectic:'unknown', proofWos:'',proofOpenalex:'' },
+    cwi:        { scopus:'unknown',scopusRenewal:'',scopusProof:'', scival:'unknown',scivalRenewal:'',scivalProof:'', pure:'no',pureRenewal:'',pureProof:'https://ir.cwi.nl/', wos:'unknown',wosRenewal:'',openalex:'unknown', dimensions:'unknown',converis:'unknown',symplectic:'unknown', proofWos:'',proofOpenalex:'' },
+    esc:        { scopus:'unknown',scopusRenewal:'',scopusProof:'', scival:'unknown',scivalRenewal:'',scivalProof:'', pure:'no',pureRenewal:'',pureProof:'https://research-software-directory.org/organisations/netherlands-escience-center', wos:'unknown',wosRenewal:'',openalex:'unknown', dimensions:'unknown',converis:'unknown',symplectic:'unknown', proofWos:'',proofOpenalex:'' },
+    deltares:   { scopus:'unknown',scopusRenewal:'',scopusProof:'', scival:'unknown',scivalRenewal:'',scivalProof:'', pure:'unknown',pureRenewal:'',pureProof:'https://www.deltares.nl/en/expertise/publications', wos:'unknown',wosRenewal:'',openalex:'unknown', dimensions:'unknown',converis:'unknown',symplectic:'unknown', proofWos:'',proofOpenalex:'' },
+    sron:       { scopus:'unknown',scopusRenewal:'',scopusProof:'', scival:'unknown',scivalRenewal:'',scivalProof:'', pure:'unknown',pureRenewal:'',pureProof:'https://www.sron.nl/scientific-publications/', wos:'unknown',wosRenewal:'',openalex:'unknown', dimensions:'unknown',converis:'unknown',symplectic:'unknown', proofWos:'',proofOpenalex:'' },
+    nikhef:     { scopus:'unknown',scopusRenewal:'',scopusProof:'', scival:'unknown',scivalRenewal:'',scivalProof:'', pure:'no',pureRenewal:'',pureProof:'https://www.nikhef.nl/nikhef-nwo-i-open-access/', wos:'unknown',wosRenewal:'',openalex:'unknown', dimensions:'unknown',converis:'unknown',symplectic:'unknown', proofWos:'',proofOpenalex:'' },
+    astron:     { scopus:'unknown',scopusRenewal:'',scopusProof:'', scival:'unknown',scivalRenewal:'',scivalProof:'', pure:'unknown',pureRenewal:'',pureProof:'https://www.astron.nl/', wos:'unknown',wosRenewal:'',openalex:'unknown', dimensions:'unknown',converis:'unknown',symplectic:'unknown', proofWos:'',proofOpenalex:'' },
+    nioz:       { scopus:'unknown',scopusRenewal:'',scopusProof:'', scival:'unknown',scivalRenewal:'',scivalProof:'', pure:'no',pureRenewal:'',pureProof:'https://www.nioz.nl/en/research/publications', wos:'unknown',wosRenewal:'',openalex:'unknown', dimensions:'unknown',converis:'unknown',symplectic:'unknown', proofWos:'',proofOpenalex:'' },
+    knmi:       { scopus:'unknown',scopusRenewal:'',scopusProof:'', scival:'unknown',scivalRenewal:'',scivalProof:'', pure:'unknown',pureRenewal:'',pureProof:'https://www.knmi.nl/research/publications', wos:'unknown',wosRenewal:'',openalex:'unknown', dimensions:'unknown',converis:'unknown',symplectic:'unknown', proofWos:'',proofOpenalex:'' },
+    naturalis:  { scopus:'unknown',scopusRenewal:'',scopusProof:'', scival:'unknown',scivalRenewal:'',scivalProof:'', pure:'no',pureRenewal:'',pureProof:'https://repository.naturalis.nl/about', wos:'unknown',wosRenewal:'',openalex:'unknown', dimensions:'unknown',converis:'unknown',symplectic:'unknown', proofWos:'',proofOpenalex:'' },
+    nlr:        { scopus:'unknown',scopusRenewal:'',scopusProof:'', scival:'unknown',scivalRenewal:'',scivalProof:'', pure:'no',pureRenewal:'',pureProof:'https://reports.nlr.nl/', wos:'unknown',wosRenewal:'',openalex:'unknown', dimensions:'unknown',converis:'unknown',symplectic:'unknown', proofWos:'',proofOpenalex:'' },
+    pbl:        { scopus:'unknown',scopusRenewal:'',scopusProof:'', scival:'unknown',scivalRenewal:'',scivalProof:'', pure:'unknown',pureRenewal:'',pureProof:'https://www.pbl.nl/en/publications', wos:'unknown',wosRenewal:'',openalex:'unknown', dimensions:'unknown',converis:'unknown',symplectic:'unknown', proofWos:'',proofOpenalex:'' },
+    cpb:        { scopus:'unknown',scopusRenewal:'',scopusProof:'', scival:'unknown',scivalRenewal:'',scivalProof:'', pure:'unknown',pureRenewal:'',pureProof:'https://www.cpb.nl/en', wos:'unknown',wosRenewal:'',openalex:'unknown', dimensions:'unknown',converis:'unknown',symplectic:'unknown', proofWos:'',proofOpenalex:'' },
+    rathenau:   { scopus:'unknown',scopusRenewal:'',scopusProof:'', scival:'unknown',scivalRenewal:'',scivalProof:'', pure:'yes',pureRenewal:'',pureProof:'https://pure.knaw.nl/portal/en/organisations/rathenau-institute/', wos:'unknown',wosRenewal:'',openalex:'unknown', dimensions:'unknown',converis:'unknown',symplectic:'unknown', proofWos:'',proofOpenalex:'' },
+    scp:        { scopus:'unknown',scopusRenewal:'',scopusProof:'', scival:'unknown',scivalRenewal:'',scivalProof:'', pure:'no',pureRenewal:'',pureProof:'https://repository.scp.nl/', wos:'unknown',wosRenewal:'',openalex:'unknown', dimensions:'unknown',converis:'unknown',symplectic:'unknown', proofWos:'',proofOpenalex:'' },
+    clingendael:{ scopus:'unknown',scopusRenewal:'',scopusProof:'', scival:'unknown',scivalRenewal:'',scivalProof:'', pure:'unknown',pureRenewal:'',pureProof:'https://www.clingendael.org/research', wos:'unknown',wosRenewal:'',openalex:'unknown', dimensions:'unknown',converis:'unknown',symplectic:'unknown', proofWos:'',proofOpenalex:'' },
+    hiil:       { scopus:'unknown',scopusRenewal:'',scopusProof:'', scival:'unknown',scivalRenewal:'',scivalProof:'', pure:'unknown',pureRenewal:'',pureProof:'https://www.hiil.org/who-we-are/', wos:'unknown',wosRenewal:'',openalex:'unknown', dimensions:'unknown',converis:'unknown',symplectic:'unknown', proofWos:'',proofOpenalex:'' },
+    oxfamnovib: { scopus:'unknown',scopusRenewal:'',scopusProof:'', scival:'unknown',scivalRenewal:'',scivalProof:'', pure:'no',pureRenewal:'',pureProof:'https://oxfamilibrary.openrepository.com/', wos:'unknown',wosRenewal:'',openalex:'unknown', dimensions:'unknown',converis:'unknown',symplectic:'unknown', proofWos:'',proofOpenalex:'' },
+    icj:        { scopus:'unknown',scopusRenewal:'',scopusProof:'', scival:'unknown',scivalRenewal:'',scivalProof:'', pure:'unknown',pureRenewal:'',pureProof:'https://www.icj-cij.org/publications', wos:'unknown',wosRenewal:'',openalex:'unknown', dimensions:'unknown',converis:'unknown',symplectic:'unknown', proofWos:'',proofOpenalex:'' },
+    iiss:       { scopus:'unknown',scopusRenewal:'',scopusProof:'', scival:'unknown',scivalRenewal:'',scivalProof:'', pure:'unknown',pureRenewal:'',pureProof:'https://www.asser.nl/about-the-asser-institute/', wos:'unknown',wosRenewal:'',openalex:'unknown', dimensions:'unknown',converis:'unknown',symplectic:'unknown', proofWos:'',proofOpenalex:'' },
+    zonmw:      { scopus:'unknown',scopusRenewal:'',scopusProof:'', scival:'unknown',scivalRenewal:'',scivalProof:'', pure:'unknown',pureRenewal:'',pureProof:'https://www.zonmw.nl/en/open-access-background', wos:'unknown',wosRenewal:'',openalex:'unknown', dimensions:'unknown',converis:'unknown',symplectic:'unknown', proofWos:'',proofOpenalex:'' },
   };
 }
 // Merge any localStorage overrides into COMP_DATA
