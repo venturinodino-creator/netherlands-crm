@@ -1,5 +1,318 @@
 [
   {
+    "id": "news-yrj8h9",
+    "title": "Gelion Care launches as new TU/e spin-off developing innovative hydrogel for hard-to-heal wounds - Eindhoven University of Technology",
+    "description": "Gelion Care launches as new TU/e spin-off developing innovative hydrogel for hard-to-heal wounds Eindhoven University of Technology",
+    "institution": "Eindhoven University of Technology",
+    "category": "ai_adoption",
+    "categoryLabel": "AI Development & Adoption",
+    "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxNaXBsS3Z3RDBYSVlJdEZtQmZxTzlPbkluWDlpaG1McUpGaE0tOHpEQ0czcDdLWkE5SWJuRlZ4M3FfQ2RkSXAydTRxUVUzSEVydk1UOHNEUncyNXdHaWplU3dpcTRPaEMxU2JuSGc5dzQxWGFVeEhMQi1DLTdZaktlYzRWbjg5dEpkaW1IUnAtTmJDQ05qQXRSbEZlY1RKWEpYY3MyeE9KSnkzcklNckRNOHpmbXhkVEczWTFLNndaLXNxWnBTcmZKRDZpa2FfUnBGbFgyS2ZMdWEtbDBkZnNYV2RxY2xvTjc2Rl85SUdBOA?oc=5",
+    "sourceName": "Eindhoven University of Technology",
+    "publishedDate": "2026-08-27",
+    "foundDate": "2026-08-28",
+    "autoDiscovered": true,
+    "bottomLine": "TU/e spin-off Gelion Care launches biomedical innovation—exemplifies entrepreneurial research ecosystem requiring discovery and commercialization support.",
+    "keyFindings": [
+      "Eindhoven University of Technology launches Gelion Care spin-off company developing novel hydrogel for wound healing.",
+      "Startup represents translation of university research into commercial biomedical product and venture.",
+      "Indicates vibrant ecosystem of university-industry collaboration and technology commercialization at TU/e.",
+      "Spin-off success depends on tracking competitive landscape, regulatory requirements, and clinical research evidence."
+    ],
+    "whyItMatters": "TU/e's spin-off culture and biomedical research clusters depend on comprehensive access to scientific literature, competitive intelligence, and funding landscape data. Elsevier can position Scopus, ScienceDirect, and LeapSpace as essential research infrastructure for pre-commercialization competitive analysis, regulatory research, and clinical evidence gathering—key value drivers for spin-off success.",
+    "impact": {
+      "novelty": 2,
+      "commercial": 3,
+      "threat": 1,
+      "urgency": 3
+    },
+    "entities": [
+      "Eindhoven University of Technology",
+      "Gelion Care",
+      "Hydrogel wound-healing technology"
+    ],
+    "actionItems": [
+      "Contact TU/e's technology transfer office and entrepreneurship center—pitch Elsevier tools as spin-off success infrastructure.",
+      "Develop 'Translational Research' case study on using Scopus and ScienceDirect for competitive analysis and clinical evidence gathering in biomedical spin-offs.",
+      "Offer discounted Scopus/ScienceDirect/LeapSpace subscriptions to TU/e spin-off companies as part of institutional research support package."
+    ],
+    "sourceType": "primary"
+  },
+  {
+    "id": "news-5ln8jd",
+    "title": "Previewing the Model Hardware Standard - Anthropic",
+    "description": "Previewing the Model Hardware Standard Anthropic",
+    "institution": "Anthropic",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9mMzRTNjJiRFhsYnZYMlBtQlNxTWZrRE5VVzF4TnZoel9UdXJSalpXUkE4M1NXN3pNTXdIWW84U0dONmN3bUFKcGwzZGh4SEdCZTFQaEk0TDJZNjF2ZVRFTUhTYTB5MzV5dV9xX1lvWXNMejFUYUlMZGxISQ?oc=5",
+    "sourceName": "Anthropic",
+    "publishedDate": "2026-08-27",
+    "foundDate": "2026-08-28",
+    "autoDiscovered": true,
+    "bottomLine": "Anthropic's Model Hardware Standard enables AI agents to autonomously control laboratory and industrial equipment, setting a technical foundation for physical AI at scale.",
+    "keyFindings": [
+      "Anthropic publishes technical details on MHS, a protocol for AI agents to interface with, discover, and command physical devices in lab and manufacturing settings.",
+      "MHS abstracts hardware complexity and standardizes agent-device communication, enabling plug-and-play autonomous control across diverse equipment ecosystems.",
+      "The standard is designed to support reproducible workflows, multi-agent orchestration, and integration with existing laboratory information systems (LIMS).",
+      "Anthropic positions MHS as open and vendor-neutral, inviting equipment manufacturers and software vendors to adopt the standard for interoperability."
+    ],
+    "whyItMatters": "This primary-source announcement is critical: Dutch research institutes and biotech firms will use the technical spec to evaluate adoption. Elsevier must rapidly map how ScienceDirect, Scopus, and LeapSpace can integrate with MHS-compatible systems.",
+    "impact": {
+      "novelty": 5,
+      "commercial": 4,
+      "threat": 4,
+      "urgency": 4
+    },
+    "entities": [
+      "Anthropic",
+      "Model Hardware Standard (MHS)",
+      "AI agents",
+      "Lab equipment",
+      "LIMS integration"
+    ],
+    "actionItems": [
+      "Commission a technical deep-dive: how can LeapSpace's reading assistant and protocol-checking features integrate with MHS-controlled lab workflows?",
+      "Initiate conversations with Dutch LIMS vendors (e.g., LabWare, Core LIMS) and equipment suppliers to explore co-integration with Scopus/LeapSpace and MHS.",
+      "Develop a technical white paper for Dutch research IT leaders showing Elsevier's role in ensuring reproducibility, compliance, and governance in MHS-enabled autonomous labs."
+    ],
+    "sourceType": "primary"
+  },
+  {
+    "id": "news-rwv4lv",
+    "title": "Salesforce and Anthropic Launch Claudeforce Enterprise AI Partnership - HPCwire",
+    "description": "Salesforce and Anthropic Launch Claudeforce Enterprise AI Partnership HPCwire",
+    "institution": "Anthropic",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOVW1XWjlCb0x1LU5GaExUYUdXYXhpaU4xUVlvWHR5aGJlcXF6Z09VbnpHOEJhTHBXTkNrZ0xrTXFQYXRLemJKdkJ1Tkt5ZnlVNERhcFVGbm1xLW5JXzg0ZXhhai01Q2pSTzdrZ0JBdlRBajZrbHRJd1QtQjdxUndTbU1KZUlKUHFSZlNLNGlYREFaZ21DNmZ0VTNpenBxNnI5YzczYjhaRmxwNFFoNm9XaEZB?oc=5",
+    "sourceName": "HPCwire",
+    "publishedDate": "2026-08-27",
+    "foundDate": "2026-08-28",
+    "autoDiscovered": true,
+    "bottomLine": "Salesforce and Anthropic partner on Claudeforce, bringing enterprise-scale AI agents to CRM and workflow automation, amplifying Anthropic's reach into mission-critical business systems.",
+    "keyFindings": [
+      "Salesforce and Anthropic announce Claudeforce, integrating Claude AI agents into Salesforce's CRM, service, and automation platforms.",
+      "The partnership embeds Anthropic's models and agent capabilities into Salesforce's trusted enterprise environment, broadening adoption across sales, service, and operations.",
+      "Claudeforce enables autonomous agents to manage customer interactions, process orders, and execute workflows without human intervention.",
+      "This alliance positions Anthropic as a core AI provider for Fortune 500 enterprises and SMEs reliant on Salesforce for business operations."
+    ],
+    "whyItMatters": "Dutch enterprises using Salesforce for customer and operational management (financial services, healthcare, manufacturing, consulting) are now direct targets for Anthropic's autonomous agents. Elsevier's ScienceDirect and Scopus risk being sidelined from enterprise workflows if they cannot integrate with Salesforce and Claudeforce.",
+    "impact": {
+      "novelty": 3,
+      "commercial": 5,
+      "threat": 4,
+      "urgency": 4
+    },
+    "entities": [
+      "Salesforce",
+      "Anthropic",
+      "Claudeforce",
+      "Claude AI",
+      "Enterprise automation"
+    ],
+    "actionItems": [
+      "Map the largest Dutch Salesforce customers across sectors (financial services, pharma, telecom, energy); identify procurement and AI leadership contacts.",
+      "Develop a technical integration roadmap showing how LeapSpace can embed within Salesforce/Claudeforce as a knowledge and compliance layer for enterprise agents.",
+      "Launch a Salesforce-focused sales campaign: position Scopus and LeapSpace as risk-mitigation and governance tools for AI-driven enterprise workflows."
+    ],
+    "sourceType": "secondary"
+  },
+  {
+    "id": "news-r857n0",
+    "title": "Anthropic unveils new framework allowing AI agents to operate physical devices - WTVB",
+    "description": "Anthropic unveils new framework allowing AI agents to operate physical devices&nbsp;&nbsp;WTVB",
+    "institution": "Anthropic",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOdFkxelFITThmVXRpR3JaNWFncUEzcHM4SFFmUmhHT1BBdHM4QUdLcGVUVGtiR3NVU1RKbnhFOHdIY0ptVm1TU3M0WHAxLV9QQVRJOWlNUWZKakl2amxxYnlYRHk0bFhMOVVIWFBfWjZnQjhHa0RsNXBKVmlHWXNUSE1BMkI1cUpXMHdWLWdxcE1CQVp3ZlBpUzRGNjBFb3lkOHdPZWJCUzlLRGloZUE?oc=5",
+    "sourceName": "WTVB",
+    "publishedDate": "2026-08-27",
+    "foundDate": "2026-08-31",
+    "autoDiscovered": true,
+    "bottomLine": "Anthropic releases framework enabling AI agents to operate physical laboratory and industrial devices, potentially reshaping how research workflows integrate computational and physical automation.",
+    "keyFindings": [
+      "Anthropic develops new framework for AI agents to directly control and operate physical laboratory equipment and industrial devices.",
+      "Framework targets research automation use cases, enabling integration of AI into existing lab and manufacturing workflows.",
+      "Release includes technical specifications and safety guidance to enable broad adoption across research and industrial sectors.",
+      "Initiative positions Anthropic as enabler of AI-driven laboratory automation and hardware integration."
+    ],
+    "whyItMatters": "Dutch medical centres and research institutes implementing AI-driven laboratory automation will require verified methodologies and safety literature from ScienceDirect/Scopus; LeapSpace's comparison and reading-assistant features become critical for evaluating competing automation frameworks and validating integration approaches.",
+    "impact": {
+      "novelty": 4,
+      "commercial": 4,
+      "threat": 3,
+      "urgency": 3
+    },
+    "entities": [
+      "Anthropic",
+      "AI agents",
+      "Framework",
+      "Laboratory devices"
+    ],
+    "actionItems": [
+      "Identify Dutch biomedical and materials-science institutes currently exploring lab automation; map their current literature-discovery workflows.",
+      "Package ScienceDirect/Scopus 'safety-critical research' content bundle for institutions adopting Anthropic's hardware standard.",
+      "Test LeapSpace's paper-comparison tool on competing automation frameworks to demonstrate differentiation."
+    ],
+    "sourceType": "secondary"
+  },
+  {
+    "id": "news-nw8qg0",
+    "title": "Anthropic brings AI agents to physical machines with new hardware standard - Firstpost",
+    "description": "Anthropic brings AI agents to physical machines with new hardware standard Firstpost",
+    "institution": "Anthropic",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNLVlwTXdBSVZBM2hGWjYwU0Z2UkRKVFV6cHVGRFhmUXlsRkNrdnNFcURpdWVBQ0k4cUFyT3JLVGU1ZWxrRVA1ZkhMU3BoY25fd1lKOE8ycnJxQUl5S3dmS21PVnI2TWlzS1pTZDR2Rl92N3BldzhFYlh5TzEtVUpkN0VWQW1ZSXl2VDA0elc1ZGdwRkpFR2ZrbTE4UkpEX2VnSWJkV1pNbXFaX0pCT2NlSHdsUXZKODVLVDJZ0gHAAUFVX3lxTE9EWXR0a1JvMHpSV2xfYzdxdkJJcGowQ1lfNUNpd0ZDUUp0UzB4QmRwWUR4ZG05ZFRZTV8tamtYUjZZcmNVZkl6TzlycTFaTWJ1MzZCWVpJODg0N1hCTHlqajdzc1BNbDZIT3V0dTZQR1lGdU1JV0ZoUWtsMF9MUEN2eVlzT2xoNG43VmFHeFBCTTgyVjlrNC0",
+    "sourceName": "Firstpost",
+    "publishedDate": "2026-08-27",
+    "foundDate": "2026-08-28",
+    "autoDiscovered": true,
+    "bottomLine": "Anthropic's hardware standard empowers AI agents to autonomously control laboratory and manufacturing machines, expanding AI's reach from software into physical experiment execution.",
+    "keyFindings": [
+      "Anthropic launches a standard protocol allowing AI agents to discover, interface with, and control physical lab and factory equipment without manual intervention.",
+      "The system enables reproducible, autonomous experiment execution by centralizing agent-device communication through a standardized protocol.",
+      "Physical AI capabilities are positioned as essential for accelerating R&D cycles in biotech, materials science, and advanced manufacturing.",
+      "The standard promotes interoperability across equipment vendors and research institutions, reducing the cost and complexity of adopting agent-driven labs."
+    ],
+    "whyItMatters": "Dutch pharmaceutical and materials-research institutes are prime targets for autonomous lab adoption. ScienceDirect and Scopus must demonstrate how they underpin agent-driven discovery—by ensuring LeapSpace can retrieve validated protocols, cite precedent experiments, and help researchers evaluate whether automation is justified by prior art—or risk irrelevance when AI agents become experiment designers.",
+    "impact": {
+      "novelty": 4,
+      "commercial": 4,
+      "threat": 3,
+      "urgency": 3
+    },
+    "entities": [
+      "Anthropic",
+      "AI agents",
+      "Physical AI",
+      "Lab automation",
+      "Manufacturing equipment"
+    ],
+    "actionItems": [
+      "Survey Dutch biotech and pharma R&D leaders on current adoption of autonomous lab workflows; identify barriers and information needs.",
+      "Develop and test a LeapSpace workflow module that recommends Scopus-indexed protocols and prior experiments to validate an agent's proposed experimental design.",
+      "Partner with Dutch equipment vendors (e.g., lab-automation suppliers) to bundle LeapSpace literature search with automation onboarding."
+    ],
+    "sourceType": "secondary"
+  },
+  {
+    "id": "news-9co3q8",
+    "title": "Anthropic unveils ‘Model Hardware Standard’ to let AI agents control lab, manufacturing equipment - CNBC TV18",
+    "description": "Anthropic unveils ‘Model Hardware Standard’ to let AI agents control lab, manufacturing equipment CNBC TV18",
+    "institution": "Anthropic",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPd0JxcTVjQzhTWENaZy1sa0tKNEFmbk53cGlaTnRteFNsYWJYNXZzSDBsbFJXYVpsZDAxcmRkYmhCSXY1UklHdjM2eWF3Ulh6dFZNOVJjMHFPbWdHaldpeFkwaWVBQTVLVVdSSjh5bEl3TXhTdE1DRk9xdXN2QjQ0Ykc5amtwcVZ2N3ZXY1lETHdrZEFIRy15NlpIN1VwNU5zM3h1Z0l6NVZ2cVJKV1RTRtIBtgFBVV95cUxQV0UtTFNKTnFUeUpSbXdFQjUzRFV5UXd5czFmZnhTbktoRGhlZmNSQmdPOG1QQzRvSk93RjkyTm1sQWo1R3lfaEs5ZHpiTFA5TUE0dDBOYmtHT1JPMUpfRkJITTRUejhuenRKb1ctUkdvZWJ5Qm1PX0VJS0l4bjI4TGxOUk85bXI4NlNnbk5HdF8yRnBZTnFGY0RxX3RVVmJlWkk",
+    "sourceName": "CNBC TV18",
+    "publishedDate": "2026-08-27",
+    "foundDate": "2026-08-28",
+    "autoDiscovered": true,
+    "bottomLine": "Anthropic's Model Hardware Standard enables AI agents to directly control lab and manufacturing equipment, positioning physical AI as a new frontier beyond software.",
+    "keyFindings": [
+      "Anthropic introduces Model Hardware Standard (MHS), a protocol for AI agents to interface with and control physical lab and industrial equipment.",
+      "MHS extends Anthropic's Model Context Protocol (MCP) into the physical domain, allowing autonomous control of devices and machinery.",
+      "The standard aims to standardize how AI agents communicate with hardware, reducing fragmentation across research and manufacturing environments.",
+      "This development signals Anthropic's expansion beyond conversational AI into autonomous physical-world operations and agent-based automation."
+    ],
+    "whyItMatters": "Dutch research institutes and biotech firms using lab automation are now exposed to Anthropic's direct equipment-control capabilities. LeapSpace must position research discovery and literature integration as essential for validating and contextualizing autonomous lab workflows—not just for reading papers, but for guiding agent-driven experiments with peer-reviewed guidance.",
+    "impact": {
+      "novelty": 4,
+      "commercial": 4,
+      "threat": 3,
+      "urgency": 3
+    },
+    "entities": [
+      "Anthropic",
+      "Model Hardware Standard (MHS)",
+      "Model Context Protocol (MCP)",
+      "Lab automation",
+      "Manufacturing equipment"
+    ],
+    "actionItems": [
+      "Research which Dutch biotech, pharma, and materials-science labs currently use automated equipment; identify decision-makers for lab-automation budgets.",
+      "Develop a LeapSpace pitch linking AI agent workflows to systematic literature review and protocol validation for reproducibility and compliance.",
+      "Monitor Anthropic's hardware partnerships; map overlaps with Elsevier's existing customer base in experimental sciences."
+    ],
+    "sourceType": "secondary"
+  },
+  {
+    "id": "news-f6gh1h",
+    "title": "Salesforce and Anthropic Launch Claudeforce Enterprise AI Partnership - HPCwire",
+    "description": "Salesforce and Anthropic Launch Claudeforce Enterprise AI Partnership&nbsp;&nbsp;HPCwire",
+    "institution": "Anthropic",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNRGdRdEpMUUt4NHFVUGRnREpyZ2pUUEZQbjFQZURaMmUyd3FjOEVoeFRQcGMwcGFEcW1remloaHZ0MUZPZEJveG1EYVVaVFhUdVNHSVl5bUlFWDlpQVZ0VmpDVkJ6ZV83UHJjMXVNaUtIYUpwNnVMYklGMkt2bWFCLVZFY0hwUUt3VDBMNE5ieXlRYTIwTXZlcGFFYjM5dHRlWjEyRUtzZlQxV0VfM0hvV2pFb2lodUVsMTZ3?oc=5",
+    "sourceName": "HPCwire",
+    "publishedDate": "2026-08-27",
+    "foundDate": "2026-09-02",
+    "autoDiscovered": true,
+    "bottomLine": "Salesforce and Anthropic partner on Claudeforce, bringing enterprise-grade Claude integration into CRM and business workflows at scale.",
+    "keyFindings": [
+      "Claudeforce integrates Claude models directly into Salesforce's ecosystem (CRM, automation, analytics).",
+      "Partnership positions Anthropic as a core AI provider for large enterprises already using Salesforce.",
+      "Reduces friction for enterprise adoption of Claude by embedding it into familiar platforms.",
+      "Signals Anthropic's shift toward enterprise partnerships rather than direct-to-user model."
+    ],
+    "whyItMatters": "Large Dutch research institutions and hospital systems often use Salesforce for administrative and CRM functions; if research units adopt Claudeforce for literature triage, grant tracking, or institutional reporting, Elsevier risks losing embedded research AI use cases unless LeapSpace integrates with or differentiates from Salesforce ecosystems.",
+    "impact": {
+      "novelty": 2,
+      "commercial": 5,
+      "threat": 4,
+      "urgency": 4
+    },
+    "entities": [
+      "Salesforce",
+      "Anthropic",
+      "Claude",
+      "Claudeforce",
+      "HPCwire"
+    ],
+    "actionItems": [
+      "Investigate whether target Dutch institutions use Salesforce; if so, assess risk of research teams adopting Claudeforce for lit search or grant admin.",
+      "Explore Salesforce partnership opportunity: could Elsevier embed ScienceDirect/Scopus/LeapSpace connectors into Salesforce to compete with Claudeforce?"
+    ],
+    "sourceType": "secondary"
+  },
+  {
+    "id": "news-volbph",
+    "title": "Anthropic unveils new framework allowing AI agents to operate physical devices - SRN News",
+    "description": "Anthropic unveils new framework allowing AI agents to operate physical devices&nbsp;&nbsp;SRN News",
+    "institution": "Anthropic",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOZXhtOTBpOXpSRlJUbGh6ZjBnN1hQVUw5Z0hrUkE1TXk4bDJfWFhTM0V3R01lQlBTelRLWDl5c0tCVHhEQmJ3R25RU1VoU3VONVF3dFB6c1UyNkpVdTY4OTlEaUVpcEZFUVZBMXRiV3N4el9ydld5b2J0XzhCSVM0RlpueThWR3FiRGJ6QTR1bGVIYVZYZ2NrYUVXclg5elNH?oc=5",
+    "sourceName": "SRN News",
+    "publishedDate": "2026-08-27",
+    "foundDate": "2026-09-02",
+    "autoDiscovered": true,
+    "bottomLine": "Anthropic unveils framework for AI agents to control physical devices, expanding beyond text and opening new automation possibilities for research workflows.",
+    "keyFindings": [
+      "Framework enables AI agents to interact with and operate physical laboratory and computational devices.",
+      "Represents expansion beyond language-based AI into embodied/robotic automation.",
+      "Could streamline repetitive research tasks like sample handling, data collection, and instrument control.",
+      "Raises questions about integration, safety standards, and institutional adoption barriers."
+    ],
+    "whyItMatters": "While device-control AI is nascent, Dutch research institutions running high-throughput labs may eventually adopt such tools; Elsevier should monitor whether this capability becomes a table-stakes expectation and consider whether LeapSpace should integrate with lab automation platforms or position as the scholarly knowledge backbone for AI-guided experiments.",
+    "impact": {
+      "novelty": 4,
+      "commercial": 2,
+      "threat": 2,
+      "urgency": 2
+    },
+    "entities": [
+      "Anthropic",
+      "AI agents",
+      "SRN News"
+    ],
+    "actionItems": [
+      "Monitor adoption of device-control AI in Dutch academic labs; survey early pilots to gauge institutional interest.",
+      "Assess whether LeapSpace should position as layer between AI agents and published research/methods (i.e., as knowledge source for autonomous research)."
+    ],
+    "sourceType": "secondary"
+  },
+  {
     "id": "news-oq6tsz",
     "title": "First MSc University of Twente Excellence Trajectories Start - Universiteit Twente",
     "description": "First MSc University of Twente Excellence Trajectories Start Universiteit Twente",
