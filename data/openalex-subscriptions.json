@@ -138,5 +138,25 @@
     ],
     "autoDiscovered": true,
     "foundDate": "2026-08-23"
+  },
+  {
+    "id": "university-medical-centre-groningen",
+    "inst": "University Medical Centre Groningen (UMCG)",
+    "type": "Medical Centre",
+    "status": "active",
+    "tier": null,
+    "annualFee": null,
+    "announceDate": "2026-04-20",
+    "effectiveDate": "2027-01-01",
+    "notes": "University of Groningen Library news announced that the University of Groningen and the University Medical Centre Groningen will jointly cancel their Web of Science licence with effect from 1 January 2027, citing relatively high licence cost, functional overlap with retained databases, and a growing institutional commitment to open research information. UMCG is a separate legal entity from UG and is not currently a tracked record, so this is a net-new account rather than an update to the Groningen row. No OpenAlex payment, tier or fee is mentioned anywhere in the announcement. Caveat: the retrieved text confirms the open-research-information rationale but I could not verify that OpenAlex is named by name as the designated Web of Science replacement, so treat this as engagement-adjacent rat",
+    "signal": "NOT PAYING (no subscription evidence). Co-cancelling Web of Science with UG effective 2027-01-01 on open-research-information grounds.",
+    "sources": [
+      {
+        "label": "University of Groningen Library news, 20 April 2026",
+        "url": "https://www.rug.nl/library/news/20260420-end-web-of-science"
+      }
+    ],
+    "autoDiscovered": true,
+    "foundDate": "2026-09-04"
   }
 ]
