@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-09-04T11:53:51.088Z",
+  "lastRun": "2026-09-05T11:03:06.686Z",
   "lastAddedCount": 21,
   "lastTypes": [
     "university"
@@ -68,9 +68,10 @@
       "p19",
       "p20",
       "p21",
-      "p22"
+      "p22",
+      "p23"
     ],
-    "uva_page": 23,
+    "uva_page": 24,
     "vu_oa_id": "https://openalex.org/I865915315",
     "vu": [
       "p1",
@@ -94,9 +95,10 @@
       "p19",
       "p20",
       "p21",
-      "p22"
+      "p22",
+      "p23"
     ],
-    "vu_page": 23,
+    "vu_page": 24,
     "uu_oa_id": "https://openalex.org/I193662353",
     "uu": [
       "p1",
@@ -120,9 +122,10 @@
       "p19",
       "p20",
       "p21",
-      "p22"
+      "p22",
+      "p23"
     ],
-    "uu_page": 23,
+    "uu_page": 24,
     "leiden_oa_id": "https://openalex.org/I121797337",
     "leiden": [
       "p1",
@@ -146,9 +149,10 @@
       "p19",
       "p20",
       "p21",
-      "p22"
+      "p22",
+      "p23"
     ],
-    "leiden_page": 23,
+    "leiden_page": 24,
     "aumc_oa_id": "https://openalex.org/I2802928900",
     "aumc": [
       "p1",
@@ -248,9 +252,10 @@
       "p11",
       "p12",
       "p13",
-      "p14"
+      "p14",
+      "p15"
     ],
-    "eur_page": 15,
+    "eur_page": 16,
     "rug_oa_id": "https://openalex.org/I169381384",
     "rug": [
       "p1",
@@ -266,9 +271,10 @@
       "p11",
       "p12",
       "p13",
-      "p14"
+      "p14",
+      "p15"
     ],
-    "rug_page": 15,
+    "rug_page": 16,
     "ru_oa_id": "https://openalex.org/I145872427",
     "ru": [
       "p1",
@@ -284,9 +290,10 @@
       "p11",
       "p12",
       "p13",
-      "p14"
+      "p14",
+      "p15"
     ],
-    "ru_page": 15,
+    "ru_page": 16,
     "knaw_oa_id": "https://openalex.org/I1322597698",
     "knaw": [
       "p1"
