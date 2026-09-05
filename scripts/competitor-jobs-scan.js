@@ -1,17 +1,21 @@
 /**
- * competitor-jobs-scan.js — Daily scan of open roles at companies that sell
- * a product directly competing with one of Elsevier's named RI solutions
- * (Scopus, SciVal, Pure, Insight Graph, 4GU reports, Digital Commons),
- * scoped to a Netherlands account manager's specific interest: go-to-market
- * and customer-facing hiring tied to that competing product line — Strategic/
- * Senior Account Management (SAM), Channel/Partnerships, and the full
- * customer-lifecycle line (Customer Success, pre-sales/solution consulting,
- * implementation/onboarding, technical/product support, customer service &
- * licence admin, training & customer education, usage/reporting analytics,
- * product marketing) — not engineering, core product/eng management,
- * editorial, finance, HR, or an unrelated business line like a diversified
- * competitor's IP/patent or clinical-regulatory arm. See classifyRole()
- * below for the exact title patterns per category.
+ * competitor-jobs-scan.js — Daily scan of open roles, across Europe, at
+ * companies that sell a product directly competing with one of Elsevier's
+ * named RI solutions (Scopus, SciVal, Pure, Insight Graph, 4GU reports,
+ * Digital Commons). Go-to-market/customer-facing roles tied to that
+ * competing product line — Strategic/Senior Account Management (SAM),
+ * Channel/Partnerships, and the full customer-lifecycle line (Customer
+ * Success, pre-sales/solution consulting, implementation/onboarding,
+ * technical/product support, customer service & licence admin, training &
+ * customer education, usage/reporting analytics, product marketing) — get
+ * their own named category (see classifyRole() below for the exact title
+ * patterns per category); every other role at a tracked company (engineering,
+ * core product/eng management, editorial, finance, HR, etc.) is still kept
+ * and shown, just bucketed as 'other', rather than dropped — the previous
+ * GTM-only filter was hiding real hiring signal. The one thing still
+ * excluded outright is an unrelated business line like a diversified
+ * competitor's IP/patent or clinical-regulatory arm — see
+ * NON_RESEARCH_VERTICAL_RE.
  *
  * Only 3 of the companies tracked elsewhere in this app (e.g. in
  * news-scan.js's Competitor Announcements) actually qualify — see SOURCES
@@ -70,25 +74,32 @@ const DATA_FILE = 'data/competitor-jobs.json';
 const STATE_FILE = 'data/competitor-jobs-scan-state.json';
 const REQUEST_TIMEOUT_MS = 20000;
 
-// Netherlands-relevant location match — Dutch city names + country
-// name/abbrev, plus EMEA/Europe-remote and the specific European hub
-// cities these companies actually staff EMEA sales/CSM/channel roles
-// out of (London, Dublin, Berlin, Paris, etc). A tracked customer-facing role
-// based in one of those hubs, or explicitly remote-EMEA, plausibly
-// covers Dutch accounts even without a Dutch city in the listing — ATS
-// location fields are almost never literally "EMEA", they name a city,
-// so the city list matters more than the EMEA/Europe tokens alone.
-const NL_LOCATION_RE = /netherlands|nederland|amsterdam|utrecht|rotterdam|the hague|den haag|eindhoven|groningen|delft|leiden|maastricht|\bnl\b|\bemea\b|remote[\s,-]*europe|europe[\s,-]*remote|london|dublin|berlin|munich|frankfurt|paris|madrid|barcelona|lisbon|stockholm|copenhagen|zurich|milan|brussels|dubai/i;
+// Europe-wide location match. Was previously scoped to Dutch cities plus a
+// short hand-picked list of EMEA sales hub cities (London, Dublin, Berlin,
+// Paris...) on the theory that a Netherlands account manager only cares
+// about roles that plausibly cover Dutch accounts — but that list missed
+// most of the continent (no Nordics beyond Copenhagen, no Central/Eastern
+// Europe at all, no country-name fallback for a city not on the list), which
+// is why a company with 177 open roles surfaced exactly one match. Broadened
+// to match any EU/EEA/UK/Swiss country name or capital/major-tech-hub city,
+// plus the EMEA/Europe-remote tokens — ATS location fields are usually a
+// city, not literally "EMEA", so the city/country list is what actually
+// carries the match, not the region tokens alone.
+const EUROPE_LOCATION_RE = /netherlands|nederland|amsterdam|utrecht|rotterdam|the hague|den haag|eindhoven|groningen|delft|leiden|maastricht|\bnl\b|\bemea\b|\beurope\b|european union|\beea\b|remote[\s,-]*(europe|emea)|(europe|emea)[\s,-]*remote|united kingdom|\buk\b|england|scotland|wales|london|manchester|birmingham|edinburgh|glasgow|belfast|ireland|dublin|cork|germany|deutschland|berlin|munich|münchen|frankfurt|hamburg|cologne|köln|stuttgart|düsseldorf|leipzig|france|paris|lyon|marseille|toulouse|nice|nantes|spain|españa|madrid|barcelona|valencia|seville|bilbao|italy|italia|milan|milano|rome|roma|turin|torino|bologna|naples|portugal|lisbon|lisboa|porto|belgium|belgië|belgique|brussels|bruxelles|antwerp|ghent|luxembourg|switzerland|schweiz|suisse|zurich|zürich|geneva|genève|basel|lausanne|bern|austria|österreich|vienna|wien|graz|salzburg|sweden|sverige|stockholm|gothenburg|göteborg|malmö|denmark|danmark|copenhagen|københavn|aarhus|norway|norge|oslo|bergen|finland|suomi|helsinki|espoo|poland|polska|warsaw|warszawa|krakow|kraków|wroclaw|wrocław|gdansk|gdańsk|czech republic|czechia|prague|praha|brno|hungary|magyarország|budapest|romania|românia|bucharest|bucurești|cluj|greece|ελλάδα|athens|athína|thessaloniki|croatia|hrvatska|zagreb|slovenia|slovenija|ljubljana|slovakia|slovensko|bratislava|bulgaria|българия|sofia|iceland|ísland|reykjavik|estonia|eesti|tallinn|latvia|latvija|riga|lithuania|lietuva|vilnius|malta|cyprus|κύπρος|serbia|srbija|belgrade|beograd/i;
 
-// Role families that matter to a sales agent tracking competitor go-to-market
-// and customer-facing headcount: Strategic/Senior Account Management,
-// Channel/Partnerships, and the full customer-lifecycle line (Customer
-// Success, pre-sales/solution consulting, implementation/onboarding,
-// technical/product support, customer service & licence admin, training &
-// customer education, usage/reporting analytics, and product marketing).
-// Everything else (engineering, core product/eng management, finance, HR,
-// editorial, etc.) is excluded entirely rather than tagged "other" — a role
-// that doesn't match one of these is not shown.
+// Role families that get their own named category, for a sales agent
+// tracking competitor go-to-market and customer-facing headcount:
+// Strategic/Senior Account Management, Channel/Partnerships, and the full
+// customer-lifecycle line (Customer Success, pre-sales/solution consulting,
+// implementation/onboarding, technical/product support, customer service &
+// licence admin, training & customer education, usage/reporting analytics,
+// and product marketing).
+// Anything else at a tracked product-competitor (engineering, core
+// product/eng management, finance, HR, editorial, etc.) still gets surfaced
+// — filtering it out entirely was hiding real signal (e.g. an R&D hiring
+// push in a European hub is worth knowing about) — it's just bucketed as
+// 'other' instead of a named category, still subject to the same Europe
+// location filter and the NON_RESEARCH_VERTICAL_RE exclusion below.
 // All of these match the bare noun phrase (or an explicit reversed-order
 // alternative) rather than a fixed "noun + level-word" suffix — confirmed
 // live that real titles put the level word before the department just as
@@ -129,7 +140,7 @@ function classifyRole(title, department) {
   if (TRAINING_TITLE_RE.test(title)) return 'training';
   if (ANALYTICS_TITLE_RE.test(title)) return 'analytics';
   if (MARKETING_TITLE_RE.test(title)) return 'marketing';
-  return null;
+  return 'other';
 }
 
 function readJSON(path, fallback) {
@@ -298,12 +309,13 @@ async function fetchWorkday(company, host, tenant, site) {
 // returns the full posting including its description HTML. Only called for
 // jobs that already passed the location/role filter (typically 0-a handful
 // per run), never for the full unfiltered list, since Workday's list
-// response doesn't include description text. Wrapped defensively (like
-// fetchWorkday itself) since this exact response shape wasn't confirmed
-// against live data before shipping — a shape mismatch just leaves
-// salary/deadline null for that job instead of breaking the run.
+// response doesn't include description text. externalPath from the list
+// response already starts with "/job/..." — confirmed live (2026-09-05) that
+// prepending another literal "/job" segment double-nests the path and the
+// endpoint 422s on every single request, silently leaving salary/deadline
+// null for every Workday-sourced role. No extra segment needed.
 async function fetchWorkdayJobDescription({ base, tenant, site, externalPath }) {
-  const data = await fetchJSON(`${base}/wday/cxs/${tenant}/${site}/job${externalPath}`);
+  const data = await fetchJSON(`${base}/wday/cxs/${tenant}/${site}${externalPath}`);
   return (data.jobPostingInfo && data.jobPostingInfo.jobDescription) || '';
 }
 
@@ -360,13 +372,13 @@ async function main() {
   for (const src of SOURCES) {
     try {
       const jobs = await src.fetch();
-      perCompanyCounts[src.company] = { total: jobs.length, nl: 0 };
+      perCompanyCounts[src.company] = { total: jobs.length, europe: 0 };
       for (const j of jobs) {
         if (!j.title || !j.url) continue;
-        if (!NL_LOCATION_RE.test(j.location || '')) continue;
+        if (!EUROPE_LOCATION_RE.test(j.location || '')) continue;
         const roleCategory = classifyRole(j.title, j.department);
-        if (!roleCategory) continue; // not a tracked customer-facing role in the research-solutions line
-        perCompanyCounts[src.company].nl++;
+        if (!roleCategory) continue; // excluded business vertical (patent/IP/clinical-regulatory etc) — see NON_RESEARCH_VERTICAL_RE
+        perCompanyCounts[src.company].europe++;
         const key = j.company + '|' + j.url;
         const prior = existingByKey.get(key);
 
@@ -399,7 +411,7 @@ async function main() {
           applicationDeadline: extractDeadline(descriptionHtml),
         });
       }
-      console.log(`[competitor-jobs] ${src.company}: ${jobs.length} open role(s), ${perCompanyCounts[src.company].nl} Netherlands tracked-role matches`);
+      console.log(`[competitor-jobs] ${src.company}: ${jobs.length} open role(s), ${perCompanyCounts[src.company].europe} Europe tracked-role match(es)`);
     } catch (e) {
       errors[src.company] = e.message;
       console.warn(`[competitor-jobs] ${src.company} failed: ${e.message}`);
@@ -417,7 +429,7 @@ async function main() {
     untracked: [...UNTRACKED_COMPANIES, ...NOT_PRODUCT_COMPETITOR],
     source: 'Company career-page ATS APIs (Greenhouse/Ashby/SmartRecruiters/Pinpoint/Workday) — not LinkedIn, see file header',
   });
-  console.log(`[competitor-jobs] Done — ${allJobs.length} Netherlands tracked customer-facing role(s) across ${SOURCES.length - Object.keys(errors).length}/${SOURCES.length} tracked companies.`);
+  console.log(`[competitor-jobs] Done — ${allJobs.length} Europe tracked role(s) across ${SOURCES.length - Object.keys(errors).length}/${SOURCES.length} tracked companies.`);
 }
 
 main().catch(e => {
