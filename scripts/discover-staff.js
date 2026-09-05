@@ -286,6 +286,23 @@ function extractPeople(html) {
     else add(a, bb, '');
   }
 
+  // 4. Adjacent heading pairs — a common team-page card layout (verified
+  //    live on the Netherlands eScience Center's team page, 2026-09-05) with
+  //    no mailto link and no punctuation between name and role at all, so
+  //    neither pass above can split it: role and name each get their own
+  //    heading tag, back-to-back —
+  //    "<h6>Research Software Engineer</h6><h4>Carsten Schnober</h4>" — with
+  //    no comma/dash/colon for method 3's regex to anchor on. Whichever
+  //    heading actually reads as a person is the name; the other is the
+  //    role, in either order (some templates put the name heading first).
+  const headingPairRe = /<h[2-6][^>]*>([\s\S]{2,90}?)<\/h[2-6]>\s*<h[2-6][^>]*>([\s\S]{2,90}?)<\/h[2-6]>/gi;
+  let hp;
+  while ((hp = headingPairRe.exec(html))) {
+    const a = strip(hp[1]), b = strip(hp[2]);
+    if (looksLikePersonName(normalizePersonName(a)) && !looksLikePersonName(normalizePersonName(b))) add(a, b, '');
+    else if (looksLikePersonName(normalizePersonName(b)) && !looksLikePersonName(normalizePersonName(a))) add(b, a, '');
+  }
+
   return [...found.values()];
 }
 
