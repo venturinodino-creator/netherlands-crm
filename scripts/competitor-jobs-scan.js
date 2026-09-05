@@ -1,12 +1,10 @@
 /**
  * competitor-jobs-scan.js — Daily scan of open roles, based in the
- * Netherlands or remote, at companies that sell a product directly competing
- * with one of Elsevier's named RI solutions (Scopus, SciVal, Pure, Insight
- * Graph, 4GU reports, Digital Commons), scoped to a Netherlands account
- * manager's specific interest: go-to-market and customer-facing hiring tied
- * to that competing product line — Strategic/Senior Account Management
- * (SAM), Sales Development (SDR/BDR), Channel/Partnerships, and the full
- * customer-lifecycle line (Customer Success, pre-sales/solution consulting,
+ * Netherlands or remote, at Elsevier's tracked competitors, scoped to a
+ * Netherlands account manager's specific interest: go-to-market and
+ * customer-facing hiring — Strategic/Senior Account Management (SAM), Sales
+ * Development (SDR/BDR), Channel/Partnerships, and the full customer-
+ * lifecycle line (Customer Success, pre-sales/solution consulting,
  * implementation/onboarding, technical/product support, customer service &
  * licence admin, training & customer education, usage/reporting analytics,
  * product marketing) — not engineering, core product/eng management,
@@ -14,14 +12,12 @@
  * competitor's IP/patent or clinical-regulatory arm. See classifyRole()
  * below for the exact title patterns per category.
  *
- * Only 3 of the companies tracked elsewhere in this app (e.g. in
- * news-scan.js's Competitor Announcements) actually qualify — see SOURCES
- * below for the product-competitor mapping (Clarivate/Web of Science vs
- * Scopus, etc). Companies that are broadly "an Elsevier competitor" but
- * don't sell a Scopus/SciVal/Pure/Digital Commons-type product (OpenAI,
- * Anthropic, Elicit, SciSpace, Springer Nature, Wiley) are deliberately
- * excluded here even though they have a working ATS — see
- * NOT_PRODUCT_COMPETITOR below.
+ * Covers every company tracked elsewhere in this app as an Elsevier
+ * competitor (e.g. in news-scan.js's Competitor Announcements) that also has
+ * a usable public ATS API — see SOURCES below for the full list and what
+ * each one competes with. A handful of tracked competitors have no usable
+ * public API and can't be scanned at all (LinkedIn-only postings, static
+ * pages, session-based ATS) — see UNTRACKED_COMPANIES.
  *
  * Deliberately NOT LinkedIn: LinkedIn requires login for job search and
  * actively blocks automated access, so there is no reliable or
@@ -39,10 +35,11 @@
  *   - Workday (CXS API): requires a POST with a JSON search body — see
  *     fetchWorkday() below.
  *   - No usable public API found: scite (not hiring), Consensus (LinkedIn
- *     only), Paperguide (no formal ATS), IGI Global (email-only), IEEE
- *     (Taleo, session-based), Google (proprietary/internal API). These are
- *     listed in UNTRACKED_COMPANIES so the UI can be upfront about the gap
- *     instead of silently omitting them.
+ *     only), SciSpace (no ATS found on Ashby/Greenhouse/Lever), Paperguide
+ *     (no formal ATS), IGI Global (email-only), IEEE (Taleo, session-based),
+ *     Google (proprietary/internal API). These are listed in
+ *     UNTRACKED_COMPANIES so the UI can be upfront about the gap instead of
+ *     silently omitting them.
  *
  * Unlike news-scan.js, this does a full resync each run rather than an
  * accumulating feed: a role no longer returned by a company's ATS has
@@ -88,7 +85,14 @@ const NL_CITY_COUNTRY_RE = /netherlands|nederland|amsterdam|utrecht|rotterdam|th
 // nothing to do with the Netherlands. Only exclude on an explicit
 // non-European qualifier; a bare "Remote" with no country named, or one
 // paired with the Netherlands/EMEA/Europe/another EU country, still passes.
-const NON_EUROPE_REMOTE_RE = /united states|\bu\.?s\.?a?\.?\b|canada|australia|new zealand|\bapac\b|\blatam\b|brazil|mexico|argentina|colombia|\bindia\b|china|japan|singapore|hong kong|south korea|philippines|indonesia|vietnam|thailand|malaysia|south africa|nigeria|kenya|\buae\b|united arab emirates|saudi arabia|\bisrael\b/i;
+// Extended after a second live test run (2026-09-05) surfaced two more gaps
+// this missed: an ISO country code ("Remote, IDN") and a title naming a
+// specific US region/cities with no literal "United States" in the location
+// string at all ("Remote-Friendly... | San Francisco, CA | New York City,
+// NY", for a "State & Local Sales" role — a US-government-specific role by
+// its own title). Country-code and major-non-Europe-hub-city coverage added
+// for exactly that reason.
+const NON_EUROPE_REMOTE_RE = /united states|\bu\.?s\.?a?\.?\b|canada|australia|new zealand|\bapac\b|\blatam\b|brazil|mexico|argentina|colombia|\bindia\b|china|japan|singapore|hong kong|south korea|philippines|indonesia|vietnam|thailand|malaysia|south africa|nigeria|kenya|\buae\b|united arab emirates|saudi arabia|\bisrael\b|\bidn\b|\busa\b|\baus\b|\bnzl\b|\bcan\b|\bbra\b|\bmex\b|\bind\b|\bchn\b|\bjpn\b|\bkor\b|\bsgp\b|\bphl\b|\bvnm\b|\btha\b|\bmys\b|\bzaf\b|\bnga\b|\bken\b|\bare\b|\bsau\b|san francisco|silicon valley|new york|\bnyc\b|los angeles|chicago|boston|seattle|austin|denver|atlanta|washington,? d\.?c\.?|toronto|vancouver|montreal|sydney|melbourne|tokyo|bangalore|bengaluru|mumbai|new delhi|shanghai|beijing|shenzhen|seoul|manila|jakarta/i;
 
 function isTrackedLocation(location) {
   const loc = location || '';
@@ -330,46 +334,51 @@ async function fetchWorkdayJobDescription({ base, tenant, site, externalPath }) 
   return (data.jobPostingInfo && data.jobPostingInfo.jobDescription) || '';
 }
 
-// Only companies that actually sell a product directly competing with one
-// of Elsevier's named RI solutions (Scopus, SciVal, Pure, Insight Graph,
-// 4GU reports, Digital Commons) are scanned for hiring roles — a company
-// being a broad "Elsevier competitor" (tracked elsewhere, e.g. in
-// news-scan.js's Competitor Announcements) is not enough on its own:
+// Every company already tracked elsewhere in this app as an Elsevier
+// competitor (e.g. in news-scan.js's Competitor Announcements) that also has
+// a usable public ATS API gets scanned here — this used to be narrowed
+// further to only the 3 companies selling a product that directly competes
+// with a named Elsevier RI solution (Scopus, SciVal, Pure, Insight Graph,
+// 4GU reports, Digital Commons), but that hid real, live, Netherlands/
+// remote-relevant roles at companies like Anthropic (verified 2026-09-05:
+// "Enterprise Account Executive - EMEA | Remote", a real match) simply
+// because their core product isn't a Scopus/SciVal-type tool. Broad
+// competitive/hiring intel on any of these companies is useful regardless of
+// exactly which Elsevier product they compete with.
 //   - Clarivate: Web of Science (Scopus), InCites (SciVal), Converis (Pure)
 //   - Digital Science: Dimensions (Scopus/SciVal), Figshare (Digital
 //     Commons), Symplectic Elements (Pure)
 //   - Allen Institute for AI: Semantic Scholar (Scopus's discovery/
 //     citation-graph function)
-// Companies deliberately excluded even though they have a working ATS —
-// see NOT_PRODUCT_COMPETITOR below for why each one doesn't qualify.
+//   - Springer Nature, Wiley: publishers competing more broadly
+//   - OpenAI, Anthropic, Elicit: AI tools competing with Elsevier's
+//     AI-assisted research products
+// Endpoints below verified by hand (see git history for the research this
+// was built from; do not guess new endpoints without verifying the same
+// way) — see UNTRACKED_COMPANIES for the companies with no usable API found.
 const SOURCES = [
   { company: 'Digital Science', fetch: () => fetchPinpoint('Digital Science', 'digitalscience') },
   { company: 'Allen Institute for AI', fetch: () => fetchGreenhouse('Allen Institute for AI', 'thealleninstitute') },
   { company: 'Clarivate', fetch: () => fetchWorkday('Clarivate', 'wd3', 'clarivate', 'Clarivate_Careers') },
+  { company: 'Springer Nature', fetch: () => fetchWorkday('Springer Nature', 'wd3', 'springernature', 'SpringerNatureCareers') },
+  { company: 'Wiley', fetch: () => fetchWorkday('Wiley', 'wd1', 'wiley', 'wiley_careers') },
+  { company: 'OpenAI', fetch: () => fetchAshby('OpenAI', 'openai') },
+  { company: 'Anthropic', fetch: () => fetchGreenhouse('Anthropic', 'anthropic') },
+  { company: 'Elicit', fetch: () => fetchAshby('Elicit', 'elicit') },
 ];
 
-// Companies with no usable public API — surfaced in scan state so the UI
-// can be upfront about the gap instead of silently omitting them.
+// Companies with no usable public API found — surfaced in scan state so the
+// UI can be upfront about the gap instead of silently omitting them. SciSpace
+// checked again 2026-09-05 (Ashby/Greenhouse/Lever, both its own name and its
+// "typeset" legacy name) — still nothing found.
 const UNTRACKED_COMPANIES = [
   { company: 'scite', reason: 'Not currently hiring (applications by email)', url: 'https://scite.ai/jobs' },
   { company: 'Consensus', reason: 'Roles posted only to LinkedIn, no ATS board found', url: 'https://consensus.app/home/careers/' },
+  { company: 'SciSpace', reason: 'No formal careers-page ATS found (Ashby/Greenhouse/Lever all checked)', url: 'https://typeset.io/careers' },
   { company: 'Paperguide', reason: 'No formal careers page/ATS (small team, hires ad hoc via LinkedIn)', url: 'https://linkedin.com/company/paperguideai' },
   { company: 'IGI Global Scientific Publishing', reason: 'Static list, applications by email', url: 'https://www.igi-global.com/about/staff/job-opportunities/' },
   { company: 'IEEE', reason: 'Oracle Taleo, session-based, no public JSON API', url: 'https://ieee.taleo.net/careersection/2/jobsearch.ftl' },
   { company: 'Google', reason: 'Proprietary/internal API, not public', url: 'https://careers.google.com/' },
-];
-
-// Companies that DO have a usable ATS but are excluded on purpose: nothing
-// they sell directly competes with Scopus/SciVal/Pure/Digital Commons, so
-// their tracked customer-facing hiring isn't a signal for this feature even though
-// they're tracked elsewhere as broader Elsevier competitors.
-const NOT_PRODUCT_COMPETITOR = [
-  { company: 'OpenAI', reason: "General-purpose AI platform (Claude/GPT-style API) — no discrete product competing with Scopus/SciVal/Pure/Digital Commons", url: 'https://openai.com/careers/' },
-  { company: 'Anthropic', reason: "General-purpose AI platform — no discrete product competing with Scopus/SciVal/Pure/Digital Commons", url: 'https://anthropic.com/careers' },
-  { company: 'Elicit', reason: 'AI research-assistant tool, not a Scopus/SciVal/Pure/Digital Commons-type institutional platform', url: 'https://elicit.com/careers' },
-  { company: 'SciSpace', reason: 'AI research-assistant tool, not a Scopus/SciVal/Pure/Digital Commons-type institutional platform', url: 'https://typeset.io/careers' },
-  { company: 'Springer Nature', reason: 'Publisher — no discrete analytics/CRIS/repository product competing with Scopus/SciVal/Pure/Digital Commons', url: 'https://springernature.wd3.myworkdayjobs.com/SpringerNatureCareers' },
-  { company: 'Wiley', reason: 'Publisher — no discrete analytics/CRIS/repository product competing with Scopus/SciVal/Pure/Digital Commons', url: 'https://wiley.wd1.myworkdayjobs.com/wiley_careers' },
 ];
 
 async function main() {
@@ -437,7 +446,7 @@ async function main() {
     totalOpenRoles: allJobs.length,
     perCompanyCounts,
     errors,
-    untracked: [...UNTRACKED_COMPANIES, ...NOT_PRODUCT_COMPETITOR],
+    untracked: UNTRACKED_COMPANIES,
     source: 'Company career-page ATS APIs (Greenhouse/Ashby/SmartRecruiters/Pinpoint/Workday) — not LinkedIn, see file header',
   });
   console.log(`[competitor-jobs] Done — ${allJobs.length} Netherlands/remote tracked role(s) across ${SOURCES.length - Object.keys(errors).length}/${SOURCES.length} tracked companies.`);
@@ -446,7 +455,7 @@ async function main() {
 main().catch(e => {
   console.error('[competitor-jobs] Failed:', e.message);
   try {
-    saveJSON(STATE_FILE, { lastRun: new Date().toISOString(), totalOpenRoles: 0, error: e.message, untracked: [...UNTRACKED_COMPANIES, ...NOT_PRODUCT_COMPETITOR] });
+    saveJSON(STATE_FILE, { lastRun: new Date().toISOString(), totalOpenRoles: 0, error: e.message, untracked: UNTRACKED_COMPANIES });
   } catch { /* ignore */ }
   process.exit(1);
 });
