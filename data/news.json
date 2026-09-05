@@ -1,5 +1,121 @@
 [
   {
+    "id": "news-t8s50w",
+    "title": "OpenAI launches GPT-6 Astra, claims new AI capabilities bring it closer to human-level intelligence - Moneycontrol.com",
+    "description": "OpenAI launches GPT-6 Astra, claims new AI capabilities bring it closer to human-level intelligence&nbsp;&nbsp;Moneycontrol.com",
+    "institution": "OpenAI",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxPUVhlUnF0NFprazdTQUp6OFFrWWYtWVhpRXdDUkZ3WVNfS2ZTOVRfcEFmNHVGNmVYT0ZDMFNndTFMWmVRUlBTSldhdDVSaS1nMEprMlp4WVVmRHp2M045Y1N3eVJQX2pycDhsUzJselB0cWpfcmljMUI3RE9vSGdPRGhtbThwN3RNaDNLUnhKZU85LUdRbVc4dl8xdUxpSEhsaUJfbDNQOExUcXdldUhrSEpuRENQMWY1NWo1Y0xQaGlVR190VXpyQWQtYkRDNVJnc0VQaUlCek11OWFCR1BEdmlHWlBHX0QyRGV1Rzd0LW1qd9IB9wFBVV95cUxQbUNxa2JCVERNWmFtWkZtbEswcXl4ZTRzREhPSTR3UzBGQUZoZnRQU2YyY0hlNXJnQ0tObVZ4a1NKb0tYRk1ZNmx5RWxsU1QtQ2lJcDZmUzBmVGxCOFg0aHZ",
+    "sourceName": "Moneycontrol.com",
+    "publishedDate": "2026-09-04",
+    "foundDate": "2026-09-04",
+    "autoDiscovered": true,
+    "bottomLine": "OpenAI claims GPT-6 Astra's new capabilities bring it closer to human-level intelligence, intensifying competition for research-workflow AI adoption.",
+    "keyFindings": [
+      "OpenAI markets GPT-6 Astra as achieving near-human-level intelligence across reasoning, problem-solving, and multi-step task execution.",
+      "Capabilities advancement suggests improved contextual understanding, potentially affecting adoption of specialized research assistants.",
+      "Messaging focuses on general-purpose intelligence rather than domain-specific research expertise or content curation.",
+      "Competition narrative shifts from capability parity to human-level reasoning, raising stakes for specialized AI research tools."
+    ],
+    "whyItMatters": "Dutch research institutions may perceive GPT-6 Astra as sufficient for general research without additional subscriptions; Elsevier must emphasize that human-level reasoning ≠ vetted research content, structured literature discovery, and institutional IP protection—core value propositions of LeapSpace integrated with Scopus and ScienceDirect.",
+    "impact": {
+      "novelty": 3,
+      "commercial": 4,
+      "threat": 4,
+      "urgency": 4
+    },
+    "entities": [
+      "OpenAI",
+      "GPT-6 Astra",
+      "Moneycontrol.com"
+    ],
+    "actionItems": [
+      "Develop ROI case study: LeapSpace+Scopus vs. standalone GPT-6 Astra for accelerating literature review and reducing hallucination risk.",
+      "Prepare messaging clarifying why general 'human-level intelligence' requires guardrails, domain authority, and peer-reviewed content integration for research.",
+      "Engage Dutch university librarians and research directors to understand perception of GPT-6 Astra vs. specialist research platforms."
+    ],
+    "sourceType": "secondary"
+  },
+  {
+    "id": "news-yxvyme",
+    "title": "OpenAI Launches GPT-6 Astra, Its Most Advanced And Aligned AI Model Yet - ETV Bharat",
+    "description": "OpenAI Launches GPT-6 Astra, Its Most Advanced And Aligned AI Model Yet&nbsp;&nbsp;ETV Bharat",
+    "institution": "OpenAI",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQQXRSd2VEU044cWkwaGtPQS1lSGFsSnFnNHExN0QxSEFaQ2ZJaTlpTjc4VEloNzhDV3IyZlRRdnhmRTBNb0xmUEVoMGljLTYyOERfU3VYUG1JSGMtU1E0S1BjYjQ2Vk5VSGVpOEtrLW5BOUZhREY5VmlIaDFTZm13VFNFc3o1cTlYcVdWWElnMTdfc2stMkh5Vm50dGdqT0NjV3AwU2t6M2g3cThzNmpfYW9JdXgtNFhYODZXLVVNTUNGdWc?oc=5",
+    "sourceName": "ETV Bharat",
+    "publishedDate": "2026-09-04",
+    "foundDate": "2026-09-05",
+    "autoDiscovered": true
+  },
+  {
+    "id": "news-dqu798",
+    "title": "OpenAI unveils GPT-6 Astra: Here’s what this new model can do - Gulf Business",
+    "description": "OpenAI unveils GPT-6 Astra: Here’s what this new model can do&nbsp;&nbsp;Gulf Business",
+    "institution": "OpenAI",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOZWVEZ3JoVUZ3ZkJPV3J2X0l0NUlpSGhuVm95NXNPa0Z5bHQ2cWRVSmxmcGtPMmhGLThmMWdIbDJwbXJrOGxWX3JuWkstYVNZSU5VQ0ZUenJtbXNhQkV2eGc5VFBLZUhvc3U5LTRpVGRDRFREZkhlLTgzSUpSU3hlZlJTRDdmTnFwOENha3Bma2ZpRlViajBETGVXUlhHYzVpSERsS3AwbVVfeXNiNTBzMmxYai1HWmM?oc=5",
+    "sourceName": "Gulf Business",
+    "publishedDate": "2026-09-04",
+    "foundDate": "2026-09-05",
+    "autoDiscovered": true
+  },
+  {
+    "id": "news-r229t2",
+    "title": "CrowdStrike and OpenAI Expand Partnership to Secure the Agentic Era - HPCwire",
+    "description": "CrowdStrike and OpenAI Expand Partnership to Secure the Agentic Era&nbsp;&nbsp;HPCwire",
+    "institution": "OpenAI",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQSFN2Zm4yZV9nbEpZZ21tY3lzWm9xdUpLb0J1VERydS1Hdk50SXVwblBjeTBCQ09CSWNhYWF2NHVSTnh1LWFHdmNlOWlZY1hqRTBUWkxGVW9SSVBKOUdiWkpIZ0NpVGxIZnpveFlDb1lJLTdsN2ZWSm5VdjhJS2FqcE5oNWdNZ3V3RlVDLTJOcHhldXFoSmhmLVFXSWtoVGtYTkFud0ZCeE9mbGxmUG44?oc=5",
+    "sourceName": "HPCwire",
+    "publishedDate": "2026-09-04",
+    "foundDate": "2026-09-05",
+    "autoDiscovered": true
+  },
+  {
+    "id": "news-ii1s8z",
+    "title": "OpenAI unveils GPT-6 Astra with major advances in AI capabilities: 'Now in the AGI era' - Fox Business",
+    "description": "OpenAI unveils GPT-6 Astra with major advances in AI capabilities: 'Now in the AGI era'&nbsp;&nbsp;Fox Business",
+    "institution": "OpenAI",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOQ2l4c2h2R2JEUTlZSkR4QlIzR1RtN0Q0M2dzMHpGR2o0WGJ0N3hUY0tfZlBZWjk0ZnFtMVFYLUZMVnV4eXpMQkxESWd1cUgyUEFqSE5Vb1RxR2VQaDllOHUyVlpndE1PekZKYTJOMDlWOTBEc0dFMUpUWl9zekhvcUdza1lLZ21wYVNYU2JtY2JuVmljblZQUHdacS3SAaIBQVVfeXFMTlpQdmVJNXpScWN6VnoxTk1fMHctWGpzdC1Ib1FkdVNkZVE1b2RFQ1p0S1lZY18zOHJVOE1IdXVGc01nREQtZlg1R3FhaWRNVS1YRnZ2TXhMYUYxNmstTHVTOC0ySnBsQ1dHc2ZzMDJra1A1RjdmdHB1Q29Ja0tyMDNpZXRUaWR4Q0lnaDdBZlZMMGU5Y01aRzJZTmpyVE95emNn?oc=5",
+    "sourceName": "Fox Business",
+    "publishedDate": "2026-09-03",
+    "foundDate": "2026-09-05",
+    "autoDiscovered": true
+  },
+  {
+    "id": "news-uykf6t",
+    "title": "GPT-6 Astra: A new generation of intelligence - OpenAI",
+    "description": "GPT-6 Astra: A new generation of intelligence&nbsp;&nbsp;OpenAI",
+    "institution": "OpenAI",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE11QUxBUVJLdC1jSmtJbmcxQzg4Qm9yUlNPS3JEMEVBanIyY1FRT2k2R0hBTlNnX2VqcWpTSDJUMDV0TjBJN1VGamlrZzVPZw?oc=5",
+    "sourceName": "OpenAI",
+    "publishedDate": "2026-09-05",
+    "foundDate": "2026-09-05",
+    "autoDiscovered": true
+  },
+  {
+    "id": "news-fi26ok",
+    "title": "STMicroelectronics Launches the Fully Integrated UWB Solution with IEEE 802.15.4z and 4ab Standards - TechInsights",
+    "description": "STMicroelectronics Launches the Fully Integrated UWB Solution with IEEE 802.15.4z and 4ab Standards&nbsp;&nbsp;TechInsights",
+    "institution": "IEEE",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQWS1DUy1mWVRRY3EwTUVBQThFZUpZUEpkelBNaWxWOFJmMzJ4ZW1yVHhpSmU2Zl9GV3R3UHlBMGR1T1NXQjY5SDRDb0J5Y2g3akZTczBvcm1lSDE3MlR2UWl5VjgzTU1kdUJGV0VZSWluNkViWG9YUHoyelN2cER1S2RTY0NSWXJUV3dGUlhWMXhWTDRhbGFRN3dnOVpoY0ZEclN2cWF3emxnOHRSRWhneTd3dkhpc3RLWU5FRHlRNA?oc=5",
+    "sourceName": "TechInsights",
+    "publishedDate": "2026-09-03",
+    "foundDate": "2026-09-05",
+    "autoDiscovered": true
+  },
+  {
     "id": "news-m7yel8",
     "title": "Anthropic launches Claude Fable 5.1 and restricted Mythos 5.1 for advanced research - EdTech Innovation Hub",
     "description": "Anthropic launches Claude Fable 5.1 and restricted Mythos 5.1 for advanced research&nbsp;&nbsp;EdTech Innovation Hub",
@@ -10,7 +126,33 @@
     "sourceName": "EdTech Innovation Hub",
     "publishedDate": "2026-09-03",
     "foundDate": "2026-09-04",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "bottomLine": "Anthropic releases Claude Fable 5.1 and restricted Mythos 5.1 models targeting advanced research workflows and specialized use cases.",
+    "keyFindings": [
+      "Anthropic launches two new model variants: Claude Fable 5.1 and a restricted Mythos 5.1 version for research applications.",
+      "New models designed specifically to support advanced research tasks, competing directly with OpenAI and other AI research assistants.",
+      "Fable and Mythos positioning suggests tiered product strategy—lightweight and restricted variants for different research scenarios.",
+      "Models marketed toward research institutions and advanced users, not enterprise-wide deployment."
+    ],
+    "whyItMatters": "Dutch research institutions (universities, medical centres) are evaluating AI-native research tools; Anthropic's specialized models threaten adoption of Elsevier's LeapSpace, which must demonstrate domain-specific advantages in literature search, claim-checking, and research workflow integration over pure language models.",
+    "impact": {
+      "novelty": 3,
+      "commercial": 3,
+      "threat": 3,
+      "urgency": 3
+    },
+    "entities": [
+      "Anthropic",
+      "Claude Fable 5.1",
+      "Mythos 5.1",
+      "EdTech Innovation Hub"
+    ],
+    "actionItems": [
+      "Verify what 'restricted' means for Mythos 5.1—does it limit access, capabilities, or data handling for compliance/IP protection?",
+      "Research Anthropic's go-to-market strategy in Netherlands academic sector; map competitive positioning vs. LeapSpace.",
+      "Audit LeapSpace's claim-checking and deep-research capabilities against Fable/Mythos to identify feature gaps."
+    ],
+    "sourceType": "secondary"
   },
   {
     "id": "news-iqxs1j",
@@ -23,20 +165,32 @@
     "sourceName": "Pragativadi",
     "publishedDate": "2026-09-04",
     "foundDate": "2026-09-04",
-    "autoDiscovered": true
-  },
-  {
-    "id": "news-t8s50w",
-    "title": "OpenAI launches GPT-6 Astra, claims new AI capabilities bring it closer to human-level intelligence - Moneycontrol.com",
-    "description": "OpenAI launches GPT-6 Astra, claims new AI capabilities bring it closer to human-level intelligence&nbsp;&nbsp;Moneycontrol.com",
-    "institution": "OpenAI",
-    "category": "competitor_announcements",
-    "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxPUVhlUnF0NFprazdTQUp6OFFrWWYtWVhpRXdDUkZ3WVNfS2ZTOVRfcEFmNHVGNmVYT0ZDMFNndTFMWmVRUlBTSldhdDVSaS1nMEprMlp4WVVmRHp2M045Y1N3eVJQX2pycDhsUzJselB0cWpfcmljMUI3RE9vSGdPRGhtbThwN3RNaDNLUnhKZU85LUdRbVc4dl8xdUxpSEhsaUJfbDNQOExUcXdldUhrSEpuRENQMWY1NWo1Y0xQaGlVR190VXpyQWQtYkRDNVJnc0VQaUlCek11OWFCR1BEdmlHWlBHX0QyRGV1Rzd0LW1qd9IB9wFBVV95cUxQbUNxa2JCVERNWmFtWkZtbEswcXl4ZTRzREhPSTR3UzBGQUZoZnRQU2YyY0hlNXJnQ0tObVZ4a1NKb0tYRk1ZNmx5RWxsU1QtQ2lJcDZmUzBmVGxCOFg0aHZ",
-    "sourceName": "Moneycontrol.com",
-    "publishedDate": "2026-09-04",
-    "foundDate": "2026-09-04",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "bottomLine": "OpenAI releases GPT-6 Astra as its most powerful model yet, with upgraded AI agent capabilities and priced at 2.5× previous generation.",
+    "keyFindings": [
+      "GPT-6 Astra positioned as OpenAI's most intelligent model to date, with enhanced reasoning and multi-step task capabilities.",
+      "Model priced approximately 2.5 times higher than GPT-5, signaling premium positioning for advanced enterprise and research use.",
+      "Upgrade includes improved AI agent capabilities, enabling autonomous execution of complex workflows and research tasks.",
+      "Targets both enterprise and consumer segments, expanding addressable market beyond specialist research users."
+    ],
+    "whyItMatters": "Dutch universities and medical centres face pressure to adopt GPT-6 Astra for research workflows; higher cost may justify bundled solutions (LeapSpace + Scopus + ScienceDirect) as more cost-effective, specialized alternative compared to standalone advanced AI models without research literature integration.",
+    "impact": {
+      "novelty": 4,
+      "commercial": 5,
+      "threat": 4,
+      "urgency": 4
+    },
+    "entities": [
+      "OpenAI",
+      "GPT-6 Astra",
+      "Pragativadi"
+    ],
+    "actionItems": [
+      "Quantify total cost of ownership (TCO) comparing GPT-6 Astra subscriptions to LeapSpace+Scopus bundles for typical Dutch research institution.",
+      "Map GPT-6 Astra's agent capabilities against LeapSpace's research-specific workflows; identify overlaps and differentiation.",
+      "Prepare messaging: premium AI does not replace integrated research intelligence platform with vetted content and claim-checking."
+    ],
+    "sourceType": "secondary"
   },
   {
     "id": "news-9s3foc",
@@ -49,7 +203,32 @@
     "sourceName": "TradingKey",
     "publishedDate": "2026-09-03",
     "foundDate": "2026-09-04",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "bottomLine": "GPT-6 Astra priced at 2.5× previous generation, with upgraded agent capabilities, raising stakes for enterprise research-workflow solutions.",
+    "keyFindings": [
+      "GPT-6 Astra pricing premium (2.5×) reflects positioning as advanced enterprise and high-complexity-task model.",
+      "AI agent capabilities upgraded, enabling autonomous multi-step workflows, task orchestration, and conditional logic execution.",
+      "Premium pricing positions Astra as alternative to bundled research platform subscriptions, forcing head-to-head TCO comparison.",
+      "Agent-first architecture suggests OpenAI is targeting workflow automation, direct competitor to research assistant workflows in LeapSpace."
+    ],
+    "whyItMatters": "For Dutch medical centres and research institutes, GPT-6 Astra's 2.5× price tag plus agent capabilities raises the question: is standalone advanced AI, or an integrated platform (LeapSpace + Scopus access control + ScienceDirect full-text) with institutional governance, compliance, and literature vetting better value for research productivity and IP protection?",
+    "impact": {
+      "novelty": 4,
+      "commercial": 5,
+      "threat": 5,
+      "urgency": 5
+    },
+    "entities": [
+      "OpenAI",
+      "GPT-6 Astra",
+      "TradingKey"
+    ],
+    "actionItems": [
+      "Build detailed TCO model: GPT-6 Astra enterprise subscription + internal integration costs vs. LeapSpace tier + Scopus + ScienceDirect for mid-size Dutch university (500+ researchers).",
+      "Interview 3–5 Dutch research IT directors on agent-automation priorities; map against LeapSpace roadmap capabilities.",
+      "Prepare competitive battlecard on institutional control, compliance (GDPR, IP), audit trails, and hallucination mitigation vs. standalone LLM agents."
+    ],
+    "sourceType": "secondary"
   },
   {
     "id": "news-3tvnpt",
@@ -62,7 +241,32 @@
     "sourceName": "IndexBox",
     "publishedDate": "2026-09-03",
     "foundDate": "2026-09-04",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "bottomLine": "OpenAI's GPT-6 Astra targets enterprise and consumer research use, expanding competition beyond specialist researcher segment.",
+    "keyFindings": [
+      "GPT-6 Astra marketed for both enterprise and consumer audiences, broadening addressable market beyond academia and research.",
+      "Enterprise positioning suggests OpenAI targeting institutional procurement, direct competition for research platform budgets.",
+      "Dual-segment strategy (enterprise + consumer) may undermine Elsevier's premium positioning as specialized research intelligence provider.",
+      "News and statistics positioning indicates OpenAI pushing analytical and data-driven decision-making capabilities."
+    ],
+    "whyItMatters": "Dutch universities and medical centres face budget pressure; OpenAI's dual enterprise/consumer strategy risks commoditizing research-workflow AI, forcing Elsevier to defend premium pricing and institutional integration of LeapSpace by emphasizing peer-review curation, audit compliance, and research-specific governance that consumer-grade AI cannot provide.",
+    "impact": {
+      "novelty": 3,
+      "commercial": 4,
+      "threat": 4,
+      "urgency": 3
+    },
+    "entities": [
+      "OpenAI",
+      "GPT-6 Astra",
+      "IndexBox"
+    ],
+    "actionItems": [
+      "Segment Dutch market: identify which institutions are evaluating consumer-grade vs. enterprise-grade AI and tailor messaging accordingly.",
+      "Emphasize institutional mandates (compliance, audit, IP governance) that rule out consumer-focused tools for Dutch research centres.",
+      "Develop case study showing cost and risk of consumer AI adoption (hallucinations, unsanctioned data exfiltration) vs. vetted institutional platform."
+    ],
+    "sourceType": "secondary"
   },
   {
     "id": "news-ulddbb",
@@ -75,7 +279,32 @@
     "sourceName": "gHacks",
     "publishedDate": "2026-09-04",
     "foundDate": "2026-09-04",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "bottomLine": "OpenAI claims GPT-6 Astra advances computer use, coding, and science capabilities—directly targeting research-intensive domains.",
+    "keyFindings": [
+      "Astra emphasizes computer use, coding, and science as core capability advances, directly addressing research automation and scientific computing.",
+      "Science-specific capabilities position Astra as domain-aware tool, competing with research-purpose AI platforms like LeapSpace.",
+      "Coding and computer-use upgrades enable automated research workflow execution, literature processing, and data analysis pipeline automation.",
+      "Messaging signals OpenAI's intent to displace specialized research assistant tools by offering general-purpose science-capable AI."
+    ],
+    "whyItMatters": "Dutch life sciences, physics, and engineering researchers may perceive GPT-6 Astra as sufficient for literature review automation and research coding; Elsevier must demonstrate that Astra's general science reasoning requires grounding in vetted, peer-reviewed corpora (Scopus + ScienceDirect) and domain-specific claim-checking (LeapSpace features) to reduce false positives in research methodology and reproducibility.",
+    "impact": {
+      "novelty": 4,
+      "commercial": 5,
+      "threat": 5,
+      "urgency": 5
+    },
+    "entities": [
+      "OpenAI",
+      "GPT-6 Astra",
+      "gHacks"
+    ],
+    "actionItems": [
+      "Commission white paper: 'Science-Capable LLMs Without Institutional Knowledge Bases—Risk Analysis for Dutch Research.' Highlight reproducibility, bias, hallucination.",
+      "Develop demo: LeapSpace + Astra integration vs. Astra alone on Dutch research use case (drug discovery, materials science); show evidence quality difference.",
+      "Engage Dutch academy of sciences (KNAW) to establish principles for responsible AI in research; position Elsevier as governance partner."
+    ],
+    "sourceType": "secondary"
   },
   {
     "id": "news-x6j1qy",
@@ -88,7 +317,32 @@
     "sourceName": "CNBC",
     "publishedDate": "2026-09-03",
     "foundDate": "2026-09-04",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "bottomLine": "OpenAI rolls out GPT-6 Astra amid warnings about its advanced cyber capabilities, raising institutional security and governance concerns.",
+    "keyFindings": [
+      "OpenAI publicly warns about GPT-6 Astra's advanced cyber capabilities and potential misuse, signaling heightened dual-use risk.",
+      "Model rollout proceeding despite warnings, indicating OpenAI prioritizes capability release over precautionary deployment governance.",
+      "Advanced cyber capabilities could pose institutional risk if deployed without proper access controls and audit frameworks.",
+      "Public warnings create narrative risk for institutions that adopt Astra without institutional AI governance frameworks in place."
+    ],
+    "whyItMatters": "Dutch medical centres and research institutes face regulatory and reputational risk from uncontrolled AI adoption; Elsevier's LeapSpace positioned within institutional governance, access control, and audit trails provides differentiation: a curated, compliant research platform vs. a powerful but less-governed general-purpose model requiring extensive internal security infrastructure and policy development.",
+    "impact": {
+      "novelty": 4,
+      "commercial": 4,
+      "threat": 3,
+      "urgency": 5
+    },
+    "entities": [
+      "OpenAI",
+      "GPT-6 Astra",
+      "CNBC"
+    ],
+    "actionItems": [
+      "Prepare compliance brief for Dutch university CISOs: 'Institutional AI Governance—Managed Platform vs. Consumer LLM.' Emphasize audit, data residency, role-based access.",
+      "Develop messaging: Elsevier as 'Governance-Ready Research AI' vs. OpenAI's capability-first model; highlight GDPR, institutional IP protection, and audit compliance.",
+      "Initiate conversations with Dutch data protection authorities (IPO) on institutional requirements for AI deployment in research; position Elsevier as pre-compliant solution."
+    ],
+    "sourceType": "secondary"
   },
   {
     "id": "news-iapv8w",
@@ -160,42 +414,6 @@
     "actionItems": [
       "Map Mythos safeguard specifications against LeapSpace compliance modules (HIPAA, GDPR, pharmaceutical data governance).",
       "Prepare compliance comparison briefing for Dutch medical centres and regulated research institutes to demonstrate Elsevier's governance advantage."
-    ],
-    "sourceType": "secondary"
-  },
-  {
-    "id": "news-jabspi",
-    "title": "Anthropic unveils standard linking AI agents to physical devices - indiagazette.com",
-    "description": "Anthropic unveils standard linking AI agents to physical devices&nbsp;&nbsp;indiagazette.com",
-    "institution": "Anthropic",
-    "category": "competitor_announcements",
-    "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOX1NMM1dxUjhhOUp5NFBScG9VRFQzb1phN2VXX2oyZFdVTEVlcTJ3em5IOEtiMGpXM2ZOWC1CRGY0RjRTeEJjVWU5RmliRGo0aDB1QnkzYkdtMmFDMTlXNTRpYWNRazBVaHgtcC0wQmt4R2pSM0F6ODl5Yk5LdUc5d0p0eG5CejBLazZSbUtNejVZdGwxMXlkaUVWOUNCUmxNTDNaWi1pLTFMaHI4?oc=5",
-    "sourceName": "indiagazette.com",
-    "publishedDate": "2026-08-29",
-    "foundDate": "2026-09-03",
-    "autoDiscovered": true,
-    "bottomLine": "Anthropic launches hardware standard linking AI agents to lab and industrial devices, enabling autonomous experimental workflows independent of traditional research platforms.",
-    "keyFindings": [
-      "New hardware standard allows AI agents to directly interface with and control laboratory and industrial instruments.",
-      "Autonomous device linking reduces human-in-the-loop friction in experimental workflows.",
-      "Direct hardware integration may bypass need for centralized research information platforms."
-    ],
-    "whyItMatters": "Dutch university labs and research institutes using automated or high-throughput facilities may deploy Anthropic's hardware-linked agents directly without ScienceDirect/Scopus mediation, reducing platform stickiness and contract value.",
-    "impact": {
-      "novelty": 5,
-      "commercial": 4,
-      "threat": 3,
-      "urgency": 3
-    },
-    "entities": [
-      "Anthropic",
-      "Model Hardware Standard",
-      "indiagazette.com"
-    ],
-    "actionItems": [
-      "Research which Netherlands labs operate high-throughput or automated facilities; assess their current ScienceDirect/Scopus/LeapSpace integration with instrument control systems.",
-      "Develop roadmap for LeapSpace hardware connector or instrument-aware workflow feature to maintain relevance in device-integrated labs."
     ],
     "sourceType": "secondary"
   },
@@ -834,45 +1052,6 @@
       "Track which Netherlands institutions or research teams participate in Digital Science's 2026 Catalyst Grant program.",
       "Benchmark LeapSpace's agentic AI capabilities (claim-checking, deep research reports, paper comparison) against what Digital Science delivers.",
       "Accelerate LeapSpace rollout and case studies at key accounts to establish incumbency before Digital Science product launches."
-    ],
-    "sourceType": "secondary"
-  },
-  {
-    "id": "news-ihgyee",
-    "title": "Anthropic unveils standard linking AI agents to physical devices - irishsun.com",
-    "description": "Anthropic unveils standard linking AI agents to physical devices&nbsp;&nbsp;irishsun.com",
-    "institution": "Anthropic",
-    "category": "competitor_announcements",
-    "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPekEzVUQ5b1FWODI3OWUtSDRlZE54OEhhQnhjSjN5QV9EUTNqcXZuY3VybU95THhBNUFOWUtyUDlZaEFia0pPcUhWWnU3d00zOTdkdEkxZDdiY2Z5V0tQNXpPNlkwejNyLWtrNXB3MHBpYXUtSHlHbEdzUWNDOVJwWEVJZE1qaWFaYmt6Y1dJTkV1a3NFUXhTZDBZd1R3aGswMlBNOXZvMA?oc=5",
-    "sourceName": "irishsun.com",
-    "publishedDate": "2026-08-29",
-    "foundDate": "2026-08-31",
-    "autoDiscovered": true,
-    "bottomLine": "Anthropic unveils AI-hardware linking standard positioning itself in the physical automation market, potentially expanding AI's reach into laboratory and industrial research workflows.",
-    "keyFindings": [
-      "Anthropic develops standard framework connecting AI agents to physical devices, addressing integration gaps in lab automation.",
-      "Framework targets laboratory and industrial device control, expanding AI utility beyond software-only applications.",
-      "Open-source approach aims to establish Anthropic's standard as the industry baseline for AI-device communication.",
-      "Initiative signals growing commercial focus on AI-enabled laboratory automation and hardware integration."
-    ],
-    "whyItMatters": "As Dutch biotech, pharmaceutical, and engineering institutions adopt AI-hardware integration for high-throughput research, they'll need ScienceDirect/Scopus to access foundational literature on automation standards, safety protocols, and methodology validation; LeapSpace can differentiate by tracking adoption of Anthropic's standard.",
-    "impact": {
-      "novelty": 4,
-      "commercial": 4,
-      "threat": 3,
-      "urgency": 3
-    },
-    "entities": [
-      "Anthropic",
-      "AI agents",
-      "Lab devices",
-      "Industrial devices"
-    ],
-    "actionItems": [
-      "Monitor Anthropic's adoption rate among research-intensive Dutch institutions; identify early adopters for targeted sales outreach.",
-      "Create Scopus research profile tracking papers on hardware standards, laboratory automation, and AI safety in physical systems.",
-      "Assess whether LeapSpace's 'deep research reports' feature can highlight methodology and safety literature for AI-hardware integration projects."
     ],
     "sourceType": "secondary"
   }

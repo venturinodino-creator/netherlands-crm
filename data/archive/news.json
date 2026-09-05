@@ -1,5 +1,80 @@
 [
   {
+    "id": "news-ihgyee",
+    "title": "Anthropic unveils standard linking AI agents to physical devices - irishsun.com",
+    "description": "Anthropic unveils standard linking AI agents to physical devices&nbsp;&nbsp;irishsun.com",
+    "institution": "Anthropic",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPekEzVUQ5b1FWODI3OWUtSDRlZE54OEhhQnhjSjN5QV9EUTNqcXZuY3VybU95THhBNUFOWUtyUDlZaEFia0pPcUhWWnU3d00zOTdkdEkxZDdiY2Z5V0tQNXpPNlkwejNyLWtrNXB3MHBpYXUtSHlHbEdzUWNDOVJwWEVJZE1qaWFaYmt6Y1dJTkV1a3NFUXhTZDBZd1R3aGswMlBNOXZvMA?oc=5",
+    "sourceName": "irishsun.com",
+    "publishedDate": "2026-08-29",
+    "foundDate": "2026-08-31",
+    "autoDiscovered": true,
+    "bottomLine": "Anthropic unveils AI-hardware linking standard positioning itself in the physical automation market, potentially expanding AI's reach into laboratory and industrial research workflows.",
+    "keyFindings": [
+      "Anthropic develops standard framework connecting AI agents to physical devices, addressing integration gaps in lab automation.",
+      "Framework targets laboratory and industrial device control, expanding AI utility beyond software-only applications.",
+      "Open-source approach aims to establish Anthropic's standard as the industry baseline for AI-device communication.",
+      "Initiative signals growing commercial focus on AI-enabled laboratory automation and hardware integration."
+    ],
+    "whyItMatters": "As Dutch biotech, pharmaceutical, and engineering institutions adopt AI-hardware integration for high-throughput research, they'll need ScienceDirect/Scopus to access foundational literature on automation standards, safety protocols, and methodology validation; LeapSpace can differentiate by tracking adoption of Anthropic's standard.",
+    "impact": {
+      "novelty": 4,
+      "commercial": 4,
+      "threat": 3,
+      "urgency": 3
+    },
+    "entities": [
+      "Anthropic",
+      "AI agents",
+      "Lab devices",
+      "Industrial devices"
+    ],
+    "actionItems": [
+      "Monitor Anthropic's adoption rate among research-intensive Dutch institutions; identify early adopters for targeted sales outreach.",
+      "Create Scopus research profile tracking papers on hardware standards, laboratory automation, and AI safety in physical systems.",
+      "Assess whether LeapSpace's 'deep research reports' feature can highlight methodology and safety literature for AI-hardware integration projects."
+    ],
+    "sourceType": "secondary"
+  },
+  {
+    "id": "news-jabspi",
+    "title": "Anthropic unveils standard linking AI agents to physical devices - indiagazette.com",
+    "description": "Anthropic unveils standard linking AI agents to physical devices&nbsp;&nbsp;indiagazette.com",
+    "institution": "Anthropic",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOX1NMM1dxUjhhOUp5NFBScG9VRFQzb1phN2VXX2oyZFdVTEVlcTJ3em5IOEtiMGpXM2ZOWC1CRGY0RjRTeEJjVWU5RmliRGo0aDB1QnkzYkdtMmFDMTlXNTRpYWNRazBVaHgtcC0wQmt4R2pSM0F6ODl5Yk5LdUc5d0p0eG5CejBLazZSbUtNejVZdGwxMXlkaUVWOUNCUmxNTDNaWi1pLTFMaHI4?oc=5",
+    "sourceName": "indiagazette.com",
+    "publishedDate": "2026-08-29",
+    "foundDate": "2026-09-03",
+    "autoDiscovered": true,
+    "bottomLine": "Anthropic launches hardware standard linking AI agents to lab and industrial devices, enabling autonomous experimental workflows independent of traditional research platforms.",
+    "keyFindings": [
+      "New hardware standard allows AI agents to directly interface with and control laboratory and industrial instruments.",
+      "Autonomous device linking reduces human-in-the-loop friction in experimental workflows.",
+      "Direct hardware integration may bypass need for centralized research information platforms."
+    ],
+    "whyItMatters": "Dutch university labs and research institutes using automated or high-throughput facilities may deploy Anthropic's hardware-linked agents directly without ScienceDirect/Scopus mediation, reducing platform stickiness and contract value.",
+    "impact": {
+      "novelty": 5,
+      "commercial": 4,
+      "threat": 3,
+      "urgency": 3
+    },
+    "entities": [
+      "Anthropic",
+      "Model Hardware Standard",
+      "indiagazette.com"
+    ],
+    "actionItems": [
+      "Research which Netherlands labs operate high-throughput or automated facilities; assess their current ScienceDirect/Scopus/LeapSpace integration with instrument control systems.",
+      "Develop roadmap for LeapSpace hardware connector or instrument-aware workflow feature to maintain relevance in device-integrated labs."
+    ],
+    "sourceType": "secondary"
+  },
+  {
     "id": "news-yjsa75",
     "title": "Anthropic Opens Free Claude to Scientists; Biology Frontier Goes Through Washington - Tech Times",
     "description": "Anthropic Opens Free Claude to Scientists; Biology Frontier Goes Through Washington Tech Times",
