@@ -7484,6 +7484,20 @@ function renderOpenAlex() {
       ],
       flags: [],
     },
+    {
+      inst: 'University of Groningen (RUG + UMCG Medical Library)',
+      tier: 'Member', tierColor: '#10b981', status: 'Active',
+      announceDate: '2026-06-08', effectiveDate: '2026-06-08',
+      annualFee: '$5,000 USD / year (Member tier list price \u2014 amount not disclosed by RUG)',
+      scopusAction: null,
+      barcelonaAction: 'Cites the Barcelona Declaration on Open Research Information as an explicit driver (no new signature announced)',
+      notes: 'Confirmed paying supporter. RUG University Library (UB) and the UMCG Medical Library (MB) jointly entered a \u201Csteunlidmaatschap\u201D (supporting membership) with OpenAlex, announced 8 June 2026 (page last modified 10 June 2026). RUG states the step underlines its open science commitment and gives effect to the intentions of the Barcelona Declaration. OpenAlex is already used to improve data quality in the RUG CRIS and will support its move toward open, responsible research assessment. RUG explicitly notes OpenAlex complements but does not yet fully replace Web of Science (licence ends 1 Jan 2027) and Scopus for specialised uses such as systematic reviews. UB and MB are also seeking collaboration with OpenAlex to improve metadata quality. Tier not named in the announcement; \u201Csupporting membership\u201D maps to the $5,000/yr Member tier, but this is inferred, not confirmed.',
+      sources: [
+        { label: 'RUG UB \u2014 \u201CSteunlidmaatschap: UB en Medische Bibliotheek sluiten zich aan bij OpenAlex\u201D \u2014 8 Jun 2026', url: 'https://www.rug.nl/library/news/260608-openalex' },
+        { label: 'RUG UB \u2014 Web of Science access ends 31 Dec 2026 \u2014 20 Apr 2026', url: 'https://www.rug.nl/library/news/20260420-end-web-of-science' },
+      ],
+      flags: [],
+    },
   ];
 
   /* ── ALL NL INSTITUTIONS — OPENALEX STATUS ───────────────────────────── */
@@ -7534,9 +7548,12 @@ function renderOpenAlex() {
       sources: [{ label: 'VU: WoS access ending 1 Jan 2026', url: 'https://vu.nl/en/employee/university-library/termination-of-access-to-web-of-science-as-of-january-1-2026' }],
     },
     {
-      inst: 'University of Groningen', type: 'University', status: 'none', tier: null,
-      signal: 'No confirmed OpenAlex subscription. WoS licence expiring Dec 2026 (announced Apr 2026) — after expiry, OpenAlex becomes the natural free alternative. Strong candidate for Member tier post-WoS exit.',
-      sources: [{ label: 'RUG: WoS ending Dec 2026', url: 'https://www.rug.nl/library/news/20260420-end-web-of-science?lang=en' }],
+      inst: 'University of Groningen', type: 'University', status: 'subscriber', tier: 'Member — supporting membership',
+      signal: '✅ CONFIRMED PAYING. UB + UMCG Medical Library entered a “steunlidmaatschap” (supporting membership) with OpenAlex, announced 8 Jun 2026. Framed around the Barcelona Declaration and open science. Already used to improve CRIS data quality. WoS licence still ends 1 Jan 2027. Fee/tier not disclosed — Member tier inferred.',
+      sources: [
+        { label: 'RUG UB: supporting membership with OpenAlex — 8 Jun 2026', url: 'https://www.rug.nl/library/news/260608-openalex' },
+        { label: 'RUG: WoS ending Dec 2026', url: 'https://www.rug.nl/library/news/20260420-end-web-of-science?lang=en' },
+      ],
     },
     {
       inst: 'Erasmus University Rotterdam', type: 'University', status: 'none', tier: null,
@@ -7596,9 +7613,9 @@ function renderOpenAlex() {
       sources: [],
     },
     {
-      inst: 'UMCG', type: 'Medical Centre', status: 'none', tier: null,
-      signal: 'No confirmed OpenAlex subscription. University Medical Centre Groningen — watch alongside RUG post-WoS cancellation.',
-      sources: [],
+      inst: 'UMCG', type: 'Medical Centre', status: 'subscriber', tier: 'Member — covered under RUG',
+      signal: '✅ CONFIRMED COVERED. The UMCG Medical Library is a named party to the RUG supporting membership with OpenAlex announced 8 Jun 2026, and is listed as a support contact (literaturesearch@umcg.nl). UMCG also ends its Web of Science licence on 1 Jan 2027 alongside RUG.',
+      sources: [{ label: 'RUG UB: UB + Medical Library join OpenAlex — 8 Jun 2026', url: 'https://www.rug.nl/library/news/260608-openalex' }],
     },
     {
       inst: 'UMC Utrecht', type: 'Medical Centre', status: 'none', tier: null,
