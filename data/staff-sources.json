@@ -10,7 +10,8 @@
         "https://www.uu.nl/en/university-library/about-the-library/organisation",
         "https://www.uu.nl/en/research/ai-labs/contact",
         "https://www.uu.nl/en/achtergrond/what-happens-at-the-knowledge-transfer-office-kto",
-        "https://www.uu.nl/en/organisation/centre-for-entrepreneurship"
+        "https://www.uu.nl/en/organisation/centre-for-entrepreneurship",
+        "https://www.uu.nl/en/organisation/faculty-of-social-and-behavioural-sciences/about-the-faculty/support-teams"
       ]
     },
     {
@@ -21,7 +22,8 @@
         "https://uba.uva.nl/en/contact/organisation/organisation.html",
         "https://grant-support.uva.nl/about-us/grant-support-services/services-funding-team.html",
         "https://www.ixa.nl/about/team-overview/",
-        "https://www.uva.nl/en/research/research-at-the-uva/artificial-intelligence/artificial-intelligence.html"
+        "https://www.uva.nl/en/research/research-at-the-uva/artificial-intelligence/artificial-intelligence.html",
+        "https://icai.ai/team/"
       ]
     },
     {
@@ -31,7 +33,8 @@
       "urls": [
         "https://www.tue.nl/en/our-university/about-the-university/support-services/library-and-information-services",
         "https://www.tue.nl/en/our-university/about-the-university/support-services/research-support-valorization",
-        "https://www.tue.nl/en/research/institutes/eindhoven-artificial-intelligence-systems-institute/about-eaisi/"
+        "https://www.tue.nl/en/research/institutes/eindhoven-artificial-intelligence-systems-institute/about-eaisi/",
+        "https://www.tue.nl/en/research/researchers/paul-merkus"
       ]
     },
     {
@@ -41,7 +44,9 @@
       "urls": [
         "https://www.eur.nl/en/library/about/organisation",
         "https://www.eur.nl/en/news/meet-michiel-new-director-engagement-and-research-services-eur",
-        "https://www.eur.nl/en/engagement/impact-engagement/engagement-board"
+        "https://www.eur.nl/en/engagement/impact-engagement/engagement-board",
+        "https://ecda.eur.nl/en/about-us/",
+        "https://www.eur.nl/en/research/research-services/funding-opportunities"
       ]
     },
     {
@@ -50,7 +55,9 @@
       "emailDomain": "universiteitleiden.nl",
       "urls": [
         "https://www.library.universiteitleiden.nl/about-us/library-organisation",
-        "https://www.organisatiegids.universiteitleiden.nl/en/service-units/luris"
+        "https://www.organisatiegids.universiteitleiden.nl/en/service-units/luris",
+        "https://www.universiteitleiden.nl/en/science/computer-science/about-us/organisation",
+        "https://www.luris.nl/team"
       ]
     },
     {
@@ -69,7 +76,9 @@
       "emailDomain": "ou.nl",
       "urls": [
         "https://www.ou.nl/en/bestuur-en-organisatie",
-        "https://www.ou.nl/en/onderzoeksondersteuning"
+        "https://www.ou.nl/en/onderzoeksondersteuning",
+        "https://www.ou.nl/en/-/trustworthy-ai-lab",
+        "https://www.ou.nl/en/-/funding-and-grants"
       ]
     },
     {
@@ -79,7 +88,8 @@
       "urls": [
         "https://www.ru.nl/en/departments/radboud-services/information-library-services",
         "https://www.ru.nl/en/radboud-grant-support-experts",
-        "https://www.ru.nl/en/about-us/organisation/executive-board"
+        "https://www.ru.nl/en/about-us/organisation/executive-board",
+        "https://ihub.ru.nl/people/"
       ]
     },
     {
@@ -89,7 +99,8 @@
       "urls": [
         "https://www.tilburguniversity.edu/about/organization/university-services/library-it-services",
         "https://www.tilburguniversity.edu/taxonomy/term/387",
-        "https://www.tilburguniversity.edu/research/research-support-portal/research-funding"
+        "https://www.tilburguniversity.edu/research/research-support-portal/research-funding",
+        "https://www.tilburguniversity.edu/research/institutes-and-research-groups/ticc/meet-our-staff"
       ]
     },
     {
@@ -99,7 +110,8 @@
       "urls": [
         "https://www.tudelft.nl/en/library/visit/about-the-library/our-organisation",
         "https://www.tudelft.nl/en/innovation-impact",
-        "https://www.tudelft.nl/en/ai/tu-delft-ai-initiative"
+        "https://www.tudelft.nl/en/ai/tu-delft-ai-initiative",
+        "https://www.tudelft.nl/en/staff/b.verbruggen/"
       ]
     },
     {
@@ -109,7 +121,8 @@
       "urls": [
         "https://www.rug.nl/staff/departments/30019?lang=en",
         "https://www.rug.nl/about-ug/organization/university-services/research-and-impact/?lang=en",
-        "https://www.rug.nl/about-us/organization/bureau-of-the-university/funding-team"
+        "https://www.rug.nl/about-us/organization/bureau-of-the-university/funding-team",
+        "https://www.rug.nl/research/bernoulli/about/researchers-directory?lang=en"
       ]
     },
     {
@@ -119,7 +132,9 @@
       "urls": [
         "https://www.utwente.nl/en/service-portal/services/lisa/about-us-contact/",
         "https://www.utwente.nl/en/service-portal/business-entrepreneurship/knowledge-valorisation",
-        "https://www.utwente.nl/en/service-portal/services/sbd/about-us-contact/"
+        "https://www.utwente.nl/en/service-portal/services/sbd/about-us-contact/",
+        "https://www.utwente.nl/en/digital-society/research/data-science-artifical-intelligence/ai-expert-finder/",
+        "https://www.utwente.nl/en/service-portal/research-support/additional-information-per-facultyinstitute/engineering-technology-et/et-research-support-team-members"
       ]
     },
     {
@@ -139,7 +154,9 @@
       "urls": [
         "https://www.wur.nl/en/library/wur-library-at-a-glance",
         "https://www.wur.nl/en/partner-up-for-impact/innovation-entrepreneurship",
-        "https://www.wur.nl/en/about-wur/management-organisation.htm"
+        "https://www.wur.nl/en/about-wur/management-organisation.htm",
+        "https://www.wur.nl/en/chair-groups/artificial-intelligence-group/people",
+        "https://www.wur.nl/en/persons/ir-phj-peter-jongebloed"
       ]
     },
     {
@@ -172,7 +189,9 @@
       "instName": "Deltares",
       "emailDomain": "deltares.nl",
       "urls": [
-        "https://www.deltares.nl/en/about-us/directors-and-councils"
+        "https://www.deltares.nl/en/about-us/directors-and-councils",
+        "https://www.deltares.nl/en/expertise/our-people/hanneke-van-der-klis",
+        "https://www.deltares.nl/en/expertise/our-people/jonathan-nuttall"
       ]
     },
     {
@@ -305,7 +324,8 @@
       "instName": "TNO",
       "emailDomain": "tno.nl",
       "urls": [
-        "https://www.tno.nl/en/about-tno/organisation/executive-board/"
+        "https://www.tno.nl/en/about-tno/organisation/executive-board/",
+        "https://www.tno.nl/en/about-tno/organisation/units/ict-strategy-policy/information-communication-technology/data-science/"
       ]
     },
     {
@@ -314,7 +334,8 @@
       "emailDomain": "aighd.org",
       "urls": [
         "https://www.aighd.org/people/",
-        "https://www.amsterdamumc.org/en/about/organization/aighd-welcomes-a-new-board-of-directors.htm"
+        "https://www.amsterdamumc.org/en/about/organization/aighd-welcomes-a-new-board-of-directors.htm",
+        "https://www.aighd.org/people/colin-russell/"
       ]
     },
     {
@@ -323,7 +344,8 @@
       "emailDomain": "amsterdamumc.org",
       "urls": [
         "https://www.amsterdamumc.org/en/research-support/grants/about-research-grant-support.htm",
-        "https://www.amsterdamumc.org/en/research-support/ixa"
+        "https://www.amsterdamumc.org/en/research-support/ixa",
+        "https://kik.amsterdamumc.org/staff/"
       ]
     },
     {
@@ -332,7 +354,8 @@
       "emailDomain": "erasmusmc.nl",
       "urls": [
         "https://www.erasmusmc.nl/en/technology-transfer-office/our-team",
-        "https://www.erasmusmc-rdo.nl/about-us/"
+        "https://www.erasmusmc-rdo.nl/about-us/",
+        "https://www.erasmusmc.nl/en/research/groups/health-data-science"
       ]
     },
     {
@@ -340,7 +363,8 @@
       "instName": "Leiden University Medical Centre",
       "emailDomain": "lumc.nl",
       "urls": [
-        "https://www.lumc.nl/en/about-lumc/het-lumc/management-and-organization/"
+        "https://www.lumc.nl/en/about-lumc/het-lumc/management-and-organization/",
+        "https://www.lumc.nl/over-het-lumc/maatschappelijke-rol/waarde--en-datagedreven-zorg/cairelab-ai/ons-team-cairelab/"
       ]
     },
     {
@@ -348,7 +372,8 @@
       "instName": "Maastricht UMC+",
       "emailDomain": "mumc.nl",
       "urls": [
-        "https://www.maastrichtuniversity.nl/about-um/other-offices/knowledge-transfer-office"
+        "https://www.maastrichtuniversity.nl/about-um/other-offices/knowledge-transfer-office",
+        "https://www.clinicaldatascience.nl/staff"
       ]
     },
     {
@@ -356,7 +381,9 @@
       "instName": "Máxima Medical Centre",
       "emailDomain": "mmc.nl",
       "urls": [
-        "https://www.mmc.nl/over-ons/organisatie/raad-van-bestuur/"
+        "https://www.mmc.nl/over-ons/organisatie/raad-van-bestuur/",
+        "https://www.mmc.nl/nieuws/ai-als-extra-paar-ogen-snellere-en-betere-diagnoses-in-maxima-mc",
+        "https://www.mmc.nl/over-ons/wetenschap/ondersteuning-in-mmc"
       ]
     },
     {
@@ -364,7 +391,8 @@
       "instName": "Netherlands Cancer Institute",
       "emailDomain": "nki.nl",
       "urls": [
-        "https://www.nki.nl/research/technology-transfer"
+        "https://www.nki.nl/research/technology-transfer",
+        "https://www.nki.nl/research/research-groups/lodewyk-wessels/"
       ]
     },
     {
@@ -372,7 +400,9 @@
       "instName": "Princess Máxima Center",
       "emailDomain": "prinsesmaximacentrum.nl",
       "urls": [
-        "https://www.prinsesmaximacentrum.nl/nl/over-ons/organisatie-bestuur-en-advies/raad-van-bestuur"
+        "https://www.prinsesmaximacentrum.nl/nl/over-ons/organisatie-bestuur-en-advies/raad-van-bestuur",
+        "https://www.prinsesmaximacentrum.nl/en/professionals/research-groups/kemmeren-group",
+        "https://www.prinsesmaximacentrum.nl/en/professionals/about-our-research/knowledge-transfer-office-kto"
       ]
     },
     {
@@ -381,7 +411,8 @@
       "emailDomain": "radboudumc.nl",
       "urls": [
         "https://www.radboudumc.nl/en/research/grant-support-office",
-        "https://www.radboudumc.nl/en/research/grant-support-office/gso-services"
+        "https://www.radboudumc.nl/en/research/grant-support-office/gso-services",
+        "https://icai.ai/lab/radboud-ai-for-health-lab/"
       ]
     },
     {
@@ -399,7 +430,8 @@
       "emailDomain": "umcutrecht.nl",
       "urls": [
         "https://research.umcutrecht.nl/valorization-innovation/",
-        "https://research.umcutrecht.nl/medtech-valorization/"
+        "https://research.umcutrecht.nl/medtech-valorization/",
+        "https://research.umcutrecht.nl/research-groups/methods-for-ai-and-data-science/"
       ]
     },
     {
@@ -408,7 +440,8 @@
       "emailDomain": "umcg.nl",
       "urls": [
         "https://www.umcg.nl/-/over-het-umcg/organisatie",
-        "https://umcgresearch.org/w/research-support-umcg"
+        "https://umcgresearch.org/w/research-support-umcg",
+        "https://umcgresearch.org/w/dash"
       ]
     },
     {
