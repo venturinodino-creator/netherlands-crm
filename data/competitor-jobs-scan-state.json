@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-09-05T18:39:38.526Z",
+  "lastRun": "2026-09-06T11:34:37.819Z",
   "totalOpenRoles": 2,
   "perCompanyCounts": {
     "Digital Science": {
@@ -27,7 +27,7 @@
       "nlOrRemote": 1
     },
     "Anthropic": {
-      "total": 594,
+      "total": 593,
       "nlOrRemote": 0
     },
     "Elicit": {
