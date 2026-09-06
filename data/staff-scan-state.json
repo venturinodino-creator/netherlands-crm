@@ -1,12 +1,8 @@
 {
-  "lastRun": "2026-09-01T19:04:42.426Z",
-  "lastAddedCount": 46,
+  "lastRun": "2026-09-06T11:47:59.271Z",
+  "lastAddedCount": 31,
   "sources": 50,
   "issues": [
-    {
-      "instId": "ou",
-      "note": "no people extracted"
-    },
     {
       "instId": "cpb",
       "url": "https://www.cpb.nl/en/about-cpb",
@@ -66,20 +62,9 @@
       "note": "no people extracted"
     },
     {
-      "instId": "mmc",
-      "note": "no people extracted"
-    },
-    {
-      "instId": "nki",
-      "note": "no people extracted"
-    },
-    {
-      "instId": "maxima",
-      "note": "no people extracted"
-    },
-    {
-      "instId": "radboudumc",
-      "note": "no people extracted"
+      "instId": "erasmusmc",
+      "url": "https://www.erasmusmc-rdo.nl/about-us/",
+      "error": "fetch failed"
     },
     {
       "instId": "umcg",
