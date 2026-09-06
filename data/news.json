@@ -1,5 +1,79 @@
 [
   {
+    "id": "news-mzu88d",
+    "title": "Anthropic unveils Claude Fable 5.1 and Mythos 5.1 for coding and knowledge work - ET CIO",
+    "description": "Anthropic unveils Claude Fable 5.1 and Mythos 5.1 for coding and knowledge work&nbsp;&nbsp;ET CIO",
+    "institution": "Anthropic",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPZU04akFDMERQRzlndlAzM2pNWWhZSm5hcm1LLWVvNmhJMUR0eVJ1b3U3ODk0OS0wTmh1a2R5Nm5zYTNGTVlCOHhqQk9IX2t6REZtTWlXbGYzYmFfZ3ljZk9ETkFPdlhBU0ZUVkJ0eDdLVjZWdDJHWTBMaEkybnZDN0lUSjVNRkdIQkNlVmFSTkhJc1h1eUtuZ1h3VDlOWGxfZFNUR0tTbXFIcjNscVBMV3VPWkxxdGs3aEJpcTdKaFVjVFlCcWRjeXE2czhwakVGdzBoY2tnMVhuTnJfOFluMEZIdVpXS2cwR2d5bEwzWHXSAfYBQVVfeXFMTVRMWWpmYUN3UHRrNWYzWVNudXlHSUxlRjV6ZDBWdnhpa0ZDemkwMVE3dzRxQ0tuMXlBYmJsWkxqRG9XOExZZW14Mkh5N1FRRmF5MUJkUXI4eWhXTWtYd0REaXR",
+    "sourceName": "ET CIO",
+    "publishedDate": "2026-09-02",
+    "foundDate": "2026-09-02",
+    "autoDiscovered": true,
+    "bottomLine": "Anthropic releases Claude Fable 5.1 and Mythos 5.1, positioning advanced AI for coding and knowledge work against specialized research tools.",
+    "keyFindings": [
+      "Anthropic unveils two new Claude models: Fable 5.1 for coding tasks and Mythos 5.1 for knowledge work and research applications.",
+      "Models emphasize improved performance in specialized domains where researchers and developers currently rely on dedicated platforms.",
+      "Release timing suggests competitive positioning ahead of Anthropic's IPO, targeting enterprise and institutional markets."
+    ],
+    "whyItMatters": "Dutch research institutions evaluating AI-assisted research workflows may view Claude as an alternative to LeapSpace's integrated literature-search and writing-coach features; Elsevier must clarify domain-specific advantages of Scopus-backed, curation-verified research intelligence over general-purpose LLMs.",
+    "impact": {
+      "novelty": 3,
+      "commercial": 4,
+      "threat": 3,
+      "urgency": 3
+    },
+    "entities": [
+      "Anthropic",
+      "Claude Fable 5.1",
+      "Claude Mythos 5.1",
+      "ET CIO"
+    ],
+    "actionItems": [
+      "Map Claude Fable/Mythos capabilities against LeapSpace's writing-coach and code-review features; identify gaps in research-specific knowledge integration.",
+      "Prepare institutional messaging on Scopus-indexed content verification that standalone LLMs cannot guarantee for academic compliance."
+    ],
+    "sourceType": "secondary"
+  },
+  {
+    "id": "news-8o7br6",
+    "title": "Anthropic launches Claude Fable 5.1 and Mythos 5.1, claims major leap in coding and AI research - WION",
+    "description": "Anthropic launches Claude Fable 5.1 and Mythos 5.1, claims major leap in coding and AI research&nbsp;&nbsp;WION",
+    "institution": "Anthropic",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxNeFZfWlAxejNhUjBKY1Y2ekRMUzJ2cXNPLTJZZzZLV3JlaW5fVnd6N3JHTGhEV3lkVFpTREcwb0o4VUNjSGxGN1VhRnpfQjFBejVzOElnRmhkVGcyaTllUDM3UFF3cDV4TW9pdU1Bc0lYNmJsVWRuSUhmQ2VRY0Z0SVZQZUxVRU4zS3JpenFzb1BMOUpDRGxzZVEyb2ktODZyQm92d1c2aXdqcW45bWRCaWs1SkpyWHZwU3Q5WC1JVXVyRWdFQkF5ZkY3TF9hLVM5RDdFV19uMWFQaFnSAeABQVVfeXFMTnBSdzEzMWplQ0NoZkttX0VUOEVxYmFUbjRoSWxFa3B0X2pjZFZ0V0EtYkpUMjZpaUJjZFZxRVJGcndzZXFVM09KU1B5cnJqZVNsd253aFRPcFNMLVB6NkRxUWc0V2RhWDhBZ3FHdkY2c0lGbldDTEJ",
+    "sourceName": "WION",
+    "publishedDate": "2026-09-02",
+    "foundDate": "2026-09-03",
+    "autoDiscovered": true,
+    "bottomLine": "Anthropic claims major Fable and Mythos 5.1 advances in coding and AI research, directly targeting researcher and developer segments Elsevier is monetizing through ScienceDirect and LeapSpace.",
+    "keyFindings": [
+      "Fable 5.1 and Mythos 5.1 claim major leap in coding capabilities and AI research performance.",
+      "Major leap positioning signals confidence in competitive advantage vs. OpenAI, Google, and other foundation model competitors.",
+      "Dual-track coding + AI research focus aligns with high-value researcher and engineer demographics."
+    ],
+    "whyItMatters": "Dutch AI research centres and engineering institutes may adopt Fable/Mythos as primary research and coding assistance tool, displacing LeapSpace adoption and reducing ScienceDirect/Scopus dependency if models claim sufficient research knowledge depth.",
+    "impact": {
+      "novelty": 4,
+      "commercial": 5,
+      "threat": 5,
+      "urgency": 5
+    },
+    "entities": [
+      "Anthropic",
+      "Claude Fable 5.1",
+      "Mythos 5.1",
+      "WION"
+    ],
+    "actionItems": [
+      "Schedule competitive deep-dive with Elsevier product team: measure Fable/Mythos 5.1 on ScienceDirect research retrieval, citation accuracy, and claim verification vs. LeapSpace baseline.",
+      "Launch targeted campaign to Dutch AI/CS research institutes: position LeapSpace + ScienceDirect as grounded research infrastructure; offer integration test with Fable/Mythos APIs to show…"
+    ],
+    "sourceType": "secondary"
+  },
+  {
     "id": "news-t8s50w",
     "title": "OpenAI launches GPT-6 Astra, claims new AI capabilities bring it closer to human-level intelligence - Moneycontrol.com",
     "description": "OpenAI launches GPT-6 Astra, claims new AI capabilities bring it closer to human-level intelligence&nbsp;&nbsp;Moneycontrol.com",
@@ -48,7 +122,32 @@
     "sourceName": "ETV Bharat",
     "publishedDate": "2026-09-04",
     "foundDate": "2026-09-05",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "bottomLine": "OpenAI's GPT-6 Astra represents a major leap in AI capabilities, positioning OpenAI as the leader in advancing towards AGI—a direct competitive threat to Elsevier's AI-assisted research tools.",
+    "keyFindings": [
+      "GPT-6 Astra is OpenAI's most advanced model yet, with significantly improved reasoning, multimodal understanding, and real-time capabilities.",
+      "The model demonstrates major advances toward artificial general intelligence (AGI), raising the bar for autonomous AI research assistants.",
+      "Enhanced alignment and safety mechanisms suggest OpenAI is addressing regulatory and trust concerns in enterprise deployment.",
+      "Real-time processing and improved context retention enable more sophisticated research workflows and reasoning tasks."
+    ],
+    "whyItMatters": "Netherlands research institutions and universities will face pressure to adopt superior AI research assistants; if GPT-6 Astra outperforms LeapSpace's AI features, Elsevier risks losing ScienceDirect/Scopus subscriptions to integrated OpenAI research tools.",
+    "impact": {
+      "novelty": 5,
+      "commercial": 5,
+      "threat": 5,
+      "urgency": 5
+    },
+    "entities": [
+      "OpenAI",
+      "GPT-6 Astra",
+      "ETV Bharat"
+    ],
+    "actionItems": [
+      "Audit LeapSpace's AI capabilities against GPT-6 Astra benchmarks; identify feature gaps in reasoning, multimodal search, and real-time analysis.",
+      "Prepare messaging emphasizing ScienceDirect's authoritative content, Scopus citation quality, and LeapSpace's research-specific curated workflows vs. general-purpose AI.",
+      "Brief Dutch university librarians and research office heads on Elsevier's AI roadmap and competitive positioning before OpenAI sales outreach begins."
+    ],
+    "sourceType": "secondary"
   },
   {
     "id": "news-dqu798",
@@ -61,7 +160,32 @@
     "sourceName": "Gulf Business",
     "publishedDate": "2026-09-04",
     "foundDate": "2026-09-05",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "bottomLine": "GPT-6 Astra showcases OpenAI's new multimodal and autonomous capabilities—a wake-up call for Elsevier to accelerate LeapSpace's competitive differentiation in the Netherlands market.",
+    "keyFindings": [
+      "GPT-6 Astra handles image, video, and text analysis simultaneously, enabling richer literature and data interpretation than text-only search.",
+      "The model supports autonomous agent behavior, allowing self-directed research task completion without constant user guidance.",
+      "Improved reasoning chains enable more complex hypothesis testing and literature synthesis workflows.",
+      "Enterprise-grade safety and alignment features position it as institutional-ready, lowering adoption friction for universities."
+    ],
+    "whyItMatters": "If Dutch universities adopt GPT-6 Astra as their primary research assistant, they may deprioritize LeapSpace subscriptions; Elsevier must urgently demonstrate that ScienceDirect content + Scopus data + LeapSpace workflow together outperform standalone general-purpose AI.",
+    "impact": {
+      "novelty": 4,
+      "commercial": 5,
+      "threat": 5,
+      "urgency": 5
+    },
+    "entities": [
+      "OpenAI",
+      "GPT-6 Astra",
+      "Gulf Business"
+    ],
+    "actionItems": [
+      "Commission independent performance benchmarking: LeapSpace + ScienceDirect/Scopus vs. GPT-6 Astra on real-world research tasks (literature synthesis, grant discovery, claim verification).",
+      "Develop case studies showing how integrated content + citation data + AI outperforms general models for reproducibility and academic rigor.",
+      "Launch proactive outreach to Dutch research offices highlighting LeapSpace's institutional control, audit trails, and research-specific training data."
+    ],
+    "sourceType": "secondary"
   },
   {
     "id": "news-r229t2",
@@ -74,7 +198,32 @@
     "sourceName": "HPCwire",
     "publishedDate": "2026-09-04",
     "foundDate": "2026-09-05",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "bottomLine": "CrowdStrike–OpenAI partnership signals enterprise AI integration in security and workflow tools—a market expansion that could eclipse Elsevier's research-platform positioning if OpenAI expands into academic/institutional research.",
+    "keyFindings": [
+      "CrowdStrike and OpenAI are deepening integration to secure and optimize AI agent deployments in enterprise environments.",
+      "Partnership focuses on the 'agentic era,' where autonomous AI systems perform complex multi-step tasks with minimal human oversight.",
+      "Security considerations around AI agents will shape institutional adoption decisions and risk governance frameworks.",
+      "Joint go-to-market strategy could accelerate OpenAI's embedded presence in enterprise and institutional IT stacks."
+    ],
+    "whyItMatters": "As OpenAI becomes embedded in institutional security and IT infrastructure through enterprise partnerships, it gains direct access to university procurement and decision-making; Elsevier must ensure LeapSpace is positioned as a research-native, governance-friendly alternative within these IT ecosystems.",
+    "impact": {
+      "novelty": 3,
+      "commercial": 4,
+      "threat": 4,
+      "urgency": 4
+    },
+    "entities": [
+      "OpenAI",
+      "CrowdStrike",
+      "HPCwire"
+    ],
+    "actionItems": [
+      "Map CrowdStrike's customer base in Netherlands and assess overlap with Elsevier ScienceDirect/Scopus institutions; identify account cross-sell risks.",
+      "Develop security and governance documentation for LeapSpace addressing institutional compliance (data residency, audit logs, user controls).",
+      "Engage Dutch university IT and security teams proactively to position Elsevier as a research-specialized, secure alternative to general OpenAI integration."
+    ],
+    "sourceType": "secondary"
   },
   {
     "id": "news-ii1s8z",
@@ -87,7 +236,32 @@
     "sourceName": "Fox Business",
     "publishedDate": "2026-09-03",
     "foundDate": "2026-09-05",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "bottomLine": "OpenAI's framing of GPT-6 Astra as entering the 'AGI era' is a major marketing narrative that positions general-purpose AI as the default research tool—a strategic threat to Elsevier's domain-specific research platform positioning.",
+    "keyFindings": [
+      "OpenAI publicly claims GPT-6 Astra represents entry into the AGI era, signaling capability parity with human-level reasoning.",
+      "Marketing narrative emphasizes universality and autonomy, implying general-purpose AI can replace specialized research tools.",
+      "Claims of major capability advances across reasoning, memory, and multimodal understanding are designed to drive rapid institutional adoption.",
+      "Fox Business coverage amplifies consumer and institutional perception that OpenAI is the definitive AI research solution."
+    ],
+    "whyItMatters": "Dutch university decision-makers reading mainstream media coverage may assume GPT-6 Astra supersedes specialized research platforms like LeapSpace; Elsevier must counter-message by showing that authoritative content + citations + research workflows cannot be replicated by general models without institutional knowledge governance.",
+    "impact": {
+      "novelty": 3,
+      "commercial": 5,
+      "threat": 5,
+      "urgency": 5
+    },
+    "entities": [
+      "OpenAI",
+      "GPT-6 Astra",
+      "Fox Business"
+    ],
+    "actionItems": [
+      "Create thought leadership content for Dutch research officers comparing AGI claims to research-specific requirements (citation accuracy, research ethics, institutional audit trails).",
+      "Prepare sales talking points addressing 'why general AI ≠ research AI' (hallucination risks, lack of domain curation, no compliance governance).",
+      "Brief ScienceDirect editorial and Scopus teams to develop co-authored commentary on AI's role in peer review and research integrity."
+    ],
+    "sourceType": "secondary"
   },
   {
     "id": "news-uykf6t",
@@ -100,7 +274,31 @@
     "sourceName": "OpenAI",
     "publishedDate": "2026-09-05",
     "foundDate": "2026-09-05",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "bottomLine": "OpenAI's official GPT-6 Astra announcement confirms aggressive product roadmap and institutional go-to-market push—Elsevier must accelerate LeapSpace differentiation and competitive messaging immediately.",
+    "keyFindings": [
+      "OpenAI positions GPT-6 Astra as a generational leap with breakthrough multimodal, reasoning, and autonomous capabilities.",
+      "Official positioning emphasizes accessibility and ease of adoption, targeting institutional buyers with minimal integration friction.",
+      "Product announcement includes detailed capability comparisons and use-case narratives designed to drive large-scale procurement.",
+      "Timeline for broader rollout and integration partnerships is being accelerated to capture market share before competitor responses mature."
+    ],
+    "whyItMatters": "As OpenAI's official announcement confirms rapid iteration and institutional targeting, Dutch university CTOs and library directors will face immediate budget pressure to evaluate OpenAI vs. Elsevier; Elsevier must move fast with proof-of-value pilots and messaging that LeapSpace + ScienceDirect/Scopus delivers superior research outcomes, not just AI features.",
+    "impact": {
+      "novelty": 5,
+      "commercial": 5,
+      "threat": 5,
+      "urgency": 5
+    },
+    "entities": [
+      "OpenAI",
+      "GPT-6 Astra"
+    ],
+    "actionItems": [
+      "Initiate emergency competitive assessment: map GPT-6 Astra feature set against LeapSpace roadmap; identify quick wins and must-have feature gaps.",
+      "Launch 90-day pilot program targeting top 10 Dutch research institutions with free/discounted LeapSpace access bundled with ScienceDirect/Scopus.",
+      "Prepare board-level summary for Elsevier leadership on market threat and required investment/timeline to maintain competitive positioning in Netherlands academic sector."
+    ],
+    "sourceType": "primary"
   },
   {
     "id": "news-fi26ok",
@@ -113,7 +311,32 @@
     "sourceName": "TechInsights",
     "publishedDate": "2026-09-03",
     "foundDate": "2026-09-05",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "bottomLine": "STMicroelectronics' UWB chipset launch is tangential to Elsevier's core research platform business and poses no direct competitive threat to ScienceDirect, Scopus, or LeapSpace.",
+    "keyFindings": [
+      "STMicroelectronics released a fully integrated ultra-wideband (UWB) solution compliant with IEEE 802.15.4z and 4ab standards.",
+      "The product targets IoT, location sensing, and real-time device communication applications—hardware/semiconductor domain, not research/academic software.",
+      "UWB technology enables precise indoor localization and secure short-range communication for industrial and consumer devices.",
+      "Standards compliance positions the chipset for broad enterprise IoT deployment but has no direct application to scholarly research or academic publishing."
+    ],
+    "whyItMatters": "This announcement is irrelevant to Elsevier's ScienceDirect, Scopus, and LeapSpace business model and poses no competitive or strategic threat; sales teams should deprioritize this article and focus on OpenAI/GPT-6 developments, which directly threaten research-platform market share.",
+    "impact": {
+      "novelty": 3,
+      "commercial": 2,
+      "threat": 1,
+      "urgency": 1
+    },
+    "entities": [
+      "STMicroelectronics",
+      "IEEE 802.15.4z",
+      "IEEE 802.15.4ab"
+    ],
+    "actionItems": [
+      "File article as non-actionable for Elsevier research-platform sales; do not allocate sales resources.",
+      "Refocus competitive monitoring on AI research assistants, literature platforms, and research-software vendors—not semiconductor manufacturers.",
+      "Continue tracking OpenAI, Google Scholar, Semantic Scholar, and Clarivate/Web of Science as primary competitive threats."
+    ],
+    "sourceType": "secondary"
   },
   {
     "id": "news-m7yel8",
@@ -526,80 +749,6 @@
     "actionItems": [
       "Benchmark LeapSpace's writing coach and claim-checking features against Fable/Mythos 5.1 capabilities; document gaps and advantages.",
       "Create messaging for research IT decision-makers on why domain-specific (Scopus-indexed) knowledge + general reasoning beats generic LLM for peer-reviewed research."
-    ],
-    "sourceType": "secondary"
-  },
-  {
-    "id": "news-8o7br6",
-    "title": "Anthropic launches Claude Fable 5.1 and Mythos 5.1, claims major leap in coding and AI research - WION",
-    "description": "Anthropic launches Claude Fable 5.1 and Mythos 5.1, claims major leap in coding and AI research&nbsp;&nbsp;WION",
-    "institution": "Anthropic",
-    "category": "competitor_announcements",
-    "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxNeFZfWlAxejNhUjBKY1Y2ekRMUzJ2cXNPLTJZZzZLV3JlaW5fVnd6N3JHTGhEV3lkVFpTREcwb0o4VUNjSGxGN1VhRnpfQjFBejVzOElnRmhkVGcyaTllUDM3UFF3cDV4TW9pdU1Bc0lYNmJsVWRuSUhmQ2VRY0Z0SVZQZUxVRU4zS3JpenFzb1BMOUpDRGxzZVEyb2ktODZyQm92d1c2aXdqcW45bWRCaWs1SkpyWHZwU3Q5WC1JVXVyRWdFQkF5ZkY3TF9hLVM5RDdFV19uMWFQaFnSAeABQVVfeXFMTnBSdzEzMWplQ0NoZkttX0VUOEVxYmFUbjRoSWxFa3B0X2pjZFZ0V0EtYkpUMjZpaUJjZFZxRVJGcndzZXFVM09KU1B5cnJqZVNsd253aFRPcFNMLVB6NkRxUWc0V2RhWDhBZ3FHdkY2c0lGbldDTEJ",
-    "sourceName": "WION",
-    "publishedDate": "2026-09-02",
-    "foundDate": "2026-09-03",
-    "autoDiscovered": true,
-    "bottomLine": "Anthropic claims major Fable and Mythos 5.1 advances in coding and AI research, directly targeting researcher and developer segments Elsevier is monetizing through ScienceDirect and LeapSpace.",
-    "keyFindings": [
-      "Fable 5.1 and Mythos 5.1 claim major leap in coding capabilities and AI research performance.",
-      "Major leap positioning signals confidence in competitive advantage vs. OpenAI, Google, and other foundation model competitors.",
-      "Dual-track coding + AI research focus aligns with high-value researcher and engineer demographics."
-    ],
-    "whyItMatters": "Dutch AI research centres and engineering institutes may adopt Fable/Mythos as primary research and coding assistance tool, displacing LeapSpace adoption and reducing ScienceDirect/Scopus dependency if models claim sufficient research knowledge depth.",
-    "impact": {
-      "novelty": 4,
-      "commercial": 5,
-      "threat": 5,
-      "urgency": 5
-    },
-    "entities": [
-      "Anthropic",
-      "Claude Fable 5.1",
-      "Mythos 5.1",
-      "WION"
-    ],
-    "actionItems": [
-      "Schedule competitive deep-dive with Elsevier product team: measure Fable/Mythos 5.1 on ScienceDirect research retrieval, citation accuracy, and claim verification vs. LeapSpace baseline.",
-      "Launch targeted campaign to Dutch AI/CS research institutes: position LeapSpace + ScienceDirect as grounded research infrastructure; offer integration test with Fable/Mythos APIs to show…"
-    ],
-    "sourceType": "secondary"
-  },
-  {
-    "id": "news-mzu88d",
-    "title": "Anthropic unveils Claude Fable 5.1 and Mythos 5.1 for coding and knowledge work - ET CIO",
-    "description": "Anthropic unveils Claude Fable 5.1 and Mythos 5.1 for coding and knowledge work&nbsp;&nbsp;ET CIO",
-    "institution": "Anthropic",
-    "category": "competitor_announcements",
-    "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPZU04akFDMERQRzlndlAzM2pNWWhZSm5hcm1LLWVvNmhJMUR0eVJ1b3U3ODk0OS0wTmh1a2R5Nm5zYTNGTVlCOHhqQk9IX2t6REZtTWlXbGYzYmFfZ3ljZk9ETkFPdlhBU0ZUVkJ0eDdLVjZWdDJHWTBMaEkybnZDN0lUSjVNRkdIQkNlVmFSTkhJc1h1eUtuZ1h3VDlOWGxfZFNUR0tTbXFIcjNscVBMV3VPWkxxdGs3aEJpcTdKaFVjVFlCcWRjeXE2czhwakVGdzBoY2tnMVhuTnJfOFluMEZIdVpXS2cwR2d5bEwzWHXSAfYBQVVfeXFMTVRMWWpmYUN3UHRrNWYzWVNudXlHSUxlRjV6ZDBWdnhpa0ZDemkwMVE3dzRxQ0tuMXlBYmJsWkxqRG9XOExZZW14Mkh5N1FRRmF5MUJkUXI4eWhXTWtYd0REaXR",
-    "sourceName": "ET CIO",
-    "publishedDate": "2026-09-02",
-    "foundDate": "2026-09-02",
-    "autoDiscovered": true,
-    "bottomLine": "Anthropic releases Claude Fable 5.1 and Mythos 5.1, positioning advanced AI for coding and knowledge work against specialized research tools.",
-    "keyFindings": [
-      "Anthropic unveils two new Claude models: Fable 5.1 for coding tasks and Mythos 5.1 for knowledge work and research applications.",
-      "Models emphasize improved performance in specialized domains where researchers and developers currently rely on dedicated platforms.",
-      "Release timing suggests competitive positioning ahead of Anthropic's IPO, targeting enterprise and institutional markets."
-    ],
-    "whyItMatters": "Dutch research institutions evaluating AI-assisted research workflows may view Claude as an alternative to LeapSpace's integrated literature-search and writing-coach features; Elsevier must clarify domain-specific advantages of Scopus-backed, curation-verified research intelligence over general-purpose LLMs.",
-    "impact": {
-      "novelty": 3,
-      "commercial": 4,
-      "threat": 3,
-      "urgency": 3
-    },
-    "entities": [
-      "Anthropic",
-      "Claude Fable 5.1",
-      "Claude Mythos 5.1",
-      "ET CIO"
-    ],
-    "actionItems": [
-      "Map Claude Fable/Mythos capabilities against LeapSpace's writing-coach and code-review features; identify gaps in research-specific knowledge integration.",
-      "Prepare institutional messaging on Scopus-indexed content verification that standalone LLMs cannot guarantee for academic compliance."
     ],
     "sourceType": "secondary"
   },

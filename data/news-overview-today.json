@@ -1,33 +1,16 @@
 {
-  "generatedAt": "2026-09-05T11:08:15.555Z",
-  "articleCount": 1,
-  "headline": "OpenAI's GPT-6 Astra Escalates AI Race; Dutch Institutions Face Urgent Research Tool Evolution",
-  "bottomLine": "OpenAI's GPT-6 Astra represents a major leap in AI capabilities that will reshape how researchers discover, analyze, and synthesize scholarly content, forcing Dutch institutions to reassess their research infrastructure investments…",
-  "keyFindings": [
-    "GPT-6 Astra signals OpenAI's dominance in generative AI, directly competing with Elsevier's AI-assisted research features and threatening traditional literature discovery workflows across Dutch…",
-    "Next-generation AI models are now capable of deeper reasoning and multimodal understanding, raising expectations for research tools beyond simple search—Dutch institutions will demand integrated AI…",
-    "Competitive pressure from free or low-cost AI research assistants (Semantic Scholar, Elicit, Consensus, Google Scholar) intensifies, making value differentiation through…"
-  ],
-  "whyItMatters": "Dutch research institutions face immediate pressure to upgrade research infrastructure to remain competitive globally. Elsevier must rapidly demonstrate LeapSpace's competitive advantage over standalone AI tools and emphasize integrated discovery, analysis, and validation capabilities.",
+  "generatedAt": "2026-09-06T11:31:14.113Z",
+  "articleCount": 0,
+  "headline": "",
+  "bottomLine": "No live stories to summarize yet.",
+  "keyFindings": [],
+  "whyItMatters": "",
   "impact": {
-    "novelty": 5,
-    "commercial": 4,
-    "threat": 5,
-    "urgency": 5
+    "novelty": 3,
+    "commercial": 3,
+    "threat": 3,
+    "urgency": 3
   },
-  "entities": [
-    "OpenAI",
-    "GPT-6 Astra",
-    "Elsevier",
-    "ScienceDirect",
-    "Scopus",
-    "LeapSpace",
-    "Semantic Scholar",
-    "Google Scholar"
-  ],
-  "actionItems": [
-    "Immediately brief Dutch sales team on LeapSpace differentiators (claim-checking, deep research reports, paper comparison) that GPT-6 Astra cannot replicate without Scopus/ScienceDirect integration;…",
-    "Prioritize discovery meetings with top 5-10 Dutch research institutions to understand current AI tool adoption and unmet needs; position LeapSpace as 'research OS' versus standalone chatbots.",
-    "Accelerate product roadmap communication: clarify LeapSpace's advantage in scholarly-context-aware AI (curated content, citation validation) versus general-purpose LLMs; schedule product demo cycles…"
-  ]
+  "entities": [],
+  "actionItems": []
 }
