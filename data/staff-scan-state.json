@@ -1,8 +1,17 @@
 {
-  "lastRun": "2026-09-06T11:47:59.271Z",
-  "lastAddedCount": 31,
+  "lastRun": "2026-09-07T13:42:15.396Z",
+  "lastAddedCount": 1,
   "sources": 50,
   "issues": [
+    {
+      "instId": "astron",
+      "url": "https://www.astron.nl/about/organisation/management/",
+      "error": "This operation was aborted"
+    },
+    {
+      "instId": "astron",
+      "note": "no people extracted"
+    },
     {
       "instId": "cpb",
       "url": "https://www.cpb.nl/en/about-cpb",
@@ -30,20 +39,6 @@
       "note": "no people extracted"
     },
     {
-      "instId": "nikhef",
-      "url": "https://www.nikhef.nl/en/nikhef/organisation/",
-      "error": "fetch failed"
-    },
-    {
-      "instId": "nikhef",
-      "url": "https://www.nikhef.nl/en/director/",
-      "error": "fetch failed"
-    },
-    {
-      "instId": "nikhef",
-      "note": "no people extracted"
-    },
-    {
       "instId": "knaw",
       "url": "https://www.knaw.nl/en/about-knaw/organisation-board-and-management",
       "error": "HTTP 403"
@@ -60,11 +55,6 @@
     {
       "instId": "scp",
       "note": "no people extracted"
-    },
-    {
-      "instId": "erasmusmc",
-      "url": "https://www.erasmusmc-rdo.nl/about-us/",
-      "error": "fetch failed"
     },
     {
       "instId": "umcg",

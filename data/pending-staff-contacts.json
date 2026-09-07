@@ -955,5 +955,16 @@
     "email": "inge.wiendels@prinsesmaximacentrum.nl",
     "constructed": true,
     "source": "https://www.prinsesmaximacentrum.nl/en/professionals/about-our-research/knowledge-transfer-office-kto"
+  },
+  {
+    "first": "Jorgen",
+    "last": "D’Hondt",
+    "title": "director Nikhef (2024 – now)",
+    "dept": "Library & Research Support",
+    "instId": "nikhef",
+    "instName": "Nikhef",
+    "email": "jorgen.dhondt@nikhef.nl",
+    "constructed": true,
+    "source": "https://www.nikhef.nl/en/director/"
   }
 ]
