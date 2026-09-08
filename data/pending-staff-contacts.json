@@ -966,5 +966,38 @@
     "email": "jorgen.dhondt@nikhef.nl",
     "constructed": true,
     "source": "https://www.nikhef.nl/en/director/"
+  },
+  {
+    "first": "Menno",
+    "last": "Rasch",
+    "title": "Director",
+    "dept": "Library & Research Support",
+    "instId": "esc",
+    "instName": "Netherlands eScience Center",
+    "email": "menno.rasch@esciencecenter.nl",
+    "constructed": true,
+    "source": "https://www.esciencecenter.nl/meet-our-team/"
+  },
+  {
+    "first": "Valentina",
+    "last": "Azzarà",
+    "title": "Section Head, Social Sciences & Humanities",
+    "dept": "Library & Research Support",
+    "instId": "esc",
+    "instName": "Netherlands eScience Center",
+    "email": "valentina.azzara@esciencecenter.nl",
+    "constructed": true,
+    "source": "https://www.esciencecenter.nl/meet-our-team/"
+  },
+  {
+    "first": "Eva",
+    "last": "Lekkerkerker",
+    "title": "Network Coordinator for Research Software Training NL",
+    "dept": "Library & Research Support",
+    "instId": "esc",
+    "instName": "Netherlands eScience Center",
+    "email": "eva.lekkerkerker@esciencecenter.nl",
+    "constructed": true,
+    "source": "https://www.esciencecenter.nl/meet-our-team/"
   }
 ]

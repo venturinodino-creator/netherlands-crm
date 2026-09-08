@@ -1,17 +1,8 @@
 {
-  "lastRun": "2026-09-07T13:42:15.396Z",
-  "lastAddedCount": 1,
+  "lastRun": "2026-09-08T12:19:35.473Z",
+  "lastAddedCount": 3,
   "sources": 50,
   "issues": [
-    {
-      "instId": "astron",
-      "url": "https://www.astron.nl/about/organisation/management/",
-      "error": "This operation was aborted"
-    },
-    {
-      "instId": "astron",
-      "note": "no people extracted"
-    },
     {
       "instId": "cpb",
       "url": "https://www.cpb.nl/en/about-cpb",
@@ -35,7 +26,17 @@
       "note": "no people extracted"
     },
     {
-      "instId": "esc",
+      "instId": "nikhef",
+      "url": "https://www.nikhef.nl/en/nikhef/organisation/",
+      "error": "fetch failed"
+    },
+    {
+      "instId": "nikhef",
+      "url": "https://www.nikhef.nl/en/director/",
+      "error": "fetch failed"
+    },
+    {
+      "instId": "nikhef",
       "note": "no people extracted"
     },
     {
