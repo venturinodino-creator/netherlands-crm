@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-09-07T13:22:18.947Z",
+  "lastRun": "2026-09-08T12:02:43.758Z",
   "totalOpenRoles": 2,
   "perCompanyCounts": {
     "Digital Science": {
@@ -11,11 +11,11 @@
       "nlOrRemote": 0
     },
     "Clarivate": {
-      "total": 171,
+      "total": 172,
       "nlOrRemote": 0
     },
     "Springer Nature": {
-      "total": 59,
+      "total": 56,
       "nlOrRemote": 0
     },
     "Wiley": {
@@ -27,7 +27,7 @@
       "nlOrRemote": 1
     },
     "Anthropic": {
-      "total": 589,
+      "total": 587,
       "nlOrRemote": 0
     },
     "Elicit": {
