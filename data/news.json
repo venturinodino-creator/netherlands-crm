@@ -1,81 +1,5 @@
 [
   {
-    "id": "news-x72qpj",
-    "title": "Anthropic Launches Claude Fable 5.1 and Restricted Mythos 5.1 for Advanced Coding, Cybersecurity and Scientific Research - LinkedIn",
-    "description": "Anthropic Launches Claude Fable 5.1 and Restricted Mythos 5.1 for Advanced Coding, Cybersecurity and Scientific Research&nbsp;&nbsp;LinkedIn",
-    "institution": "Anthropic",
-    "category": "competitor_announcements",
-    "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOczZLQWhJUjZVdEs0cnFXVmktX2JTaDFVVEFVX3hQLU8zcmtTQjJzd1Y1cHZVVmNsenBIWDRIOW4zbndpZGZMaEJWVlJQN1FBeWNMck9ObDlEQW5GSmVBSU4zRTIyRWdDSUhiMDV3aGUxd1BGcXRRajJLUldMOWlJOUtEUDBzTjBQRko2MEFyVjNKcDA?oc=5",
-    "sourceName": "LinkedIn",
-    "publishedDate": "2026-09-05",
-    "foundDate": "2026-09-07",
-    "autoDiscovered": true
-  },
-  {
-    "id": "news-9xctab",
-    "title": "OpenAI launches GPT-6 Astra, Sam Altman calls it best AI model in the world - India Today",
-    "description": "OpenAI launches GPT-6 Astra, Sam Altman calls it best AI model in the world&nbsp;&nbsp;India Today",
-    "institution": "OpenAI",
-    "category": "competitor_announcements",
-    "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNcU5ELXNlZGlWTzlWVW9lNXZGTDcxaG9QSWZhLXJ2Wm5reWRncXFNcUllRjhQcWE4MmY1S3lZTDdQVnpsUDNEYV9CTzZIN1FJcU9JV0lNYm1xclBXdEdHamtQcEFmQU1ESlpWTGowdGpFQlhza3BZblNyVUVlckF2cnVhcnYzaUlOR1hLN3BTS196NkxyRzd1cUtSNEg0R3JiZXE2ZXVkV1AtSFp3ZjlpQV9yYWlRbVg3M3MyWjlwc3RCTldVVERiN0VqOGljWEM4Q21uS2U3bUbSAd4BQVVfeXFMTUc5TnhpY0pPRHlfd1J6V3hHVXRiOEpHUHRFRTM2Uy1pXzN0MERsQzd1RXI2cXE3RlNhU2RIdUxneFV1RkYtMzU1ekJFTWJ1c1dMUC01U05wbnJBSkV4QkFBdTAzT2V6cDBxQVpwcDBHTF9rSmhsTW9DUUZ",
-    "sourceName": "India Today",
-    "publishedDate": "2026-09-04",
-    "foundDate": "2026-09-07",
-    "autoDiscovered": true
-  },
-  {
-    "id": "news-zd4uvd",
-    "title": "OpenAI Launches GPT-6 Astra, Its Most Advanced And Aligned AI Model Yet - ETV Bharat",
-    "description": "OpenAI Launches GPT-6 Astra, Its Most Advanced And Aligned AI Model Yet&nbsp;&nbsp;ETV Bharat",
-    "institution": "OpenAI",
-    "category": "competitor_announcements",
-    "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQQXRSd2VEU044cWkwaGtPQS1lSGFsSnFnNHExN0QxSEFaQ2ZJaTlpTjc4VEloNzhDV3IyZlRRdnhmRTBNb0xmUEVoMGljLTYyOERfU3VYUG1JSGMtU1E0S1BjYjQ2Vk5VSGVpOEtrLW5BOUZhREY5VmlIaDFTZm13VFNFc3o1cTlYcVdWWElnMTdfc2stMkh5Vm50dGdqT0NjV3AwU2t6M2g3cThzNmpfYW9JdXgtNFhYODZXLVVNTUNGdWfSAcgBQVVfeXFMT0VQa0JnVVFUMEtURy1lbWRENG14SkRZMmowMHdqNElvY0FKOW1uYlBuTWF2MWZNSHhKRFdTd2R1VDBKNlpndG1VdzR5cjd3anpiQkNEVy1WUDRmNlI4MGtUczNWenBsbVltSzRaNngwb2k4bmdaWVRnUkhiN19wRldnNnQ3SlF4TlJ3SHJHdHU",
-    "sourceName": "ETV Bharat",
-    "publishedDate": "2026-09-04",
-    "foundDate": "2026-09-07",
-    "autoDiscovered": true
-  },
-  {
-    "id": "news-mzu88d",
-    "title": "Anthropic unveils Claude Fable 5.1 and Mythos 5.1 for coding and knowledge work - ET CIO",
-    "description": "Anthropic unveils Claude Fable 5.1 and Mythos 5.1 for coding and knowledge work&nbsp;&nbsp;ET CIO",
-    "institution": "Anthropic",
-    "category": "competitor_announcements",
-    "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPZU04akFDMERQRzlndlAzM2pNWWhZSm5hcm1LLWVvNmhJMUR0eVJ1b3U3ODk0OS0wTmh1a2R5Nm5zYTNGTVlCOHhqQk9IX2t6REZtTWlXbGYzYmFfZ3ljZk9ETkFPdlhBU0ZUVkJ0eDdLVjZWdDJHWTBMaEkybnZDN0lUSjVNRkdIQkNlVmFSTkhJc1h1eUtuZ1h3VDlOWGxfZFNUR0tTbXFIcjNscVBMV3VPWkxxdGs3aEJpcTdKaFVjVFlCcWRjeXE2czhwakVGdzBoY2tnMVhuTnJfOFluMEZIdVpXS2cwR2d5bEwzWHXSAfYBQVVfeXFMTVRMWWpmYUN3UHRrNWYzWVNudXlHSUxlRjV6ZDBWdnhpa0ZDemkwMVE3dzRxQ0tuMXlBYmJsWkxqRG9XOExZZW14Mkh5N1FRRmF5MUJkUXI4eWhXTWtYd0REaXR",
-    "sourceName": "ET CIO",
-    "publishedDate": "2026-09-02",
-    "foundDate": "2026-09-02",
-    "autoDiscovered": true,
-    "bottomLine": "Anthropic releases Claude Fable 5.1 and Mythos 5.1, positioning advanced AI for coding and knowledge work against specialized research tools.",
-    "keyFindings": [
-      "Anthropic unveils two new Claude models: Fable 5.1 for coding tasks and Mythos 5.1 for knowledge work and research applications.",
-      "Models emphasize improved performance in specialized domains where researchers and developers currently rely on dedicated platforms.",
-      "Release timing suggests competitive positioning ahead of Anthropic's IPO, targeting enterprise and institutional markets."
-    ],
-    "whyItMatters": "Dutch research institutions evaluating AI-assisted research workflows may view Claude as an alternative to LeapSpace's integrated literature-search and writing-coach features; Elsevier must clarify domain-specific advantages of Scopus-backed, curation-verified research intelligence over general-purpose LLMs.",
-    "impact": {
-      "novelty": 3,
-      "commercial": 4,
-      "threat": 3,
-      "urgency": 3
-    },
-    "entities": [
-      "Anthropic",
-      "Claude Fable 5.1",
-      "Claude Mythos 5.1",
-      "ET CIO"
-    ],
-    "actionItems": [
-      "Map Claude Fable/Mythos capabilities against LeapSpace's writing-coach and code-review features; identify gaps in research-specific knowledge integration.",
-      "Prepare institutional messaging on Scopus-indexed content verification that standalone LLMs cannot guarantee for academic compliance."
-    ],
-    "sourceType": "secondary"
-  },
-  {
     "id": "news-8o7br6",
     "title": "Anthropic launches Claude Fable 5.1 and Mythos 5.1, claims major leap in coding and AI research - WION",
     "description": "Anthropic launches Claude Fable 5.1 and Mythos 5.1, claims major leap in coding and AI research&nbsp;&nbsp;WION",
@@ -109,6 +33,43 @@
     "actionItems": [
       "Schedule competitive deep-dive with Elsevier product team: measure Fable/Mythos 5.1 on ScienceDirect research retrieval, citation accuracy, and claim verification vs. LeapSpace baseline.",
       "Launch targeted campaign to Dutch AI/CS research institutes: position LeapSpace + ScienceDirect as grounded research infrastructure; offer integration test with Fable/Mythos APIs to show…"
+    ],
+    "sourceType": "secondary"
+  },
+  {
+    "id": "news-zd4uvd",
+    "title": "OpenAI Launches GPT-6 Astra, Its Most Advanced And Aligned AI Model Yet - ETV Bharat",
+    "description": "OpenAI Launches GPT-6 Astra, Its Most Advanced And Aligned AI Model Yet&nbsp;&nbsp;ETV Bharat",
+    "institution": "OpenAI",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQQXRSd2VEU044cWkwaGtPQS1lSGFsSnFnNHExN0QxSEFaQ2ZJaTlpTjc4VEloNzhDV3IyZlRRdnhmRTBNb0xmUEVoMGljLTYyOERfU3VYUG1JSGMtU1E0S1BjYjQ2Vk5VSGVpOEtrLW5BOUZhREY5VmlIaDFTZm13VFNFc3o1cTlYcVdWWElnMTdfc2stMkh5Vm50dGdqT0NjV3AwU2t6M2g3cThzNmpfYW9JdXgtNFhYODZXLVVNTUNGdWfSAcgBQVVfeXFMT0VQa0JnVVFUMEtURy1lbWRENG14SkRZMmowMHdqNElvY0FKOW1uYlBuTWF2MWZNSHhKRFdTd2R1VDBKNlpndG1VdzR5cjd3anpiQkNEVy1WUDRmNlI4MGtUczNWenBsbVltSzRaNngwb2k4bmdaWVRnUkhiN19wRldnNnQ3SlF4TlJ3SHJHdHU",
+    "sourceName": "ETV Bharat",
+    "publishedDate": "2026-09-04",
+    "foundDate": "2026-09-07",
+    "autoDiscovered": true,
+    "bottomLine": "OpenAI's GPT-6 Astra launch emphasizes advanced alignment and capability, targeting enterprise and research sectors with latest-generation AI.",
+    "keyFindings": [
+      "GPT-6 Astra is positioned as OpenAI's most advanced model with improved alignment and safety characteristics.",
+      "Model aims to serve enterprise, research, and high-complexity professional use cases.",
+      "Release underscores OpenAI's continued investment in AI model sophistication and market leadership positioning.",
+      "Timing and messaging suggest focus on displacing specialized tools and platforms in professional/research workflows."
+    ],
+    "whyItMatters": "For Dutch research institutions already considering or using standalone AI tools like ChatGPT or GPT-6 Astra, Elsevier must emphasize LeapSpace's differentiation: curated research data, Scopus integration for credibility verification, institutional IP protection, and seamless ScienceDirect access—positioning LeapSpace as the research-purpose-built alternative, not a general-purpose LLM.",
+    "impact": {
+      "novelty": 2,
+      "commercial": 4,
+      "threat": 4,
+      "urgency": 4
+    },
+    "entities": [
+      "OpenAI",
+      "GPT-6 Astra"
+    ],
+    "actionItems": [
+      "Develop institution-specific ROI narrative contrasting LeapSpace's research-focused workflow with generic LLM usage risks (hallucination, citation accuracy, compliance).",
+      "Create product positioning document highlighting how LeapSpace claim-checking, reading assistant, and deep research reports add credibility over raw GPT-6 Astra outputs.",
+      "Prioritize outreach to Netherlands research ethics and compliance officers to emphasize governance and institutional control advantages of LeapSpace vs. public LLMs."
     ],
     "sourceType": "secondary"
   },
@@ -147,6 +108,185 @@
       "Develop ROI case study: LeapSpace+Scopus vs. standalone GPT-6 Astra for accelerating literature review and reducing hallucination risk.",
       "Prepare messaging clarifying why general 'human-level intelligence' requires guardrails, domain authority, and peer-reviewed content integration for research.",
       "Engage Dutch university librarians and research directors to understand perception of GPT-6 Astra vs. specialist research platforms."
+    ],
+    "sourceType": "secondary"
+  },
+  {
+    "id": "news-3s13ho",
+    "title": "Jensen Huang says ‘AGI has arrived’ after OpenAI launches GPT-6 Astra: What makes the new AI model different? - Open Magazine",
+    "description": "Jensen Huang says ‘AGI has arrived’ after OpenAI launches GPT-6 Astra: What makes the new AI model different?&nbsp;&nbsp;Open Magazine",
+    "institution": "OpenAI",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQQl95Und0d2h2RDgyb3dUMVdIbWg3SWNHMFlDUDFYMmtHcGdLQldGZDBOaU4wNzFkMVRQdTEzV1M4THlvZVFnOFM2RTFabUlkUmE2ZV9jOHZqS0FuYTdvRnc5azlXU18zZEdOTDZjZEpMdU10YllNYWlzRTdJZUFBR2xaXzZ6VTByNU1vVnNzcDh6RVV4X19pWjYzbnJJOGx2Y3V1MkQ1dXVzSmJJNHZMdDJwRk91UUlXUVltUFlra1FsUjFZdFE0TnR5b3cyZWszMXpqWnl6akJtZEpV?oc=5",
+    "sourceName": "Open Magazine",
+    "publishedDate": "2026-09-07",
+    "foundDate": "2026-09-08",
+    "autoDiscovered": true
+  },
+  {
+    "id": "news-4wqswm",
+    "title": "OpenAI Scientist Warns of AI Risk as GPT-6 Astra Launches - The Tech Buzz",
+    "description": "OpenAI Scientist Warns of AI Risk as GPT-6 Astra Launches&nbsp;&nbsp;The Tech Buzz",
+    "institution": "OpenAI",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNb3lxc2JxMVpfUDY2MzlFMnQyLWZQbWpuX21DTW8wZDZrWFRNcmxWMGU0b205QTJxMXNZeW1IOE9ISXVFUTBlakdITzZMV085N0lpcG9HVTNVQW1EZnFXdDlGa1RHQW1kLUdwamtudXhRWlZteVdFZzRFcTJQSVEyZmUzN2h0UzAxTy0zaUdlcTdKajFD?oc=5",
+    "sourceName": "The Tech Buzz",
+    "publishedDate": "2026-09-07",
+    "foundDate": "2026-09-08",
+    "autoDiscovered": true
+  },
+  {
+    "id": "news-3wp5oc",
+    "title": "Google’s India-first AI models for agriculture | Key Details - Utkarsh Classes",
+    "description": "Google’s India-first AI models for agriculture | Key Details&nbsp;&nbsp;Utkarsh Classes",
+    "institution": "Google",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxOdG43dC1ydk42Y1BsYzhkTkZLTURoTjkyazlCTko3WkEydnlSb3ljbjRwZGN6dG95Sm0zT3FuV3FuZjB5TG5OYUEybklDSE92TTlWTEc5T2ZnQmhoS0FfNzcwNjl3MGhGbHJUQ1NaRGRYM2F4VVVMc3pFVWZhN19CT09TNFdwSHJkMlNQTGJDNDBubHFOOUQ3R25hOFNab2Nmb3F3UFlBNWhnQlY0RnNjSW9ZRG1HYkFjMVMzb1BYRjdOd1VUUmgxcndxUUg?oc=5",
+    "sourceName": "Utkarsh Classes",
+    "publishedDate": "2026-09-07",
+    "foundDate": "2026-09-08",
+    "autoDiscovered": true
+  },
+  {
+    "id": "news-410a9t",
+    "title": "Netherlands secures €661m EU grants, advancing green energy and tax reforms - The Brussels Times",
+    "description": "Netherlands secures €661m EU grants, advancing green energy and tax reforms&nbsp;&nbsp;The Brussels Times",
+    "institution": null,
+    "category": "policy",
+    "categoryLabel": "Netherlands Research Policy",
+    "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPZ0xRbGVtRFlDZnJ6VTUxLTZGNDJaYmtUVk1mdzlHdmt6Q3dSbGFOWlNlTDJmNzQ0LV9UN0xLT01sWVJVdzBWcXVRcHRCc2NZaGdYQk5Fb3lRRFFHN2U4TndqX19VTDZTWFE0dl9OeF9sdzhtMzJGdGJkY3lHVVh5elkwZUZ6bktvMWlEb1c2X0d6d0ZGVDAwbDcwWGJkRWlBTG1QZjk5MUN6Z1IyWFh1SmNiV1dRV2p0WFBzRGktQzUtdw?oc=5",
+    "sourceName": "The Brussels Times",
+    "publishedDate": "2026-09-07",
+    "foundDate": "2026-09-08",
+    "autoDiscovered": true
+  },
+  {
+    "id": "news-lvz3kw",
+    "title": "Quobly and TNO Partner on Silicon Spin Qubit Development - The Quantum Insider",
+    "description": "Quobly and TNO Partner on Silicon Spin Qubit Development&nbsp;&nbsp;The Quantum Insider",
+    "institution": "TNO",
+    "category": "ai_adoption",
+    "categoryLabel": "AI Development & Adoption",
+    "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPMUlTbmdfS0xpUmdsRnBQb1A3amxyendaUzA5SG11Q1ZuOVBvNzNKWFNPYVFhanNUNDliMzNFajI4U2x5R3VLWWdSUUVhODdrVjl1YnZONlMtWXNkWHZualZ1N3V1QS1wS1pRTVdHWEljODd4ZWgtbi0wSkd4cTVxUWcyam41WlZBdXgxQ0VhZVJTY0x2TGIxUkNR?oc=5",
+    "sourceName": "The Quantum Insider",
+    "publishedDate": "2026-09-02",
+    "foundDate": "2026-09-08",
+    "autoDiscovered": true
+  },
+  {
+    "id": "news-x72qpj",
+    "title": "Anthropic Launches Claude Fable 5.1 and Restricted Mythos 5.1 for Advanced Coding, Cybersecurity and Scientific Research - LinkedIn",
+    "description": "Anthropic Launches Claude Fable 5.1 and Restricted Mythos 5.1 for Advanced Coding, Cybersecurity and Scientific Research&nbsp;&nbsp;LinkedIn",
+    "institution": "Anthropic",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOczZLQWhJUjZVdEs0cnFXVmktX2JTaDFVVEFVX3hQLU8zcmtTQjJzd1Y1cHZVVmNsenBIWDRIOW4zbndpZGZMaEJWVlJQN1FBeWNMck9ObDlEQW5GSmVBSU4zRTIyRWdDSUhiMDV3aGUxd1BGcXRRajJLUldMOWlJOUtEUDBzTjBQRko2MEFyVjNKcDA?oc=5",
+    "sourceName": "LinkedIn",
+    "publishedDate": "2026-09-05",
+    "foundDate": "2026-09-07",
+    "autoDiscovered": true,
+    "bottomLine": "Anthropic releases Claude Fable 5.1 and Restricted Mythos 5.1 models targeting coding, cybersecurity, and scientific research applications.",
+    "keyFindings": [
+      "Anthropic has launched two new model variants: Claude Fable 5.1 and Restricted Mythos 5.1 with enhanced capabilities.",
+      "New models are specifically positioned for advanced coding, cybersecurity, and scientific research use cases.",
+      "Release signals Anthropic's competitive push into specialized AI tools for high-stakes research and technical domains.",
+      "Models appear designed to compete with OpenAI and other AI assistants in enterprise and academic markets."
+    ],
+    "whyItMatters": "Netherlands research institutions may see increased pressure to adopt or evaluate these specialized AI models for their own research workflows, potentially shifting budget from traditional literature tools to AI-powered alternatives if LeapSpace isn't perceived as equally capable for scientific research tasks.",
+    "impact": {
+      "novelty": 2,
+      "commercial": 3,
+      "threat": 3,
+      "urgency": 2
+    },
+    "entities": [
+      "Anthropic",
+      "Claude Fable 5.1",
+      "Restricted Mythos 5.1",
+      "OpenAI"
+    ],
+    "actionItems": [
+      "Map Anthropic's claimed capabilities against LeapSpace's AI research features to identify competitive gaps in Dutch university RFPs.",
+      "Monitor adoption rates of Claude variants at target institutions and conduct win/loss analysis with procurement teams.",
+      "Develop comparison content showing LeapSpace integration with Scopus/ScienceDirect versus standalone AI research tools."
+    ],
+    "sourceType": "secondary"
+  },
+  {
+    "id": "news-9xctab",
+    "title": "OpenAI launches GPT-6 Astra, Sam Altman calls it best AI model in the world - India Today",
+    "description": "OpenAI launches GPT-6 Astra, Sam Altman calls it best AI model in the world&nbsp;&nbsp;India Today",
+    "institution": "OpenAI",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNcU5ELXNlZGlWTzlWVW9lNXZGTDcxaG9QSWZhLXJ2Wm5reWRncXFNcUllRjhQcWE4MmY1S3lZTDdQVnpsUDNEYV9CTzZIN1FJcU9JV0lNYm1xclBXdEdHamtQcEFmQU1ESlpWTGowdGpFQlhza3BZblNyVUVlckF2cnVhcnYzaUlOR1hLN3BTS196NkxyRzd1cUtSNEg0R3JiZXE2ZXVkV1AtSFp3ZjlpQV9yYWlRbVg3M3MyWjlwc3RCTldVVERiN0VqOGljWEM4Q21uS2U3bUbSAd4BQVVfeXFMTUc5TnhpY0pPRHlfd1J6V3hHVXRiOEpHUHRFRTM2Uy1pXzN0MERsQzd1RXI2cXE3RlNhU2RIdUxneFV1RkYtMzU1ekJFTWJ1c1dMUC01U05wbnJBSkV4QkFBdTAzT2V6cDBxQVpwcDBHTF9rSmhsTW9DUUZ",
+    "sourceName": "India Today",
+    "publishedDate": "2026-09-04",
+    "foundDate": "2026-09-07",
+    "autoDiscovered": true,
+    "bottomLine": "OpenAI launches GPT-6 Astra as its most advanced AI model, positioning it as best-in-class for enterprise and research applications.",
+    "keyFindings": [
+      "OpenAI has released GPT-6 Astra, described as its most advanced and well-aligned AI model to date.",
+      "Sam Altman publicly claims GPT-6 Astra is the best AI model available in the world.",
+      "Release targets broad enterprise and research markets seeking next-generation generative AI capabilities.",
+      "Launch represents significant competitive escalation in race for AI-assisted research and knowledge discovery tools."
+    ],
+    "whyItMatters": "Dutch universities and research institutes will face increasing institutional pressure to evaluate GPT-6 Astra for literature analysis, hypothesis generation, and writing support; Elsevier must clearly articulate how LeapSpace's curated research data integration and Scopus indexing create advantages over generic LLMs for research discovery and credibility.",
+    "impact": {
+      "novelty": 2,
+      "commercial": 4,
+      "threat": 4,
+      "urgency": 4
+    },
+    "entities": [
+      "OpenAI",
+      "GPT-6 Astra",
+      "Sam Altman"
+    ],
+    "actionItems": [
+      "Prepare side-by-side comparison deck: LeapSpace + Scopus research workflow vs. standalone GPT-6 Astra for key Dutch research segments.",
+      "Conduct urgent competitive intelligence on GPT-6 Astra's research-specific features and pricing to inform sales messaging.",
+      "Schedule briefings with target Netherlands institutions' research and IT leadership to reinforce LeapSpace's domain integration advantages."
+    ],
+    "sourceType": "secondary"
+  },
+  {
+    "id": "news-mzu88d",
+    "title": "Anthropic unveils Claude Fable 5.1 and Mythos 5.1 for coding and knowledge work - ET CIO",
+    "description": "Anthropic unveils Claude Fable 5.1 and Mythos 5.1 for coding and knowledge work&nbsp;&nbsp;ET CIO",
+    "institution": "Anthropic",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPZU04akFDMERQRzlndlAzM2pNWWhZSm5hcm1LLWVvNmhJMUR0eVJ1b3U3ODk0OS0wTmh1a2R5Nm5zYTNGTVlCOHhqQk9IX2t6REZtTWlXbGYzYmFfZ3ljZk9ETkFPdlhBU0ZUVkJ0eDdLVjZWdDJHWTBMaEkybnZDN0lUSjVNRkdIQkNlVmFSTkhJc1h1eUtuZ1h3VDlOWGxfZFNUR0tTbXFIcjNscVBMV3VPWkxxdGs3aEJpcTdKaFVjVFlCcWRjeXE2czhwakVGdzBoY2tnMVhuTnJfOFluMEZIdVpXS2cwR2d5bEwzWHXSAfYBQVVfeXFMTVRMWWpmYUN3UHRrNWYzWVNudXlHSUxlRjV6ZDBWdnhpa0ZDemkwMVE3dzRxQ0tuMXlBYmJsWkxqRG9XOExZZW14Mkh5N1FRRmF5MUJkUXI4eWhXTWtYd0REaXR",
+    "sourceName": "ET CIO",
+    "publishedDate": "2026-09-02",
+    "foundDate": "2026-09-02",
+    "autoDiscovered": true,
+    "bottomLine": "Anthropic releases Claude Fable 5.1 and Mythos 5.1, positioning advanced AI for coding and knowledge work against specialized research tools.",
+    "keyFindings": [
+      "Anthropic unveils two new Claude models: Fable 5.1 for coding tasks and Mythos 5.1 for knowledge work and research applications.",
+      "Models emphasize improved performance in specialized domains where researchers and developers currently rely on dedicated platforms.",
+      "Release timing suggests competitive positioning ahead of Anthropic's IPO, targeting enterprise and institutional markets."
+    ],
+    "whyItMatters": "Dutch research institutions evaluating AI-assisted research workflows may view Claude as an alternative to LeapSpace's integrated literature-search and writing-coach features; Elsevier must clarify domain-specific advantages of Scopus-backed, curation-verified research intelligence over general-purpose LLMs.",
+    "impact": {
+      "novelty": 3,
+      "commercial": 4,
+      "threat": 3,
+      "urgency": 3
+    },
+    "entities": [
+      "Anthropic",
+      "Claude Fable 5.1",
+      "Claude Mythos 5.1",
+      "ET CIO"
+    ],
+    "actionItems": [
+      "Map Claude Fable/Mythos capabilities against LeapSpace's writing-coach and code-review features; identify gaps in research-specific knowledge integration.",
+      "Prepare institutional messaging on Scopus-indexed content verification that standalone LLMs cannot guarantee for academic compliance."
     ],
     "sourceType": "secondary"
   },
@@ -603,42 +743,6 @@
       "Prepare compliance brief for Dutch university CISOs: 'Institutional AI Governance—Managed Platform vs. Consumer LLM.' Emphasize audit, data residency, role-based access.",
       "Develop messaging: Elsevier as 'Governance-Ready Research AI' vs. OpenAI's capability-first model; highlight GDPR, institutional IP protection, and audit compliance.",
       "Initiate conversations with Dutch data protection authorities (IPO) on institutional requirements for AI deployment in research; position Elsevier as pre-compliant solution."
-    ],
-    "sourceType": "secondary"
-  },
-  {
-    "id": "news-iapv8w",
-    "title": "Anthropic unveils Claude Fable 5.1 that can work for days on problems humans couldn't solve - geo.tv",
-    "description": "Anthropic unveils Claude Fable 5.1 that can work for days on problems humans couldn't solve&nbsp;&nbsp;geo.tv",
-    "institution": "Anthropic",
-    "category": "competitor_announcements",
-    "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPa3VGOEp2aGFQZXZEVEg3bjA4cEtpU3VmYmxFTlJHTmdxRkVmRUdDRmxpeVphX0JVM3VkdGlJMkZzTTgxQVpKU0NZMVRZemU1djRnMkNidDYtWlNPbW1fd3Fid19uN1JoWm5rR0pacDJqejFWMGpZa0VkbXpyQW11Vm5JMkVFeUdPdVAyUDVFd2dFRmtyWnc4dWV0THNIMlVoWFlpSTJWcGpWaVdQVmhfWEU5Qi0zSnJoNm13VTlmZw?oc=5",
-    "sourceName": "geo.tv",
-    "publishedDate": "2026-09-01",
-    "foundDate": "2026-09-03",
-    "autoDiscovered": true,
-    "bottomLine": "Anthropic's Claude Fable 5.1 can autonomously solve multi-day research problems, threatening Elsevier's role as primary discovery and research acceleration tool.",
-    "keyFindings": [
-      "Claude Fable 5.1 can work autonomously for extended periods on complex problems humans cannot solve.",
-      "The model represents a significant capability leap in sustained problem-solving and reasoning.",
-      "Extended autonomy capability could reduce researcher dependence on traditional literature discovery workflows."
-    ],
-    "whyItMatters": "Dutch research institutions may redirect AI-assisted research workflow spend away from LeapSpace toward Anthropic's native models if Fable 5.1 can autonomously navigate and synthesize research without platform mediation.",
-    "impact": {
-      "novelty": 4,
-      "commercial": 4,
-      "threat": 4,
-      "urgency": 4
-    },
-    "entities": [
-      "Anthropic",
-      "Claude Fable 5.1",
-      "geo.tv"
-    ],
-    "actionItems": [
-      "Urgently test Claude Fable 5.1's ability to retrieve, integrate, and synthesize ScienceDirect/Scopus content; benchmark against LeapSpace.",
-      "Develop messaging for Dutch institutions on why curated, verified literature integration beats generic LLM reasoning for research compliance and reproducibility."
     ],
     "sourceType": "secondary"
   },
@@ -1126,120 +1230,6 @@
     "actionItems": [
       "Activate sales urgency: confirm availability and pricing of Fable 5.1/Mythos 5.1 in Netherlands; prepare competitive response docs for procurement conversations.",
       "Commission independent benchmark study comparing LeapSpace vs. Claude on research-specific tasks (lit review quality, citation accuracy, institutional data retrieval)."
-    ],
-    "sourceType": "secondary"
-  },
-  {
-    "id": "news-g5xstq",
-    "title": "Anthropic Unveils MHS for AI Agents in Physical Labs - AI Magazine",
-    "description": "Anthropic Unveils MHS for AI Agents in Physical Labs&nbsp;&nbsp;AI Magazine",
-    "institution": "Anthropic",
-    "category": "competitor_announcements",
-    "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOTXRPdTBDdG16RWlSLWNmbWIxeEx3MHV1WEFWcThodnRXc3ZjZUFRWkhsOFBEcF9aajFFV2otZUpBWDhUMXdYY1gyTy0wV1gzSXBLQ2xpNVEwRnJoRWt5LVlXM1N2SFIydEdlZkZ1UkFnMEtuajMxcmZoOERaWjAxUWJ6WElldkk?oc=5",
-    "sourceName": "AI Magazine",
-    "publishedDate": "2026-09-01",
-    "foundDate": "2026-09-02",
-    "autoDiscovered": true,
-    "bottomLine": "Anthropic unveils MHS for AI agents in physical labs, expanding competitive threat beyond software research into wet-lab and experimental automation domains.",
-    "keyFindings": [
-      "MHS (Mechanical Handling System or similar) positions Claude agents to coordinate physical lab experiments, expanding AI's role in experimental reproducibility.",
-      "Novel application targets biotech, chemistry, and materials-science labs—sectors heavily reliant on ScienceDirect for methods and protocols.",
-      "Lab automation + AI agents represent emerging use case for Elsevier's research-workflow tools."
-    ],
-    "whyItMatters": "Dutch biotech and chemistry institutions (Leiden, Amsterdam UMC, Syngenta, DSM) conducting high-throughput or automated experiments may adopt Claude + MHS for experiment design and lab-note automation, potentially bypassing ScienceDirect/LeapSpace. Elsevier must explore partnerships or integrations to position Scopus/ScienceDirect as the knowledge layer for Claude-driven lab workflows.",
-    "impact": {
-      "novelty": 4,
-      "commercial": 3,
-      "threat": 3,
-      "urgency": 2
-    },
-    "entities": [
-      "Anthropic",
-      "Claude",
-      "MHS",
-      "AI Magazine"
-    ],
-    "actionItems": [
-      "Research MHS technical details and identify partnership opportunities for LeapSpace to integrate protocol-search and methods-recommendation features.",
-      "Monitor adoption signals from Dutch wet-lab research leaders; prepare case studies on ScienceDirect's role in AI-assisted experimental design."
-    ],
-    "sourceType": "secondary"
-  },
-  {
-    "id": "news-x2rpda",
-    "title": ":Claude: Fable 5.1 and Mythos 5.1 - Anthropic",
-    "description": ":Claude: Fable 5.1 and Mythos 5.1&nbsp;&nbsp;Anthropic",
-    "institution": "Anthropic",
-    "category": "competitor_announcements",
-    "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE8wODA3NURfTHVDbUZnSE12Q3A0TFpvYjhDLU1rT1NVZ2xmM2Z0VWJPc1ZRM0RVVkpIckh6b0ROcXIxTHgzODZWYV9yekV1dTJiMk1KbkVWcThSeUYxcUpDUy1KZw?oc=5",
-    "sourceName": "Anthropic",
-    "publishedDate": "2026-09-01",
-    "foundDate": "2026-09-02",
-    "autoDiscovered": true,
-    "bottomLine": "Anthropic's official announcement of Claude Fable 5.1 and Mythos 5.1 confirms market entry into research and coding workflows with production-grade models.",
-    "keyFindings": [
-      "Official Anthropic source confirms Fable 5.1 and Mythos 5.1 as production models with specific optimizations for coding and knowledge-work tasks.",
-      "Primary-source detail and specifications enable Elsevier technical teams to conduct rapid capability benchmarking against LeapSpace.",
-      "Announcement likely includes pricing, API availability, and enterprise license terms critical for institutional procurement comparisons."
-    ],
-    "whyItMatters": "This primary source is essential for Elsevier's competitive intelligence and product roadmap; Dutch institutional sales teams require official model specs and pricing to counter RFP inquiries. Elsevier must immediately brief product, sales, and partner teams on Claude's capabilities to prepare differentiation strategies and identify potential co-selling or integration opportunities.",
-    "impact": {
-      "novelty": 2,
-      "commercial": 5,
-      "threat": 4,
-      "urgency": 5
-    },
-    "entities": [
-      "Anthropic",
-      "Claude Fable 5.1",
-      "Claude Mythos 5.1"
-    ],
-    "actionItems": [
-      "Extract model specs, pricing, and API limits from official announcement; brief Elsevier Dutch sales and product teams within 24 hours.",
-      "Initiate technical evaluation of Claude Fable/Mythos integration with Scopus API and ScienceDirect content to identify co-sell or whitelist opportunities.",
-      "Develop institutional comparison matrix (Claude standalone vs. LeapSpace + ScienceDirect) for high-priority Dutch research accounts."
-    ],
-    "sourceType": "primary"
-  },
-  {
-    "id": "news-jgfbho",
-    "title": "Digital Science's 2026 Catalyst Grant seeks agentic AI workflows you can trust - EurekAlert!",
-    "description": "Digital Science's 2026 Catalyst Grant seeks agentic AI workflows you can trust&nbsp;&nbsp;EurekAlert!",
-    "institution": "Digital Science",
-    "category": "competitor_announcements",
-    "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1BWGtsdmNaUi1qNEVCd3RjV2kxbUxsMEgtRzNaNDZET3RLSUZKODEzLU5sb0VhMkNRYS1qMl94YV84RVlPV0NMX0IzRjYwZFFPQTUyVXZCNTVJRDBX?oc=5",
-    "sourceName": "EurekAlert!",
-    "publishedDate": "2026-09-01",
-    "foundDate": "2026-09-01",
-    "autoDiscovered": true,
-    "bottomLine": "Digital Science launches 2026 Catalyst Grant for agentic AI workflows, signaling competitive product investment in research-assistant space.",
-    "keyFindings": [
-      "Digital Science (major Elsevier competitor) is funding development of agentic AI workflows for research and scholarly purposes.",
-      "Grant program targets trustworthy, autonomous AI systems — a core capability area Elsevier is building into LeapSpace.",
-      "This represents Digital Science's competitive push into AI-assisted research tools alongside existing Dimensions platform.",
-      "Agentic AI workflows suggest automation of literature search, analysis, and synthesis — direct overlap with LeapSpace positioning.",
-      "2026 timeline indicates Digital Science expects material product/market traction in AI-research-assistant category by next year."
-    ],
-    "whyItMatters": "Digital Science is actively funding competitive R&D in agentic AI for research workflows — precisely the market Elsevier is targeting with LeapSpace. Monitor whether any Netherlands institutions apply or adopt resulting tools, as this signals accelerating competition in research-assistant space.",
-    "impact": {
-      "novelty": 3,
-      "commercial": 4,
-      "threat": 4,
-      "urgency": 4
-    },
-    "entities": [
-      "Digital Science",
-      "Catalyst Grant",
-      "Dimensions",
-      "agentic AI workflows"
-    ],
-    "actionItems": [
-      "Track which Netherlands institutions or research teams participate in Digital Science's 2026 Catalyst Grant program.",
-      "Benchmark LeapSpace's agentic AI capabilities (claim-checking, deep research reports, paper comparison) against what Digital Science delivers.",
-      "Accelerate LeapSpace rollout and case studies at key accounts to establish incumbency before Digital Science product launches."
     ],
     "sourceType": "secondary"
   }

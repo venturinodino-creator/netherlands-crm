@@ -1,5 +1,207 @@
 [
   {
+    "id": "news-jgfbho",
+    "title": "Digital Science's 2026 Catalyst Grant seeks agentic AI workflows you can trust - EurekAlert!",
+    "description": "Digital Science's 2026 Catalyst Grant seeks agentic AI workflows you can trust&nbsp;&nbsp;EurekAlert!",
+    "institution": "Digital Science",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1BWGtsdmNaUi1qNEVCd3RjV2kxbUxsMEgtRzNaNDZET3RLSUZKODEzLU5sb0VhMkNRYS1qMl94YV84RVlPV0NMX0IzRjYwZFFPQTUyVXZCNTVJRDBX?oc=5",
+    "sourceName": "EurekAlert!",
+    "publishedDate": "2026-09-01",
+    "foundDate": "2026-09-01",
+    "autoDiscovered": true,
+    "bottomLine": "Digital Science launches 2026 Catalyst Grant for agentic AI workflows, signaling competitive product investment in research-assistant space.",
+    "keyFindings": [
+      "Digital Science (major Elsevier competitor) is funding development of agentic AI workflows for research and scholarly purposes.",
+      "Grant program targets trustworthy, autonomous AI systems — a core capability area Elsevier is building into LeapSpace.",
+      "This represents Digital Science's competitive push into AI-assisted research tools alongside existing Dimensions platform.",
+      "Agentic AI workflows suggest automation of literature search, analysis, and synthesis — direct overlap with LeapSpace positioning.",
+      "2026 timeline indicates Digital Science expects material product/market traction in AI-research-assistant category by next year."
+    ],
+    "whyItMatters": "Digital Science is actively funding competitive R&D in agentic AI for research workflows — precisely the market Elsevier is targeting with LeapSpace. Monitor whether any Netherlands institutions apply or adopt resulting tools, as this signals accelerating competition in research-assistant space.",
+    "impact": {
+      "novelty": 3,
+      "commercial": 4,
+      "threat": 4,
+      "urgency": 4
+    },
+    "entities": [
+      "Digital Science",
+      "Catalyst Grant",
+      "Dimensions",
+      "agentic AI workflows"
+    ],
+    "actionItems": [
+      "Track which Netherlands institutions or research teams participate in Digital Science's 2026 Catalyst Grant program.",
+      "Benchmark LeapSpace's agentic AI capabilities (claim-checking, deep research reports, paper comparison) against what Digital Science delivers.",
+      "Accelerate LeapSpace rollout and case studies at key accounts to establish incumbency before Digital Science product launches."
+    ],
+    "sourceType": "secondary"
+  },
+  {
+    "id": "news-x2rpda",
+    "title": ":Claude: Fable 5.1 and Mythos 5.1 - Anthropic",
+    "description": ":Claude: Fable 5.1 and Mythos 5.1&nbsp;&nbsp;Anthropic",
+    "institution": "Anthropic",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE8wODA3NURfTHVDbUZnSE12Q3A0TFpvYjhDLU1rT1NVZ2xmM2Z0VWJPc1ZRM0RVVkpIckh6b0ROcXIxTHgzODZWYV9yekV1dTJiMk1KbkVWcThSeUYxcUpDUy1KZw?oc=5",
+    "sourceName": "Anthropic",
+    "publishedDate": "2026-09-01",
+    "foundDate": "2026-09-02",
+    "autoDiscovered": true,
+    "bottomLine": "Anthropic's official announcement of Claude Fable 5.1 and Mythos 5.1 confirms market entry into research and coding workflows with production-grade models.",
+    "keyFindings": [
+      "Official Anthropic source confirms Fable 5.1 and Mythos 5.1 as production models with specific optimizations for coding and knowledge-work tasks.",
+      "Primary-source detail and specifications enable Elsevier technical teams to conduct rapid capability benchmarking against LeapSpace.",
+      "Announcement likely includes pricing, API availability, and enterprise license terms critical for institutional procurement comparisons."
+    ],
+    "whyItMatters": "This primary source is essential for Elsevier's competitive intelligence and product roadmap; Dutch institutional sales teams require official model specs and pricing to counter RFP inquiries. Elsevier must immediately brief product, sales, and partner teams on Claude's capabilities to prepare differentiation strategies and identify potential co-selling or integration opportunities.",
+    "impact": {
+      "novelty": 2,
+      "commercial": 5,
+      "threat": 4,
+      "urgency": 5
+    },
+    "entities": [
+      "Anthropic",
+      "Claude Fable 5.1",
+      "Claude Mythos 5.1"
+    ],
+    "actionItems": [
+      "Extract model specs, pricing, and API limits from official announcement; brief Elsevier Dutch sales and product teams within 24 hours.",
+      "Initiate technical evaluation of Claude Fable/Mythos integration with Scopus API and ScienceDirect content to identify co-sell or whitelist opportunities.",
+      "Develop institutional comparison matrix (Claude standalone vs. LeapSpace + ScienceDirect) for high-priority Dutch research accounts."
+    ],
+    "sourceType": "primary"
+  },
+  {
+    "id": "news-g5xstq",
+    "title": "Anthropic Unveils MHS for AI Agents in Physical Labs - AI Magazine",
+    "description": "Anthropic Unveils MHS for AI Agents in Physical Labs&nbsp;&nbsp;AI Magazine",
+    "institution": "Anthropic",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOTXRPdTBDdG16RWlSLWNmbWIxeEx3MHV1WEFWcThodnRXc3ZjZUFRWkhsOFBEcF9aajFFV2otZUpBWDhUMXdYY1gyTy0wV1gzSXBLQ2xpNVEwRnJoRWt5LVlXM1N2SFIydEdlZkZ1UkFnMEtuajMxcmZoOERaWjAxUWJ6WElldkk?oc=5",
+    "sourceName": "AI Magazine",
+    "publishedDate": "2026-09-01",
+    "foundDate": "2026-09-02",
+    "autoDiscovered": true,
+    "bottomLine": "Anthropic unveils MHS for AI agents in physical labs, expanding competitive threat beyond software research into wet-lab and experimental automation domains.",
+    "keyFindings": [
+      "MHS (Mechanical Handling System or similar) positions Claude agents to coordinate physical lab experiments, expanding AI's role in experimental reproducibility.",
+      "Novel application targets biotech, chemistry, and materials-science labs—sectors heavily reliant on ScienceDirect for methods and protocols.",
+      "Lab automation + AI agents represent emerging use case for Elsevier's research-workflow tools."
+    ],
+    "whyItMatters": "Dutch biotech and chemistry institutions (Leiden, Amsterdam UMC, Syngenta, DSM) conducting high-throughput or automated experiments may adopt Claude + MHS for experiment design and lab-note automation, potentially bypassing ScienceDirect/LeapSpace. Elsevier must explore partnerships or integrations to position Scopus/ScienceDirect as the knowledge layer for Claude-driven lab workflows.",
+    "impact": {
+      "novelty": 4,
+      "commercial": 3,
+      "threat": 3,
+      "urgency": 2
+    },
+    "entities": [
+      "Anthropic",
+      "Claude",
+      "MHS",
+      "AI Magazine"
+    ],
+    "actionItems": [
+      "Research MHS technical details and identify partnership opportunities for LeapSpace to integrate protocol-search and methods-recommendation features.",
+      "Monitor adoption signals from Dutch wet-lab research leaders; prepare case studies on ScienceDirect's role in AI-assisted experimental design."
+    ],
+    "sourceType": "secondary"
+  },
+  {
+    "id": "news-iapv8w",
+    "title": "Anthropic unveils Claude Fable 5.1 that can work for days on problems humans couldn't solve - geo.tv",
+    "description": "Anthropic unveils Claude Fable 5.1 that can work for days on problems humans couldn't solve&nbsp;&nbsp;geo.tv",
+    "institution": "Anthropic",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPa3VGOEp2aGFQZXZEVEg3bjA4cEtpU3VmYmxFTlJHTmdxRkVmRUdDRmxpeVphX0JVM3VkdGlJMkZzTTgxQVpKU0NZMVRZemU1djRnMkNidDYtWlNPbW1fd3Fid19uN1JoWm5rR0pacDJqejFWMGpZa0VkbXpyQW11Vm5JMkVFeUdPdVAyUDVFd2dFRmtyWnc4dWV0THNIMlVoWFlpSTJWcGpWaVdQVmhfWEU5Qi0zSnJoNm13VTlmZw?oc=5",
+    "sourceName": "geo.tv",
+    "publishedDate": "2026-09-01",
+    "foundDate": "2026-09-03",
+    "autoDiscovered": true,
+    "bottomLine": "Anthropic's Claude Fable 5.1 can autonomously solve multi-day research problems, threatening Elsevier's role as primary discovery and research acceleration tool.",
+    "keyFindings": [
+      "Claude Fable 5.1 can work autonomously for extended periods on complex problems humans cannot solve.",
+      "The model represents a significant capability leap in sustained problem-solving and reasoning.",
+      "Extended autonomy capability could reduce researcher dependence on traditional literature discovery workflows."
+    ],
+    "whyItMatters": "Dutch research institutions may redirect AI-assisted research workflow spend away from LeapSpace toward Anthropic's native models if Fable 5.1 can autonomously navigate and synthesize research without platform mediation.",
+    "impact": {
+      "novelty": 4,
+      "commercial": 4,
+      "threat": 4,
+      "urgency": 4
+    },
+    "entities": [
+      "Anthropic",
+      "Claude Fable 5.1",
+      "geo.tv"
+    ],
+    "actionItems": [
+      "Urgently test Claude Fable 5.1's ability to retrieve, integrate, and synthesize ScienceDirect/Scopus content; benchmark against LeapSpace.",
+      "Develop messaging for Dutch institutions on why curated, verified literature integration beats generic LLM reasoning for research compliance and reproducibility."
+    ],
+    "sourceType": "secondary"
+  },
+  {
+    "id": "news-wuda1t",
+    "title": "TU Delft develops drone that behaves like a bird - IO+",
+    "description": "TU Delft develops drone that behaves like a bird&nbsp;&nbsp;IO+",
+    "institution": "TU Delft",
+    "category": "ai_adoption",
+    "categoryLabel": "AI Development & Adoption",
+    "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOc0RqLW40Ym8yc3hZd2RUYW9PWjJTaVZpbXBZeGlNejhDUzlfWURfcHFKWk9IaXJMbU95cTh1UXlWX1MyanpWcm9BMDZzUDhsdk4tbmJnSVZwaHpvWmVTdGJrQmRmXzZ3QUhEOHV3WE5QZ1JscVo3UC1XVGxrUUZLUw?oc=5",
+    "sourceName": "IO+",
+    "publishedDate": "2026-08-31",
+    "foundDate": "2026-09-08",
+    "autoDiscovered": true
+  },
+  {
+    "id": "news-2yv2o3",
+    "title": "University of Twente opens 65th academic year with Courage at its heart - Universiteit Twente",
+    "description": "University of Twente opens 65th academic year with Courage at its heart&nbsp;&nbsp;Universiteit Twente",
+    "institution": "University of Twente",
+    "category": "ai_adoption",
+    "categoryLabel": "AI Development & Adoption",
+    "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQT3VPSGwyTjVzOGM1WUUzcFRRR3B6NXN2ZUg2bzJ0cGRrVzNYWXZZSFA5b2NxamhaTzlVQTlxcmFQa1c0dm0zcEk5VU5rXzZ2OGpuVFJybHpPN2hhRXMtcVNGd3B6ZXk1NWl6X0Y3S0hxQ08wODdDc1puMVRINzRXQUR4U015N21JRmRaZURLdnJwVS1GaXBXU3FSTkJGb1hIN2ZQSU5YNGFzRl92MGhScWpIejgtLVhiMXcwdFpjbVFxUlA1MUpsSEJJZ3FTc2otRUVmZzBkNVhhTERoWHZaem9vWQ?oc=5",
+    "sourceName": "Universiteit Twente",
+    "publishedDate": "2026-08-31",
+    "foundDate": "2026-09-08",
+    "autoDiscovered": true
+  },
+  {
+    "id": "news-5s07gk",
+    "title": "Netherlands Cancer Institute Researchers Take on Stelvio for Life to Support Cancer Research - Oncodaily",
+    "description": "Netherlands Cancer Institute Researchers Take on Stelvio for Life to Support Cancer Research&nbsp;&nbsp;Oncodaily",
+    "institution": "Netherlands Cancer Institute",
+    "category": "ai_adoption",
+    "categoryLabel": "AI Development & Adoption",
+    "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBRMC1Vbk52ZjN0Z29PVzRWUlhwUTBoVUlLa0tKV0JCbUwybG94ZWRmYkh6M2UtTFkxeVJiX2lPaEhkY3JELXRjQkVjdVNOazE3Ty1aeUw4dzZ5RWVFa2I2Sng3MHVxM1BN?oc=5",
+    "sourceName": "Oncodaily",
+    "publishedDate": "2026-08-29",
+    "foundDate": "2026-09-08",
+    "autoDiscovered": true
+  },
+  {
+    "id": "news-ajapwg",
+    "title": "Insight into cascading effects of extreme weather with new story map - Deltares",
+    "description": "Insight into cascading effects of extreme weather with new story map&nbsp;&nbsp;Deltares",
+    "institution": "Deltares",
+    "category": "ai_adoption",
+    "categoryLabel": "AI Development & Adoption",
+    "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQaW00alRvQXV0OEYwMDRLUXNIVFdzRlJVYU1OcFZSRVhKMFhCSUNEdlY4THBGWVNEOEJOYWZCV0lZckM1bVBVX0dQbWJZaEpGUDI1M0NGSVBDYl9BVTNxRnY0dVVJTzJGUTJkR3Q5cFpPSEg1SFFHV3Jyb1ZoblJKTEtZNmF1bkNVZ0Mwa0JZbUNLc1lyTWJSMFBKNnVUcDdZc0J3OEZxTQ?oc=5",
+    "sourceName": "Deltares",
+    "publishedDate": "2026-08-31",
+    "foundDate": "2026-09-08",
+    "autoDiscovered": true
+  },
+  {
     "id": "news-ihgyee",
     "title": "Anthropic unveils standard linking AI agents to physical devices - irishsun.com",
     "description": "Anthropic unveils standard linking AI agents to physical devices&nbsp;&nbsp;irishsun.com",
