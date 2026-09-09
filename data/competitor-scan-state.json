@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-09-08T11:59:26.693Z",
+  "lastRun": "2026-09-09T12:09:38.913Z",
   "lastAddedCount": 0,
-  "error": "discovery: Anthropic API 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011Ceqw94YQu6hKymyJJhAKx\"}"
+  "error": "discovery: Anthropic API 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011Cesqj79CAVnStHRPG2Xpv\"}"
 }
