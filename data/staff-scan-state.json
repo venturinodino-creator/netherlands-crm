@@ -1,8 +1,22 @@
 {
-  "lastRun": "2026-09-08T12:19:35.473Z",
-  "lastAddedCount": 3,
+  "lastRun": "2026-09-09T12:30:33.249Z",
+  "lastAddedCount": 0,
   "sources": 50,
   "issues": [
+    {
+      "instId": "leiden",
+      "url": "https://www.library.universiteitleiden.nl/about-us/library-organisation",
+      "error": "fetch failed"
+    },
+    {
+      "instId": "leiden",
+      "url": "https://www.luris.nl/team",
+      "error": "terminated"
+    },
+    {
+      "instId": "leiden",
+      "note": "no people extracted"
+    },
     {
       "instId": "cpb",
       "url": "https://www.cpb.nl/en/about-cpb",
@@ -26,17 +40,7 @@
       "note": "no people extracted"
     },
     {
-      "instId": "nikhef",
-      "url": "https://www.nikhef.nl/en/nikhef/organisation/",
-      "error": "fetch failed"
-    },
-    {
-      "instId": "nikhef",
-      "url": "https://www.nikhef.nl/en/director/",
-      "error": "fetch failed"
-    },
-    {
-      "instId": "nikhef",
+      "instId": "nin",
       "note": "no people extracted"
     },
     {
@@ -55,6 +59,10 @@
     },
     {
       "instId": "scp",
+      "note": "no people extracted"
+    },
+    {
+      "instId": "sanquin",
       "note": "no people extracted"
     },
     {
