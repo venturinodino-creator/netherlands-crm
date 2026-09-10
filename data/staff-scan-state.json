@@ -1,21 +1,22 @@
 {
-  "lastRun": "2026-09-09T12:30:33.249Z",
+  "lastRun": "2026-09-10T12:24:16.487Z",
   "lastAddedCount": 0,
   "sources": 50,
   "issues": [
     {
-      "instId": "leiden",
-      "url": "https://www.library.universiteitleiden.nl/about-us/library-organisation",
+      "instId": "uva",
+      "url": "https://icai.ai/team/",
       "error": "fetch failed"
     },
     {
       "instId": "leiden",
-      "url": "https://www.luris.nl/team",
-      "error": "terminated"
+      "url": "https://www.organisatiegids.universiteitleiden.nl/en/service-units/luris",
+      "error": "fetch failed"
     },
     {
       "instId": "leiden",
-      "note": "no people extracted"
+      "url": "https://www.universiteitleiden.nl/en/science/computer-science/about-us/organisation",
+      "error": "fetch failed"
     },
     {
       "instId": "cpb",
@@ -40,7 +41,17 @@
       "note": "no people extracted"
     },
     {
-      "instId": "nin",
+      "instId": "nikhef",
+      "url": "https://www.nikhef.nl/en/nikhef/organisation/",
+      "error": "fetch failed"
+    },
+    {
+      "instId": "nikhef",
+      "url": "https://www.nikhef.nl/en/director/",
+      "error": "fetch failed"
+    },
+    {
+      "instId": "nikhef",
       "note": "no people extracted"
     },
     {
@@ -62,7 +73,16 @@
       "note": "no people extracted"
     },
     {
-      "instId": "sanquin",
+      "instId": "aighd",
+      "note": "no people extracted"
+    },
+    {
+      "instId": "radboudumc",
+      "url": "https://icai.ai/lab/radboud-ai-for-health-lab/",
+      "error": "fetch failed"
+    },
+    {
+      "instId": "radboudumc",
       "note": "no people extracted"
     },
     {
