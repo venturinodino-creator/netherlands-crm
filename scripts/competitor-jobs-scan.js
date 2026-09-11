@@ -41,11 +41,19 @@
  *     UNTRACKED_COMPANIES so the UI can be upfront about the gap instead of
  *     silently omitting them.
  *
- * Unlike news-scan.js, this does a full resync each run rather than an
- * accumulating feed: a role no longer returned by a company's ATS has
- * presumably closed, so it's dropped from the live list. foundDate is
- * preserved across runs for a role that's still open, so "open since" is
- * still visible.
+ * Like news-scan.js, this now accumulates rather than fully resyncing: a
+ * role no longer returned by a company's ATS is marked closed (status:
+ * 'closed', closedDate set) but stays visible in the live list for
+ * ARCHIVE_AGE_DAYS — only after a role has been closed for a full month
+ * does it move out to ARCHIVE_FILE. This was a deliberate fix: the old
+ * full-resync-every-run behavior dropped a role from the UI the instant a
+ * company's ATS stopped listing it (even a same-day repost gap), which
+ * both under-counted real opportunities and gave an account manager no
+ * chance to still see/reference a role they'd already started on. A role
+ * that reappears in the ATS after being marked closed is un-closed
+ * (status back to 'open', closedDate cleared) rather than treated as new.
+ * foundDate/lastSeenDate are preserved across runs for a role that's still
+ * open, so "open since"/"last confirmed" stay visible.
  *
  * salary/applicationDeadline are best-effort text extraction (see
  * extractSalary/extractDeadline) from whatever description text is
@@ -66,6 +74,13 @@ import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 
 const DATA_FILE = 'data/competitor-jobs.json';
 const STATE_FILE = 'data/competitor-jobs-scan-state.json';
+const ARCHIVE_FILE = 'data/archive/competitor-jobs.json';
+// A closed role lingers in the live list for a full month before moving to
+// the archive — see the file header for why. Kept in sync with
+// news-scan.js's ARCHIVE_AGE_DAYS concept, just a longer window: a closed
+// job posting is still useful reference material for a month (was the AM
+// already in conversation with someone there?), unlike a week-old news story.
+const ARCHIVE_AGE_DAYS = 30;
 const REQUEST_TIMEOUT_MS = 20000;
 
 // Netherlands-or-remote location match. Briefly widened to match any
@@ -76,7 +91,7 @@ const REQUEST_TIMEOUT_MS = 20000;
 // from the Netherlands) — not "somewhere in Europe" generally. A bare
 // "EMEA"/"Europe" location with no "remote" qualifier is deliberately NOT
 // matched, since that names a whole region, not the Netherlands.
-const NL_CITY_COUNTRY_RE = /netherlands|nederland|amsterdam|utrecht|rotterdam|the hague|den haag|eindhoven|groningen|delft|leiden|maastricht|\bnl\b/i;
+const NL_CITY_COUNTRY_RE = /netherlands|nederland|amsterdam|utrecht|rotterdam|the hague|den haag|eindhoven|groningen|delft|leiden|maastricht|\bnl\b|\bnld\b/i;
 
 // A bare "remote" match is not enough on its own: ATS location fields almost
 // always pair "Remote" with a specific country ("Remote, United States of
@@ -119,10 +134,16 @@ function isTrackedLocation(location) {
 // against real non-GTM titles (engineering, research, finance, HR) pulled
 // from live ATS data to confirm it doesn't over-match.
 const SAM_TITLE_RE = /\b(strategic account(s)?|key account(s)?|enterprise account(s)?|senior account(s)?|regional sales|account (manager|executive|director))\b/i;
-const SDR_TITLE_RE = /\b(sales development rep(resentative)?|business development rep(resentative)?|sdr|bdr)\b/i;
+const SDR_TITLE_RE = /\b(sales development rep(resentative)?|business development rep(resentative)?|inside sales (rep(resentative)?|executive)|sdr|bdr)\b/i;
+// Renewals is its own line of work at most of these companies (a
+// subscription/licence business needs dedicated headcount just to retain
+// existing accounts) and is a natural adjacent role for an Elsevier account
+// manager — checked before SAM so a "Renewal Account Manager" (a real,
+// observed title) lands in renewals rather than the broader SAM bucket.
+const RENEWALS_TITLE_RE = /\brenewal(s)?\s*(manager|specialist|representative|executive|account manager)\b/i;
 const CSM_TITLE_RE = /\b(customer success|client success)\b/i;
 const CHANNEL_TITLE_RE = /\b(channel (manager|director|sales|partnerships?)|partnership(s)?|alliance(s)?|business development)\b/i;
-const PRESALES_TITLE_RE = /\b(customer consultant|solutions? consult(ant|ing)|pre-?sales)\b/i;
+const PRESALES_TITLE_RE = /\b(customer consultant|solutions? consult(ant|ing)|pre-?sales|sales engineer)\b/i;
 const IMPLEMENTATION_TITLE_RE = /\b(implementation|onboarding)\b/i;
 const SUPPORT_TITLE_RE = /\b(technical support|product support|support analyst)\b/i;
 const SERVICE_TITLE_RE = /\b(customer service|licen[cs]e administrator|licen[cs]ing administrator)\b/i;
@@ -141,6 +162,7 @@ const NON_RESEARCH_VERTICAL_RE = /\b(patent|trademark|intellectual property|ip (
 function classifyRole(title, department) {
   const text = `${title} ${department || ''}`;
   if (NON_RESEARCH_VERTICAL_RE.test(text)) return null;
+  if (RENEWALS_TITLE_RE.test(title)) return 'renewals';
   if (SAM_TITLE_RE.test(title)) return 'sam';
   // SDR/BDR checked before the broader CHANNEL "business development" match
   // so a "Business Development Representative" — an outbound prospecting
@@ -175,6 +197,12 @@ function makeId(company, url) {
 function toISODate(d) {
   const dt = new Date(d);
   return isNaN(dt) ? null : dt.toISOString().slice(0, 10);
+}
+function isOlderThanDays(dateStr, days) {
+  if (!dateStr) return false; // no date info — keep it live rather than guess
+  const d = new Date(dateStr);
+  if (isNaN(d)) return false;
+  return (Date.now() - d.getTime()) / 86400000 > days;
 }
 
 // Best-effort text extraction — most ATS postings simply don't carry
@@ -308,9 +336,14 @@ async function fetchWorkday(company, host, tenant, site) {
         url: j.externalPath ? `${base}/${site}${j.externalPath}` : '',
         postedDate: null,
         source: 'Workday',
-        // No description in the list response — fetchWorkdayJobDescription()
-        // fills this in later, but only for jobs that survive the
-        // location/role filter, to avoid a detail fetch per posting.
+        // No description AND no reliable location in the list response —
+        // Workday's list-level locationsText is often a bare internal region
+        // code with no country ("517- Victoria", confirmed live to actually
+        // be Australia) or an unhelpful "N Locations" placeholder — see
+        // fetchWorkdayJobDetail() below, called for every role-matching
+        // Workday posting (title checked first, before this fetch, so this
+        // never runs for the large majority of postings that aren't a
+        // tracked GTM role at all).
         workdayDetail: j.externalPath ? { base, tenant, site, externalPath: j.externalPath } : null,
       });
     }
@@ -321,17 +354,24 @@ async function fetchWorkday(company, host, tenant, site) {
 }
 
 // Workday CXS job-detail endpoint — GET (not POST, unlike the list search)
-// returns the full posting including its description HTML. Only called for
-// jobs that already passed the location/role filter (typically 0-a handful
-// per run), never for the full unfiltered list, since Workday's list
-// response doesn't include description text. externalPath from the list
+// returns the full posting: description HTML, plus a resolved location and
+// a real country descriptor that the list endpoint never provides (see the
+// comment on `workdayDetail` above). Only called for jobs whose title
+// already matched a tracked GTM role category — never for the full
+// unfiltered per-company list — so this stays a handful of calls per
+// company per run, not one per open role. externalPath from the list
 // response already starts with "/job/..." — confirmed live (2026-09-05) that
 // prepending another literal "/job" segment double-nests the path and the
-// endpoint 422s on every single request, silently leaving salary/deadline
-// null for every Workday-sourced role. No extra segment needed.
-async function fetchWorkdayJobDescription({ base, tenant, site, externalPath }) {
+// endpoint 422s on every single request. No extra segment needed.
+async function fetchWorkdayJobDetail({ base, tenant, site, externalPath }) {
   const data = await fetchJSON(`${base}/wday/cxs/${tenant}/${site}${externalPath}`);
-  return (data.jobPostingInfo && data.jobPostingInfo.jobDescription) || '';
+  const info = data.jobPostingInfo || {};
+  return {
+    description: info.jobDescription || '',
+    location: info.location || '',
+    country: (info.country && info.country.descriptor) || '',
+    additionalLocations: Array.isArray(info.additionalLocations) ? info.additionalLocations : [],
+  };
 }
 
 // Every company already tracked elsewhere in this app as an Elsevier
@@ -384,8 +424,9 @@ const UNTRACKED_COMPANIES = [
 async function main() {
   const existing = readJSON(DATA_FILE, []);
   const existingByKey = new Map(existing.map(j => [j.company + '|' + j.url, j]));
+  const today = new Date().toISOString().slice(0, 10);
 
-  const allJobs = [];
+  const seenThisRun = new Map(); // key -> freshly-built job record
   const perCompanyCounts = {};
   const errors = {};
 
@@ -395,37 +436,65 @@ async function main() {
       perCompanyCounts[src.company] = { total: jobs.length, nlOrRemote: 0 };
       for (const j of jobs) {
         if (!j.title || !j.url) continue;
-        if (!isTrackedLocation(j.location)) continue;
         const roleCategory = classifyRole(j.title, j.department);
         if (!roleCategory) continue; // excluded business vertical (patent/IP/clinical-regulatory etc) — see NON_RESEARCH_VERTICAL_RE
+
+        // Workday's list response gives no reliable location (see
+        // workdayDetail comment above) — for a role that already matches a
+        // tracked category, fetch the real detail first so the location
+        // check runs against an actual country, not a bare internal region
+        // code or an unhelpful "N Locations" placeholder. Non-Workday
+        // sources already carry a usable location string from their list
+        // fetch, so this only adds a request for Workday-sourced candidates.
+        let displayLocation = j.location;
+        let matchLocation = j.location;
+        let descriptionHtml = j.descriptionHtml || '';
+        if (j.workdayDetail) {
+          try {
+            const detail = await fetchWorkdayJobDetail(j.workdayDetail);
+            descriptionHtml = detail.description || descriptionHtml;
+            displayLocation = detail.country ? `${detail.location || j.location} — ${detail.country}` : (detail.location || j.location);
+            matchLocation = [displayLocation, ...detail.additionalLocations].filter(Boolean).join(' | ');
+
+            // additionalLocations is sometimes a CLOSED enumerated list of
+            // specific remote-eligible countries ("Remote, FRA" / "Remote,
+            // DEU" / "Remote, ESP" / "Remote, GBR") rather than an open-ended
+            // "remote, Europe" — confirmed live (2026-09-11) on a Wiley
+            // posting remote-eligible from exactly those four countries,
+            // none of which is the Netherlands, even though every one of
+            // them is European and so none trips NON_EUROPE_REMOTE_RE. When
+            // every remote entry names a specific country and none names the
+            // Netherlands, the role genuinely can't be filled from the
+            // Netherlands no matter how "European" the list looks overall —
+            // this overrides the generic bare-remote-not-excluded rule.
+            const remoteEntries = detail.additionalLocations.filter(l => /^remote,/i.test(l));
+            if (remoteEntries.length && remoteEntries.length === detail.additionalLocations.length
+                && !NL_CITY_COUNTRY_RE.test(displayLocation)
+                && !remoteEntries.some(l => NL_CITY_COUNTRY_RE.test(l))) {
+              matchLocation = '';
+            }
+          } catch (e) {
+            console.warn(`[competitor-jobs] Could not fetch job detail for "${j.title}" (${j.company}): ${e.message} — falling back to the list location text for this role.`);
+          }
+        }
+        if (!isTrackedLocation(matchLocation)) continue;
         perCompanyCounts[src.company].nlOrRemote++;
         const key = j.company + '|' + j.url;
         const prior = existingByKey.get(key);
 
-        // Salary/deadline extraction only runs for jobs that already passed
-        // the filters above (typically 0-a handful per run) — Greenhouse
-        // and Pinpoint already carry description text from the list fetch;
-        // Workday needs one extra per-job detail fetch since its list
-        // response has no description at all.
-        let descriptionHtml = j.descriptionHtml || '';
-        if (!descriptionHtml && j.workdayDetail) {
-          try {
-            descriptionHtml = await fetchWorkdayJobDescription(j.workdayDetail);
-          } catch (e) {
-            console.warn(`[competitor-jobs] Could not fetch job description for "${j.title}" (${j.company}): ${e.message} — salary/deadline will be unavailable for this role.`);
-          }
-        }
-
-        allJobs.push({
+        seenThisRun.set(key, {
           id: makeId(j.company, j.url),
           company: j.company,
           title: j.title.slice(0, 200),
-          location: String(j.location || '').slice(0, 150),
+          location: String(displayLocation || j.location || '').slice(0, 150),
           department: String(j.department || '').slice(0, 100),
           roleCategory,
           url: j.url.slice(0, 500),
           postedDate: j.postedDate,
-          foundDate: (prior && prior.foundDate) || new Date().toISOString().slice(0, 10),
+          foundDate: (prior && prior.foundDate) || today,
+          lastSeenDate: today,
+          status: 'open',
+          closedDate: null,
           source: j.source,
           salary: extractSalary(descriptionHtml),
           applicationDeadline: extractDeadline(descriptionHtml),
@@ -438,18 +507,65 @@ async function main() {
     }
   }
 
-  allJobs.sort((a, b) => (b.postedDate || b.foundDate || '').localeCompare(a.postedDate || a.foundDate || ''));
-  saveJSON(DATA_FILE, allJobs);
+  // Merge freshly-seen roles with the existing live list rather than fully
+  // resyncing — see the file header for why. A role missing from this run's
+  // results is marked closed (or left closed if it already was) instead of
+  // being dropped outright; a role that reappears after being marked closed
+  // is un-closed. Only a company whose fetch itself failed this run (see
+  // `errors` above) is exempted from closing its existing roles, since a
+  // fetch failure means "unknown," not "confirmed gone."
+  const live = [];
+  const newlyArchived = [];
+  let newCount = 0;
+  let reopenedCount = 0;
+  let closedCount = 0;
+  for (const key of new Set([...existingByKey.keys(), ...seenThisRun.keys()])) {
+    const fresh = seenThisRun.get(key);
+    const prior = existingByKey.get(key);
+
+    if (fresh) {
+      if (!prior) newCount++;
+      else if (prior.status === 'closed') reopenedCount++;
+      live.push(fresh);
+      continue;
+    }
+
+    // No longer returned by its company's ATS this run.
+    const company = prior.company;
+    if (errors[company]) { live.push(prior); continue; } // fetch failed — treat as unknown, not closed
+    if (prior.status === 'closed') {
+      if (isOlderThanDays(prior.closedDate, ARCHIVE_AGE_DAYS)) { newlyArchived.push(prior); continue; }
+      live.push(prior);
+    } else {
+      closedCount++;
+      live.push({ ...prior, status: 'closed', closedDate: today });
+    }
+  }
+
+  if (newlyArchived.length) {
+    const archive = readJSON(ARCHIVE_FILE, []);
+    const archivedIds = new Set(archive.map(a => a.id));
+    for (const a of newlyArchived) if (!archivedIds.has(a.id)) archive.unshift(a);
+    saveJSON(ARCHIVE_FILE, archive);
+  }
+
+  live.sort((a, b) => (b.postedDate || b.foundDate || '').localeCompare(a.postedDate || a.foundDate || ''));
+  saveJSON(DATA_FILE, live);
 
   saveJSON(STATE_FILE, {
     lastRun: new Date().toISOString(),
-    totalOpenRoles: allJobs.length,
+    totalOpenRoles: live.filter(j => j.status !== 'closed').length,
+    totalListed: live.length,
+    newCount,
+    reopenedCount,
+    closedCount,
+    archivedCount: newlyArchived.length,
     perCompanyCounts,
     errors,
     untracked: UNTRACKED_COMPANIES,
     source: 'Company career-page ATS APIs (Greenhouse/Ashby/SmartRecruiters/Pinpoint/Workday) — not LinkedIn, see file header',
   });
-  console.log(`[competitor-jobs] Done — ${allJobs.length} Netherlands/remote tracked role(s) across ${SOURCES.length - Object.keys(errors).length}/${SOURCES.length} tracked companies.`);
+  console.log(`[competitor-jobs] Done — ${live.length} Netherlands/remote tracked role(s) listed (${newCount} new, ${reopenedCount} reopened, ${closedCount} newly closed, ${newlyArchived.length} archived) across ${SOURCES.length - Object.keys(errors).length}/${SOURCES.length} tracked companies.`);
 }
 
 main().catch(e => {
