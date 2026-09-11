@@ -1,23 +1,8 @@
 {
-  "lastRun": "2026-09-10T12:24:16.487Z",
+  "lastRun": "2026-09-11T12:23:23.550Z",
   "lastAddedCount": 0,
   "sources": 50,
   "issues": [
-    {
-      "instId": "uva",
-      "url": "https://icai.ai/team/",
-      "error": "fetch failed"
-    },
-    {
-      "instId": "leiden",
-      "url": "https://www.organisatiegids.universiteitleiden.nl/en/service-units/luris",
-      "error": "fetch failed"
-    },
-    {
-      "instId": "leiden",
-      "url": "https://www.universiteitleiden.nl/en/science/computer-science/about-us/organisation",
-      "error": "fetch failed"
-    },
     {
       "instId": "cpb",
       "url": "https://www.cpb.nl/en/about-cpb",
@@ -70,19 +55,6 @@
     },
     {
       "instId": "scp",
-      "note": "no people extracted"
-    },
-    {
-      "instId": "aighd",
-      "note": "no people extracted"
-    },
-    {
-      "instId": "radboudumc",
-      "url": "https://icai.ai/lab/radboud-ai-for-health-lab/",
-      "error": "fetch failed"
-    },
-    {
-      "instId": "radboudumc",
       "note": "no people extracted"
     },
     {
