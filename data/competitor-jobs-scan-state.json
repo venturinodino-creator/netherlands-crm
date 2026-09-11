@@ -1,10 +1,10 @@
 {
-  "lastRun": "2026-09-11T16:32:06.335Z",
+  "lastRun": "2026-09-11T18:45:13.822Z",
   "totalOpenRoles": 2,
   "totalListed": 4,
   "newCount": 0,
   "reopenedCount": 0,
-  "closedCount": 1,
+  "closedCount": 0,
   "archivedCount": 0,
   "perCompanyCounts": {
     "Digital Science": {
@@ -24,15 +24,15 @@
       "nlOrRemote": 0
     },
     "Wiley": {
-      "total": 74,
+      "total": 75,
       "nlOrRemote": 0
     },
     "OpenAI": {
-      "total": 785,
+      "total": 784,
       "nlOrRemote": 1
     },
     "Anthropic": {
-      "total": 596,
+      "total": 595,
       "nlOrRemote": 0
     },
     "Elicit": {
