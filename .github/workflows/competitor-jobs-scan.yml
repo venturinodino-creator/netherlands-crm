@@ -25,7 +25,40 @@ jobs:
           # Only used for the private roles-for-you shortlist, which is
           # written to Supabase behind RLS rather than into this public repo.
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          # This repo owns the shortlist; Belgium and Denmark skip it so the
+          # three scans do not fight over the same rows or send three emails.
+          PERSONAL_SHORTLIST: '1'
+          # Outside the workspace, so the digest can never be committed.
+          ROLES_DIGEST_PATH: ${{ runner.temp }}/roles-digest.html
         run: node scripts/competitor-jobs-scan.js
+
+      # Email the new roles. Nothing is echoed: the digest is read from a file
+      # the step above wrote outside the repo, because Actions logs on a public
+      # repo are public. Skipped entirely when the mail secrets are absent.
+      - name: Check for a roles digest
+        id: digest
+        run: |
+          if [ -s "${{ runner.temp }}/roles-digest.html" ]; then
+            echo "found=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "found=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Email new roles
+        if: steps.digest.outputs.found == 'true' && env.MAIL_USERNAME != ''
+        env:
+          MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: ${{ secrets.MAIL_SERVER || 'smtp.gmail.com' }}
+          server_port: ${{ secrets.MAIL_PORT || 465 }}
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          from: Research CRM
+          to: ${{ secrets.MAIL_TO }}
+          subject: New roles matching your profile
+          html_body: file://${{ runner.temp }}/roles-digest.html
+          convert_markdown: false
       - name: Commit new hiring findings
         run: |
           git config user.email "actions@github.com"
