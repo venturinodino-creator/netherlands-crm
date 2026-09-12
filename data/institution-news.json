@@ -1,0 +1,50 @@
+[
+  {
+    "id": "inews_ster_research_insights_with_dimensions_101_and_new_tutorials",
+    "institution": "TU Delft Library",
+    "sourceType": "feed",
+    "title": "Master research insights with Dimensions 101 and new tutorials",
+    "url": "https://library4research.tudl.tudelft.nl/2026/05/12/master-research-insights-with-dimensions-101-and-new-tutorials/?utm_source=rss&utm_medium=rss&utm_campaign=master-research-insights-with-dimensions-101-and-new-tutorials",
+    "date": "Tue, 12 May 2026 10:59:48 +0000",
+    "summary": "Over the past year, we have explored how Dimensions and Altmetric Explorer can transform the way you navigate the research landscape. We started with an introduction to Dimensions, moved into a deep dive on unlocking research insights, and recently looked at how Altmetric Explorer tracks impact beyond the citation. To help you put these insights.. Read more",
+    "matchedTerm": "dimensions",
+    "reason": "named system or vendor",
+    "foundAt": "2026-09-12T09:07:57.459486Z"
+  },
+  {
+    "id": "inews_tm_campaign_webinar_scival_ahead_smart_ai_summaries_and_more",
+    "institution": "TU Delft Library",
+    "sourceType": "feed",
+    "title": "Webinar – SciVal Ahead: Smart (AI) summaries and more",
+    "url": "https://library4research.tudl.tudelft.nl/2026/03/18/webinar-scival-ahead-smart-ai-summaries-and-more/?utm_source=rss&utm_medium=rss&utm_campaign=webinar-scival-ahead-smart-ai-summaries-and-more",
+    "date": "Wed, 18 Mar 2026 13:15:28 +0000",
+    "summary": "Webinar: SciVal Ahead: Smart (AI) summaries and more 26 March, 11:00 AM – 12:00 PM (CET) SciVal is a research analytics solution that provides access to the research performance of thousands of research institutions and their associated researchers worldwide. By using data from the Scopus database, it offers insights into research trends, benchmarking, and collaboration.. Read more",
+    "matchedTerm": "scopus",
+    "reason": "named system or vendor",
+    "foundAt": "2026-09-12T09:07:57.463032Z"
+  },
+  {
+    "id": "inews_https_www_rug_nl_library_news_260608_openalex",
+    "institution": "University of Groningen Library",
+    "sourceType": "html",
+    "title": "Steunlidmaatschap: UB en Medische Bibliotheek sluiten zich aan bij OpenAlex",
+    "url": "https://www.rug.nl/library/news/260608-openalex",
+    "date": "",
+    "summary": "",
+    "matchedTerm": "openalex",
+    "reason": "named system or vendor",
+    "foundAt": "2026-09-12T09:07:59.678159Z"
+  },
+  {
+    "id": "inews_https_www_rug_nl_library_news_20260420_end_web_of_science",
+    "institution": "University of Groningen Library",
+    "sourceType": "html",
+    "title": "Toegang tot Web of Science eindigt per 31 december 2026",
+    "url": "https://www.rug.nl/library/news/20260420-end-web-of-science",
+    "date": "",
+    "summary": "",
+    "matchedTerm": "web of science",
+    "reason": "named system or vendor",
+    "foundAt": "2026-09-12T09:07:59.678159Z"
+  }
+]
