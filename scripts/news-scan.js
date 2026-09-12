@@ -416,18 +416,25 @@ async function fetchWithTimeout(url, options) {
   }
 }
 
+// Returns { url } on success, { expired: true } when Google has retired the
+// id, or {} when it merely didn't work this time. The distinction matters:
+// Google drops RSS article ids after a week or two and then answers 400 for
+// both the decode call AND the reader clicking the stored link, so an
+// unresolved link is not a link that still works -- it is already dead, and
+// should be marked rather than retried forever.
 async function resolvePublisherUrl(googleUrl) {
   const id = googleNewsArticleId(googleUrl);
-  if (!id) return null;
+  if (!id) return {};
   try {
     const pageRes = await fetchWithTimeout('https://news.google.com/rss/articles/' + id, {
       headers: { 'User-Agent': BROWSER_UA },
     });
-    if (!pageRes.ok) return null;
+    if (pageRes.status === 400 || pageRes.status === 404) return { expired: true };
+    if (!pageRes.ok) return {};
     const page = await pageRes.text();
     const sg = page.match(/data-n-a-sg="([^"]+)"/);
     const ts = page.match(/data-n-a-ts="([^"]+)"/);
-    if (!sg || !ts) return null;
+    if (!sg || !ts) return {};
 
     const inner = JSON.stringify(['garturlreq',
       [['X', 'X', ['X', 'X'], null, null, 1, 1, 'US:en', null, 1, null, null, null, null, null, 0, 1],
@@ -443,7 +450,7 @@ async function resolvePublisherUrl(googleUrl) {
       },
       body,
     });
-    if (!res.ok) return null;
+    if (!res.ok) return {};
     const text = await res.text();
     for (const line of text.split('\n')) {
       if (!line.includes('garturlres')) continue;
@@ -452,13 +459,13 @@ async function resolvePublisherUrl(googleUrl) {
       for (const part of outer) {
         try {
           const url = JSON.parse(part[2])[1];
-          if (typeof url === 'string' && /^https?:\/\//.test(url)) return url;
+          if (typeof url === 'string' && /^https?:\/\//.test(url)) return { url };
         } catch { /* not the payload element; keep looking */ }
       }
     }
-    return null;
+    return {};
   } catch (e) {
-    return null;
+    return {};
   }
 }
 
@@ -469,18 +476,26 @@ async function resolveArticleUrls(list, label) {
   const pending = list.filter(a => isGoogleNewsUrl(a.url));
   if (!pending.length) return 0;
   console.log(`[news-scan] resolving ${pending.length} ${label} link(s) to publisher URLs...`);
-  let ok = 0;
+  let ok = 0, expired = 0;
   for (let i = 0; i < pending.length; i++) {
     const a = pending[i];
-    const real = await resolvePublisherUrl(a.url);
-    if (real) {
+    const res = await resolvePublisherUrl(a.url);
+    if (res.url) {
       if (!a.googleNewsUrl) a.googleNewsUrl = a.url;
-      a.url = real.slice(0, 500);
+      a.url = res.url.slice(0, 500);
       ok++;
+    } else if (res.expired) {
+      // The id is gone, so the stored link is dead too. Clear it and mark it,
+      // which both stops the retry loop and lets the UI say "original link
+      // expired" instead of offering a click that 400s.
+      if (!a.googleNewsUrl) a.googleNewsUrl = a.url;
+      a.url = '';
+      a.linkExpired = true;
+      expired++;
     }
     if (i < pending.length - 1) await sleep(REQUEST_DELAY_MS);
   }
-  console.log(`[news-scan] resolved ${ok}/${pending.length} ${label} link(s)`);
+  console.log(`[news-scan] resolved ${ok}/${pending.length} ${label} link(s)` + (expired ? `, ${expired} retired by Google` : ''));
   return ok;
 }
 
@@ -730,7 +745,13 @@ async function main() {
           // decode to two literal spaces — collapse those before slicing so
           // a raw-description fallback (an article not yet backfilled with
           // an AI-written bottomLine) never shows doubled whitespace.
-          description: String(item.description || '').replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim().slice(0, 400),
+          // Decoded a SECOND time, after the tags come off. Google News wraps
+          // the description in an escaped <a> tag, so one pass only unwraps
+          // the markup and leaves the text's own entities encoded -- that is
+          // why "&nbsp;&nbsp;" kept reaching the UI despite the earlier
+          // decode fix. JS \s covers the resulting \u00a0, so the collapse
+          // below turns them into ordinary spaces.
+          description: decodeEntities(String(item.description || '').replace(/<[^>]*>/g, '')).replace(/\s+/g, ' ').trim().slice(0, 400),
           institution: job.inst,
           category: category.key,
           categoryLabel: category.label,

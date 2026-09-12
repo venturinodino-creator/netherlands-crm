@@ -2,7 +2,7 @@
   {
     "id": "news-uykf6t",
     "title": "GPT-6 Astra: A new generation of intelligence - OpenAI",
-    "description": "GPT-6 Astra: A new generation of intelligence&nbsp;&nbsp;OpenAI",
+    "description": "GPT-6 Astra: A new generation of intelligence OpenAI",
     "institution": "OpenAI",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -40,7 +40,7 @@
   {
     "id": "news-x72qpj",
     "title": "Anthropic Launches Claude Fable 5.1 and Restricted Mythos 5.1 for Advanced Coding, Cybersecurity and Scientific Research - LinkedIn",
-    "description": "Anthropic Launches Claude Fable 5.1 and Restricted Mythos 5.1 for Advanced Coding, Cybersecurity and Scientific Research&nbsp;&nbsp;LinkedIn",
+    "description": "Anthropic Launches Claude Fable 5.1 and Restricted Mythos 5.1 for Advanced Coding, Cybersecurity and Scientific Research LinkedIn",
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -80,7 +80,7 @@
   {
     "id": "news-ulddbb",
     "title": "OpenAI Launches GPT-6 Astra, Claiming a New Frontier in Computer Use, Coding, and Science - gHacks",
-    "description": "OpenAI Launches GPT-6 Astra, Claiming a New Frontier in Computer Use, Coding, and Science&nbsp;&nbsp;gHacks",
+    "description": "OpenAI Launches GPT-6 Astra, Claiming a New Frontier in Computer Use, Coding, and Science gHacks",
     "institution": "OpenAI",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -119,7 +119,7 @@
   {
     "id": "news-iqxs1j",
     "title": "OpenAI launches GPT-6 Astra, calls it its ‘most intelligent’ AI model - Pragativadi",
-    "description": "OpenAI launches GPT-6 Astra, calls it its ‘most intelligent’ AI model&nbsp;&nbsp;Pragativadi",
+    "description": "OpenAI launches GPT-6 Astra, calls it its ‘most intelligent’ AI model Pragativadi",
     "institution": "OpenAI",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -158,7 +158,7 @@
   {
     "id": "news-r229t2",
     "title": "CrowdStrike and OpenAI Expand Partnership to Secure the Agentic Era - HPCwire",
-    "description": "CrowdStrike and OpenAI Expand Partnership to Secure the Agentic Era&nbsp;&nbsp;HPCwire",
+    "description": "CrowdStrike and OpenAI Expand Partnership to Secure the Agentic Era HPCwire",
     "institution": "OpenAI",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -197,7 +197,7 @@
   {
     "id": "news-dqu798",
     "title": "OpenAI unveils GPT-6 Astra: Here’s what this new model can do - Gulf Business",
-    "description": "OpenAI unveils GPT-6 Astra: Here’s what this new model can do&nbsp;&nbsp;Gulf Business",
+    "description": "OpenAI unveils GPT-6 Astra: Here’s what this new model can do Gulf Business",
     "institution": "OpenAI",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -236,7 +236,7 @@
   {
     "id": "news-yxvyme",
     "title": "OpenAI Launches GPT-6 Astra, Its Most Advanced And Aligned AI Model Yet - ETV Bharat",
-    "description": "OpenAI Launches GPT-6 Astra, Its Most Advanced And Aligned AI Model Yet&nbsp;&nbsp;ETV Bharat",
+    "description": "OpenAI Launches GPT-6 Astra, Its Most Advanced And Aligned AI Model Yet ETV Bharat",
     "institution": "OpenAI",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -275,11 +275,11 @@
   {
     "id": "news-9xctab",
     "title": "OpenAI launches GPT-6 Astra, Sam Altman calls it best AI model in the world - India Today",
-    "description": "OpenAI launches GPT-6 Astra, Sam Altman calls it best AI model in the world&nbsp;&nbsp;India Today",
+    "description": "OpenAI launches GPT-6 Astra, Sam Altman calls it best AI model in the world India Today",
     "institution": "OpenAI",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNcU5ELXNlZGlWTzlWVW9lNXZGTDcxaG9QSWZhLXJ2Wm5reWRncXFNcUllRjhQcWE4MmY1S3lZTDdQVnpsUDNEYV9CTzZIN1FJcU9JV0lNYm1xclBXdEdHamtQcEFmQU1ESlpWTGowdGpFQlhza3BZblNyVUVlckF2cnVhcnYzaUlOR1hLN3BTS196NkxyRzd1cUtSNEg0R3JiZXE2ZXVkV1AtSFp3ZjlpQV9yYWlRbVg3M3MyWjlwc3RCTldVVERiN0VqOGljWEM4Q21uS2U3bUbSAd4BQVVfeXFMTUc5TnhpY0pPRHlfd1J6V3hHVXRiOEpHUHRFRTM2Uy1pXzN0MERsQzd1RXI2cXE3RlNhU2RIdUxneFV1RkYtMzU1ekJFTWJ1c1dMUC01U05wbnJBSkV4QkFBdTAzT2V6cDBxQVpwcDBHTF9rSmhsTW9DUUZ",
+    "url": "",
     "sourceName": "India Today",
     "publishedDate": "2026-09-04",
     "foundDate": "2026-09-07",
@@ -308,12 +308,14 @@
       "Conduct urgent competitive intelligence on GPT-6 Astra's research-specific features and pricing to inform sales messaging.",
       "Schedule briefings with target Netherlands institutions' research and IT leadership to reinforce LeapSpace's domain integration advantages."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNcU5ELXNlZGlWTzlWVW9lNXZGTDcxaG9QSWZhLXJ2Wm5reWRncXFNcUllRjhQcWE4MmY1S3lZTDdQVnpsUDNEYV9CTzZIN1FJcU9JV0lNYm1xclBXdEdHamtQcEFmQU1ESlpWTGowdGpFQlhza3BZblNyVUVlckF2cnVhcnYzaUlOR1hLN3BTS196NkxyRzd1cUtSNEg0R3JiZXE2ZXVkV1AtSFp3ZjlpQV9yYWlRbVg3M3MyWjlwc3RCTldVVERiN0VqOGljWEM4Q21uS2U3bUbSAd4BQVVfeXFMTUc5TnhpY0pPRHlfd1J6V3hHVXRiOEpHUHRFRTM2Uy1pXzN0MERsQzd1RXI2cXE3RlNhU2RIdUxneFV1RkYtMzU1ekJFTWJ1c1dMUC01U05wbnJBSkV4QkFBdTAzT2V6cDBxQVpwcDBHTF9rSmhsTW9DUUZ",
+    "linkExpired": true
   },
   {
     "id": "news-ukdshp",
     "title": "With a tiny fish and 2.5 million euros in ERC funding: Fabian Voigt launches new research group at MPZPM - analyticalscience.wiley.com",
-    "description": "With a tiny fish and 2.5 million euros in ERC funding: Fabian Voigt launches new research group at MPZPM&nbsp;&nbsp;analyticalscience.wiley.com",
+    "description": "With a tiny fish and 2.5 million euros in ERC funding: Fabian Voigt launches new research group at MPZPM analyticalscience.wiley.com",
     "institution": "Wiley",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -327,7 +329,7 @@
   {
     "id": "news-2q2xkk",
     "title": "OpenAI Launches 'World's Most Intelligent' AI Model GPT-6 Astra - NDTV",
-    "description": "OpenAI Launches 'World's Most Intelligent' AI Model GPT-6 Astra&nbsp;&nbsp;NDTV",
+    "description": "OpenAI Launches 'World's Most Intelligent' AI Model GPT-6 Astra NDTV",
     "institution": "OpenAI",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -341,11 +343,11 @@
   {
     "id": "news-zd4uvd",
     "title": "OpenAI Launches GPT-6 Astra, Its Most Advanced And Aligned AI Model Yet - ETV Bharat",
-    "description": "OpenAI Launches GPT-6 Astra, Its Most Advanced And Aligned AI Model Yet&nbsp;&nbsp;ETV Bharat",
+    "description": "OpenAI Launches GPT-6 Astra, Its Most Advanced And Aligned AI Model Yet ETV Bharat",
     "institution": "OpenAI",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQQXRSd2VEU044cWkwaGtPQS1lSGFsSnFnNHExN0QxSEFaQ2ZJaTlpTjc4VEloNzhDV3IyZlRRdnhmRTBNb0xmUEVoMGljLTYyOERfU3VYUG1JSGMtU1E0S1BjYjQ2Vk5VSGVpOEtrLW5BOUZhREY5VmlIaDFTZm13VFNFc3o1cTlYcVdWWElnMTdfc2stMkh5Vm50dGdqT0NjV3AwU2t6M2g3cThzNmpfYW9JdXgtNFhYODZXLVVNTUNGdWfSAcgBQVVfeXFMT0VQa0JnVVFUMEtURy1lbWRENG14SkRZMmowMHdqNElvY0FKOW1uYlBuTWF2MWZNSHhKRFdTd2R1VDBKNlpndG1VdzR5cjd3anpiQkNEVy1WUDRmNlI4MGtUczNWenBsbVltSzRaNngwb2k4bmdaWVRnUkhiN19wRldnNnQ3SlF4TlJ3SHJHdHU",
+    "url": "",
     "sourceName": "ETV Bharat",
     "publishedDate": "2026-09-04",
     "foundDate": "2026-09-07",
@@ -373,16 +375,18 @@
       "Create product positioning document highlighting how LeapSpace claim-checking, reading assistant, and deep research reports add credibility over raw GPT-6 Astra outputs.",
       "Prioritize outreach to Netherlands research ethics and compliance officers to emphasize governance and institutional control advantages of LeapSpace vs. public LLMs."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQQXRSd2VEU044cWkwaGtPQS1lSGFsSnFnNHExN0QxSEFaQ2ZJaTlpTjc4VEloNzhDV3IyZlRRdnhmRTBNb0xmUEVoMGljLTYyOERfU3VYUG1JSGMtU1E0S1BjYjQ2Vk5VSGVpOEtrLW5BOUZhREY5VmlIaDFTZm13VFNFc3o1cTlYcVdWWElnMTdfc2stMkh5Vm50dGdqT0NjV3AwU2t6M2g3cThzNmpfYW9JdXgtNFhYODZXLVVNTUNGdWfSAcgBQVVfeXFMT0VQa0JnVVFUMEtURy1lbWRENG14SkRZMmowMHdqNElvY0FKOW1uYlBuTWF2MWZNSHhKRFdTd2R1VDBKNlpndG1VdzR5cjd3anpiQkNEVy1WUDRmNlI4MGtUczNWenBsbVltSzRaNngwb2k4bmdaWVRnUkhiN19wRldnNnQ3SlF4TlJ3SHJHdHU",
+    "linkExpired": true
   },
   {
     "id": "news-t8s50w",
     "title": "OpenAI launches GPT-6 Astra, claims new AI capabilities bring it closer to human-level intelligence - Moneycontrol.com",
-    "description": "OpenAI launches GPT-6 Astra, claims new AI capabilities bring it closer to human-level intelligence&nbsp;&nbsp;Moneycontrol.com",
+    "description": "OpenAI launches GPT-6 Astra, claims new AI capabilities bring it closer to human-level intelligence Moneycontrol.com",
     "institution": "OpenAI",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxPUVhlUnF0NFprazdTQUp6OFFrWWYtWVhpRXdDUkZ3WVNfS2ZTOVRfcEFmNHVGNmVYT0ZDMFNndTFMWmVRUlBTSldhdDVSaS1nMEprMlp4WVVmRHp2M045Y1N3eVJQX2pycDhsUzJselB0cWpfcmljMUI3RE9vSGdPRGhtbThwN3RNaDNLUnhKZU85LUdRbVc4dl8xdUxpSEhsaUJfbDNQOExUcXdldUhrSEpuRENQMWY1NWo1Y0xQaGlVR190VXpyQWQtYkRDNVJnc0VQaUlCek11OWFCR1BEdmlHWlBHX0QyRGV1Rzd0LW1qd9IB9wFBVV95cUxQbUNxa2JCVERNWmFtWkZtbEswcXl4ZTRzREhPSTR3UzBGQUZoZnRQU2YyY0hlNXJnQ0tObVZ4a1NKb0tYRk1ZNmx5RWxsU1QtQ2lJcDZmUzBmVGxCOFg0aHZ",
+    "url": "",
     "sourceName": "Moneycontrol.com",
     "publishedDate": "2026-09-04",
     "foundDate": "2026-09-04",
@@ -411,12 +415,14 @@
       "Prepare messaging clarifying why general 'human-level intelligence' requires guardrails, domain authority, and peer-reviewed content integration for research.",
       "Engage Dutch university librarians and research directors to understand perception of GPT-6 Astra vs. specialist research platforms."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxPUVhlUnF0NFprazdTQUp6OFFrWWYtWVhpRXdDUkZ3WVNfS2ZTOVRfcEFmNHVGNmVYT0ZDMFNndTFMWmVRUlBTSldhdDVSaS1nMEprMlp4WVVmRHp2M045Y1N3eVJQX2pycDhsUzJselB0cWpfcmljMUI3RE9vSGdPRGhtbThwN3RNaDNLUnhKZU85LUdRbVc4dl8xdUxpSEhsaUJfbDNQOExUcXdldUhrSEpuRENQMWY1NWo1Y0xQaGlVR190VXpyQWQtYkRDNVJnc0VQaUlCek11OWFCR1BEdmlHWlBHX0QyRGV1Rzd0LW1qd9IB9wFBVV95cUxQbUNxa2JCVERNWmFtWkZtbEswcXl4ZTRzREhPSTR3UzBGQUZoZnRQU2YyY0hlNXJnQ0tObVZ4a1NKb0tYRk1ZNmx5RWxsU1QtQ2lJcDZmUzBmVGxCOFg0aHZ",
+    "linkExpired": true
   },
   {
     "id": "news-x6j1qy",
     "title": "OpenAI begins rolling out Astra model after warning of its advanced cyber capabilities - CNBC",
-    "description": "OpenAI begins rolling out Astra model after warning of its advanced cyber capabilities&nbsp;&nbsp;CNBC",
+    "description": "OpenAI begins rolling out Astra model after warning of its advanced cyber capabilities CNBC",
     "institution": "OpenAI",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -455,7 +461,7 @@
   {
     "id": "news-3tvnpt",
     "title": "OpenAI Launches GPT-6 Astra: Advanced AI for Enterprise and Consumer Use - News and Statistics - IndexBox",
-    "description": "OpenAI Launches GPT-6 Astra: Advanced AI for Enterprise and Consumer Use - News and Statistics&nbsp;&nbsp;IndexBox",
+    "description": "OpenAI Launches GPT-6 Astra: Advanced AI for Enterprise and Consumer Use - News and Statistics IndexBox",
     "institution": "OpenAI",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -494,7 +500,7 @@
   {
     "id": "news-9s3foc",
     "title": "OpenAI Unveils GPT-6 Astra: AI Agent Capabilities Upgraded, Priced at About 2.5 Times Previous Generation - TradingKey",
-    "description": "OpenAI Unveils GPT-6 Astra: AI Agent Capabilities Upgraded, Priced at About 2.5 Times Previous Generation&nbsp;&nbsp;TradingKey",
+    "description": "OpenAI Unveils GPT-6 Astra: AI Agent Capabilities Upgraded, Priced at About 2.5 Times Previous Generation TradingKey",
     "institution": "OpenAI",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -533,7 +539,7 @@
   {
     "id": "news-m7yel8",
     "title": "Anthropic launches Claude Fable 5.1 and restricted Mythos 5.1 for advanced research - EdTech Innovation Hub",
-    "description": "Anthropic launches Claude Fable 5.1 and restricted Mythos 5.1 for advanced research&nbsp;&nbsp;EdTech Innovation Hub",
+    "description": "Anthropic launches Claude Fable 5.1 and restricted Mythos 5.1 for advanced research EdTech Innovation Hub",
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -573,7 +579,7 @@
   {
     "id": "news-ii1s8z",
     "title": "OpenAI unveils GPT-6 Astra with major advances in AI capabilities: 'Now in the AGI era' - Fox Business",
-    "description": "OpenAI unveils GPT-6 Astra with major advances in AI capabilities: 'Now in the AGI era'&nbsp;&nbsp;Fox Business",
+    "description": "OpenAI unveils GPT-6 Astra with major advances in AI capabilities: 'Now in the AGI era' Fox Business",
     "institution": "OpenAI",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -612,7 +618,7 @@
   {
     "id": "news-7nszjc",
     "title": "Gianclaudio Malgieri appointed Professor of AI, Data Governance and Fundamental Rights - Maastricht University",
-    "description": "Gianclaudio Malgieri appointed Professor of AI, Data Governance and Fundamental Rights&nbsp;&nbsp;Maastricht University",
+    "description": "Gianclaudio Malgieri appointed Professor of AI, Data Governance and Fundamental Rights Maastricht University",
     "institution": "Maastricht University",
     "category": "ai_adoption",
     "categoryLabel": "AI Development & Adoption",
@@ -626,7 +632,7 @@
   {
     "id": "news-75yfzm",
     "title": "Anthropic launches Claude Fable 5.1 and Mythos 5.1 - TestingCatalog AI News",
-    "description": "Anthropic launches Claude Fable 5.1 and Mythos 5.1&nbsp;&nbsp;TestingCatalog AI News",
+    "description": "Anthropic launches Claude Fable 5.1 and Mythos 5.1 TestingCatalog AI News",
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -665,7 +671,7 @@
   {
     "id": "news-m8dlfc",
     "title": "Anthropic Launches Claude Fable and Mythos 5.1 for Advanced Coding and Research - CyberSecurityNews",
-    "description": "Anthropic Launches Claude Fable and Mythos 5.1 for Advanced Coding and Research&nbsp;&nbsp;CyberSecurityNews",
+    "description": "Anthropic Launches Claude Fable and Mythos 5.1 for Advanced Coding and Research CyberSecurityNews",
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -704,7 +710,7 @@
   {
     "id": "news-gld9s3",
     "title": "Anthropic Unveils \"Claude Fable 5.1\"... Introduces Mythos Model with Enhanced Safeguards - 아시아경제",
-    "description": "Anthropic Unveils \"Claude Fable 5.1\"... Introduces Mythos Model with Enhanced Safeguards&nbsp;&nbsp;아시아경제",
+    "description": "Anthropic Unveils \"Claude Fable 5.1\"... Introduces Mythos Model with Enhanced Safeguards 아시아경제",
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -743,11 +749,11 @@
   {
     "id": "news-hw75a2",
     "title": "Anthropic launches Fable 5.1 and Mythos 5.1 with lower costs, fewer AI restrictions - Business Today",
-    "description": "Anthropic launches Fable 5.1 and Mythos 5.1 with lower costs, fewer AI restrictions&nbsp;&nbsp;Business Today",
+    "description": "Anthropic launches Fable 5.1 and Mythos 5.1 with lower costs, fewer AI restrictions Business Today",
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxOWEVld1RqNXo1ZWo4OWRHVDdqQXl0cUNZcHhuYVV4TTFqT2FCdWFKUkp4VGZreEYxRVM5NXAxZkc5MDF2b2NNU1AyZ0FFMV9rdFpnLVA2Q1Bnb1ZIb1F6MGJwVWhqQTVWRVVXbHhMcUZsczFCN2hFUEs0Q19wTDdtNFIyTXNqNmN3Zkd5WnJzcHg1c211dy1fSzExamZjUDRObGJYTWFVcXRSTWhsMjRsRkhsd2o1SmgzM3NPbWVHMVVNWHR3aTAwMG1iQkExNHBENFZYSHdCeWFjdTladlAtd2hlV0xuYW1aeFpSVzlDbFdweEh4T1hnOGNVV1pjUWh2MEtuetIBhAJBVV95cUxOWEVld1RqNXo1ZWo4OWRHVDdqQXl0cUNZcHhuYVV4TTFqT2FCdWFKUkp4VGZreEYxRVM5NXAxZkc5MDF2b2NNU1AyZ0FFMV9",
+    "url": "",
     "sourceName": "Business Today",
     "publishedDate": "2026-09-02",
     "foundDate": "2026-09-02",
@@ -776,16 +782,18 @@
       "Compare LeapSpace's research-specific capabilities against standalone Claude integration; identify unique scholarly value-add.",
       "Analyze pricing elasticity: if Anthropic's lower costs drive adoption, can Elsevier bundle LeapSpace into existing ScienceDirect/Scopus subscriptions?"
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMihAJBVV95cUxOWEVld1RqNXo1ZWo4OWRHVDdqQXl0cUNZcHhuYVV4TTFqT2FCdWFKUkp4VGZreEYxRVM5NXAxZkc5MDF2b2NNU1AyZ0FFMV9rdFpnLVA2Q1Bnb1ZIb1F6MGJwVWhqQTVWRVVXbHhMcUZsczFCN2hFUEs0Q19wTDdtNFIyTXNqNmN3Zkd5WnJzcHg1c211dy1fSzExamZjUDRObGJYTWFVcXRSTWhsMjRsRkhsd2o1SmgzM3NPbWVHMVVNWHR3aTAwMG1iQkExNHBENFZYSHdCeWFjdTladlAtd2hlV0xuYW1aeFpSVzlDbFdweEh4T1hnOGNVV1pjUWh2MEtuetIBhAJBVV95cUxOWEVld1RqNXo1ZWo4OWRHVDdqQXl0cUNZcHhuYVV4TTFqT2FCdWFKUkp4VGZreEYxRVM5NXAxZkc5MDF2b2NNU1AyZ0FFMV9",
+    "linkExpired": true
   },
   {
     "id": "news-p59c0m",
     "title": "Anthropic launches Claude Fable 5.1 and Mythos 5.1, claims major leap in coding and AI research - WION",
-    "description": "Anthropic launches Claude Fable 5.1 and Mythos 5.1, claims major leap in coding and AI research&nbsp;&nbsp;WION",
+    "description": "Anthropic launches Claude Fable 5.1 and Mythos 5.1, claims major leap in coding and AI research WION",
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOcFJ3MTMxamVDQ2hmS21fRVQ4RXFiYVRuNGhJbEVrcHRfamNkVnRXQS1iSlQyNmlpQmNkVnFFUkZyd3NlcVUzT0pTUHlycmplU2x3bndoVE9wU0wtUHo2RHFRZzRXZGFYOEFncUd2RjZzSUZuV0NMQkxtZjVrYUpHUkxoYjBlY3JOUFM0YXM3MzFZRjNud2VLeHk3V3VlRGtSc1NaU0FlM1FnTkVKdXJWU3pXOGQxQWZzU0xndzBXWHB1QXVNdTdUZU5VemJ4empjYWpkSUJ5MGhvQ3k5MjYycNIB4AFBVV95cUxOcFJ3MTMxamVDQ2hmS21fRVQ4RXFiYVRuNGhJbEVrcHRfamNkVnRXQS1iSlQyNmlpQmNkVnFFUkZyd3NlcVUzT0pTUHlycmplU2x3bndoVE9wU0wtUHo2RHFRZzRXZGFYOEFncUd2RjZzSUZ",
+    "url": "",
     "sourceName": "WION",
     "publishedDate": "2026-09-02",
     "foundDate": "2026-09-02",
@@ -813,16 +821,18 @@
       "Document LeapSpace's ScienceDirect-indexed advantages in AI research use cases (reproducibility, citation verification, methodological rigor).",
       "Arrange demos for Dutch AI-research clusters showing LeapSpace + Scopus integration for domain-specific benchmarking vs. generic Claude workflows."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOcFJ3MTMxamVDQ2hmS21fRVQ4RXFiYVRuNGhJbEVrcHRfamNkVnRXQS1iSlQyNmlpQmNkVnFFUkZyd3NlcVUzT0pTUHlycmplU2x3bndoVE9wU0wtUHo2RHFRZzRXZGFYOEFncUd2RjZzSUZuV0NMQkxtZjVrYUpHUkxoYjBlY3JOUFM0YXM3MzFZRjNud2VLeHk3V3VlRGtSc1NaU0FlM1FnTkVKdXJWU3pXOGQxQWZzU0xndzBXWHB1QXVNdTdUZU5VemJ4empjYWpkSUJ5MGhvQ3k5MjYycNIB4AFBVV95cUxOcFJ3MTMxamVDQ2hmS21fRVQ4RXFiYVRuNGhJbEVrcHRfamNkVnRXQS1iSlQyNmlpQmNkVnFFUkZyd3NlcVUzT0pTUHlycmplU2x3bndoVE9wU0wtUHo2RHFRZzRXZGFYOEFncUd2RjZzSUZ",
+    "linkExpired": true
   },
   {
     "id": "news-m55qp4",
     "title": "Anthropic launches Claude Fable 5.1 and Mythos 5.1 models claimed to be ‘world’s most advanced models for - The Times of India",
-    "description": "Anthropic launches Claude Fable 5.1 and Mythos 5.1 models claimed to be ‘world’s most advanced models for&nbsp;&nbsp;The Times of India",
+    "description": "Anthropic launches Claude Fable 5.1 and Mythos 5.1 models claimed to be ‘world’s most advanced models for The Times of India",
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMitwJBVV95cUxNOHNTa1l4TE52Q1R4dXlyd2FsUnEwOExYTTZDYl9oU2lra1FSS09ZZkxzcVJIVmJqb1hEZmx6Uk0xSWtVYk5lay1aak1jbFVWMW1NR2VhZUU0bnROM2QtanVXeURWNEQzTzBHMXR1R2tpZFl2MVJGMUZiTjdBSGZTTzVqX0Z4ODNqSkQ4Z3g2Mm8zd0YwU3U2MDVXeUtOMUZPbWhHeXo0MXNSNXU4eGZVYWJjNzVRZVN1dWotNjgtSkhRemxlNWp2U3BSXzFhS1NfUWpDQUF3aG55RXpnNGs4WmUtU0ZUaDdiRmZqbUdNb3U0SzdnTHI0anBWdThMdXMtc3N0cERXMm9LVUgtX2ZBeFEyU3FBV3E5d090amEwcTdUSEhsdWlnckRlWWNTRkhZZWlaYTlBSdIBvAJBVV95cUxObmZid3Z5UURkVzRGMWdqOUpMcUJ",
+    "url": "",
     "sourceName": "The Times of India",
     "publishedDate": "2026-09-02",
     "foundDate": "2026-09-02",
@@ -851,12 +861,14 @@
       "Develop 'institutional trust' positioning: document Elsevier's compliance certifications, data security standards, and audit frameworks vs. Anthropic's transparency/governance.",
       "Create case studies: show Dutch universities/hospitals how LeapSpace + Scopus + ScienceDirect workflow outperforms standalone Claude on real research tasks (grant writing, systematic reviews,…"
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMitwJBVV95cUxNOHNTa1l4TE52Q1R4dXlyd2FsUnEwOExYTTZDYl9oU2lra1FSS09ZZkxzcVJIVmJqb1hEZmx6Uk0xSWtVYk5lay1aak1jbFVWMW1NR2VhZUU0bnROM2QtanVXeURWNEQzTzBHMXR1R2tpZFl2MVJGMUZiTjdBSGZTTzVqX0Z4ODNqSkQ4Z3g2Mm8zd0YwU3U2MDVXeUtOMUZPbWhHeXo0MXNSNXU4eGZVYWJjNzVRZVN1dWotNjgtSkhRemxlNWp2U3BSXzFhS1NfUWpDQUF3aG55RXpnNGs4WmUtU0ZUaDdiRmZqbUdNb3U0SzdnTHI0anBWdThMdXMtc3N0cERXMm9LVUgtX2ZBeFEyU3FBV3E5d090amEwcTdUSEhsdWlnckRlWWNTRkhZZWlaYTlBSdIBvAJBVV95cUxObmZid3Z5UURkVzRGMWdqOUpMcUJ",
+    "linkExpired": true
   },
   {
     "id": "news-27v8b5",
     "title": "Anthropic Launches Claude Fable 5.1 and Claude Mythos 5.1 - ForkLog",
-    "description": "Anthropic Launches Claude Fable 5.1 and Claude Mythos 5.1&nbsp;&nbsp;ForkLog",
+    "description": "Anthropic Launches Claude Fable 5.1 and Claude Mythos 5.1 ForkLog",
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -894,7 +906,7 @@
   {
     "id": "news-ydny8w",
     "title": "Anthropic Unveils Top-Tier Models 'Fable and Mythos 5.1' — Highlights Long-Duration Agent Performance Ahead of IPO - finance.biggo.com",
-    "description": "Anthropic Unveils Top-Tier Models 'Fable and Mythos 5.1' — Highlights Long-Duration Agent Performance Ahead of IPO&nbsp;&nbsp;finance.biggo.com",
+    "description": "Anthropic Unveils Top-Tier Models 'Fable and Mythos 5.1' — Highlights Long-Duration Agent Performance Ahead of IPO finance.biggo.com",
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -932,11 +944,11 @@
   {
     "id": "news-t9v6ur",
     "title": "Anthropic launches Fable 5.1 and Mythos 5.1 with lower costs, fewer AI restrictions - Business Today",
-    "description": "Anthropic launches Fable 5.1 and Mythos 5.1 with lower costs, fewer AI restrictions&nbsp;&nbsp;Business Today",
+    "description": "Anthropic launches Fable 5.1 and Mythos 5.1 with lower costs, fewer AI restrictions Business Today",
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxNNDVDMDRJdm9wVkh4ekgxUVE2N1I3SGNWUzk3UjZfTFNZRDRyQ0g5dDRpeXpnaVNhQ19qa3AzV240T1gwQzY3SnprQnpQN2drWThBSXVCaEg4YWJQWVFYZ3Y4ek84c190OEV5bWVBbFlsaXZRdUFTQzV5eENrMnZmTFNHNG9oZnh6aXRFUXpIai1jOVd1dVRoaXdJU2ZFLUR6RUpsVnlFeEV4b3B4RXM2RUhabl84MzBxRm5ybldGUGV2enNvRnAyQU1jaFNZcGFBMzhoNEhwSk05dHFkQ0EzU1ZHc2YtM01QZUoxS2NMaDZoLWIyMjNnSjcxZ21tTzDSAYQCQVVfeXFMTlhFZXdUajV6NWVqODlkR1Q3akF5dHFDWXB4bmFVeE0xak9hQnVhSlJKeFRma3hGMUVTOTVwMWZHOTAxdm9jTVNQMmdBRTFfa3RaZy1",
+    "url": "",
     "sourceName": "Business Today",
     "publishedDate": "2026-09-02",
     "foundDate": "2026-09-02",
@@ -964,16 +976,18 @@
       "Develop TCO comparison showcasing Scopus and ScienceDirect's institutional compliance, audit trails, and IP protection versus standalone LLM costs.",
       "Design pilot packages for cost-sensitive Dutch institutions combining LeapSpace AI features with ScienceDirect access at tiered pricing."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxNNDVDMDRJdm9wVkh4ekgxUVE2N1I3SGNWUzk3UjZfTFNZRDRyQ0g5dDRpeXpnaVNhQ19qa3AzV240T1gwQzY3SnprQnpQN2drWThBSXVCaEg4YWJQWVFYZ3Y4ek84c190OEV5bWVBbFlsaXZRdUFTQzV5eENrMnZmTFNHNG9oZnh6aXRFUXpIai1jOVd1dVRoaXdJU2ZFLUR6RUpsVnlFeEV4b3B4RXM2RUhabl84MzBxRm5ybldGUGV2enNvRnAyQU1jaFNZcGFBMzhoNEhwSk05dHFkQ0EzU1ZHc2YtM01QZUoxS2NMaDZoLWIyMjNnSjcxZ21tTzDSAYQCQVVfeXFMTlhFZXdUajV6NWVqODlkR1Q3akF5dHFDWXB4bmFVeE0xak9hQnVhSlJKeFRma3hGMUVTOTVwMWZHOTAxdm9jTVNQMmdBRTFfa3RaZy1",
+    "linkExpired": true
   },
   {
     "id": "news-mty67f",
     "title": "Anthropic unveils Claude Fable 5.1 and Mythos 5.1 for coding and knowledge work - ET CIO",
-    "description": "Anthropic unveils Claude Fable 5.1 and Mythos 5.1 for coding and knowledge work&nbsp;&nbsp;ET CIO",
+    "description": "Anthropic unveils Claude Fable 5.1 and Mythos 5.1 for coding and knowledge work ET CIO",
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMiqgJBVV95cUxPTFN6Y25Sd044cDR3Sk0wWjV4R1NWdWdONWtILTdFLWJHbV9ZSkwtRllYYTNod1YyeDVuUElabVgxc3JjMVgwSm5KTTZlUWNsdFpCNjczQkRleDZYUGYtTkViQ3JzT0NvNE5YdUFUZmlKVmpjQTFodGxpUTlBVWlMakFLYVRNWWdRU3NHR3NSaUJfZGxHc0dyTnJiSUo0c1kzaHRlTXc3MlZkM2ZzT19HaVFHMXBJMkp3Sm1ZMnJ2eC1BR3NRUWNwcDRzMDdfV3RhUFQ2ZURuMGg1TWp2WmtyNlVCaFBXbUdSTkxRQk9xSHRXbzMybEhicWpfX3BmOUNSS2RzSmljYUJjMlRMRWF5endEQzI0LTVMaHpuSWJjZEw3X3l4djJENVFR0gH2AUFVX3lxTE1UTFlqZmFDd1B0azVmM1lTbnV5R0lMZUY1emQwVnZ4aWt",
+    "url": "",
     "sourceName": "ET CIO",
     "publishedDate": "2026-09-02",
     "foundDate": "2026-09-03",
@@ -1001,12 +1015,14 @@
       "Benchmark LeapSpace's writing coach and claim-checking features against Fable/Mythos 5.1 capabilities; document gaps and advantages.",
       "Create messaging for research IT decision-makers on why domain-specific (Scopus-indexed) knowledge + general reasoning beats generic LLM for peer-reviewed research."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiqgJBVV95cUxPTFN6Y25Sd044cDR3Sk0wWjV4R1NWdWdONWtILTdFLWJHbV9ZSkwtRllYYTNod1YyeDVuUElabVgxc3JjMVgwSm5KTTZlUWNsdFpCNjczQkRleDZYUGYtTkViQ3JzT0NvNE5YdUFUZmlKVmpjQTFodGxpUTlBVWlMakFLYVRNWWdRU3NHR3NSaUJfZGxHc0dyTnJiSUo0c1kzaHRlTXc3MlZkM2ZzT19HaVFHMXBJMkp3Sm1ZMnJ2eC1BR3NRUWNwcDRzMDdfV3RhUFQ2ZURuMGg1TWp2WmtyNlVCaFBXbUdSTkxRQk9xSHRXbzMybEhicWpfX3BmOUNSS2RzSmljYUJjMlRMRWF5endEQzI0LTVMaHpuSWJjZEw3X3l4djJENVFR0gH2AUFVX3lxTE1UTFlqZmFDd1B0azVmM1lTbnV5R0lMZUY1emQwVnZ4aWt",
+    "linkExpired": true
   },
   {
     "id": "news-gjzek5",
     "title": "Anthropic Launches Claude Fable 5.1 and Mythos 5.1 for Scientific Research - kucoin.com",
-    "description": "Anthropic Launches Claude Fable 5.1 and Mythos 5.1 for Scientific Research&nbsp;&nbsp;kucoin.com",
+    "description": "Anthropic Launches Claude Fable 5.1 and Mythos 5.1 for Scientific Research kucoin.com",
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -1044,11 +1060,11 @@
   {
     "id": "news-ni365n",
     "title": "Anthropic launches Claude Fable 5.1 and Mythos 5.1 with improved coding, research capabilities and lower... - Moneycontrol.com",
-    "description": "Anthropic launches Claude Fable 5.1 and Mythos 5.1 with improved coding, research capabilities and lower...&nbsp;&nbsp;Moneycontrol.com",
+    "description": "Anthropic launches Claude Fable 5.1 and Mythos 5.1 with improved coding, research capabilities and lower... Moneycontrol.com",
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxOaTM3azVWemlqYXVyRXZKSDlWV2VqMEppVTN6YUxKWjVsYzhVMGxrNDhWVk5yeVRFd1VSNXItMTA0MnBEN2hlQ0lHQ0tmc3ZqSm1ZTjdTUVlkVVpsRjVKUmV3eGRhNTBLZ2NONHZDSlp5b0dSbGVhQTZxX0pxSnptb2k4SWpydHdXcnZXdERSQnl3OW51cVBQZEM0cmpXNW5aazJlbjNwOWhZWWs2bDVfX3hNb3dvcHVmcVVrbkwzWGkxaFE1a29neDBlN2t1THMzc1FpQ2poOGZsWlh6c2k2T2VHb3gyVTdSLUhDMTh0WVZ5ZENFTW5OaG1OUnVUQmpubmVV0gGIAkFVX3lxTE9ValpMRG1tVHdJS0NPZ1hqcHVYM29SNDVCWTVpRDZHQ2dwYktkS3NwV25hRGg3T1F4bHlWc1MxQTcycHRtZ3NfM3dLUVlNRDM",
+    "url": "",
     "sourceName": "Moneycontrol.com",
     "publishedDate": "2026-09-02",
     "foundDate": "2026-09-02",
@@ -1077,12 +1093,14 @@
       "Conduct competitive benchmark: run identical research queries (lit review, methodology design, code generation) on Fable 5.1 vs. LeapSpace; document scholarly accuracy/citation quality gaps.",
       "Develop ROI argument: emphasize Scopus citation validation, institutional access controls, and audit trails—features Fable 5.1 standalone cannot offer."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMigwJBVV95cUxOaTM3azVWemlqYXVyRXZKSDlWV2VqMEppVTN6YUxKWjVsYzhVMGxrNDhWVk5yeVRFd1VSNXItMTA0MnBEN2hlQ0lHQ0tmc3ZqSm1ZTjdTUVlkVVpsRjVKUmV3eGRhNTBLZ2NONHZDSlp5b0dSbGVhQTZxX0pxSnptb2k4SWpydHdXcnZXdERSQnl3OW51cVBQZEM0cmpXNW5aazJlbjNwOWhZWWs2bDVfX3hNb3dvcHVmcVVrbkwzWGkxaFE1a29neDBlN2t1THMzc1FpQ2poOGZsWlh6c2k2T2VHb3gyVTdSLUhDMTh0WVZ5ZENFTW5OaG1OUnVUQmpubmVV0gGIAkFVX3lxTE9ValpMRG1tVHdJS0NPZ1hqcHVYM29SNDVCWTVpRDZHQ2dwYktkS3NwV25hRGg3T1F4bHlWc1MxQTcycHRtZ3NfM3dLUVlNRDM",
+    "linkExpired": true
   },
   {
     "id": "news-t7ua10",
     "title": "Anthropic Unveils \"Claude Fable 5.1\"... Introduces Mythos Model with Enhanced Safeguards - 아시아경제",
-    "description": "Anthropic Unveils \"Claude Fable 5.1\"... Introduces Mythos Model with Enhanced Safeguards&nbsp;&nbsp;아시아경제",
+    "description": "Anthropic Unveils \"Claude Fable 5.1\"... Introduces Mythos Model with Enhanced Safeguards 아시아경제",
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -1120,11 +1138,11 @@
   {
     "id": "news-mzu88d",
     "title": "Anthropic unveils Claude Fable 5.1 and Mythos 5.1 for coding and knowledge work - ET CIO",
-    "description": "Anthropic unveils Claude Fable 5.1 and Mythos 5.1 for coding and knowledge work&nbsp;&nbsp;ET CIO",
+    "description": "Anthropic unveils Claude Fable 5.1 and Mythos 5.1 for coding and knowledge work ET CIO",
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPZU04akFDMERQRzlndlAzM2pNWWhZSm5hcm1LLWVvNmhJMUR0eVJ1b3U3ODk0OS0wTmh1a2R5Nm5zYTNGTVlCOHhqQk9IX2t6REZtTWlXbGYzYmFfZ3ljZk9ETkFPdlhBU0ZUVkJ0eDdLVjZWdDJHWTBMaEkybnZDN0lUSjVNRkdIQkNlVmFSTkhJc1h1eUtuZ1h3VDlOWGxfZFNUR0tTbXFIcjNscVBMV3VPWkxxdGs3aEJpcTdKaFVjVFlCcWRjeXE2czhwakVGdzBoY2tnMVhuTnJfOFluMEZIdVpXS2cwR2d5bEwzWHXSAfYBQVVfeXFMTVRMWWpmYUN3UHRrNWYzWVNudXlHSUxlRjV6ZDBWdnhpa0ZDemkwMVE3dzRxQ0tuMXlBYmJsWkxqRG9XOExZZW14Mkh5N1FRRmF5MUJkUXI4eWhXTWtYd0REaXR",
+    "url": "",
     "sourceName": "ET CIO",
     "publishedDate": "2026-09-02",
     "foundDate": "2026-09-02",
@@ -1152,12 +1170,14 @@
       "Map Claude Fable/Mythos capabilities against LeapSpace's writing-coach and code-review features; identify gaps in research-specific knowledge integration.",
       "Prepare institutional messaging on Scopus-indexed content verification that standalone LLMs cannot guarantee for academic compliance."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPZU04akFDMERQRzlndlAzM2pNWWhZSm5hcm1LLWVvNmhJMUR0eVJ1b3U3ODk0OS0wTmh1a2R5Nm5zYTNGTVlCOHhqQk9IX2t6REZtTWlXbGYzYmFfZ3ljZk9ETkFPdlhBU0ZUVkJ0eDdLVjZWdDJHWTBMaEkybnZDN0lUSjVNRkdIQkNlVmFSTkhJc1h1eUtuZ1h3VDlOWGxfZFNUR0tTbXFIcjNscVBMV3VPWkxxdGs3aEJpcTdKaFVjVFlCcWRjeXE2czhwakVGdzBoY2tnMVhuTnJfOFluMEZIdVpXS2cwR2d5bEwzWHXSAfYBQVVfeXFMTVRMWWpmYUN3UHRrNWYzWVNudXlHSUxlRjV6ZDBWdnhpa0ZDemkwMVE3dzRxQ0tuMXlBYmJsWkxqRG9XOExZZW14Mkh5N1FRRmF5MUJkUXI4eWhXTWtYd0REaXR",
+    "linkExpired": true
   },
   {
     "id": "news-lvz3kw",
     "title": "Quobly and TNO Partner on Silicon Spin Qubit Development - The Quantum Insider",
-    "description": "Quobly and TNO Partner on Silicon Spin Qubit Development&nbsp;&nbsp;The Quantum Insider",
+    "description": "Quobly and TNO Partner on Silicon Spin Qubit Development The Quantum Insider",
     "institution": "TNO",
     "category": "ai_adoption",
     "categoryLabel": "AI Development & Adoption",
@@ -1171,7 +1191,7 @@
   {
     "id": "news-qcdtz4",
     "title": "Anthropic unveils new framework allowing AI agents to operate physical devices - Reuters",
-    "description": "Anthropic unveils new framework allowing AI agents to operate physical devices&nbsp;&nbsp;Reuters",
+    "description": "Anthropic unveils new framework allowing AI agents to operate physical devices Reuters",
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -1185,11 +1205,11 @@
   {
     "id": "news-8o7br6",
     "title": "Anthropic launches Claude Fable 5.1 and Mythos 5.1, claims major leap in coding and AI research - WION",
-    "description": "Anthropic launches Claude Fable 5.1 and Mythos 5.1, claims major leap in coding and AI research&nbsp;&nbsp;WION",
+    "description": "Anthropic launches Claude Fable 5.1 and Mythos 5.1, claims major leap in coding and AI research WION",
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxNeFZfWlAxejNhUjBKY1Y2ekRMUzJ2cXNPLTJZZzZLV3JlaW5fVnd6N3JHTGhEV3lkVFpTREcwb0o4VUNjSGxGN1VhRnpfQjFBejVzOElnRmhkVGcyaTllUDM3UFF3cDV4TW9pdU1Bc0lYNmJsVWRuSUhmQ2VRY0Z0SVZQZUxVRU4zS3JpenFzb1BMOUpDRGxzZVEyb2ktODZyQm92d1c2aXdqcW45bWRCaWs1SkpyWHZwU3Q5WC1JVXVyRWdFQkF5ZkY3TF9hLVM5RDdFV19uMWFQaFnSAeABQVVfeXFMTnBSdzEzMWplQ0NoZkttX0VUOEVxYmFUbjRoSWxFa3B0X2pjZFZ0V0EtYkpUMjZpaUJjZFZxRVJGcndzZXFVM09KU1B5cnJqZVNsd253aFRPcFNMLVB6NkRxUWc0V2RhWDhBZ3FHdkY2c0lGbldDTEJ",
+    "url": "",
     "sourceName": "WION",
     "publishedDate": "2026-09-02",
     "foundDate": "2026-09-03",
@@ -1217,12 +1237,14 @@
       "Schedule competitive deep-dive with Elsevier product team: measure Fable/Mythos 5.1 on ScienceDirect research retrieval, citation accuracy, and claim verification vs. LeapSpace baseline.",
       "Launch targeted campaign to Dutch AI/CS research institutes: position LeapSpace + ScienceDirect as grounded research infrastructure; offer integration test with Fable/Mythos APIs to show…"
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxNeFZfWlAxejNhUjBKY1Y2ekRMUzJ2cXNPLTJZZzZLV3JlaW5fVnd6N3JHTGhEV3lkVFpTREcwb0o4VUNjSGxGN1VhRnpfQjFBejVzOElnRmhkVGcyaTllUDM3UFF3cDV4TW9pdU1Bc0lYNmJsVWRuSUhmQ2VRY0Z0SVZQZUxVRU4zS3JpenFzb1BMOUpDRGxzZVEyb2ktODZyQm92d1c2aXdqcW45bWRCaWs1SkpyWHZwU3Q5WC1JVXVyRWdFQkF5ZkY3TF9hLVM5RDdFV19uMWFQaFnSAeABQVVfeXFMTnBSdzEzMWplQ0NoZkttX0VUOEVxYmFUbjRoSWxFa3B0X2pjZFZ0V0EtYkpUMjZpaUJjZFZxRVJGcndzZXFVM09KU1B5cnJqZVNsd253aFRPcFNMLVB6NkRxUWc0V2RhWDhBZ3FHdkY2c0lGbldDTEJ",
+    "linkExpired": true
   },
   {
     "id": "news-alyro9",
     "title": "Anthropic Unveils Enhanced AI Model 'Claude Fable 5.1' with Key Improvements - 조선일보",
-    "description": "Anthropic Unveils Enhanced AI Model 'Claude Fable 5.1' with Key Improvements&nbsp;&nbsp;조선일보",
+    "description": "Anthropic Unveils Enhanced AI Model 'Claude Fable 5.1' with Key Improvements 조선일보",
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -1236,7 +1258,7 @@
   {
     "id": "news-jgfbho",
     "title": "Digital Science's 2026 Catalyst Grant seeks agentic AI workflows you can trust - EurekAlert!",
-    "description": "Digital Science's 2026 Catalyst Grant seeks agentic AI workflows you can trust&nbsp;&nbsp;EurekAlert!",
+    "description": "Digital Science's 2026 Catalyst Grant seeks agentic AI workflows you can trust EurekAlert!",
     "institution": "Digital Science",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -1277,7 +1299,7 @@
   {
     "id": "news-x2rpda",
     "title": ":Claude: Fable 5.1 and Mythos 5.1 - Anthropic",
-    "description": ":Claude: Fable 5.1 and Mythos 5.1&nbsp;&nbsp;Anthropic",
+    "description": ":Claude: Fable 5.1 and Mythos 5.1 Anthropic",
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -1315,7 +1337,7 @@
   {
     "id": "news-g5xstq",
     "title": "Anthropic Unveils MHS for AI Agents in Physical Labs - AI Magazine",
-    "description": "Anthropic Unveils MHS for AI Agents in Physical Labs&nbsp;&nbsp;AI Magazine",
+    "description": "Anthropic Unveils MHS for AI Agents in Physical Labs AI Magazine",
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -1353,7 +1375,7 @@
   {
     "id": "news-iapv8w",
     "title": "Anthropic unveils Claude Fable 5.1 that can work for days on problems humans couldn't solve - geo.tv",
-    "description": "Anthropic unveils Claude Fable 5.1 that can work for days on problems humans couldn't solve&nbsp;&nbsp;geo.tv",
+    "description": "Anthropic unveils Claude Fable 5.1 that can work for days on problems humans couldn't solve geo.tv",
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -1390,7 +1412,7 @@
   {
     "id": "news-wuda1t",
     "title": "TU Delft develops drone that behaves like a bird - IO+",
-    "description": "TU Delft develops drone that behaves like a bird&nbsp;&nbsp;IO+",
+    "description": "TU Delft develops drone that behaves like a bird IO+",
     "institution": "TU Delft",
     "category": "ai_adoption",
     "categoryLabel": "AI Development & Adoption",
@@ -1404,7 +1426,7 @@
   {
     "id": "news-2yv2o3",
     "title": "University of Twente opens 65th academic year with Courage at its heart - Universiteit Twente",
-    "description": "University of Twente opens 65th academic year with Courage at its heart&nbsp;&nbsp;Universiteit Twente",
+    "description": "University of Twente opens 65th academic year with Courage at its heart Universiteit Twente",
     "institution": "University of Twente",
     "category": "ai_adoption",
     "categoryLabel": "AI Development & Adoption",
@@ -1418,7 +1440,7 @@
   {
     "id": "news-5s07gk",
     "title": "Netherlands Cancer Institute Researchers Take on Stelvio for Life to Support Cancer Research - Oncodaily",
-    "description": "Netherlands Cancer Institute Researchers Take on Stelvio for Life to Support Cancer Research&nbsp;&nbsp;Oncodaily",
+    "description": "Netherlands Cancer Institute Researchers Take on Stelvio for Life to Support Cancer Research Oncodaily",
     "institution": "Netherlands Cancer Institute",
     "category": "ai_adoption",
     "categoryLabel": "AI Development & Adoption",
@@ -1432,7 +1454,7 @@
   {
     "id": "news-ajapwg",
     "title": "Insight into cascading effects of extreme weather with new story map - Deltares",
-    "description": "Insight into cascading effects of extreme weather with new story map&nbsp;&nbsp;Deltares",
+    "description": "Insight into cascading effects of extreme weather with new story map Deltares",
     "institution": "Deltares",
     "category": "ai_adoption",
     "categoryLabel": "AI Development & Adoption",
@@ -1446,7 +1468,7 @@
   {
     "id": "news-ihgyee",
     "title": "Anthropic unveils standard linking AI agents to physical devices - irishsun.com",
-    "description": "Anthropic unveils standard linking AI agents to physical devices&nbsp;&nbsp;irishsun.com",
+    "description": "Anthropic unveils standard linking AI agents to physical devices irishsun.com",
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -1486,7 +1508,7 @@
   {
     "id": "news-jabspi",
     "title": "Anthropic unveils standard linking AI agents to physical devices - indiagazette.com",
-    "description": "Anthropic unveils standard linking AI agents to physical devices&nbsp;&nbsp;indiagazette.com",
+    "description": "Anthropic unveils standard linking AI agents to physical devices indiagazette.com",
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -1603,7 +1625,7 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxNVDlZRlh4cG5LdS13QVlSYUxsVHBtRUF5UjJDQzAzMnVUNW1qcFlucHRzMzBtMjRnN09URHZiLWZTbHlpZlZFT0NjME9rZWFRaGxNRVMtNmtBMGxoY3hyUGhRcTR1VDhRNnd4MHk5MkNFM2pvTUJCeGc4WmY1bG9RSHVncVJ5RUd2WHFPb1lMNDZfNWhxZGZpOFJpQlpTcnFaU2VWbkEtb3luODZVMVd2dXhVbGtvUDR4b1pOT2VaMFcySDlJd09rZzZkMVlKbWlwS3ROanZNTkZjc1lvTXREWHRzd3V2YTRQSzBZODNBdGNIR1lf0gH6AUFVX3lxTE9tSDNkODZTYy05dVppemgyTnprRUxCdTRmMUljMlZmUW1IYXRVVm5jdi1TZkNBYUg5SXl4RldNRVFCcV9OSlpYZUxueW9rM3hPeDQ3UkQ4ckRqdnJHaXZ",
+    "url": "",
     "sourceName": "ET Manufacturing",
     "publishedDate": "2026-08-28",
     "foundDate": "2026-08-29",
@@ -1635,7 +1657,9 @@
       "Build case studies showing how Scopus + ScienceDirect reduce time-to-insight in automated research loops powered by AI agents.",
       "Assess feasibility of API-first architecture for LeapSpace to enable third-party hardware orchestration platforms to consume Elsevier's knowledge layer."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxNVDlZRlh4cG5LdS13QVlSYUxsVHBtRUF5UjJDQzAzMnVUNW1qcFlucHRzMzBtMjRnN09URHZiLWZTbHlpZlZFT0NjME9rZWFRaGxNRVMtNmtBMGxoY3hyUGhRcTR1VDhRNnd4MHk5MkNFM2pvTUJCeGc4WmY1bG9RSHVncVJ5RUd2WHFPb1lMNDZfNWhxZGZpOFJpQlpTcnFaU2VWbkEtb3luODZVMVd2dXhVbGtvUDR4b1pOT2VaMFcySDlJd09rZzZkMVlKbWlwS3ROanZNTkZjc1lvTXREWHRzd3V2YTRQSzBZODNBdGNIR1lf0gH6AUFVX3lxTE9tSDNkODZTYy05dVppemgyTnprRUxCdTRmMUljMlZmUW1IYXRVVm5jdi1TZkNBYUg5SXl4RldNRVFCcV9OSlpYZUxueW9rM3hPeDQ3UkQ4ckRqdnJHaXZ",
+    "linkExpired": true
   },
   {
     "id": "news-3ir2yb",
@@ -1682,11 +1706,11 @@
   {
     "id": "news-j5dtxb",
     "title": "Anthropic unveils Model Hardware Standard to link AI agents with lab, industrial devices - ET Enterprise AI",
-    "description": "Anthropic unveils Model Hardware Standard to link AI agents with lab, industrial devices&nbsp;&nbsp;ET Enterprise AI",
+    "description": "Anthropic unveils Model Hardware Standard to link AI agents with lab, industrial devices ET Enterprise AI",
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxOVWJzNm1MaUpvb0wzSC1KWmJ2US1aUXJmQmhJTEd3YUhZWHAwbWJyMXdQbGJyc2EyM3pyNzFjMVEtMW94a21Id3dISVZ4QWVfVDhFd1ZDUi1mZW5wdnhVa2FISEVTcTFia2k2eFBrNkFSOXBBU054M2tzRi0tTldra3lCSnBLRmc4TWxhSDZKMTNIcjZ2YkI3LUVjeVFsdTZaUjF3Uzh6anR6RGtDOE9tM0YzR01TQ2Nfam9RS2RNUUYtQURkMU5nWXVpMXl4bXhKcFdJSTByb0JYWHpVdVJEM2ViT0NmMnlKc3MySUhYRjd6ZVVuVndDb9IB-AFBVV95cUxOVWJzNm1MaUpvb0wzSC1KWmJ2US1aUXJmQmhJTEd3YUhZWHAwbWJyMXdQbGJyc2EyM3pyNzFjMVEtMW94a21Id3dISVZ4QWVfVDhFd1ZDUi1mZW5",
+    "url": "",
     "sourceName": "ET Enterprise AI",
     "publishedDate": "2026-08-28",
     "foundDate": "2026-08-30",
@@ -1716,12 +1740,14 @@
       "Pitch integrated ScienceDirect + LeapSpace bundle to tech-forward research institutes: 'AI safety starts with validated literature.'",
       "Explore partnership or API integration with Anthropic or competing AI-agent platforms to embed ScienceDirect literature verification into agent workflows."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxOVWJzNm1MaUpvb0wzSC1KWmJ2US1aUXJmQmhJTEd3YUhZWHAwbWJyMXdQbGJyc2EyM3pyNzFjMVEtMW94a21Id3dISVZ4QWVfVDhFd1ZDUi1mZW5wdnhVa2FISEVTcTFia2k2eFBrNkFSOXBBU054M2tzRi0tTldra3lCSnBLRmc4TWxhSDZKMTNIcjZ2YkI3LUVjeVFsdTZaUjF3Uzh6anR6RGtDOE9tM0YzR01TQ2Nfam9RS2RNUUYtQURkMU5nWXVpMXl4bXhKcFdJSTByb0JYWHpVdVJEM2ViT0NmMnlKc3MySUhYRjd6ZVVuVndDb9IB-AFBVV95cUxOVWJzNm1MaUpvb0wzSC1KWmJ2US1aUXJmQmhJTEd3YUhZWHAwbWJyMXdQbGJyc2EyM3pyNzFjMVEtMW94a21Id3dISVZ4QWVfVDhFd1ZDUi1mZW5",
+    "linkExpired": true
   },
   {
     "id": "news-qdfghy",
     "title": "Anthropic announces new \"Model Hardware Standard\" for AI agents; plans open-source release with safety guidance - ANI News",
-    "description": "Anthropic announces new \"Model Hardware Standard\" for AI agents; plans open-source release with safety guidance&nbsp;&nbsp;ANI News",
+    "description": "Anthropic announces new \"Model Hardware Standard\" for AI agents; plans open-source release with safety guidance ANI News",
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -1761,11 +1787,11 @@
   {
     "id": "news-r3asf1",
     "title": "Anthropic unveils Model Hardware Standard to link AI agents with lab, industrial devices - ET Enterprise AI",
-    "description": "Anthropic unveils Model Hardware Standard to link AI agents with lab, industrial devices&nbsp;&nbsp;ET Enterprise AI",
+    "description": "Anthropic unveils Model Hardware Standard to link AI agents with lab, industrial devices ET Enterprise AI",
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxNUVk2TFY2dFZpQVNnN2RNYkd2cE1wVU43Vllmb2V6UUtlaGR2b1ZNSWhiY2JyMnJGd0UzTF82eElRNTRSa0hmTG04RlZGUU1yMzM4MFhwTlRIS0xubWxINnk3b0E4S1ktWEpxMVp3QnZkTnRpTTF0X3E4bUU3aG9fbktPMi16TWVDVTJmR0taZzNNMlNoeEZUMlVwWm04YnZQTUtLVkZUeHR5QmVZc0FHeTZ5ekxvUkN4TC16aXVod1B0T3AzU0VPdGVCYnFpLWFuWlBCYzk2cS02QXYtb1I1cGw2RlN5S3hvTHllb2VPRklnNknSAfgBQVVfeXFMTlViczZtTGlKb29MM0gtSlpidlEtWlFyZkJoSUxHd2FIWVhwMG1icjF3UGxicnNhMjN6cjcxYzFRLTFveGttSHd3SElWeEFlX1Q4RXdWQ1ItZmVucHZ4VWt",
+    "url": "",
     "sourceName": "ET Enterprise AI",
     "publishedDate": "2026-08-28",
     "foundDate": "2026-09-03",
@@ -1792,7 +1818,9 @@
       "Conduct rapid survey of top 10 Dutch research institutes on lab instrumentation and current AI/LeapSpace integration; identify vulnerability.",
       "Fast-track LeapSpace instrument-aware features (lab data capture, instrument metadata enrichment, automated literature linking to experimental conditions)."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxNUVk2TFY2dFZpQVNnN2RNYkd2cE1wVU43Vllmb2V6UUtlaGR2b1ZNSWhiY2JyMnJGd0UzTF82eElRNTRSa0hmTG04RlZGUU1yMzM4MFhwTlRIS0xubWxINnk3b0E4S1ktWEpxMVp3QnZkTnRpTTF0X3E4bUU3aG9fbktPMi16TWVDVTJmR0taZzNNMlNoeEZUMlVwWm04YnZQTUtLVkZUeHR5QmVZc0FHeTZ5ekxvUkN4TC16aXVod1B0T3AzU0VPdGVCYnFpLWFuWlBCYzk2cS02QXYtb1I1cGw2RlN5S3hvTHllb2VPRklnNknSAfgBQVVfeXFMTlViczZtTGlKb29MM0gtSlpidlEtWlFyZkJoSUxHd2FIWVhwMG1icjF3UGxicnNhMjN6cjcxYzFRLTFveGttSHd3SElWeEFlX1Q4RXdWQ1ItZmVucHZ4VWt",
+    "linkExpired": true
   },
   {
     "id": "news-yrj8h9",
@@ -1918,7 +1946,7 @@
   {
     "id": "news-r857n0",
     "title": "Anthropic unveils new framework allowing AI agents to operate physical devices - WTVB",
-    "description": "Anthropic unveils new framework allowing AI agents to operate physical devices&nbsp;&nbsp;WTVB",
+    "description": "Anthropic unveils new framework allowing AI agents to operate physical devices WTVB",
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -1962,7 +1990,7 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNLVlwTXdBSVZBM2hGWjYwU0Z2UkRKVFV6cHVGRFhmUXlsRkNrdnNFcURpdWVBQ0k4cUFyT3JLVGU1ZWxrRVA1ZkhMU3BoY25fd1lKOE8ycnJxQUl5S3dmS21PVnI2TWlzS1pTZDR2Rl92N3BldzhFYlh5TzEtVUpkN0VWQW1ZSXl2VDA0elc1ZGdwRkpFR2ZrbTE4UkpEX2VnSWJkV1pNbXFaX0pCT2NlSHdsUXZKODVLVDJZ0gHAAUFVX3lxTE9EWXR0a1JvMHpSV2xfYzdxdkJJcGowQ1lfNUNpd0ZDUUp0UzB4QmRwWUR4ZG05ZFRZTV8tamtYUjZZcmNVZkl6TzlycTFaTWJ1MzZCWVpJODg0N1hCTHlqajdzc1BNbDZIT3V0dTZQR1lGdU1JV0ZoUWtsMF9MUEN2eVlzT2xoNG43VmFHeFBCTTgyVjlrNC0",
+    "url": "",
     "sourceName": "Firstpost",
     "publishedDate": "2026-08-27",
     "foundDate": "2026-08-28",
@@ -1993,7 +2021,9 @@
       "Develop and test a LeapSpace workflow module that recommends Scopus-indexed protocols and prior experiments to validate an agent's proposed experimental design.",
       "Partner with Dutch equipment vendors (e.g., lab-automation suppliers) to bundle LeapSpace literature search with automation onboarding."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNLVlwTXdBSVZBM2hGWjYwU0Z2UkRKVFV6cHVGRFhmUXlsRkNrdnNFcURpdWVBQ0k4cUFyT3JLVGU1ZWxrRVA1ZkhMU3BoY25fd1lKOE8ycnJxQUl5S3dmS21PVnI2TWlzS1pTZDR2Rl92N3BldzhFYlh5TzEtVUpkN0VWQW1ZSXl2VDA0elc1ZGdwRkpFR2ZrbTE4UkpEX2VnSWJkV1pNbXFaX0pCT2NlSHdsUXZKODVLVDJZ0gHAAUFVX3lxTE9EWXR0a1JvMHpSV2xfYzdxdkJJcGowQ1lfNUNpd0ZDUUp0UzB4QmRwWUR4ZG05ZFRZTV8tamtYUjZZcmNVZkl6TzlycTFaTWJ1MzZCWVpJODg0N1hCTHlqajdzc1BNbDZIT3V0dTZQR1lGdU1JV0ZoUWtsMF9MUEN2eVlzT2xoNG43VmFHeFBCTTgyVjlrNC0",
+    "linkExpired": true
   },
   {
     "id": "news-9co3q8",
@@ -2002,7 +2032,7 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPd0JxcTVjQzhTWENaZy1sa0tKNEFmbk53cGlaTnRteFNsYWJYNXZzSDBsbFJXYVpsZDAxcmRkYmhCSXY1UklHdjM2eWF3Ulh6dFZNOVJjMHFPbWdHaldpeFkwaWVBQTVLVVdSSjh5bEl3TXhTdE1DRk9xdXN2QjQ0Ykc5amtwcVZ2N3ZXY1lETHdrZEFIRy15NlpIN1VwNU5zM3h1Z0l6NVZ2cVJKV1RTRtIBtgFBVV95cUxQV0UtTFNKTnFUeUpSbXdFQjUzRFV5UXd5czFmZnhTbktoRGhlZmNSQmdPOG1QQzRvSk93RjkyTm1sQWo1R3lfaEs5ZHpiTFA5TUE0dDBOYmtHT1JPMUpfRkJITTRUejhuenRKb1ctUkdvZWJ5Qm1PX0VJS0l4bjI4TGxOUk85bXI4NlNnbk5HdF8yRnBZTnFGY0RxX3RVVmJlWkk",
+    "url": "",
     "sourceName": "CNBC TV18",
     "publishedDate": "2026-08-27",
     "foundDate": "2026-08-28",
@@ -2033,12 +2063,14 @@
       "Develop a LeapSpace pitch linking AI agent workflows to systematic literature review and protocol validation for reproducibility and compliance.",
       "Monitor Anthropic's hardware partnerships; map overlaps with Elsevier's existing customer base in experimental sciences."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPd0JxcTVjQzhTWENaZy1sa0tKNEFmbk53cGlaTnRteFNsYWJYNXZzSDBsbFJXYVpsZDAxcmRkYmhCSXY1UklHdjM2eWF3Ulh6dFZNOVJjMHFPbWdHaldpeFkwaWVBQTVLVVdSSjh5bEl3TXhTdE1DRk9xdXN2QjQ0Ykc5amtwcVZ2N3ZXY1lETHdrZEFIRy15NlpIN1VwNU5zM3h1Z0l6NVZ2cVJKV1RTRtIBtgFBVV95cUxQV0UtTFNKTnFUeUpSbXdFQjUzRFV5UXd5czFmZnhTbktoRGhlZmNSQmdPOG1QQzRvSk93RjkyTm1sQWo1R3lfaEs5ZHpiTFA5TUE0dDBOYmtHT1JPMUpfRkJITTRUejhuenRKb1ctUkdvZWJ5Qm1PX0VJS0l4bjI4TGxOUk85bXI4NlNnbk5HdF8yRnBZTnFGY0RxX3RVVmJlWkk",
+    "linkExpired": true
   },
   {
     "id": "news-f6gh1h",
     "title": "Salesforce and Anthropic Launch Claudeforce Enterprise AI Partnership - HPCwire",
-    "description": "Salesforce and Anthropic Launch Claudeforce Enterprise AI Partnership&nbsp;&nbsp;HPCwire",
+    "description": "Salesforce and Anthropic Launch Claudeforce Enterprise AI Partnership HPCwire",
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -2078,7 +2110,7 @@
   {
     "id": "news-volbph",
     "title": "Anthropic unveils new framework allowing AI agents to operate physical devices - SRN News",
-    "description": "Anthropic unveils new framework allowing AI agents to operate physical devices&nbsp;&nbsp;SRN News",
+    "description": "Anthropic unveils new framework allowing AI agents to operate physical devices SRN News",
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -2234,7 +2266,7 @@
     "institution": "OpenAI",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPWjlLNGdORmVRTldPRE5PeGV6VkJFM0J2d1dlMGpuc3dpMTZ6UnJfSkRRTjJxdXk0VVdJdW5hb3ZTX0FxbUVsTFhpZHN0TlFBWV81cmJvd2IteU5tZWxSdkpSSW1wdldGcTBKcFFjcDdEQzQ4U0lMWlFubjUyZWJEYkgydEJXd1ZNVTFwNnR0SEhtM2xjbzhuamFTZjVnN01CdUJPVmZBMDl6bm8zX0Y1QnYtRHFYdExwakxrZdIBvAFBVV95cUxPWjlLNGdORmVRTldPRE5PeGV6VkJFM0J2d1dlMGpuc3dpMTZ6UnJfSkRRTjJxdXk0VVdJdW5hb3ZTX0FxbUVsTFhpZHN0TlFBWV81cmJvd2IteU5tZWxSdkpSSW1wdldGcTBKcFFjcDdEQzQ4U0lMWlFubjUyZWJEYkgydEJXd1ZNVTFwNnR0SEhtM2xjbzh",
+    "url": "",
     "sourceName": "Bhaskar English",
     "publishedDate": "2026-08-26",
     "foundDate": "2026-08-28",
@@ -2263,12 +2295,14 @@
       "Develop case study: how Scopus/ScienceDirect help Dutch AI researchers stay ahead of hardware innovation cycles.",
       "Map OpenAI partnerships with Dutch institutions to uncover research collaboration and funding opportunities."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPWjlLNGdORmVRTldPRE5PeGV6VkJFM0J2d1dlMGpuc3dpMTZ6UnJfSkRRTjJxdXk0VVdJdW5hb3ZTX0FxbUVsTFhpZHN0TlFBWV81cmJvd2IteU5tZWxSdkpSSW1wdldGcTBKcFFjcDdEQzQ4U0lMWlFubjUyZWJEYkgydEJXd1ZNVTFwNnR0SEhtM2xjbzhuamFTZjVnN01CdUJPVmZBMDl6bm8zX0Y1QnYtRHFYdExwakxrZdIBvAFBVV95cUxPWjlLNGdORmVRTldPRE5PeGV6VkJFM0J2d1dlMGpuc3dpMTZ6UnJfSkRRTjJxdXk0VVdJdW5hb3ZTX0FxbUVsTFhpZHN0TlFBWV81cmJvd2IteU5tZWxSdkpSSW1wdldGcTBKcFFjcDdEQzQ4U0lMWlFubjUyZWJEYkgydEJXd1ZNVTFwNnR0SEhtM2xjbzh",
+    "linkExpired": true
   },
   {
     "id": "news-pn76q0",
     "title": "New APIs Extend Wiley's Gold-Standard Spectral Data and Analytical Intelligence Directly Into Lab, Vendor, and Platform Workflows - AZoM",
-    "description": "New APIs Extend Wiley's Gold-Standard Spectral Data and Analytical Intelligence Directly Into Lab, Vendor, and Platform Workflows&nbsp;&nbsp;AZoM",
+    "description": "New APIs Extend Wiley's Gold-Standard Spectral Data and Analytical Intelligence Directly Into Lab, Vendor, and Platform Workflows AZoM",
     "institution": "Wiley",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -2425,7 +2459,7 @@
   {
     "id": "news-2il5h",
     "title": "Google Cloud Announces Strategic Partnership with Verizon to Scale Enterprise AI - HPCwire",
-    "description": "Google Cloud Announces Strategic Partnership with Verizon to Scale Enterprise AI&nbsp;&nbsp;HPCwire",
+    "description": "Google Cloud Announces Strategic Partnership with Verizon to Scale Enterprise AI HPCwire",
     "institution": "Google",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -2439,7 +2473,7 @@
   {
     "id": "news-f9qyns",
     "title": "AI phobia is America’s new consensus - Financial Times",
-    "description": "AI phobia is America’s new consensus&nbsp;&nbsp;Financial Times",
+    "description": "AI phobia is America’s new consensus Financial Times",
     "institution": "Consensus",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
@@ -2849,12 +2883,14 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxPbUgzZDg2U2MtOXVaaXpoMk56a0VMQnU0ZjFJYzJWZlFtSGF0VVZuY3YtU2ZDQWFIOUl5eEZXTUVRQnFfTkpaWGVMbnlvazN4T3g0N1JEOHJEanZyR2l2QmJHVXphQS15RVFrdWdrRHA3MVFPOUtNN2NQbWo2ZkNuYWpTd21UTl9nOWZGbm9VN21pWFgtMHVVWEl0X2MyNVg4MXZTSzZpMDVseXBRdDZSQWZMTFRGZHZJVUpaaUQtSkU2VTJUaXhxV0Z4VklKNWU5TTQ2WFlQb0FyZ1NtaWFEZTVHazNkWGxneFBOUTNMVGhzeGYtMUw5T3Bn0gH6AUFVX3lxTE9tSDNkODZTYy05dVppemgyTnprRUxCdTRmMUljMlZmUW1IYXRVVm5jdi1TZkNBYUg5SXl4RldNRVFCcV9OSlpYZUxueW9rM3hPeDQ3UkQ4ckR",
+    "url": "",
     "sourceName": "ET Manufacturing",
     "publishedDate": "2026-08-28",
     "foundDate": "2026-08-28",
     "autoDiscovered": true,
-    "elsevierRelevance": "Anthropic hardware standard for lab/industrial devices relevant to research infrastructure competition"
+    "elsevierRelevance": "Anthropic hardware standard for lab/industrial devices relevant to research infrastructure competition",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxPbUgzZDg2U2MtOXVaaXpoMk56a0VMQnU0ZjFJYzJWZlFtSGF0VVZuY3YtU2ZDQWFIOUl5eEZXTUVRQnFfTkpaWGVMbnlvazN4T3g0N1JEOHJEanZyR2l2QmJHVXphQS15RVFrdWdrRHA3MVFPOUtNN2NQbWo2ZkNuYWpTd21UTl9nOWZGbm9VN21pWFgtMHVVWEl0X2MyNVg4MXZTSzZpMDVseXBRdDZSQWZMTFRGZHZJVUpaaUQtSkU2VTJUaXhxV0Z4VklKNWU5TTQ2WFlQb0FyZ1NtaWFEZTVHazNkWGxneFBOUTNMVGhzeGYtMUw5T3Bn0gH6AUFVX3lxTE9tSDNkODZTYy05dVppemgyTnprRUxCdTRmMUljMlZmUW1IYXRVVm5jdi1TZkNBYUg5SXl4RldNRVFCcV9OSlpYZUxueW9rM3hPeDQ3UkQ4ckR",
+    "linkExpired": true
   },
   {
     "id": "news-coj0hx",
@@ -2878,12 +2914,14 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOc2JwbXNkbzZMbkNXd1RLbTd1emIyY3ZXYkNRY1RYelFlVW44cEp6Q1Zjd2N0LUJuU2dRMDB0R24xRjNBRFdtNUhGSG1fXzVBMlVIcDNRRXExdDJwd3VMS010XzZzaUgwUEpWb0d0d09CQkk0alRIMkVYYTE1YkNRS2dKOTk3Zk5hSzkzRGxYUE1CMnNVU05NUE80NnQtSWZrZHBwN1R5bVhPNm9jTUNQU0lFemVLZEhIS0hWbmRDTVlFZ9IBxwFBVV95cUxOaWpXWi1LemZER3NiQUk0S2VXU1hYOW5SUjZzRGtFSWxLRnNJUzR0Qld6aEt6UTRYUVdReDR6NGdTRVVwYk5wSC1DOTNud0tFS2R4Skx3dHVnYi1xOEFySmZjdzZsTHFzeENKWW52QkhYNG9DaHlwM1ZtQWRuaWUtVjA4RVk5N0hRcDNLQU1vUV9",
+    "url": "",
     "sourceName": "Storyboard18",
     "publishedDate": "2026-08-28",
     "foundDate": "2026-08-28",
     "autoDiscovered": true,
-    "elsevierRelevance": "Anthropic physical AI expansion relevant to research infrastructure and lab automation competition"
+    "elsevierRelevance": "Anthropic physical AI expansion relevant to research infrastructure and lab automation competition",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOc2JwbXNkbzZMbkNXd1RLbTd1emIyY3ZXYkNRY1RYelFlVW44cEp6Q1Zjd2N0LUJuU2dRMDB0R24xRjNBRFdtNUhGSG1fXzVBMlVIcDNRRXExdDJwd3VMS010XzZzaUgwUEpWb0d0d09CQkk0alRIMkVYYTE1YkNRS2dKOTk3Zk5hSzkzRGxYUE1CMnNVU05NUE80NnQtSWZrZHBwN1R5bVhPNm9jTUNQU0lFemVLZEhIS0hWbmRDTVlFZ9IBxwFBVV95cUxOaWpXWi1LemZER3NiQUk0S2VXU1hYOW5SUjZzRGtFSWxLRnNJUzR0Qld6aEt6UTRYUVdReDR6NGdTRVVwYk5wSC1DOTNud0tFS2R4Skx3dHVnYi1xOEFySmZjdzZsTHFzeENKWW52QkhYNG9DaHlwM1ZtQWRuaWUtVjA4RVk5N0hRcDNLQU1vUV9",
+    "linkExpired": true
   },
   {
     "id": "news-rmxq4p",

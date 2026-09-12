@@ -6421,8 +6421,13 @@ function renderNewsArticles() {
   feed.innerHTML = filtered.slice(0, 80).map(a => {
     const cat = NEWS_CATEGORIES[a.category] || { label: a.categoryLabel || 'News', color: '#64748b' };
     const badgeLabel = a.institution || cat.label;
+    // Google retires RSS article ids after a week or two, and the id is all
+    // an unresolved link has -- those articles are marked linkExpired by the
+    // scan and carry no url. Without this guard the tile still looked
+    // clickable and safeOpenUrlOnclick('') would open a blank tab.
     const hrefUrl = esc(safeHref(a.url));
-    return `<div class="news-card" onclick="${safeOpenUrlOnclick(a.url)}">
+    const hasLink = !!hrefUrl;
+    return `<div class="news-card"${hasLink ? ` onclick="${safeOpenUrlOnclick(a.url)}"` : ' style="cursor:default"'}>
       <div class="news-card-top">
         <span class="news-source-badge" style="background:${cat.color}22;color:${cat.color}">${esc(badgeLabel)}</span>
         <span class="news-topic-tag">${esc(cat.label)}</span>
@@ -6433,7 +6438,9 @@ function renderNewsArticles() {
       ${a.description ? `<p>${esc(a.description)}</p>` : ''}
       ${a.elsevierRelevance ? `<p style="color:#38bdf8;font-size:12px;font-style:italic;margin-top:6px">Why it matters: ${esc(a.elsevierRelevance)}</p>` : ''}
       <div class="news-card-footer">
-        <a href="${hrefUrl}" target="_blank" onclick="event.stopPropagation()">Read full article </a>
+        ${hasLink
+          ? `<a href="${hrefUrl}" target="_blank" onclick="event.stopPropagation()">Read full article </a>`
+          : `<span style="color:var(--muted);font-size:11px;font-style:italic">Original link expired</span>`}
         ${a.sourceName ? `<span style="color:var(--muted);font-size:11px">· ${esc(a.sourceName)}</span>` : ''}
       </div>
     </div>`;
