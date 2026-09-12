@@ -1,8 +1,27 @@
 {
-  "lastRun": "2026-09-11T12:23:23.550Z",
+  "lastRun": "2026-09-12T11:46:39.886Z",
   "lastAddedCount": 0,
   "sources": 50,
   "issues": [
+    {
+      "instId": "leiden",
+      "url": "https://www.organisatiegids.universiteitleiden.nl/en/service-units/luris",
+      "error": "fetch failed"
+    },
+    {
+      "instId": "leiden",
+      "url": "https://www.universiteitleiden.nl/en/science/computer-science/about-us/organisation",
+      "error": "fetch failed"
+    },
+    {
+      "instId": "astron",
+      "url": "https://www.astron.nl/about/organisation/management/",
+      "error": "HTTP 502"
+    },
+    {
+      "instId": "astron",
+      "note": "no people extracted"
+    },
     {
       "instId": "cpb",
       "url": "https://www.cpb.nl/en/about-cpb",
@@ -23,6 +42,10 @@
     },
     {
       "instId": "naturalis",
+      "note": "no people extracted"
+    },
+    {
+      "instId": "esc",
       "note": "no people extracted"
     },
     {
@@ -56,6 +79,11 @@
     {
       "instId": "scp",
       "note": "no people extracted"
+    },
+    {
+      "instId": "sanquin",
+      "url": "https://www.sanquin.nl/en/about-sanquin/management-supervision",
+      "error": "fetch failed"
     },
     {
       "instId": "umcg",
