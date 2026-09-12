@@ -690,7 +690,14 @@ async function main() {
   const articles = readJSON(DATA_FILE, []);
   // Keyed on id (derived from the Google RSS link), not on url: url now
   // holds the resolved publisher address, which never matches item.link.
-  const existingIds = new Set(articles.map(a => a.id));
+  //
+  // The archive counts as "already seen" too. Checking only the live feed
+  // meant every archived story was rediscovered on each run, re-sent to the
+  // paid relevance filter, and then dropped again as an already-archived
+  // duplicate -- 13 articles took that round trip on 2026-09-12, with the
+  // live feed gaining none of them and the archive staying at 103.
+  const archivedIdsAtStart = readJSON(ARCHIVE_FILE, []).map(a => a.id);
+  const existingIds = new Set([...articles.map(a => a.id), ...archivedIdsAtStart]);
   const candidateCounts = {};
   const freshCandidates = [];
 
@@ -768,7 +775,7 @@ async function main() {
     candidateCounts[category.key] = categoryCandidates;
   }
 
-  console.log(`[news-scan] ${freshCandidates.length} keyword-matched candidate(s) found — running Elsevier-relevance filter...`);
+  console.log(`[news-scan] ${freshCandidates.length} keyword-matched candidate(s) found (skipping ${articles.length} live + ${archivedIdsAtStart.length} archived already known) — running Elsevier-relevance filter...`);
   const relevant = await filterRelevance(freshCandidates);
   await resolveArticleUrls(relevant, 'new');
   for (const article of relevant) articles.unshift(article);
