@@ -1,9 +1,10 @@
 {
-  "lastRun": "2026-09-12T09:13:42.634242Z",
+  "lastRun": "2026-09-12T09:24:42.069706Z",
   "lastNewCount": 0,
-  "sourcesReached": 7,
-  "sourcesTotal": 8,
-  "itemsExamined": 134,
+  "sourcesReached": 9,
+  "sourcesTotal": 9,
+  "itemsExamined": 187,
+  "failedSources": [],
   "seenUrls": [
     "https://library4research.tudl.tudelft.nl/2026/03/18/webinar-scival-ahead-smart-ai-summaries-and-more/?utm_source=rss&utm_medium=rss&utm_campaign=webinar-scival-ahead-smart-ai-summaries-and-more",
     "https://library4research.tudl.tudelft.nl/2026/05/12/master-research-insights-with-dimensions-101-and-new-tutorials/?utm_source=rss&utm_medium=rss&utm_campaign=master-research-insights-with-dimensions-101-and-new-tutorials",
