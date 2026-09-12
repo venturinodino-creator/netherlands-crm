@@ -6,7 +6,7 @@
     "institution": "OpenAI",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQLWM1N3p4TUpram5lQ3dEdFhlajdWUkE5TTlTZHNneXVsSmk4Mjl1dHpTZTE3dE0tcGVGblA5dWxqWFNITk8zUnB0aDlzbWs1UWxyY3h4czJuZ29DSk82b1QxWHIwTU9SRGJlWHlCOUpMTzJkNk5ldUVLYTVaR0ZnVk5lYVcyWExxNHJVOC1qeEFzZzU5ZTVrQWhXM3JxX2MxNTN6aEl3V0syeGJqQmFHYjF2SFVZUGQxQXJEZ0tR?oc=5",
+    "url": "https://www.ghacks.net/2026/09/04/openai-launches-gpt-6-astra-claiming-a-new-frontier-in-computer-use-coding-and-science/",
     "sourceName": "gHacks",
     "publishedDate": "2026-09-04",
     "foundDate": "2026-09-04",
@@ -35,7 +35,8 @@
       "Develop demo: LeapSpace + Astra integration vs. Astra alone on Dutch research use case (drug discovery, materials science); show evidence quality difference.",
       "Engage Dutch academy of sciences (KNAW) to establish principles for responsible AI in research; position Elsevier as governance partner."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQLWM1N3p4TUpram5lQ3dEdFhlajdWUkE5TTlTZHNneXVsSmk4Mjl1dHpTZTE3dE0tcGVGblA5dWxqWFNITk8zUnB0aDlzbWs1UWxyY3h4czJuZ29DSk82b1QxWHIwTU9SRGJlWHlCOUpMTzJkNk5ldUVLYTVaR0ZnVk5lYVcyWExxNHJVOC1qeEFzZzU5ZTVrQWhXM3JxX2MxNTN6aEl3V0syeGJqQmFHYjF2SFVZUGQxQXJEZ0tR?oc=5"
   },
   {
     "id": "news-iqxs1j",
@@ -44,7 +45,7 @@
     "institution": "OpenAI",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQYUlwdGhVQjlXU2pPaFNRQ2NCZDFVbEM0SEZQaEZqYXFqTFZ6MFoyZFF1ZnctcFBTaUpsbWlMUm1qOThpVERoZ3pqUUZPWHFsV0ljb0FaV0Q3OTdoZWNOcjVlcWM1VnBOSm8zRlBGUHdlSmEwMjJQSlM1LTJHc2JZSTFQZFd1VUh0S3AtVUs0aGFmcEN2YUE?oc=5",
+    "url": "https://pragativadi.com/openai-launches-gpt-6-astra-calls-it-its-most-intelligent-ai-model/",
     "sourceName": "Pragativadi",
     "publishedDate": "2026-09-04",
     "foundDate": "2026-09-04",
@@ -73,7 +74,8 @@
       "Map GPT-6 Astra's agent capabilities against LeapSpace's research-specific workflows; identify overlaps and differentiation.",
       "Prepare messaging: premium AI does not replace integrated research intelligence platform with vetted content and claim-checking."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQYUlwdGhVQjlXU2pPaFNRQ2NCZDFVbEM0SEZQaEZqYXFqTFZ6MFoyZFF1ZnctcFBTaUpsbWlMUm1qOThpVERoZ3pqUUZPWHFsV0ljb0FaV0Q3OTdoZWNOcjVlcWM1VnBOSm8zRlBGUHdlSmEwMjJQSlM1LTJHc2JZSTFQZFd1VUh0S3AtVUs0aGFmcEN2YUE?oc=5"
   },
   {
     "id": "news-r229t2",
@@ -82,7 +84,7 @@
     "institution": "OpenAI",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQSFN2Zm4yZV9nbEpZZ21tY3lzWm9xdUpLb0J1VERydS1Hdk50SXVwblBjeTBCQ09CSWNhYWF2NHVSTnh1LWFHdmNlOWlZY1hqRTBUWkxGVW9SSVBKOUdiWkpIZ0NpVGxIZnpveFlDb1lJLTdsN2ZWSm5VdjhJS2FqcE5oNWdNZ3V3RlVDLTJOcHhldXFoSmhmLVFXSWtoVGtYTkFud0ZCeE9mbGxmUG44?oc=5",
+    "url": "https://www.hpcwire.com/aiwire/2026/09/04/crowdstrike-and-openai-expand-partnership-to-secure-the-agentic-era/",
     "sourceName": "HPCwire",
     "publishedDate": "2026-09-04",
     "foundDate": "2026-09-05",
@@ -111,7 +113,8 @@
       "Develop security and governance documentation for LeapSpace addressing institutional compliance (data residency, audit logs, user controls).",
       "Engage Dutch university IT and security teams proactively to position Elsevier as a research-specialized, secure alternative to general OpenAI integration."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQSFN2Zm4yZV9nbEpZZ21tY3lzWm9xdUpLb0J1VERydS1Hdk50SXVwblBjeTBCQ09CSWNhYWF2NHVSTnh1LWFHdmNlOWlZY1hqRTBUWkxGVW9SSVBKOUdiWkpIZ0NpVGxIZnpveFlDb1lJLTdsN2ZWSm5VdjhJS2FqcE5oNWdNZ3V3RlVDLTJOcHhldXFoSmhmLVFXSWtoVGtYTkFud0ZCeE9mbGxmUG44?oc=5"
   },
   {
     "id": "news-dqu798",
@@ -120,7 +123,7 @@
     "institution": "OpenAI",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOZWVEZ3JoVUZ3ZkJPV3J2X0l0NUlpSGhuVm95NXNPa0Z5bHQ2cWRVSmxmcGtPMmhGLThmMWdIbDJwbXJrOGxWX3JuWkstYVNZSU5VQ0ZUenJtbXNhQkV2eGc5VFBLZUhvc3U5LTRpVGRDRFREZkhlLTgzSUpSU3hlZlJTRDdmTnFwOENha3Bma2ZpRlViajBETGVXUlhHYzVpSERsS3AwbVVfeXNiNTBzMmxYai1HWmM?oc=5",
+    "url": "https://gulfbusiness.com/en/2026/artificial-intelligence/openai-unveils-gpt-6-astra-heres-what-this-new-model-can-do",
     "sourceName": "Gulf Business",
     "publishedDate": "2026-09-04",
     "foundDate": "2026-09-05",
@@ -149,7 +152,8 @@
       "Develop case studies showing how integrated content + citation data + AI outperforms general models for reproducibility and academic rigor.",
       "Launch proactive outreach to Dutch research offices highlighting LeapSpace's institutional control, audit trails, and research-specific training data."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOZWVEZ3JoVUZ3ZkJPV3J2X0l0NUlpSGhuVm95NXNPa0Z5bHQ2cWRVSmxmcGtPMmhGLThmMWdIbDJwbXJrOGxWX3JuWkstYVNZSU5VQ0ZUenJtbXNhQkV2eGc5VFBLZUhvc3U5LTRpVGRDRFREZkhlLTgzSUpSU3hlZlJTRDdmTnFwOENha3Bma2ZpRlViajBETGVXUlhHYzVpSERsS3AwbVVfeXNiNTBzMmxYai1HWmM?oc=5"
   },
   {
     "id": "news-yxvyme",
@@ -158,7 +162,7 @@
     "institution": "OpenAI",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQQXRSd2VEU044cWkwaGtPQS1lSGFsSnFnNHExN0QxSEFaQ2ZJaTlpTjc4VEloNzhDV3IyZlRRdnhmRTBNb0xmUEVoMGljLTYyOERfU3VYUG1JSGMtU1E0S1BjYjQ2Vk5VSGVpOEtrLW5BOUZhREY5VmlIaDFTZm13VFNFc3o1cTlYcVdWWElnMTdfc2stMkh5Vm50dGdqT0NjV3AwU2t6M2g3cThzNmpfYW9JdXgtNFhYODZXLVVNTUNGdWc?oc=5",
+    "url": "https://www.etvbharat.com/en/technology/openai-launches-gpt-6-astra-its-most-advanced-and-aligned-ai-model-yet-enn26090405658",
     "sourceName": "ETV Bharat",
     "publishedDate": "2026-09-04",
     "foundDate": "2026-09-05",
@@ -187,7 +191,8 @@
       "Prepare messaging emphasizing ScienceDirect's authoritative content, Scopus citation quality, and LeapSpace's research-specific curated workflows vs. general-purpose AI.",
       "Brief Dutch university librarians and research office heads on Elsevier's AI roadmap and competitive positioning before OpenAI sales outreach begins."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQQXRSd2VEU044cWkwaGtPQS1lSGFsSnFnNHExN0QxSEFaQ2ZJaTlpTjc4VEloNzhDV3IyZlRRdnhmRTBNb0xmUEVoMGljLTYyOERfU3VYUG1JSGMtU1E0S1BjYjQ2Vk5VSGVpOEtrLW5BOUZhREY5VmlIaDFTZm13VFNFc3o1cTlYcVdWWElnMTdfc2stMkh5Vm50dGdqT0NjV3AwU2t6M2g3cThzNmpfYW9JdXgtNFhYODZXLVVNTUNGdWc?oc=5"
   },
   {
     "id": "news-9xctab",
@@ -234,11 +239,12 @@
     "institution": "Wiley",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNU2RZY2ZobGRZRURNbjRtTHBOU1lLVUZGOG9vOGt1UTNCWlI2cGh2dDROcWx3cnNjWnM5OUI3QVI2eTV0a0d5em9ZTHF3U0wxSTBmWUQ3Z0htTUFKdnFUUDlveXJsYXhtV3JjOXFxUFRoa2ZVQlg1ei0yRUFPR2NIV3RaMkxGUWFMOEg3Z1ZHOFRrcWhlRXFHZ1ZnUUFGSHhLTDJYakIxRjVjOEthX2lTZUJTbVB2NWJUU3BfSDNVS3k4Q24xTWdsa3QyRWMtdjUyU0E?oc=5",
+    "url": "https://analyticalscience.wiley.com/content/news-do/tiny-fish-and-2-5-million-euros-erc-funding-fabian-voigt-launches-new-research-group",
     "sourceName": "analyticalscience.wiley.com",
     "publishedDate": "2026-09-04",
     "foundDate": "2026-09-09",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNU2RZY2ZobGRZRURNbjRtTHBOU1lLVUZGOG9vOGt1UTNCWlI2cGh2dDROcWx3cnNjWnM5OUI3QVI2eTV0a0d5em9ZTHF3U0wxSTBmWUQ3Z0htTUFKdnFUUDlveXJsYXhtV3JjOXFxUFRoa2ZVQlg1ei0yRUFPR2NIV3RaMkxGUWFMOEg3Z1ZHOFRrcWhlRXFHZ1ZnUUFGSHhLTDJYakIxRjVjOEthX2lTZUJTbVB2NWJUU3BfSDNVS3k4Q24xTWdsa3QyRWMtdjUyU0E?oc=5"
   },
   {
     "id": "news-2q2xkk",
@@ -247,11 +253,12 @@
     "institution": "OpenAI",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNcDRkZzJzVVotOW5ySEpHNzRQRmhpMm9NRkViS0VOd0lNVkphWWlDMXU3QVc0T1JYcHRDcTF3LWR6QTV0LVMzZDlQeGhlWVp0SjNvdkZkYVRHTGJLVm1kQmN1NXgtNlUzVExwcUxwTmdFdXhqeUJOWTNNd1B2amxQUXk0c0lTbDVyc3JyUDZwWnBMWHRpTUV1UmRRU3F4X1NLMlZF0gGrAUFVX3lxTE5Mc2RwclVqMXlEdzJ2eUE1ZHotOHdFTFhuX3dxYkQ4NlNNV1NqNWI4SWpjLWRQSnlpNkhnVEdSdER4NmpFTUJuNnRYMEltcnRwOFlSUlRYSnVjSk9IZndtVWFQVnNiOTZYSWpvYzhGcmxQbkh6NmF6bEp6ZXlldEZYTFJpWjh1N2cxRm1ETnJ0Sm9yTlVGVFNVU004VHdGX1FNVXZMandwQkFMcw?oc=5",
+    "url": "https://www.ndtv.com/world-news/openai-launches-worlds-most-intelligent-ai-model-gpt-6-astra-12000992",
     "sourceName": "NDTV",
     "publishedDate": "2026-09-04",
     "foundDate": "2026-09-09",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNcDRkZzJzVVotOW5ySEpHNzRQRmhpMm9NRkViS0VOd0lNVkphWWlDMXU3QVc0T1JYcHRDcTF3LWR6QTV0LVMzZDlQeGhlWVp0SjNvdkZkYVRHTGJLVm1kQmN1NXgtNlUzVExwcUxwTmdFdXhqeUJOWTNNd1B2amxQUXk0c0lTbDVyc3JyUDZwWnBMWHRpTUV1UmRRU3F4X1NLMlZF0gGrAUFVX3lxTE5Mc2RwclVqMXlEdzJ2eUE1ZHotOHdFTFhuX3dxYkQ4NlNNV1NqNWI4SWpjLWRQSnlpNkhnVEdSdER4NmpFTUJuNnRYMEltcnRwOFlSUlRYSnVjSk9IZndtVWFQVnNiOTZYSWpvYzhGcmxQbkh6NmF6bEp6ZXlldEZYTFJpWjh1N2cxRm1ETnJ0Sm9yTlVGVFNVU004VHdGX1FNVXZMandwQkFMcw?oc=5"
   },
   {
     "id": "news-zd4uvd",
@@ -335,7 +342,7 @@
     "institution": "OpenAI",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1iUlVPODl5bTBweko3Y1pHY1Y3RzZua3FHak9hVm5aa3hZWmNQcmVrVW1VMHdXME04cDJITVM4TmlBdUZWZ3JIQlgtdUZPMjlEd3pUdmNkV3BsT3FRMTEwNm1GcnRJU2NXeElBYVZhc9IBdEFVX3lxTE9NYUtIZlJ6NHoxSGladzc0bkc5Tm8xWjJkcHdJeHJHeUVfUlZ4b2ZoTC1ueE9HaEI4ZFZoUXAxUldGZHYweTd2ZEhtUkJiaFFid0FZdkdRS2Z1OV9NY2tzb3BKQW5wZGh0SER5aTlOdm9sbWVD?oc=5",
+    "url": "https://www.cnbc.com/2026/09/03/open-ai-astra-gpt-6-cyber.html",
     "sourceName": "CNBC",
     "publishedDate": "2026-09-03",
     "foundDate": "2026-09-04",
@@ -364,7 +371,8 @@
       "Develop messaging: Elsevier as 'Governance-Ready Research AI' vs. OpenAI's capability-first model; highlight GDPR, institutional IP protection, and audit compliance.",
       "Initiate conversations with Dutch data protection authorities (IPO) on institutional requirements for AI deployment in research; position Elsevier as pre-compliant solution."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1iUlVPODl5bTBweko3Y1pHY1Y3RzZua3FHak9hVm5aa3hZWmNQcmVrVW1VMHdXME04cDJITVM4TmlBdUZWZ3JIQlgtdUZPMjlEd3pUdmNkV3BsT3FRMTEwNm1GcnRJU2NXeElBYVZhc9IBdEFVX3lxTE9NYUtIZlJ6NHoxSGladzc0bkc5Tm8xWjJkcHdJeHJHeUVfUlZ4b2ZoTC1ueE9HaEI4ZFZoUXAxUldGZHYweTd2ZEhtUkJiaFFid0FZdkdRS2Z1OV9NY2tzb3BKQW5wZGh0SER5aTlOdm9sbWVD?oc=5"
   },
   {
     "id": "news-3tvnpt",
@@ -373,7 +381,7 @@
     "institution": "OpenAI",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPdVZxVWlzVjlxQi1XZWZxRGh1RzdMM3pfRUFoR2xSSUxtc2pCb2IwVkR6RXFINTRGN1ZzVU9GTm8xQ21WTzN3eTlZREtMQlJUZDhTR0M2TUJkd0g2aTJIdHZCME9YZ1FPZnE4UjJQVDBIQ19ZRGZ4ZVBONldsOTdtM2RVbjFha2hsRlE?oc=5",
+    "url": "https://www.indexbox.io/blog/openai-unveils-gpt-6-astra-a-leap-in-ai-capabilities/",
     "sourceName": "IndexBox",
     "publishedDate": "2026-09-03",
     "foundDate": "2026-09-04",
@@ -402,7 +410,8 @@
       "Emphasize institutional mandates (compliance, audit, IP governance) that rule out consumer-focused tools for Dutch research centres.",
       "Develop case study showing cost and risk of consumer AI adoption (hallucinations, unsanctioned data exfiltration) vs. vetted institutional platform."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPdVZxVWlzVjlxQi1XZWZxRGh1RzdMM3pfRUFoR2xSSUxtc2pCb2IwVkR6RXFINTRGN1ZzVU9GTm8xQ21WTzN3eTlZREtMQlJUZDhTR0M2TUJkd0g2aTJIdHZCME9YZ1FPZnE4UjJQVDBIQ19ZRGZ4ZVBONldsOTdtM2RVbjFha2hsRlE?oc=5"
   },
   {
     "id": "news-9s3foc",
@@ -411,7 +420,7 @@
     "institution": "OpenAI",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxPc2pZNnhoSVNJbTVKU3BpUnk0S1hTQVUzZ3JhUHg2V18yUGZLcm5wZkk4SThSNE1YeUlJY0V3VmFVeHZUSGRldGQ2Vkp5UlBoUzFtRmpIOWVBa0NTWHVZTndiMTNEOHdpV3JZSDhFQllCREdtX2hZcEgyUm9kUEpFX2taZTZWSVFxNzQ5cEZwRURXNkJzZ2l0MzFZSHQwcFV6ay1hWnZvQTRabmZORkVCZ3BUMmtvU1pKN2EyTkFPS3R3ak1RbU9LanNUMl9NdVlDNTRjdXNLMWlYR2kxdUV1VlBNWE9FTk0?oc=5",
+    "url": "https://www.tradingkey.com/analysis/stocks/us-stocks/262149990-openai-gpt-6-astra-launch-zero-day-exploits-cybersecurity-ai-agent-agi-pricing-tradingkey",
     "sourceName": "TradingKey",
     "publishedDate": "2026-09-03",
     "foundDate": "2026-09-04",
@@ -440,7 +449,8 @@
       "Interview 3–5 Dutch research IT directors on agent-automation priorities; map against LeapSpace roadmap capabilities.",
       "Prepare competitive battlecard on institutional control, compliance (GDPR, IP), audit trails, and hallucination mitigation vs. standalone LLM agents."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxPc2pZNnhoSVNJbTVKU3BpUnk0S1hTQVUzZ3JhUHg2V18yUGZLcm5wZkk4SThSNE1YeUlJY0V3VmFVeHZUSGRldGQ2Vkp5UlBoUzFtRmpIOWVBa0NTWHVZTndiMTNEOHdpV3JZSDhFQllCREdtX2hZcEgyUm9kUEpFX2taZTZWSVFxNzQ5cEZwRURXNkJzZ2l0MzFZSHQwcFV6ay1hWnZvQTRabmZORkVCZ3BUMmtvU1pKN2EyTkFPS3R3ak1RbU9LanNUMl9NdVlDNTRjdXNLMWlYR2kxdUV1VlBNWE9FTk0?oc=5"
   },
   {
     "id": "news-m7yel8",
@@ -449,7 +459,7 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNbjRvaWhmT2plTjhwWjBOXzZON0x5WkxPeEFaX3N6dzNIT1EzTklicGRkUlFQU29xSTRSU05wNVlBMHRLUDh3dE9uWmpnOWF0SFQ4YVpHM1Mxb0wxNDJYbEVYTG5RSVUyeWxVa2dXakdoNVMxR3lQVjhXb2hfcmt3a2ZzNXFJU1V5ZHNSeW1vZzdhLVdDTXhSZWRRa3hqNGxRa1dFekhJY3ZSSldZX042Umxpd3ZfeGp3ZHg4anVkOA?oc=5",
+    "url": "https://www.edtechinnovationhub.com/news/anthropic-launches-claude-fable-51-and-restricted-mythos-51-for-advanced-research",
     "sourceName": "EdTech Innovation Hub",
     "publishedDate": "2026-09-03",
     "foundDate": "2026-09-04",
@@ -479,7 +489,8 @@
       "Research Anthropic's go-to-market strategy in Netherlands academic sector; map competitive positioning vs. LeapSpace.",
       "Audit LeapSpace's claim-checking and deep-research capabilities against Fable/Mythos to identify feature gaps."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNbjRvaWhmT2plTjhwWjBOXzZON0x5WkxPeEFaX3N6dzNIT1EzTklicGRkUlFQU29xSTRSU05wNVlBMHRLUDh3dE9uWmpnOWF0SFQ4YVpHM1Mxb0wxNDJYbEVYTG5RSVUyeWxVa2dXakdoNVMxR3lQVjhXb2hfcmt3a2ZzNXFJU1V5ZHNSeW1vZzdhLVdDTXhSZWRRa3hqNGxRa1dFekhJY3ZSSldZX042Umxpd3ZfeGp3ZHg4anVkOA?oc=5"
   },
   {
     "id": "news-ii1s8z",
@@ -488,7 +499,7 @@
     "institution": "OpenAI",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOQ2l4c2h2R2JEUTlZSkR4QlIzR1RtN0Q0M2dzMHpGR2o0WGJ0N3hUY0tfZlBZWjk0ZnFtMVFYLUZMVnV4eXpMQkxESWd1cUgyUEFqSE5Vb1RxR2VQaDllOHUyVlpndE1PekZKYTJOMDlWOTBEc0dFMUpUWl9zekhvcUdza1lLZ21wYVNYU2JtY2JuVmljblZQUHdacS3SAaIBQVVfeXFMTlpQdmVJNXpScWN6VnoxTk1fMHctWGpzdC1Ib1FkdVNkZVE1b2RFQ1p0S1lZY18zOHJVOE1IdXVGc01nREQtZlg1R3FhaWRNVS1YRnZ2TXhMYUYxNmstTHVTOC0ySnBsQ1dHc2ZzMDJra1A1RjdmdHB1Q29Ja0tyMDNpZXRUaWR4Q0lnaDdBZlZMMGU5Y01aRzJZTmpyVE95emNn?oc=5",
+    "url": "https://www.foxbusiness.com/technology/openai-unveils-gpt-6-astra-major-advances-ai-capabilities",
     "sourceName": "Fox Business",
     "publishedDate": "2026-09-03",
     "foundDate": "2026-09-05",
@@ -517,7 +528,8 @@
       "Prepare sales talking points addressing 'why general AI ≠ research AI' (hallucination risks, lack of domain curation, no compliance governance).",
       "Brief ScienceDirect editorial and Scopus teams to develop co-authored commentary on AI's role in peer review and research integrity."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOQ2l4c2h2R2JEUTlZSkR4QlIzR1RtN0Q0M2dzMHpGR2o0WGJ0N3hUY0tfZlBZWjk0ZnFtMVFYLUZMVnV4eXpMQkxESWd1cUgyUEFqSE5Vb1RxR2VQaDllOHUyVlpndE1PekZKYTJOMDlWOTBEc0dFMUpUWl9zekhvcUdza1lLZ21wYVNYU2JtY2JuVmljblZQUHdacS3SAaIBQVVfeXFMTlpQdmVJNXpScWN6VnoxTk1fMHctWGpzdC1Ib1FkdVNkZVE1b2RFQ1p0S1lZY18zOHJVOE1IdXVGc01nREQtZlg1R3FhaWRNVS1YRnZ2TXhMYUYxNmstTHVTOC0ySnBsQ1dHc2ZzMDJra1A1RjdmdHB1Q29Ja0tyMDNpZXRUaWR4Q0lnaDdBZlZMMGU5Y01aRzJZTmpyVE95emNn?oc=5"
   },
   {
     "id": "news-7nszjc",
@@ -526,11 +538,12 @@
     "institution": "Maastricht University",
     "category": "ai_adoption",
     "categoryLabel": "AI Development & Adoption",
-    "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOZlFsakZqYlFBam1NbUpsY0k4LU5GYTFQV2I0cVh6dHNuOGM5c1kyT1RCZDJWVFA0Y3VubzhQYmR2Y2pUcGMzanVlc29DTW9sSjJKWDZ5N25SVDJQSHcyS0w1SGg5blcyRHNwZlNjeUFEM2NOSmtvMlVvZmRCZDR2OEZkbWJVR2lOeGNkVTBNYllmMS1wTGd0TGd6S040ZGJaRGhKSDR6WGxtd0FiSmpOV3J1V3NVNTJUSkJqN3R4STY?oc=5",
+    "url": "https://www.maastrichtuniversity.nl/news/gianclaudio-malgieri-appointed-professor-ai-data-governance-and-fundamental-rights",
     "sourceName": "Maastricht University",
     "publishedDate": "2026-09-01",
     "foundDate": "2026-09-10",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOZlFsakZqYlFBam1NbUpsY0k4LU5GYTFQV2I0cVh6dHNuOGM5c1kyT1RCZDJWVFA0Y3VubzhQYmR2Y2pUcGMzanVlc29DTW9sSjJKWDZ5N25SVDJQSHcyS0w1SGg5blcyRHNwZlNjeUFEM2NOSmtvMlVvZmRCZDR2OEZkbWJVR2lOeGNkVTBNYllmMS1wTGd0TGd6S040ZGJaRGhKSDR6WGxtd0FiSmpOV3J1V3NVNTJUSkJqN3R4STY?oc=5"
   },
   {
     "id": "news-75yfzm",
@@ -539,7 +552,7 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNNXJxaUtzYjd4SHRCemZwLTdabm92OTg3eXc1YXN0ZnNEVUNsZ005TkJEM2dQa0djRGhlZGN5YTVIRFNzc0JCS3dITXd1ekJEM2dEclo3LVE1WllGTWZLWFZKM3I3WlduRkJ1SEliSHBQcFZ2Vmp2SERPWTVqeWI5UmZFMnN6dmpmX0E?oc=5",
+    "url": "https://www.testingcatalog.com/anthropic-launches-claude-fable-5-1-and-mythos-5-1/",
     "sourceName": "TestingCatalog AI News",
     "publishedDate": "2026-09-02",
     "foundDate": "2026-09-02",
@@ -568,7 +581,8 @@
       "Activate sales urgency: confirm availability and pricing of Fable 5.1/Mythos 5.1 in Netherlands; prepare competitive response docs for procurement conversations.",
       "Commission independent benchmark study comparing LeapSpace vs. Claude on research-specific tasks (lit review quality, citation accuracy, institutional data retrieval)."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNNXJxaUtzYjd4SHRCemZwLTdabm92OTg3eXc1YXN0ZnNEVUNsZ005TkJEM2dQa0djRGhlZGN5YTVIRFNzc0JCS3dITXd1ekJEM2dEclo3LVE1WllGTWZLWFZKM3I3WlduRkJ1SEliSHBQcFZ2Vmp2SERPWTVqeWI5UmZFMnN6dmpmX0E?oc=5"
   },
   {
     "id": "news-m8dlfc",
@@ -577,7 +591,7 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1xUzA4eWNTcnVDVTNzWWE3RGdsYkMxMVVaME93YVJ6UWwxd2pEanozcHV5Y25WUjk4cDcxWFdRUjBzemx0dHVBQm03OXNDWnZWZlNLRWN2V1QxN2gweUVKZFI0dXhXeW1KNF9PR3lfcVZtMC1vX0lUZXNR0gF_QVVfeXFMUHUxek1BQjFoOFU5c3F2R3F1RkNndVdJbWRtWUJSb0N1Y3dFX25MZ1ZmLTNDdHhBNXFOUGdsb3RwcjFER2hRcjhBNFc0cERMRjZYNGNZdjdqY0p2V0gyQlh4WTh4MnU0M1QySERXNHpjY3RMWXl2QUdELTZ1SkV1OA?oc=5",
+    "url": "https://cybersecuritynews.com/anthropic-launches-fable-and-mythos-5-1/",
     "sourceName": "CyberSecurityNews",
     "publishedDate": "2026-09-02",
     "foundDate": "2026-09-02",
@@ -606,7 +620,8 @@
       "Highlight security/compliance differentiators in sales collateral: LeapSpace audit trails, GDPR-aligned architecture, institutional data governance vs. standalone Claude.",
       "Prepare talking points on LeapSpace's advantage for regulated sectors (healthcare, biomedical research) vs. general-purpose GenAI tools."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1xUzA4eWNTcnVDVTNzWWE3RGdsYkMxMVVaME93YVJ6UWwxd2pEanozcHV5Y25WUjk4cDcxWFdRUjBzemx0dHVBQm03OXNDWnZWZlNLRWN2V1QxN2gweUVKZFI0dXhXeW1KNF9PR3lfcVZtMC1vX0lUZXNR0gF_QVVfeXFMUHUxek1BQjFoOFU5c3F2R3F1RkNndVdJbWRtWUJSb0N1Y3dFX25MZ1ZmLTNDdHhBNXFOUGdsb3RwcjFER2hRcjhBNFc0cERMRjZYNGNZdjdqY0p2V0gyQlh4WTh4MnU0M1QySERXNHpjY3RMWXl2QUdELTZ1SkV1OA?oc=5"
   },
   {
     "id": "news-gld9s3",
@@ -615,7 +630,7 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFA0dFQtaXM3RmFuT19pMDlTdFJkX3Vfdnpxc0szQ1hoek1nVjFTV2NJSDJ2ZUZFeTlmQThhNGw5V0ZNVWMtQzNrNGZVT203X3hNQ1RSVjNhdFBoRnNsaHc1SVlkNFc3aGlBa2ZoNTNZUQ?oc=5",
+    "url": "https://www.asiae.co.kr/en/article/science/2026090215590475094",
     "sourceName": "아시아경제",
     "publishedDate": "2026-09-02",
     "foundDate": "2026-09-02",
@@ -644,7 +659,8 @@
       "Audit LeapSpace's compliance posture (GDPR, institutional data policies) vs. Mythos 5.1 safeguard claims.",
       "Develop messaging emphasizing integrated compliance: LeapSpace + Scopus + ScienceDirect as a single, auditable research ecosystem."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMib0FVX3lxTFA0dFQtaXM3RmFuT19pMDlTdFJkX3Vfdnpxc0szQ1hoek1nVjFTV2NJSDJ2ZUZFeTlmQThhNGw5V0ZNVWMtQzNrNGZVT203X3hNQ1RSVjNhdFBoRnNsaHc1SVlkNFc3aGlBa2ZoNTNZUQ?oc=5"
   },
   {
     "id": "news-hw75a2",
@@ -766,7 +782,7 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPZzU1MWl5MnMwQk0yREE3bWxzZE51d01ZbHl3LUJVVlZ2THF6MmNyRnJKZTBwa2ZoY3dlSWxvczlDSEFIQTE2VGJxWjg2bUpJdHZLc2JaNVkwZ0lGTllJZkpzU2JNR3hoSlFYM2s5ZDRjcmZqNlkyT2E4VzRLNFQ1NnBfQXRZbXZv?oc=5",
+    "url": "https://forklog.com/en/anthropic-launches-claude-fable-5-1-and-claude-mythos-5-1/",
     "sourceName": "ForkLog",
     "publishedDate": "2026-09-02",
     "foundDate": "2026-09-02",
@@ -794,7 +810,8 @@
       "Create side-by-side RFP-response template comparing Claude + open sources vs. LeapSpace on compliance, indexing, and institutional IP.",
       "Brief key Dutch university procurement contacts on Elsevier's differentiation before competitive bids arrive."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPZzU1MWl5MnMwQk0yREE3bWxzZE51d01ZbHl3LUJVVlZ2THF6MmNyRnJKZTBwa2ZoY3dlSWxvczlDSEFIQTE2VGJxWjg2bUpJdHZLc2JaNVkwZ0lGTllJZkpzU2JNR3hoSlFYM2s5ZDRjcmZqNlkyT2E4VzRLNFQ1NnBfQXRZbXZv?oc=5"
   },
   {
     "id": "news-ydny8w",
@@ -803,7 +820,7 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5Qc3NGblFCZjRDZGpUY0c1T2F6V0xRTF9FLVRKUXZvM1dUR0E5UW9WaXhuWktDTTJRZnJPTWRjWDd3dml4LXNwMHVGWXh5X1ROSGRHZ1VEam5lWW9ielp0aGpCZ3REZWtBcE8xa21JTzFfYUlVRnc?oc=5",
+    "url": "https://finance.biggo.com/news/9bc3ce12-9f4f-4531-a636-39c93d8a9d69",
     "sourceName": "finance.biggo.com",
     "publishedDate": "2026-09-02",
     "foundDate": "2026-09-02",
@@ -831,7 +848,8 @@
       "Benchmark LeapSpace agent performance (literature search loop latency, deep-research report generation speed) against Claude's long-duration capabilities.",
       "Position Scopus as the institutional-grade knowledge graph that enables Claude-class agents to work faster and more reliably in research contexts."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5Qc3NGblFCZjRDZGpUY0c1T2F6V0xRTF9FLVRKUXZvM1dUR0E5UW9WaXhuWktDTTJRZnJPTWRjWDd3dml4LXNwMHVGWXh5X1ROSGRHZ1VEam5lWW9ielp0aGpCZ3REZWtBcE8xa21JTzFfYUlVRnc?oc=5"
   },
   {
     "id": "news-t9v6ur",
@@ -914,7 +932,7 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOd0tsa3NjSW1HWWRRQjRyM0ZINUxIN0hnR1FDcDBDcWdYMnhhNm16REhFWVFlRjdUcUEzSVNRZ3JaRDZxOXd4TDZ3Y1VzZWQ2QW1tdkI4VDZ1cnhRN1pHdEo3VXBsdnNKbGFhc1NLZFlsZzd1bG92M0dUbGVja25zQS00TjZwdHRwM3k1eHVxb0ctaWxZTXJDYXRSbVBMVkpkdFRCb2FRTQ?oc=5",
+    "url": "https://www.kucoin.com/news/flash/anthropic-launches-claude-fable-5-1-mythos-5-1-for-scientific-research",
     "sourceName": "kucoin.com",
     "publishedDate": "2026-09-02",
     "foundDate": "2026-09-03",
@@ -942,7 +960,8 @@
       "Immediately schedule win-back briefings with top 20 Dutch institutions; emphasize ScienceDirect + Scopus indexing depth and curation vs. generic LLM knowledge cutoffs.",
       "Develop research-specific LeapSpace positioning (e.g., 'AI grounded in verified, deduplicated journal content') to counter positioning of generic research-ready models."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOd0tsa3NjSW1HWWRRQjRyM0ZINUxIN0hnR1FDcDBDcWdYMnhhNm16REhFWVFlRjdUcUEzSVNRZ3JaRDZxOXd4TDZ3Y1VzZWQ2QW1tdkI4VDZ1cnhRN1pHdEo3VXBsdnNKbGFhc1NLZFlsZzd1bG92M0dUbGVja25zQS00TjZwdHRwM3k1eHVxb0ctaWxZTXJDYXRSbVBMVkpkdFRCb2FRTQ?oc=5"
   },
   {
     "id": "news-ni365n",
@@ -989,7 +1008,7 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFA2T3NxNmd2Ri1zV2l3M0xNVGRDVkVoMU9YSnpEaTJwaFQ1QTB1clhJNnNsNjdGenRmaURXR1kyZVByOVl6OGZiT3NuN1lLbkdhN1FzZ3RkSk1IZktwMnVCRW13aFA?oc=5",
+    "url": "https://www.asiae.co.kr/en/article/2026090215590475094",
     "sourceName": "아시아경제",
     "publishedDate": "2026-09-02",
     "foundDate": "2026-09-03",
@@ -1017,7 +1036,8 @@
       "Map Mythos safeguard specifications against LeapSpace compliance modules (HIPAA, GDPR, pharmaceutical data governance).",
       "Prepare compliance comparison briefing for Dutch medical centres and regulated research institutes to demonstrate Elsevier's governance advantage."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFA2T3NxNmd2Ri1zV2l3M0xNVGRDVkVoMU9YSnpEaTJwaFQ1QTB1clhJNnNsNjdGenRmaURXR1kyZVByOVl6OGZiT3NuN1lLbkdhN1FzZ3RkSk1IZktwMnVCRW13aFA?oc=5"
   },
   {
     "id": "news-mzu88d",
@@ -1063,11 +1083,12 @@
     "institution": "TNO",
     "category": "ai_adoption",
     "categoryLabel": "AI Development & Adoption",
-    "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPMUlTbmdfS0xpUmdsRnBQb1A3amxyendaUzA5SG11Q1ZuOVBvNzNKWFNPYVFhanNUNDliMzNFajI4U2x5R3VLWWdSUUVhODdrVjl1YnZONlMtWXNkWHZualZ1N3V1QS1wS1pRTVdHWEljODd4ZWgtbi0wSkd4cTVxUWcyam41WlZBdXgxQ0VhZVJTY0x2TGIxUkNR?oc=5",
+    "url": "https://thequantuminsider.com/2026/09/02/quobly-tno-mou-industrialization-silicon-spin-qubits/",
     "sourceName": "The Quantum Insider",
     "publishedDate": "2026-09-02",
     "foundDate": "2026-09-08",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPMUlTbmdfS0xpUmdsRnBQb1A3amxyendaUzA5SG11Q1ZuOVBvNzNKWFNPYVFhanNUNDliMzNFajI4U2x5R3VLWWdSUUVhODdrVjl1YnZONlMtWXNkWHZualZ1N3V1QS1wS1pRTVdHWEljODd4ZWgtbi0wSkd4cTVxUWcyam41WlZBdXgxQ0VhZVJTY0x2TGIxUkNR?oc=5"
   },
   {
     "id": "news-qcdtz4",
@@ -1076,11 +1097,12 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOTWhmNnhIejBEcG1zQWRzeWtHbVZCOUtZZmtraGJiNHdjVzdpU3liY2VfZTF0X3pUUl8tNWN1TXMxcTNqRk9xRXRTZ3VGQUV2MVl1MllqWHpCby1ua2R2VWJJR1hRUi1aTWJxQ1lXWHBEcklUb1hZS3dkTEZkSDFxUjNzbFFiZUktaXJ3WGJRUjF5RHROREJSd2c3N0RfRkNIbzNxd05GdnJ4VnZma0R5QU5QTEJwOG1aUmZuaERmMA?oc=5",
+    "url": "https://www.reuters.com/technology/anthropic-unveils-new-framework-allowing-ai-agents-operate-physical-devices-2026-08-27/",
     "sourceName": "Reuters",
     "publishedDate": "2026-08-27",
     "foundDate": "2026-09-09",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOTWhmNnhIejBEcG1zQWRzeWtHbVZCOUtZZmtraGJiNHdjVzdpU3liY2VfZTF0X3pUUl8tNWN1TXMxcTNqRk9xRXRTZ3VGQUV2MVl1MllqWHpCby1ua2R2VWJJR1hRUi1aTWJxQ1lXWHBEcklUb1hZS3dkTEZkSDFxUjNzbFFiZUktaXJ3WGJRUjF5RHROREJSd2c3N0RfRkNIbzNxd05GdnJ4VnZma0R5QU5QTEJwOG1aUmZuaERmMA?oc=5"
   },
   {
     "id": "news-8o7br6",
@@ -1126,11 +1148,12 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQMWl4S2FTOUw0NnlaRzJKcUpwcWtfWUx4MGVQckhJYkdaWlV6T3Z6TkdtMXJSOGY4YVRaZktjcWYxbHNCRVU4dG9KdTZHT0FLbUQ2emZ0WXhNYzJaNUZLZkU4d2s0M1ctWUpoU2NKb3hmWUNiWklMeHJZZ28ySmtwMFNoeUpicnNf?oc=5",
+    "url": "https://www.chosun.com/english/industry-en/2026/09/03/J2UOERJ2RVF2HGDP6O5D52JEVU/",
     "sourceName": "조선일보",
     "publishedDate": "2026-09-02",
     "foundDate": "2026-09-09",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQMWl4S2FTOUw0NnlaRzJKcUpwcWtfWUx4MGVQckhJYkdaWlV6T3Z6TkdtMXJSOGY4YVRaZktjcWYxbHNCRVU4dG9KdTZHT0FLbUQ2emZ0WXhNYzJaNUZLZkU4d2s0M1ctWUpoU2NKb3hmWUNiWklMeHJZZ28ySmtwMFNoeUpicnNf?oc=5"
   },
   {
     "id": "news-jgfbho",
@@ -1139,7 +1162,7 @@
     "institution": "Digital Science",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1BWGtsdmNaUi1qNEVCd3RjV2kxbUxsMEgtRzNaNDZET3RLSUZKODEzLU5sb0VhMkNRYS1qMl94YV84RVlPV0NMX0IzRjYwZFFPQTUyVXZCNTVJRDBX?oc=5",
+    "url": "https://www.eurekalert.org/news-releases/1142114",
     "sourceName": "EurekAlert!",
     "publishedDate": "2026-09-01",
     "foundDate": "2026-09-01",
@@ -1170,7 +1193,8 @@
       "Benchmark LeapSpace's agentic AI capabilities (claim-checking, deep research reports, paper comparison) against what Digital Science delivers.",
       "Accelerate LeapSpace rollout and case studies at key accounts to establish incumbency before Digital Science product launches."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1BWGtsdmNaUi1qNEVCd3RjV2kxbUxsMEgtRzNaNDZET3RLSUZKODEzLU5sb0VhMkNRYS1qMl94YV84RVlPV0NMX0IzRjYwZFFPQTUyVXZCNTVJRDBX?oc=5"
   },
   {
     "id": "news-x2rpda",
@@ -1179,7 +1203,7 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE8wODA3NURfTHVDbUZnSE12Q3A0TFpvYjhDLU1rT1NVZ2xmM2Z0VWJPc1ZRM0RVVkpIckh6b0ROcXIxTHgzODZWYV9yekV1dTJiMk1KbkVWcThSeUYxcUpDUy1KZw?oc=5",
+    "url": "https://www.anthropic.com/claude-fable-and-mythos-5-1",
     "sourceName": "Anthropic",
     "publishedDate": "2026-09-01",
     "foundDate": "2026-09-02",
@@ -1207,7 +1231,8 @@
       "Initiate technical evaluation of Claude Fable/Mythos integration with Scopus API and ScienceDirect content to identify co-sell or whitelist opportunities.",
       "Develop institutional comparison matrix (Claude standalone vs. LeapSpace + ScienceDirect) for high-priority Dutch research accounts."
     ],
-    "sourceType": "primary"
+    "sourceType": "primary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE8wODA3NURfTHVDbUZnSE12Q3A0TFpvYjhDLU1rT1NVZ2xmM2Z0VWJPc1ZRM0RVVkpIckh6b0ROcXIxTHgzODZWYV9yekV1dTJiMk1KbkVWcThSeUYxcUpDUy1KZw?oc=5"
   },
   {
     "id": "news-g5xstq",
@@ -1216,7 +1241,7 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOTXRPdTBDdG16RWlSLWNmbWIxeEx3MHV1WEFWcThodnRXc3ZjZUFRWkhsOFBEcF9aajFFV2otZUpBWDhUMXdYY1gyTy0wV1gzSXBLQ2xpNVEwRnJoRWt5LVlXM1N2SFIydEdlZkZ1UkFnMEtuajMxcmZoOERaWjAxUWJ6WElldkk?oc=5",
+    "url": "https://aimagazine.com/news/anthropic-unveils-mhs-for-ai-agents-in-physical-labs",
     "sourceName": "AI Magazine",
     "publishedDate": "2026-09-01",
     "foundDate": "2026-09-02",
@@ -1244,7 +1269,8 @@
       "Research MHS technical details and identify partnership opportunities for LeapSpace to integrate protocol-search and methods-recommendation features.",
       "Monitor adoption signals from Dutch wet-lab research leaders; prepare case studies on ScienceDirect's role in AI-assisted experimental design."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOTXRPdTBDdG16RWlSLWNmbWIxeEx3MHV1WEFWcThodnRXc3ZjZUFRWkhsOFBEcF9aajFFV2otZUpBWDhUMXdYY1gyTy0wV1gzSXBLQ2xpNVEwRnJoRWt5LVlXM1N2SFIydEdlZkZ1UkFnMEtuajMxcmZoOERaWjAxUWJ6WElldkk?oc=5"
   },
   {
     "id": "news-iapv8w",
@@ -1253,7 +1279,7 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPa3VGOEp2aGFQZXZEVEg3bjA4cEtpU3VmYmxFTlJHTmdxRkVmRUdDRmxpeVphX0JVM3VkdGlJMkZzTTgxQVpKU0NZMVRZemU1djRnMkNidDYtWlNPbW1fd3Fid19uN1JoWm5rR0pacDJqejFWMGpZa0VkbXpyQW11Vm5JMkVFeUdPdVAyUDVFd2dFRmtyWnc4dWV0THNIMlVoWFlpSTJWcGpWaVdQVmhfWEU5Qi0zSnJoNm13VTlmZw?oc=5",
+    "url": "https://www.geo.tv/latest/680219-anthropic-unveils-claude-fable-51-that-can-work-for-days-on-problems-humans-couldnt-solve",
     "sourceName": "geo.tv",
     "publishedDate": "2026-09-01",
     "foundDate": "2026-09-03",
@@ -1280,7 +1306,8 @@
       "Urgently test Claude Fable 5.1's ability to retrieve, integrate, and synthesize ScienceDirect/Scopus content; benchmark against LeapSpace.",
       "Develop messaging for Dutch institutions on why curated, verified literature integration beats generic LLM reasoning for research compliance and reproducibility."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPa3VGOEp2aGFQZXZEVEg3bjA4cEtpU3VmYmxFTlJHTmdxRkVmRUdDRmxpeVphX0JVM3VkdGlJMkZzTTgxQVpKU0NZMVRZemU1djRnMkNidDYtWlNPbW1fd3Fid19uN1JoWm5rR0pacDJqejFWMGpZa0VkbXpyQW11Vm5JMkVFeUdPdVAyUDVFd2dFRmtyWnc4dWV0THNIMlVoWFlpSTJWcGpWaVdQVmhfWEU5Qi0zSnJoNm13VTlmZw?oc=5"
   },
   {
     "id": "news-wuda1t",
@@ -1289,11 +1316,12 @@
     "institution": "TU Delft",
     "category": "ai_adoption",
     "categoryLabel": "AI Development & Adoption",
-    "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOc0RqLW40Ym8yc3hZd2RUYW9PWjJTaVZpbXBZeGlNejhDUzlfWURfcHFKWk9IaXJMbU95cTh1UXlWX1MyanpWcm9BMDZzUDhsdk4tbmJnSVZwaHpvWmVTdGJrQmRmXzZ3QUhEOHV3WE5QZ1JscVo3UC1XVGxrUUZLUw?oc=5",
+    "url": "https://ioplus.nl/en/posts/tu-delft-develops-drone-that-behaves-like-a-bird",
     "sourceName": "IO+",
     "publishedDate": "2026-08-31",
     "foundDate": "2026-09-08",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOc0RqLW40Ym8yc3hZd2RUYW9PWjJTaVZpbXBZeGlNejhDUzlfWURfcHFKWk9IaXJMbU95cTh1UXlWX1MyanpWcm9BMDZzUDhsdk4tbmJnSVZwaHpvWmVTdGJrQmRmXzZ3QUhEOHV3WE5QZ1JscVo3UC1XVGxrUUZLUw?oc=5"
   },
   {
     "id": "news-2yv2o3",
@@ -1302,11 +1330,12 @@
     "institution": "University of Twente",
     "category": "ai_adoption",
     "categoryLabel": "AI Development & Adoption",
-    "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQT3VPSGwyTjVzOGM1WUUzcFRRR3B6NXN2ZUg2bzJ0cGRrVzNYWXZZSFA5b2NxamhaTzlVQTlxcmFQa1c0dm0zcEk5VU5rXzZ2OGpuVFJybHpPN2hhRXMtcVNGd3B6ZXk1NWl6X0Y3S0hxQ08wODdDc1puMVRINzRXQUR4U015N21JRmRaZURLdnJwVS1GaXBXU3FSTkJGb1hIN2ZQSU5YNGFzRl92MGhScWpIejgtLVhiMXcwdFpjbVFxUlA1MUpsSEJJZ3FTc2otRUVmZzBkNVhhTERoWHZaem9vWQ?oc=5",
+    "url": "https://www.utwente.nl/en/about-us/news-events-ceremonies/news/2026/8/1129334/university-of-twente-opens-65th-academic-year-with-courage-at-its-heart",
     "sourceName": "Universiteit Twente",
     "publishedDate": "2026-08-31",
     "foundDate": "2026-09-08",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQT3VPSGwyTjVzOGM1WUUzcFRRR3B6NXN2ZUg2bzJ0cGRrVzNYWXZZSFA5b2NxamhaTzlVQTlxcmFQa1c0dm0zcEk5VU5rXzZ2OGpuVFJybHpPN2hhRXMtcVNGd3B6ZXk1NWl6X0Y3S0hxQ08wODdDc1puMVRINzRXQUR4U015N21JRmRaZURLdnJwVS1GaXBXU3FSTkJGb1hIN2ZQSU5YNGFzRl92MGhScWpIejgtLVhiMXcwdFpjbVFxUlA1MUpsSEJJZ3FTc2otRUVmZzBkNVhhTERoWHZaem9vWQ?oc=5"
   },
   {
     "id": "news-5s07gk",
@@ -1315,11 +1344,12 @@
     "institution": "Netherlands Cancer Institute",
     "category": "ai_adoption",
     "categoryLabel": "AI Development & Adoption",
-    "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBRMC1Vbk52ZjN0Z29PVzRWUlhwUTBoVUlLa0tKV0JCbUwybG94ZWRmYkh6M2UtTFkxeVJiX2lPaEhkY3JELXRjQkVjdVNOazE3Ty1aeUw4dzZ5RWVFa2I2Sng3MHVxM1BN?oc=5",
+    "url": "https://oncodaily.com/voices/netherlands-cancer-institute",
     "sourceName": "Oncodaily",
     "publishedDate": "2026-08-29",
     "foundDate": "2026-09-08",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBRMC1Vbk52ZjN0Z29PVzRWUlhwUTBoVUlLa0tKV0JCbUwybG94ZWRmYkh6M2UtTFkxeVJiX2lPaEhkY3JELXRjQkVjdVNOazE3Ty1aeUw4dzZ5RWVFa2I2Sng3MHVxM1BN?oc=5"
   },
   {
     "id": "news-ajapwg",
@@ -1328,11 +1358,12 @@
     "institution": "Deltares",
     "category": "ai_adoption",
     "categoryLabel": "AI Development & Adoption",
-    "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQaW00alRvQXV0OEYwMDRLUXNIVFdzRlJVYU1OcFZSRVhKMFhCSUNEdlY4THBGWVNEOEJOYWZCV0lZckM1bVBVX0dQbWJZaEpGUDI1M0NGSVBDYl9BVTNxRnY0dVVJTzJGUTJkR3Q5cFpPSEg1SFFHV3Jyb1ZoblJKTEtZNmF1bkNVZ0Mwa0JZbUNLc1lyTWJSMFBKNnVUcDdZc0J3OEZxTQ?oc=5",
+    "url": "https://www.deltares.nl/en/news/new-story-map-provides-insight-into-cascading-effects-of-extreme-weather",
     "sourceName": "Deltares",
     "publishedDate": "2026-08-31",
     "foundDate": "2026-09-08",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQaW00alRvQXV0OEYwMDRLUXNIVFdzRlJVYU1OcFZSRVhKMFhCSUNEdlY4THBGWVNEOEJOYWZCV0lZckM1bVBVX0dQbWJZaEpGUDI1M0NGSVBDYl9BVTNxRnY0dVVJTzJGUTJkR3Q5cFpPSEg1SFFHV3Jyb1ZoblJKTEtZNmF1bkNVZ0Mwa0JZbUNLc1lyTWJSMFBKNnVUcDdZc0J3OEZxTQ?oc=5"
   },
   {
     "id": "news-ihgyee",
@@ -1341,7 +1372,7 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPekEzVUQ5b1FWODI3OWUtSDRlZE54OEhhQnhjSjN5QV9EUTNqcXZuY3VybU95THhBNUFOWUtyUDlZaEFia0pPcUhWWnU3d00zOTdkdEkxZDdiY2Z5V0tQNXpPNlkwejNyLWtrNXB3MHBpYXUtSHlHbEdzUWNDOVJwWEVJZE1qaWFaYmt6Y1dJTkV1a3NFUXhTZDBZd1R3aGswMlBNOXZvMA?oc=5",
+    "url": "https://www.irishsun.com/news/279269616/anthropic-unveils-standard-linking-ai-agents-to-physical-devices",
     "sourceName": "irishsun.com",
     "publishedDate": "2026-08-29",
     "foundDate": "2026-08-31",
@@ -1371,7 +1402,8 @@
       "Create Scopus research profile tracking papers on hardware standards, laboratory automation, and AI safety in physical systems.",
       "Assess whether LeapSpace's 'deep research reports' feature can highlight methodology and safety literature for AI-hardware integration projects."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPekEzVUQ5b1FWODI3OWUtSDRlZE54OEhhQnhjSjN5QV9EUTNqcXZuY3VybU95THhBNUFOWUtyUDlZaEFia0pPcUhWWnU3d00zOTdkdEkxZDdiY2Z5V0tQNXpPNlkwejNyLWtrNXB3MHBpYXUtSHlHbEdzUWNDOVJwWEVJZE1qaWFaYmt6Y1dJTkV1a3NFUXhTZDBZd1R3aGswMlBNOXZvMA?oc=5"
   },
   {
     "id": "news-jabspi",
@@ -1380,7 +1412,7 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOX1NMM1dxUjhhOUp5NFBScG9VRFQzb1phN2VXX2oyZFdVTEVlcTJ3em5IOEtiMGpXM2ZOWC1CRGY0RjRTeEJjVWU5RmliRGo0aDB1QnkzYkdtMmFDMTlXNTRpYWNRazBVaHgtcC0wQmt4R2pSM0F6ODl5Yk5LdUc5d0p0eG5CejBLazZSbUtNejVZdGwxMXlkaUVWOUNCUmxNTDNaWi1pLTFMaHI4?oc=5",
+    "url": "https://www.indiagazette.com/news/279269616/anthropic-unveils-standard-linking-ai-agents-to-physical-devices",
     "sourceName": "indiagazette.com",
     "publishedDate": "2026-08-29",
     "foundDate": "2026-09-03",
@@ -1407,7 +1439,8 @@
       "Research which Netherlands labs operate high-throughput or automated facilities; assess their current ScienceDirect/Scopus/LeapSpace integration with instrument control systems.",
       "Develop roadmap for LeapSpace hardware connector or instrument-aware workflow feature to maintain relevance in device-integrated labs."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOX1NMM1dxUjhhOUp5NFBScG9VRFQzb1phN2VXX2oyZFdVTEVlcTJ3em5IOEtiMGpXM2ZOWC1CRGY0RjRTeEJjVWU5RmliRGo0aDB1QnkzYkdtMmFDMTlXNTRpYWNRazBVaHgtcC0wQmt4R2pSM0F6ODl5Yk5LdUc5d0p0eG5CejBLazZSbUtNejVZdGwxMXlkaUVWOUNCUmxNTDNaWi1pLTFMaHI4?oc=5"
   },
   {
     "id": "news-yjsa75",
@@ -1416,7 +1449,7 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPTGVTVXQzWDZ2SnFCVlJSN2FNanBXZVlOMDdyZHd2TDNQaTg0ZjJKczVsc3JPRC1JeUV6V2YtRUNTalViSk9QV0ZKcEVuVUltU19UcHdqWTJpdzhCdVRJOENjOGlXUkE0MVJDME1qUUtqS3VESTZyRlpFX2RGdnItaDFwcU42bEdmUElHVGVtUFBEc3M2elRSVWtzS1U0aFBQQ0ktQTRfdDhCQkxOS2RhcUc5WGlJRUFQV0pkelRfWF94S3dGUFdEWUlBWWV4aW8?oc=5",
+    "url": "https://www.techtimes.com/articles/325943/20260828/anthropic-opens-free-claude-scientists-biology-frontier-goes-through-washington.htm",
     "sourceName": "Tech Times",
     "publishedDate": "2026-08-28",
     "foundDate": "2026-08-28",
@@ -1445,7 +1478,8 @@
       "Develop positioning for LeapSpace that emphasizes institutional integration, compliance, and institutional-IP protection vs. free consumer AI",
       "Ask customers at RFP stage: What's your policy on researcher use of free external AI tools like Claude?"
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPTGVTVXQzWDZ2SnFCVlJSN2FNanBXZVlOMDdyZHd2TDNQaTg0ZjJKczVsc3JPRC1JeUV6V2YtRUNTalViSk9QV0ZKcEVuVUltU19UcHdqWTJpdzhCdVRJOENjOGlXUkE0MVJDME1qUUtqS3VESTZyRlpFX2RGdnItaDFwcU42bEdmUElHVGVtUFBEc3M2elRSVWtzS1U0aFBQQ0ktQTRfdDhCQkxOS2RhcUc5WGlJRUFQV0pkelRfWF94S3dGUFdEWUlBWWV4aW8?oc=5"
   },
   {
     "id": "news-6xtlq6",
@@ -1454,7 +1488,7 @@
     "institution": "TU Delft",
     "category": "funding",
     "categoryLabel": "Funding Received",
-    "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPZDlQbEtFQkRNZFgtN1V0TVdiVmtyVklxcF90X3c0SmlraDN3TTM1ZjZ0V0ZDTkhQWG9UNmg1Q2lKRDhrM0l6MGNHQzZkaTktX0hmWTNNeDZhSzgyNVpWWFA2QTNKZkIwQ3Q4eGpCQkktNDlGckcwaUhHV21vMmVEcUw4Sm1TaTUxcHR1azBBc0wzdjQwYTFnbXliNHNiLU5aTUdIcEZrdWdLTGRX?oc=5",
+    "url": "https://delta.tudelft.nl/en/article/court-case-against-a-company-that-helped-with-student-grant-applications",
     "sourceName": "TU Delft",
     "publishedDate": "2026-08-28",
     "foundDate": "2026-08-28",
@@ -1481,7 +1515,8 @@
       "Develop messaging on 'trusted research assistant' positioning for LeapSpace vs. unvetted external services.",
       "Offer case study or webinar on institutional risk mitigation through integrated research platforms."
     ],
-    "sourceType": "primary"
+    "sourceType": "primary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPZDlQbEtFQkRNZFgtN1V0TVdiVmtyVklxcF90X3c0SmlraDN3TTM1ZjZ0V0ZDTkhQWG9UNmg1Q2lKRDhrM0l6MGNHQzZkaTktX0hmWTNNeDZhSzgyNVpWWFA2QTNKZkIwQ3Q4eGpCQkktNDlGckcwaUhHV21vMmVEcUw4Sm1TaTUxcHR1azBBc0wzdjQwYTFnbXliNHNiLU5aTUdIcEZrdWdLTGRX?oc=5"
   },
   {
     "id": "news-mghhrm",
@@ -1531,7 +1566,7 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQd1BRZzZmTEEtZXFWTklaU0JSTDAtU2xPTm92eVdsblRhcURsYjFLcUJneDdfV0Z4eVE2RGpfU3ZpQko1SVV2Uk40OGRfTU9PMnEwdUNHQXBnOTBlZ29WZF81TG9RelpHc1pkQjFfOVIxM3QtdVp6enBNNjdXcHBHZEdqUkY3b2NJekk3UGRaZEhpbXg1ZHE3bmZHZkFmNFlncERHQ1pscUJIV29GdHdZVTduSXF0WWtadThwdk8yVHUtZmZuM1lB?oc=5",
+    "url": "https://www.tekedia.com/anthropic-unveils-hardware-standard-to-help-ai-agents-control-machines-as-it-pushes-into-physical-world/",
     "sourceName": "Tekedia",
     "publishedDate": "2026-08-28",
     "foundDate": "2026-08-29",
@@ -1563,7 +1598,8 @@
       "Develop LeapSpace positioning that emphasizes Scopus citation data and ScienceDirect content as critical inputs for AI-driven lab automation.",
       "Explore partnership or integration angle with hardware/lab-automation vendors to bundle Elsevier knowledge into autonomous research systems."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQd1BRZzZmTEEtZXFWTklaU0JSTDAtU2xPTm92eVdsblRhcURsYjFLcUJneDdfV0Z4eVE2RGpfU3ZpQko1SVV2Uk40OGRfTU9PMnEwdUNHQXBnOTBlZ29WZF81TG9RelpHc1pkQjFfOVIxM3QtdVp6enBNNjdXcHBHZEdqUkY3b2NJekk3UGRaZEhpbXg1ZHE3bmZHZkFmNFlncERHQ1pscUJIV29GdHdZVTduSXF0WWtadThwdk8yVHUtZmZuM1lB?oc=5"
   },
   {
     "id": "news-j5dtxb",
@@ -1611,7 +1647,7 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxOcVJQZWlnS3ZURy15LXUyejRQRFpia1V5Vk1lWl9JZ2NmczBFTUM0RmdSNnA4S3hhS0N6dXBGaG1NT1Joa1JIS0M5OFhPWTRIbGpkTWNwM3FLVnU1MURHR0lXTDBVSDF5NHF1Sm1oSEMxU3EtRldXal9tV1RZSF90NG1HcW1RQ3RYLU83bG9xR29jcXJMUkUzZFd5UFhDOWFBRUlXNU9FdmFUUHp1UGdMU0xTVDVMcmgwZW9FRlA1TXRZdks3VkdBTnQ0TnhrV1pTUG5QLTZKODlGVHp0dE13Ymd3eDF0dXo5cDJJa3FZNzM?oc=5",
+    "url": "https://www.aninews.in/news/business/anthropic-announces-new-model-hardware-standard-for-ai-agents-plans-open-source-release-with-safety-guidance20260828112959",
     "sourceName": "ANI News",
     "publishedDate": "2026-08-28",
     "foundDate": "2026-08-31",
@@ -1641,7 +1677,8 @@
       "Position ScienceDirect/Scopus as the authoritative source for safety-critical AI-hardware research and methodology standards literature.",
       "Develop LeapSpace case study on tracking AI safety frameworks and hardware standards adoption across European research institutions."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxOcVJQZWlnS3ZURy15LXUyejRQRFpia1V5Vk1lWl9JZ2NmczBFTUM0RmdSNnA4S3hhS0N6dXBGaG1NT1Joa1JIS0M5OFhPWTRIbGpkTWNwM3FLVnU1MURHR0lXTDBVSDF5NHF1Sm1oSEMxU3EtRldXal9tV1RZSF90NG1HcW1RQ3RYLU83bG9xR29jcXJMUkUzZFd5UFhDOWFBRUlXNU9FdmFUUHp1UGdMU0xTVDVMcmgwZW9FRlA1TXRZdks3VkdBTnQ0TnhrV1pTUG5QLTZKODlGVHp0dE13Ymd3eDF0dXo5cDJJa3FZNzM?oc=5"
   },
   {
     "id": "news-r3asf1",
@@ -1686,7 +1723,7 @@
     "institution": "Eindhoven University of Technology",
     "category": "ai_adoption",
     "categoryLabel": "AI Development & Adoption",
-    "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxNaXBsS3Z3RDBYSVlJdEZtQmZxTzlPbkluWDlpaG1McUpGaE0tOHpEQ0czcDdLWkE5SWJuRlZ4M3FfQ2RkSXAydTRxUVUzSEVydk1UOHNEUncyNXdHaWplU3dpcTRPaEMxU2JuSGc5dzQxWGFVeEhMQi1DLTdZaktlYzRWbjg5dEpkaW1IUnAtTmJDQ05qQXRSbEZlY1RKWEpYY3MyeE9KSnkzcklNckRNOHpmbXhkVEczWTFLNndaLXNxWnBTcmZKRDZpa2FfUnBGbFgyS2ZMdWEtbDBkZnNYV2RxY2xvTjc2Rl85SUdBOA?oc=5",
+    "url": "https://www.tue.nl/en/news-and-events/news-overview/27-08-2026-gelion-care-launches-as-new-tue-spin-off-developing-innovative-hydrogel-for-hard-to-heal-wounds",
     "sourceName": "Eindhoven University of Technology",
     "publishedDate": "2026-08-27",
     "foundDate": "2026-08-28",
@@ -1715,7 +1752,8 @@
       "Develop 'Translational Research' case study on using Scopus and ScienceDirect for competitive analysis and clinical evidence gathering in biomedical spin-offs.",
       "Offer discounted Scopus/ScienceDirect/LeapSpace subscriptions to TU/e spin-off companies as part of institutional research support package."
     ],
-    "sourceType": "primary"
+    "sourceType": "primary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxNaXBsS3Z3RDBYSVlJdEZtQmZxTzlPbkluWDlpaG1McUpGaE0tOHpEQ0czcDdLWkE5SWJuRlZ4M3FfQ2RkSXAydTRxUVUzSEVydk1UOHNEUncyNXdHaWplU3dpcTRPaEMxU2JuSGc5dzQxWGFVeEhMQi1DLTdZaktlYzRWbjg5dEpkaW1IUnAtTmJDQ05qQXRSbEZlY1RKWEpYY3MyeE9KSnkzcklNckRNOHpmbXhkVEczWTFLNndaLXNxWnBTcmZKRDZpa2FfUnBGbFgyS2ZMdWEtbDBkZnNYV2RxY2xvTjc2Rl85SUdBOA?oc=5"
   },
   {
     "id": "news-5ln8jd",
@@ -1724,7 +1762,7 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9mMzRTNjJiRFhsYnZYMlBtQlNxTWZrRE5VVzF4TnZoel9UdXJSalpXUkE4M1NXN3pNTXdIWW84U0dONmN3bUFKcGwzZGh4SEdCZTFQaEk0TDJZNjF2ZVRFTUhTYTB5MzV5dV9xX1lvWXNMejFUYUlMZGxISQ?oc=5",
+    "url": "https://www.anthropic.com/news/model-hardware-standard-research-preview",
     "sourceName": "Anthropic",
     "publishedDate": "2026-08-27",
     "foundDate": "2026-08-28",
@@ -1755,7 +1793,8 @@
       "Initiate conversations with Dutch LIMS vendors (e.g., LabWare, Core LIMS) and equipment suppliers to explore co-integration with Scopus/LeapSpace and MHS.",
       "Develop a technical white paper for Dutch research IT leaders showing Elsevier's role in ensuring reproducibility, compliance, and governance in MHS-enabled autonomous labs."
     ],
-    "sourceType": "primary"
+    "sourceType": "primary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9mMzRTNjJiRFhsYnZYMlBtQlNxTWZrRE5VVzF4TnZoel9UdXJSalpXUkE4M1NXN3pNTXdIWW84U0dONmN3bUFKcGwzZGh4SEdCZTFQaEk0TDJZNjF2ZVRFTUhTYTB5MzV5dV9xX1lvWXNMejFUYUlMZGxISQ?oc=5"
   },
   {
     "id": "news-rwv4lv",
@@ -1764,7 +1803,7 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOVW1XWjlCb0x1LU5GaExUYUdXYXhpaU4xUVlvWHR5aGJlcXF6Z09VbnpHOEJhTHBXTkNrZ0xrTXFQYXRLemJKdkJ1Tkt5ZnlVNERhcFVGbm1xLW5JXzg0ZXhhai01Q2pSTzdrZ0JBdlRBajZrbHRJd1QtQjdxUndTbU1KZUlKUHFSZlNLNGlYREFaZ21DNmZ0VTNpenBxNnI5YzczYjhaRmxwNFFoNm9XaEZB?oc=5",
+    "url": "https://www.hpcwire.com/aiwire/2026/08/27/salesforce-and-anthropic-launch-claudeforce-enterprise-ai-partnership/",
     "sourceName": "HPCwire",
     "publishedDate": "2026-08-27",
     "foundDate": "2026-08-28",
@@ -1795,7 +1834,8 @@
       "Develop a technical integration roadmap showing how LeapSpace can embed within Salesforce/Claudeforce as a knowledge and compliance layer for enterprise agents.",
       "Launch a Salesforce-focused sales campaign: position Scopus and LeapSpace as risk-mitigation and governance tools for AI-driven enterprise workflows."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOVW1XWjlCb0x1LU5GaExUYUdXYXhpaU4xUVlvWHR5aGJlcXF6Z09VbnpHOEJhTHBXTkNrZ0xrTXFQYXRLemJKdkJ1Tkt5ZnlVNERhcFVGbm1xLW5JXzg0ZXhhai01Q2pSTzdrZ0JBdlRBajZrbHRJd1QtQjdxUndTbU1KZUlKUHFSZlNLNGlYREFaZ21DNmZ0VTNpenBxNnI5YzczYjhaRmxwNFFoNm9XaEZB?oc=5"
   },
   {
     "id": "news-r857n0",
@@ -1804,7 +1844,7 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOdFkxelFITThmVXRpR3JaNWFncUEzcHM4SFFmUmhHT1BBdHM4QUdLcGVUVGtiR3NVU1RKbnhFOHdIY0ptVm1TU3M0WHAxLV9QQVRJOWlNUWZKakl2amxxYnlYRHk0bFhMOVVIWFBfWjZnQjhHa0RsNXBKVmlHWXNUSE1BMkI1cUpXMHdWLWdxcE1CQVp3ZlBpUzRGNjBFb3lkOHdPZWJCUzlLRGloZUE?oc=5",
+    "url": "https://wtvbam.com/2026/08/27/anthropic-unveils-new-framework-allowing-ai-agents-to-operate-physical-devices/",
     "sourceName": "WTVB",
     "publishedDate": "2026-08-27",
     "foundDate": "2026-08-31",
@@ -1834,7 +1874,8 @@
       "Package ScienceDirect/Scopus 'safety-critical research' content bundle for institutions adopting Anthropic's hardware standard.",
       "Test LeapSpace's paper-comparison tool on competing automation frameworks to demonstrate differentiation."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOdFkxelFITThmVXRpR3JaNWFncUEzcHM4SFFmUmhHT1BBdHM4QUdLcGVUVGtiR3NVU1RKbnhFOHdIY0ptVm1TU3M0WHAxLV9QQVRJOWlNUWZKakl2amxxYnlYRHk0bFhMOVVIWFBfWjZnQjhHa0RsNXBKVmlHWXNUSE1BMkI1cUpXMHdWLWdxcE1CQVp3ZlBpUzRGNjBFb3lkOHdPZWJCUzlLRGloZUE?oc=5"
   },
   {
     "id": "news-nw8qg0",
@@ -1923,7 +1964,7 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNRGdRdEpMUUt4NHFVUGRnREpyZ2pUUEZQbjFQZURaMmUyd3FjOEVoeFRQcGMwcGFEcW1remloaHZ0MUZPZEJveG1EYVVaVFhUdVNHSVl5bUlFWDlpQVZ0VmpDVkJ6ZV83UHJjMXVNaUtIYUpwNnVMYklGMkt2bWFCLVZFY0hwUUt3VDBMNE5ieXlRYTIwTXZlcGFFYjM5dHRlWjEyRUtzZlQxV0VfM0hvV2pFb2lodUVsMTZ3?oc=5",
+    "url": "https://www.hpcwire.com/bigdatawire/this-just-in/salesforce-and-anthropic-launch-claudeforce-enterprise-ai-partnership/",
     "sourceName": "HPCwire",
     "publishedDate": "2026-08-27",
     "foundDate": "2026-09-02",
@@ -1953,7 +1994,8 @@
       "Investigate whether target Dutch institutions use Salesforce; if so, assess risk of research teams adopting Claudeforce for lit search or grant admin.",
       "Explore Salesforce partnership opportunity: could Elsevier embed ScienceDirect/Scopus/LeapSpace connectors into Salesforce to compete with Claudeforce?"
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNRGdRdEpMUUt4NHFVUGRnREpyZ2pUUEZQbjFQZURaMmUyd3FjOEVoeFRQcGMwcGFEcW1remloaHZ0MUZPZEJveG1EYVVaVFhUdVNHSVl5bUlFWDlpQVZ0VmpDVkJ6ZV83UHJjMXVNaUtIYUpwNnVMYklGMkt2bWFCLVZFY0hwUUt3VDBMNE5ieXlRYTIwTXZlcGFFYjM5dHRlWjEyRUtzZlQxV0VfM0hvV2pFb2lodUVsMTZ3?oc=5"
   },
   {
     "id": "news-volbph",
@@ -1962,7 +2004,7 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOZXhtOTBpOXpSRlJUbGh6ZjBnN1hQVUw5Z0hrUkE1TXk4bDJfWFhTM0V3R01lQlBTelRLWDl5c0tCVHhEQmJ3R25RU1VoU3VONVF3dFB6c1UyNkpVdTY4OTlEaUVpcEZFUVZBMXRiV3N4el9ydld5b2J0XzhCSVM0RlpueThWR3FiRGJ6QTR1bGVIYVZYZ2NrYUVXclg5elNH?oc=5",
+    "url": "https://srnnews.com/anthropic-unveils-new-framework-allowing-ai-agents-to-operate-physical-devices/",
     "sourceName": "SRN News",
     "publishedDate": "2026-08-27",
     "foundDate": "2026-09-02",
@@ -1990,7 +2032,8 @@
       "Monitor adoption of device-control AI in Dutch academic labs; survey early pilots to gauge institutional interest.",
       "Assess whether LeapSpace should position as layer between AI agents and published research/methods (i.e., as knowledge source for autonomous research)."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOZXhtOTBpOXpSRlJUbGh6ZjBnN1hQVUw5Z0hrUkE1TXk4bDJfWFhTM0V3R01lQlBTelRLWDl5c0tCVHhEQmJ3R25RU1VoU3VONVF3dFB6c1UyNkpVdTY4OTlEaUVpcEZFUVZBMXRiV3N4el9ydld5b2J0XzhCSVM0RlpueThWR3FiRGJ6QTR1bGVIYVZYZ2NrYUVXclg5elNH?oc=5"
   },
   {
     "id": "news-oq6tsz",
@@ -1999,7 +2042,7 @@
     "institution": "University of Twente",
     "category": "ai_adoption",
     "categoryLabel": "AI Development & Adoption",
-    "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQUWdPaW5RdUxBX2I3b3hac0JrTmo3aFJZOEtGYWhiWTNscjQxT0lMcWpMYVdkUkQtY0pCaWN1OG9ubUJwNlZCTlFYLWtGYmtuRHNubU5GQzZuaS1IUU5LejYxS0dPbVoyN1FBWWE4dm5UV09kdVAwdUxXdk4zdmstdFBVSGZOaXpJcXo1YnRkM1BNUGZkVkNGYS1wclZweXVzNWdnenlzQ1pzZy1ZdWtDS1VvR1F2enBkaXVIbDFyeXhUVk4yM3Z3anhxOGxZcE9kX2pv?oc=5",
+    "url": "https://www.utwente.nl/en/about-us/news-events-ceremonies/news/2013/8/157566/first-msc-university-of-twente-excellence-trajectories-start",
     "sourceName": "Universiteit Twente",
     "publishedDate": "2026-08-26",
     "foundDate": "2026-08-28",
@@ -2027,7 +2070,8 @@
       "Offer free pilot access to LeapSpace for excellence cohort—demonstrate early and often for curriculum embedding.",
       "Track first-cohort publications in Scopus—use as success metric and case study for future cohorts and other Dutch universities."
     ],
-    "sourceType": "primary"
+    "sourceType": "primary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQUWdPaW5RdUxBX2I3b3hac0JrTmo3aFJZOEtGYWhiWTNscjQxT0lMcWpMYVdkUkQtY0pCaWN1OG9ubUJwNlZCTlFYLWtGYmtuRHNubU5GQzZuaS1IUU5LejYxS0dPbVoyN1FBWWE4dm5UV09kdVAwdUxXdk4zdmstdFBVSGZOaXpJcXo1YnRkM1BNUGZkVkNGYS1wclZweXVzNWdnenlzQ1pzZy1ZdWtDS1VvR1F2enBkaXVIbDFyeXhUVk4yM3Z3anhxOGxZcE9kX2pv?oc=5"
   },
   {
     "id": "news-3ab1o2",
@@ -2036,7 +2080,7 @@
     "institution": "University of Twente",
     "category": "ai_adoption",
     "categoryLabel": "AI Development & Adoption",
-    "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNYTlrVlVNMXhpU0VsV1Vmb0ozUkZ3YnRlYk5jdTZpbVRwdDlXRGpScVhUWl9YY0hqNlVnN2pvSmhCTnpfN2pyWHZLMGxuX091VnN5Rl83Y1lIWTFCcWVSc3N5MC1qTjJyaG5KMF9HVXRSVEVrdFZvVVFiUWJFbW5iT005ZkRCV3pKWjA5TmRpRFlLVlU2djAta3FaMkw1R3N5NEhnby1SdFpmMHo2ZzNoOTdBNzF3bkVpQXJsTW00U0JGWEZ0TEJZczlfZ2FKNG42ZmFaRFdEV2lLRzRIV2xN?oc=5",
+    "url": "https://www.utwente.nl/en/about-us/news-events-ceremonies/news/2015/11/416719/new-funds-for-research-and-scientific-talent-at-university-of-twente",
     "sourceName": "Universiteit Twente",
     "publishedDate": "2026-08-26",
     "foundDate": "2026-08-28",
@@ -2063,7 +2107,8 @@
       "Prepare product demo tailored to UT's research strategy—emphasize Scopus for competitive landscape and LeapSpace for research planning.",
       "Propose multi-year research support package aligned with UT's 3–5 year research roadmap."
     ],
-    "sourceType": "primary"
+    "sourceType": "primary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNYTlrVlVNMXhpU0VsV1Vmb0ozUkZ3YnRlYk5jdTZpbVRwdDlXRGpScVhUWl9YY0hqNlVnN2pvSmhCTnpfN2pyWHZLMGxuX091VnN5Rl83Y1lIWTFCcWVSc3N5MC1qTjJyaG5KMF9HVXRSVEVrdFZvVVFiUWJFbW5iT005ZkRCV3pKWjA5TmRpRFlLVlU2djAta3FaMkw1R3N5NEhnby1SdFpmMHo2ZzNoOTdBNzF3bkVpQXJsTW00U0JGWEZ0TEJZczlfZ2FKNG42ZmFaRFdEV2lLRzRIV2xN?oc=5"
   },
   {
     "id": "news-l3jnri",
@@ -2072,7 +2117,7 @@
     "institution": "IEEE",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9ic3FaRU11YXFLWDBtQlV3WlVZSF9GLTh4bHA1cXMwVDBPSHlEN1FBTmFTblJnckF6SUZEcGs2UW84S2V4Sl9sZEVrNXBrNHo5eDk5TWY1WGhOU2F4T2pGbkNB?oc=5",
+    "url": "https://spectrum.ieee.org/silico-ai-interpretability",
     "sourceName": "IEEE Spectrum",
     "publishedDate": "2026-08-26",
     "foundDate": "2026-08-28",
@@ -2101,7 +2146,8 @@
       "Pitch LeapSpace's claim-checking and reasoning-transparency features as aligned with explainability research priorities.",
       "Develop webinar: 'Tracking the Explainable AI Research Frontier—How Scopus and ScienceDirect Support XAI Discovery.'"
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9ic3FaRU11YXFLWDBtQlV3WlVZSF9GLTh4bHA1cXMwVDBPSHlEN1FBTmFTblJnckF6SUZEcGs2UW84S2V4Sl9sZEVrNXBrNHo5eDk5TWY1WGhOU2F4T2pGbkNB?oc=5"
   },
   {
     "id": "news-qgppti",
@@ -2148,7 +2194,7 @@
     "institution": "Wiley",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5NUFlzQnM0akhJekF3T3JJeC1OU3BCXy02Q1Q1eG1SNWZDZ2NaUHV4U0VzTDZ1bEhGYWI2ano5QkJNeEx5YmhCUnNIMUNpRE9pTTVyZlV3?oc=5",
+    "url": "https://www.azom.com/news.aspx?newsID=65728",
     "sourceName": "AZoM",
     "publishedDate": "2026-08-26",
     "foundDate": "2026-08-31",
@@ -2178,7 +2224,8 @@
       "Develop Elsevier API roadmap for embedding ScienceDirect literature and methodology directly into lab workflows and analytical platforms.",
       "Win competitive opportunities at institutions currently evaluating Wiley's spectral APIs; position Scopus + LeapSpace as superior for methodology validation and cross-disciplinary discovery."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5NUFlzQnM0akhJekF3T3JJeC1OU3BCXy02Q1Q1eG1SNWZDZ2NaUHV4U0VzTDZ1bEhGYWI2ano5QkJNeEx5YmhCUnNIMUNpRE9pTTVyZlV3?oc=5"
   },
   {
     "id": "news-lxm916",
@@ -2187,7 +2234,7 @@
     "institution": "TU Delft",
     "category": "ai_adoption",
     "categoryLabel": "AI Development & Adoption",
-    "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPN25rX1g2NFYxbDhCWWcyZEFxbndmbElRaWxSY1hyZGVuVU42SFJ4TENuOWVjU25rZ2Rvbm90ZXZtU3BkN24zTmRfMThiaEN6UDN4V1U5dXlkQU8wdTl0U3FTV0gwQTAwMkVWaVhOWnVSR1ZlUVRWRm5yTDVFTXFwdkg3ZWZFdnhoYTFIM21JTQ?oc=5",
+    "url": "https://www.tudelft.nl/en/events/2026/tbm/symposium-building-public-sector-ai-capacity",
     "sourceName": "TU Delft",
     "publishedDate": "2026-08-25",
     "foundDate": "2026-08-28",
@@ -2217,7 +2264,8 @@
       "Identify which Dutch public institutions (ministries, agencies) are participants; map subscription gaps and decision-makers for targeted outreach.",
       "Research competing solutions (OpenAlex, Semantic Scholar, Google Scholar) being used in Dutch policy AI contexts; develop differentiation narrative."
     ],
-    "sourceType": "primary"
+    "sourceType": "primary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPN25rX1g2NFYxbDhCWWcyZEFxbndmbElRaWxSY1hyZGVuVU42SFJ4TENuOWVjU25rZ2Rvbm90ZXZtU3BkN24zTmRfMThiaEN6UDN4V1U5dXlkQU8wdTl0U3FTV0gwQTAwMkVWaVhOWnVSR1ZlUVRWRm5yTDVFTXFwdkg3ZWZFdnhoYTFIM21JTQ?oc=5"
   },
   {
     "id": "news-wfprou",
@@ -2226,7 +2274,7 @@
     "institution": "Google",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQdVRqQlR1TGY0d3c3WWxNaG96VWlnbkFuRGs5WWhhSGJaSk1ia2NpQzJiRndBa2JsamtpampIeEI5cC1uVEw0Y205X2hZQTh0VzlIa3RXNjhEUWNPQXZFWnBwbTV0dmgyT3h6ME12Zzh2UzA1N0RkNzQ0dnhQZldoVVBpUGJUZ0QwQV93VFZ4S0hYNWx6Tng5UzlzVU1RZ0x3MU1HMFpWVEhkZ9IBpgFBVV95cUxPc3VFQnRSMTVQbk0zckpEYVVtcGRYTFBKRTN3eTFlajZXQnVySFoxM3BBM1ZJc29EaVNfVzB2LVZ5Yl9QUDRCdm9WbldlUWtENVNCVEFkdHVXLWhaSXFibWFKR1pjdjlEU1pvUGU2QXZSclVGeGJINy1zQ1V5VC11TFRadFVWcHRBQkw2Q2VqSHB6blNwQUFyLWp0MjdzLUpndVBvd3Jn?oc",
+    "url": "https://www.thenews.com.pk/latest/1413584-google-cloud-launches-ai-tools-for-legal-and-financial-workflows",
     "sourceName": "The News International",
     "publishedDate": "2026-08-25",
     "foundDate": "2026-08-28",
@@ -2254,7 +2302,8 @@
       "Develop integration story: how LeapSpace research reports feed into downstream legal/financial AI applications.",
       "Brief sales team on positioning Elsevier as the 'research backbone' beneath vertical AI solutions."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQdVRqQlR1TGY0d3c3WWxNaG96VWlnbkFuRGs5WWhhSGJaSk1ia2NpQzJiRndBa2JsamtpampIeEI5cC1uVEw0Y205X2hZQTh0VzlIa3RXNjhEUWNPQXZFWnBwbTV0dmgyT3h6ME12Zzh2UzA1N0RkNzQ0dnhQZldoVVBpUGJUZ0QwQV93VFZ4S0hYNWx6Tng5UzlzVU1RZ0x3MU1HMFpWVEhkZ9IBpgFBVV95cUxPc3VFQnRSMTVQbk0zckpEYVVtcGRYTFBKRTN3eTFlajZXQnVySFoxM3BBM1ZJc29EaVNfVzB2LVZ5Yl9QUDRCdm9WbldlUWtENVNCVEFkdHVXLWhaSXFibWFKR1pjdjlEU1pvUGU2QXZSclVGeGJINy1zQ1V5VC11TFRadFVWcHRBQkw2Q2VqSHB6blNwQUFyLWp0MjdzLUpndVBvd3Jn?oc"
   },
   {
     "id": "news-c98c8m",
@@ -2263,7 +2312,7 @@
     "institution": "Google",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNTUZURmh6ZjdQc3BJUi16MDdZRFVQdEp4dV94RGd1VTJyb05KaGdMVWllQl81WjdQQllPVU9KTUtKb0VncTFITlFwWUpyaVkxaXB5Z1Q3TWdzcHBuRlJGTF9ZWFZjT1RnODB5bXBuZnZSZV9jYk9QTWw4RVBEOVg5OWY4RkpFZDFhTndQMWZjbzJFZUlnN2d2UTI1MlJfZlFWcDZ0NXVxUWYxQ2dMYkJ0SzY2Ym94OVh6aXVkbl9iN3JKMGNMODg1Z2tB?oc=5",
+    "url": "https://www.hpcwire.com/bigdatawire/this-just-in/google-cloud-announces-strategic-partnership-with-verizon-to-scale-enterprise-ai/",
     "sourceName": "HPCwire",
     "publishedDate": "2026-08-24",
     "foundDate": "2026-08-28",
@@ -2292,7 +2341,8 @@
       "Create 'research neutrality' positioning for Dutch institutions wary of vendor lock-in via Google-Verizon bundle.",
       "Identify Dutch telecom/enterprise customers using both Verizon and research tools—pitch Elsevier as anti-lock-in alternative."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNTUZURmh6ZjdQc3BJUi16MDdZRFVQdEp4dV94RGd1VTJyb05KaGdMVWllQl81WjdQQllPVU9KTUtKb0VncTFITlFwWUpyaVkxaXB5Z1Q3TWdzcHBuRlJGTF9ZWFZjT1RnODB5bXBuZnZSZV9jYk9QTWw4RVBEOVg5OWY4RkpFZDFhTndQMWZjbzJFZUlnN2d2UTI1MlJfZlFWcDZ0NXVxUWYxQ2dMYkJ0SzY2Ym94OVh6aXVkbl9iN3JKMGNMODg1Z2tB?oc=5"
   },
   {
     "id": "news-2il5h",
@@ -2301,11 +2351,12 @@
     "institution": "Google",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNTUhKLTZaVWhaTThQdV9zMGhfN2d2OGwyZWYwVkxIWk9rY1l1LXlJVWsxNzh1bVljSnI0RzhjcXVQeWp6Tkc1T3FUejNVazRvXzIxbzNPSzc1SFI1VjNQbUZkWVBsTE1saVpoMmlJdkEyQ2t5b1VhbEJDd2tOenhTRDZtOWJMVDVvb3R4Tncxd2ptY0hPclFCZTVXREJuRlFYRWl3bDQ3aW96YkUwWDk5MEVpZW0wcUVBYTJMdDBrUTQ?oc=5",
+    "url": "https://www.hpcwire.com/aiwire/2026/08/24/google-cloud-announces-strategic-partnership-with-verizon-to-scale-enterprise-ai/",
     "sourceName": "HPCwire",
     "publishedDate": "2026-08-24",
     "foundDate": "2026-08-30",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNTUhKLTZaVWhaTThQdV9zMGhfN2d2OGwyZWYwVkxIWk9rY1l1LXlJVWsxNzh1bVljSnI0RzhjcXVQeWp6Tkc1T3FUejNVazRvXzIxbzNPSzc1SFI1VjNQbUZkWVBsTE1saVpoMmlJdkEyQ2t5b1VhbEJDd2tOenhTRDZtOWJMVDVvb3R4Tncxd2ptY0hPclFCZTVXREJuRlFYRWl3bDQ3aW96YkUwWDk5MEVpZW0wcUVBYTJMdDBrUTQ?oc=5"
   },
   {
     "id": "news-f9qyns",
@@ -2314,11 +2365,12 @@
     "institution": "Consensus",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQdmc1eUlTSGNkdm1hWDlWX1NJQ2NfMnBiOTA5NUVOVFdVTFY3QlA4aDdPNG1CNGtOakJ4UTJ1djhWY2V2SDVqTFY3cUVVREo2SkZsZVUyZ2lEcjlUTEhDT29hem5feTk2TTI1aGFIMC1NVTJyQ2t4LXJLRmlPOUZwa3E5YU8?oc=5",
+    "url": "https://www.ft.com/content/7d5f7e30-88de-4dcb-9fd5-f41a4ff03804?syn-25a6b1a6=1",
     "sourceName": "Financial Times",
     "publishedDate": "2026-08-18",
     "foundDate": "2026-08-30",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQdmc1eUlTSGNkdm1hWDlWX1NJQ2NfMnBiOTA5NUVOVFdVTFY3QlA4aDdPNG1CNGtOakJ4UTJ1djhWY2V2SDVqTFY3cUVVREo2SkZsZVUyZ2lEcjlUTEhDT29hem5feTk2TTI1aGFIMC1NVTJyQ2t4LXJLRmlPOUZwa3E5YU8?oc=5"
   },
   {
     "id": "news-q192xf",
@@ -2327,11 +2379,12 @@
     "institution": "University of Twente",
     "category": "ai_adoption",
     "categoryLabel": "AI Development & Adoption",
-    "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPT0tOUmk2aFE5dHROQ1hra094YWNvMEV6UWNiY09FU0Q3UHhfaXEwWTRnaTU3RG5GNkljZnZmWUdWVjlDaGQ5NVNmd0tJOERSNzZqUEJ4SXp2TjhjSnZBcldERHFzLVJhOVF3V0ZkWGRwV19RWl9tTWlnNGJUZUJKSzVmYnpnSzlYR0xBdVVMSnNPZGRVNm10NkgxbnNaLUJyOE90eFRtNWtGOVBZaDB1TTY2b0tSWWY3U1hJaTV0SHdteXNRVVlYdmtUX3JSYnBSYXc?oc=5",
+    "url": "https://www.utwente.nl/en/about-us/news-events-ceremonies/news/2019/3/220303/university-of-twente-supports-open-letter-on-climate-action",
     "sourceName": "Universiteit Twente",
     "publishedDate": "2026-08-21",
     "foundDate": "2026-08-28",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPT0tOUmk2aFE5dHROQ1hra094YWNvMEV6UWNiY09FU0Q3UHhfaXEwWTRnaTU3RG5GNkljZnZmWUdWVjlDaGQ5NVNmd0tJOERSNzZqUEJ4SXp2TjhjSnZBcldERHFzLVJhOVF3V0ZkWGRwV19RWl9tTWlnNGJUZUJKSzVmYnpnSzlYR0xBdVVMSnNPZGRVNm10NkgxbnNaLUJyOE90eFRtNWtGOVBZaDB1TTY2b0tSWWY3U1hJaTV0SHdteXNRVVlYdmtUX3JSYnBSYXc?oc=5"
   },
   {
     "id": "news-jccpqo",
@@ -2340,11 +2393,12 @@
     "institution": "Maastricht University",
     "category": "ai_adoption",
     "categoryLabel": "AI Development & Adoption",
-    "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPblB6RHp4VG5RRWhoNDl0UVEwckQ0dmM4ZVdVdDZHT182bGxJWGozV0ctZ3lMRnRZMm1pQ0ZZd1FnS3Y3TElObVBCTEE0d0FId21iQlA3WVAtM251Z0xsaE9hT2IyQnJuYmYwdDZOei1ON19sbWhqTHNsSHZzNXVhUTVzRUYzYmlBWS1fallaRzBPM1ZybUM5NQ?oc=5",
+    "url": "https://www.maastrichtuniversity.nl/news/cartopology-where-map-person-and-place-come-together",
     "sourceName": "Maastricht University",
     "publishedDate": "2026-08-20",
     "foundDate": "2026-08-28",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPblB6RHp4VG5RRWhoNDl0UVEwckQ0dmM4ZVdVdDZHT182bGxJWGozV0ctZ3lMRnRZMm1pQ0ZZd1FnS3Y3TElObVBCTEE0d0FId21iQlA3WVAtM251Z0xsaE9hT2IyQnJuYmYwdDZOei1ON19sbWhqTHNsSHZzNXVhUTVzRUYzYmlBWS1fallaRzBPM1ZybUM5NQ?oc=5"
   },
   {
     "id": "news-fi26ok",
@@ -2353,11 +2407,12 @@
     "institution": "IEEE",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQWS1DUy1mWVRRY3EwTUVBQThFZUpZUEpkelBNaWxWOFJmMzJ4ZW1yVHhpSmU2Zl9GV3R3UHlBMGR1T1NXQjY5SDRDb0J5Y2g3akZTczBvcm1lSDE3MlR2UWl5VjgzTU1kdUJGV0VZSWluNkViWG9YUHoyelN2cER1S2RTY0NSWXJUV3dGUlhWMXhWTDRhbGFRN3dnOVpoY0ZEclN2cWF3emxnOHRSRWhneTd3dkhpc3RLWU5FRHlRNA?oc=5",
+    "url": "https://www.techinsights.com/blog/stmicroelectronics-launches-fully-integrated-uwb-solution-ieee-802154z-and-4ab-standards",
     "sourceName": "TechInsights",
     "publishedDate": "2026-08-20",
     "foundDate": "2026-08-28",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQWS1DUy1mWVRRY3EwTUVBQThFZUpZUEpkelBNaWxWOFJmMzJ4ZW1yVHhpSmU2Zl9GV3R3UHlBMGR1T1NXQjY5SDRDb0J5Y2g3akZTczBvcm1lSDE3MlR2UWl5VjgzTU1kdUJGV0VZSWluNkViWG9YUHoyelN2cER1S2RTY0NSWXJUV3dGUlhWMXhWTDRhbGFRN3dnOVpoY0ZEclN2cWF3emxnOHRSRWhneTd3dkhpc3RLWU5FRHlRNA?oc=5"
   },
   {
     "id": "news-998slw",
@@ -2366,11 +2421,12 @@
     "institution": "IEEE",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBXWVVDVVJDWFBLa0QwdU1hUTdFUU9fVWNSRDVKOXpnOUxIZGhyUmdDT1FWbXpZNXNFSzk2ZjNnWTdtV0ZmaEtXd3RlczVTQUVQNlRGektwTjQ2cGdyc0ZqazZNQlVscjhKVU1J?oc=5",
+    "url": "https://spectrum.ieee.org/ability-neurotech-bci-human-trial",
     "sourceName": "IEEE Spectrum",
     "publishedDate": "2026-08-20",
     "foundDate": "2026-08-28",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBXWVVDVVJDWFBLa0QwdU1hUTdFUU9fVWNSRDVKOXpnOUxIZGhyUmdDT1FWbXpZNXNFSzk2ZjNnWTdtV0ZmaEtXd3RlczVTQUVQNlRGektwTjQ2cGdyc0ZqazZNQlVscjhKVU1J?oc=5"
   },
   {
     "id": "news-ccnvy9",
@@ -2379,11 +2435,12 @@
     "institution": "OpenAI",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQeVNPSktJWTh2R05IWG9tNkVJbnNLOHFNNk5GVlhLZVRUN0JhNnpDc2ZLRFoxY1BYdWNRQjVsblVwQ3pkR0RwX1VnajJ5MzRVTXR3OUR4Y0xBWGxRMDhTbktERDdLUHZTSTVoWVN2WVlveV9PMXdXTUtBdk5tY0l5dlNCblcwN0FNT0wtVnhlcktOd05UZS1TTGl0VjZYTk5FWjRWNVhsckRqcG5BN1h2S2xzVnRhTkxWcklxTllkdkw5TFBEclRlMGMtR19jWTR5ekI3YnRQSGw1Vmx4?oc=5",
+    "url": "https://fortune.com/2026/08/18/openai-says-it-paused-ai-training-for-two-weeks-and-announces-new-security-protocols-following-hugging-face-hack/",
     "sourceName": "Fortune",
     "publishedDate": "2026-08-18",
     "foundDate": "2026-08-28",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQeVNPSktJWTh2R05IWG9tNkVJbnNLOHFNNk5GVlhLZVRUN0JhNnpDc2ZLRFoxY1BYdWNRQjVsblVwQ3pkR0RwX1VnajJ5MzRVTXR3OUR4Y0xBWGxRMDhTbktERDdLUHZTSTVoWVN2WVlveV9PMXdXTUtBdk5tY0l5dlNCblcwN0FNT0wtVnhlcktOd05UZS1TTGl0VjZYTk5FWjRWNVhsckRqcG5BN1h2S2xzVnRhTkxWcklxTllkdkw5TFBEclRlMGMtR19jWTR5ekI3YnRQSGw1Vmx4?oc=5"
   },
   {
     "id": "news-5ylnio",
@@ -2392,11 +2449,12 @@
     "institution": "OpenAI",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1VeWw2ckcyeUJJWXFhMjVuUUk0NTdnTjNmZ2RuREhJbWtXYktPcFA3TGJBWjJWY095ZGtvMkZqYU5Wemh3NDRVRlpibldEYlpoMGVSY3B3b0NMM2dydXI4VW1UZUh3ZUtwZVE?oc=5",
+    "url": "https://www.seroundtable.com/chatgpt-ads-europe-41902.html",
     "sourceName": "Search Engine Roundtable",
     "publishedDate": "2026-08-19",
     "foundDate": "2026-08-28",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1VeWw2ckcyeUJJWXFhMjVuUUk0NTdnTjNmZ2RuREhJbWtXYktPcFA3TGJBWjJWY095ZGtvMkZqYU5Wemh3NDRVRlpibldEYlpoMGVSY3B3b0NMM2dydXI4VW1UZUh3ZUtwZVE?oc=5"
   },
   {
     "id": "news-bupn33",
@@ -2405,13 +2463,14 @@
     "institution": "Wiley",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOVHFJQnlMelRwWmJEMGdjb3pFZVhUaVpvM1ZTS1BybHY3YUIxZm9VUHpoQ01vTzZWRzhjWWpRZ0ZMUDliOWhIdFdPZXFLUFVaNDhjM0pOT29hamx2VkZHdEdZb21kQzU1eTFTdEdNQnB4Ri02MEpibXZ6dnYtUmZEVUlsNm03REhrSUM5eHhIeFAtV3dDUFN6TWN1T294UEhPM0R1dE1PUWxWeXhqcXhoTHQtdjZiYVFSaGhBTXo1WQ?oc=5",
+    "url": "https://www.stocktitan.net/news/WLY/wiley-launches-its-first-spectral-analysis-api-portfolio-giving-labs-93s61sfrws0d.html",
     "sourceName": "Stock Titan",
     "publishedDate": "2026-08-19",
     "foundDate": "2026-08-28",
     "autoDiscovered": true,
     "summary": "Wiley has launched four new tools to help laboratories identify unknown chemicals faster, expanding its portfolio of research-support products.",
-    "elsevierRelevance": "Direct competitor product launch in chemical research workflow tools — signals competitive threat to Elsevier's research-tool positioning."
+    "elsevierRelevance": "Direct competitor product launch in chemical research workflow tools — signals competitive threat to Elsevier's research-tool positioning.",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOVHFJQnlMelRwWmJEMGdjb3pFZVhUaVpvM1ZTS1BybHY3YUIxZm9VUHpoQ01vTzZWRzhjWWpRZ0ZMUDliOWhIdFdPZXFLUFVaNDhjM0pOT29hamx2VkZHdEdZb21kQzU1eTFTdEdNQnB4Ri02MEpibXZ6dnYtUmZEVUlsNm03REhrSUM5eHhIeFAtV3dDUFN6TWN1T294UEhPM0R1dE1PUWxWeXhqcXhoTHQtdjZiYVFSaGhBTXo1WQ?oc=5"
   },
   {
     "id": "news-2383rc",
@@ -2524,11 +2583,12 @@
     "institution": "Erasmus University Rotterdam",
     "category": "funding",
     "categoryLabel": "Funding Received",
-    "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFBQTG9yMHBZZkhPNk1GbG81QzFmbm1DZFp6NUxqOWItN1lVaTlRSGMtblBmZHdRWWlZOGdhd0VoeTloRTc3NmVLM0N2TDY0cUZCekHSAVdBVV95cUxQVnJaUV9TXzRMRFl4TmJpZTZORXZvdTVFSU1LZ2RYMFZwY2ZMSHFVUmFaM0s1dTJyQnViTUM0ekRPX1g1TVpHMmN2aXROazhOT0lQT1dyVkE?oc=5",
+    "url": "https://armenpress.am/en/article/1258062",
     "sourceName": "Armenpress",
     "publishedDate": "2026-08-14",
     "foundDate": "2026-08-22",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFBQTG9yMHBZZkhPNk1GbG81QzFmbm1DZFp6NUxqOWItN1lVaTlRSGMtblBmZHdRWWlZOGdhd0VoeTloRTc3NmVLM0N2TDY0cUZCekHSAVdBVV95cUxQVnJaUV9TXzRMRFl4TmJpZTZORXZvdTVFSU1LZ2RYMFZwY2ZMSHFVUmFaM0s1dTJyQnViTUM0ekRPX1g1TVpHMmN2aXROazhOT0lQT1dyVkE?oc=5"
   },
   {
     "id": "news-r5iu37",
@@ -2537,11 +2597,12 @@
     "institution": null,
     "category": "policy",
     "categoryLabel": "Netherlands Research Policy",
-    "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOMjJUQWc4cVp5d1hvbWp5TFI0c1VoaFAyUzZhNDVzNi1zZ0F3di1sa1NsSEdoU2gxWEJxd0d1bGFOYjZyN3VfWFVKb2tFUTBPdFhoOG9YTW9DOVFOREJmRnVHemlfMFFSdXRtTThfd3hQNHJFOXlNWlpqeGhRekZ4UVBDZTFlYm03MWtkc0RnR0ZhaGtUb3dZWURuSi1iQmZD?oc=5",
+    "url": "https://www.frontiersin.org/news/2026/08/11/frontiers-institutional-partnerships-update-summer-2026",
     "sourceName": "Frontiers",
     "publishedDate": "2026-08-11",
     "foundDate": "2026-08-22",
-    "autoDiscovered": true
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOMjJUQWc4cVp5d1hvbWp5TFI0c1VoaFAyUzZhNDVzNi1zZ0F3di1sa1NsSEdoU2gxWEJxd0d1bGFOYjZyN3VfWFVKb2tFUTBPdFhoOG9YTW9DOVFOREJmRnVHemlfMFFSdXRtTThfd3hQNHJFOXlNWlpqeGhRekZ4UVBDZTFlYm03MWtkc0RnR0ZhaGtUb3dZWURuSi1iQmZD?oc=5"
   },
   {
     "id": "news-pvjje6",
@@ -2620,12 +2681,13 @@
     "institution": "Springer Nature",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOWU04dDVMblc5dVQxdUtjVV9JMG8teXRtV2o4dENTTUhPLVRIdUdRTDE1X1B5ckJrNnMtVEdaUW5tOVpGd3JrRktmM3c5UlFlM0Q1dnRaT0V3bWNfNDhSXzRBMV90SU4zZjAyeUxxbnlFdnhvTFJNd3Z2NEZkRm9uOFpiZHh2ZVg1blZPM1Q2MlR3c3FhY3JiLVVpb25Yelczalc2TQ?oc=5",
+    "url": "https://www.researchinformation.info/news/springer-nature-african-academies-research-integrity-survey/",
     "sourceName": "Research Information",
     "publishedDate": "2026-08-20",
     "foundDate": "2026-08-28",
     "autoDiscovered": true,
-    "elsevierRelevance": "Springer Nature competitor activity in research integrity, a core concern for research information platforms"
+    "elsevierRelevance": "Springer Nature competitor activity in research integrity, a core concern for research information platforms",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOWU04dDVMblc5dVQxdUtjVV9JMG8teXRtV2o4dENTTUhPLVRIdUdRTDE1X1B5ckJrNnMtVEdaUW5tOVpGd3JrRktmM3c5UlFlM0Q1dnRaT0V3bWNfNDhSXzRBMV90SU4zZjAyeUxxbnlFdnhvTFJNd3Z2NEZkRm9uOFpiZHh2ZVg1blZPM1Q2MlR3c3FhY3JiLVVpb25Yelczalc2TQ?oc=5"
   },
   {
     "id": "news-aw9bt",
@@ -2634,12 +2696,13 @@
     "institution": "SciSpace",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9NMWQweFdVWmRxcFJwN2RpbnN3RXppSUxrSk5ST3J1eDM0X0xINkJyMENmUHRlZzc2WU9BRFZaclptYzJtS0VpUnpfNmQwVmFUbGZ5a3ZsWklHWkxRck1FZjhnTXpkS1ZreHNkaWFuXzl3WWJoWmRoY2l2MTNiUQ?oc=5",
+    "url": "https://quantumzeitgeist.com/scispace-qureca-partnership-support-quantum/",
     "sourceName": "Quantum Zeitgeist",
     "publishedDate": "2026-08-17",
     "foundDate": "2026-08-28",
     "autoDiscovered": true,
-    "elsevierRelevance": "SciSpace (a competitor AI research assistant) partnership announcement relevant to competitive landscape"
+    "elsevierRelevance": "SciSpace (a competitor AI research assistant) partnership announcement relevant to competitive landscape",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9NMWQweFdVWmRxcFJwN2RpbnN3RXppSUxrSk5ST3J1eDM0X0xINkJyMENmUHRlZzc2WU9BRFZaclptYzJtS0VpUnpfNmQwVmFUbGZ5a3ZsWklHWkxRck1FZjhnTXpkS1ZreHNkaWFuXzl3WWJoWmRoY2l2MTNiUQ?oc=5"
   },
   {
     "id": "news-6e0j39",
@@ -2648,12 +2711,13 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOdktRbmg2OXVoenFZZTN2c2E4T1ozVjZ2Tl9NdW9XNHROTXZlU0liU0NSU21sck42YXZQdXd1QVJwVWprODk5VTZNa2g4dTEydFN6dTA4TDhvMnlnZDdSN2lnU0h4ZVRWUzlrS0NJZzB6d2phUk00TGxDWTNoLU93Mm1GalU?oc=5",
+    "url": "https://www.ft.com/content/dd069af7-a2a2-4984-8d9a-5edeaf54f2f8?syn-25a6b1a6=1",
     "sourceName": "Financial Times",
     "publishedDate": "2026-08-27",
     "foundDate": "2026-08-28",
     "autoDiscovered": true,
-    "elsevierRelevance": "Anthropic AI tool for scientific experiments directly competes with LeapSpace and research-assistant offerings"
+    "elsevierRelevance": "Anthropic AI tool for scientific experiments directly competes with LeapSpace and research-assistant offerings",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOdktRbmg2OXVoenFZZTN2c2E4T1ozVjZ2Tl9NdW9XNHROTXZlU0liU0NSU21sck42YXZQdXd1QVJwVWprODk5VTZNa2g4dTEydFN6dTA4TDhvMnlnZDdSN2lnU0h4ZVRWUzlrS0NJZzB6d2phUk00TGxDWTNoLU93Mm1GalU?oc=5"
   },
   {
     "id": "news-qht4z9",
@@ -2662,12 +2726,13 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQQnU3QkdiNk1jYklqWmJZWXlJbGlCWUhjTEM5REpHcFJxX0c0ZndUZUFnTDJVNWJKQ1dnN2Z6QkxJSHdhYmlkN2p5blZUUFUxaTdBWXJUcl9WaHNyVjN3M0N3RzBPZUNRaHBZdkU0YmtvRDc1MzBkME9EamdoYTEwYlU3QTJ5RmtmV2dKdHpWMm9EY3hURkFhYS1DSWVmSVVPS28xaEEwbklDMTU5Yk1kM2RjZHZveVhhV1pUTF90R0ZWaE9pcUkwSXNn?oc=5",
+    "url": "https://www.bloomberg.com/news/articles/2026-08-27/anthropic-tests-new-way-for-claude-to-work-with-robots-and-scientific-lab-tools",
     "sourceName": "Bloomberg.com",
     "publishedDate": "2026-08-27",
     "foundDate": "2026-08-28",
     "autoDiscovered": true,
-    "elsevierRelevance": "Anthropic's Claude working with scientific lab tools represents competing AI research infrastructure capability"
+    "elsevierRelevance": "Anthropic's Claude working with scientific lab tools represents competing AI research infrastructure capability",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQQnU3QkdiNk1jYklqWmJZWXlJbGlCWUhjTEM5REpHcFJxX0c0ZndUZUFnTDJVNWJKQ1dnN2Z6QkxJSHdhYmlkN2p5blZUUFUxaTdBWXJUcl9WaHNyVjN3M0N3RzBPZUNRaHBZdkU0YmtvRDc1MzBkME9EamdoYTEwYlU3QTJ5RmtmV2dKdHpWMm9EY3hURkFhYS1DSWVmSVVPS28xaEEwbklDMTU5Yk1kM2RjZHZveVhhV1pUTF90R0ZWaE9pcUkwSXNn?oc=5"
   },
   {
     "id": "news-w5w2wy",
@@ -2676,12 +2741,13 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPemNJM19BWG8xbUdSSGtBaGVaTUZtWVp3cGZSX185ck53eWNIVUJmM2hsLTlBZGo0NFdmTHFacFowUl9NcXJrSWd6cWNZUENlQ0JtdndyQzl4eGZyX1FmbU1NLWozZjZaTm9WV2hISm9fZXNnbEVnMzFocUdtN0xrNHVqVWZ6bkRMNzhuTGZ1bW5zVWJjT2VFUWxaY250M291eXpTNnV1Vy1wT1dGN2xZeTA1dFUyZw?oc=5",
+    "url": "https://www.fananews.com/language/en/anthropic-launches-new-standard-to-link-ai-to-scientific-industrial-equipment/",
     "sourceName": "Fana News -",
     "publishedDate": "2026-08-28",
     "foundDate": "2026-08-28",
     "autoDiscovered": true,
-    "elsevierRelevance": "Anthropic standard for AI linking to scientific equipment is relevant to research infrastructure competition"
+    "elsevierRelevance": "Anthropic standard for AI linking to scientific equipment is relevant to research infrastructure competition",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPemNJM19BWG8xbUdSSGtBaGVaTUZtWVp3cGZSX185ck53eWNIVUJmM2hsLTlBZGo0NFdmTHFacFowUl9NcXJrSWd6cWNZUENlQ0JtdndyQzl4eGZyX1FmbU1NLWozZjZaTm9WV2hISm9fZXNnbEVnMzFocUdtN0xrNHVqVWZ6bkRMNzhuTGZ1bW5zVWJjT2VFUWxaY250M291eXpTNnV1Vy1wT1dGN2xZeTA1dFUyZw?oc=5"
   },
   {
     "id": "news-5m7dqy",
@@ -2690,12 +2756,13 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1Tc2JIOXRYSDB1Z05hSi1UdjkxN1UyZWFyMHBxQzdPMTlRbXJIVkp0Q04tVFFVX29fT3RUN2tMTEhTdlBQWmFyZlVMTTBVNVhhVFZiNXNsTnpncnFWZzE4R1I0d3ZjUTF5UmlhWG1FOEY?oc=5",
+    "url": "https://www.anthropic.com/news/expanding-support-for-scientists",
     "sourceName": "Anthropic",
     "publishedDate": "2026-08-27",
     "foundDate": "2026-08-28",
     "autoDiscovered": true,
-    "elsevierRelevance": "Anthropic's support for scientists competes with LeapSpace and research-assistant tools"
+    "elsevierRelevance": "Anthropic's support for scientists competes with LeapSpace and research-assistant tools",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1Tc2JIOXRYSDB1Z05hSi1UdjkxN1UyZWFyMHBxQzdPMTlRbXJIVkp0Q04tVFFVX29fT3RUN2tMTEhTdlBQWmFyZlVMTTBVNVhhVFZiNXNsTnpncnFWZzE4R1I0d3ZjUTF5UmlhWG1FOEY?oc=5"
   },
   {
     "id": "news-la8c6j",
@@ -2718,12 +2785,13 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOTXZpb29JTkNQdXZFc3JJSlhPUWtCYUJ3aHVqaDZMR1FMSmhDbDZSVkVFQ0FjejlXUEplNThrM2FKV0ZMV01VMEVCQzJlUjVyczN0UDlWczBQcFZEMmZQRFB3OU9OMTR3T2lSOGl1RjFqeUllZU5TNzdxU3FCejRlX0M4Q2tKN0h0SFQ0SmRSc2pVS0EyS0wxVnRmbi1GUDFqV1NqWG45aw?oc=5",
+    "url": "https://breakingthenews.net/Article/Anthropic-unveils-standard-for-AI-agents-to-control-devices/67000377",
     "sourceName": "Breakingthenews.net",
     "publishedDate": "2026-08-27",
     "foundDate": "2026-08-28",
     "autoDiscovered": true,
-    "elsevierRelevance": "Anthropic AI agents for lab devices compete with research assistant and infrastructure tools"
+    "elsevierRelevance": "Anthropic AI agents for lab devices compete with research assistant and infrastructure tools",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOTXZpb29JTkNQdXZFc3JJSlhPUWtCYUJ3aHVqaDZMR1FMSmhDbDZSVkVFQ0FjejlXUEplNThrM2FKV0ZMV01VMEVCQzJlUjVyczN0UDlWczBQcFZEMmZQRFB3OU9OMTR3T2lSOGl1RjFqeUllZU5TNzdxU3FCejRlX0M4Q2tKN0h0SFQ0SmRSc2pVS0EyS0wxVnRmbi1GUDFqV1NqWG45aw?oc=5"
   },
   {
     "id": "news-qlrw8i",
@@ -2746,11 +2814,12 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNaFZCYVJyNzc4NmJWNUNrYko4c1JYempsd0RyUzRmTDVzZG5CajdELVc0cjZhcHpITVl0Y0d1cnd0NGp6UEt4NlIxSm5DNnRyZkZiUjg5ZXc4NFNfYkQ4Q1dQWEowM2otYy01T3pwR3BENUFVRVBCYm9ZYUdmdi1yUWJJMFhqUEVxaC1laTBvZzVHbTdWUmx6dTNyVTlJeHl6dlVvRU5nSm4xOFg1SERZTzFDYUhwZw?oc=5",
+    "url": "https://www.digitaltoday.co.kr/en/view/97463/anthropic-expands-into-physical-ai-unveils-hardware-version-of-mcp-mhs",
     "sourceName": "디지털투데이",
     "publishedDate": "2026-08-27",
     "foundDate": "2026-08-28",
     "autoDiscovered": true,
-    "elsevierRelevance": "Anthropic MHS hardware standard for lab devices relevant to research infrastructure competitive landscape"
+    "elsevierRelevance": "Anthropic MHS hardware standard for lab devices relevant to research infrastructure competitive landscape",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNaFZCYVJyNzc4NmJWNUNrYko4c1JYempsd0RyUzRmTDVzZG5CajdELVc0cjZhcHpITVl0Y0d1cnd0NGp6UEt4NlIxSm5DNnRyZkZiUjg5ZXc4NFNfYkQ4Q1dQWEowM2otYy01T3pwR3BENUFVRVBCYm9ZYUdmdi1yUWJJMFhqUEVxaC1laTBvZzVHbTdWUmx6dTNyVTlJeHl6dlVvRU5nSm4xOFg1SERZTzFDYUhwZw?oc=5"
   }
 ]

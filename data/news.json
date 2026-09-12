@@ -6,7 +6,7 @@
     "institution": "Google",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOUlctSm91ckpOSzRmSzVhUTJfNzFmcTVFLTVFTEpzT252MEJHMl8xMzZ6LTM2WC1ZU3BKUGJnbFNQUjlDMFpqR3RWV0dtX2NLR1hfYTg0Q25JLUZGTWZpSWRGXzI0UkM5VFRhSUE2UmxSYVZXRjBCUlFEM2tLN21MMmdVWXNnWHg4U3JZTk9SZ3Q1bEM3V0xZUQ?oc=5",
+    "url": "https://www.theverge.com/ai-artificial-intelligence/991180/google-launches-alpha-genome-atlas",
     "sourceName": "The Verge",
     "publishedDate": "2026-09-08",
     "foundDate": "2026-09-11",
@@ -38,7 +38,8 @@
       "Contact major Dutch biomedical centers to position LeapSpace as the research workspace connecting genome findings to validated clinical evidence.",
       "Develop a competitive comparison showing subscription value in data integration, validation, and expert curation beyond free genomics tools."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOUlctSm91ckpOSzRmSzVhUTJfNzFmcTVFLTVFTEpzT252MEJHMl8xMzZ6LTM2WC1ZU3BKUGJnbFNQUjlDMFpqR3RWV0dtX2NLR1hfYTg0Q25JLUZGTWZpSWRGXzI0UkM5VFRhSUE2UmxSYVZXRjBCUlFEM2tLN21MMmdVWXNnWHg4U3JZTk9SZ3Q1bEM3V0xZUQ?oc=5"
   },
   {
     "id": "news-1vf95d",
@@ -47,7 +48,7 @@
     "institution": "IEEE",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQYmtuVEpUQThSNU9PTjRKNzJTc1BJOGJFNEloZWpXT0RoVmVHbER2cThKNFlMSjN6TWVMN2RDMTZ2Y0U2eWlLZTBYM053c3V6ZnlGSUR5R2xWWUVHQmRuTllCY2Q5MHhaWW84dklWdjByTkkzMnd3Z3hiNG5uRFV2cmdtWTl4YnhFeUFTSElHVFhMbjNTR2c?oc=5",
+    "url": "https://finance.yahoo.com/technology/ai/articles/ieee-unveils-ieee-xplore-ai-130000079.html",
     "sourceName": "Yahoo Finance",
     "publishedDate": "2026-09-10",
     "foundDate": "2026-09-11",
@@ -79,7 +80,8 @@
       "Contact TU Delft, TU Eindhoven, and Wageningen leadership to position LeapSpace as the broader research workspace beyond IEEE's engineering-focused scope.",
       "Prepare ROI comparison showing Scopus's 25M+ records across all disciplines versus IEEE's engineering focus to justify subscription premium."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQYmtuVEpUQThSNU9PTjRKNzJTc1BJOGJFNEloZWpXT0RoVmVHbER2cThKNFlMSjN6TWVMN2RDMTZ2Y0U2eWlLZTBYM053c3V6ZnlGSUR5R2xWWUVHQmRuTllCY2Q5MHhaWW84dklWdjByTkkzMnd3Z3hiNG5uRFV2cmdtWTl4YnhFeUFTSElHVFhMbjNTR2c?oc=5"
   },
   {
     "id": "news-61w34",
@@ -88,7 +90,7 @@
     "institution": "TU Delft",
     "category": "ai_adoption",
     "categoryLabel": "AI Development & Adoption",
-    "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQTzc3dzVKeVRSQmpwdTNoOFNfaVRmSTlIVzNFd0o4M0VJUDIta3AwdWNKbXEta0tXZWxhbENyQ0lLdzRnSkZNQ0RVTnNCVi1naDZ2NEM0N21TbWRnVlEycDNjVDcxeFIxOWdwYVhNdUNBV2tId29sYlNiSUhjTmY3Qk9QT0lGUkdfZUQ3Q0JhSnFXbGpSNEFtcTV0eENGM1JWOWJpVnJn?oc=5",
+    "url": "https://www.tudelft.nl/en/2026/lr/from-lab-to-space-tu-delft-led-mission-to-test-photonic-chip-in-orbit",
     "sourceName": "TU Delft",
     "publishedDate": "2026-09-10",
     "foundDate": "2026-09-11",
@@ -120,7 +122,8 @@
       "Highlight Scopus coverage of photonics, quantum, and aerospace research to position as the competitive intelligence tool for prior art and related innovations globally.",
       "Develop a case study on how Scopus/LeapSpace supported the project to promote across Dutch engineering research clusters."
     ],
-    "sourceType": "primary"
+    "sourceType": "primary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQTzc3dzVKeVRSQmpwdTNoOFNfaVRmSTlIVzNFd0o4M0VJUDIta3AwdWNKbXEta0tXZWxhbENyQ0lLdzRnSkZNQ0RVTnNCVi1naDZ2NEM0N21TbWRnVlEycDNjVDcxeFIxOWdwYVhNdUNBV2tId29sYlNiSUhjTmY3Qk9QT0lGUkdfZUQ3Q0JhSnFXbGpSNEFtcTV0eENGM1JWOWJpVnJn?oc=5"
   },
   {
     "id": "news-npizzx",
@@ -129,7 +132,7 @@
     "institution": null,
     "category": "policy",
     "categoryLabel": "Netherlands Research Policy",
-    "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNRDNQT2YxeUNiQ0VzOVFxeVNoQ0VxalFMVTVmRWNrZklnSjh2V0lPal90YU10ZDh1eHMxemIwVTJsWUV1WEl4OWprbkV1dnZDc2NYcXpib2FpUzAtNUlPVFFvTnRpd2Fobl90REtJUTN2ZF9yak1xeDR5R1RpejJ4WXdpdUpvRW5vRnFmYjhVRmZTQlBzZjZobjNB?oc=5",
+    "url": "https://energynews.pro/en/european-commission-approves-661-million-payment-for-the-netherlands",
     "sourceName": "energynews.pro",
     "publishedDate": "2026-09-09",
     "foundDate": "2026-09-10",
@@ -161,7 +164,8 @@
       "Develop targeted pitch on how ScienceDirect provides access to hydrogen technology literature and policy research to support grant-funded innovation pipelines.",
       "Monitor hydrogen R&D funding announcements to proactively reach newly funded consortia with platform trials."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNRDNQT2YxeUNiQ0VzOVFxeVNoQ0VxalFMVTVmRWNrZklnSjh2V0lPal90YU10ZDh1eHMxemIwVTJsWUV1WEl4OWprbkV1dnZDc2NYcXpib2FpUzAtNUlPVFFvTnRpd2Fobl90REtJUTN2ZF9yak1xeDR5R1RpejJ4WXdpdUpvRW5vRnFmYjhVRmZTQlBzZjZobjNB?oc=5"
   },
   {
     "id": "news-xc2tq4",
@@ -170,7 +174,7 @@
     "institution": null,
     "category": "policy",
     "categoryLabel": "Netherlands Research Policy",
-    "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOMUdxVG5QVVRSLWtpeFNlb1JEVDd4Q2FISWZOSGdRblJsUnBBX1Z4YXVhZ08yQnJNakZJdHB6NnRKczZVZzJEdzRFUE1yV3FFVkMxRHpiY2drWUF0SjNzZGhJSlB1cXNCc25BRVpTTEJoTHpfMHJOWEhGSXZKVUNsZ0lCNlI5T3V6ekpCdGFWaEZsNV9ZTjhPaWstRXlMdGZERUgxOTlaTjF2eHlUOUY2R0FGMldHcXp2dUlVV3k3MDZkcVVCdzNQX0FtZWpHZlZnWWVzekQ2bS1zRk43cjZBbFVLRQ?oc=5",
+    "url": "https://fuelcellsworks.com/2026/09/09/green-investment/dutch-green-hydrogen-r-and-d-included-in-661-million-769-3-million-eu-recovery-payment-request",
     "sourceName": "Fuel Cells Works",
     "publishedDate": "2026-09-09",
     "foundDate": "2026-09-10",
@@ -202,7 +206,8 @@
       "Pitch ScienceDirect access to hydrogen technology, electrochemistry, and policy literature as mission-critical for accelerating innovation across fragmented consortia.",
       "Prepare use case showing how LeapSpace can synthesize hydrogen research across materials science, engineering, and sustainability to reduce research duplication and accelerate time-to-publication."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOMUdxVG5QVVRSLWtpeFNlb1JEVDd4Q2FISWZOSGdRblJsUnBBX1Z4YXVhZ08yQnJNakZJdHB6NnRKczZVZzJEdzRFUE1yV3FFVkMxRHpiY2drWUF0SjNzZGhJSlB1cXNCc25BRVpTTEJoTHpfMHJOWEhGSXZKVUNsZ0lCNlI5T3V6ekpCdGFWaEZsNV9ZTjhPaWstRXlMdGZERUgxOTlaTjF2eHlUOUY2R0FGMldHcXp2dUlVV3k3MDZkcVVCdzNQX0FtZWpHZlZnWWVzekQ2bS1zRk43cjZBbFVLRQ?oc=5"
   },
   {
     "id": "news-a0z0xb",
@@ -211,7 +216,7 @@
     "institution": "Maastricht University",
     "category": "ai_adoption",
     "categoryLabel": "AI Development & Adoption",
-    "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE1kRXdpSG1OWnA2andyUUVFWkNPenhaYjZPRkduakFQajl1Nk9UNTB1UGFybThvSjEzM2JXUXA3anJyTlJpdC1ibkt0Q1B0RTFVc3hjeF9ONFlwRVpmdlBpS21QeUpqZ0tiTHpfSm5qOTFBYzY5d1JpcWlpdUxVZw?oc=5",
+    "url": "https://www.maastrichtuniversity.nl/news/students-ai-and-future-education",
     "sourceName": "Maastricht University",
     "publishedDate": "2026-09-08",
     "foundDate": "2026-09-10",
@@ -243,7 +248,8 @@
       "Develop a student-use case showing how LeapSpace accelerates literature reviews, teaches source verification, and scaffolds research skills versus generic ChatGPT.",
       "Pitch bundle of ScienceDirect + Scopus + LeapSpace to Dutch universities as student research infrastructure supporting institutional AI-education transformation."
     ],
-    "sourceType": "primary"
+    "sourceType": "primary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMifkFVX3lxTE1kRXdpSG1OWnA2andyUUVFWkNPenhaYjZPRkduakFQajl1Nk9UNTB1UGFybThvSjEzM2JXUXA3anJyTlJpdC1ibkt0Q1B0RTFVc3hjeF9ONFlwRVpmdlBpS21QeUpqZ0tiTHpfSm5qOTFBYzY5d1JpcWlpdUxVZw?oc=5"
   },
   {
     "id": "news-a1lq7y",
@@ -252,7 +258,7 @@
     "institution": "TU Delft",
     "category": "ai_adoption",
     "categoryLabel": "AI Development & Adoption",
-    "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxOUHZCZVphYjVTRlQ4LUZjcV8wMU5GVnBWbTd3dF85NkJyN2tiQ3FQYXZjLXd6dGQ1dHNDYUs2WkFJc1VjcW90M2NNNTRhMzEtVTltSHNHUzZHckU3NnNpcGd3Mk50Wlg0OUZoekx0WE8xRmcwNHk0R0V6dVpyYmZwN2dId0U5Wk82eHg3OGpwTHpIbkhkaW9tbkJ1c0VHVndiRGt6VTNWbUp0UWg5RFRpU0ZBcjJfSkJDT2F6b1I2OG9EZUNLU0c0VFh5VllwRWJLX2Vhb1NRS0R1c1RPMlpiV1dpamc?oc=5",
+    "url": "https://www.tudelft.nl/tu-delft-safety-security-institute/research/seed-funding-projects/preparing-critical-infrastructure-for-fire-blast-and-wildfire",
     "sourceName": "TU Delft",
     "publishedDate": "2026-09-09",
     "foundDate": "2026-09-10",
@@ -284,7 +290,8 @@
       "Highlight Scopus coverage of civil engineering, materials science, climate adaptation, and infrastructure policy to position as essential for multi-disciplinary prior-art and competitive research…",
       "Develop case study showing how Scopus/LeapSpace supported coordinated evidence synthesis across distributed infrastructure resilience research teams."
     ],
-    "sourceType": "primary"
+    "sourceType": "primary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxOUHZCZVphYjVTRlQ4LUZjcV8wMU5GVnBWbTd3dF85NkJyN2tiQ3FQYXZjLXd6dGQ1dHNDYUs2WkFJc1VjcW90M2NNNTRhMzEtVTltSHNHUzZHckU3NnNpcGd3Mk50Wlg0OUZoekx0WE8xRmcwNHk0R0V6dVpyYmZwN2dId0U5Wk82eHg3OGpwTHpIbkhkaW9tbkJ1c0VHVndiRGt6VTNWbUp0UWg5RFRpU0ZBcjJfSkJDT2F6b1I2OG9EZUNLU0c0VFh5VllwRWJLX2Vhb1NRS0R1c1RPMlpiV1dpamc?oc=5"
   },
   {
     "id": "news-lxm916",
@@ -293,7 +300,7 @@
     "institution": "TU Delft",
     "category": "ai_adoption",
     "categoryLabel": "AI Development & Adoption",
-    "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPN25rX1g2NFYxbDhCWWcyZEFxbndmbElRaWxSY1hyZGVuVU42SFJ4TENuOWVjU25rZ2Rvbm90ZXZtU3BkN24zTmRfMThiaEN6UDN4V1U5dXlkQU8wdTl0U3FTV0gwQTAwMkVWaVhOWnVSR1ZlUVRWRm5yTDVFTXFwdkg3ZWZFdnhoYTFIM21JTQ?oc=5",
+    "url": "https://www.tudelft.nl/en/events/2026/tbm/symposium-building-public-sector-ai-capacity",
     "sourceName": "TU Delft",
     "publishedDate": "2026-09-07",
     "foundDate": "2026-09-10",
@@ -325,7 +332,8 @@
       "Develop targeted pitch to Dutch government innovation offices (MinI&W, MinBZK, RvO) positioning ScienceDirect + Scopus as essential research infrastructure for evidence-based AI policy development.",
       "Propose thought leadership partnership with TU Delft on AI governance research, positioning Elsevier as trusted research partner for emerging policy challenges."
     ],
-    "sourceType": "primary"
+    "sourceType": "primary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPN25rX1g2NFYxbDhCWWcyZEFxbndmbElRaWxSY1hyZGVuVU42SFJ4TENuOWVjU25rZ2Rvbm90ZXZtU3BkN24zTmRfMThiaEN6UDN4V1U5dXlkQU8wdTl0U3FTV0gwQTAwMkVWaVhOWnVSR1ZlUVRWRm5yTDVFTXFwdkg3ZWZFdnhoYTFIM21JTQ?oc=5"
   },
   {
     "id": "news-3s13ho",
@@ -334,7 +342,7 @@
     "institution": "OpenAI",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQQl95Und0d2h2RDgyb3dUMVdIbWg3SWNHMFlDUDFYMmtHcGdLQldGZDBOaU4wNzFkMVRQdTEzV1M4THlvZVFnOFM2RTFabUlkUmE2ZV9jOHZqS0FuYTdvRnc5azlXU18zZEdOTDZjZEpMdU10YllNYWlzRTdJZUFBR2xaXzZ6VTByNU1vVnNzcDh6RVV4X19pWjYzbnJJOGx2Y3V1MkQ1dXVzSmJJNHZMdDJwRk91UUlXUVltUFlra1FsUjFZdFE0TnR5b3cyZWszMXpqWnl6akJtZEpV?oc=5",
+    "url": "https://openthemagazine.com/technology/jensen-huang-says-agi-has-arrived-after-openai-launches-gpt-6-astra-what-makes-the-new-ai-model-different",
     "sourceName": "Open Magazine",
     "publishedDate": "2026-09-07",
     "foundDate": "2026-09-08",
@@ -365,7 +373,8 @@
       "Schedule urgent briefings with key Dutch institutional clients (UvA, Erasmus, Utrecht) positioning Scopus/LeapSpace as domain-expert alternatives to general AI models.",
       "Develop case studies showing how LeapSpace's claim-checking and research reports outperform generic GPT-6 outputs for academic rigor and citation accuracy."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQQl95Und0d2h2RDgyb3dUMVdIbWg3SWNHMFlDUDFYMmtHcGdLQldGZDBOaU4wNzFkMVRQdTEzV1M4THlvZVFnOFM2RTFabUlkUmE2ZV9jOHZqS0FuYTdvRnc5azlXU18zZEdOTDZjZEpMdU10YllNYWlzRTdJZUFBR2xaXzZ6VTByNU1vVnNzcDh6RVV4X19pWjYzbnJJOGx2Y3V1MkQ1dXVzSmJJNHZMdDJwRk91UUlXUVltUFlra1FsUjFZdFE0TnR5b3cyZWszMXpqWnl6akJtZEpV?oc=5"
   },
   {
     "id": "news-4wqswm",
@@ -374,7 +383,7 @@
     "institution": "OpenAI",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNb3lxc2JxMVpfUDY2MzlFMnQyLWZQbWpuX21DTW8wZDZrWFRNcmxWMGU0b205QTJxMXNZeW1IOE9ISXVFUTBlakdITzZMV085N0lpcG9HVTNVQW1EZnFXdDlGa1RHQW1kLUdwamtudXhRWlZteVdFZzRFcTJQSVEyZmUzN2h0UzAxTy0zaUdlcTdKajFD?oc=5",
+    "url": "https://www.techbuzz.ai/articles/openai-scientist-warns-of-ai-risk-as-gpt-6-astra-launches",
     "sourceName": "The Tech Buzz",
     "publishedDate": "2026-09-07",
     "foundDate": "2026-09-08",
@@ -405,7 +414,8 @@
       "Contact compliance and ethics officers at major Netherlands universities; position Elsevier as the governance-safe research intelligence partner.",
       "Highlight Scopus's curated, peer-reviewed indexing and citation standards as safer than unvetted AI-generated research synthesis."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNb3lxc2JxMVpfUDY2MzlFMnQyLWZQbWpuX21DTW8wZDZrWFRNcmxWMGU0b205QTJxMXNZeW1IOE9ISXVFUTBlakdITzZMV085N0lpcG9HVTNVQW1EZnFXdDlGa1RHQW1kLUdwamtudXhRWlZteVdFZzRFcTJQSVEyZmUzN2h0UzAxTy0zaUdlcTdKajFD?oc=5"
   },
   {
     "id": "news-3wp5oc",
@@ -414,7 +424,7 @@
     "institution": "Google",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxOdG43dC1ydk42Y1BsYzhkTkZLTURoTjkyazlCTko3WkEydnlSb3ljbjRwZGN6dG95Sm0zT3FuV3FuZjB5TG5OYUEybklDSE92TTlWTEc5T2ZnQmhoS0FfNzcwNjl3MGhGbHJUQ1NaRGRYM2F4VVVMc3pFVWZhN19CT09TNFdwSHJkMlNQTGJDNDBubHFOOUQ3R25hOFNab2Nmb3F3UFlBNWhnQlY0RnNjSW9ZRG1HYkFjMVMzb1BYRjdOd1VUUmgxcndxUUg?oc=5",
+    "url": "https://utkarsh.com/current-affairs/national/science-technology-news/google-launches-aibased-agricultural-information-tool-for-india",
     "sourceName": "Utkarsh Classes",
     "publishedDate": "2026-09-07",
     "foundDate": "2026-09-08",
@@ -445,7 +455,8 @@
       "Explore partnerships with Dutch agricultural research institutions (Wageningen University, NLR) to co-develop specialized LeapSpace modules for crop science and agronomy.",
       "Monitor regional AI tool adoption trends in EMEA; prepare case studies showing Scopus's global research coverage advantage over siloed regional tools."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMizAFBVV95cUxOdG43dC1ydk42Y1BsYzhkTkZLTURoTjkyazlCTko3WkEydnlSb3ljbjRwZGN6dG95Sm0zT3FuV3FuZjB5TG5OYUEybklDSE92TTlWTEc5T2ZnQmhoS0FfNzcwNjl3MGhGbHJUQ1NaRGRYM2F4VVVMc3pFVWZhN19CT09TNFdwSHJkMlNQTGJDNDBubHFOOUQ3R25hOFNab2Nmb3F3UFlBNWhnQlY0RnNjSW9ZRG1HYkFjMVMzb1BYRjdOd1VUUmgxcndxUUg?oc=5"
   },
   {
     "id": "news-410a9t",
@@ -454,7 +465,7 @@
     "institution": null,
     "category": "policy",
     "categoryLabel": "Netherlands Research Policy",
-    "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPZ0xRbGVtRFlDZnJ6VTUxLTZGNDJaYmtUVk1mdzlHdmt6Q3dSbGFOWlNlTDJmNzQ0LV9UN0xLT01sWVJVdzBWcXVRcHRCc2NZaGdYQk5Fb3lRRFFHN2U4TndqX19VTDZTWFE0dl9OeF9sdzhtMzJGdGJkY3lHVVh5elkwZUZ6bktvMWlEb1c2X0d6d0ZGVDAwbDcwWGJkRWlBTG1QZjk5MUN6Z1IyWFh1SmNiV1dRV2p0WFBzRGktQzUtdw?oc=5",
+    "url": "https://www.brusselstimes.com/eu-affairs/2307221/netherlands-secures-e661m-eu-grants-advancing-green-energy-and-tax-reforms/",
     "sourceName": "The Brussels Times",
     "publishedDate": "2026-09-07",
     "foundDate": "2026-09-08",
@@ -486,7 +497,8 @@
       "Develop tailored case study on how ScienceDirect and Scopus support climate research at scale; showcase LeapSpace's funding discovery feature for identifying complementary EU and national grants.",
       "Schedule demonstrations with key stakeholders at Wageningen, TU Delft, and Utrecht University emphasizing real-time collaboration, impact measurement, and interdisciplinary team formation."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPZ0xRbGVtRFlDZnJ6VTUxLTZGNDJaYmtUVk1mdzlHdmt6Q3dSbGFOWlNlTDJmNzQ0LV9UN0xLT01sWVJVdzBWcXVRcHRCc2NZaGdYQk5Fb3lRRFFHN2U4TndqX19VTDZTWFE0dl9OeF9sdzhtMzJGdGJkY3lHVVh5elkwZUZ6bktvMWlEb1c2X0d6d0ZGVDAwbDcwWGJkRWlBTG1QZjk5MUN6Z1IyWFh1SmNiV1dRV2p0WFBzRGktQzUtdw?oc=5"
   },
   {
     "id": "news-x72qpj",
@@ -495,7 +507,7 @@
     "institution": "Anthropic",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOczZLQWhJUjZVdEs0cnFXVmktX2JTaDFVVEFVX3hQLU8zcmtTQjJzd1Y1cHZVVmNsenBIWDRIOW4zbndpZGZMaEJWVlJQN1FBeWNMck9ObDlEQW5GSmVBSU4zRTIyRWdDSUhiMDV3aGUxd1BGcXRRajJLUldMOWlJOUtEUDBzTjBQRko2MEFyVjNKcDA?oc=5",
+    "url": "https://www.linkedin.com/pulse/anthropic-launches-claude-fable-51-restricted-mythos-ndj9e",
     "sourceName": "LinkedIn",
     "publishedDate": "2026-09-05",
     "foundDate": "2026-09-07",
@@ -525,7 +537,8 @@
       "Monitor adoption rates of Claude variants at target institutions and conduct win/loss analysis with procurement teams.",
       "Develop comparison content showing LeapSpace integration with Scopus/ScienceDirect versus standalone AI research tools."
     ],
-    "sourceType": "secondary"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOczZLQWhJUjZVdEs0cnFXVmktX2JTaDFVVEFVX3hQLU8zcmtTQjJzd1Y1cHZVVmNsenBIWDRIOW4zbndpZGZMaEJWVlJQN1FBeWNMck9ObDlEQW5GSmVBSU4zRTIyRWdDSUhiMDV3aGUxd1BGcXRRajJLUldMOWlJOUtEUDBzTjBQRko2MEFyVjNKcDA?oc=5"
   },
   {
     "id": "news-uykf6t",
@@ -534,7 +547,7 @@
     "institution": "OpenAI",
     "category": "competitor_announcements",
     "categoryLabel": "Competitor Announcements",
-    "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE11QUxBUVJLdC1jSmtJbmcxQzg4Qm9yUlNPS3JEMEVBanIyY1FRT2k2R0hBTlNnX2VqcWpTSDJUMDV0TjBJN1VGamlrZzVPZw?oc=5",
+    "url": "https://openai.com/index/gpt-6-astra/",
     "sourceName": "OpenAI",
     "publishedDate": "2026-09-05",
     "foundDate": "2026-09-05",
@@ -562,6 +575,7 @@
       "Launch 90-day pilot program targeting top 10 Dutch research institutions with free/discounted LeapSpace access bundled with ScienceDirect/Scopus.",
       "Prepare board-level summary for Elsevier leadership on market threat and required investment/timeline to maintain competitive positioning in Netherlands academic sector."
     ],
-    "sourceType": "primary"
+    "sourceType": "primary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE11QUxBUVJLdC1jSmtJbmcxQzg4Qm9yUlNPS3JEMEVBanIyY1FRT2k2R0hBTlNnX2VqcWpTSDJUMDV0TjBJN1VGamlrZzVPZw?oc=5"
   }
 ]
