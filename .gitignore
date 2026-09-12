@@ -1,2 +1,13 @@
 __pycache__/
 *.pyc
+
+# Local tooling state, not part of the site
+.claude/
+.claude-flow/
+
+# Local helper scripts and their output. push.bat does `git add -A`, so it
+# would otherwise sweep itself and its log into a commit.
+# cleanup-git-locks.bat is deliberately left out: it is already tracked, and
+# ignoring a tracked file has no effect.
+push.bat
+push_log.txt
