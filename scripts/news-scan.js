@@ -805,6 +805,15 @@ async function main() {
     if (archivedCount > 0) saveJSON(ARCHIVE_FILE, archive);
   }
 
+  // A story Google surfaces late (published more than ARCHIVE_AGE_DAYS ago)
+  // is added and archived in the same pass, so it never appears in the feed.
+  // Counting those as "new articles found" made the News page report 5 new
+  // on a run where the feed actually shrank by 2 -- so the two are now
+  // counted separately.
+  const addedIds = new Set(relevant.map(a => a.id));
+  const addedLive = live.filter(a => addedIds.has(a.id)).length;
+  const addedStraightToArchive = totalAdded - addedLive;
+
   const trimmed = live.slice(0, MAX_STORED_ARTICLES);
   if (totalAdded > 0 || archivedCount > 0 || backfilledCount > 0 || dedupedCount > 0) saveJSON(DATA_FILE, trimmed);
 
@@ -847,6 +856,8 @@ async function main() {
   saveJSON(STATE_FILE, {
     lastRun: new Date().toISOString(),
     lastAddedCount: totalAdded,
+    lastAddedLive: addedLive,
+    lastAddedArchived: addedStraightToArchive,
     lastCandidateCount: freshCandidates.length,
     lastArchivedCount: archivedCount,
     lastBackfilledCount: backfilledCount,

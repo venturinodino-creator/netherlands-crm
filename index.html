@@ -6447,6 +6447,20 @@ function renderNewsArticles() {
   }).join('');
 }
 
+// "N new articles found" counted everything that passed the relevance
+// filter, including stories Google surfaced so late that the scan archived
+// them immediately -- which read as a lie on days when the feed shrank.
+// Older state files carry no breakdown, so fall back to the single number.
+function _scanAddedSummary(state) {
+  const total = state.lastAddedCount || 0;
+  if (!total) return 'No new articles found';
+  const live = state.lastAddedLive;
+  if (typeof live !== 'number') return `${total} new article${total === 1 ? '' : 's'} found`;
+  const archived = state.lastAddedArchived || 0;
+  const head = `${live} new article${live === 1 ? '' : 's'} added to the feed`;
+  return archived ? `${head} · ${archived} older one${archived === 1 ? '' : 's'} filed straight to the archive` : head;
+}
+
 async function renderNewsScanStatus() {
   const el = document.getElementById('news-scan-status');
   if (!el) return;
@@ -6455,7 +6469,7 @@ async function renderNewsScanStatus() {
     const state = res.ok ? await res.json() : null;
     if (!state || !state.lastRun) { el.innerHTML = '<p style="font-size:12px;color:var(--muted)">No scan recorded yet.</p>'; return; }
     el.innerHTML = `<p style="font-size:12px;color:var(--text)">Last scan: <strong>${_relativeTime(state.lastRun)}</strong></p>
-      <p style="font-size:12px;color:var(--muted);margin-top:3px">${state.lastAddedCount||0} new article${state.lastAddedCount===1?'':'s'} found</p>
+      <p style="font-size:12px;color:var(--muted);margin-top:3px">${_scanAddedSummary(state)}</p>
       ${state.error ? `<p style="font-size:11px;color:#f87171;margin-top:6px">${esc(state.error)}</p>` : ''}`;
   } catch(e) { el.innerHTML = '<p style="font-size:12px;color:var(--muted)">Status unavailable.</p>'; }
 }
@@ -9208,7 +9222,12 @@ async function loadDigestNews() {
       const summaryText = digestHasOwnSummary(a)
         ? (a.summary || a.elsevierRelevance || a.bottomLine || a.description)
         : '';
-      return `<div style="padding:12px 18px;border-bottom:1px solid var(--border);cursor:pointer" onclick="${safeOpenUrlOnclick(a.url)}">
+      // Same guard as the news cards: an article whose Google id has been
+      // retired carries no url, and safeOpenUrlOnclick('') would expand to
+      // window.open("") and open a blank tab. Articles can age into that
+      // state while still inside the 14-day live window.
+      const rowHref = safeHref(a.url);
+      return `<div style="padding:12px 18px;border-bottom:1px solid var(--border);cursor:${rowHref ? 'pointer' : 'default'}"${rowHref ? ` onclick="${safeOpenUrlOnclick(a.url)}"` : ''}>
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px">
           <span class="news-topic-tag" style="background:${cat.color}22;color:${cat.color}">${esc(cat.label)}</span>
           ${a.institution ? `<span style="font-size:11px;color:var(--muted)">${esc(a.institution)}</span>` : ''}
@@ -9216,6 +9235,7 @@ async function loadDigestNews() {
         </div>
         <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px">${esc(a.title || '')}</div>
         ${summaryText ? `<p style="font-size:12px;color:var(--text2);line-height:1.4;margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden">${esc(summaryText)}</p>` : ''}
+        ${rowHref ? '' : `<p style="font-size:11px;color:var(--muted);font-style:italic;margin:4px 0 0">Original link expired</p>`}
       </div>`;
     }).join('');
   } catch(e) {
