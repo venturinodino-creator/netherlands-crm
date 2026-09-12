@@ -59,13 +59,18 @@ SOURCES = [
     {"institution": "Leiden University Libraries", "url": "https://www.library.universiteitleiden.nl/news", "type": "html"},
     {"institution": "University of Twente (LISA)", "url": "https://www.utwente.nl/en/service-portal/news/", "type": "html"},
     # SURF negotiates the national Elsevier and Scopus agreements, so it is
-    # the single highest-value non-university source here. It is also
-    # unreachable from GitHub's runners (Errno 101 on 2026-09-12, while
-    # working fine from a normal connection) — www.surf.nl is dual-stack and
-    # appears to refuse Azure ranges. It stays in the list because the scan
-    # now degrades rather than fails, and because it may start answering
-    # again; UKB below covers overlapping national ground, so a SURF outage
-    # costs coverage rather than the whole signal.
+    # the single highest-value non-university source here.
+    #
+    # It failed once from a GitHub runner on 2026-09-12 with Errno 101
+    # (network unreachable) while working fine elsewhere, which looked like
+    # a datacentre-range block. It was not: with the retry added in the same
+    # change it has reached 9/9 from the runners since. Treat that Errno 101
+    # as the transient failure it was, and do not drop SURF on the strength
+    # of one bad run — failedSources in the state file is the place to check
+    # whether a source is genuinely dead or just had a bad morning.
+    #
+    # UKB below covers overlapping national ground either way, so a real SURF
+    # outage would cost coverage rather than the whole signal.
     {"institution": "SURF", "url": "https://www.surf.nl/en/news", "type": "html"},
     # Open Science NL is allowed by its robots.txt but its server returns
     # 403 to this scanner's user agent. That is the site declining automated
