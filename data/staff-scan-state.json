@@ -1,18 +1,8 @@
 {
-  "lastRun": "2026-09-12T11:46:39.886Z",
+  "lastRun": "2026-09-13T12:53:48.267Z",
   "lastAddedCount": 0,
   "sources": 50,
   "issues": [
-    {
-      "instId": "leiden",
-      "url": "https://www.organisatiegids.universiteitleiden.nl/en/service-units/luris",
-      "error": "fetch failed"
-    },
-    {
-      "instId": "leiden",
-      "url": "https://www.universiteitleiden.nl/en/science/computer-science/about-us/organisation",
-      "error": "fetch failed"
-    },
     {
       "instId": "astron",
       "url": "https://www.astron.nl/about/organisation/management/",
@@ -42,10 +32,6 @@
     },
     {
       "instId": "naturalis",
-      "note": "no people extracted"
-    },
-    {
-      "instId": "esc",
       "note": "no people extracted"
     },
     {
@@ -79,11 +65,6 @@
     {
       "instId": "scp",
       "note": "no people extracted"
-    },
-    {
-      "instId": "sanquin",
-      "url": "https://www.sanquin.nl/en/about-sanquin/management-supervision",
-      "error": "fetch failed"
     },
     {
       "instId": "umcg",
