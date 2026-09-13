@@ -1,6 +1,6 @@
 {
-  "lastRun": "2026-09-13T17:39:30.817Z",
-  "lastAddedCount": 6,
+  "lastRun": "2026-09-13T18:49:51.500Z",
+  "lastAddedCount": 0,
   "sources": 50,
   "issues": [
     {
@@ -48,6 +48,11 @@
     {
       "instId": "cpb",
       "note": "no people extracted"
+    },
+    {
+      "instId": "sanquin",
+      "url": "https://www.sanquin.nl/en/about-sanquin/management-supervision",
+      "error": "fetch failed"
     },
     {
       "instId": "umcg",
