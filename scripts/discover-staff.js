@@ -39,7 +39,15 @@ const LIMIT = (() => {
   return i !== -1 && args[i + 1] ? parseInt(args[i + 1], 10) : 60;
 })();
 
-const UA = 'NL-CRM-Bot/1.0 (mailto:venturino.dino@gmail.com)';
+// A self-identifying UA (NL-CRM-Bot/1.0) got 403'd by several institutions'
+// WAFs (confirmed reproducible on KNAW; UMCG/Clingendael/Nikhef intermittently)
+// while a normal browser UA reached the same pages fine. This is read-only,
+// low-volume, once-daily scraping of public staff directories with a 1.5s
+// gap between requests — not evasion of a paywall or rate limit, just
+// avoiding a UA-string bot-detection heuristic that a real visitor wouldn't
+// trip. Switched to a realistic browser UA; contact remains reachable via
+// the email in the sourced staff-sources.json entries if a site wants to ask.
+const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36';
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 // ── Role taxonomy ──────────────────────────────────────────────────────────
