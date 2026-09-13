@@ -477,6 +477,30 @@
       "urls": [
         "https://www.zonmw.nl/en/about-zonmw/organisation"
       ]
+    },
+    {
+      "instId": "mpi",
+      "instName": "Max Planck Institute for Psycholinguistics",
+      "emailDomain": "mpi.nl",
+      "urls": [
+        "https://www.mpi.nl/page/institute-leadership"
+      ]
+    },
+    {
+      "instId": "amolf",
+      "instName": "AMOLF",
+      "emailDomain": "amolf.nl",
+      "urls": [
+        "https://amolf.nl/contact"
+      ]
+    },
+    {
+      "instId": "ihedelft",
+      "instName": "IHE Delft Institute for Water Education",
+      "emailDomain": "un-ihe.org",
+      "urls": [
+        "https://www.un-ihe.org/about-ihe-delft/organization"
+      ]
     }
   ]
 }
