@@ -54,7 +54,7 @@ jobs:
           secure: true
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
-          from: Research CRM
+          from: Research CRM <${{ secrets.MAIL_FROM || secrets.MAIL_USERNAME }}>
           to: ${{ secrets.MAIL_TO }}
           subject: New roles matching your profile
           html_body: file://${{ runner.temp }}/roles-digest.html
