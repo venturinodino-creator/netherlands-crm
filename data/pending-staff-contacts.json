@@ -1670,5 +1670,16 @@
     "email": null,
     "constructed": false,
     "source": "https://www.nikhef.nl/en/nikhef/organisation/"
+  },
+  {
+    "first": "Adriana",
+    "last": "Esmeijer",
+    "title": "Director of General Affairs",
+    "dept": "Library & Research Support",
+    "instId": "knaw",
+    "instName": "Royal Netherlands Academy of Arts and Sciences",
+    "email": "adriana.esmeijer@knaw.nl",
+    "constructed": true,
+    "source": "https://www.knaw.nl/en/about-knaw/organisation-board-and-management"
   }
 ]

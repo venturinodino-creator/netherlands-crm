@@ -1,8 +1,36 @@
 {
-  "lastRun": "2026-09-13T12:53:48.267Z",
-  "lastAddedCount": 0,
+  "lastRun": "2026-09-13T17:15:25.962Z",
+  "lastAddedCount": 1,
   "sources": 50,
   "issues": [
+    {
+      "instId": "leiden",
+      "note": "no people extracted"
+    },
+    {
+      "instId": "tiu",
+      "url": "https://www.tilburguniversity.edu/about/organization/university-services/library-it-services",
+      "error": "HTTP 403"
+    },
+    {
+      "instId": "tiu",
+      "url": "https://www.tilburguniversity.edu/taxonomy/term/387",
+      "error": "HTTP 403"
+    },
+    {
+      "instId": "tiu",
+      "url": "https://www.tilburguniversity.edu/research/research-support-portal/research-funding",
+      "error": "HTTP 403"
+    },
+    {
+      "instId": "tiu",
+      "url": "https://www.tilburguniversity.edu/research/institutes-and-research-groups/ticc/meet-our-staff",
+      "error": "HTTP 403"
+    },
+    {
+      "instId": "tiu",
+      "note": "no people extracted"
+    },
     {
       "instId": "astron",
       "url": "https://www.astron.nl/about/organisation/management/",
@@ -14,13 +42,8 @@
     },
     {
       "instId": "cpb",
-      "url": "https://www.cpb.nl/en/about-cpb",
-      "error": "HTTP 404"
-    },
-    {
-      "instId": "cpb",
       "url": "https://www.cpb.nl/en/staff-members-and-affiliations",
-      "error": "HTTP 404"
+      "error": "HTTP 403"
     },
     {
       "instId": "cpb",
@@ -35,36 +58,18 @@
       "note": "no people extracted"
     },
     {
-      "instId": "nikhef",
-      "url": "https://www.nikhef.nl/en/nikhef/organisation/",
-      "error": "fetch failed"
-    },
-    {
-      "instId": "nikhef",
-      "url": "https://www.nikhef.nl/en/director/",
-      "error": "fetch failed"
-    },
-    {
-      "instId": "nikhef",
-      "note": "no people extracted"
-    },
-    {
-      "instId": "knaw",
-      "url": "https://www.knaw.nl/en/about-knaw/organisation-board-and-management",
-      "error": "HTTP 403"
-    },
-    {
-      "instId": "knaw",
-      "url": "https://www.knaw.nl/en/about-knaw/organisation-board-and-management/board-management",
-      "error": "HTTP 403"
-    },
-    {
-      "instId": "knaw",
-      "note": "no people extracted"
-    },
-    {
       "instId": "scp",
       "note": "no people extracted"
+    },
+    {
+      "instId": "erasmusmc",
+      "url": "https://www.erasmusmc.nl/en/research/groups/health-data-science",
+      "error": "fetch failed"
+    },
+    {
+      "instId": "sanquin",
+      "url": "https://www.sanquin.nl/en/about-sanquin/management-supervision",
+      "error": "fetch failed"
     },
     {
       "instId": "umcg",
