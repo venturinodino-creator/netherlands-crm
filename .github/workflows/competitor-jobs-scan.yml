@@ -32,33 +32,9 @@ jobs:
           ROLES_DIGEST_PATH: ${{ runner.temp }}/roles-digest.html
         run: node scripts/competitor-jobs-scan.js
 
-      # Email the new roles. Nothing is echoed: the digest is read from a file
-      # the step above wrote outside the repo, because Actions logs on a public
-      # repo are public. Skipped entirely when the mail secrets are absent.
-      - name: Check for a roles digest
-        id: digest
-        run: |
-          if [ -s "${{ runner.temp }}/roles-digest.html" ]; then
-            echo "found=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "found=false" >> "$GITHUB_OUTPUT"
-          fi
-      - name: Email new roles
-        if: steps.digest.outputs.found == 'true' && env.MAIL_USERNAME != ''
-        env:
-          MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: ${{ secrets.MAIL_SERVER || 'smtp.gmail.com' }}
-          server_port: ${{ secrets.MAIL_PORT || 465 }}
-          secure: true
-          username: ${{ secrets.MAIL_USERNAME }}
-          password: ${{ secrets.MAIL_PASSWORD }}
-          from: Research CRM <${{ secrets.MAIL_FROM || secrets.MAIL_USERNAME }}>
-          to: ${{ secrets.MAIL_TO }}
-          subject: New roles matching your profile
-          html_body: file://${{ runner.temp }}/roles-digest.html
-          convert_markdown: false
+      # Save the findings before anything that can fail for reasons unrelated
+      # to the scan. Until 2026-09-13 the commit came after the email step, so
+      # a rejected SMTP login threw away that day's scan results.
       - name: Commit new hiring findings
         run: |
           git config user.email "actions@github.com"
@@ -80,3 +56,40 @@ jobs:
             sleep $((attempt * 5))
           done
           echo "::warning::Could not push competitor-jobs-scan results after 3 attempts, likely racing a concurrent run of this same workflow. This run's findings were not saved, but they'll resurface on the next scan."
+
+      # Email the new roles. Nothing is echoed: the digest is read from a file
+      # the step above wrote outside the repo, because Actions logs on a public
+      # repo are public. Skipped entirely when the mail secrets are absent;
+      # a username without a password is reported as a warning rather than
+      # failing the run, since the scan itself has already been saved.
+      - name: Check for a roles digest
+        id: digest
+        run: |
+          if [ -s "${{ runner.temp }}/roles-digest.html" ]; then
+            echo "found=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "found=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Warn when the mailbox is half-configured
+        if: steps.digest.outputs.found == 'true' && env.MAIL_USERNAME != '' && env.MAIL_PASSWORD == ''
+        env:
+          MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+        run: echo "::warning::MAIL_USERNAME is set but MAIL_PASSWORD is not, so the roles digest was not emailed. Add a Gmail app password as the MAIL_PASSWORD repository secret."
+      - name: Email new roles
+        if: steps.digest.outputs.found == 'true' && env.MAIL_USERNAME != '' && env.MAIL_PASSWORD != ''
+        env:
+          MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: ${{ secrets.MAIL_SERVER || 'smtp.gmail.com' }}
+          server_port: ${{ secrets.MAIL_PORT || 465 }}
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          from: Research CRM <${{ secrets.MAIL_FROM || secrets.MAIL_USERNAME }}>
+          to: ${{ secrets.MAIL_TO }}
+          subject: New roles matching your profile
+          html_body: file://${{ runner.temp }}/roles-digest.html
+          convert_markdown: false
