@@ -1747,5 +1747,126 @@
     "email": "merik.seven@zonmw.nl",
     "constructed": true,
     "source": "https://www.zonmw.nl/en/about-zonmw/organisation"
+  },
+  {
+    "first": "Caroline",
+    "last": "Rowland",
+    "title": "Managing Director",
+    "dept": "Library & Research Support",
+    "instId": "mpi",
+    "instName": "Max Planck Institute for Psycholinguistics",
+    "email": "caroline.rowland@mpi.nl",
+    "constructed": true,
+    "source": "https://www.mpi.nl/page/institute-leadership"
+  },
+  {
+    "first": "Simon",
+    "last": "Fisher",
+    "title": "Director",
+    "dept": "Library & Research Support",
+    "instId": "mpi",
+    "instName": "Max Planck Institute for Psycholinguistics",
+    "email": "simon.fisher@mpi.nl",
+    "constructed": true,
+    "source": "https://www.mpi.nl/page/institute-leadership"
+  },
+  {
+    "first": "Asli",
+    "last": "Ozyurek",
+    "title": "Director",
+    "dept": "Library & Research Support",
+    "instId": "mpi",
+    "instName": "Max Planck Institute for Psycholinguistics",
+    "email": "asli.ozyurek@mpi.nl",
+    "constructed": true,
+    "source": "https://www.mpi.nl/page/institute-leadership"
+  },
+  {
+    "first": "Cedric",
+    "last": "Gertzen",
+    "title": "Chief Operating Officer",
+    "dept": "Library & Research Support",
+    "instId": "mpi",
+    "instName": "Max Planck Institute for Psycholinguistics",
+    "email": "cedric.gertzen@mpi.nl",
+    "constructed": true,
+    "source": "https://www.mpi.nl/page/institute-leadership"
+  },
+  {
+    "first": "Antje",
+    "last": "Meyer",
+    "title": "Director",
+    "dept": "Library & Research Support",
+    "instId": "mpi",
+    "instName": "Max Planck Institute for Psycholinguistics",
+    "email": "antje.meyer@mpi.nl",
+    "constructed": true,
+    "source": "https://www.mpi.nl/page/institute-leadership"
+  },
+  {
+    "first": "Oana",
+    "last": "Draghici",
+    "title": "AMOLF NanoLab Amsterdam – team leader",
+    "dept": "Library & Research Support",
+    "instId": "amolf",
+    "instName": "AMOLF",
+    "email": "o.draghici@amolf.nl",
+    "constructed": false,
+    "source": "https://amolf.nl/contact"
+  },
+  {
+    "first": "Paula",
+    "last": "van Tijn",
+    "title": "Institute manager",
+    "dept": "Library & Research Support",
+    "instId": "amolf",
+    "instName": "AMOLF",
+    "email": "paula.vantijn@amolf.nl",
+    "constructed": true,
+    "source": "https://amolf.nl/contact"
+  },
+  {
+    "first": "AMOLF",
+    "last": "NanoLab Amsterdam",
+    "title": "team leader: Isabella Palstra",
+    "dept": "Library & Research Support",
+    "instId": "amolf",
+    "instName": "AMOLF",
+    "email": "amolf.nanolabamsterdam@amolf.nl",
+    "constructed": true,
+    "source": "https://amolf.nl/contact"
+  },
+  {
+    "first": "Bruno",
+    "last": "Ehrler",
+    "title": "Director",
+    "dept": "Library & Research Support",
+    "instId": "amolf",
+    "instName": "AMOLF",
+    "email": "bruno.ehrler@amolf.nl",
+    "constructed": true,
+    "source": "https://amolf.nl/contact"
+  },
+  {
+    "first": "The",
+    "last": "Rectorate",
+    "title": "comprising the Rector, the Vice Rector and the Business Director, leads the Institute.",
+    "dept": "Library & Research Support",
+    "instId": "ihedelft",
+    "instName": "IHE Delft Institute for Water Education",
+    "email": "the.rectorate@un-ihe.org",
+    "constructed": true,
+    "source": "https://www.un-ihe.org/about-ihe-delft/organization"
+  },
+  {
+    "first": "Johan",
+    "last": "Aad van Dijk",
+    "title": "Business Director",
+    "dept": "Library & Research Support",
+    "instId": "ihedelft",
+    "instName": "IHE Delft Institute for Water Education",
+    "email": "johan.aadvandijk@un-ihe.org",
+    "constructed": true,
+    "source": "https://www.un-ihe.org/about-ihe-delft/organization"
   }
 ]
