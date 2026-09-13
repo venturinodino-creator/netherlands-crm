@@ -1,6 +1,6 @@
 {
-  "lastRun": "2026-09-13T17:15:25.962Z",
-  "lastAddedCount": 1,
+  "lastRun": "2026-09-13T17:39:30.817Z",
+  "lastAddedCount": 6,
   "sources": 50,
   "issues": [
     {
@@ -50,28 +50,6 @@
       "note": "no people extracted"
     },
     {
-      "instId": "hubrecht",
-      "note": "no people extracted"
-    },
-    {
-      "instId": "naturalis",
-      "note": "no people extracted"
-    },
-    {
-      "instId": "scp",
-      "note": "no people extracted"
-    },
-    {
-      "instId": "erasmusmc",
-      "url": "https://www.erasmusmc.nl/en/research/groups/health-data-science",
-      "error": "fetch failed"
-    },
-    {
-      "instId": "sanquin",
-      "url": "https://www.sanquin.nl/en/about-sanquin/management-supervision",
-      "error": "fetch failed"
-    },
-    {
       "instId": "umcg",
       "url": "https://www.umcg.nl/-/over-het-umcg/organisatie",
       "error": "HTTP 403"
@@ -83,10 +61,6 @@
     },
     {
       "instId": "clingendael",
-      "note": "no people extracted"
-    },
-    {
-      "instId": "zonmw",
       "note": "no people extracted"
     }
   ]

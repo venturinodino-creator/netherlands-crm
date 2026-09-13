@@ -1681,5 +1681,71 @@
     "email": "adriana.esmeijer@knaw.nl",
     "constructed": true,
     "source": "https://www.knaw.nl/en/about-knaw/organisation-board-and-management"
+  },
+  {
+    "first": "Geert",
+    "last": "Kops",
+    "title": "director",
+    "dept": "Library & Research Support",
+    "instId": "hubrecht",
+    "instName": "Hubrecht Institute",
+    "email": "geert.kops@hubrecht.eu",
+    "constructed": true,
+    "source": "https://www.hubrecht.eu/about-us/"
+  },
+  {
+    "first": "Karen",
+    "last": "van Oudenhoven- van der Zee",
+    "title": "Director",
+    "dept": "Library & Research Support",
+    "instId": "scp",
+    "instName": "SCP — Netherlands Institute for Social Research",
+    "email": "karen.vanoudenhovenvanderzee@scp.nl",
+    "constructed": true,
+    "source": "https://english.scp.nl/about-scp/executive-board"
+  },
+  {
+    "first": "Jan",
+    "last": "Willem Boom",
+    "title": "Head of business operations",
+    "dept": "Library & Research Support",
+    "instId": "zonmw",
+    "instName": "ZonMw",
+    "email": "jan.willemboom@zonmw.nl",
+    "constructed": true,
+    "source": "https://www.zonmw.nl/en/about-zonmw/organisation"
+  },
+  {
+    "first": "Loes",
+    "last": "van Herten",
+    "title": "Head of policy, advice and strategy",
+    "dept": "Library & Research Support",
+    "instId": "zonmw",
+    "instName": "ZonMw",
+    "email": "loes.vanherten@zonmw.nl",
+    "constructed": true,
+    "source": "https://www.zonmw.nl/en/about-zonmw/organisation"
+  },
+  {
+    "first": "Mariëlle",
+    "last": "Snijders",
+    "title": "Director programs",
+    "dept": "Library & Research Support",
+    "instId": "zonmw",
+    "instName": "ZonMw",
+    "email": "marielle.snijders@zonmw.nl",
+    "constructed": true,
+    "source": "https://www.zonmw.nl/en/about-zonmw/organisation"
+  },
+  {
+    "first": "Merik",
+    "last": "Seven",
+    "title": "Director programs",
+    "dept": "Library & Research Support",
+    "instId": "zonmw",
+    "instName": "ZonMw",
+    "email": "merik.seven@zonmw.nl",
+    "constructed": true,
+    "source": "https://www.zonmw.nl/en/about-zonmw/organisation"
   }
 ]
