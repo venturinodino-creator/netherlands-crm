@@ -1,5 +1,19 @@
 [
   {
+    "id": "news-jdm6rv",
+    "title": "OpenAI scientist warns AI risks like bioweapons as GPT-6 Astra launches, raising concerns for NVIDIA investors. - Pluang",
+    "description": "OpenAI scientist warns AI risks like bioweapons as GPT-6 Astra launches, raising concerns for NVIDIA investors. Pluang",
+    "institution": "OpenAI",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://pluang.com/en/news-feed/ilmuwan-openai-peringatkan-biological-dan-serangan-jaringan-saat-kirim-gpt-6",
+    "sourceName": "Pluang",
+    "publishedDate": "2026-09-09",
+    "foundDate": "2026-09-14",
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQYU9wYkxITnh6M3NyUXVzemFreVNfbmt1dzlIWHppakUxbEp6bGRCY2NkbU5wVkJ2bXc3NTY3SXFCcU4xU2lQaUJOMVRVT0UwbURqOTMxY19JR2JUR1BhSUl2eFV6dzM1UFJKaWJIOE5ubHNmd1d0ZzVNUVpneC1hTmNKY1Nrb3NqZFRTRjdTWG9xdFVUN05vT3lvaFJSb0U2RHphVUlGLTA5NGtn?oc=5"
+  },
+  {
     "id": "news-tpdosy",
     "title": "Google’s Atlas of the human genome could pave the way for new treatments - The Verge",
     "description": "Google’s Atlas of the human genome could pave the way for new treatments The Verge",
@@ -292,212 +306,5 @@
     ],
     "sourceType": "primary",
     "googleNewsUrl": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxOUHZCZVphYjVTRlQ4LUZjcV8wMU5GVnBWbTd3dF85NkJyN2tiQ3FQYXZjLXd6dGQ1dHNDYUs2WkFJc1VjcW90M2NNNTRhMzEtVTltSHNHUzZHckU3NnNpcGd3Mk50Wlg0OUZoekx0WE8xRmcwNHk0R0V6dVpyYmZwN2dId0U5Wk82eHg3OGpwTHpIbkhkaW9tbkJ1c0VHVndiRGt6VTNWbUp0UWg5RFRpU0ZBcjJfSkJDT2F6b1I2OG9EZUNLU0c0VFh5VllwRWJLX2Vhb1NRS0R1c1RPMlpiV1dpamc?oc=5"
-  },
-  {
-    "id": "news-lxm916",
-    "title": "Symposium: Building public sector AI capacity - TU Delft",
-    "description": "Symposium: Building public sector AI capacity TU Delft",
-    "institution": "TU Delft",
-    "category": "ai_adoption",
-    "categoryLabel": "AI Development & Adoption",
-    "url": "https://www.tudelft.nl/en/events/2026/tbm/symposium-building-public-sector-ai-capacity",
-    "sourceName": "TU Delft",
-    "publishedDate": "2026-09-07",
-    "foundDate": "2026-09-10",
-    "autoDiscovered": true,
-    "bottomLine": "TU Delft symposium on public sector AI capacity building signals policy-driven research growth; Elsevier should position Scopus/LeapSpace as tools for government-research institution partnerships on AI governance and deployment.",
-    "keyFindings": [
-      "TU Delft is hosting a symposium on building public sector AI capacity and governance capabilities.",
-      "Focus includes how government institutions can adopt, manage, and deploy AI responsibly.",
-      "Reflects growing policy demand for evidence-based AI governance frameworks in Europe.",
-      "Brings together researchers, policymakers, and government IT leaders to co-design AI capacity initiatives."
-    ],
-    "whyItMatters": "Dutch government agencies, regional authorities, and policy research institutes (CPB, SCP, PBL) increasingly need research evidence on AI governance, ethics, and implementation; Elsevier should position Scopus for tracking AI policy, governance, and ethics literature globally and LeapSpace's writing coach and claim-checking features as essential for policy briefs, regulatory impact assessments, and evidence…",
-    "impact": {
-      "novelty": 3,
-      "commercial": 4,
-      "threat": 2,
-      "urgency": 4
-    },
-    "entities": [
-      "TU Delft",
-      "Public Sector AI",
-      "AI Governance",
-      "AI Capacity Building",
-      "Government Innovation",
-      "AI Ethics"
-    ],
-    "actionItems": [
-      "Monitor TU Delft symposium outcomes and attendee list; reach out to government and policy research participants to offer Scopus/LeapSpace for AI governance research and policy synthesis.",
-      "Develop targeted pitch to Dutch government innovation offices (MinI&W, MinBZK, RvO) positioning ScienceDirect + Scopus as essential research infrastructure for evidence-based AI policy development.",
-      "Propose thought leadership partnership with TU Delft on AI governance research, positioning Elsevier as trusted research partner for emerging policy challenges."
-    ],
-    "sourceType": "primary",
-    "googleNewsUrl": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPN25rX1g2NFYxbDhCWWcyZEFxbndmbElRaWxSY1hyZGVuVU42SFJ4TENuOWVjU25rZ2Rvbm90ZXZtU3BkN24zTmRfMThiaEN6UDN4V1U5dXlkQU8wdTl0U3FTV0gwQTAwMkVWaVhOWnVSR1ZlUVRWRm5yTDVFTXFwdkg3ZWZFdnhoYTFIM21JTQ?oc=5"
-  },
-  {
-    "id": "news-3s13ho",
-    "title": "Jensen Huang says ‘AGI has arrived’ after OpenAI launches GPT-6 Astra: What makes the new AI model different? - Open Magazine",
-    "description": "Jensen Huang says ‘AGI has arrived’ after OpenAI launches GPT-6 Astra: What makes the new AI model different? Open Magazine",
-    "institution": "OpenAI",
-    "category": "competitor_announcements",
-    "categoryLabel": "Competitor Announcements",
-    "url": "https://openthemagazine.com/technology/jensen-huang-says-agi-has-arrived-after-openai-launches-gpt-6-astra-what-makes-the-new-ai-model-different",
-    "sourceName": "Open Magazine",
-    "publishedDate": "2026-09-07",
-    "foundDate": "2026-09-08",
-    "autoDiscovered": true,
-    "bottomLine": "AGI claims by Jensen Huang after GPT-6 Astra launch signal AI capabilities reaching human-level reasoning, intensifying competition for research intelligence platforms.",
-    "keyFindings": [
-      "Jensen Huang declares AGI has arrived following OpenAI's GPT-6 Astra release, marking a major capability milestone in conversational AI.",
-      "GPT-6 Astra reportedly demonstrates enhanced multimodal reasoning and contextual understanding across domains.",
-      "The announcement raises stakes for AI-assisted research tools, positioning advanced models as essential infrastructure for academic institutions.",
-      "Competitive pressure mounts on platforms offering AI-powered literature discovery and synthesis versus traditional search methods."
-    ],
-    "whyItMatters": "Dutch universities and research institutes now face urgency to adopt AI-native research platforms; LeapSpace's AI assistant must demonstrate clear advantages over general-purpose GPT-6 Astra to justify subscription costs and retain institutional market share.",
-    "impact": {
-      "novelty": 4,
-      "commercial": 5,
-      "threat": 5,
-      "urgency": 5
-    },
-    "entities": [
-      "Jensen Huang",
-      "OpenAI",
-      "GPT-6 Astra",
-      "LeapSpace",
-      "Elsevier"
-    ],
-    "actionItems": [
-      "Audit LeapSpace's AI capabilities against GPT-6 Astra benchmarks; document domain-specific research advantages in literature discovery and claim verification.",
-      "Schedule urgent briefings with key Dutch institutional clients (UvA, Erasmus, Utrecht) positioning Scopus/LeapSpace as domain-expert alternatives to general AI models.",
-      "Develop case studies showing how LeapSpace's claim-checking and research reports outperform generic GPT-6 outputs for academic rigor and citation accuracy."
-    ],
-    "sourceType": "secondary",
-    "googleNewsUrl": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQQl95Und0d2h2RDgyb3dUMVdIbWg3SWNHMFlDUDFYMmtHcGdLQldGZDBOaU4wNzFkMVRQdTEzV1M4THlvZVFnOFM2RTFabUlkUmE2ZV9jOHZqS0FuYTdvRnc5azlXU18zZEdOTDZjZEpMdU10YllNYWlzRTdJZUFBR2xaXzZ6VTByNU1vVnNzcDh6RVV4X19pWjYzbnJJOGx2Y3V1MkQ1dXVzSmJJNHZMdDJwRk91UUlXUVltUFlra1FsUjFZdFE0TnR5b3cyZWszMXpqWnl6akJtZEpV?oc=5"
-  },
-  {
-    "id": "news-4wqswm",
-    "title": "OpenAI Scientist Warns of AI Risk as GPT-6 Astra Launches - The Tech Buzz",
-    "description": "OpenAI Scientist Warns of AI Risk as GPT-6 Astra Launches The Tech Buzz",
-    "institution": "OpenAI",
-    "category": "competitor_announcements",
-    "categoryLabel": "Competitor Announcements",
-    "url": "https://www.techbuzz.ai/articles/openai-scientist-warns-of-ai-risk-as-gpt-6-astra-launches",
-    "sourceName": "The Tech Buzz",
-    "publishedDate": "2026-09-07",
-    "foundDate": "2026-09-08",
-    "autoDiscovered": true,
-    "bottomLine": "OpenAI scientist raises AI safety concerns amid GPT-6 Astra launch, highlighting governance risks that Dutch research institutions must address in AI tool adoption.",
-    "keyFindings": [
-      "An OpenAI scientist publicly warns of unspecified AI risks associated with the GPT-6 Astra deployment.",
-      "The warning suggests alignment or capability control challenges at scale in next-generation large language models.",
-      "Risk discourse adds regulatory and ethical scrutiny to institutional AI adoption decisions across Europe and Netherlands.",
-      "Universities and research bodies face pressure to adopt explainable and auditable research platforms, not black-box commercial AI."
-    ],
-    "whyItMatters": "Dutch research institutions prioritize transparency and governance; LeapSpace and Scopus can be marketed as trustworthy, auditable alternatives with explainable methods and institutional controls, addressing institutional risk-management and compliance concerns.",
-    "impact": {
-      "novelty": 3,
-      "commercial": 4,
-      "threat": 3,
-      "urgency": 4
-    },
-    "entities": [
-      "OpenAI",
-      "GPT-6 Astra",
-      "LeapSpace",
-      "Scopus",
-      "Elsevier"
-    ],
-    "actionItems": [
-      "Develop and distribute a whitepaper on LeapSpace's explainability, auditability, and compliance features for Dutch institutional procurement committees.",
-      "Contact compliance and ethics officers at major Netherlands universities; position Elsevier as the governance-safe research intelligence partner.",
-      "Highlight Scopus's curated, peer-reviewed indexing and citation standards as safer than unvetted AI-generated research synthesis."
-    ],
-    "sourceType": "secondary",
-    "googleNewsUrl": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNb3lxc2JxMVpfUDY2MzlFMnQyLWZQbWpuX21DTW8wZDZrWFRNcmxWMGU0b205QTJxMXNZeW1IOE9ISXVFUTBlakdITzZMV085N0lpcG9HVTNVQW1EZnFXdDlGa1RHQW1kLUdwamtudXhRWlZteVdFZzRFcTJQSVEyZmUzN2h0UzAxTy0zaUdlcTdKajFD?oc=5"
-  },
-  {
-    "id": "news-3wp5oc",
-    "title": "Google’s India-first AI models for agriculture | Key Details - Utkarsh Classes",
-    "description": "Google’s India-first AI models for agriculture | Key Details Utkarsh Classes",
-    "institution": "Google",
-    "category": "competitor_announcements",
-    "categoryLabel": "Competitor Announcements",
-    "url": "https://utkarsh.com/current-affairs/national/science-technology-news/google-launches-aibased-agricultural-information-tool-for-india",
-    "sourceName": "Utkarsh Classes",
-    "publishedDate": "2026-09-07",
-    "foundDate": "2026-09-08",
-    "autoDiscovered": true,
-    "bottomLine": "Google launches India-first AI agriculture models, expanding AI research tool penetration in emerging markets and signaling regional customization as competitive strategy.",
-    "keyFindings": [
-      "Google develops AI models specifically tailored for Indian agriculture use cases, demonstrating regional AI strategy beyond Western markets.",
-      "Localized AI tools address domain-specific and geographic challenges, reducing reliance on general-purpose research platforms.",
-      "The move signals competitors are building specialized research and applied AI products for emerging economies, fragmenting the global research intelligence market.",
-      "Netherlands institutions may see reduced centrality of global English-language research platforms if regional AI tools proliferate."
-    ],
-    "whyItMatters": "Netherlands research institutions risk losing competitive advantage if ScienceDirect/Scopus do not develop or partner on specialized domain AI models; the strategy underscores need for Elsevier to invest in vertical research solutions (agriculture, climate, energy) for European and global markets.",
-    "impact": {
-      "novelty": 3,
-      "commercial": 3,
-      "threat": 3,
-      "urgency": 3
-    },
-    "entities": [
-      "Google",
-      "India agriculture",
-      "LeapSpace",
-      "ScienceDirect",
-      "Scopus"
-    ],
-    "actionItems": [
-      "Research and document Google's agricultural AI model capabilities; assess threat to Elsevier's domain coverage in agriculture, climate, and sustainability research.",
-      "Explore partnerships with Dutch agricultural research institutions (Wageningen University, NLR) to co-develop specialized LeapSpace modules for crop science and agronomy.",
-      "Monitor regional AI tool adoption trends in EMEA; prepare case studies showing Scopus's global research coverage advantage over siloed regional tools."
-    ],
-    "sourceType": "secondary",
-    "googleNewsUrl": "https://news.google.com/rss/articles/CBMizAFBVV95cUxOdG43dC1ydk42Y1BsYzhkTkZLTURoTjkyazlCTko3WkEydnlSb3ljbjRwZGN6dG95Sm0zT3FuV3FuZjB5TG5OYUEybklDSE92TTlWTEc5T2ZnQmhoS0FfNzcwNjl3MGhGbHJUQ1NaRGRYM2F4VVVMc3pFVWZhN19CT09TNFdwSHJkMlNQTGJDNDBubHFOOUQ3R25hOFNab2Nmb3F3UFlBNWhnQlY0RnNjSW9ZRG1HYkFjMVMzb1BYRjdOd1VUUmgxcndxUUg?oc=5"
-  },
-  {
-    "id": "news-410a9t",
-    "title": "Netherlands secures €661m EU grants, advancing green energy and tax reforms - The Brussels Times",
-    "description": "Netherlands secures €661m EU grants, advancing green energy and tax reforms The Brussels Times",
-    "institution": null,
-    "category": "policy",
-    "categoryLabel": "Netherlands Research Policy",
-    "url": "https://www.brusselstimes.com/eu-affairs/2307221/netherlands-secures-e661m-eu-grants-advancing-green-energy-and-tax-reforms/",
-    "sourceName": "The Brussels Times",
-    "publishedDate": "2026-09-07",
-    "foundDate": "2026-09-08",
-    "autoDiscovered": true,
-    "bottomLine": "Netherlands secures €661m in EU grants for green energy and tax reform, signaling major institutional research funding surge in climate and policy domains.",
-    "keyFindings": [
-      "Netherlands receives €661 million in EU funding dedicated to green energy research and policy reform initiatives.",
-      "Significant capital injection will drive demand for literature discovery, funding tracking, and research collaboration tools in energy and sustainability sectors.",
-      "Dutch universities, research institutes, and government agencies will scale up research output in climate, renewable energy, and regulatory innovation.",
-      "Institutional research infrastructure investments create urgent need for advanced bibliometric and funding discovery platforms like LeapSpace and Scopus."
-    ],
-    "whyItMatters": "Dutch research institutions and government bodies managing €661m green energy grants will urgently need ScienceDirect for literature access, Scopus for impact tracking and collaboration mapping, and LeapSpace for funding discovery and research planning; this is a direct sales opportunity.",
-    "impact": {
-      "novelty": 2,
-      "commercial": 5,
-      "threat": 1,
-      "urgency": 5
-    },
-    "entities": [
-      "Netherlands",
-      "European Union",
-      "Green energy research",
-      "Scopus",
-      "LeapSpace",
-      "ScienceDirect"
-    ],
-    "actionItems": [
-      "Identify and contact Dutch research institutions, ministries, and energy sector bodies managing EU grant allocations; pitch bundled Scopus/LeapSpace/ScienceDirect solutions for grant management and…",
-      "Develop tailored case study on how ScienceDirect and Scopus support climate research at scale; showcase LeapSpace's funding discovery feature for identifying complementary EU and national grants.",
-      "Schedule demonstrations with key stakeholders at Wageningen, TU Delft, and Utrecht University emphasizing real-time collaboration, impact measurement, and interdisciplinary team formation."
-    ],
-    "sourceType": "secondary",
-    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPZ0xRbGVtRFlDZnJ6VTUxLTZGNDJaYmtUVk1mdzlHdmt6Q3dSbGFOWlNlTDJmNzQ0LV9UN0xLT01sWVJVdzBWcXVRcHRCc2NZaGdYQk5Fb3lRRFFHN2U4TndqX19VTDZTWFE0dl9OeF9sdzhtMzJGdGJkY3lHVVh5elkwZUZ6bktvMWlEb1c2X0d6d0ZGVDAwbDcwWGJkRWlBTG1QZjk5MUN6Z1IyWFh1SmNiV1dRV2p0WFBzRGktQzUtdw?oc=5"
   }
 ]
