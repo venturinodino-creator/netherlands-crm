@@ -1,6 +1,6 @@
 {
-  "lastRun": "2026-09-13T19:49:32.995Z",
-  "lastAddedCount": 11,
+  "lastRun": "2026-09-14T14:23:51.512Z",
+  "lastAddedCount": 0,
   "sources": 53,
   "issues": [
     {
@@ -32,12 +32,32 @@
       "note": "no people extracted"
     },
     {
-      "instId": "astron",
-      "url": "https://www.astron.nl/about/organisation/management/",
-      "error": "HTTP 502"
+      "instId": "wur",
+      "url": "https://www.wur.nl/en/library/wur-library-at-a-glance",
+      "error": "fetch failed"
     },
     {
-      "instId": "astron",
+      "instId": "wur",
+      "url": "https://www.wur.nl/en/partner-up-for-impact/innovation-entrepreneurship",
+      "error": "fetch failed"
+    },
+    {
+      "instId": "wur",
+      "url": "https://www.wur.nl/en/about-wur/management-organisation.htm",
+      "error": "fetch failed"
+    },
+    {
+      "instId": "wur",
+      "url": "https://www.wur.nl/en/chair-groups/artificial-intelligence-group/people",
+      "error": "fetch failed"
+    },
+    {
+      "instId": "wur",
+      "url": "https://www.wur.nl/en/persons/ir-phj-peter-jongebloed",
+      "error": "fetch failed"
+    },
+    {
+      "instId": "wur",
       "note": "no people extracted"
     },
     {
@@ -50,9 +70,18 @@
       "note": "no people extracted"
     },
     {
-      "instId": "sanquin",
-      "url": "https://www.sanquin.nl/en/about-sanquin/management-supervision",
+      "instId": "nikhef",
+      "url": "https://www.nikhef.nl/en/nikhef/organisation/",
       "error": "fetch failed"
+    },
+    {
+      "instId": "nikhef",
+      "url": "https://www.nikhef.nl/en/director/",
+      "error": "fetch failed"
+    },
+    {
+      "instId": "nikhef",
+      "note": "no people extracted"
     },
     {
       "instId": "umcg",
