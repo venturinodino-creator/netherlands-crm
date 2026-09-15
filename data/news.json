@@ -1,5 +1,33 @@
 [
   {
+    "id": "news-s3m7zo",
+    "title": "OpenAI Launches Data Agent as Enterprise Analytics Race Heats Up - HPCwire",
+    "description": "OpenAI Launches Data Agent as Enterprise Analytics Race Heats Up HPCwire",
+    "institution": "OpenAI",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://www.hpcwire.com/bigdatawire/2026/09/11/openai-launches-data-agent-as-enterprise-analytics-race-heats-up/",
+    "sourceName": "HPCwire",
+    "publishedDate": "2026-09-11",
+    "foundDate": "2026-09-15",
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPNFlkR1BzamR2QTNlYmRfOXh6Wnk0YVJUeFIzUmpOXzlQcndvOXhCSlI3N2hPLUxTY1Z0TmlWSGtqT2huc0xCclFEQi1xNDFtVE0tcDlTZ2ZQbXI2X2VHcHhNeG9ndkxMZHFjUmU5cE1Ecy1fV2F5aURJak1obThJVnBSMVdOX2ZBR0VBUXM3WUpQUU1lM2lWcW9IeUJ3LU4zbk54WGQ3RXpZMHluR09CMnp3?oc=5"
+  },
+  {
+    "id": "news-6j9zjv",
+    "title": "University of Twente's TechMed Centre becomes Nordic Proof Partner - Universiteit Twente",
+    "description": "University of Twente's TechMed Centre becomes Nordic Proof Partner Universiteit Twente",
+    "institution": "University of Twente",
+    "category": "ai_adoption",
+    "categoryLabel": "AI Development & Adoption",
+    "url": "https://www.utwente.nl/en/techmed/news/overview-news/2026/9/1150293/university-of-twentes-techmed-centre-becomes-nordic-proof-partner",
+    "sourceName": "Universiteit Twente",
+    "publishedDate": "2026-09-10",
+    "foundDate": "2026-09-15",
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPWVZCQmk3SEFMUlhaLUlLNENHLW9Iamh0b3hCVi00VTFIUzloTTJPRUNXWkxzLXpJRjF0cHBCOFIyOW43MDRjWmliTzBsc3lMZnZNVDA3NVRncWNhQWY5U212VzJCWHUwYmV0MDhjWXA0d2Mtd2lCcGFKVmVnX0Vub3pGbEVnZHNDVUJ3NUVtblQ2bFNRX0QtdXNqbjlDbDVnMnVQVVM1bkZGTWdqZXpnMV81R0tBS3ZSbk93NVl0NTZ3Wl90RTZJRVJPQWJHdw?oc=5"
+  },
+  {
     "id": "news-jdm6rv",
     "title": "OpenAI scientist warns AI risks like bioweapons as GPT-6 Astra launches, raising concerns for NVIDIA investors. - Pluang",
     "description": "OpenAI scientist warns AI risks like bioweapons as GPT-6 Astra launches, raising concerns for NVIDIA investors. Pluang",
@@ -11,49 +39,34 @@
     "publishedDate": "2026-09-09",
     "foundDate": "2026-09-14",
     "autoDiscovered": true,
-    "googleNewsUrl": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQYU9wYkxITnh6M3NyUXVzemFreVNfbmt1dzlIWHppakUxbEp6bGRCY2NkbU5wVkJ2bXc3NTY3SXFCcU4xU2lQaUJOMVRVT0UwbURqOTMxY19JR2JUR1BhSUl2eFV6dzM1UFJKaWJIOE5ubHNmd1d0ZzVNUVpneC1hTmNKY1Nrb3NqZFRTRjdTWG9xdFVUN05vT3lvaFJSb0U2RHphVUlGLTA5NGtn?oc=5"
-  },
-  {
-    "id": "news-tpdosy",
-    "title": "Google’s Atlas of the human genome could pave the way for new treatments - The Verge",
-    "description": "Google’s Atlas of the human genome could pave the way for new treatments The Verge",
-    "institution": "Google",
-    "category": "competitor_announcements",
-    "categoryLabel": "Competitor Announcements",
-    "url": "https://www.theverge.com/ai-artificial-intelligence/991180/google-launches-alpha-genome-atlas",
-    "sourceName": "The Verge",
-    "publishedDate": "2026-09-08",
-    "foundDate": "2026-09-11",
-    "autoDiscovered": true,
-    "bottomLine": "Google's comprehensive human genome atlas could accelerate precision medicine discovery, but Elsevier must demonstrate superior research discovery depth versus Google's free tools.",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQYU9wYkxITnh6M3NyUXVzemFreVNfbmt1dzlIWHppakUxbEp6bGRCY2NkbU5wVkJ2bXc3NTY3SXFCcU4xU2lQaUJOMVRVT0UwbURqOTMxY19JR2JUR1BhSUl2eFV6dzM1UFJKaWJIOE5ubHNmd1d0ZzVNUVpneC1hTmNKY1Nrb3NqZFRTRjdTWG9xdFVUN05vT3lvaFJSb0U2RHphVUlGLTA5NGtn?oc=5",
+    "bottomLine": "OpenAI warns of AI risks including bioweapons as GPT-6 Astra launches, intensifying competition and raising governance concerns for research institutions.",
     "keyFindings": [
-      "Google has created a detailed atlas of the human genome mapping cell types and gene expression patterns across tissues.",
-      "The atlas aims to enable new therapeutic discoveries and personalized medicine approaches.",
-      "This represents a major free, publicly accessible genomics resource that competes with subscription-based research platforms.",
-      "Precision medicine research will likely increase demand for integrated literature and genomics data discovery."
+      "OpenAI scientist publicly raised biosecurity and dual-use AI risks ahead of GPT-6 Astra deployment, signaling internal concern about capability risks.",
+      "GPT-6 Astra launch represents significant capability leap, potentially outpacing competitor tools and shifting AI assistant market dynamics.",
+      "Risk warnings highlight growing regulatory/governance scrutiny of advanced AI, affecting how research institutions must manage AI-assisted workflows.",
+      "NVIDIA investor concerns suggest market volatility around AI safety narratives may impact tech infrastructure decisions at research institutions."
     ],
-    "whyItMatters": "Dutch biomedical institutions (UMC Utrecht, Leiden UMC, Erasmus MC) need to compete in precision medicine research; Elsevier must highlight how ScienceDirect/Scopus/LeapSpace integrates clinical literature with genomic insights faster than Google Scholar, positioning premium curation and expert-vetted sources as essential complements to free genomics tools.",
+    "whyItMatters": "Dutch research institutions and medical centers using AI-assisted tools (like LeapSpace) now face governance and risk-management pressures. Elsevier can position Scopus/LeapSpace as safety-auditable, institution-controlled alternatives to consumer AI, with institutional compliance and attribution tracking built in.",
     "impact": {
-      "novelty": 4,
-      "commercial": 4,
+      "novelty": 2,
+      "commercial": 3,
       "threat": 4,
-      "urgency": 4
+      "urgency": 3
     },
     "entities": [
-      "Google",
-      "Human Genome Atlas",
-      "Precision Medicine",
-      "Cell Type Mapping",
-      "Gene Expression",
-      "The Verge"
+      "OpenAI",
+      "GPT-6 Astra",
+      "NVIDIA",
+      "LeapSpace",
+      "Elsevier"
     ],
     "actionItems": [
-      "Research how ScienceDirect/Scopus can bundle genomics data with clinical literature discovery to differentiate from Google's free offering.",
-      "Contact major Dutch biomedical centers to position LeapSpace as the research workspace connecting genome findings to validated clinical evidence.",
-      "Develop a competitive comparison showing subscription value in data integration, validation, and expert curation beyond free genomics tools."
+      "Research how Dutch universities (UvA, Erasmus, Leiden) are responding to AI governance demands; position LeapSpace as compliant research assistant.",
+      "Benchmark LeapSpace's safety features, transparency, and audit trails vs. OpenAI/ChatGPT for institutional risk-averse buyers.",
+      "Prepare governance-focused sales materials addressing bioethics, dual-use research, and institutional liability in AI-assisted research workflows."
     ],
-    "sourceType": "secondary",
-    "googleNewsUrl": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOUlctSm91ckpOSzRmSzVhUTJfNzFmcTVFLTVFTEpzT252MEJHMl8xMzZ6LTM2WC1ZU3BKUGJnbFNQUjlDMFpqR3RWV0dtX2NLR1hfYTg0Q25JLUZGTWZpSWRGXzI0UkM5VFRhSUE2UmxSYVZXRjBCUlFEM2tLN21MMmdVWXNnWHg4U3JZTk9SZ3Q1bEM3V0xZUQ?oc=5"
+    "sourceType": "secondary"
   },
   {
     "id": "news-1vf95d",
@@ -222,48 +235,6 @@
     ],
     "sourceType": "secondary",
     "googleNewsUrl": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOMUdxVG5QVVRSLWtpeFNlb1JEVDd4Q2FISWZOSGdRblJsUnBBX1Z4YXVhZ08yQnJNakZJdHB6NnRKczZVZzJEdzRFUE1yV3FFVkMxRHpiY2drWUF0SjNzZGhJSlB1cXNCc25BRVpTTEJoTHpfMHJOWEhGSXZKVUNsZ0lCNlI5T3V6ekpCdGFWaEZsNV9ZTjhPaWstRXlMdGZERUgxOTlaTjF2eHlUOUY2R0FGMldHcXp2dUlVV3k3MDZkcVVCdzNQX0FtZWpHZlZnWWVzekQ2bS1zRk43cjZBbFVLRQ?oc=5"
-  },
-  {
-    "id": "news-a0z0xb",
-    "title": "Students, AI and the future of education - Maastricht University",
-    "description": "Students, AI and the future of education Maastricht University",
-    "institution": "Maastricht University",
-    "category": "ai_adoption",
-    "categoryLabel": "AI Development & Adoption",
-    "url": "https://www.maastrichtuniversity.nl/news/students-ai-and-future-education",
-    "sourceName": "Maastricht University",
-    "publishedDate": "2026-09-08",
-    "foundDate": "2026-09-10",
-    "autoDiscovered": true,
-    "bottomLine": "Maastricht University's AI-education research signals growing demand for tools integrating learning outcomes with research discovery; Elsevier should explore partnerships with education-focused institutions on LeapSpace adoption.",
-    "keyFindings": [
-      "Maastricht University is researching the role of AI and students in shaping the future of education.",
-      "Focus includes how AI can personalize learning, support student research, and enhance pedagogical outcomes.",
-      "Research emphasizes integration of technology into student workflows and institutional learning strategies.",
-      "Education-focused research will increase demand for accessible, student-friendly research discovery tools."
-    ],
-    "whyItMatters": "Maastricht and other Dutch teaching-focused universities (Open University NL, Fontys, HvA) are actively integrating AI into curricula and student support; Elsevier should position LeapSpace as a student-facing research workspace that improves research literacy, accelerates literature reviews, and teaches evidence-based inquiry—differentiating from generic LLMs by integrating with institutional learning management…",
-    "impact": {
-      "novelty": 3,
-      "commercial": 3,
-      "threat": 2,
-      "urgency": 3
-    },
-    "entities": [
-      "Maastricht University",
-      "AI in Education",
-      "Student Learning",
-      "Personalized Learning",
-      "Research Literacy",
-      "Educational Technology"
-    ],
-    "actionItems": [
-      "Contact Maastricht's education research center and learning technology office to explore LeapSpace pilot programs targeting graduate students and research support services.",
-      "Develop a student-use case showing how LeapSpace accelerates literature reviews, teaches source verification, and scaffolds research skills versus generic ChatGPT.",
-      "Pitch bundle of ScienceDirect + Scopus + LeapSpace to Dutch universities as student research infrastructure supporting institutional AI-education transformation."
-    ],
-    "sourceType": "primary",
-    "googleNewsUrl": "https://news.google.com/rss/articles/CBMifkFVX3lxTE1kRXdpSG1OWnA2andyUUVFWkNPenhaYjZPRkduakFQajl1Nk9UNTB1UGFybThvSjEzM2JXUXA3anJyTlJpdC1ibkt0Q1B0RTFVc3hjeF9ONFlwRVpmdlBpS21QeUpqZ0tiTHpfSm5qOTFBYzY5d1JpcWlpdUxVZw?oc=5"
   },
   {
     "id": "news-a1lq7y",

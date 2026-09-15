@@ -1,5 +1,103 @@
 [
   {
+    "id": "news-a0z0xb",
+    "title": "Students, AI and the future of education - Maastricht University",
+    "description": "Students, AI and the future of education Maastricht University",
+    "institution": "Maastricht University",
+    "category": "ai_adoption",
+    "categoryLabel": "AI Development & Adoption",
+    "url": "https://www.maastrichtuniversity.nl/news/students-ai-and-future-education",
+    "sourceName": "Maastricht University",
+    "publishedDate": "2026-09-08",
+    "foundDate": "2026-09-10",
+    "autoDiscovered": true,
+    "bottomLine": "Maastricht University's AI-education research signals growing demand for tools integrating learning outcomes with research discovery; Elsevier should explore partnerships with education-focused institutions on LeapSpace adoption.",
+    "keyFindings": [
+      "Maastricht University is researching the role of AI and students in shaping the future of education.",
+      "Focus includes how AI can personalize learning, support student research, and enhance pedagogical outcomes.",
+      "Research emphasizes integration of technology into student workflows and institutional learning strategies.",
+      "Education-focused research will increase demand for accessible, student-friendly research discovery tools."
+    ],
+    "whyItMatters": "Maastricht and other Dutch teaching-focused universities (Open University NL, Fontys, HvA) are actively integrating AI into curricula and student support; Elsevier should position LeapSpace as a student-facing research workspace that improves research literacy, accelerates literature reviews, and teaches evidence-based inquiry—differentiating from generic LLMs by integrating with institutional learning management…",
+    "impact": {
+      "novelty": 3,
+      "commercial": 3,
+      "threat": 2,
+      "urgency": 3
+    },
+    "entities": [
+      "Maastricht University",
+      "AI in Education",
+      "Student Learning",
+      "Personalized Learning",
+      "Research Literacy",
+      "Educational Technology"
+    ],
+    "actionItems": [
+      "Contact Maastricht's education research center and learning technology office to explore LeapSpace pilot programs targeting graduate students and research support services.",
+      "Develop a student-use case showing how LeapSpace accelerates literature reviews, teaches source verification, and scaffolds research skills versus generic ChatGPT.",
+      "Pitch bundle of ScienceDirect + Scopus + LeapSpace to Dutch universities as student research infrastructure supporting institutional AI-education transformation."
+    ],
+    "sourceType": "primary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMifkFVX3lxTE1kRXdpSG1OWnA2andyUUVFWkNPenhaYjZPRkduakFQajl1Nk9UNTB1UGFybThvSjEzM2JXUXA3anJyTlJpdC1ibkt0Q1B0RTFVc3hjeF9ONFlwRVpmdlBpS21QeUpqZ0tiTHpfSm5qOTFBYzY5d1JpcWlpdUxVZw?oc=5"
+  },
+  {
+    "id": "news-tpdosy",
+    "title": "Google’s Atlas of the human genome could pave the way for new treatments - The Verge",
+    "description": "Google’s Atlas of the human genome could pave the way for new treatments The Verge",
+    "institution": "Google",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://www.theverge.com/ai-artificial-intelligence/991180/google-launches-alpha-genome-atlas",
+    "sourceName": "The Verge",
+    "publishedDate": "2026-09-08",
+    "foundDate": "2026-09-11",
+    "autoDiscovered": true,
+    "bottomLine": "Google's comprehensive human genome atlas could accelerate precision medicine discovery, but Elsevier must demonstrate superior research discovery depth versus Google's free tools.",
+    "keyFindings": [
+      "Google has created a detailed atlas of the human genome mapping cell types and gene expression patterns across tissues.",
+      "The atlas aims to enable new therapeutic discoveries and personalized medicine approaches.",
+      "This represents a major free, publicly accessible genomics resource that competes with subscription-based research platforms.",
+      "Precision medicine research will likely increase demand for integrated literature and genomics data discovery."
+    ],
+    "whyItMatters": "Dutch biomedical institutions (UMC Utrecht, Leiden UMC, Erasmus MC) need to compete in precision medicine research; Elsevier must highlight how ScienceDirect/Scopus/LeapSpace integrates clinical literature with genomic insights faster than Google Scholar, positioning premium curation and expert-vetted sources as essential complements to free genomics tools.",
+    "impact": {
+      "novelty": 4,
+      "commercial": 4,
+      "threat": 4,
+      "urgency": 4
+    },
+    "entities": [
+      "Google",
+      "Human Genome Atlas",
+      "Precision Medicine",
+      "Cell Type Mapping",
+      "Gene Expression",
+      "The Verge"
+    ],
+    "actionItems": [
+      "Research how ScienceDirect/Scopus can bundle genomics data with clinical literature discovery to differentiate from Google's free offering.",
+      "Contact major Dutch biomedical centers to position LeapSpace as the research workspace connecting genome findings to validated clinical evidence.",
+      "Develop a competitive comparison showing subscription value in data integration, validation, and expert curation beyond free genomics tools."
+    ],
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOUlctSm91ckpOSzRmSzVhUTJfNzFmcTVFLTVFTEpzT252MEJHMl8xMzZ6LTM2WC1ZU3BKUGJnbFNQUjlDMFpqR3RWV0dtX2NLR1hfYTg0Q25JLUZGTWZpSWRGXzI0UkM5VFRhSUE2UmxSYVZXRjBCUlFEM2tLN21MMmdVWXNnWHg4U3JZTk9SZ3Q1bEM3V0xZUQ?oc=5"
+  },
+  {
+    "id": "news-7tsxtq",
+    "title": "Netherlands to target illegal gambling with Meta & Google - AffPapa",
+    "description": "Netherlands to target illegal gambling with Meta & Google AffPapa",
+    "institution": "Google",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://affpapa.com/netherlands-to-fight-illegal-gambling-with-meta-and-google/",
+    "sourceName": "AffPapa",
+    "publishedDate": "2026-09-08",
+    "foundDate": "2026-09-15",
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNR0x3YXdlSzREZldJaXZQa2ExQ2RySzlEaWs4OEhvMF9GdUxGX0dXbzZpRXBpU2d6Ui1WeDZSMGViM1o0N1UtYU5nUG91ZUdSV0JSMDF5N1Z3R04zdjh1RGhhWGZLVWJpc2F1ZmFmYWJBUEFSeTFLNkdXdXg3bU4tUE43cGxSdw?oc=5"
+  },
+  {
     "id": "news-410a9t",
     "title": "Netherlands secures €661m EU grants, advancing green energy and tax reforms - The Brussels Times",
     "description": "Netherlands secures €661m EU grants, advancing green energy and tax reforms The Brussels Times",
