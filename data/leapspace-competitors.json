@@ -356,5 +356,33 @@
     "sourceName": "Google Workspace Updates blog",
     "autoDiscovered": true,
     "eventDate": "2025-12-01"
+  },
+  {
+    "id": "auto-cactus-communications-paperpal-write",
+    "company": "Cactus Communications",
+    "product": "Paperpal Write",
+    "addedDate": "2026-09-15",
+    "eventDate": "2025-12-15",
+    "elements": [
+      "writingCoach"
+    ],
+    "howItCompetes": "Paperpal shipped a product update announcing Paperpal Write, an AI writing assistant built specifically for academic authors and researchers. It sits in the same drafting-workspace category as LeapSpace's Writing Coach, offering researchers an AI-supported environment for composing and refining manuscript text. Cactus Communications is an established academic-services vendor, so this is a direct commercial alternative rather than a speculative tool.",
+    "sourceUrl": "https://paperpal.com/blog/news-updates/product-updates/paperpal-write-ai-writing-assistant-for-academics",
+    "sourceName": "Paperpal product updates",
+    "autoDiscovered": true
+  },
+  {
+    "id": "auto-grantbite-grantbite-ai-platform",
+    "company": "GrantBite",
+    "product": "GrantBite AI Platform",
+    "addedDate": "2026-09-15",
+    "eventDate": "2026-01-17",
+    "elements": [
+      "fundingDiscovery"
+    ],
+    "howItCompetes": "GrantBite announced the launch of an AI platform with grant discovery, matching and management features. The discovery and matching capability overlaps directly with LeapSpace's Funding Discovery tab, which surfaces active and recurring funding opportunities from government and private funders. Its added application-management layer extends beyond what LeapSpace currently offers for funding workflows.",
+    "sourceUrl": "https://tech.einnews.com/pr_news/884097304/grantbite-launches-ai-platform-with-advanced-grant-discovery-matching-and-management-features",
+    "sourceName": "EIN Presswire / Technology Today",
+    "autoDiscovered": true
   }
 ]

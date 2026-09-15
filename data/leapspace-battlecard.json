@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-29T10:28:01.770Z",
+  "generatedAt": "2026-09-15T12:29:26.265Z",
   "entries": {
     "clarivate-wos-research-assistant": {
       "whatTheyDid": "Clarivate built an agentic research workspace on Web of Science to match LeapSpace's end-to-end literature discovery → funding → proposal workflow. They're now positioning as a direct institutional alternative with their own citation foundation and multi-step research guides.",
@@ -84,17 +84,25 @@
     "auto-clarivate-proquest-research-assistant": {
       "whatTheyDid": "Clarivate embedded generative AI into ProQuest Central to generate topic overviews with source links and added document-level conversation in mid-2025, directly attacking search discovery and single-document Q&A. They're bundling AI assistance into their existing platform to lock in ProQuest subscribers.",
       "counter": "LeapSpace's Literature Search & Discovery returns structured, referenced answers across ScienceDirect/Scopus with Trust Cards & Claim Radar validation—so users don't just get AI summaries, they get verification that claims actually match the source evidence. For deeper single-document work, Reading Assistant pairs with Deep Research Reports to surface contradictions and evidence gaps ProQuest's co"
+    },
+    "auto-cactus-communications-paperpal-write": {
+      "whatTheyDid": "Cactus launched Paperpal Write, a dedicated AI drafting workspace for academic manuscripts that directly mirrors LeapSpace's Writing Coach feature. They're positioning themselves as the specialized writing-only alternative for researchers who want focused composition support.",
+      "counter": "LeapSpace's Writing Coach sits inside a unified research workspace—pair it with Trust Cards & Claim Radar to show how authors can pressure-test their arguments *and* validate claims against live research in one tab-switch, something a standalone writing tool can't do."
+    },
+    "auto-grantbite-grantbite-ai-platform": {
+      "whatTheyDid": "GrantBite launched an AI platform combining grant discovery, matching, and application management—directly competing with LeapSpace's Funding Discovery tab but adding workflow management that LeapSpace doesn't yet cover. They're positioning as an end-to-end funding solution.",
+      "counter": "Lead with Funding Discovery as the research-first entry point: LeapSpace surfaces opportunities *while* you're actively building your research narrative across Literature Search, Author Search, and Writing Coach, so grant matching happens in context rather than as a standalone silo tool."
     }
   },
   "executiveSummary": {
-    "headline": "16 AI research tools from 15 companies (July–Aug 2026) now overlap LeapSpace's 8 tabs, with Literature Search & Discovery the most contested feature.",
-    "pressurePoint": "Literature Search & Discovery faces 10 direct overlaps; Trust Cards & Claim Radar faces 4; Deep Research Reports faces 6. Discovery is the battleground.",
+    "headline": "16 competitive AI research tools from 15 companies, launched July–Aug 2026, targeting LeapSpace's core workflows.",
+    "pressurePoint": "Literature Search & Discovery faces 10 direct overlaps—the most concentrated pressure point. Trust/Claim validation (3 overlaps) and Deep Research Reports (6 overlaps) also heavily contested.",
     "topThreats": [
-      "Clarivate Web of Science Research Assistant (Aug 2026): 1:1 flagship rival built on Web of Science Core Collection; agentic guides and topic exploration directly mirror LeapSpace's core workflow.",
-      "Elicit Research Agent Pro (Aug 2026): Autonomous extraction across 125M+ papers + 545K+ clinical trials into a structured workspace—faster ingestion than LeapSpace's RAG-first approach for literature synthesis.",
-      "SciSpace Research Workspace (Aug 2026): Broadest multi-agent challenger; 280M+ papers + Google Scholar + PubMed querying; covers literature search, writing coach, and deep research in one integrated platform."
+      "Clarivate Web of Science Research Assistant: 1:1 flagship rival built on WoS Core Collection with agentic topic/journal/review guides—same strategic footprint as LeapSpace on ScienceDirect/Scopus.",
+      "SciSpace Research Workspace: Broadest multi-agent challenger spanning literature search, writing coach, and deep research across 280M+ papers—directly replicates LeapSpace's bundled workspace model.",
+      "Ai2 Asta: Free, nonprofit, open-source unified research assistant folding Scholar QA into 108M+ abstracts—undercuts LeapSpace's pricing model rather than feature set, highest adoption risk."
     ],
-    "strength": "LeapSpace bundles 8 integrated tabs with ScienceDirect + Scopus foundation and Elsevier's content trust; no competitor yet bundles this breadth—most target 1–3 tabs individually, leaving workflow fragmentation as LeapSpace's defensible ecosystem advantage."
+    "strength": "LeapSpace's integrated 8-tab workspace (Literature, Author, Funding, Writing Coach, Trust, Deep Reports, Reading Assistant, Compare) remains the only purpose-built agentic suite covering the full researcher lifecycle—no competitor bundles this breadth."
   },
-  "executiveSummaryDate": "2026-08-29T10:28:01.770Z"
+  "executiveSummaryDate": "2026-09-15T12:29:26.265Z"
 }
