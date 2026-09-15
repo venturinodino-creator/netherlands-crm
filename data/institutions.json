@@ -1,5 +1,12 @@
 [
  {
+  "id": "amolf",
+  "name": "AMOLF",
+  "short": "AMOLF",
+  "type": "research",
+  "city": "Amsterdam"
+ },
+ {
   "id": "aighd",
   "name": "Amsterdam Institute for Global Health and Development",
   "short": "AIGHD",
@@ -98,6 +105,13 @@
   "city": "Utrecht"
  },
  {
+  "id": "ihedelft",
+  "name": "IHE Delft Institute for Water Education",
+  "short": "IHE Delft",
+  "type": "university",
+  "city": "Delft"
+ },
+ {
   "id": "icj",
   "name": "International Court of Justice",
   "short": "ICJ",
@@ -138,6 +152,13 @@
   "short": "UM",
   "type": "university",
   "city": "Maastricht"
+ },
+ {
+  "id": "mpi",
+  "name": "Max Planck Institute for Psycholinguistics",
+  "short": "MPI",
+  "type": "research",
+  "city": "Nijmegen"
  },
  {
   "id": "mmc",
