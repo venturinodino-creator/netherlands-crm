@@ -1,10 +1,16 @@
 {
-  "lastRun": "2026-09-16T12:13:49.835879Z",
+  "lastRun": "2026-09-17T12:15:36.020226Z",
   "lastNewCount": 0,
-  "sourcesReached": 9,
+  "sourcesReached": 8,
   "sourcesTotal": 9,
-  "itemsExamined": 189,
-  "failedSources": [],
+  "itemsExamined": 160,
+  "failedSources": [
+    {
+      "institution": "SURF",
+      "url": "https://www.surf.nl/en/news",
+      "error": "<urlopen error [Errno 101] Network is unreachable>"
+    }
+  ],
   "seenUrls": [
     "https://library4research.tudl.tudelft.nl/2026/03/18/webinar-scival-ahead-smart-ai-summaries-and-more/?utm_source=rss&utm_medium=rss&utm_campaign=webinar-scival-ahead-smart-ai-summaries-and-more",
     "https://library4research.tudl.tudelft.nl/2026/05/12/master-research-insights-with-dimensions-101-and-new-tutorials/?utm_source=rss&utm_medium=rss&utm_campaign=master-research-insights-with-dimensions-101-and-new-tutorials",
