@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-09-16T12:47:40.488Z",
+  "lastRun": "2026-09-17T12:47:00.919Z",
   "lastAddedCount": 0,
   "sources": 53,
   "issues": [
@@ -65,9 +65,9 @@
       "note": "no people extracted"
     },
     {
-      "instId": "sanquin",
-      "url": "https://www.sanquin.nl/en/about-sanquin/management-supervision",
-      "error": "fetch failed"
+      "instId": "radboudumc",
+      "url": "https://www.radboudumc.nl/en/research/grant-support-office/gso-services",
+      "error": "This operation was aborted"
     },
     {
       "instId": "umcg",
