@@ -49,34 +49,26 @@ COUNTRY = "Netherlands"
 # Sources verified reachable on 2026-09-12. "feed" entries are RSS/Atom;
 # "html" entries are news index pages scraped for headline links.
 SOURCES = [
-    # Feeds — verified 2026-09-12
+    # Widened on 2026-09-17: nine sources had produced four announcements in
+    # six months, the newest from March. SURF's site is unreachable from the
+    # GitHub runners (Errno 101); its feed is kept alongside in case that
+    # changes, and the failure shows in the run summary either way.
     {"institution": "Radboud University", "url": "https://www.ru.nl/en/staff/news/feed", "type": "feed"},
     {"institution": "TU Delft Library", "url": "https://library4research.tudl.tudelft.nl/feed/", "type": "feed"},
     {"institution": "Tilburg University", "url": "https://www.tilburguniversity.edu/rss.xml", "type": "feed"},
     {"institution": "Maastricht University", "url": "https://www.maastrichtuniversity.nl/rss.xml", "type": "feed"},
-    # No feed published — headline extraction from the news index
-    {"institution": "University of Groningen Library", "url": "https://www.rug.nl/library/news/", "type": "html"},
+    {"institution": "University of Groningen Library", "url": "https://www.rug.nl/library/news/index!rss", "type": "feed"},
     {"institution": "Leiden University Libraries", "url": "https://www.library.universiteitleiden.nl/news", "type": "html"},
     {"institution": "University of Twente (LISA)", "url": "https://www.utwente.nl/en/service-portal/news/", "type": "html"},
-    # SURF negotiates the national Elsevier and Scopus agreements, so it is
-    # the single highest-value non-university source here.
-    #
-    # It failed once from a GitHub runner on 2026-09-12 with Errno 101
-    # (network unreachable) while working fine elsewhere, which looked like
-    # a datacentre-range block. It was not: with the retry added in the same
-    # change it has reached 9/9 from the runners since. Treat that Errno 101
-    # as the transient failure it was, and do not drop SURF on the strength
-    # of one bad run — failedSources in the state file is the place to check
-    # whether a source is genuinely dead or just had a bad morning.
-    #
-    # UKB below covers overlapping national ground either way, so a real SURF
-    # outage would cost coverage rather than the whole signal.
-    {"institution": "SURF", "url": "https://www.surf.nl/en/news", "type": "html"},
-    # Open Science NL is allowed by its robots.txt but its server returns
-    # 403 to this scanner's user agent. That is the site declining automated
-    # access, and the fix is not to disguise the scanner as a browser, so it
-    # is left out.
+    {"institution": "SURF", "url": "https://www.surf.nl/en/rss", "type": "feed"},
     {"institution": "UKB (university library consortium)", "url": "https://www.ukb.nl/", "type": "html"},
+    {"institution": "University of Amsterdam Library", "url": "https://uba.uva.nl/en/news", "type": "html"},
+    {"institution": "Erasmus University Library", "url": "https://www.eur.nl/en/library/news", "type": "html"},
+    {"institution": "Utrecht University Library", "url": "https://www.uu.nl/en/university-library", "type": "html"},
+    {"institution": "Wageningen University Library", "url": "https://www.wur.nl/en/library.htm", "type": "html"},
+    {"institution": "TU Delft Library (site)", "url": "https://www.tudelft.nl/en/library", "type": "html"},
+    {"institution": "KNAW", "url": "https://www.knaw.nl/en/news", "type": "html"},
+    {"institution": "openaccess.nl", "url": "https://www.openaccess.nl/en", "type": "html"},
 ]
 
 MAX_STORED   = 400
@@ -100,6 +92,31 @@ STRONG = [
     "symplectic", "worktribe", "esploro", "openalex", "dimensions",
     "bibliometric", "bibliometrisch", "bibliometrie", "bibliometrisk",
     "scientometric", "metis",
+    # Library-platform and research-tool vendors that sit next to Elsevier in
+    # the same budgets, added 2026-09-17.
+    "altmetric", "figshare", "mendeley", "digital commons", "ex libris",
+    "primo", "leganto", "ebsco", "proquest", "orcid", "overton",
+    "lens.org", "researchfish", "research professional",
+]
+
+# Licensing or subscription language next to research-content context also
+# fires: a library announcing a cancelled or renewed publisher deal is exactly
+# the kind of announcement this scan exists for, and none of it names a
+# system. Added 2026-09-17 after the strong-term-only rule produced nothing
+# for Denmark and Belgium in five days.
+LICENSING = [
+    "subscription", "subscriptions", "licence", "license", "licensing",
+    "read-and-publish", "read and publish", "publish-and-read",
+    "transformative agreement", "open access agreement", "publisher agreement",
+    "big deal", "cancel", "cancellation", "cancelled", "renewal", "renewed",
+    "abonnement", "licens", "aftale", "overeenkomst", "accord", "opzegging",
+]
+CONTENT_CONTEXT = [
+    "publisher", "publishers", "journal", "journals", "database", "databases",
+    "e-resources", "electronic resources", "e-journals", "citation",
+    "impact factor", "research support", "research data management",
+    "open access", "open science", "scholarly", "forlag", "tidsskrift",
+    "uitgever", "tijdschrift", "éditeur", "revue", "revues",
 ]
 
 # PROCUREMENT + SYSTEM together also fire, which is what catches a headline
@@ -116,6 +133,14 @@ SYSTEM = [
     "publication database", "publicatiedatabank", "repository",
     "library system", "bibliotheeksysteem", "discovery system",
     "research data", "onderzoeksdata", "research analytics",
+]
+
+# "Alma" (Ex Libris' library platform) is just as hopeless: KU Leuven's
+# canteens are called Alma and "alma mater" is everywhere, so it only counts
+# next to a library-system qualifier.
+ALMA_QUALIFIERS = [
+    "ex libris", "library system", "library platform", "catalogue", "catalog",
+    "discovery", "leganto", "primo", "bibliotheeksysteem", "bibliotekssystem",
 ]
 
 # "Pure" is hopeless on its own in news text ("pure research", "pure maths"),
@@ -172,6 +197,14 @@ def is_signal(title: str, summary: str = "") -> tuple:
     syst = _has(SYSTEM, text)
     if proc and syst:
         return True, f"{proc} + {syst}", "procurement language on a research system"
+
+    lic = _has(LICENSING, text)
+    ctx = _has(CONTENT_CONTEXT, text)
+    if lic and ctx:
+        return True, f"{lic} + {ctx}", "licensing language around research content"
+
+    if _has(["alma"], text) and _has(ALMA_QUALIFIERS, text):
+        return True, "alma", "Ex Libris Alma in a library-system context"
 
     if _has(["pure"], text) and _has(PURE_QUALIFIERS, text):
         return True, "pure", "Elsevier Pure in a research-information context"
