@@ -1,41 +1,43 @@
 [
   {
-    "id": "news-gapqlu",
-    "title": "IEEE Unveils the IEEE Xplore® AI Research Suite™: A New AI Assistant Built on Verified, Expert-Vetted Research - PR Newswire",
-    "description": "IEEE Unveils the IEEE Xplore® AI Research Suite™: A New AI Assistant Built on Verified, Expert-Vetted Research PR Newswire",
-    "institution": "IEEE",
-    "category": "competitor_announcements",
-    "categoryLabel": "Competitor Announcements",
-    "url": "https://www.prnewswire.com/news-releases/ieee-unveils-the-ieee-xplore-ai-research-suite-a-new-ai-assistant-built-on-verified-expert-vetted-research-302874617.html",
-    "sourceName": "PR Newswire",
-    "publishedDate": "2026-09-10",
-    "foundDate": "2026-09-16",
+    "id": "news-9xf386",
+    "title": "Brightlands Heerlen celebrates 10th anniversary with new name and launch AI Valley - Maastricht University",
+    "description": "Brightlands Heerlen celebrates 10th anniversary with new name and launch AI Valley Maastricht University",
+    "institution": "Maastricht University",
+    "category": "ai_adoption",
+    "categoryLabel": "AI Development & Adoption",
+    "url": "https://www.maastrichtuniversity.nl/news/brightlands-heerlen-celebrates-10th-anniversary-new-name-and-launch-ai-valley",
+    "sourceName": "Maastricht University",
+    "publishedDate": "2026-09-16",
+    "foundDate": "2026-09-17",
     "autoDiscovered": true,
-    "bottomLine": "IEEE launches Xplore AI Research Suite, a direct competitor to LeapSpace offering AI-assisted discovery on verified research.",
+    "bottomLine": "Maastricht University launches AI Valley initiative, signaling institutional investment in AI research infrastructure and potential need for discovery/research-support tools.",
     "keyFindings": [
-      "IEEE Xplore AI Research Suite is a new AI assistant for research discovery built on verified, expert-vetted research content.",
-      "The tool positions itself against similar AI research assistants by emphasizing quality control and expert validation.",
-      "IEEE Xplore is a major research platform competing with ScienceDirect and Scopus for institutional subscriptions and researcher adoption."
+      "Brightlands Heerlen rebrands and launches AI Valley as a dedicated research and innovation hub.",
+      "Maastricht University is a core partner in the AI Valley initiative.",
+      "Focus appears to be on AI research ecosystem development and talent attraction.",
+      "10th anniversary milestone suggests sustained commitment to research infrastructure.",
+      "AI Valley likely to require integrated literature discovery and research management platforms."
     ],
-    "whyItMatters": "IEEE's entry into AI-assisted research tools directly competes with LeapSpace. Sales agents should identify which Dutch institutions are evaluating or have adopted IEEE Xplore AI to understand adoption momentum and positioning gaps versus Elsevier's offering.",
+    "whyItMatters": "Maastricht University's deep investment in AI research infrastructure signals demand for Scopus, ScienceDirect, and LeapSpace to support researcher workflows, literature mapping, and cross-disciplinary collaboration within the new AI Valley hub.",
     "impact": {
       "novelty": 3,
       "commercial": 4,
-      "threat": 4,
-      "urgency": 4
+      "threat": 2,
+      "urgency": 3
     },
     "entities": [
-      "IEEE",
-      "IEEE Xplore AI Research Suite",
-      "LeapSpace"
+      "Brightlands Heerlen",
+      "Maastricht University",
+      "AI Valley"
     ],
     "actionItems": [
-      "Map adoption of IEEE Xplore AI Research Suite among current and target Dutch institutional customers.",
-      "Audit LeapSpace feature differentiation and messaging against IEEE's expert-vetting and verification claims.",
-      "Prepare competitive positioning materials highlighting LeapSpace's integration with ScienceDirect/Scopus coverage advantages."
+      "Contact Maastricht University's research support/library office to understand AI Valley's infrastructure roadmap and toolkit requirements.",
+      "Propose LeapSpace demo focused on AI-assisted literature discovery and funding discovery for multidisciplinary AI researchers.",
+      "Assess current Scopus/ScienceDirect penetration at Maastricht and identify renewal/expansion opportunity tied to AI Valley launch."
     ],
-    "sourceType": "primary",
-    "googleNewsUrl": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxONC1iQW5zREF2WE5FNUFwS3Z0blNxV2Z3aEU5bWVBRnpmR3l0LS03N2NfaUROemE3b1hnUllMY0M0TGt2eTM3M1RkZW13Vkw4UmVYQmxUejVhaXFZRzV2UmJjcVc1MVNNaG00SkFFS29qcUQxTUNuSWRiYV9xNU1fb0lvR2p3R0lHS1NkTW5pc1JLRWpfeWV5TGhxUEozWnk3WEM2b0VsaTdnUElfMXNHNXhqS01DZ01vZTBOdVZRNmphemZaanZQTWZjbUFvSVpBajF5RmtOcTlQclJjTi1aRHVnX0pwRXRvMThWMHp6M0pEVTBu?oc=5"
+    "sourceType": "secondary",
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQWUZMRFpWRzhkRXA1TFljMVNYSVdBWVo5dFR3dF9KVWF0eHRqMUpaUEdvRE5rTTdsb2VhcHYwUWJkMjB5OHFfV2l0dWUyNzd4REozei1YanFRZUZBemcxR2dRdFRhbGxzZmkzTU5helZhZ3FZd2EtRlZwM1dMWlJ3SzNVd2hGd3NJb2QtNVBpNC1Tck82QUZyREdkVTNsMmhSUnd4NHdhSWV6T21JZmdJZGxaVXNDRzB3Qnc?oc=5"
   },
   {
     "id": "news-ojaw5a",
@@ -115,130 +117,5 @@
       "Accelerate LeapSpace GTM messaging around scholarly vs. generic analytics to block OpenAI land-and-expand deals."
     ],
     "sourceType": "secondary"
-  },
-  {
-    "id": "news-6j9zjv",
-    "title": "University of Twente's TechMed Centre becomes Nordic Proof Partner - Universiteit Twente",
-    "description": "University of Twente's TechMed Centre becomes Nordic Proof Partner Universiteit Twente",
-    "institution": "University of Twente",
-    "category": "ai_adoption",
-    "categoryLabel": "AI Development & Adoption",
-    "url": "https://www.utwente.nl/en/techmed/news/overview-news/2026/9/1150293/university-of-twentes-techmed-centre-becomes-nordic-proof-partner",
-    "sourceName": "Universiteit Twente",
-    "publishedDate": "2026-09-10",
-    "foundDate": "2026-09-15",
-    "autoDiscovered": true,
-    "googleNewsUrl": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPWVZCQmk3SEFMUlhaLUlLNENHLW9Iamh0b3hCVi00VTFIUzloTTJPRUNXWkxzLXpJRjF0cHBCOFIyOW43MDRjWmliTzBsc3lMZnZNVDA3NVRncWNhQWY5U212VzJCWHUwYmV0MDhjWXA0d2Mtd2lCcGFKVmVnX0Vub3pGbEVnZHNDVUJ3NUVtblQ2bFNRX0QtdXNqbjlDbDVnMnVQVVM1bkZGTWdqZXpnMV81R0tBS3ZSbk93NVl0NTZ3Wl90RTZJRVJPQWJHdw?oc=5",
-    "bottomLine": "University of Twente's TechMed Centre partnership signals strong Dutch institutional momentum in AI-health tech, positioning Elsevier's integrated research tools as essential infrastructure.",
-    "keyFindings": [
-      "University of Twente's TechMed Centre was appointed as a Nordic Proof Partner, expanding AI and health-tech validation ecosystem.",
-      "Partnership signals institutional commitment to applied research, technology transfer, and cross-disciplinary collaboration.",
-      "Twente is a key Dutch tech and engineering hub with growing health informatics and medical AI research output.",
-      "Proof Partner status suggests structured evaluation and demonstration of emerging technologies and solutions.",
-      "Partnership likely involves access to institutional expertise, facilities, and research networks for technology validation."
-    ],
-    "whyItMatters": "University of Twente's elevated profile in health tech and AI makes it a high-value target for LeapSpace adoption—its researchers need integrated discovery, collaboration tools, and AI-assisted literature review to compete in applied health innovation; early institutional win here creates reference for other Dutch research-intensive universities.",
-    "impact": {
-      "novelty": 2,
-      "commercial": 4,
-      "threat": 2,
-      "urgency": 4
-    },
-    "entities": [
-      "University of Twente",
-      "TechMed Centre",
-      "Nordic Proof Partner programme",
-      "Health tech and AI research"
-    ],
-    "actionItems": [
-      "Contact University of Twente research leadership to position LeapSpace as enabler for TechMed Centre's health-tech validation and publication workflows.",
-      "Audit TechMed Centre's current tool stack and identify gaps in literature discovery, funding discovery, and cross-institutional collaboration.",
-      "Develop case study pitch around how Scopus + LeapSpace accelerates proof-of-concept research pipelines for applied health innovation."
-    ],
-    "sourceType": "primary"
-  },
-  {
-    "id": "news-1vf95d",
-    "title": "IEEE Unveils the IEEE Xplore® AI Research Suite™: A New AI Assistant Built on Verified, Expert-Vetted Research - Yahoo Finance",
-    "description": "IEEE Unveils the IEEE Xplore® AI Research Suite™: A New AI Assistant Built on Verified, Expert-Vetted Research Yahoo Finance",
-    "institution": "IEEE",
-    "category": "competitor_announcements",
-    "categoryLabel": "Competitor Announcements",
-    "url": "https://finance.yahoo.com/technology/ai/articles/ieee-unveils-ieee-xplore-ai-130000079.html",
-    "sourceName": "Yahoo Finance",
-    "publishedDate": "2026-09-10",
-    "foundDate": "2026-09-11",
-    "autoDiscovered": true,
-    "bottomLine": "IEEE's new AI research suite is a direct competitive threat; Elsevier must urgently clarify how LeapSpace/Scopus differentiate on expert vetting, multi-disciplinary coverage, and integration depth.",
-    "keyFindings": [
-      "IEEE launched Xplore AI Research Suite, an AI assistant built on verified, expert-vetted IEEE research content.",
-      "The tool combines search, synthesis, and discovery powered by IEEE's specialized engineering and computer science database.",
-      "Positioning emphasizes trusted, peer-reviewed sources curated by domain experts.",
-      "This targets the same research workspace market segment as Elsevier's LeapSpace with comparable AI features."
-    ],
-    "whyItMatters": "Dutch engineering and tech research institutions (TU Delft, Eindhoven University of Technology, Wageningen UR) may perceive IEEE Xplore Suite as cheaper or more specialized; Elsevier must immediately position LeapSpace's multi-disciplinary reach, superior Scopus coverage (including life sciences, social sciences, humanities), and advanced AI features (writing coach, claim-checking, deep reports) as essential for…",
-    "impact": {
-      "novelty": 3,
-      "commercial": 5,
-      "threat": 5,
-      "urgency": 5
-    },
-    "entities": [
-      "IEEE",
-      "IEEE Xplore AI Research Suite",
-      "Verified Research",
-      "Expert-Vetted Content",
-      "AI Assistant",
-      "Yahoo Finance"
-    ],
-    "actionItems": [
-      "Immediately audit and document LeapSpace's AI capabilities (claim-checking, report generation, multi-disciplinary search) versus IEEE Xplore to brief sales teams.",
-      "Contact TU Delft, TU Eindhoven, and Wageningen leadership to position LeapSpace as the broader research workspace beyond IEEE's engineering-focused scope.",
-      "Prepare ROI comparison showing Scopus's 25M+ records across all disciplines versus IEEE's engineering focus to justify subscription premium."
-    ],
-    "sourceType": "secondary",
-    "googleNewsUrl": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQYmtuVEpUQThSNU9PTjRKNzJTc1BJOGJFNEloZWpXT0RoVmVHbER2cThKNFlMSjN6TWVMN2RDMTZ2Y0U2eWlLZTBYM053c3V6ZnlGSUR5R2xWWUVHQmRuTllCY2Q5MHhaWW84dklWdjByTkkzMnd3Z3hiNG5uRFV2cmdtWTl4YnhFeUFTSElHVFhMbjNTR2c?oc=5"
-  },
-  {
-    "id": "news-61w34",
-    "title": "From lab to space: TU Delft-led mission to test photonic chip in orbit - TU Delft",
-    "description": "From lab to space: TU Delft-led mission to test photonic chip in orbit TU Delft",
-    "institution": "TU Delft",
-    "category": "ai_adoption",
-    "categoryLabel": "AI Development & Adoption",
-    "url": "https://www.tudelft.nl/en/2026/lr/from-lab-to-space-tu-delft-led-mission-to-test-photonic-chip-in-orbit",
-    "sourceName": "TU Delft",
-    "publishedDate": "2026-09-10",
-    "foundDate": "2026-09-11",
-    "autoDiscovered": true,
-    "bottomLine": "TU Delft's space-based photonic chip mission shows advanced research momentum; Elsevier should position LeapSpace/Scopus as essential tools for tracking and scaling deep-tech discoveries across Dutch research clusters.",
-    "keyFindings": [
-      "TU Delft is leading a mission to test photonic chip technology in orbit, moving innovations from lab to space applications.",
-      "Photonic chips represent cutting-edge engineering research with applications in telecommunications and quantum computing.",
-      "Mission demonstrates TU Delft's leadership in deep-tech research and industry partnerships.",
-      "Such high-profile research requires rapid literature discovery, prior art tracking, and cross-disciplinary collaboration."
-    ],
-    "whyItMatters": "TU Delft and its collaborating industrial partners need to track global competition, regulatory developments, and emerging related research at scale; Elsevier should position Scopus for comprehensive prior-art and competitive landscape discovery, and LeapSpace's deep research reports for synthesizing photonics, quantum, and space-tech literature to support mission planning and intellectual property strategy.",
-    "impact": {
-      "novelty": 4,
-      "commercial": 3,
-      "threat": 1,
-      "urgency": 3
-    },
-    "entities": [
-      "TU Delft",
-      "Photonic Chip",
-      "Space Missions",
-      "Quantum Computing",
-      "Telecommunications",
-      "Deep-Tech Innovation"
-    ],
-    "actionItems": [
-      "Reach out to TU Delft's research leadership to understand their current literature discovery workflows and offer LeapSpace as a research workspace for mission-critical literature tracking.",
-      "Highlight Scopus coverage of photonics, quantum, and aerospace research to position as the competitive intelligence tool for prior art and related innovations globally.",
-      "Develop a case study on how Scopus/LeapSpace supported the project to promote across Dutch engineering research clusters."
-    ],
-    "sourceType": "primary",
-    "googleNewsUrl": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQTzc3dzVKeVRSQmpwdTNoOFNfaVRmSTlIVzNFd0o4M0VJUDIta3AwdWNKbXEta0tXZWxhbENyQ0lLdzRnSkZNQ0RVTnNCVi1naDZ2NEM0N21TbWRnVlEycDNjVDcxeFIxOWdwYVhNdUNBV2tId29sYlNiSUhjTmY3Qk9QT0lGUkdfZUQ3Q0JhSnFXbGpSNEFtcTV0eENGM1JWOWJpVnJn?oc=5"
   }
 ]
