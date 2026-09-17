@@ -1,7 +1,16 @@
 {
-  "lastRun": "2026-09-17T12:47:00.919Z",
+  "lastRun": "2026-09-17T19:23:47.531Z",
   "lastAddedCount": 0,
   "sources": 53,
+  "blockedSources": [
+    "https://www.tilburguniversity.edu/about/organization/university-services/library-it-services",
+    "https://www.tilburguniversity.edu/taxonomy/term/387",
+    "https://www.tilburguniversity.edu/research/research-support-portal/research-funding",
+    "https://www.tilburguniversity.edu/research/institutes-and-research-groups/ticc/meet-our-staff",
+    "https://www.cpb.nl/en/staff-members-and-affiliations",
+    "https://www.umcg.nl/-/over-het-umcg/organisatie",
+    "https://www.clingendael.org/mission-organisation"
+  ],
   "issues": [
     {
       "instId": "leiden",
@@ -32,28 +41,19 @@
       "note": "no people extracted"
     },
     {
-      "instId": "tudelft",
-      "url": "https://www.tudelft.nl/en/library/visit/about-the-library/our-organisation",
-      "error": "HTTP 403"
+      "instId": "ut",
+      "url": "https://www.utwente.nl/en/service-portal/business-entrepreneurship/knowledge-valorisation",
+      "error": "This operation was aborted"
     },
     {
-      "instId": "tudelft",
-      "url": "https://www.tudelft.nl/en/innovation-impact",
-      "error": "HTTP 403"
+      "instId": "ut",
+      "url": "https://www.utwente.nl/en/digital-society/research/data-science-artifical-intelligence/ai-expert-finder/",
+      "error": "This operation was aborted"
     },
     {
-      "instId": "tudelft",
-      "url": "https://www.tudelft.nl/en/ai/tu-delft-ai-initiative",
-      "error": "HTTP 403"
-    },
-    {
-      "instId": "tudelft",
-      "url": "https://www.tudelft.nl/en/staff/b.verbruggen/",
-      "error": "HTTP 403"
-    },
-    {
-      "instId": "tudelft",
-      "note": "no people extracted"
+      "instId": "ut",
+      "url": "https://www.utwente.nl/en/service-portal/research-support/additional-information-per-facultyinstitute/engineering-technology-et/et-research-support-team-members",
+      "error": "This operation was aborted"
     },
     {
       "instId": "cpb",
@@ -65,9 +65,9 @@
       "note": "no people extracted"
     },
     {
-      "instId": "radboudumc",
-      "url": "https://www.radboudumc.nl/en/research/grant-support-office/gso-services",
-      "error": "This operation was aborted"
+      "instId": "sanquin",
+      "url": "https://www.sanquin.nl/en/about-sanquin/management-supervision",
+      "error": "fetch failed"
     },
     {
       "instId": "umcg",
