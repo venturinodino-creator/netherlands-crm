@@ -1,5 +1,29 @@
 [
   {
+    "id": "inews_nl_library_news_251201_altmetric_explorer_ends_december_2025",
+    "institution": "University of Groningen Library",
+    "sourceType": "feed",
+    "title": "Altmetric Explorer stopt in december 2025",
+    "url": "https://www.rug.nl/library/news/251201-altmetric-explorer-ends-december-2025",
+    "date": "Mon, 1 Dec 2025 00:00:00 CET",
+    "summary": "<div><p>Vanaf 1 januari 2026 is Altmetric Explorer niet meer beschikbaar voor de RUG. Stap over naar de Impact Module van SciVal. Het UMCG houdt toegang tot Altmetric.</p></div>",
+    "matchedTerm": "scival",
+    "reason": "named system or vendor",
+    "foundAt": "2026-09-17T19:15:40.505087Z"
+  },
+  {
+    "id": "inews__to_researchers_publishing_support_pure_research_information",
+    "institution": "Utrecht University Library",
+    "sourceType": "html",
+    "title": "Pure research information",
+    "url": "https://www.uu.nl/en/university-library/advice-support-to/researchers/publishing-support/pure-research-information",
+    "date": "",
+    "summary": "",
+    "matchedTerm": "pure",
+    "reason": "Elsevier Pure in a research-information context",
+    "foundAt": "2026-09-17T19:18:12.690163Z"
+  },
+  {
     "id": "inews_ster_research_insights_with_dimensions_101_and_new_tutorials",
     "institution": "TU Delft Library",
     "sourceType": "feed",
