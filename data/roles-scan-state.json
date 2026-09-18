@@ -1,3 +1,114 @@
 {
-  "cursor": 0
+  "lastRun": "2026-09-18T17:48:32.061Z",
+  "lastAddedCount": 101,
+  "lastBatch": [
+    "tue",
+    "eur",
+    "ihedelft",
+    "leiden",
+    "um",
+    "ou",
+    "ru",
+    "tiu",
+    "tudelft",
+    "uva",
+    "rug",
+    "ut",
+    "uu",
+    "vu",
+    "wur"
+  ],
+  "lastWebSearches": 140,
+  "cursor": 15,
+  "institutions": 55,
+  "perInstitution": [
+    {
+      "instId": "tue",
+      "named": 13,
+      "kept": 11,
+      "searches": 10
+    },
+    {
+      "instId": "eur",
+      "named": 9,
+      "kept": 7,
+      "searches": 10
+    },
+    {
+      "instId": "ihedelft",
+      "named": 2,
+      "kept": 2,
+      "searches": 10
+    },
+    {
+      "instId": "leiden",
+      "named": 13,
+      "kept": 10,
+      "searches": 10
+    },
+    {
+      "instId": "um",
+      "named": 6,
+      "kept": 3,
+      "searches": 10
+    },
+    {
+      "instId": "ou",
+      "named": 6,
+      "kept": 5,
+      "searches": 10
+    },
+    {
+      "instId": "ru",
+      "error": "This operation was aborted"
+    },
+    {
+      "instId": "tiu",
+      "named": 13,
+      "kept": 11,
+      "searches": 10
+    },
+    {
+      "instId": "tudelft",
+      "named": 14,
+      "kept": 11,
+      "searches": 10
+    },
+    {
+      "instId": "uva",
+      "named": 12,
+      "kept": 11,
+      "searches": 10
+    },
+    {
+      "instId": "rug",
+      "named": 13,
+      "kept": 10,
+      "searches": 10
+    },
+    {
+      "instId": "ut",
+      "named": 10,
+      "kept": 8,
+      "searches": 10
+    },
+    {
+      "instId": "uu",
+      "named": 7,
+      "kept": 4,
+      "searches": 10
+    },
+    {
+      "instId": "vu",
+      "named": 7,
+      "kept": 6,
+      "searches": 10
+    },
+    {
+      "instId": "wur",
+      "named": 3,
+      "kept": 2,
+      "searches": 10
+    }
+  ]
 }
