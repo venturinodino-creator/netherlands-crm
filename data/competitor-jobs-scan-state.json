@@ -1,43 +1,81 @@
 {
-  "lastRun": "2026-09-18T12:08:31.399Z",
-  "totalOpenRoles": 2,
-  "totalListed": 4,
-  "newCount": 0,
-  "reopenedCount": 0,
+  "lastRun": "2026-09-18T18:27:08.530Z",
+  "totalOpenRoles": 228,
+  "openByRegion": {
+    "domestic": 0,
+    "remote": 2,
+    "europe": 35,
+    "global": 191
+  },
+  "totalListed": 228,
+  "newCount": 224,
+  "reopenedCount": 2,
   "closedCount": 0,
   "archivedCount": 0,
   "perCompanyCounts": {
     "Digital Science": {
       "total": 2,
-      "nlOrRemote": 0
+      "nlOrRemote": 0,
+      "domestic": 0,
+      "remote": 0,
+      "europe": 0,
+      "global": 1
     },
     "Allen Institute for AI": {
-      "total": 18,
-      "nlOrRemote": 0
+      "total": 17,
+      "nlOrRemote": 0,
+      "domestic": 0,
+      "remote": 0,
+      "europe": 0,
+      "global": 0
     },
     "Clarivate": {
-      "total": 182,
-      "nlOrRemote": 0
+      "total": 181,
+      "nlOrRemote": 0,
+      "domestic": 0,
+      "remote": 0,
+      "europe": 7,
+      "global": 20
     },
     "Springer Nature": {
-      "total": 71,
-      "nlOrRemote": 0
+      "total": 76,
+      "nlOrRemote": 0,
+      "domestic": 0,
+      "remote": 0,
+      "europe": 1,
+      "global": 2
     },
     "Wiley": {
-      "total": 76,
-      "nlOrRemote": 0
+      "total": 78,
+      "nlOrRemote": 0,
+      "domestic": 0,
+      "remote": 0,
+      "europe": 0,
+      "global": 12
     },
     "OpenAI": {
-      "total": 818,
-      "nlOrRemote": 1
+      "total": 815,
+      "nlOrRemote": 1,
+      "domestic": 0,
+      "remote": 1,
+      "europe": 8,
+      "global": 74
     },
     "Anthropic": {
-      "total": 609,
-      "nlOrRemote": 0
+      "total": 608,
+      "nlOrRemote": 0,
+      "domestic": 0,
+      "remote": 0,
+      "europe": 19,
+      "global": 81
     },
     "Elicit": {
       "total": 10,
-      "nlOrRemote": 1
+      "nlOrRemote": 1,
+      "domestic": 0,
+      "remote": 1,
+      "europe": 0,
+      "global": 1
     }
   },
   "errors": {},
