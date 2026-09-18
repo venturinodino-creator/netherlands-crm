@@ -1,6 +1,6 @@
 {
-  "lastRun": "2026-09-18T12:25:08.612Z",
-  "lastAddedCount": 0,
+  "lastRun": "2026-09-18T17:28:29.646Z",
+  "lastAddedCount": 19,
   "sources": 53,
   "blockedSources": [
     "https://www.tilburguniversity.edu/about/organization/university-services/library-it-services",
@@ -51,6 +51,20 @@
     },
     {
       "instId": "esc",
+      "note": "no people extracted"
+    },
+    {
+      "instId": "nikhef",
+      "url": "https://www.nikhef.nl/en/nikhef/organisation/",
+      "error": "fetch failed"
+    },
+    {
+      "instId": "nikhef",
+      "url": "https://www.nikhef.nl/en/director/",
+      "error": "fetch failed"
+    },
+    {
+      "instId": "nikhef",
       "note": "no people extracted"
     },
     {
