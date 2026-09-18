@@ -5,11 +5,11 @@
     "type": "University",
     "status": "subscriber",
     "tier": "Partner",
-    "annualFee": "Custom — price not disclosed",
+    "annualFee": null,
     "announceDate": "2026-05-28",
     "effectiveDate": null,
-    "notes": "Maastricht University Library announced it is investing in a Partner-tier subscription with OpenAlex, framed as an investment in open research information. In the same announcement the library confirmed it is cancelling its Scopus licence with effect from 1 January 2027, while stressing that access to Elsevier journals is unaffected. Both decisions are tied to UM's Open Science commitments and the Barcelona Declaration on Open Research Information, which Rector Magnificus Jan Smits signed on behalf of UM on 12 June 2026. No fee amount is stated in the announcement or on the university's Barcelona Declaration page.",
-    "signal": "CONFIRMED PAYING. Partner tier, fee not disclosed; announced May 2026 alongside Scopus cancellation effective 2027-01-01.",
+    "notes": "The library's own news item states UM is 'investing in a partner subscription with OpenAlex' and that the partner status lets UM influence OpenAlex's development, including adding content relevant to UM; no fee figure is published (OpenAlex's public tiers are Member, Member+ and Partner). The same announcement pairs the subscription with ending Scopus. This is a confirmed paid open-infrastructure commitment that directly displaces spend on a commercial abstract and citation database.",
+    "signal": "Maastricht University Library announced it is investing in a Partner-tier paid subscription with OpenAlex as part of a shift to open research information.",
     "sources": [
       {
         "label": "Maastricht University Library — news",
@@ -17,7 +17,9 @@
       }
     ],
     "autoDiscovered": true,
-    "foundDate": "2026-08-16"
+    "foundDate": "2026-08-16",
+    "signalType": "subscription",
+    "lastConfirmed": "2026-09-18"
   },
   {
     "id": "delft-university-of-technology",
@@ -41,23 +43,41 @@
   },
   {
     "id": "leiden-university",
-    "inst": "Leiden University (CWTS)",
+    "inst": "Leiden University",
     "type": "University",
     "status": "active",
     "tier": null,
     "annualFee": null,
     "announceDate": null,
     "effectiveDate": null,
-    "notes": "Leiden University announced (news item dated July 2026) that its Centre for Science and Technology Studies (CWTS) will discontinue its use of Clarivate Web of Science data, per a joint CWTS–Clarivate statement, leaving only the Leiden Ranking Open Edition. The Open Edition, launched in 2024 with OurResearch, COKI and Sesame Open Science, computes its bibliometric indicators entirely from OpenAlex data. The university itself still holds a Web of Science database subscription, and no paid OpenAlex subscription tier or fee is disclosed.",
-    "signal": "ACTIVE, NOT CONFIRMED PAYING. CWTS dropping Web of Science data; Leiden Ranking Open Edition runs entirely on OpenAlex.",
+    "notes": "A third-party OpenAlex reference guide (CASRAI) states that OpenAlex Topics, its current subject-classification scheme, was developed with Leiden University's CWTS, indicating a working technical partnership with OurResearch beyond the Leiden Ranking. This deepens Leiden's stake in OpenAlex's data quality and roadmap. Note: seen on a third-party page, not a Leiden or OurResearch page, so it should be verified with OurResearch before being used in a renewal argument.",
+    "signal": "OpenAlex's Topics subject-classification system was developed in collaboration with Leiden University's Centre for Science and Technology Studies (CWTS).",
     "sources": [
       {
         "label": "Leiden University — news",
         "url": "https://www.universiteitleiden.nl/en/news/2026/07/cwts-takes-next-step-in-open-research-information-transition"
+      },
+      {
+        "label": "Calling on universities and funders: make research information open – Leiden University",
+        "url": "https://www.universiteitleiden.nl/en/news/2024/04/calling-on-universities-and-funders-make-research-information-open"
+      },
+      {
+        "label": "Release of the Leiden Ranking Open Edition – Leiden University",
+        "url": "https://www.universiteitleiden.nl/en/news/2024/01/release-of-the-leiden-ranking-open-edition"
+      },
+      {
+        "label": "Barcelona Declaration – CWTS, Leiden University",
+        "url": "https://www.universiteitleiden.nl/en/social-behavioural-sciences/cwts/partnerships-initiatives/barcelona-declaration"
+      },
+      {
+        "label": "OpenAlex: What It Is & How It Works — CASRAI",
+        "url": "https://casrai.org/guides/openalex"
       }
     ],
     "autoDiscovered": true,
-    "foundDate": "2026-08-16"
+    "foundDate": "2026-08-16",
+    "signalType": "other",
+    "lastConfirmed": "2026-09-18"
   },
   {
     "id": "dutch-research-council",
@@ -158,5 +178,120 @@
     ],
     "autoDiscovered": true,
     "foundDate": "2026-09-04"
+  },
+  {
+    "id": "zonmw",
+    "inst": "ZonMw",
+    "type": "NGO / Funder",
+    "status": "active",
+    "signalType": "barcelona_declaration",
+    "tier": null,
+    "annualFee": null,
+    "announceDate": "2024-04-16",
+    "effectiveDate": "2024-04-16",
+    "notes": "ZonMw's own site states that it and NWO both signed the Barcelona Declaration published on 16 April 2024, committing to openness of bibliographic metadata as part of the wider open science movement. As a national health research funder, this makes open metadata (Crossref/OpenAlex-class sources) the default basis for its reporting and analysis. A funder mandate of this kind weakens the case for Scopus/Web of Science as the evidence base in Dutch grant monitoring and evaluation.",
+    "signal": "ZonMw is a signatory of the Barcelona Declaration on Open Research Information, announced jointly with NWO on its own news page.",
+    "sources": [
+      {
+        "label": "NWO and ZonMw sign declaration to promote open research information",
+        "url": "https://www.zonmw.nl/en/news/nwo-and-zonmw-sign-declaration-promote-open-research-information"
+      }
+    ],
+    "autoDiscovered": true,
+    "foundDate": "2026-09-18"
+  },
+  {
+    "id": "universiteiten-van-nederland",
+    "inst": "Universiteiten van Nederland (UNL)",
+    "type": "NGO / Research",
+    "status": "active",
+    "signalType": "barcelona_declaration",
+    "tier": null,
+    "annualFee": null,
+    "announceDate": null,
+    "effectiveDate": null,
+    "notes": "The Barcelona Declaration site's Netherlands network post and an Open Knowledge Foundation essay both list Universities of the Netherlands (UNL) among the umbrella organisations that have signed the Declaration. UNL covers all 14 Dutch research universities, so its commitment sets a sector-wide policy frame for open research information. The same network post notes open research information is embedded in the new Strategy Evaluation Protocol 2027-2033, which directly reduces the evaluative need for closed citation databases.",
+    "signal": "UNL is listed as a Dutch signatory of the Barcelona Declaration and as a member of the Netherlands Barcelona Declaration Network.",
+    "sources": [
+      {
+        "label": "Looking ahead to 2026: key priorities of the Netherlands Barcelona Declaration Network",
+        "url": "https://barcelona-declaration.org/news/20260213_netherlands_barcelona_declaration_network/"
+      }
+    ],
+    "autoDiscovered": true,
+    "foundDate": "2026-09-18"
+  },
+  {
+    "id": "surf",
+    "inst": "SURF",
+    "type": "NGO / Research",
+    "status": "active",
+    "signalType": "cris_integration",
+    "tier": null,
+    "annualFee": null,
+    "announceDate": null,
+    "effectiveDate": null,
+    "notes": "The Open Knowledge Foundation essay describes SURF and the Digital Competence Center for Practice-Oriented Research jointly building open, modular research-information infrastructure for the Dutch hogescholen sector. This is a multi-institution CRIS-layer project grounded in open research information providers named in the same piece (OpenAlex, OpenAIRE, OpenCitations). It creates a consortium-scale alternative pipeline that could displace commercial index feeds at renewal time.",
+    "signal": "SURF, with DCC-PO, is developing an open, modular infrastructure for registering, managing and sharing research information for the universities of applied sciences.",
+    "sources": [
+      {
+        "label": "Open Data Day essay #4: 'Open access and open data alone are not enough' (Open Knowledge Blog)",
+        "url": "https://blog.okfn.org/2026/03/24/open-data-day-essay-4-open-access-and-open-data-alone-are-not-enough/"
+      }
+    ],
+    "autoDiscovered": true,
+    "foundDate": "2026-09-18",
+    "lastConfirmed": "2026-09-18"
+  },
+  {
+    "id": "koninklijke-bibliotheek",
+    "inst": "Koninklijke Bibliotheek (KB, National Library of the Netherlands)",
+    "type": "NGO / Research",
+    "status": "active",
+    "signalType": "barcelona_declaration",
+    "tier": null,
+    "annualFee": null,
+    "announceDate": null,
+    "effectiveDate": null,
+    "notes": "The Open Knowledge Foundation essay names the KB, together with the Netherlands eScience Center, among Dutch organisations that signed the Declaration; the KB also appears in the Netherlands Barcelona Declaration Network membership list. The KB is a member of the UKB consortium that negotiates national licences, so its commitment carries weight in collective licensing discussions. It increases the likelihood that open metadata conditions are attached to, or substituted for, closed database contracts.",
+    "signal": "The National Library of the Netherlands (KB) has signed the Barcelona Declaration on Open Research Information.",
+    "sources": [
+      {
+        "label": "Open Data Day essay #4: 'Open access and open data alone are not enough' (Open Knowledge Blog)",
+        "url": "https://blog.okfn.org/2026/03/24/open-data-day-essay-4-open-access-and-open-data-alone-are-not-enough/"
+      }
+    ],
+    "autoDiscovered": true,
+    "foundDate": "2026-09-18"
+  },
+  {
+    "id": "erasmus-university-rotterdam",
+    "inst": "Erasmus University Rotterdam",
+    "type": "University",
+    "status": "active",
+    "signalType": "other",
+    "tier": null,
+    "annualFee": null,
+    "announceDate": null,
+    "effectiveDate": "2026-06-23",
+    "notes": "An event page on eur.nl announces an open research information summer event at EUR featuring a Barcelona Declaration speaker and noting that the Declaration, published April 2024, now counts seventeen Dutch signatories. Hosting the event places EUR inside the Dutch open research information network even without a confirmed signature of its own. For a Scopus or Web of Science renewal this is reputational and community pressure towards open alternatives such as OpenAlex and OpenAIRE.",
+    "signal": "EUR hosts the RINN & ORI Summer Event on open research information, with a session on sustainability of open infrastructures by Bianca Kramer of the Barcelona Declaration on Open Research Information.",
+    "sources": [
+      {
+        "label": "Future Library Lab | Erasmus University Library | Erasmus University Rotterdam",
+        "url": "https://www.eur.nl/en/library/research-support/future-library-lab"
+      },
+      {
+        "label": "News overview | Erasmus University Library | Erasmus University Rotterdam",
+        "url": "https://www.eur.nl/en/library/news/overview"
+      },
+      {
+        "label": "RINN & ORI Summer Event 2026 – Are we ready to open yet? | Erasmus University Rotterdam",
+        "url": "https://www.eur.nl/en/events/rinn-ori-summer-event-2026-are-we-ready-open-yet-2026-06-23"
+      }
+    ],
+    "autoDiscovered": true,
+    "foundDate": "2026-09-18",
+    "lastConfirmed": "2026-09-18"
   }
 ]

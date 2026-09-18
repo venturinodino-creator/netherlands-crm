@@ -1,7 +1,51 @@
 {
-  "lastRun": "2026-09-18T12:01:06.100Z",
-  "lastAddedCount": 0,
-  "lastUpdatedCount": 0,
-  "lastCandidateCount": 0,
-  "lastWebSearches": 12
+  "lastRun": "2026-09-18T21:49:26.202Z",
+  "lastAddedCount": 5,
+  "lastUpdatedCount": 8,
+  "lastCandidateCount": 19,
+  "lastWebSearches": 42,
+  "lastBatch": [
+    "tue",
+    "eur",
+    "ihedelft",
+    "leiden",
+    "um",
+    "ou"
+  ],
+  "cursor": 6,
+  "institutionsTotal": 55,
+  "nationalLastRun": "2026-09-18T21:32:11.282Z",
+  "checked": {
+    "tue": {
+      "lastChecked": "2026-09-18",
+      "result": "none",
+      "searches": 6
+    },
+    "eur": {
+      "lastChecked": "2026-09-18",
+      "result": "active",
+      "searches": 6
+    },
+    "ihedelft": {
+      "lastChecked": "2026-09-18",
+      "result": "none",
+      "searches": 6
+    },
+    "leiden": {
+      "lastChecked": "2026-09-18",
+      "result": "active",
+      "searches": 6
+    },
+    "um": {
+      "lastChecked": "2026-09-18",
+      "result": "subscriber",
+      "searches": 6
+    },
+    "ou": {
+      "lastChecked": "2026-09-18",
+      "result": "none",
+      "searches": 6
+    }
+  },
+  "errors": {}
 }
