@@ -1,5 +1,47 @@
 [
   {
+    "id": "news-qo5gby",
+    "title": "Novo Nordisk Turns to Anthropic's Claude to Accelerate Drug Discovery - finance.biggo.com",
+    "description": "Novo Nordisk Turns to Anthropic's Claude to Accelerate Drug Discovery finance.biggo.com",
+    "institution": "Anthropic",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://finance.biggo.com/news/6de6b53b-d8ec-4fab-bb21-bdf234d4aa24",
+    "sourceName": "finance.biggo.com",
+    "publishedDate": "2026-09-16",
+    "foundDate": "2026-09-18",
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9hcmFRcHdPSURUTEpxMHZrVGx5ZkhKeU5tWVNCck00Mmh5bWNsNGNrc2o4cHdfYWhqRWJhMWFhU1RWTUhOM1dsLTZPcUtISHVIRXR5Zkx5c1NwLTBfQ3pGSm45c1pKLVcwMHZhMXN2X2hvRjdBNUE?oc=5"
+  },
+  {
+    "id": "news-bt08bl",
+    "title": "Novo Nordisk Partners With Anthropic to Accelerate Drug Discovery Using AI - TradingKey",
+    "description": "Novo Nordisk Partners With Anthropic to Accelerate Drug Discovery Using AI TradingKey",
+    "institution": "Anthropic",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://www.tradingkey.com/analysis/stocks/us-stocks/262170965-novo-nordisk-partners-anthropic-accelerate-drug-discovery-using-ai-tradingkey",
+    "sourceName": "TradingKey",
+    "publishedDate": "2026-09-16",
+    "foundDate": "2026-09-18",
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxNVW5SUnN5cjAzT09QSkhpdTN2WkFNc21SbGZRSXdHRGFGRllZUmxxSHhIYnlUbWRNbklZc0RTWksxdGtyUW5WdGpYQUxtVGZFLVNRZVdiQS13bTNGS2U0Y3hRSVpja1lKVl9LRFpEaktfeGFKbzBlS2hIN0pyUFVLZnA5YlJaWFNXelozNTgyUUJHb1ZsSHVlNG5LT3ZHRjVOUlhrQ3pFSldhZFBqcVl0NF85bURScElsUE1nWUF4Y3NEWDhvcXhGWTQyeVFFYnVncGJENmlvRQ?oc=5"
+  },
+  {
+    "id": "news-ylmgo4",
+    "title": "Can Novo Nordisk’s Anthropic Partnership Drive an AI-Powered Turnaround? - NAI500",
+    "description": "Can Novo Nordisk’s Anthropic Partnership Drive an AI-Powered Turnaround? NAI500",
+    "institution": "Anthropic",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://nai500.com/blog/2026/09/can-novo-nordisks-anthropic-partnership-drive-an-ai-powered-turnaround/",
+    "sourceName": "NAI500",
+    "publishedDate": "2026-09-16",
+    "foundDate": "2026-09-18",
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOdXpUdDJCOXhiQXBEMlhwUXJtMEgxazV3ZzgyN3laaVcwRDVBSnJaaEY1TV9feHhzMHlUdGNidlgxMkM3VTJpNHN0NEVQN2NjRW9DS0V1NUxyUlJTRV9JSUJEeEFrQTZHWElVMkRYbk9vcjV6S3dMQ2FJOHJSMkVaRGhDQklPTHdXRGI1UEdvczNabE81UnFLaHdNUlJ0Tm0wOXJrR1VB?oc=5"
+  },
+  {
     "id": "news-9xf386",
     "title": "Brightlands Heerlen celebrates 10th anniversary with new name and launch AI Valley - Maastricht University",
     "description": "Brightlands Heerlen celebrates 10th anniversary with new name and launch AI Valley Maastricht University",
@@ -76,46 +118,5 @@
     ],
     "sourceType": "secondary",
     "googleNewsUrl": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNNkxTOTVMRG9Wa1JRLWJKRWdURUpaSDhTMTVfYkFIRVdSNVo4ZWRuS29PVkR1dTZSM1BMeDNVWkl2S1dzRFczSHFmeUJNdVlKOGs3MVV5TzlGZ29SRHRxNF8yN3Myemlxb01VdWdqbUxoOG9URl9nVDY2ZnQ5OWZVaGY5UnlBd24xLVRoOFp6ajlhQVBkUzZ2bVJEYWdBYTZMY1l0YzltZ3B6Vms3VEJMMlItWmF4YUc3ZDhleHJnTVcyT05yQVF2a29NUE1KQjJlNUcwTkM3ZHU2MmVVMVBjdw?oc=5"
-  },
-  {
-    "id": "news-s3m7zo",
-    "title": "OpenAI Launches Data Agent as Enterprise Analytics Race Heats Up - HPCwire",
-    "description": "OpenAI Launches Data Agent as Enterprise Analytics Race Heats Up HPCwire",
-    "institution": "OpenAI",
-    "category": "competitor_announcements",
-    "categoryLabel": "Competitor Announcements",
-    "url": "https://www.hpcwire.com/bigdatawire/2026/09/11/openai-launches-data-agent-as-enterprise-analytics-race-heats-up/",
-    "sourceName": "HPCwire",
-    "publishedDate": "2026-09-11",
-    "foundDate": "2026-09-15",
-    "autoDiscovered": true,
-    "googleNewsUrl": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPNFlkR1BzamR2QTNlYmRfOXh6Wnk0YVJUeFIzUmpOXzlQcndvOXhCSlI3N2hPLUxTY1Z0TmlWSGtqT2huc0xCclFEQi1xNDFtVE0tcDlTZ2ZQbXI2X2VHcHhNeG9ndkxMZHFjUmU5cE1Ecy1fV2F5aURJak1obThJVnBSMVdOX2ZBR0VBUXM3WUpQUU1lM2lWcW9IeUJ3LU4zbk54WGQ3RXpZMHluR09CMnp3?oc=5",
-    "bottomLine": "OpenAI's new Data Agent intensifies competition in enterprise analytics, threatening Elsevier's analytics and research intelligence positioning.",
-    "keyFindings": [
-      "OpenAI launched a Data Agent product targeting enterprise analytics workflows and data-driven decision-making.",
-      "The announcement signals OpenAI's expansion beyond conversational AI into specialized research and analytics tools.",
-      "Enterprise analytics market is heating up with multiple AI vendors competing for institutional adoption and integration.",
-      "Data Agent capabilities likely include automated data processing, insights generation, and report creation—core to research workflows.",
-      "OpenAI's enterprise focus and existing ChatGPT user base create rapid deployment and adoption advantages."
-    ],
-    "whyItMatters": "Dutch research institutions evaluating AI-assisted analytics may be tempted by OpenAI's brand and ease of use; Elsevier must position LeapSpace's integrated research discovery, compliance, and disciplinary depth as superior to generic data agents for scholarly workflows.",
-    "impact": {
-      "novelty": 4,
-      "commercial": 4,
-      "threat": 5,
-      "urgency": 5
-    },
-    "entities": [
-      "OpenAI",
-      "Data Agent",
-      "ChatGPT",
-      "Enterprise analytics market"
-    ],
-    "actionItems": [
-      "Map Data Agent's announced capabilities against LeapSpace's current roadmap and identify differentiation gaps.",
-      "Prepare competitive battlecard highlighting Scopus/ScienceDirect integration and research-specific compliance for Dutch institution conversations.",
-      "Accelerate LeapSpace GTM messaging around scholarly vs. generic analytics to block OpenAI land-and-expand deals."
-    ],
-    "sourceType": "secondary"
   }
 ]

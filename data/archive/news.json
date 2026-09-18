@@ -1,5 +1,60 @@
 [
   {
+    "id": "news-s3m7zo",
+    "title": "OpenAI Launches Data Agent as Enterprise Analytics Race Heats Up - HPCwire",
+    "description": "OpenAI Launches Data Agent as Enterprise Analytics Race Heats Up HPCwire",
+    "institution": "OpenAI",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://www.hpcwire.com/bigdatawire/2026/09/11/openai-launches-data-agent-as-enterprise-analytics-race-heats-up/",
+    "sourceName": "HPCwire",
+    "publishedDate": "2026-09-11",
+    "foundDate": "2026-09-15",
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPNFlkR1BzamR2QTNlYmRfOXh6Wnk0YVJUeFIzUmpOXzlQcndvOXhCSlI3N2hPLUxTY1Z0TmlWSGtqT2huc0xCclFEQi1xNDFtVE0tcDlTZ2ZQbXI2X2VHcHhNeG9ndkxMZHFjUmU5cE1Ecy1fV2F5aURJak1obThJVnBSMVdOX2ZBR0VBUXM3WUpQUU1lM2lWcW9IeUJ3LU4zbk54WGQ3RXpZMHluR09CMnp3?oc=5",
+    "bottomLine": "OpenAI's new Data Agent intensifies competition in enterprise analytics, threatening Elsevier's analytics and research intelligence positioning.",
+    "keyFindings": [
+      "OpenAI launched a Data Agent product targeting enterprise analytics workflows and data-driven decision-making.",
+      "The announcement signals OpenAI's expansion beyond conversational AI into specialized research and analytics tools.",
+      "Enterprise analytics market is heating up with multiple AI vendors competing for institutional adoption and integration.",
+      "Data Agent capabilities likely include automated data processing, insights generation, and report creation—core to research workflows.",
+      "OpenAI's enterprise focus and existing ChatGPT user base create rapid deployment and adoption advantages."
+    ],
+    "whyItMatters": "Dutch research institutions evaluating AI-assisted analytics may be tempted by OpenAI's brand and ease of use; Elsevier must position LeapSpace's integrated research discovery, compliance, and disciplinary depth as superior to generic data agents for scholarly workflows.",
+    "impact": {
+      "novelty": 4,
+      "commercial": 4,
+      "threat": 5,
+      "urgency": 5
+    },
+    "entities": [
+      "OpenAI",
+      "Data Agent",
+      "ChatGPT",
+      "Enterprise analytics market"
+    ],
+    "actionItems": [
+      "Map Data Agent's announced capabilities against LeapSpace's current roadmap and identify differentiation gaps.",
+      "Prepare competitive battlecard highlighting Scopus/ScienceDirect integration and research-specific compliance for Dutch institution conversations.",
+      "Accelerate LeapSpace GTM messaging around scholarly vs. generic analytics to block OpenAI land-and-expand deals."
+    ],
+    "sourceType": "secondary"
+  },
+  {
+    "id": "news-i0jbjy",
+    "title": "Anthropic researcher's resignation sends warning about the dangers of AI development - PBS",
+    "description": "Anthropic researcher's resignation sends warning about the dangers of AI development PBS",
+    "institution": "Anthropic",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://www.pbs.org/newshour/science/anthropic-researchers-resignation-sends-warning-about-the-dangers-of-ai-development",
+    "sourceName": "PBS",
+    "publishedDate": "2026-09-09",
+    "foundDate": "2026-09-18",
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQOXY4MndxQmFFbWQ2TktCNVI3bHdSMUhzODdfdHFUMTB3Nk9lQkgxNFRWV285dWtLZGFHWWl2S01GX0FOOEdsdUhzdjZ2Y1gwUlZ4aDZGdnk0MnNmWWdZd1owV0lCTFFENXBuRUY4ZzVGM1JaSmdhNzRuS0g1NVhRMFB3TkgxeS1zZmdKMXYwYTI3Qm5pSlI5WFZYQWVmM2tfeDNMekxjSmlrTFZ1bTNScDRoRzVsZkRaTk8zWg?oc=5"
+  },
+  {
     "id": "news-61w34",
     "title": "From lab to space: TU Delft-led mission to test photonic chip in orbit - TU Delft",
     "description": "From lab to space: TU Delft-led mission to test photonic chip in orbit TU Delft",
