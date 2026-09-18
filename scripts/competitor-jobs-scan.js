@@ -116,6 +116,23 @@ function isTrackedLocation(location) {
   return /\bremote\b/i.test(loc) && !NON_EUROPE_REMOTE_RE.test(loc);
 }
 
+// Where a tracked-category role sits. Until 2026-09-18 anything outside
+// "the Netherlands or remote-eligible" was dropped, which left the feed at two
+// roles while the eight competitors had 229 open in these categories. Every
+// role is kept now and tagged, and the feed filters by region instead:
+//   domestic — in the Netherlands
+//   remote   — remote and not restricted to a non-European country
+//   europe   — based elsewhere in Europe
+//   global   — everywhere else
+const EUROPE_RE = /\b(?:europe|european|emea|dach|nordics?|benelux|germany|deutschland|france|spain|espa[ñn]a|italy|italia|portugal|ireland|united kingdom|great britain|britain|england|scotland|wales|austria|switzerland|sweden|norway|finland|iceland|poland|czech|slovakia|hungary|romania|bulgaria|greece|croatia|slovenia|serbia|estonia|latvia|lithuania|luxembourg|malta|cyprus|belgium|netherlands|denmark|gbr|deu|fra|esp|ita|prt|irl|aut|che|swe|nor|fin|pol|cze|svk|hun|rou|bgr|grc|hrv|svn|est|lva|ltu|lux|bel|nld|dnk)\b|london|oxford|cambridge|manchester|edinburgh|dublin|berlin|munich|m[üu]nchen|hamburg|frankfurt|cologne|k[öo]ln|heidelberg|paris|lyon|madrid|barcelona|milan|milano|rome|roma|lisbon|lisboa|vienna|wien|zurich|z[üu]rich|geneva|stockholm|oslo|helsinki|warsaw|warszawa|prague|praha|budapest|athens|amsterdam|utrecht|rotterdam|brussels|copenhagen/i;
+function regionOf(location) {
+  const loc = location || '';
+  if (NL_CITY_COUNTRY_RE.test(loc)) return 'domestic';
+  if (/\bremote\b/i.test(loc) && !NON_EUROPE_REMOTE_RE.test(loc)) return 'remote';
+  if (EUROPE_RE.test(loc)) return 'europe';
+  return 'global';
+}
+
 // Role families that get their own named category, for a sales agent
 // tracking competitor go-to-market and customer-facing headcount:
 // Strategic/Senior Account Management, Sales Development (SDR/BDR outbound
@@ -434,7 +451,7 @@ async function main() {
   for (const src of SOURCES) {
     try {
       const jobs = await src.fetch();
-      perCompanyCounts[src.company] = { total: jobs.length, nlOrRemote: 0 };
+      perCompanyCounts[src.company] = { total: jobs.length, nlOrRemote: 0, domestic: 0, remote: 0, europe: 0, global: 0 };
       for (const j of jobs) {
         if (!j.title || !j.url) continue;
         const roleCategory = classifyRole(j.title, j.department);
@@ -478,8 +495,9 @@ async function main() {
             console.warn(`[competitor-jobs] Could not fetch job detail for "${j.title}" (${j.company}): ${e.message} — falling back to the list location text for this role.`);
           }
         }
-        if (!isTrackedLocation(matchLocation)) continue;
-        perCompanyCounts[src.company].nlOrRemote++;
+        const region = regionOf(matchLocation);
+        perCompanyCounts[src.company][region]++;
+        if (region === 'domestic' || region === 'remote') perCompanyCounts[src.company].nlOrRemote++;
         const key = j.company + '|' + j.url;
         const prior = existingByKey.get(key);
 
@@ -490,6 +508,7 @@ async function main() {
           location: String(displayLocation || j.location || '').slice(0, 150),
           department: String(j.department || '').slice(0, 100),
           roleCategory,
+          region,
           url: j.url.slice(0, 500),
           postedDate: j.postedDate,
           foundDate: (prior && prior.foundDate) || today,
@@ -501,7 +520,7 @@ async function main() {
           applicationDeadline: extractDeadline(descriptionHtml),
         });
       }
-      console.log(`[competitor-jobs] ${src.company}: ${jobs.length} open role(s), ${perCompanyCounts[src.company].nlOrRemote} Netherlands/remote tracked-role match(es)`);
+      { const c = perCompanyCounts[src.company]; console.log(`[competitor-jobs] ${src.company}: ${jobs.length} open role(s) — tracked categories: ${c.nlOrRemote} Netherlands/remote, ${c.europe} elsewhere in Europe, ${c.global} rest of world`); }
     } catch (e) {
       errors[src.company] = e.message;
       console.warn(`[competitor-jobs] ${src.company} failed: ${e.message}`);
@@ -523,6 +542,7 @@ async function main() {
   for (const key of new Set([...existingByKey.keys(), ...seenThisRun.keys()])) {
     const fresh = seenThisRun.get(key);
     const prior = existingByKey.get(key);
+    if (prior && !prior.region) prior.region = regionOf(prior.location); // rows from before regions existed
 
     if (fresh) {
       if (!prior) newCount++;
@@ -556,6 +576,7 @@ async function main() {
   saveJSON(STATE_FILE, {
     lastRun: new Date().toISOString(),
     totalOpenRoles: live.filter(j => j.status !== 'closed').length,
+    openByRegion: ['domestic', 'remote', 'europe', 'global'].reduce((m, r) => { m[r] = live.filter(j => j.status !== 'closed' && j.region === r).length; return m; }, {}),
     totalListed: live.length,
     newCount,
     reopenedCount,
@@ -566,7 +587,7 @@ async function main() {
     untracked: UNTRACKED_COMPANIES,
     source: 'Company career-page ATS APIs (Greenhouse/Ashby/SmartRecruiters/Pinpoint/Workday) — not LinkedIn, see file header',
   });
-  console.log(`[competitor-jobs] Done — ${live.length} Netherlands/remote tracked role(s) listed (${newCount} new, ${reopenedCount} reopened, ${closedCount} newly closed, ${newlyArchived.length} archived) across ${SOURCES.length - Object.keys(errors).length}/${SOURCES.length} tracked companies.`);
+  console.log(`[competitor-jobs] Done — ${live.length} tracked-category role(s) listed (${newCount} new, ${reopenedCount} reopened, ${closedCount} newly closed, ${newlyArchived.length} archived) across ${SOURCES.length - Object.keys(errors).length}/${SOURCES.length} tracked companies.`);
 }
 
 main().catch(e => {
