@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-09-17T19:23:47.531Z",
+  "lastRun": "2026-09-18T12:25:08.612Z",
   "lastAddedCount": 0,
   "sources": 53,
   "blockedSources": [
@@ -41,21 +41,6 @@
       "note": "no people extracted"
     },
     {
-      "instId": "ut",
-      "url": "https://www.utwente.nl/en/service-portal/business-entrepreneurship/knowledge-valorisation",
-      "error": "This operation was aborted"
-    },
-    {
-      "instId": "ut",
-      "url": "https://www.utwente.nl/en/digital-society/research/data-science-artifical-intelligence/ai-expert-finder/",
-      "error": "This operation was aborted"
-    },
-    {
-      "instId": "ut",
-      "url": "https://www.utwente.nl/en/service-portal/research-support/additional-information-per-facultyinstitute/engineering-technology-et/et-research-support-team-members",
-      "error": "This operation was aborted"
-    },
-    {
       "instId": "cpb",
       "url": "https://www.cpb.nl/en/staff-members-and-affiliations",
       "error": "HTTP 403"
@@ -65,9 +50,8 @@
       "note": "no people extracted"
     },
     {
-      "instId": "sanquin",
-      "url": "https://www.sanquin.nl/en/about-sanquin/management-supervision",
-      "error": "fetch failed"
+      "instId": "esc",
+      "note": "no people extracted"
     },
     {
       "instId": "umcg",
