@@ -1,0 +1,173 @@
+{
+  "orgIds": {
+    "04dkp9463": {
+      "id": "openorgs____::58f65ed1ce3c9166e9c5f939bfdbf83a",
+      "name": "University of Amsterdam"
+    },
+    "008xxew50": {
+      "id": "openorgs____::1624ff7c01bb641b91f4518539a0c28a",
+      "name": "Vrije Universiteit Amsterdam"
+    },
+    "057w15z03": {
+      "id": "openorgs____::2f735203eb40d8389a881e874bee537a",
+      "name": "Erasmus University Rotterdam"
+    },
+    "04pp8hn57": {
+      "id": "openorgs____::3d57a5aadd2e0925bca78515278f2405",
+      "name": "Utrecht University"
+    },
+    "027bh9e22": {
+      "id": "openorgs____::e42580548da4a1d39bb67b60b971056e",
+      "name": "Leiden University"
+    },
+    "012p63287": {
+      "id": "openorgs____::81371ea94b1a09d3243e73d6ec3527ec",
+      "name": "University of Groningen"
+    },
+    "016xsfp80": {
+      "id": "openorgs____::a3af79fec4d09764e56cd6d4df1d976a",
+      "name": "Radboud University Nijmegen"
+    },
+    "02e2c7k09": {
+      "id": "openorgs____::5e6bf8962665cdd040341171e5c631d8",
+      "name": "Delft University of Technology"
+    },
+    "02c2kyt77": {
+      "id": "openorgs____::db787c50cf46f2b08e69f830e292e42d",
+      "name": "Eindhoven University of Technology"
+    },
+    "006hf6230": {
+      "id": "openorgs____::604881198363fedbb5d5478f465305f2",
+      "name": "University of Twente"
+    },
+    "04b8v1s79": {
+      "id": "openorgs____::b12b585c23a2b443b35cb33f57309a34",
+      "name": "Tilburg University"
+    },
+    "02jz4aj89": {
+      "id": "openorgs____::a7e0018f6064f0dab7a8c9a48a61a1c6",
+      "name": "Maastricht University"
+    },
+    "04qw24q55": {
+      "id": "openorgs____::ad8f981707a4a1d6c9e9ee60c02b9a11",
+      "name": "Wageningen University & Research"
+    },
+    "018dfmf50": {
+      "id": "openorgs____::54f2e88f3eb801dc7e49a4ca90fdd1b6",
+      "name": "Open University in the Netherlands"
+    },
+    "05grdyy37": {
+      "id": "openorgs____::2ce10b2528220091bd0363c1e39394c1",
+      "name": "Amsterdam University Medical Centers"
+    },
+    "018906e22": {
+      "id": "openorgs____::46893b4080f9a8d38c83cd5bbdd68d52",
+      "name": "Erasmus University Medical Center"
+    },
+    "0575yy874": {
+      "id": "openorgs____::81b64115eb383a27a9c1820a2c760c89",
+      "name": "University Medical Center Utrecht"
+    },
+    "05xvt9f17": {
+      "id": "openorgs____::2eeca4f78f2a04a35057c1fa7918e23b",
+      "name": "Leiden University Medical Center"
+    },
+    "03cv38k47": {
+      "id": "openorgs____::e1c228979333191a8f4bd6b5f5d01644",
+      "name": "University Medical Center Groningen"
+    },
+    "05wg1m734": {
+      "id": "openorgs____::6c50ead5f8f9cac29c4c3066df9fba45",
+      "name": "Radboud University Nijmegen Medical Centre"
+    },
+    "02d9ce178": {
+      "id": "openorgs____::3c2c37b7745ae3202347c3fa594bc66a",
+      "name": "Maastricht University Medical Centre"
+    },
+    "02aj7yc53": {
+      "id": "openorgs____::2310574386b83b200559887761a0e6b0",
+      "name": "Princess Máxima Center"
+    },
+    "03xqtf034": {
+      "id": "openorgs____::1948def781ac9956fed96f81710351db",
+      "name": "Netherlands Heart Institute"
+    },
+    "037n2rm85": {
+      "id": "pending_org_::822a82d442dd45e48ae61f94e90aa08a",
+      "name": "Amsterdam Institute for Global Health and Development"
+    },
+    "04jsz6e67": {
+      "id": "openorgs____::c1a1811a679593a3e8b973f41bc8c8ea",
+      "name": "Dutch Research Council"
+    },
+    "01bnjb948": {
+      "id": "openorgs____::20e491a3310e7146d52161c825a980ec",
+      "name": "Netherlands Organisation for Applied Scientific Research"
+    },
+    "043c0p156": {
+      "id": "openorgs____::cb77737b5a390319030e6abdb12aa6ad",
+      "name": "Royal Netherlands Academy of Arts and Sciences"
+    },
+    "023qc4a07": {
+      "id": "openorgs____::1820f7ff911f4cf656fd63fd17b2fea8",
+      "name": "Hubrecht Institute for Developmental Biology and Stem Cell Research"
+    },
+    "05csn2x06": {
+      "id": "openorgs____::b411400e9cb43b74991acf165fdbaf42",
+      "name": "Netherlands Institute for Neuroscience"
+    },
+    "01cesdt21": {
+      "id": "openorgs____::ee938614ce34e199c2901282deb79db4",
+      "name": "National Institute for Public Health and the Environment"
+    },
+    "00rbjv475": {
+      "id": "openorgs____::863c4184481f057bfe695c9c2786a90a",
+      "name": "Netherlands eScience Center"
+    },
+    "02wc0kq10": {
+      "id": "openorgs____::1eaec9171998c0db1b627afe4a969430",
+      "name": "Netherlands Institute for Space Research"
+    },
+    "00f9tz983": {
+      "id": "pending_org_::238ee7d9317dc37383592f0388d93a3d",
+      "name": "National Institute for Subatomic Physics"
+    },
+    "000k1q888": {
+      "id": "openorgs____::bc3c03a56c8ac610e083f74395896ed4",
+      "name": "Netherlands Institute for Radio Astronomy"
+    },
+    "01gntjh03": {
+      "id": "openorgs____::eb2f1247784acef155801d95b5ac937b",
+      "name": "Royal Netherlands Institute for Sea Research"
+    },
+    "05dfgh554": {
+      "id": "openorgs____::b0a51df36791d8bb939721e0ad1f92b5",
+      "name": "Royal Netherlands Meteorological Institute"
+    },
+    "0566bfb96": {
+      "id": "openorgs____::dd29a935a8c8b552752fd00524f5c2a3",
+      "name": "Naturalis Biodiversity Center"
+    },
+    "022sw4578": {
+      "id": "openorgs____::fa2e191ad1d35db623f96abcedb9fb96",
+      "name": "Netherlands Aerospace Centre"
+    },
+    "04tagjk85": {
+      "id": "openorgs____::374bcee2ff43200e9afe71b6dc606e6c",
+      "name": "Netherlands Institute for Social Research"
+    },
+    "01deh9c76": {
+      "id": "pending_org_::910855351ab3b27dea156b8b8a4ee2f0",
+      "name": "DeltaRes",
+      "via": "name"
+    },
+    "04tdptw32": {
+      "id": "pending_org_::22011643f5064ab9e4ba1e725fbeedf0",
+      "name": "STICHTING T.M.C. ASSER INSTITUUT",
+      "via": "name"
+    }
+  },
+  "lastRun": "2026-09-19T20:39:48.040Z",
+  "lastScanned": 2,
+  "lastFailed": 0
+}
