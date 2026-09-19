@@ -293,5 +293,34 @@
     "autoDiscovered": true,
     "foundDate": "2026-09-18",
     "lastConfirmed": "2026-09-18"
+  },
+  {
+    "id": "radboud-university",
+    "inst": "Radboud University",
+    "type": "University",
+    "status": "active",
+    "signalType": "library_guide",
+    "tier": null,
+    "annualFee": null,
+    "announceDate": null,
+    "effectiveDate": null,
+    "notes": "Found on the library's own LibGuides platform (libguides.ru.nl), where a dedicated tab explains how to retrieve authors and journal articles from OpenAlex via Publish or Perish, alongside separate tabs for other sources. This is hands-on operational training in an open citation index rather than a passing mention, showing library staff already route users to a free Scopus/WoS alternative. For a renewal conversation it signals that Radboud has a working, no-cost substitute for basic author and citation lookups, weakening the 'no alternative exists' argument.",
+    "signal": "Radboud University Library's 'Publish or Perish' LibGuide gives step-by-step instructions for querying OpenAlex, including registering an OpenAlex contact e-mail address under View/Preferences and searching by OpenAlex AuthorID/ORCID.",
+    "sources": [
+      {
+        "label": "Searching for an author - Publish or Perish - LibGuides at Radboud University",
+        "url": "https://libguides.ru.nl/publishorperish/searchingforanauthor"
+      },
+      {
+        "label": "by publication type - Library Guide Geography, Planning & Environment - LibGuides at Radboud University",
+        "url": "https://libguides.ru.nl/GPE/bypublicationtype"
+      },
+      {
+        "label": "by publication type - Library Guide Politics & Public administration - LibGuides at Radboud University",
+        "url": "https://libguides.ru.nl/PPA/publicationtype"
+      }
+    ],
+    "autoDiscovered": true,
+    "foundDate": "2026-09-19"
   }
 ]

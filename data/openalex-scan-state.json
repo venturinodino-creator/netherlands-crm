@@ -1,18 +1,18 @@
 {
-  "lastRun": "2026-09-18T21:49:26.202Z",
-  "lastAddedCount": 5,
-  "lastUpdatedCount": 8,
-  "lastCandidateCount": 19,
-  "lastWebSearches": 42,
+  "lastRun": "2026-09-19T11:51:16.443Z",
+  "lastAddedCount": 1,
+  "lastUpdatedCount": 0,
+  "lastCandidateCount": 3,
+  "lastWebSearches": 12,
   "lastBatch": [
-    "tue",
-    "eur",
-    "ihedelft",
-    "leiden",
-    "um",
-    "ou"
+    "ru",
+    "tiu",
+    "tudelft",
+    "uva",
+    "rug",
+    "ut"
   ],
-  "cursor": 6,
+  "cursor": 12,
   "institutionsTotal": 55,
   "nationalLastRun": "2026-09-18T21:32:11.282Z",
   "checked": {
@@ -45,7 +45,22 @@
       "lastChecked": "2026-09-18",
       "result": "none",
       "searches": 6
+    },
+    "ru": {
+      "lastChecked": "2026-09-19",
+      "result": "active",
+      "searches": 6
+    },
+    "tiu": {
+      "lastChecked": "2026-09-19",
+      "result": "none",
+      "searches": 6
     }
   },
-  "errors": {}
+  "errors": {
+    "tudelft": "Anthropic API 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CfCkHkAvMvQr1h4jMHHt7\"}",
+    "uva": "Anthropic API 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CfCkQyaWpTH16XSQzDLpY\"}",
+    "rug": "Anthropic API 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CfCkQz62ByGDnxm5iM16V\"}",
+    "ut": "Anthropic API 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CfCkQzcmfaLdQMDAcSAgX\"}"
+  }
 }
