@@ -5534,8 +5534,19 @@ function renderWhiteSpace() {
   const all = eligible.filter(i => !wsIsRemoved(i.id));
   const counts = { all: all.length, greenfield: 0, rival: 0, unknown: 0, pinned: all.filter(i => wsIsPinned(i.id)).length, removed: eligible.length - all.length };
   all.forEach(i => counts[wsBucket(i.id)]++);
+  // One hover hint per chip, worded for the selected product so the Scopus
+  // view never says "No Pure". Mirrors the bucket rules in wsBucket/wsHasRival.
+  const rivalName = state.wsProduct === 'pure' ? 'a rival CRIS such as Esploro, Converis or Symplectic' : 'Web of Science or Dimensions';
+  const chipHint = {
+    all:        'Every institution on the ' + prod.label + ' white space list: no active ' + prod.label + ', or pinned here by hand',
+    greenfield: 'Verified: no ' + prod.label + ' and no competing product installed. An open opportunity with nothing to displace',
+    rival:      'Verified: no ' + prod.label + ', but ' + rivalName + ' is already installed. Winning means replacing the incumbent',
+    unknown:    'Not yet researched. No evidence either way, so the institution may have ' + prod.label + ', a rival, or nothing',
+    pinned:     'Accounts a rep moved into the White Space folder by hand via the Type dropdown. They stay listed whatever their ' + prod.label + ' status and also count in one of the other buckets',
+    removed:    'Accounts a rep removed from the ' + prod.label + ' white space list. Use its Restore button to put it back',
+  };
   const chip = (key, label) =>
-    '<button class="ws-chip' + (state.wsFilter === key ? ' active' : '') + '" onclick="state.wsFilter=\'' + key + '\';renderWhiteSpace()">' +
+    '<button class="ws-chip' + (state.wsFilter === key ? ' active' : '') + '" title="' + esc(chipHint[key] || '') + '" onclick="state.wsFilter=\'' + key + '\';renderWhiteSpace()">' +
     esc(label) + ' <b>' + counts[key] + '</b></button>';
 
   const toolbar =
