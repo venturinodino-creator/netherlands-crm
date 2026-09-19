@@ -5328,11 +5328,15 @@ function wsRemove(id) {
   const prod = WS_PRODUCTS[state.wsProduct] || WS_PRODUCTS.pure;
   const inst = state.institutions.find(i => i.id === id);
   if (!confirm('Remove ' + (inst ? inst.name : 'this institution') + ' from the ' + prod.label + ' white space? You can restore it from the "Removed" chip.')) return;
+  // Removing is the stronger statement, so a hand-pinned account loses its pin
+  // here rather than sitting in both lists (pinning clears removals the same way).
+  const wasPinned = wsIsPinned(id);
+  if (wasPinned) wsSetPinned(id, false);
   const ids = wsRemovedIds();
   if (!ids.includes(id)) { ids.push(id); wsSaveRemoved(ids); }
   updateWhiteSpaceBadge();
   renderWhiteSpace();
-  toast('Removed from ' + prod.label + ' white space', 'ok');
+  toast('Removed from ' + prod.label + ' white space' + (wasPinned ? ' and unpinned' : ''), 'ok');
 }
 function wsRestore(id) {
   wsSaveRemoved(wsRemovedIds().filter(x => x !== id));
@@ -5467,6 +5471,12 @@ function renderWhiteSpace() {
       (v === 'grid' ? 'Grid' : v === 'table' ? 'Table' : 'Contacts') + '</button>').join('') +
     '</div>' +
     '<button class="btn btn-outline" onclick="exportWhiteSpaceContacts()" title="Download the current target list, one row per contact">Export CSV</button>';
+
+  // The Removed chip only renders while something is removed. A removal can be
+  // cleared from outside this view (pinning via the Institution modal), which
+  // would otherwise leave the view stuck on a filter that no longer has a chip
+  // and show an empty "Nothing in this slice" with no obvious way back.
+  if (state.wsFilter === 'removed' && !state.institutions.some(i => wsIsTarget(i, state.wsProduct) && wsIsRemoved(i.id))) state.wsFilter = 'all';
 
   let insts = state.institutions.filter(i => {
     if (!wsIsTarget(i, state.wsProduct)) return false; // yes/likely/expiring already have or probably have the product
