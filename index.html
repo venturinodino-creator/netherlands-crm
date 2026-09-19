@@ -5373,6 +5373,13 @@ function wsBucket(id) {
   if (st === 'unknown') return 'unknown';
   return wsHasRival(id) ? 'rival' : 'greenfield';
 }
+// The toolbar chip filter: the three buckets, plus "pinned" for accounts a rep
+// pinned by hand (which can sit in any bucket). "removed" is handled by the caller.
+function wsMatchesFilter(id) {
+  if (state.wsFilter === 'all') return true;
+  if (state.wsFilter === 'pinned') return wsIsPinned(id);
+  return wsBucket(id) === state.wsFilter;
+}
 const WS_BUCKET_LABEL = {
   greenfield: { label: 'Greenfield',   color: '#4ade80', hint: 'No Pure and no competing CRIS' },
   rival:      { label: 'Displacement', color: '#fb923c', hint: 'A competing product is already installed (a rival CRIS for Pure; Web of Science or Dimensions for Scopus and SciVal)' },
@@ -5433,6 +5440,7 @@ const WS_PRODUCTS = {
 function wsTogglePin(id) {
   const on = !wsIsPinned(id);
   wsSetPinned(id, on);
+  if (!on && state.wsFilter === 'pinned' && !wsPinnedIds().length) state.wsFilter = 'all';
   const inst = state.institutions.find(i => i.id === id);
   // Called from the White Space cards and from the detail page header, so
   // redraw whichever is open (render() also refreshes the nav badge).
@@ -5483,7 +5491,7 @@ function renderWhiteSpace() {
     if (state.wsFilter === 'removed') { if (!wsIsRemoved(i.id)) return false; }
     else {
       if (wsIsRemoved(i.id)) return false;
-      if (state.wsFilter !== 'all' && wsBucket(i.id) !== state.wsFilter) return false;
+      if (!wsMatchesFilter(i.id)) return false;
     }
     if (state.wsSearch) {
       const hay = (i.name + ' ' + (i.short || '') + ' ' + i.city + ' ' + (wsInfo(i.id).why || '') + ' ' +
@@ -5496,7 +5504,7 @@ function renderWhiteSpace() {
 
   const eligible = state.institutions.filter(i => wsIsTarget(i, state.wsProduct));
   const all = eligible.filter(i => !wsIsRemoved(i.id));
-  const counts = { all: all.length, greenfield: 0, rival: 0, unknown: 0, removed: eligible.length - all.length };
+  const counts = { all: all.length, greenfield: 0, rival: 0, unknown: 0, pinned: all.filter(i => wsIsPinned(i.id)).length, removed: eligible.length - all.length };
   all.forEach(i => counts[wsBucket(i.id)]++);
   const chip = (key, label) =>
     '<button class="ws-chip' + (state.wsFilter === key ? ' active' : '') + '" onclick="state.wsFilter=\'' + key + '\';renderWhiteSpace()">' +
@@ -5509,7 +5517,7 @@ function renderWhiteSpace() {
           'oninput="state.wsSearch=this.value;renderWhiteSpace()">' +
       '</div>' +
       '<div class="ws-chips">' + chip('all', 'All') + chip('greenfield', 'Greenfield') +
-        chip('rival', 'Displacement') + chip('unknown', 'Unverified') +
+        chip('rival', 'Displacement') + chip('unknown', 'Unverified') + chip('pinned', 'Pinned') +
         (counts.removed ? chip('removed', 'Removed') : '') + '</div>' +
       '<span style="font-size:12px;color:var(--muted);margin-left:auto">' + insts.length +
         ' target' + (insts.length !== 1 ? 's' : '') + '</span>' +
@@ -5621,7 +5629,7 @@ function exportWhiteSpaceContacts() {
   const insts = state.institutions.filter(i =>
     wsIsTarget(i, state.wsProduct) &&
     (state.wsFilter === 'removed' ? wsIsRemoved(i.id) :
-      !wsIsRemoved(i.id) && (state.wsFilter === 'all' || wsBucket(i.id) === state.wsFilter)));
+      !wsIsRemoved(i.id) && wsMatchesFilter(i.id)));
   const prod = WS_PRODUCTS[state.wsProduct] || WS_PRODUCTS.pure;
   const out = [['Name', 'Role', 'Institution', 'Type', 'City', 'Email', 'Email status', 'Phone', prod.label + ' status', 'Incumbent', 'Indexed works', 'Source']];
   // An institution nobody has a name for still gets a row: on an outreach
