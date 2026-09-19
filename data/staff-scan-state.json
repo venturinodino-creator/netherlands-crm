@@ -1,6 +1,6 @@
 {
-  "lastRun": "2026-09-18T17:28:29.646Z",
-  "lastAddedCount": 19,
+  "lastRun": "2026-09-19T12:06:14.637Z",
+  "lastAddedCount": 0,
   "sources": 53,
   "blockedSources": [
     "https://www.tilburguniversity.edu/about/organization/university-services/library-it-services",
@@ -12,6 +12,11 @@
     "https://www.clingendael.org/mission-organisation"
   ],
   "issues": [
+    {
+      "instId": "tue",
+      "url": "https://www.tue.nl/en/our-university/about-the-university/support-services/library-and-information-services",
+      "error": "fetch failed"
+    },
     {
       "instId": "leiden",
       "note": "no people extracted"
