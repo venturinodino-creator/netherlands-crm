@@ -5157,6 +5157,9 @@ function renderInstitutions() {
     return true;
   });
   insts = sortInstList(insts, state.instSort, instSortVal);
+  // Shown on the White Space filter option so the folder's size is visible
+  // without selecting it. Pinned accounts also stay under their real type.
+  const pinnedCount = state.institutions.filter(i=>wsIsPinned(i.id)).length;
 
   const toolbar = `
     <div class="toolbar">
@@ -5170,7 +5173,7 @@ function renderInstitutions() {
         <option value="medical" ${state.instType==='medical'?'selected':''}> Medical Center</option>
         <option value="research" ${state.instType==='research'?'selected':''}>Research Institute</option>
         <option value="ngo" ${state.instType==='ngo'?'selected':''}> NGO / Foundation</option>
-        <option value="whitespace" ${state.instType==='whitespace'?'selected':''}>White Space</option>
+        <option value="whitespace" ${state.instType==='whitespace'?'selected':''}>White Space${pinnedCount?' ('+pinnedCount+')':''}</option>
       </select>
       <span style="font-size:12px;color:var(--muted)">${insts.length} result${insts.length!==1?'s':''}</span>
     </div>`;
