@@ -1532,7 +1532,7 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
             <option value="medical">Medical Center</option>
             <option value="research">Research Institute</option>
             <option value="ngo">NGO / Foundation</option>
-            <option value="whitespace" title="Move this institution out of the main Institutions list into the White Space folder, whatever its Pure / Scopus / SciVal status">White Space</option>
+            <option value="whitespace" title="Keep this institution in the White Space folder regardless of its Pure / Scopus / SciVal status">White Space</option>
           </select>
         </div>
         <div class="fg"><label>City *</label><input id="mi-city" placeholder="Amsterdam"></div>
@@ -5152,15 +5152,11 @@ function renderInstitutions() {
   let insts = state.institutions.filter(i=>{
     if(state.instSearch && !`${i.name} ${i.short} ${i.city} ${i.description}`.toLowerCase().includes(state.instSearch.toLowerCase())) return false;
     // "whitespace" is the pinned-to-White-Space folder, not a stored type.
-    // Pinning *moves* the account there: it leaves the main list and the
-    // per-type views and shows only under this folder (and in White Space).
     if(state.instType==='whitespace') return wsIsPinned(i.id);
-    if(wsIsPinned(i.id)) return false;
     if(state.instType && i.type!==state.instType) return false;
     return true;
   });
   insts = sortInstList(insts, state.instSort, instSortVal);
-  const pinnedCount = state.institutions.filter(i=>wsIsPinned(i.id)).length;
 
   const toolbar = `
     <div class="toolbar">
@@ -5174,13 +5170,13 @@ function renderInstitutions() {
         <option value="medical" ${state.instType==='medical'?'selected':''}> Medical Center</option>
         <option value="research" ${state.instType==='research'?'selected':''}>Research Institute</option>
         <option value="ngo" ${state.instType==='ngo'?'selected':''}> NGO / Foundation</option>
-        <option value="whitespace" ${state.instType==='whitespace'?'selected':''}>White Space folder${pinnedCount?' ('+pinnedCount+')':''}</option>
+        <option value="whitespace" ${state.instType==='whitespace'?'selected':''}>White Space</option>
       </select>
-      <span style="font-size:12px;color:var(--muted)">${insts.length} result${insts.length!==1?'s':''}${state.instType!=='whitespace' && pinnedCount ? ` · <a class="ext-link" onclick="state.instType='whitespace';state.instPage=1;renderInstitutions()" title="Accounts moved to the White Space folder via the Type dropdown">${pinnedCount} in White Space folder</a>` : ''}</span>
+      <span style="font-size:12px;color:var(--muted)">${insts.length} result${insts.length!==1?'s':''}</span>
     </div>`;
 
   if(!insts.length) {
-    document.getElementById('content').innerHTML = toolbar + `<div class="empty"><div class="ei"></div><h3>No institutions found</h3><p>${state.instType==='whitespace' ? 'Nothing has been moved here yet. Set an institution’s Type to White Space to move it into this folder.' : 'Try adjusting your search or filters.'}</p></div>`;
+    document.getElementById('content').innerHTML = toolbar + `<div class="empty"><div class="ei"></div><h3>No institutions found</h3><p>Try adjusting your search or filters.</p></div>`;
     return;
   }
 
@@ -6659,7 +6655,7 @@ async function saveInstitution() {
   // never having reached it, is gone. The toast needs to say so plainly
   // rather than imply it's safely saved.
   toast(
-    synced ? ((isEdit ? 'Institution updated' : 'Institution added') + (pinWs ? ' — moved to the White Space folder' : '')) : 'Not saved to the shared database — retry before reloading or this change will be lost',
+    synced ? ((isEdit ? 'Institution updated' : 'Institution added') + (pinWs ? ' — now in the White Space folder' : '')) : 'Not saved to the shared database — retry before reloading or this change will be lost',
     synced ? 'ok' : 'err'
   );
 }
