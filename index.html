@@ -1531,6 +1531,7 @@ tbody td { padding: 11px 16px !important; color: rgba(255,255,255,.72) !importan
             <option value="medical">Medical Center</option>
             <option value="research">Research Institute</option>
             <option value="ngo">NGO / Foundation</option>
+            <option value="whitespace" title="Keep this institution in the White Space folder regardless of its Pure / Scopus / SciVal status">White Space</option>
           </select>
         </div>
         <div class="fg"><label>City *</label><input id="mi-city" placeholder="Amsterdam"></div>
@@ -5234,8 +5235,13 @@ const WS_STATUS = {
   cancelled:{ label: 'Cancelled',  color: '#f87171' },
   unknown:  { label: 'Unverified', color: '#fbbf24' },
 };
+// A hand-pinned account (see WS_PINNED_KEY) can sit on the list with a status
+// the list would otherwise hide, e.g. an active Pure tenancy; it gets its own
+// badge rather than crashing on a colour WS_STATUS has no entry for.
+const WS_PINNED_STATUS = { label: 'Pinned', color: '#60a5fa' };
+function wsStatusOf(id, product) { return WS_STATUS[getProductStatus(id, product)] || WS_PINNED_STATUS; }
 function wsStatusLabel(code) {
-  if (code !== 'no') return (WS_STATUS[code] || {}).label || code;
+  if (code !== 'no') return (WS_STATUS[code] || WS_PINNED_STATUS).label;
   return 'No ' + ((WS_PRODUCTS[state.wsProduct] || WS_PRODUCTS.pure).label);
 }
 
@@ -5277,6 +5283,38 @@ function wsSaveRemoved(ids) {
   try { all = JSON.parse(localStorage.getItem(WS_REMOVED_KEY) || '{}'); } catch (e) {}
   all[state.wsProduct] = ids;
   localStorage.setItem(WS_REMOVED_KEY, JSON.stringify(all));
+}
+// Institutions a rep has put on the list by hand: picking "White Space" as the
+// Type in the Add/Edit Institution modal pins the account here for every
+// product, whatever the competitor matrix says about it. The real organisation
+// type is kept on the record (the pin is a folder, not a kind of institution),
+// so icons, map colours and analytics keep working. Stored in localStorage
+// like the Removed list; a pinned account is never also in the Removed list.
+const WS_PINNED_KEY = 'nl_crm_ws_pinned';
+function wsPinnedIds() {
+  try { const v = JSON.parse(localStorage.getItem(WS_PINNED_KEY) || '[]'); return Array.isArray(v) ? v : []; }
+  catch (e) { return []; }
+}
+function wsIsPinned(id) { return wsPinnedIds().includes(id); }
+function wsSetPinned(id, on) {
+  const ids = wsPinnedIds().filter(x => x !== id);
+  if (on) ids.push(id);
+  localStorage.setItem(WS_PINNED_KEY, JSON.stringify(ids));
+  if (!on) return;
+  // Pinning is the rep saying "this is a target" — clear any earlier removal
+  // for every product so the pin actually shows up.
+  let all = {};
+  try { all = JSON.parse(localStorage.getItem(WS_REMOVED_KEY) || '{}'); } catch (e) {}
+  Object.keys(all).forEach(k => { all[k] = (all[k] || []).filter(x => x !== id); });
+  localStorage.setItem(WS_REMOVED_KEY, JSON.stringify(all));
+}
+// The one place that decides whether an institution belongs on the White Space
+// list for a product: an eligible, non-excluded org that is either pinned by
+// hand or has a no / cancelled / unverified status for that product. Every
+// list, count, export and badge goes through this so they can never disagree.
+function wsIsTarget(i, product) {
+  if (!WS_ELIGIBLE_TYPES.includes(i.type) || WS_EXCLUDE_IDS.has(i.id)) return false;
+  return wsIsPinned(i.id) || getProductStatus(i.id, product) in WS_STATUS;
 }
 function wsRemove(id) {
   const prod = WS_PRODUCTS[state.wsProduct] || WS_PRODUCTS.pure;
@@ -5402,10 +5440,7 @@ function renderWhiteSpace() {
     '<button class="btn btn-outline" onclick="exportWhiteSpaceContacts()" title="Download the current target list, one row per contact">Export CSV</button>';
 
   let insts = state.institutions.filter(i => {
-    if (!WS_ELIGIBLE_TYPES.includes(i.type)) return false;
-    if (WS_EXCLUDE_IDS.has(i.id)) return false;
-    const pureStatus = getProductStatus(i.id, state.wsProduct);
-    if (!(pureStatus in WS_STATUS)) return false; // yes/likely/expiring already have or probably have Pure
+    if (!wsIsTarget(i, state.wsProduct)) return false; // yes/likely/expiring already have or probably have the product
     if (state.wsFilter === 'removed') { if (!wsIsRemoved(i.id)) return false; }
     else {
       if (wsIsRemoved(i.id)) return false;
@@ -5420,8 +5455,7 @@ function renderWhiteSpace() {
   });
   insts = sortInstList(insts, state.wsSort, wsSortVal);
 
-  const eligible = state.institutions.filter(i =>
-    WS_ELIGIBLE_TYPES.includes(i.type) && !WS_EXCLUDE_IDS.has(i.id) && getProductStatus(i.id, state.wsProduct) in WS_STATUS);
+  const eligible = state.institutions.filter(i => wsIsTarget(i, state.wsProduct));
   const all = eligible.filter(i => !wsIsRemoved(i.id));
   const counts = { all: all.length, greenfield: 0, rival: 0, unknown: 0, removed: eligible.length - all.length };
   all.forEach(i => counts[wsBucket(i.id)]++);
@@ -5454,7 +5488,7 @@ function renderWhiteSpace() {
     document.getElementById('content').innerHTML = toolbar +
       '<div class="inst-grid">' + insts.map(i => {
         const info = wsInfo(i.id), bk = WS_BUCKET_LABEL[wsBucket(i.id)];
-        const st = WS_STATUS[getProductStatus(i.id, state.wsProduct)];
+        const st = wsStatusOf(i.id, state.wsProduct);
         const works = wsWorks(i.id), cx = wsContacts(i.id), crm = contactsForInst(i.id).length;
         return '<div class="ic ws-card" onclick="nav(\'detail\',{instId:\'' + i.id + '\'})">' +
           '<div class="ic-head">' +
@@ -5495,7 +5529,7 @@ function renderWhiteSpace() {
         '<th class="sortable-th' + sortThStyle('city', state.wsSort) + '" onclick="toggleSort(state.wsSort,\'city\',renderWhiteSpace)">City' + sortArrow('city', state.wsSort) + '</th>' +
         '<th>Contacts</th><th>Actions</th>' +
       '</tr></thead><tbody>' + insts.map(i => {
-        const info = wsInfo(i.id), st = WS_STATUS[getProductStatus(i.id, state.wsProduct)];
+        const info = wsInfo(i.id), st = wsStatusOf(i.id, state.wsProduct);
         const works = wsWorks(i.id), cx = wsContacts(i.id);
         return '<tr onclick="nav(\'detail\',{instId:\'' + i.id + '\'})">' +
           '<td><div class="name-cell"><span style="font-size:18px">' + (TYPE_ICON[i.type] || '') + '</span><div>' +
@@ -5546,8 +5580,7 @@ function renderWhiteSpace() {
 // filtered down to is what lands in the CSV.
 function exportWhiteSpaceContacts() {
   const insts = state.institutions.filter(i =>
-    WS_ELIGIBLE_TYPES.includes(i.type) && !WS_EXCLUDE_IDS.has(i.id) &&
-    getProductStatus(i.id, state.wsProduct) in WS_STATUS &&
+    wsIsTarget(i, state.wsProduct) &&
     (state.wsFilter === 'removed' ? wsIsRemoved(i.id) :
       !wsIsRemoved(i.id) && (state.wsFilter === 'all' || wsBucket(i.id) === state.wsFilter)));
   const prod = WS_PRODUCTS[state.wsProduct] || WS_PRODUCTS.pure;
@@ -5587,8 +5620,7 @@ function updateWhiteSpaceBadge() {
   // in-view product toggle would leave it showing a stale count.
   let removedPure = [];
   try { removedPure = (JSON.parse(localStorage.getItem(WS_REMOVED_KEY) || '{}').pure) || []; } catch (e) {}
-  const count = state.institutions.filter(i => WS_ELIGIBLE_TYPES.includes(i.type) && !WS_EXCLUDE_IDS.has(i.id) &&
-    !removedPure.includes(i.id) && getProductStatus(i.id, 'pure') in WS_STATUS).length;
+  const count = state.institutions.filter(i => wsIsTarget(i, 'pure') && !removedPure.includes(i.id)).length;
   badge.textContent = count;
   badge.title = count + ' institutions with no Pure tenancy';
   badge.style.display = count > 0 ? 'inline-block' : 'none';
@@ -6457,7 +6489,7 @@ function openEditInstitution(id) {
   document.getElementById('mi-title').textContent = 'Edit Institution';
   document.getElementById('mi-name').value = i.name||'';
   document.getElementById('mi-short').value = i.short||'';
-  document.getElementById('mi-type').value = i.type||'university';
+  document.getElementById('mi-type').value = wsIsPinned(id) ? 'whitespace' : (i.type||'university');
   document.getElementById('mi-city').value = i.city||'';
   document.getElementById('mi-founded').value = i.founded||'';
   document.getElementById('mi-website').value = i.website||'';
@@ -6481,10 +6513,16 @@ async function saveInstitution() {
   const name = document.getElementById('mi-name').value.trim();
   const city = document.getElementById('mi-city').value.trim();
   if(!name || !city) { toast('Name and city are required.','err'); return; }
+  // "White Space" in the Type dropdown is a folder, not an organisation type:
+  // it pins the account to the White Space list and leaves the stored type
+  // alone (a new record defaults to research, the broadest Pure prospect).
+  const typeChoice = document.getElementById('mi-type').value;
+  const pinWs = typeChoice === 'whitespace';
+  const existing = state.editInstId ? getInst(state.editInstId) : null;
   const data = {
     name, city,
     short: document.getElementById('mi-short').value.trim(),
-    type: document.getElementById('mi-type').value,
+    type: pinWs ? ((existing && existing.type) || 'research') : typeChoice,
     founded: document.getElementById('mi-founded').value.trim()||'',
     website: document.getElementById('mi-website').value.trim(),
     description: document.getElementById('mi-desc').value.trim(),
@@ -6499,6 +6537,7 @@ async function saveInstitution() {
     state.institutions.push(data);
     savedInst = data;
   }
+  wsSetPinned(savedInst.id, pinWs);
   // Save competitor data
   if(state.editInstId) {
     const instId = state.editInstId;
@@ -6533,7 +6572,7 @@ async function saveInstitution() {
   // never having reached it, is gone. The toast needs to say so plainly
   // rather than imply it's safely saved.
   toast(
-    synced ? (isEdit ? 'Institution updated' : 'Institution added') : 'Not saved to the shared database — retry before reloading or this change will be lost',
+    synced ? ((isEdit ? 'Institution updated' : 'Institution added') + (pinWs ? ' — now in the White Space folder' : '')) : 'Not saved to the shared database — retry before reloading or this change will be lost',
     synced ? 'ok' : 'err'
   );
 }
@@ -7770,7 +7809,7 @@ function anWsBucket(id) {
   return rival ? 'rival' : 'greenfield';
 }
 function anWhiteSpaceList(s) {
-  return s.insts.filter(i => WS_ELIGIBLE_TYPES.includes(i.type) && !WS_EXCLUDE_IDS.has(i.id) && getProductStatus(i.id, 'pure') in WS_STATUS);
+  return s.insts.filter(i => wsIsTarget(i, 'pure'));
 }
 // A segmented bar with one span per status. The counts sit in the legend, so
 // the colours are an aid to comparison rather than the only way to read it.
