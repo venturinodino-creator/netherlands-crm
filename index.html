@@ -5424,11 +5424,25 @@ const WS_PRODUCTS = {
             sub: 'Institutions with no evidence of SciVal — the strongest are those already paying for Scopus',
             caveat: 'SciVal has no public register, so "Unverified" means no evidence either way. The best prospects are institutions that hold Scopus but show no SciVal — worth checking against Elsevier records.' },
 };
-// Remove / Restore control shared by the grid card footer and the table row.
+// Pin / Unpin from the card itself, the same pin the Type dropdown sets. An
+// account that is only on the list because of the pin drops off it when unpinned.
+function wsTogglePin(id) {
+  const on = !wsIsPinned(id);
+  wsSetPinned(id, on);
+  const inst = state.institutions.find(i => i.id === id);
+  updateWhiteSpaceBadge();
+  renderWhiteSpace();
+  toast((inst ? inst.name : 'Institution') + (on ? ' pinned to White Space' : ' unpinned from White Space'), 'ok');
+}
+// Pin/Unpin and Remove/Restore controls shared by the grid card footer and the table row.
 function wsRowAction(id) {
-  return wsIsRemoved(id)
-    ? '<button class="btn btn-outline btn-sm ws-act" onclick="event.stopPropagation();wsRestore(\'' + id + '\')" title="Put this institution back on the target list">Restore</button>'
-    : '<button class="btn btn-ghost btn-sm ws-act" onclick="event.stopPropagation();wsRemove(\'' + id + '\')" title="Take this institution off the target list">Remove</button>';
+  const pin = wsIsPinned(id)
+    ? '<button class="btn btn-outline btn-sm" onclick="event.stopPropagation();wsTogglePin(\'' + id + '\')" title="Unpin — the account stays only if its product status still qualifies">Unpin</button>'
+    : '<button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();wsTogglePin(\'' + id + '\')" title="Pin — keep this account in the White Space folder whatever its product status">Pin</button>';
+  const rm = wsIsRemoved(id)
+    ? '<button class="btn btn-outline btn-sm" onclick="event.stopPropagation();wsRestore(\'' + id + '\')" title="Put this institution back on the target list">Restore</button>'
+    : '<button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();wsRemove(\'' + id + '\')" title="Take this institution off the target list">Remove</button>';
+  return '<span class="ws-act" style="display:inline-flex;gap:4px">' + pin + rm + '</span>';
 }
 function wsSetProduct(p) { state.wsProduct = p; state.wsFilter = 'all'; renderWhiteSpace(); }
 function renderWhiteSpace() {
