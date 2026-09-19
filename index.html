@@ -5375,6 +5375,9 @@ function wsBucket(id) {
 }
 // The toolbar chip filter: the three buckets, plus "pinned" for accounts a rep
 // pinned by hand (which can sit in any bucket). "removed" is handled by the caller.
+// This predicate, the Pinned chip and its count landed inside an unrelated
+// commit ("Rotating agents: stop on an account-level API error", #56) when
+// two sessions shared this checkout; see the follow-up commit for the intent.
 function wsMatchesFilter(id) {
   if (state.wsFilter === 'all') return true;
   if (state.wsFilter === 'pinned') return wsIsPinned(id);
