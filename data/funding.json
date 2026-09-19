@@ -1,28 +1,31 @@
 {
-  "generatedAt": "2026-09-19T20:39:35.977Z",
-  "source": "OpenAIRE Graph API (projects by organisation; CORDIS and national funders)",
+  "generatedAt": "2026-09-19T21:04:34.119Z",
+  "source": "OpenAIRE Graph API (projects by organisation name; CORDIS and national funders)",
   "since": "2023-09-19",
   "institutions": {
     "uva": {
-      "ror": "04dkp9463",
-      "openaireId": "openorgs____::58f65ed1ce3c9166e9c5f939bfdbf83a",
-      "openaireName": "University of Amsterdam",
+      "query": "University of Amsterdam",
       "since": "2023-09-19",
-      "numFound": 171,
-      "fetched": 171,
-      "active": 162,
-      "fundedTotal": 469894380,
-      "fundedKnown": 164,
+      "numFound": 259,
+      "fetched": 259,
+      "active": 236,
+      "fundedTotal": 557043031.7,
+      "fundedKnown": 194,
       "byFunder": {
         "EC": {
           "name": "European Commission",
-          "count": 156,
-          "amount": 457329731
+          "count": 175,
+          "amount": 543241211
         },
         "NWO": {
           "name": "Netherlands Organisation for Scientific Research (NWO)",
-          "count": 7,
+          "count": 65,
           "amount": 0
+        },
+        "SNSF": {
+          "name": "Swiss National Science Foundation",
+          "count": 9,
+          "amount": 924683
         },
         "UKRI": {
           "name": "UK Research and Innovation",
@@ -31,8 +34,8 @@
         },
         "ANR": {
           "name": "French National Research Agency (ANR)",
-          "count": 3,
-          "amount": 592312
+          "count": 5,
+          "amount": 904800.7
         }
       },
       "projects": [
@@ -205,43 +208,36 @@
           "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A387a3d8ab18178d30c797f009c330ca2"
         }
       ],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3A58f65ed1ce3c9166e9c5f939bfdbf83a"
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22University%20of%20Amsterdam%22&f0=q"
     },
     "vu": {
-      "ror": "008xxew50",
-      "openaireId": "openorgs____::1624ff7c01bb641b91f4518539a0c28a",
-      "openaireName": "Vrije Universiteit Amsterdam",
+      "query": "Vrije Universiteit Amsterdam",
       "since": "2023-09-19",
-      "numFound": 286,
-      "fetched": 286,
-      "active": 230,
-      "fundedTotal": 512871766,
-      "fundedKnown": 111,
+      "numFound": 528,
+      "fetched": 300,
+      "active": 448,
+      "fundedTotal": 312334832,
+      "fundedKnown": 63,
       "byFunder": {
         "EC": {
           "name": "European Commission",
-          "count": 108,
-          "amount": 507061547
+          "count": 61,
+          "amount": 306944438
+        },
+        "NWO": {
+          "name": "Netherlands Organisation for Scientific Research (NWO)",
+          "count": 237,
+          "amount": 0
         },
         "WT": {
           "name": "Wellcome Trust",
           "count": 1,
           "amount": 5222870
         },
-        "NWO": {
-          "name": "Netherlands Organisation for Scientific Research (NWO)",
-          "count": 175,
-          "amount": 0
-        },
-        "SNSF": {
-          "name": "Swiss National Science Foundation",
+        "ANR": {
+          "name": "French National Research Agency (ANR)",
           "count": 1,
-          "amount": 106600
-        },
-        "UKRI": {
-          "name": "UK Research and Innovation",
-          "count": 1,
-          "amount": 480749
+          "amount": 167524
         }
       },
       "projects": [
@@ -414,18 +410,16 @@
           "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A41f90dbe3922883f00a15116929f6b4c"
         }
       ],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3A1624ff7c01bb641b91f4518539a0c28a"
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Vrije%20Universiteit%20Amsterdam%22&f0=q"
     },
     "eur": {
-      "ror": "057w15z03",
-      "openaireId": "openorgs____::2f735203eb40d8389a881e874bee537a",
-      "openaireName": "Erasmus University Rotterdam",
+      "query": "Erasmus University Rotterdam",
       "since": "2023-09-19",
-      "numFound": 49,
-      "fetched": 49,
-      "active": 48,
-      "fundedTotal": 225868477,
-      "fundedKnown": 48,
+      "numFound": 50,
+      "fetched": 50,
+      "active": 49,
+      "fundedTotal": 226042333,
+      "fundedKnown": 49,
       "byFunder": {
         "CF": {
           "name": "Carlsberg Foundation",
@@ -436,6 +430,11 @@
           "name": "European Commission",
           "count": 48,
           "amount": 225868477
+        },
+        "SNSF": {
+          "name": "Swiss National Science Foundation",
+          "count": 1,
+          "amount": 173856
         }
       },
       "projects": [
@@ -608,27 +607,30 @@
           "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A961a933c77563c5af38f70baeab5dafa"
         }
       ],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3A2f735203eb40d8389a881e874bee537a"
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Erasmus%20University%20Rotterdam%22&f0=q"
     },
     "uu": {
-      "ror": "04pp8hn57",
-      "openaireId": "openorgs____::3d57a5aadd2e0925bca78515278f2405",
-      "openaireName": "Utrecht University",
+      "query": "Utrecht University",
       "since": "2023-09-19",
-      "numFound": 176,
-      "fetched": 176,
-      "active": 164,
-      "fundedTotal": 685247664,
-      "fundedKnown": 175,
+      "numFound": 204,
+      "fetched": 204,
+      "active": 186,
+      "fundedTotal": 685929134,
+      "fundedKnown": 178,
       "byFunder": {
+        "CF": {
+          "name": "Carlsberg Foundation",
+          "count": 2,
+          "amount": 0
+        },
         "EC": {
           "name": "European Commission",
           "count": 162,
           "amount": 671064348
         },
-        "CF": {
-          "name": "Carlsberg Foundation",
-          "count": 1,
+        "NWO": {
+          "name": "Netherlands Organisation for Scientific Research (NWO)",
+          "count": 24,
           "amount": 0
         },
         "UKRI": {
@@ -638,11 +640,30 @@
         },
         "ANR": {
           "name": "French National Research Agency (ANR)",
-          "count": 3,
-          "amount": 528731
+          "count": 4,
+          "amount": 1068383
+        },
+        "SNSF": {
+          "name": "Swiss National Science Foundation",
+          "count": 2,
+          "amount": 141818
         }
       },
       "projects": [
+        {
+          "id": "cf__________::193f7e0036ff504ebbe267c7be004bf2",
+          "code": "CF24-1605",
+          "acronym": "",
+          "title": "Caught between Citizenship, Crime, and Coercion: Somali Deportees and the Challenge of Reintegration",
+          "funder": "CF",
+          "stream": "Internationalisation Fellowships",
+          "call": "",
+          "start": "2027-06-30",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=cf__________%3A%3A193f7e0036ff504ebbe267c7be004bf2"
+        },
         {
           "id": "corda_____he::236d84ba00ad8c288791f93b9e3e40b4",
           "code": "101306322",
@@ -796,64 +817,38 @@
           "amount": 232916,
           "currency": "EUR",
           "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A1f7d12315769b391a03899a38870d969"
-        },
-        {
-          "id": "corda_____he::2221631da8f888564c246a0b5a55143b",
-          "code": "101219235",
-          "acronym": "Care2Act",
-          "title": "Strategic Care in Activism: Mental Health Across Scales of Social Change",
-          "funder": "EC",
-          "stream": "Horizon Europe Framework Programme - European Research Council - HORIZON ERC Grants",
-          "call": "ERC-2025-STG",
-          "start": "2026-01-01",
-          "end": "2030-12-31",
-          "amount": 1500000,
-          "currency": "EUR",
-          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A2221631da8f888564c246a0b5a55143b"
         }
       ],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3A3d57a5aadd2e0925bca78515278f2405"
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Utrecht%20University%22&f0=q"
     },
     "leiden": {
-      "ror": "027bh9e22",
-      "openaireId": "openorgs____::e42580548da4a1d39bb67b60b971056e",
-      "openaireName": "Leiden University",
+      "query": "Leiden University",
       "since": "2023-09-19",
-      "numFound": 438,
+      "numFound": 633,
       "fetched": 300,
-      "active": 260,
-      "fundedTotal": 321243689,
-      "fundedKnown": 127,
+      "active": 521,
+      "fundedTotal": 344029237,
+      "fundedKnown": 96,
       "byFunder": {
         "EC": {
           "name": "European Commission",
-          "count": 117,
-          "amount": 310631913
+          "count": 92,
+          "amount": 342903031
         },
         "NWO": {
           "name": "Netherlands Organisation for Scientific Research (NWO)",
-          "count": 172,
+          "count": 203,
           "amount": 0
         },
         "ANR": {
           "name": "French National Research Agency (ANR)",
-          "count": 6,
-          "amount": 1669860
+          "count": 4,
+          "amount": 1126206
         },
         "CF": {
           "name": "Carlsberg Foundation",
           "count": 1,
           "amount": 0
-        },
-        "UKRI": {
-          "name": "UK Research and Innovation",
-          "count": 3,
-          "amount": 8750886
-        },
-        "FWF": {
-          "name": "Austrian Science Fund (FWF)",
-          "count": 1,
-          "amount": 191030
         }
       },
       "projects": [
@@ -900,6 +895,34 @@
           "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A5aa03c2f9ddfe7f17eb066809f0e6f68"
         },
         {
+          "id": "corda_____he::8cbdffb9ce82afd93d0273f942ffb3a0",
+          "code": "101312114",
+          "acronym": "VirION",
+          "title": "Inter-organelle crosstalk in viral infections: identifying peroxisome-related targets for novel broad-spectrum antiviral strategies",
+          "funder": "EC",
+          "stream": "Horizon Europe Framework Programme - HORIZON TMA MSCA Doctoral Networks",
+          "call": "HORIZON-MSCA-2025-DN-01",
+          "start": "2027-01-01",
+          "end": "2030-12-31",
+          "amount": 4493390,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A8cbdffb9ce82afd93d0273f942ffb3a0"
+        },
+        {
+          "id": "corda_____he::9a9283e9e2d515f6185b1d35fda7c8f9",
+          "code": "101312753",
+          "acronym": "DECODES",
+          "title": "Deciphering the Splicing Code in Human Disease",
+          "funder": "EC",
+          "stream": "Horizon Europe Framework Programme - HORIZON TMA MSCA Doctoral Networks",
+          "call": "HORIZON-MSCA-2025-DN-01",
+          "start": "2027-01-01",
+          "end": "2030-12-31",
+          "amount": 4589820,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A9a9283e9e2d515f6185b1d35fda7c8f9"
+        },
+        {
           "id": "corda_____he::09c3111938f58be892a13a71337d9338",
           "code": "101288797",
           "acronym": "PhotoMel",
@@ -914,6 +937,20 @@
           "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A09c3111938f58be892a13a71337d9338"
         },
         {
+          "id": "corda_____he::16a80102ae9bcc3d1e98d5ac367ac5d7",
+          "code": "101287159",
+          "acronym": "REPhRAME",
+          "title": "REcurrent urinary tract infection: Efficacy and safety of PHage theRapy and Microbiota transfEr",
+          "funder": "EC",
+          "stream": "Horizon Europe Framework Programme - HORIZON  Research and Innovation Actions",
+          "call": "HORIZON-HLTH-2025-01",
+          "start": "2026-06-01",
+          "end": "2031-05-31",
+          "amount": 15199900,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A16a80102ae9bcc3d1e98d5ac367ac5d7"
+        },
+        {
           "id": "corda_____he::176ed2c3dacc73684c9295810d9a5230",
           "code": "101258189",
           "acronym": "CarboNcare",
@@ -926,6 +963,20 @@
           "amount": 3135360,
           "currency": "EUR",
           "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A176ed2c3dacc73684c9295810d9a5230"
+        },
+        {
+          "id": "corda_____he::19d63e8a67f65fc66011d2da468fe8dc",
+          "code": "101252582",
+          "acronym": "PreciseOnco",
+          "title": "The next leap in cancer care: combining multi-modality and spectral imaging, advanced therapies, robotics and AI to enable standardized, precise interventional oncology treatments for cancer patients",
+          "funder": "EC",
+          "stream": "Horizon Europe Framework Programme - HORIZON JU Research and Innovation Actions",
+          "call": "HORIZON-JU-IHI-2025-09-single-stage",
+          "start": "2026-01-01",
+          "end": "2030-12-31",
+          "amount": 14917500,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A19d63e8a67f65fc66011d2da468fe8dc"
         },
         {
           "id": "corda_____he::1ed24ebba6ca2c89fd61be0566f091e2",
@@ -968,86 +1019,38 @@
           "amount": 5999000,
           "currency": "EUR",
           "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A201ce7c508b6d6316b4bc22ff0aa5c1f"
-        },
-        {
-          "id": "corda_____he::3013c2f37eb055d8e7c08e9a3e821e1f",
-          "code": "101290378",
-          "acronym": "WELFAIR",
-          "title": "Intergenerational Fairness and the Welfare State in the Age of Inequality, Demographic Transformation, and Technological Change",
-          "funder": "EC",
-          "stream": "Horizon Europe Framework Programme - HORIZON  Research and Innovation Actions",
-          "call": "HORIZON-CL2-2025-01",
-          "start": "2026-09-01",
-          "end": "2030-08-31",
-          "amount": 3979300,
-          "currency": "EUR",
-          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A3013c2f37eb055d8e7c08e9a3e821e1f"
-        },
-        {
-          "id": "corda_____he::32a52778fca5b390285b61a481e58896",
-          "code": "101274865",
-          "acronym": "VERMEER",
-          "title": "Visualizing Electrochemical Reactions and Morphologies with Excitation, Emission and Reflection",
-          "funder": "EC",
-          "stream": "Horizon Europe Framework Programme - HORIZON TMA MSCA Postdoctoral Fellowships - European Fellowships",
-          "call": "HORIZON-MSCA-2025-PF",
-          "start": "2026-09-01",
-          "end": "2028-08-31",
-          "amount": 217076,
-          "currency": "EUR",
-          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A32a52778fca5b390285b61a481e58896"
-        },
-        {
-          "id": "corda_____he::44e87d258d634c69bff50845a68542de",
-          "code": "101273211",
-          "acronym": "MagiDeM",
-          "title": "Magic in Deir el-Medina: A Material, Textual and Socio-historical Study",
-          "funder": "EC",
-          "stream": "Horizon Europe Framework Programme - HORIZON TMA MSCA Postdoctoral Fellowships - European Fellowships",
-          "call": "HORIZON-MSCA-2025-PF",
-          "start": "2026-09-01",
-          "end": "2028-08-31",
-          "amount": 232916,
-          "currency": "EUR",
-          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A44e87d258d634c69bff50845a68542de"
-        },
-        {
-          "id": "corda_____he::4b6e0294702bf5be2674ddd7e6493351",
-          "code": "101286466",
-          "acronym": "S4PXchange",
-          "title": "S4PXchange: Integrating Communities and Practices for a Robust, Inclusive, and Sustainable European Science-for-Policy Ecosystem",
-          "funder": "EC",
-          "stream": "Horizon Europe Framework Programme - HORIZON Coordination and Support Actions",
-          "call": "HORIZON-WIDERA-2025-06",
-          "start": "2026-06-01",
-          "end": "2029-05-31",
-          "amount": 2003700,
-          "currency": "EUR",
-          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A4b6e0294702bf5be2674ddd7e6493351"
         }
       ],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3Ae42580548da4a1d39bb67b60b971056e"
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Leiden%20University%22&f0=q"
     },
     "rug": {
-      "ror": "012p63287",
-      "openaireId": "openorgs____::81371ea94b1a09d3243e73d6ec3527ec",
-      "openaireName": "University of Groningen",
+      "query": "University of Groningen",
       "since": "2023-09-19",
-      "numFound": 136,
-      "fetched": 136,
-      "active": 124,
-      "fundedTotal": 420495424,
-      "fundedKnown": 136,
+      "numFound": 144,
+      "fetched": 144,
+      "active": 129,
+      "fundedTotal": 430234668,
+      "fundedKnown": 143,
       "byFunder": {
         "EC": {
           "name": "European Commission",
           "count": 133,
           "amount": 419520657
         },
+        "NWO": {
+          "name": "Netherlands Organisation for Scientific Research (NWO)",
+          "count": 1,
+          "amount": 0
+        },
         "SNSF": {
           "name": "Swiss National Science Foundation",
-          "count": 1,
-          "amount": 112600
+          "count": 5,
+          "amount": 525005
+        },
+        "UKRI": {
+          "name": "UK Research and Innovation",
+          "count": 3,
+          "amount": 9326839
         },
         "ANR": {
           "name": "French National Research Agency (ANR)",
@@ -1225,26 +1228,118 @@
           "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A073cd3ea0e4f2fd07f7717dfeadee677"
         }
       ],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3A81371ea94b1a09d3243e73d6ec3527ec"
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22University%20of%20Groningen%22&f0=q"
     },
     "ru": {
-      "ror": "016xsfp80",
-      "openaireId": "openorgs____::a3af79fec4d09764e56cd6d4df1d976a",
-      "openaireName": "Radboud University Nijmegen",
+      "query": "Radboud University Nijmegen",
       "since": "2023-09-19",
-      "numFound": 1,
-      "fetched": 1,
-      "active": 1,
-      "fundedTotal": 365958,
-      "fundedKnown": 1,
+      "numFound": 11,
+      "fetched": 11,
+      "active": 11,
+      "fundedTotal": 875942,
+      "fundedKnown": 3,
       "byFunder": {
+        "NWO": {
+          "name": "Netherlands Organisation for Scientific Research (NWO)",
+          "count": 8,
+          "amount": 0
+        },
         "UKRI": {
           "name": "UK Research and Innovation",
           "count": 1,
           "amount": 365958
+        },
+        "ANR": {
+          "name": "French National Research Agency (ANR)",
+          "count": 2,
+          "amount": 509984
         }
       },
       "projects": [
+        {
+          "id": "nwo_________::9924d78218f06c94c13e78a50cd3439c",
+          "code": "OCENW.XS25.2.230",
+          "acronym": "",
+          "title": "Breaking Boundaries: revealing the epigenetic mechanism behind adaptation and survival of malaria parasites",
+          "funder": "NWO",
+          "stream": "Open Competitie ENW XS Pakket 25-2",
+          "call": "",
+          "start": "2026-01-15",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A9924d78218f06c94c13e78a50cd3439c"
+        },
+        {
+          "id": "nwo_________::e75e6f1a351f6eca46c98a564bc7c1db",
+          "code": "080.25060",
+          "acronym": "",
+          "title": "The EVOKE project – ETV2-induced vascularization to develop mature human kidney organoids.",
+          "funder": "NWO",
+          "stream": "Open Science NL Replicatiestudies 2025",
+          "call": "",
+          "start": "2026-06-17",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3Ae75e6f1a351f6eca46c98a564bc7c1db"
+        },
+        {
+          "id": "nwo_________::13cea0f1a3dcf9ca4c9ec213e67f0125",
+          "code": "406.23.CTW.020",
+          "acronym": "",
+          "title": "Communicating intentions with the body in conversational face-to-face interaction",
+          "funder": "NWO",
+          "stream": "SGW Open Competitie L Cultuur en Taalwetenschappen 2023",
+          "call": "",
+          "start": "2025-01-20",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A13cea0f1a3dcf9ca4c9ec213e67f0125"
+        },
+        {
+          "id": "nwo_________::5827ecfff262bd8ebb1c9d87b70b6dfe",
+          "code": "406.23.PPO.038",
+          "acronym": "",
+          "title": "Prosocial: using storytelling to stimulate prosocial behavior",
+          "funder": "NWO",
+          "stream": "SGW Open Competitie L Psychologie, Pedagogiek, Onderwijswetenschap 2023",
+          "call": "",
+          "start": "2025-01-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A5827ecfff262bd8ebb1c9d87b70b6dfe"
+        },
+        {
+          "id": "nwo_________::98cc5089b2ea35d25be1e4819898fe64",
+          "code": "406.XS.24.03.049",
+          "acronym": "",
+          "title": "Faith Meets Swipe: Exploring Islamic Courtship on Halal Dating Apps",
+          "funder": "NWO",
+          "stream": "SGW Open Competitie XS 2024 - ronde 3",
+          "call": "",
+          "start": "2025-06-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A98cc5089b2ea35d25be1e4819898fe64"
+        },
+        {
+          "id": "nwo_________::e60d189ea9fa8b9825c71c9aa242aa82",
+          "code": "406.23.PPO.023",
+          "acronym": "",
+          "title": "An integrative and rigorous test of the effects of mindfulness intervention in distressed romantic couples",
+          "funder": "NWO",
+          "stream": "SGW Open Competitie L Psychologie, Pedagogiek, Onderwijswetenschap 2023",
+          "call": "",
+          "start": "2025-01-15",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3Ae60d189ea9fa8b9825c71c9aa242aa82"
+        },
         {
           "id": "ukri________::471420e36a45a76c25495e0220198001",
           "code": "UKRI878",
@@ -1258,30 +1353,89 @@
           "amount": 365958,
           "currency": "GBP",
           "url": "https://explore.openaire.eu/search/project?projectId=ukri________%3A%3A471420e36a45a76c25495e0220198001"
+        },
+        {
+          "id": "anr_________::c647e78ffa8d4888ad82c555fc56cdb6",
+          "code": "ANR-23-AAMR-0006",
+          "acronym": "IMPROVE-ASP",
+          "title": "Improving detection and diagnosis of antimicrobial resistance in Aspergillus fumigatus",
+          "funder": "ANR",
+          "stream": "null",
+          "call": "",
+          "start": "2024-05-01",
+          "end": "",
+          "amount": 249984,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=anr_________%3A%3Ac647e78ffa8d4888ad82c555fc56cdb6"
+        },
+        {
+          "id": "anr_________::e60bd5fd43af30bfaab70a1e205371df",
+          "code": "ANR-23-JPW2-0007",
+          "acronym": "WesternND",
+          "title": "Targeting Western Diet-Induced Neurodegeneration",
+          "funder": "ANR",
+          "stream": "null",
+          "call": "",
+          "start": "2024-06-01",
+          "end": "",
+          "amount": 260000,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=anr_________%3A%3Ae60bd5fd43af30bfaab70a1e205371df"
+        },
+        {
+          "id": "nwo_________::3cb34954618d4003cac6b61b05d30db6",
+          "code": "406.XS.24.01.016",
+          "acronym": "",
+          "title": "Mother and Infant in Sync: Hormonal Foundations of Mother-Infant Synchrony in Postpartum Depression",
+          "funder": "NWO",
+          "stream": "SGW Open Competitie XS 2024 - ronde 1",
+          "call": "",
+          "start": "2024-11-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A3cb34954618d4003cac6b61b05d30db6"
+        },
+        {
+          "id": "nwo_________::a93106b6841e4cf26a7c4aa9a511729e",
+          "code": "FoI.2023.008",
+          "acronym": "",
+          "title": "Radionuclide therapy to save a mans life",
+          "funder": "NWO",
+          "stream": "Faculty of Impact - 2023/2024 Life Sciences and Health",
+          "call": "",
+          "start": "2024-09-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3Aa93106b6841e4cf26a7c4aa9a511729e"
         }
       ],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3Aa3af79fec4d09764e56cd6d4df1d976a"
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Radboud%20University%20Nijmegen%22&f0=q"
     },
     "tudelft": {
-      "ror": "02e2c7k09",
-      "openaireId": "openorgs____::5e6bf8962665cdd040341171e5c631d8",
-      "openaireName": "Delft University of Technology",
+      "query": "Delft University of Technology",
       "since": "2023-09-19",
-      "numFound": 325,
+      "numFound": 327,
       "fetched": 300,
-      "active": 285,
-      "fundedTotal": 1270625644,
+      "active": 310,
+      "fundedTotal": 1266575544,
       "fundedKnown": 297,
       "byFunder": {
         "EC": {
           "name": "European Commission",
-          "count": 289,
-          "amount": 1230615696
+          "count": 287,
+          "amount": 1226261446
         },
         "ANR": {
           "name": "French National Research Agency (ANR)",
           "count": 2,
           "amount": 492590
+        },
+        "SNSF": {
+          "name": "Swiss National Science Foundation",
+          "count": 2,
+          "amount": 304150
         },
         "UKRI": {
           "name": "UK Research and Innovation",
@@ -1459,28 +1613,31 @@
           "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A07ea09244cd9c581fb63049770755cf0"
         }
       ],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3A5e6bf8962665cdd040341171e5c631d8"
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Delft%20University%20of%20Technology%22&f0=q"
     },
     "tue": {
-      "ror": "02c2kyt77",
-      "openaireId": "openorgs____::db787c50cf46f2b08e69f830e292e42d",
-      "openaireName": "Eindhoven University of Technology",
+      "query": "Eindhoven University of Technology",
       "since": "2023-09-19",
-      "numFound": 163,
-      "fetched": 163,
-      "active": 149,
-      "fundedTotal": 946061128,
-      "fundedKnown": 162,
+      "numFound": 480,
+      "fetched": 300,
+      "active": 402,
+      "fundedTotal": 723746060,
+      "fundedKnown": 103,
       "byFunder": {
         "EC": {
           "name": "European Commission",
-          "count": 159,
-          "amount": 934864682
+          "count": 103,
+          "amount": 715319010
+        },
+        "NWO": {
+          "name": "Netherlands Organisation for Scientific Research (NWO)",
+          "count": 196,
+          "amount": 0
         },
         "UKRI": {
           "name": "UK Research and Innovation",
-          "count": 4,
-          "amount": 11196446
+          "count": 1,
+          "amount": 8427050
         }
       },
       "projects": [
@@ -1653,18 +1810,16 @@
           "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A40e1e6c9ee2ff1a4fe367e06e355a2eb"
         }
       ],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3Adb787c50cf46f2b08e69f830e292e42d"
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Eindhoven%20University%20of%20Technology%22&f0=q"
     },
     "ut": {
-      "ror": "006hf6230",
-      "openaireId": "openorgs____::604881198363fedbb5d5478f465305f2",
-      "openaireName": "University of Twente",
+      "query": "University of Twente",
       "since": "2023-09-19",
-      "numFound": 120,
-      "fetched": 120,
-      "active": 112,
-      "fundedTotal": 664367993,
-      "fundedKnown": 119,
+      "numFound": 123,
+      "fetched": 123,
+      "active": 115,
+      "fundedTotal": 678887793,
+      "fundedKnown": 122,
       "byFunder": {
         "EC": {
           "name": "European Commission",
@@ -1673,8 +1828,13 @@
         },
         "ANR": {
           "name": "French National Research Agency (ANR)",
-          "count": 3,
-          "amount": 841590
+          "count": 4,
+          "amount": 1140580
+        },
+        "UKRI": {
+          "name": "UK Research and Innovation",
+          "count": 2,
+          "amount": 14220810
         }
       },
       "projects": [
@@ -1847,52 +2007,228 @@
           "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A820f4465e62f3cb5dd745aeec6c9cd65"
         }
       ],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3A604881198363fedbb5d5478f465305f2"
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22University%20of%20Twente%22&f0=q"
     },
     "tiu": {
-      "ror": "04b8v1s79",
-      "openaireId": "openorgs____::b12b585c23a2b443b35cb33f57309a34",
-      "openaireName": "Tilburg University",
+      "query": "Tilburg University",
       "since": "2023-09-19",
-      "numFound": 0,
-      "fetched": 0,
-      "active": 0,
-      "fundedTotal": 0,
-      "fundedKnown": 0,
-      "byFunder": {},
-      "projects": [],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3Ab12b585c23a2b443b35cb33f57309a34"
+      "numFound": 137,
+      "fetched": 137,
+      "active": 115,
+      "fundedTotal": 321227.7,
+      "fundedKnown": 2,
+      "byFunder": {
+        "NWO": {
+          "name": "Netherlands Organisation for Scientific Research (NWO)",
+          "count": 135,
+          "amount": 0
+        },
+        "ANR": {
+          "name": "French National Research Agency (ANR)",
+          "count": 2,
+          "amount": 321227.7
+        }
+      },
+      "projects": [
+        {
+          "id": "nwo_________::0403c1caf948fa6056b26ca7c05b5bc0",
+          "code": "406.XS.25.03.078",
+          "acronym": "",
+          "title": "Participatory Value Evaluation meets Cost-Benefit Analysis (PVE MEETS CBA)",
+          "funder": "NWO",
+          "stream": "SGW Open Competitie XS 2025 - ronde 3",
+          "call": "",
+          "start": "2026-06-16",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A0403c1caf948fa6056b26ca7c05b5bc0"
+        },
+        {
+          "id": "nwo_________::1c1c8c17290618633cedee7255d3f6f2",
+          "code": "406.XS.25.03.053",
+          "acronym": "",
+          "title": "To share or not to share: The influence of peer health on children’s sharing decisions",
+          "funder": "NWO",
+          "stream": "SGW Open Competitie XS 2025 - ronde 3",
+          "call": "",
+          "start": "2026-05-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A1c1c8c17290618633cedee7255d3f6f2"
+        },
+        {
+          "id": "nwo_________::26b28a5fb17130131a898e9c96939312",
+          "code": "NWA.1306.25.017",
+          "acronym": "",
+          "title": "NeuroLabNL: dè werkplaats voor hersen-, cognitie- en gedragsonderzoek",
+          "funder": "NWO",
+          "stream": "NWA L3 - Netwerken - Ondersteuning Routemanagement 2025",
+          "call": "",
+          "start": "2026-05-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A26b28a5fb17130131a898e9c96939312"
+        },
+        {
+          "id": "nwo_________::34cd5b26e973507b09fb7d4216b75a9e",
+          "code": "22856",
+          "acronym": "",
+          "title": "Dutch Game Theory Symposium",
+          "funder": "NWO",
+          "stream": "NWO-ENW Wetenschappelijke Bijeenkomsten en Ontmoetingen Algemeen ENW WBO 2025 WBO 2025-1",
+          "call": "",
+          "start": "2026-03-31",
+          "end": "2026-04-01",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A34cd5b26e973507b09fb7d4216b75a9e"
+        },
+        {
+          "id": "nwo_________::39d65b14176cd66e80f37e57a6b1e756",
+          "code": "VI.Veni.241R.025",
+          "acronym": "",
+          "title": "A Legal Geography of Climate Change: Responsibility and Justice in Planetary Perspective",
+          "funder": "NWO",
+          "stream": "NWO-Talentprogramma Veni SGW 2024 - Recht en Bestuur",
+          "call": "",
+          "start": "2026-01-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A39d65b14176cd66e80f37e57a6b1e756"
+        },
+        {
+          "id": "nwo_________::45931bb5b498503a227c2f5907edcd3e",
+          "code": "KICH2.V4P.HS23.100",
+          "acronym": "",
+          "title": "PRECISE - Improving detection, risk prediction and therapy for inherited heart diseases",
+          "funder": "NWO",
+          "stream": "KIC - VRAAG Partnerschap NWO – Hartstichting Fase 2",
+          "call": "",
+          "start": "2026-04-15",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A45931bb5b498503a227c2f5907edcd3e"
+        },
+        {
+          "id": "nwo_________::4697a6656f438892c2fb39dc81e2ee0f",
+          "code": "406.XS.26.01.122",
+          "acronym": "",
+          "title": "Hedonic Minimization as a Self-Control Strategy: Reducing Pleasure to Resist Temptation",
+          "funder": "NWO",
+          "stream": "SGW Open Competitie XS 2026 - ronde 1",
+          "call": "",
+          "start": "2026-06-29",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A4697a6656f438892c2fb39dc81e2ee0f"
+        },
+        {
+          "id": "nwo_________::4a0e1df131437c2dbb56fc65a2422ff5",
+          "code": "500.040.2559",
+          "acronym": "",
+          "title": "ReproHub: Enhanced Replicability and Open Science Education for Research with Secondary and Sensitive Data",
+          "funder": "NWO",
+          "stream": "Open Science NL Open Science Infrastructuur Ronde 2024",
+          "call": "",
+          "start": "2026-06-15",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A4a0e1df131437c2dbb56fc65a2422ff5"
+        },
+        {
+          "id": "nwo_________::4df24fae4d2e6d33c486c8c54accce2e",
+          "code": "406.XS.26.01.096",
+          "acronym": "",
+          "title": "The effects of ethnic discrimination on labour market participation",
+          "funder": "NWO",
+          "stream": "SGW Open Competitie XS 2026 - ronde 1",
+          "call": "",
+          "start": "2026-05-27",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A4df24fae4d2e6d33c486c8c54accce2e"
+        },
+        {
+          "id": "nwo_________::5603b5a4351d5bea053de63d1205434a",
+          "code": "406.XS.25.03.060",
+          "acronym": "",
+          "title": "Determinants of machine voting take-up, electoral trust and participation: Evidence from Bulgaria",
+          "funder": "NWO",
+          "stream": "SGW Open Competitie XS 2025 - ronde 3",
+          "call": "",
+          "start": "2026-03-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A5603b5a4351d5bea053de63d1205434a"
+        },
+        {
+          "id": "nwo_________::5a1d3b710944f2457975dceb7101580a",
+          "code": "500.040.2450",
+          "acronym": "",
+          "title": "Infrastructures for Diamond Open Access in the Netherlands",
+          "funder": "NWO",
+          "stream": "Open Science NL Open Science Infrastructuur Ronde 2024",
+          "call": "",
+          "start": "2026-06-15",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A5a1d3b710944f2457975dceb7101580a"
+        },
+        {
+          "id": "nwo_________::65535d797c9bedf48aa5dce4e976f91f",
+          "code": "406.XS.25.02.001",
+          "acronym": "",
+          "title": "Prevention is Better Than Cure: Predicting the Onset of Postpartum Depression Using Early Warning Signals",
+          "funder": "NWO",
+          "stream": "SGW Open Competitie XS 2025 - ronde 2",
+          "call": "",
+          "start": "2026-01-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A65535d797c9bedf48aa5dce4e976f91f"
+        }
+      ],
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Tilburg%20University%22&f0=q"
     },
     "um": {
-      "ror": "02jz4aj89",
-      "openaireId": "openorgs____::a7e0018f6064f0dab7a8c9a48a61a1c6",
-      "openaireName": "Maastricht University",
+      "query": "Maastricht University",
       "since": "2023-09-19",
-      "numFound": 98,
-      "fetched": 98,
-      "active": 95,
-      "fundedTotal": 466711721,
-      "fundedKnown": 98,
+      "numFound": 343,
+      "fetched": 300,
+      "active": 292,
+      "fundedTotal": 417564710,
+      "fundedKnown": 89,
       "byFunder": {
         "ANR": {
           "name": "French National Research Agency (ANR)",
-          "count": 7,
-          "amount": 2111707
+          "count": 8,
+          "amount": 2511454
         },
         "EC": {
           "name": "European Commission",
-          "count": 89,
-          "amount": 456819404
+          "count": 80,
+          "amount": 408070756
+        },
+        "NWO": {
+          "name": "Netherlands Organisation for Scientific Research (NWO)",
+          "count": 211,
+          "amount": 0
         },
         "WT": {
           "name": "Wellcome Trust",
           "count": 1,
           "amount": 6982500
-        },
-        "UKRI": {
-          "name": "UK Research and Innovation",
-          "count": 1,
-          "amount": 798110
         }
       },
       "projects": [
@@ -2065,28 +2401,36 @@
           "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3Aa5d8bb39d0c5b554d5863d00a2910b4d"
         }
       ],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3Aa7e0018f6064f0dab7a8c9a48a61a1c6"
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Maastricht%20University%22&f0=q"
     },
     "wur": {
-      "ror": "04qw24q55",
-      "openaireId": "openorgs____::ad8f981707a4a1d6c9e9ee60c02b9a11",
-      "openaireName": "Wageningen University & Research",
+      "query": "Wageningen University & Research",
       "since": "2023-09-19",
-      "numFound": 3,
-      "fetched": 3,
-      "active": 3,
-      "fundedTotal": 524255,
-      "fundedKnown": 2,
+      "numFound": 346,
+      "fetched": 300,
+      "active": 282,
+      "fundedTotal": 4091815,
+      "fundedKnown": 5,
       "byFunder": {
         "CF": {
           "name": "Carlsberg Foundation",
           "count": 1,
           "amount": 0
         },
+        "NWO": {
+          "name": "Netherlands Organisation for Scientific Research (NWO)",
+          "count": 294,
+          "amount": 0
+        },
         "ANR": {
           "name": "French National Research Agency (ANR)",
+          "count": 3,
+          "amount": 762215
+        },
+        "UKRI": {
+          "name": "UK Research and Innovation",
           "count": 2,
-          "amount": 524255
+          "amount": 3329600
         }
       },
       "projects": [
@@ -2105,121 +2449,355 @@
           "url": "https://explore.openaire.eu/search/project?projectId=cf__________%3A%3A860d7cb7eb4e6aa8c0460006d0b6e5aa"
         },
         {
-          "id": "anr_________::68905f1206a64dab70852cee515d2831",
-          "code": "ANR-24-EBIP-0008",
-          "acronym": "BIODIVECITY",
-          "title": "Greening cities as nature-based solution and their impact on vectors and vector-borne disease risks",
-          "funder": "ANR",
-          "stream": "null",
+          "id": "nwo_________::00e13030db315189c5694bfc56373d4f",
+          "code": "OCENW.XS25.3.364",
+          "acronym": "",
+          "title": "Bacterial extracellular vesicles in gut hormone regulation: a new route to better health",
+          "funder": "NWO",
+          "stream": "Open Competitie ENW XS pakket 25-3",
           "call": "",
-          "start": "2025-04-01",
+          "start": "2026-04-15",
           "end": "",
-          "amount": 248783,
+          "amount": null,
           "currency": "EUR",
-          "url": "https://explore.openaire.eu/search/project?projectId=anr_________%3A%3A68905f1206a64dab70852cee515d2831"
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A00e13030db315189c5694bfc56373d4f"
         },
         {
-          "id": "anr_________::fb4c8a19b2f8991e9f45ede1dc882500",
-          "code": "ANR-24-EBIP-0004",
-          "acronym": "RiVIVE",
-          "title": "River Conviviality: Advancing socio_x0002_environmentally just river restoration through nature based solutions",
-          "funder": "ANR",
-          "stream": "null",
+          "id": "nwo_________::00f63c335a1756e0451ce50921394f5c",
+          "code": "NWA.1573.21.008",
+          "acronym": "",
+          "title": "Urban Resilience through Responsive, Relational, Representative and Responsible Policy-making – Enabling Methods for Change",
+          "funder": "NWO",
+          "stream": "NWA L2 - Thema 2021 - Key Enabling Methodologies Key Enabling Methodologies (KEM’s)",
           "call": "",
-          "start": "2025-04-01",
+          "start": "2026-05-01",
           "end": "",
-          "amount": 275472,
+          "amount": null,
           "currency": "EUR",
-          "url": "https://explore.openaire.eu/search/project?projectId=anr_________%3A%3Afb4c8a19b2f8991e9f45ede1dc882500"
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A00f63c335a1756e0451ce50921394f5c"
+        },
+        {
+          "id": "nwo_________::044ecedededa8e07befe9c6e73059dbe",
+          "code": "2025.058",
+          "acronym": "",
+          "title": "Turbulence-resolving simulation models Embedded in weather and atmospheric-composition Models for weather Predictions, air quality Exposure STudies, and greenhouse gas assessments (TEMPEST)",
+          "funder": "NWO",
+          "stream": "Rekentijd nationale computersystemen Aanvragen 2025 Verwerkingsronde aanvragen 2025",
+          "call": "",
+          "start": "2026-04-20",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A044ecedededa8e07befe9c6e73059dbe"
+        },
+        {
+          "id": "nwo_________::06ab8d9df63b836129099247301c038b",
+          "code": "23359",
+          "acronym": "",
+          "title": "9th Dutch Arbovirus Research Network Meeting",
+          "funder": "NWO",
+          "stream": "NWO-ENW Wetenschappelijke Bijeenkomsten en Ontmoetingen Algemeen ENW WBO 2026 WBO 2026-1",
+          "call": "",
+          "start": "2026-03-06",
+          "end": "2026-03-07",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A06ab8d9df63b836129099247301c038b"
+        },
+        {
+          "id": "nwo_________::0c02d4fd22108e5539cbfb41a0b369e0",
+          "code": "KIN.TWPK.25/26.066",
+          "acronym": "",
+          "title": "Sounds like Trouble: Designing Loss-of-Control Experiences for Climate Transitions",
+          "funder": "NWO",
+          "stream": "KIN Wetenschap in Transitie Transformatieve werkwijzen en processen voor klimaattransities 2025/2026",
+          "call": "",
+          "start": "2026-07-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A0c02d4fd22108e5539cbfb41a0b369e0"
+        },
+        {
+          "id": "nwo_________::0e9b3a81d0f79c39897095482775b02b",
+          "code": "VI.Vidi.243.127",
+          "acronym": "",
+          "title": "Sharing immunity with friends: the role of collective parasite defence in animal societies",
+          "funder": "NWO",
+          "stream": "NWO-Talentprogramma Vidi ENW 2024 ENW/Science",
+          "call": "",
+          "start": "2026-02-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A0e9b3a81d0f79c39897095482775b02b"
+        },
+        {
+          "id": "nwo_________::12c493208f07fa0364f11bcc627c77a2",
+          "code": "NWA.1766.24.029",
+          "acronym": "",
+          "title": "Ab-initio Biowaste Loop (ABEL)",
+          "funder": "NWO",
+          "stream": "NWA L1 - Onderzoek op Routes door Consortia 2024 - NWA-ORC 2024",
+          "call": "",
+          "start": "2026-01-09",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A12c493208f07fa0364f11bcc627c77a2"
+        },
+        {
+          "id": "nwo_________::16144cf2d1c85c0e495b1275687bd83f",
+          "code": "36.2024.101",
+          "acronym": "",
+          "title": "Reviews of Economic Literature—returning scholarly publishing to the academic community",
+          "funder": "NWO",
+          "stream": "Open Science Diamond Open Access 2024",
+          "call": "",
+          "start": "2026-04-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A16144cf2d1c85c0e495b1275687bd83f"
+        },
+        {
+          "id": "nwo_________::19077666709650fd6e85ce42f6d670d2",
+          "code": "500.010.2615",
+          "acronym": "",
+          "title": "SynBioNL Symposium 2026: Breaking Boundaries – Making synthetic biology accessible and ready for the real world",
+          "funder": "NWO",
+          "stream": "Open Science NL Open Science Bijeenkomsten Ronde 2026 2026",
+          "call": "",
+          "start": "2026-06-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A19077666709650fd6e85ce42f6d670d2"
+        },
+        {
+          "id": "nwo_________::19d362c035e4926432d719b28e511d32",
+          "code": "EP.1721.25.007",
+          "acronym": "",
+          "title": "Accelerating plant-based protein emulsion design with microfluidics and intelligent software tools for sustainable foods (MIPRODESIGN)",
+          "funder": "NWO",
+          "stream": "INT - EU Partnerschappen (1) - Sustainable Future of Food Systems (FutureFoodS) Call 2024",
+          "call": "",
+          "start": "2026-04-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A19d362c035e4926432d719b28e511d32"
+        },
+        {
+          "id": "nwo_________::1a6a3465a4ebe0b0d3f03b4fe1b35023",
+          "code": "INT.1836.24.012",
+          "acronym": "",
+          "title": "Understanding scaling of soil moisture retention practices for climate-resilient food production in semi-arid Ethiopia and Kenya (SMARTSCALE)",
+          "funder": "NWO",
+          "stream": "INT - The Netherlands - CGIAR research programme II Water food Nexus Water-Food Nexus call",
+          "call": "",
+          "start": "2026-05-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A1a6a3465a4ebe0b0d3f03b4fe1b35023"
         }
       ],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3Aad8f981707a4a1d6c9e9ee60c02b9a11"
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Wageningen%20University%20%26%20Research%22&f0=q"
     },
     "ou": {
-      "ror": "018dfmf50",
-      "openaireId": "openorgs____::54f2e88f3eb801dc7e49a4ca90fdd1b6",
-      "openaireName": "Open University in the Netherlands",
+      "query": "Open Universiteit",
       "since": "2023-09-19",
-      "numFound": 4,
-      "fetched": 4,
-      "active": 4,
-      "fundedTotal": 15104690,
-      "fundedKnown": 4,
+      "numFound": 47,
+      "fetched": 47,
+      "active": 42,
+      "fundedTotal": 0,
+      "fundedKnown": 0,
       "byFunder": {
-        "EC": {
-          "name": "European Commission",
-          "count": 4,
-          "amount": 15104690
+        "NWO": {
+          "name": "Netherlands Organisation for Scientific Research (NWO)",
+          "count": 47,
+          "amount": 0
         }
       },
       "projects": [
         {
-          "id": "corda_____he::16508112b55db9a9f8b52af48014368a",
-          "code": "101227351",
-          "acronym": "Digi4Age",
-          "title": "Future leaders in ageing and digitalizing societies",
-          "funder": "EC",
-          "stream": "Horizon Europe Framework Programme - HORIZON TMA MSCA Doctoral Networks",
-          "call": "HORIZON-MSCA-2024-DN-01",
+          "id": "nwo_________::09381f064fa4694fc878f91c2217efd7",
+          "code": "406.XS.25.03.138",
+          "acronym": "",
+          "title": "BALANCE*: A self-compassion program to support well-being in the transition to parenthood\n\n*Building Awareness, Loving-Kindness, Acceptance, and Nurturance for Compassionate Engagement",
+          "funder": "NWO",
+          "stream": "SGW Open Competitie XS 2025 - ronde 3",
+          "call": "",
+          "start": "2026-06-17",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A09381f064fa4694fc878f91c2217efd7"
+        },
+        {
+          "id": "nwo_________::2764d14f478b936165226b8c523332e6",
+          "code": "23136",
+          "acronym": "",
+          "title": "Augmented Reality Tutor (ART): AI Tutor for Pedagogically Grounded, Safe, Scalable, Personalized, and High-quality Education",
+          "funder": "NWO",
+          "stream": "Take-off WO fase 1 - Haalbaarheidsstudies 2025 TTW 2",
+          "call": "",
+          "start": "2026-04-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A2764d14f478b936165226b8c523332e6"
+        },
+        {
+          "id": "nwo_________::32989c120e8c6b5438ced9cbd155b5b2",
+          "code": "406.XS.25.03.143",
+          "acronym": "",
+          "title": "From Control to Care: Innovating Performance Management for Sustainable Dutch Healthcare",
+          "funder": "NWO",
+          "stream": "SGW Open Competitie XS 2025 - ronde 3",
+          "call": "",
+          "start": "2026-04-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A32989c120e8c6b5438ced9cbd155b5b2"
+        },
+        {
+          "id": "nwo_________::58a1c069b12753d5d2671e049884d85c",
+          "code": "KICH1.GZ05.23.009",
+          "acronym": "",
+          "title": "Breaking Barriers 4VIPs@WORK",
+          "funder": "NWO",
+          "stream": "KIC - MISSIE Doorbreken van barrières voor een inclusieve leefomgeving 2024",
+          "call": "",
           "start": "2026-01-01",
-          "end": "2029-12-31",
-          "amount": 4207880,
+          "end": "",
+          "amount": null,
           "currency": "EUR",
-          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A16508112b55db9a9f8b52af48014368a"
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A58a1c069b12753d5d2671e049884d85c"
         },
         {
-          "id": "corda_____he::058ab46f808febedca2b5971ce3a2fc1",
-          "code": "101177543",
-          "acronym": "EYE-TEACH",
-          "title": "Eye-tracking and AI for Enhanced Teaching",
-          "funder": "EC",
-          "stream": "Horizon Europe Framework Programme - HORIZON  Research and Innovation Actions",
-          "call": "HORIZON-CL2-2024-TRANSFORMATIONS-01",
-          "start": "2025-01-01",
-          "end": "2027-12-31",
-          "amount": 2999980,
+          "id": "nwo_________::61af698e361208eda3f84ef81679a6f0",
+          "code": "406.XS.25.03.211",
+          "acronym": "",
+          "title": "Hidden Pitfalls: Cognitive Biases in Teachers’ Use of Score Reports",
+          "funder": "NWO",
+          "stream": "SGW Open Competitie XS 2025 - ronde 3",
+          "call": "",
+          "start": "2026-06-01",
+          "end": "",
+          "amount": null,
           "currency": "EUR",
-          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A058ab46f808febedca2b5971ce3a2fc1"
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A61af698e361208eda3f84ef81679a6f0"
         },
         {
-          "id": "corda_____he::c68cf53d4fe1a9306a53eb4220b2a350",
-          "code": "101086091",
-          "acronym": "BlueGreen Governance",
-          "title": "BlueGreen Governance",
-          "funder": "EC",
-          "stream": "Horizon Europe Framework Programme - HORIZON  Research and Innovation Actions",
-          "call": "HORIZON-CL6-2022-GOVERNANCE-01",
-          "start": "2024-01-01",
-          "end": "2027-12-31",
-          "amount": 4981160,
+          "id": "nwo_________::739435f26d99f7c670cf60b8910ef6d2",
+          "code": "500.040.2466",
+          "acronym": "",
+          "title": "PURE3D 2.0: Building a Sustainable and Open Infrastructure for 3D Scholarship",
+          "funder": "NWO",
+          "stream": "Open Science NL Open Science Infrastructuur Ronde 2024",
+          "call": "",
+          "start": "2026-06-18",
+          "end": "",
+          "amount": null,
           "currency": "EUR",
-          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3Ac68cf53d4fe1a9306a53eb4220b2a350"
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A739435f26d99f7c670cf60b8910ef6d2"
         },
         {
-          "id": "corda_____he::df27ab9277d108f99543650a7b20ca94",
-          "code": "101094546",
-          "acronym": "WISER",
-          "title": "WISER: Well-being in a Sustainable Economy Revisited",
-          "funder": "EC",
-          "stream": "Horizon Europe Framework Programme - HORIZON  Research and Innovation Actions",
-          "call": "HORIZON-CL2-2022-TRANSFORMATIONS-01",
-          "start": "2023-10-01",
-          "end": "2026-09-30",
-          "amount": 2915670,
+          "id": "nwo_________::7ad30050bdf8cba8f8c551741ecbfc7d",
+          "code": "ENW.GO.25.1.019",
+          "acronym": "",
+          "title": "ALÁFÍÀ – Air Quality Learning And Forecasting wIth AI: Leveraging  Earth Observation and Deep Learning for Urban Air Quality management across Sub-Saharan West Africa",
+          "funder": "NWO",
+          "stream": "Gebruik van ruimte-infrastructuur Gebruik van ruimte-infrastructuur voor aardobservatie- en planeetonderzoek 2025-1",
+          "call": "",
+          "start": "2026-05-01",
+          "end": "",
+          "amount": null,
           "currency": "EUR",
-          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3Adf27ab9277d108f99543650a7b20ca94"
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A7ad30050bdf8cba8f8c551741ecbfc7d"
+        },
+        {
+          "id": "nwo_________::858aa54ded37083b55a0c77340ef574c",
+          "code": "500.070.2401",
+          "acronym": "",
+          "title": "Opening Up the OU: HR-strategieën voor een Duurzame Open Science Cultuur",
+          "funder": "NWO",
+          "stream": "Open Science NL Erkennen en Waarderen van Open Science Ronde 2024",
+          "call": "",
+          "start": "2026-05-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A858aa54ded37083b55a0c77340ef574c"
+        },
+        {
+          "id": "nwo_________::9bd88591c075d5832c8325ae189422b4",
+          "code": "406.XS.25.02.058",
+          "acronym": "",
+          "title": "Canine Cues: exploring understanding of dog behavior and its implications for human wellbeing",
+          "funder": "NWO",
+          "stream": "SGW Open Competitie XS 2025 - ronde 2",
+          "call": "",
+          "start": "2026-01-26",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A9bd88591c075d5832c8325ae189422b4"
+        },
+        {
+          "id": "nwo_________::9fc60be2fd4fe43aab165900fe64054f",
+          "code": "500.020.2402",
+          "acronym": "",
+          "title": "Diversiteit in Burgerwetenschap: Regionale Uitwisseling (De BRUG)",
+          "funder": "NWO",
+          "stream": "Open Science NL Citizen Science Hubs Ronde 2024",
+          "call": "",
+          "start": "2026-02-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A9fc60be2fd4fe43aab165900fe64054f"
+        },
+        {
+          "id": "nwo_________::a04d3d72b77aa6af17830bd707fc11cf",
+          "code": "NWA.1568.22.003",
+          "acronym": "",
+          "title": "FUTURED – Fostering Upskilled Talent for Urban Resilience, Energy Transition, and Digitalisation in the Built Environment",
+          "funder": "NWO",
+          "stream": "NWA L2 - Thema 2022 - Naar een nieuwe arbeidsmarkt in 2050 Nieuwe arbeidsmarkt",
+          "call": "",
+          "start": "2026-05-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3Aa04d3d72b77aa6af17830bd707fc11cf"
+        },
+        {
+          "id": "nwo_________::ad34a91ff74d342da10b0990c66d950c",
+          "code": "406.XS.25.03.072",
+          "acronym": "",
+          "title": "What drives teacher responses to racist bullying? Testing an integrated theoretical model",
+          "funder": "NWO",
+          "stream": "SGW Open Competitie XS 2025 - ronde 3",
+          "call": "",
+          "start": "2026-06-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3Aad34a91ff74d342da10b0990c66d950c"
         }
       ],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3A54f2e88f3eb801dc7e49a4ca90fdd1b6"
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Open%20Universiteit%22&f0=q"
     },
     "aumc": {
-      "ror": "05grdyy37",
-      "openaireId": "openorgs____::2ce10b2528220091bd0363c1e39394c1",
-      "openaireName": "Amsterdam University Medical Centers",
+      "query": "Amsterdam University Medical Centers",
       "since": "2023-09-19",
-      "numFound": 1,
-      "fetched": 1,
-      "active": 1,
+      "numFound": 2,
+      "fetched": 2,
+      "active": 2,
       "fundedTotal": 260000,
       "fundedKnown": 1,
       "byFunder": {
@@ -2227,6 +2805,11 @@
           "name": "French National Research Agency (ANR)",
           "count": 1,
           "amount": 260000
+        },
+        "IRFD": {
+          "name": "Independent Research Fund Denmark",
+          "count": 1,
+          "amount": 0
         }
       },
       "projects": [
@@ -2243,35 +2826,52 @@
           "amount": 260000,
           "currency": "EUR",
           "url": "https://explore.openaire.eu/search/project?projectId=anr_________%3A%3A782e1be705489c5cc0f6ba511fb9ff32"
+        },
+        {
+          "id": "irfd________::c2c2ce5b942ddfe48267db94bf9ccad4",
+          "code": "1057-00039A",
+          "acronym": "",
+          "title": "Pathophysiological and immunometabolic mechanisms in very long-chain acyl-CoA dehydrogenase deficient (VLCADD) engineered heart and muscle tissue",
+          "funder": "IRFD",
+          "stream": "DFF-International Postdoc",
+          "call": "",
+          "start": "2024-01-31",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=irfd________%3A%3Ac2c2ce5b942ddfe48267db94bf9ccad4"
         }
       ],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3A2ce10b2528220091bd0363c1e39394c1"
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Amsterdam%20University%20Medical%20Centers%22&f0=q"
     },
     "erasmusmc": {
-      "ror": "018906e22",
-      "openaireId": "openorgs____::46893b4080f9a8d38c83cd5bbdd68d52",
-      "openaireName": "Erasmus University Medical Center",
+      "query": "Erasmus MC",
       "since": "2023-09-19",
-      "numFound": 76,
-      "fetched": 76,
-      "active": 72,
-      "fundedTotal": 491590277,
-      "fundedKnown": 76,
+      "numFound": 216,
+      "fetched": 216,
+      "active": 188,
+      "fundedTotal": 492161411,
+      "fundedKnown": 78,
       "byFunder": {
         "EC": {
           "name": "European Commission",
           "count": 71,
           "amount": 488827324
         },
-        "ANR": {
-          "name": "French National Research Agency (ANR)",
-          "count": 3,
-          "amount": 661489
+        "NWO": {
+          "name": "Netherlands Organisation for Scientific Research (NWO)",
+          "count": 138,
+          "amount": 0
         },
         "UKRI": {
           "name": "UK Research and Innovation",
-          "count": 2,
-          "amount": 2101464
+          "count": 3,
+          "amount": 2621523
+        },
+        "ANR": {
+          "name": "French National Research Agency (ANR)",
+          "count": 4,
+          "amount": 712564
         }
       },
       "projects": [
@@ -2444,18 +3044,16 @@
           "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3Acf9a950b41b6b91357c627c6fa716f60"
         }
       ],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3A46893b4080f9a8d38c83cd5bbdd68d52"
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Erasmus%20MC%22&f0=q"
     },
     "umcutrecht": {
-      "ror": "0575yy874",
-      "openaireId": "openorgs____::81b64115eb383a27a9c1820a2c760c89",
-      "openaireName": "University Medical Center Utrecht",
+      "query": "University Medical Center Utrecht",
       "since": "2023-09-19",
-      "numFound": 75,
-      "fetched": 75,
-      "active": 72,
-      "fundedTotal": 408279681,
-      "fundedKnown": 75,
+      "numFound": 76,
+      "fetched": 76,
+      "active": 73,
+      "fundedTotal": 408625552,
+      "fundedKnown": 76,
       "byFunder": {
         "EC": {
           "name": "European Commission",
@@ -2464,8 +3062,8 @@
         },
         "ANR": {
           "name": "French National Research Agency (ANR)",
-          "count": 4,
-          "amount": 948412
+          "count": 5,
+          "amount": 1294283
         },
         "SNSF": {
           "name": "Swiss National Science Foundation",
@@ -2648,16 +3246,14 @@
           "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A829b4ed8743d3ff468ea231643f3425e"
         }
       ],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3A81b64115eb383a27a9c1820a2c760c89"
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22University%20Medical%20Center%20Utrecht%22&f0=q"
     },
     "lumc": {
-      "ror": "05xvt9f17",
-      "openaireId": "openorgs____::2eeca4f78f2a04a35057c1fa7918e23b",
-      "openaireName": "Leiden University Medical Center",
+      "query": "Leiden University Medical Center",
       "since": "2023-09-19",
-      "numFound": 143,
-      "fetched": 143,
-      "active": 119,
+      "numFound": 144,
+      "fetched": 144,
+      "active": 120,
       "fundedTotal": 349231571,
       "fundedKnown": 56,
       "byFunder": {
@@ -2668,7 +3264,7 @@
         },
         "NWO": {
           "name": "Netherlands Organisation for Scientific Research (NWO)",
-          "count": 87,
+          "count": 88,
           "amount": 0
         },
         "UKRI": {
@@ -2857,18 +3453,16 @@
           "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3Afbb78e96d08e0095cd8ef91524df869c"
         }
       ],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3A2eeca4f78f2a04a35057c1fa7918e23b"
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Leiden%20University%20Medical%20Center%22&f0=q"
     },
     "umcg": {
-      "ror": "03cv38k47",
-      "openaireId": "openorgs____::e1c228979333191a8f4bd6b5f5d01644",
-      "openaireName": "University Medical Center Groningen",
+      "query": "University Medical Center Groningen",
       "since": "2023-09-19",
-      "numFound": 129,
-      "fetched": 129,
-      "active": 109,
-      "fundedTotal": 349034359,
-      "fundedKnown": 54,
+      "numFound": 130,
+      "fetched": 130,
+      "active": 110,
+      "fundedTotal": 349147546,
+      "fundedKnown": 55,
       "byFunder": {
         "EC": {
           "name": "European Commission",
@@ -2884,6 +3478,11 @@
           "name": "French National Research Agency (ANR)",
           "count": 1,
           "amount": 247500
+        },
+        "SNSF": {
+          "name": "Swiss National Science Foundation",
+          "count": 1,
+          "amount": 113187
         },
         "WT": {
           "name": "Wellcome Trust",
@@ -3061,65 +3660,80 @@
           "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A886ba7b65a3e07f0cec2e796a6233902"
         }
       ],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3Ae1c228979333191a8f4bd6b5f5d01644"
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22University%20Medical%20Center%20Groningen%22&f0=q"
     },
     "radboudumc": {
-      "ror": "05wg1m734",
-      "openaireId": "openorgs____::6c50ead5f8f9cac29c4c3066df9fba45",
-      "openaireName": "Radboud University Nijmegen Medical Centre",
+      "query": "Radboud University Medical Center",
       "since": "2023-09-19",
-      "numFound": 2,
-      "fetched": 2,
-      "active": 2,
-      "fundedTotal": 509984,
-      "fundedKnown": 2,
+      "numFound": 3,
+      "fetched": 3,
+      "active": 3,
+      "fundedTotal": 1003969,
+      "fundedKnown": 3,
       "byFunder": {
-        "ANR": {
-          "name": "French National Research Agency (ANR)",
+        "SNSF": {
+          "name": "Swiss National Science Foundation",
+          "count": 1,
+          "amount": 112600
+        },
+        "UKRI": {
+          "name": "UK Research and Innovation",
           "count": 2,
-          "amount": 509984
+          "amount": 891369
         }
       },
       "projects": [
         {
-          "id": "anr_________::c647e78ffa8d4888ad82c555fc56cdb6",
-          "code": "ANR-23-AAMR-0006",
-          "acronym": "IMPROVE-ASP",
-          "title": "Improving detection and diagnosis of antimicrobial resistance in Aspergillus fumigatus",
-          "funder": "ANR",
-          "stream": "null",
+          "id": "snsf________::5f1d15afd78184abda85ddb039c61e4a",
+          "code": "239443",
+          "acronym": "",
+          "title": "Labour migrants with mental health problems in Dutch general practice: identifying barriers and improving access to care",
+          "funder": "SNSF",
+          "stream": "Careers - Fellowships - Postdoc.Mobility",
           "call": "",
-          "start": "2024-05-01",
-          "end": "",
-          "amount": 249984,
+          "start": "2026-07-01",
+          "end": "2028-06-30",
+          "amount": 112600,
           "currency": "EUR",
-          "url": "https://explore.openaire.eu/search/project?projectId=anr_________%3A%3Ac647e78ffa8d4888ad82c555fc56cdb6"
+          "url": "https://explore.openaire.eu/search/project?projectId=snsf________%3A%3A5f1d15afd78184abda85ddb039c61e4a"
         },
         {
-          "id": "anr_________::e60bd5fd43af30bfaab70a1e205371df",
-          "code": "ANR-23-JPW2-0007",
-          "acronym": "WesternND",
-          "title": "Targeting Western Diet-Induced Neurodegeneration",
-          "funder": "ANR",
-          "stream": "null",
+          "id": "ukri________::5b132228758fa3ca8cd8f5034585338a",
+          "code": "MR/Y034473/1",
+          "acronym": "",
+          "title": "Improving detection and diagnosis of antimicrobial resistance in Aspergillus fumigatus",
+          "funder": "UKRI",
+          "stream": "MRC",
           "call": "",
-          "start": "2024-06-01",
-          "end": "",
-          "amount": 260000,
-          "currency": "EUR",
-          "url": "https://explore.openaire.eu/search/project?projectId=anr_________%3A%3Ae60bd5fd43af30bfaab70a1e205371df"
+          "start": "2024-09-30",
+          "end": "2027-09-29",
+          "amount": 365361,
+          "currency": "GBP",
+          "url": "https://explore.openaire.eu/search/project?projectId=ukri________%3A%3A5b132228758fa3ca8cd8f5034585338a"
+        },
+        {
+          "id": "ukri________::bf2ea44ee9be9480f20c3a23625e6050",
+          "code": "BB/Z515619/1",
+          "acronym": "",
+          "title": "&quot;Fungal One Health and Antimicrobial Resistance Network&quot;",
+          "funder": "UKRI",
+          "stream": "BBSRC",
+          "call": "",
+          "start": "2024-11-01",
+          "end": "2028-10-31",
+          "amount": 526008,
+          "currency": "GBP",
+          "url": "https://explore.openaire.eu/search/project?projectId=ukri________%3A%3Abf2ea44ee9be9480f20c3a23625e6050"
         }
       ],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3A6c50ead5f8f9cac29c4c3066df9fba45"
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Radboud%20University%20Medical%20Center%22&f0=q"
     },
     "mumc": {
-      "ror": "02d9ce178",
-      "openaireId": "openorgs____::3c2c37b7745ae3202347c3fa594bc66a",
-      "openaireName": "Maastricht University Medical Centre",
+      "query": "Maastricht University Medical Centre",
       "since": "2023-09-19",
-      "numFound": 4,
-      "fetched": 4,
-      "active": 4,
+      "numFound": 5,
+      "fetched": 5,
+      "active": 5,
       "fundedTotal": 26256650,
       "fundedKnown": 4,
       "byFunder": {
@@ -3127,6 +3741,11 @@
           "name": "European Commission",
           "count": 4,
           "amount": 26256650
+        },
+        "NWO": {
+          "name": "Netherlands Organisation for Scientific Research (NWO)",
+          "count": 1,
+          "amount": 0
         }
       },
       "projects": [
@@ -3173,6 +3792,20 @@
           "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A2e826d66c454c6fdf0f52d87e5892d0f"
         },
         {
+          "id": "nwo_________::5167de8c50bbf0930af2e2c8f680472e",
+          "code": "VI.Vidi.223.130",
+          "acronym": "",
+          "title": "A cold case investigation into the human repetitive (epi)genome",
+          "funder": "NWO",
+          "stream": "NWO-Talentprogramma Vidi ENW 2022",
+          "call": "",
+          "start": "2024-01-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A5167de8c50bbf0930af2e2c8f680472e"
+        },
+        {
           "id": "corda_____he::ca94c50a19b44afaae3ae1f21018e13a",
           "code": "101112022",
           "acronym": "iCARE4CVD",
@@ -3187,12 +3820,10 @@
           "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3Aca94c50a19b44afaae3ae1f21018e13a"
         }
       ],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3A3c2c37b7745ae3202347c3fa594bc66a"
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Maastricht%20University%20Medical%20Centre%22&f0=q"
     },
     "maxima": {
-      "ror": "02aj7yc53",
-      "openaireId": "openorgs____::2310574386b83b200559887761a0e6b0",
-      "openaireName": "Princess Máxima Center",
+      "query": "Princess Máxima Center",
       "since": "2023-09-19",
       "numFound": 0,
       "fetched": 0,
@@ -3201,127 +3832,350 @@
       "fundedKnown": 0,
       "byFunder": {},
       "projects": [],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3A2310574386b83b200559887761a0e6b0"
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Princess%20M%C3%A1xima%20Center%22&f0=q"
     },
     "nki": {
-      "ror": "03xqtf034",
-      "openaireId": "openorgs____::1948def781ac9956fed96f81710351db",
-      "openaireName": "Netherlands Heart Institute",
+      "query": "The Netherlands Cancer Institute",
       "since": "2023-09-19",
-      "numFound": 5,
-      "fetched": 5,
-      "active": 5,
-      "fundedTotal": 21819290,
+      "numFound": 11,
+      "fetched": 11,
+      "active": 11,
+      "fundedTotal": 4695102,
+      "fundedKnown": 11,
+      "byFunder": {
+        "FWF": {
+          "name": "Austrian Science Fund (FWF)",
+          "count": 11,
+          "amount": 4695102
+        }
+      },
+      "projects": [
+        {
+          "id": "fwf_________::1a6f7fd865cd42c31a65621c416700c1",
+          "code": "PAT 1217525",
+          "acronym": "",
+          "title": "Cell-intrinsic roles of MORC3 in immune cell development",
+          "funder": "FWF",
+          "stream": "Principal Investigator Projects",
+          "call": "",
+          "start": "2026-04-01",
+          "end": "2029-12-31",
+          "amount": 449859,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=fwf_________%3A%3A1a6f7fd865cd42c31a65621c416700c1"
+        },
+        {
+          "id": "fwf_________::6702e13c901fa3757eb638571a20d423",
+          "code": "PAT 2786525",
+          "acronym": "",
+          "title": "Cell type-specific functions of the nuclear receptor RORgt",
+          "funder": "FWF",
+          "stream": "Principal Investigator Projects",
+          "call": "",
+          "start": "2026-02-01",
+          "end": "2030-01-31",
+          "amount": 442654,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=fwf_________%3A%3A6702e13c901fa3757eb638571a20d423"
+        },
+        {
+          "id": "fwf_________::3b6caf5c1ccdb297e8d227e0c0fef9eb",
+          "code": "PAT 4163824",
+          "acronym": "",
+          "title": "Gene-regulatory functions of TOX in the immune system",
+          "funder": "FWF",
+          "stream": "Principal Investigator Projects",
+          "call": "",
+          "start": "2025-01-01",
+          "end": "2028-12-31",
+          "amount": 482013,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=fwf_________%3A%3A3b6caf5c1ccdb297e8d227e0c0fef9eb"
+        },
+        {
+          "id": "fwf_________::7112ddb9c0fdf924004f999050ce1e2f",
+          "code": "ESP 9305624",
+          "acronym": "",
+          "title": "Decoding transcriptional burst kinetics with BARe-seq",
+          "funder": "FWF",
+          "stream": "ESPRIT",
+          "call": "",
+          "start": "2025-02-01",
+          "end": "2028-01-31",
+          "amount": 340819,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=fwf_________%3A%3A7112ddb9c0fdf924004f999050ce1e2f"
+        },
+        {
+          "id": "fwf_________::74710c1226dd87867d332a044e85b9da",
+          "code": "PAT 5623624",
+          "acronym": "",
+          "title": "Encoding gestational immune activation in the female brain",
+          "funder": "FWF",
+          "stream": "Principal Investigator Projects",
+          "call": "",
+          "start": "2025-03-01",
+          "end": "2028-02-29",
+          "amount": 441876,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=fwf_________%3A%3A74710c1226dd87867d332a044e85b9da"
+        },
+        {
+          "id": "fwf_________::807cd620d56c94c0101309d83b736ce9",
+          "code": "ESP 9613024",
+          "acronym": "",
+          "title": "Molecular mechanisms of sperm-egg fusion",
+          "funder": "FWF",
+          "stream": "ESPRIT",
+          "call": "",
+          "start": "2025-01-01",
+          "end": "2027-12-31",
+          "amount": 340819,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=fwf_________%3A%3A807cd620d56c94c0101309d83b736ce9"
+        },
+        {
+          "id": "fwf_________::a378fc0656177221d3fbeb7d09081a94",
+          "code": "PAT 2970325",
+          "acronym": "",
+          "title": "Structure and mechanism of the antiviral E3 ligase ZNFX1",
+          "funder": "FWF",
+          "stream": "Principal Investigator Projects",
+          "call": "",
+          "start": "2025-09-01",
+          "end": "2029-08-31",
+          "amount": 449459,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=fwf_________%3A%3Aa378fc0656177221d3fbeb7d09081a94"
+        },
+        {
+          "id": "fwf_________::2fba53e8edb1be8db8f1b8fee789382a",
+          "code": "P 36971",
+          "acronym": "",
+          "title": "Identifying and characterizing transcriptional silencers",
+          "funder": "FWF",
+          "stream": "Einzelprojekte",
+          "call": "",
+          "start": "2024-01-01",
+          "end": "2026-12-31",
+          "amount": 424116,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=fwf_________%3A%3A2fba53e8edb1be8db8f1b8fee789382a"
+        },
+        {
+          "id": "fwf_________::427d5a03086823411ef5c8fa0f85e7ef",
+          "code": "PAT 3564423",
+          "acronym": "",
+          "title": "Uncovering promoter-type-specific transcriptional activators",
+          "funder": "FWF",
+          "stream": "Einzelprojekte",
+          "call": "",
+          "start": "2024-07-01",
+          "end": "2027-06-30",
+          "amount": 649631,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=fwf_________%3A%3A427d5a03086823411ef5c8fa0f85e7ef"
+        },
+        {
+          "id": "fwf_________::fbb6d5fb072548e46038686d0fd88fd9",
+          "code": "ESP 7844224",
+          "acronym": "",
+          "title": "Mechanism of pre-mRNA trans-splicing",
+          "funder": "FWF",
+          "stream": "ESPRIT",
+          "call": "",
+          "start": "2024-12-01",
+          "end": "2027-11-30",
+          "amount": 340819,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=fwf_________%3A%3Afbb6d5fb072548e46038686d0fd88fd9"
+        },
+        {
+          "id": "fwf_________::ff5af351020723b5fa595638e22592c7",
+          "code": "ESP 566",
+          "acronym": "",
+          "title": "In vivo photo-crosslinked protein assemblies in C.elegans",
+          "funder": "FWF",
+          "stream": "ESPRIT-Programm",
+          "call": "",
+          "start": "2024-01-01",
+          "end": "2026-12-31",
+          "amount": 333037,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=fwf_________%3A%3Aff5af351020723b5fa595638e22592c7"
+        }
+      ],
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22The%20Netherlands%20Cancer%20Institute%22&f0=q"
+    },
+    "mmc": {
+      "query": "Máxima Medical Centre",
+      "since": "2023-09-19",
+      "numFound": 0,
+      "fetched": 0,
+      "active": 0,
+      "fundedTotal": 0,
+      "fundedKnown": 0,
+      "byFunder": {},
+      "projects": [],
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22M%C3%A1xima%20Medical%20Centre%22&f0=q"
+    },
+    "sanquin": {
+      "query": "Sanquin Research",
+      "since": "2023-09-19",
+      "numFound": 1,
+      "fetched": 1,
+      "active": 1,
+      "fundedTotal": 35999.9,
+      "fundedKnown": 1,
+      "byFunder": {
+        "ANR": {
+          "name": "French National Research Agency (ANR)",
+          "count": 1,
+          "amount": 35999.9
+        }
+      },
+      "projects": [
+        {
+          "id": "anr_________::6902eaf96df87cebacdc9ae0a60e0187",
+          "code": "ANR-25-MRS1-0011",
+          "acronym": "INITIATOR",
+          "title": "Citrullination in inflammation and cancer: concept for new therapeutics targets.",
+          "funder": "ANR",
+          "stream": "null",
+          "call": "",
+          "start": "2025-06-01",
+          "end": "",
+          "amount": 35999.9,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=anr_________%3A%3A6902eaf96df87cebacdc9ae0a60e0187"
+        }
+      ],
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Sanquin%20Research%22&f0=q"
+    },
+    "aighd": {
+      "query": "Amsterdam Institute for Global Health and Development",
+      "since": "2023-09-19",
+      "numFound": 7,
+      "fetched": 7,
+      "active": 6,
+      "fundedTotal": 23926467,
       "fundedKnown": 5,
       "byFunder": {
         "EC": {
           "name": "European Commission",
           "count": 5,
-          "amount": 21819290
+          "amount": 23926467
+        },
+        "NWO": {
+          "name": "Netherlands Organisation for Scientific Research (NWO)",
+          "count": 2,
+          "amount": 0
         }
       },
       "projects": [
         {
-          "id": "corda_____he::449c28a88d5325e789c609e1fb8e0b84",
-          "code": "101225737",
-          "acronym": "CapCell",
-          "title": "Innovative forensic trace investigation via microfluidics and single-cell genomics",
+          "id": "corda_____he::57385d252837b2e8ec4a8df7f6e5199b",
+          "code": "101248989",
+          "acronym": "EACCR4",
+          "title": "EASTERN AFRICA CONSORTIUM FOR CLINICAL RESEARCH 4",
           "funder": "EC",
-          "stream": "Horizon Europe Framework Programme - HORIZON  Research and Innovation Actions",
-          "call": "HORIZON-CL3-2024-FCT-01",
-          "start": "2025-10-01",
-          "end": "2029-09-30",
-          "amount": 4499310,
+          "stream": "Horizon Europe Framework Programme - HORIZON JU Coordination and Support Actions",
+          "call": "HORIZON-JU-GH-EDCTP3-2025-03-two-stage",
+          "start": "2026-06-01",
+          "end": "2030-05-31",
+          "amount": 12751600,
           "currency": "EUR",
-          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A449c28a88d5325e789c609e1fb8e0b84"
+          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A57385d252837b2e8ec4a8df7f6e5199b"
         },
         {
-          "id": "corda_____he::45777cac1448bc4bef0fda10daa55b1a",
-          "code": "101168272",
-          "acronym": "IAMI",
-          "title": "Identity Attributes Matrix Initiative",
+          "id": "corda_____he::dc9f391d8d8730cd4ddb521b9b260f03",
+          "code": "101249031",
+          "acronym": "IDM-Africa",
+          "title": "Strategic Training Hub for Infectious Disease Modelling in Sub Saharan Africa",
           "funder": "EC",
-          "stream": "Horizon Europe Framework Programme - HORIZON  Research and Innovation Actions",
-          "call": "HORIZON-CL3-2023-FCT-01",
-          "start": "2025-02-01",
-          "end": "2028-01-31",
-          "amount": 3746250,
+          "stream": "Horizon Europe Framework Programme - HORIZON JU Coordination and Support Actions",
+          "call": "HORIZON-JU-GH-EDCTP3-2025-02-two-stage",
+          "start": "2026-08-01",
+          "end": "2031-07-31",
+          "amount": 1300370,
           "currency": "EUR",
-          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A45777cac1448bc4bef0fda10daa55b1a"
+          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3Adc9f391d8d8730cd4ddb521b9b260f03"
         },
         {
-          "id": "corda_____he::a3ab2412c60982f5b6fcb0e53e8c6cb9",
-          "code": "101225942",
-          "acronym": "DETECTOR",
-          "title": "Deepfake Evidence and Technology for Forensic Content Oversight and Research",
-          "funder": "EC",
-          "stream": "Horizon Europe Framework Programme - HORIZON  Research and Innovation Actions",
-          "call": "HORIZON-CL3-2024-FCT-01",
-          "start": "2025-09-01",
-          "end": "2028-08-31",
-          "amount": 4489410,
+          "id": "nwo_________::9d5881417c3bd04f1d0a517b47b15c22",
+          "code": "24.411",
+          "acronym": "",
+          "title": "Urban Climate Health Nexus: Enhancing Resilience and Health Equity through Citizen Science, Dynamic System Modeling, and Policy Innovation",
+          "funder": "NWO",
+          "stream": "Merian Fund Cooperation Brazil-The Netherlands (FAPESP) Extreme Heat and Water Events 2024",
+          "call": "",
+          "start": "2026-05-01",
+          "end": "",
+          "amount": null,
           "currency": "EUR",
-          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3Aa3ab2412c60982f5b6fcb0e53e8c6cb9"
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A9d5881417c3bd04f1d0a517b47b15c22"
         },
         {
-          "id": "corda_____he::dc697afa4419ec0bc659d7193947925d",
-          "code": "101225631",
-          "acronym": "ForMAT",
-          "title": "FORENSIC METHYLATION ANALYSIS TOOLSETS (FORMAT)",
-          "funder": "EC",
-          "stream": "Horizon Europe Framework Programme - HORIZON  Research and Innovation Actions",
-          "call": "HORIZON-CL3-2024-FCT-01",
-          "start": "2025-09-01",
-          "end": "2029-08-31",
-          "amount": 4673460,
+          "id": "nwo_________::c8fc279e408f9ed2e30ff5d01ff07e8f",
+          "code": "OCENW.XS26.1.154",
+          "acronym": "",
+          "title": "Lethal Logistics: Exploiting the Iron “Mail Box” of Tuberculosis for Targeted Nanotech Sabotage",
+          "funder": "NWO",
+          "stream": "Open Competitie ENW XS pakket 26-1",
+          "call": "",
+          "start": "2026-10-01",
+          "end": "",
+          "amount": null,
           "currency": "EUR",
-          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3Adc697afa4419ec0bc659d7193947925d"
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3Ac8fc279e408f9ed2e30ff5d01ff07e8f"
         },
         {
-          "id": "corda_____he::29811efb50f9dd992e3ab3f250431dbc",
-          "code": "101168195",
-          "acronym": "NARCOSIS",
-          "title": "Non-tArgeted foRensic multidisCiplinary platfOrm for inveStigatIon of drug-related fatalitieS",
+          "id": "corda_____he::1aed32296abda816fc77f408b945d3aa",
+          "code": "101145812",
+          "acronym": "STOOL4TB",
+          "title": "Evaluating a new stool based qPCR for diagnosis of tuberculosis in children and people living with HIV",
           "funder": "EC",
-          "stream": "Horizon Europe Framework Programme - HORIZON Innovation Actions",
-          "call": "HORIZON-CL3-2023-FCT-01",
-          "start": "2024-11-01",
-          "end": "2027-10-31",
-          "amount": 4410860,
+          "stream": "Horizon Europe Framework Programme - HORIZON JU Research and Innovation Actions",
+          "call": "HORIZON-JU-GH-EDCTP3-2023-01",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "amount": 348248,
           "currency": "EUR",
-          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A29811efb50f9dd992e3ab3f250431dbc"
+          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A1aed32296abda816fc77f408b945d3aa"
+        },
+        {
+          "id": "corda_____he::7030e45d8a914d46c174ca0da113d0fa",
+          "code": "101145817",
+          "acronym": "4-CAGE-TB",
+          "title": "Fortifying the automated smartphone-based Cough Audio classification for rapid triaGE testing for tuberculosis project",
+          "funder": "EC",
+          "stream": "Horizon Europe Framework Programme - HORIZON JU Research and Innovation Actions",
+          "call": "HORIZON-JU-GH-EDCTP3-2023-01",
+          "start": "2025-01-01",
+          "end": "2026-12-31",
+          "amount": 981469,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A7030e45d8a914d46c174ca0da113d0fa"
+        },
+        {
+          "id": "corda_____he::e9dcd2c1458ebd9ee936a0b292c449f6",
+          "code": "101137459",
+          "acronym": "Yellow4FLAVI",
+          "title": "Deconstructing the protective immunity of yellow fever virus 17D to inform flavivirus vaccine design",
+          "funder": "EC",
+          "stream": "Horizon Europe Framework Programme - HORIZON  Research and Innovation Actions",
+          "call": "HORIZON-HLTH-2023-DISEASE-03",
+          "start": "2024-01-01",
+          "end": "2028-12-31",
+          "amount": 8544780,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3Ae9dcd2c1458ebd9ee936a0b292c449f6"
         }
       ],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3A1948def781ac9956fed96f81710351db"
-    },
-    "mmc": {
-      "notFound": true,
-      "reason": "OpenAIRE has no organisation record for ROR 02x6rcb77.",
-      "ror": "02x6rcb77"
-    },
-    "sanquin": {
-      "notFound": true,
-      "reason": "OpenAIRE has no organisation record for ROR 01fm2fv39.",
-      "ror": "01fm2fv39"
-    },
-    "aighd": {
-      "ror": "037n2rm85",
-      "openaireId": "pending_org_::822a82d442dd45e48ae61f94e90aa08a",
-      "openaireName": "Amsterdam Institute for Global Health and Development",
-      "since": "2023-09-19",
-      "numFound": 0,
-      "fetched": 0,
-      "active": 0,
-      "fundedTotal": 0,
-      "fundedKnown": 0,
-      "byFunder": {},
-      "projects": [],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=pending_org_%3A%3A822a82d442dd45e48ae61f94e90aa08a"
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Amsterdam%20Institute%20for%20Global%20Health%20and%20Development%22&f0=q"
     },
     "nwo": {
-      "ror": "04jsz6e67",
-      "openaireId": "openorgs____::c1a1811a679593a3e8b973f41bc8c8ea",
-      "openaireName": "Dutch Research Council",
+      "query": "Dutch Research Council",
       "since": "2023-09-19",
       "numFound": 2,
       "fetched": 2,
@@ -3365,17 +4219,22 @@
           "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3Aa4aa3ab0bf16007484bdc0de246598a0"
         }
       ],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3Ac1a1811a679593a3e8b973f41bc8c8ea"
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Dutch%20Research%20Council%22&f0=q"
     },
     "zonmw": {
-      "notFound": true,
-      "reason": "OpenAIRE has no organisation record for ROR 01yaj9a77.",
-      "ror": "01yaj9a77"
+      "query": "ZonMw The Dutch Organisation for knowledge and innovation in health healthcare and well-being",
+      "since": "2023-09-19",
+      "numFound": 0,
+      "fetched": 0,
+      "active": 0,
+      "fundedTotal": 0,
+      "fundedKnown": 0,
+      "byFunder": {},
+      "projects": [],
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22ZonMw%20The%20Dutch%20Organisation%20for%20knowledge%20and%20innovation%20in%20health%20healthcare%20and%20well-being%22&f0=q"
     },
     "tno": {
-      "ror": "01bnjb948",
-      "openaireId": "openorgs____::20e491a3310e7146d52161c825a980ec",
-      "openaireName": "Netherlands Organisation for Applied Scientific Research",
+      "query": "Netherlands Organisation for Applied Scientific Research",
       "since": "2023-09-19",
       "numFound": 109,
       "fetched": 109,
@@ -3559,12 +4418,10 @@
           "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A820f4465e62f3cb5dd745aeec6c9cd65"
         }
       ],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3A20e491a3310e7146d52161c825a980ec"
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Netherlands%20Organisation%20for%20Applied%20Scientific%20Research%22&f0=q"
     },
     "knaw": {
-      "ror": "043c0p156",
-      "openaireId": "openorgs____::cb77737b5a390319030e6abdb12aa6ad",
-      "openaireName": "Royal Netherlands Academy of Arts and Sciences",
+      "query": "Royal Netherlands Academy of Arts and Sciences",
       "since": "2023-09-19",
       "numFound": 54,
       "fetched": 54,
@@ -3758,37 +4615,213 @@
           "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3Ac59b197336bc67320a9b697fbf3afcf7"
         }
       ],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3Acb77737b5a390319030e6abdb12aa6ad"
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Royal%20Netherlands%20Academy%20of%20Arts%20and%20Sciences%22&f0=q"
     },
     "hubrecht": {
-      "ror": "023qc4a07",
-      "openaireId": "openorgs____::1820f7ff911f4cf656fd63fd17b2fea8",
-      "openaireName": "Hubrecht Institute for Developmental Biology and Stem Cell Research",
+      "query": "Hubrecht Institute",
       "since": "2023-09-19",
-      "numFound": 0,
-      "fetched": 0,
-      "active": 0,
-      "fundedTotal": 0,
-      "fundedKnown": 0,
-      "byFunder": {},
-      "projects": [],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3A1820f7ff911f4cf656fd63fd17b2fea8"
+      "numFound": 16,
+      "fetched": 16,
+      "active": 15,
+      "fundedTotal": 908014,
+      "fundedKnown": 1,
+      "byFunder": {
+        "NWO": {
+          "name": "Netherlands Organisation for Scientific Research (NWO)",
+          "count": 15,
+          "amount": 0
+        },
+        "UKRI": {
+          "name": "UK Research and Innovation",
+          "count": 1,
+          "amount": 908014
+        }
+      },
+      "projects": [
+        {
+          "id": "nwo_________::4e7625f4effc2736a470c2c8bf05f030",
+          "code": "184.037.008",
+          "acronym": "",
+          "title": "EMPower: Electron Microscopy from whole organism to atomic resolution",
+          "funder": "NWO",
+          "stream": "Grootschalige Wetenschappelijke Infrastructuur(GWI) Nationale Roadmap Consortia 2024",
+          "call": "",
+          "start": "2026-03-16",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A4e7625f4effc2736a470c2c8bf05f030"
+        },
+        {
+          "id": "nwo_________::0840fe0edf8b0957aa3d501e3560428e",
+          "code": "OCENW.M.24.030",
+          "acronym": "",
+          "title": "Histone variants management: the role of the histone chaperones ANP32A/B",
+          "funder": "NWO",
+          "stream": "Open Competitie ENW - M 2024/2025 Pakket 24-1",
+          "call": "",
+          "start": "2025-08-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A0840fe0edf8b0957aa3d501e3560428e"
+        },
+        {
+          "id": "nwo_________::8eddb579b3891e6520d7e6367b3d00f8",
+          "code": "OCENW.XL.23.127",
+          "acronym": "",
+          "title": "How developing embryos use noisy clocks to tell time with high precision",
+          "funder": "NWO",
+          "stream": "Open Competitie ENW XL (voorheen OC ENW-GROOT) Ronde 2023-2024",
+          "call": "",
+          "start": "2025-03-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A8eddb579b3891e6520d7e6367b3d00f8"
+        },
+        {
+          "id": "nwo_________::9d6163d679304f4b5d7e96e2ad2e99d2",
+          "code": "OCENW.M.24.018",
+          "acronym": "",
+          "title": "Molecular mechanisms of cell-cycle timing: Unravelling how heterochronic factors pattern cell cycles during C. elegans development",
+          "funder": "NWO",
+          "stream": "Open Competitie ENW - M 2024/2025 Pakket 24-1",
+          "call": "",
+          "start": "2025-07-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A9d6163d679304f4b5d7e96e2ad2e99d2"
+        },
+        {
+          "id": "nwo_________::b4997e69305c643fee36a7bdb48ccf77",
+          "code": "VI.Vidi.233.038",
+          "acronym": "",
+          "title": "Mechanism of chromatin assembly during DNA replication",
+          "funder": "NWO",
+          "stream": "NWO-Talentprogramma Vidi ENW 2023 ENW/Science",
+          "call": "",
+          "start": "2025-01-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3Ab4997e69305c643fee36a7bdb48ccf77"
+        },
+        {
+          "id": "nwo_________::cc1cc0b3ca4e00346d86ada69e33260d",
+          "code": "SUMMIT.1.027",
+          "acronym": "",
+          "title": "DRIVE-RM: Uniting biology, engineering and medicine to drive material-based regenerative therapies",
+          "funder": "NWO",
+          "stream": "Summit grant 2023",
+          "call": "",
+          "start": "2025-05-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3Acc1cc0b3ca4e00346d86ada69e33260d"
+        },
+        {
+          "id": "nwo_________::fbecadfdf96b35e87c94396726d69cc1",
+          "code": "OCENW.M.24.075",
+          "acronym": "",
+          "title": "The dynamic signalling network regulating intestinal cell fate decisions",
+          "funder": "NWO",
+          "stream": "Open Competitie ENW - M 2024/2025 Pakket 24-1",
+          "call": "",
+          "start": "2025-07-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3Afbecadfdf96b35e87c94396726d69cc1"
+        },
+        {
+          "id": "ukri________::d58bc5ebd9ddbe8824fe74ed3e951354",
+          "code": "UKRI1953",
+          "acronym": "",
+          "title": "UHRF1 as a coordinator of chromatin replication",
+          "funder": "UKRI",
+          "stream": "BBSRC",
+          "call": "",
+          "start": "2025-08-31",
+          "end": "2029-08-31",
+          "amount": 908014,
+          "currency": "GBP",
+          "url": "https://explore.openaire.eu/search/project?projectId=ukri________%3A%3Ad58bc5ebd9ddbe8824fe74ed3e951354"
+        },
+        {
+          "id": "nwo_________::3a1d367e869072d318c078b1059d09d6",
+          "code": "OCENW.M.22.397",
+          "acronym": "",
+          "title": "A fast, highly sensitive ultra-large field of view microscope to map early viral infection heterogeneity in living cells",
+          "funder": "NWO",
+          "stream": "Open Competitie ENW - M 2022/2023 Pakket 22-6",
+          "call": "",
+          "start": "2024-06-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A3a1d367e869072d318c078b1059d09d6"
+        },
+        {
+          "id": "nwo_________::5a8b84fa2e4acda11ae67a62f374f400",
+          "code": "VI.C.232.110",
+          "acronym": "",
+          "title": "Replication of unconventional DNA structures: mechanisms that maintain genome integrity",
+          "funder": "NWO",
+          "stream": "NWO-Talentprogramma Vici ENW 2023",
+          "call": "",
+          "start": "2024-09-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A5a8b84fa2e4acda11ae67a62f374f400"
+        },
+        {
+          "id": "nwo_________::7ae25ca726f17f9a2f9f7de161c544ce",
+          "code": "VI.Vidi.223.069",
+          "acronym": "",
+          "title": "Probing epigenetics through computational protein design",
+          "funder": "NWO",
+          "stream": "NWO-Talentprogramma Vidi ENW 2022",
+          "call": "",
+          "start": "2024-01-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A7ae25ca726f17f9a2f9f7de161c544ce"
+        },
+        {
+          "id": "nwo_________::9b799333a0cc616216287577187aa91b",
+          "code": "OCENW.M.23.002",
+          "acronym": "",
+          "title": "Towards a mechanistic understanding of the segmentation clock",
+          "funder": "NWO",
+          "stream": "Open Competitie ENW - M 2023/2024 Pakket 23-1",
+          "call": "",
+          "start": "2024-06-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A9b799333a0cc616216287577187aa91b"
+        }
+      ],
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Hubrecht%20Institute%22&f0=q"
     },
     "nin": {
-      "ror": "05csn2x06",
-      "openaireId": "openorgs____::b411400e9cb43b74991acf165fdbaf42",
-      "openaireName": "Netherlands Institute for Neuroscience",
+      "query": "Netherlands Institute for Neuroscience",
       "since": "2023-09-19",
-      "numFound": 2,
-      "fetched": 2,
+      "numFound": 3,
+      "fetched": 3,
       "active": 2,
-      "fundedTotal": 225800,
-      "fundedKnown": 2,
+      "fundedTotal": 332400,
+      "fundedKnown": 3,
       "byFunder": {
         "SNSF": {
           "name": "Swiss National Science Foundation",
-          "count": 2,
-          "amount": 225800
+          "count": 3,
+          "amount": 332400
         }
       },
       "projects": [
@@ -3819,14 +4852,26 @@
           "amount": 112600,
           "currency": "EUR",
           "url": "https://explore.openaire.eu/search/project?projectId=snsf________%3A%3A8ffd1fff66a5b4309340123c75ddbfa4"
+        },
+        {
+          "id": "snsf________::00695a8c5dbb6b730fd39acd35df2ff6",
+          "code": "214403",
+          "acronym": "",
+          "title": "RESTLESS: Does restless sleep maintain hyperarousal?",
+          "funder": "SNSF",
+          "stream": "Careers - Fellowships - Postdoc.Mobility",
+          "call": "",
+          "start": "2024-01-01",
+          "end": "2025-12-31",
+          "amount": 106600,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=snsf________%3A%3A00695a8c5dbb6b730fd39acd35df2ff6"
         }
       ],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3Ab411400e9cb43b74991acf165fdbaf42"
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Netherlands%20Institute%20for%20Neuroscience%22&f0=q"
     },
     "rivm": {
-      "ror": "01cesdt21",
-      "openaireId": "openorgs____::ee938614ce34e199c2901282deb79db4",
-      "openaireName": "National Institute for Public Health and the Environment",
+      "query": "National Institute for Public Health and the Environment",
       "since": "2023-09-19",
       "numFound": 20,
       "fetched": 20,
@@ -4010,31 +5055,333 @@
           "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A3708f7d64e8801dccd8454619890111b"
         }
       ],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3Aee938614ce34e199c2901282deb79db4"
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22National%20Institute%20for%20Public%20Health%20and%20the%20Environment%22&f0=q"
     },
     "cwi": {
-      "notFound": true,
-      "reason": "OpenAIRE has no organisation record for ROR 00x7ekv49.",
-      "ror": "00x7ekv49"
+      "query": "Centrum Wiskunde & Informatica",
+      "since": "2023-09-19",
+      "numFound": 39,
+      "fetched": 39,
+      "active": 30,
+      "fundedTotal": 0,
+      "fundedKnown": 0,
+      "byFunder": {
+        "NWO": {
+          "name": "Netherlands Organisation for Scientific Research (NWO)",
+          "count": 39,
+          "amount": 0
+        }
+      },
+      "projects": [
+        {
+          "id": "nwo_________::14155cced4feeb88a564ecb087d2ac1f",
+          "code": "KIN.FDO.25/26.009",
+          "acronym": "",
+          "title": "Energy-Conscious Computational Algorithms & Sustainable Science (ECO-COMPASS)",
+          "funder": "NWO",
+          "stream": "KIN Wetenschap in Transitie Fonds duurzamer onderzoeken 2025/2026",
+          "call": "",
+          "start": "2026-07-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A14155cced4feeb88a564ecb087d2ac1f"
+        },
+        {
+          "id": "nwo_________::38f0db9ef29020483020043156f8009d",
+          "code": "22135",
+          "acronym": "",
+          "title": "DUAL-mode IMaging for Production and Automated Control Technologies (DUAL-IMPACT)",
+          "funder": "NWO",
+          "stream": "Samenwerkingsprogramma High Tech Systemen en Materialen (HTSM) 2024 TTW",
+          "call": "",
+          "start": "2026-05-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A38f0db9ef29020483020043156f8009d"
+        },
+        {
+          "id": "nwo_________::40f7fe5ba5cef5a39940825a779dcef4",
+          "code": "VI.Vidi.243.021",
+          "acronym": "",
+          "title": "Robust Decisions with Wild Data",
+          "funder": "NWO",
+          "stream": "NWO-Talentprogramma Vidi ENW 2024 ENW/Science",
+          "call": "",
+          "start": "2026-04-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A40f7fe5ba5cef5a39940825a779dcef4"
+        },
+        {
+          "id": "nwo_________::4851703a0471110c71ec7f7c8fdc073f",
+          "code": "22754",
+          "acronym": "",
+          "title": "Phase Transitions in Combinatorics",
+          "funder": "NWO",
+          "stream": "NWO-ENW Wetenschappelijke Bijeenkomsten en Ontmoetingen Algemeen ENW WBO 2025 WBO 2025-1",
+          "call": "",
+          "start": "2026-04-14",
+          "end": "2026-04-17",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A4851703a0471110c71ec7f7c8fdc073f"
+        },
+        {
+          "id": "nwo_________::c664171e9edb5749c46cfdc56bbfc7ac",
+          "code": "P24.009",
+          "acronym": "",
+          "title": "AI4optics: Improved illumination and imaging using AI",
+          "funder": "NWO",
+          "stream": "Perspectief 2024-2025 2025 TTW",
+          "call": "",
+          "start": "2026-09-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3Ac664171e9edb5749c46cfdc56bbfc7ac"
+        },
+        {
+          "id": "nwo_________::d33195610e555eb759d934ae28798857",
+          "code": "184.037.014",
+          "acronym": "",
+          "title": "EBRAINS-Neurotech: Assembly Line for Brain Reading and Writing",
+          "funder": "NWO",
+          "stream": "Grootschalige Wetenschappelijke Infrastructuur(GWI) Nationale Roadmap Consortia 2024",
+          "call": "",
+          "start": "2026-04-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3Ad33195610e555eb759d934ae28798857"
+        },
+        {
+          "id": "nwo_________::e40a2a67bef9733b795c0e6d1df7dbe1",
+          "code": "KIN.FDO.25/26.039",
+          "acronym": "",
+          "title": "Reducing Energy Consumption in Algorithm Benchmarking (RECAB)",
+          "funder": "NWO",
+          "stream": "KIN Wetenschap in Transitie Fonds duurzamer onderzoeken 2025/2026",
+          "call": "",
+          "start": "2026-06-15",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3Ae40a2a67bef9733b795c0e6d1df7dbe1"
+        },
+        {
+          "id": "nwo_________::f1b0247a1dddce361b7ebcf23c0d122d",
+          "code": "184.037.005",
+          "acronym": "",
+          "title": "Understanding large and complex power systems",
+          "funder": "NWO",
+          "stream": "Grootschalige Wetenschappelijke Infrastructuur(GWI) Nationale Roadmap Consortia 2024",
+          "call": "",
+          "start": "2026-04-02",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3Af1b0247a1dddce361b7ebcf23c0d122d"
+        },
+        {
+          "id": "nwo_________::feb18963968d0cf0f3d3dafc1024c89e",
+          "code": "NWOPI.UKR.2025.003",
+          "acronym": "",
+          "title": "Safety solutions for autonomous vehicle integration in urban mobility: efficient and reliable acting in an uncertain and unreliable world",
+          "funder": "NWO",
+          "stream": "NWO-NRFU Partnership Initiative NWO Hop-On Call for Researchers Based in Ukraine 2025 NWO-NRFU 2025",
+          "call": "",
+          "start": "2026-06-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3Afeb18963968d0cf0f3d3dafc1024c89e"
+        },
+        {
+          "id": "nwo_________::1ae7090a24d89a677bfd5e981e452e8a",
+          "code": "NGF.1627.1.627.013",
+          "acronym": "",
+          "title": "HySUCCESS - Social, User aCCeptable, Economically Sustainable Systems for hydrogen",
+          "funder": "NWO",
+          "stream": "NGF - GroenvermogenNL R&D werkpakket 7 2023",
+          "call": "",
+          "start": "2025-02-05",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A1ae7090a24d89a677bfd5e981e452e8a"
+        },
+        {
+          "id": "nwo_________::1ecf28b8d5d175f3c4ce017130163ed1",
+          "code": "ICTPR.7",
+          "acronym": "",
+          "title": "ICTPrijs 2025 - Prof. Hannes Mühleisen",
+          "funder": "NWO",
+          "stream": "ICTPrijs Nederlandse Prijs voor ICT onderzoek 2025",
+          "call": "",
+          "start": "2025-03-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A1ecf28b8d5d175f3c4ce017130163ed1"
+        },
+        {
+          "id": "nwo_________::26ab71edb523ce1e7250f1919866298d",
+          "code": "P23.018",
+          "acronym": "",
+          "title": "Inclusive Technologies for Access and Social Participation (TACIT)",
+          "funder": "NWO",
+          "stream": "Perspectief 2023-2024 2024 TTW",
+          "call": "",
+          "start": "2025-06-10",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A26ab71edb523ce1e7250f1919866298d"
+        }
+      ],
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Centrum%20Wiskunde%20%26%20Informatica%22&f0=q"
     },
     "esc": {
-      "ror": "00rbjv475",
-      "openaireId": "openorgs____::863c4184481f057bfe695c9c2786a90a",
-      "openaireName": "Netherlands eScience Center",
+      "query": "Netherlands eScience Center",
       "since": "2023-09-19",
-      "numFound": 2,
-      "fetched": 2,
-      "active": 2,
-      "fundedTotal": 21784070,
-      "fundedKnown": 2,
+      "numFound": 25,
+      "fetched": 25,
+      "active": 23,
+      "fundedTotal": 38981670,
+      "fundedKnown": 4,
       "byFunder": {
+        "NWO": {
+          "name": "Netherlands Organisation for Scientific Research (NWO)",
+          "count": 21,
+          "amount": 0
+        },
         "EC": {
           "name": "European Commission",
           "count": 2,
           "amount": 21784070
+        },
+        "UKRI": {
+          "name": "UK Research and Innovation",
+          "count": 2,
+          "amount": 17197600
         }
       },
       "projects": [
+        {
+          "id": "nwo_________::1ed5c3b3f6b9ee16bfe02c05f15b3ea8",
+          "code": "500.040.2415",
+          "acronym": "",
+          "title": "LoFAIR: FAIR Data & Open Software for LOFAR",
+          "funder": "NWO",
+          "stream": "Open Science NL Open Science Infrastructuur Ronde 2024",
+          "call": "",
+          "start": "2026-06-18",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A1ed5c3b3f6b9ee16bfe02c05f15b3ea8"
+        },
+        {
+          "id": "nwo_________::53fc1fdad9a4962379cd4cf8970e109b",
+          "code": "500.040.2434",
+          "acronym": "",
+          "title": "Open-source Hardware Infrastructure for The Netherlands (OSHNED)",
+          "funder": "NWO",
+          "stream": "Open Science NL Open Science Infrastructuur Ronde 2024",
+          "call": "",
+          "start": "2026-06-15",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A53fc1fdad9a4962379cd4cf8970e109b"
+        },
+        {
+          "id": "nwo_________::5b29dbb12cc9f825b05037e9d8075cca",
+          "code": "184.037.012",
+          "acronym": "",
+          "title": "KM3NeT++: Deep-Sea Infrastructure for Neutrino (Astro)Physics and Beyond",
+          "funder": "NWO",
+          "stream": "Grootschalige Wetenschappelijke Infrastructuur(GWI) Nationale Roadmap Consortia 2024",
+          "call": "",
+          "start": "2026-04-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A5b29dbb12cc9f825b05037e9d8075cca"
+        },
+        {
+          "id": "nwo_________::ac3530711fd0019bad8e13978d59aa92",
+          "code": "500.040.2554",
+          "acronym": "",
+          "title": "Enabling FAIR for AI: Infrastructure for Transparency and Reproducibility of Research Software",
+          "funder": "NWO",
+          "stream": "Open Science NL Open Science Infrastructuur Ronde 2024",
+          "call": "",
+          "start": "2026-06-15",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3Aac3530711fd0019bad8e13978d59aa92"
+        },
+        {
+          "id": "nwo_________::b162b36ad89c1ab609ca11e54b67907c",
+          "code": "184.037.001",
+          "acronym": "",
+          "title": "The Macroscope",
+          "funder": "NWO",
+          "stream": "Grootschalige Wetenschappelijke Infrastructuur(GWI) Nationale Roadmap Consortia 2024",
+          "call": "",
+          "start": "2026-03-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3Ab162b36ad89c1ab609ca11e54b67907c"
+        },
+        {
+          "id": "nwo_________::b7b11bcf1a852a6768433a9715c91e34",
+          "code": "500.040.2416",
+          "acronym": "",
+          "title": "Towards a community-driven and sustainable Research Software Directory",
+          "funder": "NWO",
+          "stream": "Open Science NL Open Science Infrastructuur Ronde 2024",
+          "call": "",
+          "start": "2026-06-18",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3Ab7b11bcf1a852a6768433a9715c91e34"
+        },
+        {
+          "id": "nwo_________::caca3c679867d79848f4cad55866819e",
+          "code": "500.040.2503",
+          "acronym": "",
+          "title": "Project Hippocampus - A collaborative infrastructure for AI-Driven Science",
+          "funder": "NWO",
+          "stream": "Open Science NL Open Science Infrastructuur Ronde 2024",
+          "call": "",
+          "start": "2026-06-18",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3Acaca3c679867d79848f4cad55866819e"
+        },
+        {
+          "id": "nwo_________::e5c03577c344f8f63f195718361b7932",
+          "code": "500.100.001",
+          "acronym": "",
+          "title": "Research Software Sustainability Programme",
+          "funder": "NWO",
+          "stream": "Open Science NL Research Software Sustainability Programme 2025",
+          "call": "",
+          "start": "2026-02-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3Ae5c03577c344f8f63f195718361b7932"
+        },
         {
           "id": "corda_____he::d1d3bd42ffec558ba2fe2b4eb32d2d3f",
           "code": "101187947",
@@ -4050,54 +5397,89 @@
           "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3Ad1d3bd42ffec558ba2fe2b4eb32d2d3f"
         },
         {
-          "id": "corda_____he::a4aa3ab0bf16007484bdc0de246598a0",
-          "code": "101129744",
-          "acronym": "EVERSE",
-          "title": "European Virtual Institute for Research Software Excellence",
-          "funder": "EC",
-          "stream": "Horizon Europe Framework Programme - HORIZON  Research and Innovation Actions",
-          "call": "HORIZON-INFRA-2023-EOSC-01",
-          "start": "2024-03-01",
-          "end": "2027-02-28",
-          "amount": 6789470,
+          "id": "nwo_________::005b8a89308f2732d42ae9fb406054d3",
+          "code": "2025.021",
+          "acronym": "",
+          "title": "Creating a Societal Digital Twin of the Netherlands",
+          "funder": "NWO",
+          "stream": "Rekentijd nationale computersystemen Aanvragen 2025 Verwerkingsronde aanvragen 2025",
+          "call": "",
+          "start": "2025-07-17",
+          "end": "",
+          "amount": null,
           "currency": "EUR",
-          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3Aa4aa3ab0bf16007484bdc0de246598a0"
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A005b8a89308f2732d42ae9fb406054d3"
+        },
+        {
+          "id": "nwo_________::15d1bc31213f7421d0ae3536d3b48edf",
+          "code": "ICT.001.TDCC.007",
+          "acronym": "",
+          "title": "FAIR4ChemNL: Accelerating the adoption of universal data standards in chemistry",
+          "funder": "NWO",
+          "stream": "Uitvoeringsplan ICT infrastructuur Uitvoeringsplan ICT infrastructuur Thematische DCC’s TDCC 23-2",
+          "call": "",
+          "start": "2025-09-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A15d1bc31213f7421d0ae3536d3b48edf"
+        },
+        {
+          "id": "nwo_________::1730a7fc83155e1db2a5c81e976bc8e8",
+          "code": "ICT.001.TDCC.005",
+          "acronym": "",
+          "title": "A FAIR tool framework for bioinformatics services, tools and workflows in digital Life Sciences and Health (LSH) research",
+          "funder": "NWO",
+          "stream": "Uitvoeringsplan ICT infrastructuur Uitvoeringsplan ICT infrastructuur Thematische DCC’s TDCC 23-1",
+          "call": "",
+          "start": "2025-04-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A1730a7fc83155e1db2a5c81e976bc8e8"
         }
       ],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3A863c4184481f057bfe695c9c2786a90a"
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Netherlands%20eScience%20Center%22&f0=q"
     },
     "deltares": {
-      "ror": "01deh9c76",
-      "openaireId": "pending_org_::910855351ab3b27dea156b8b8a4ee2f0",
-      "openaireName": "DeltaRes",
-      "since": "2023-09-19",
-      "numFound": 0,
-      "fetched": 0,
-      "active": 0,
-      "fundedTotal": 0,
-      "fundedKnown": 0,
-      "byFunder": {},
-      "projects": [],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=pending_org_%3A%3A910855351ab3b27dea156b8b8a4ee2f0"
+      "notFound": true,
+      "reason": "No name to search OpenAIRE with."
     },
     "sron": {
-      "ror": "02wc0kq10",
-      "openaireId": "openorgs____::1eaec9171998c0db1b627afe4a969430",
-      "openaireName": "Netherlands Institute for Space Research",
+      "query": "Space Research Organisation Netherlands",
       "since": "2023-09-19",
-      "numFound": 0,
-      "fetched": 0,
+      "numFound": 1,
+      "fetched": 1,
       "active": 0,
-      "fundedTotal": 0,
-      "fundedKnown": 0,
-      "byFunder": {},
-      "projects": [],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3A1eaec9171998c0db1b627afe4a969430"
+      "fundedTotal": 804485,
+      "fundedKnown": 1,
+      "byFunder": {
+        "UKRI": {
+          "name": "UK Research and Innovation",
+          "count": 1,
+          "amount": 804485
+        }
+      },
+      "projects": [
+        {
+          "id": "ukri________::b31790d3dc0242b93f81016c81773b7c",
+          "code": "NE/Z503794/1",
+          "acronym": "",
+          "title": "Contrail Observations And Lifecycle Tracking (COBALT)",
+          "funder": "UKRI",
+          "stream": "NERC",
+          "call": "",
+          "start": "2024-05-09",
+          "end": "2026-05-08",
+          "amount": 804485,
+          "currency": "GBP",
+          "url": "https://explore.openaire.eu/search/project?projectId=ukri________%3A%3Ab31790d3dc0242b93f81016c81773b7c"
+        }
+      ],
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Space%20Research%20Organisation%20Netherlands%22&f0=q"
     },
     "nikhef": {
-      "ror": "00f9tz983",
-      "openaireId": "pending_org_::238ee7d9317dc37383592f0388d93a3d",
-      "openaireName": "National Institute for Subatomic Physics",
+      "query": "National Institute for Subatomic Physics",
       "since": "2023-09-19",
       "numFound": 0,
       "fetched": 0,
@@ -4106,40 +5488,235 @@
       "fundedKnown": 0,
       "byFunder": {},
       "projects": [],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=pending_org_%3A%3A238ee7d9317dc37383592f0388d93a3d"
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22National%20Institute%20for%20Subatomic%20Physics%22&f0=q"
     },
     "astron": {
-      "ror": "000k1q888",
-      "openaireId": "openorgs____::bc3c03a56c8ac610e083f74395896ed4",
-      "openaireName": "Netherlands Institute for Radio Astronomy",
+      "query": "Netherlands Institute for Radio Astronomy",
       "since": "2023-09-19",
-      "numFound": 0,
-      "fetched": 0,
-      "active": 0,
-      "fundedTotal": 0,
-      "fundedKnown": 0,
-      "byFunder": {},
-      "projects": [],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3Abc3c03a56c8ac610e083f74395896ed4"
+      "numFound": 16,
+      "fetched": 16,
+      "active": 13,
+      "fundedTotal": 494065,
+      "fundedKnown": 1,
+      "byFunder": {
+        "NWO": {
+          "name": "Netherlands Organisation for Scientific Research (NWO)",
+          "count": 15,
+          "amount": 0
+        },
+        "UKRI": {
+          "name": "UK Research and Innovation",
+          "count": 1,
+          "amount": 494065
+        }
+      },
+      "projects": [
+        {
+          "id": "nwo_________::1ed5c3b3f6b9ee16bfe02c05f15b3ea8",
+          "code": "500.040.2415",
+          "acronym": "",
+          "title": "LoFAIR: FAIR Data & Open Software for LOFAR",
+          "funder": "NWO",
+          "stream": "Open Science NL Open Science Infrastructuur Ronde 2024",
+          "call": "",
+          "start": "2026-06-18",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A1ed5c3b3f6b9ee16bfe02c05f15b3ea8"
+        },
+        {
+          "id": "nwo_________::620d348d4551ea2870e4cb602881a1d8",
+          "code": "23455",
+          "acronym": "",
+          "title": "2026 NL Radio Astronomy Community Day",
+          "funder": "NWO",
+          "stream": "NWO-ENW Wetenschappelijke Bijeenkomsten en Ontmoetingen Algemeen ENW WBO 2026 WBO 2026-1",
+          "call": "",
+          "start": "2026-06-16",
+          "end": "2026-06-17",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A620d348d4551ea2870e4cb602881a1d8"
+        },
+        {
+          "id": "nwo_________::8599dd2c132b54225bbc857f7a4b1ba4",
+          "code": "500.040.2445",
+          "acronym": "",
+          "title": "OSPREY: Open Science Platform for astRonomical discoveRY",
+          "funder": "NWO",
+          "stream": "Open Science NL Open Science Infrastructuur Ronde 2024",
+          "call": "",
+          "start": "2026-06-18",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A8599dd2c132b54225bbc857f7a4b1ba4"
+        },
+        {
+          "id": "nwo_________::8eb407f651473a574397fbf33a7f35d8",
+          "code": "2025.048",
+          "acronym": "",
+          "title": "Realising the LOFAR surveys and opening up a new window on the Universe",
+          "funder": "NWO",
+          "stream": "Rekentijd nationale computersystemen Aanvragen 2025 Verwerkingsronde aanvragen 2025",
+          "call": "",
+          "start": "2026-02-13",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A8eb407f651473a574397fbf33a7f35d8"
+        },
+        {
+          "id": "nwo_________::ce591d8f5ab48e8274e0bb87f79dd706",
+          "code": "VI.Vidi.243.136",
+          "acronym": "",
+          "title": "Radio Stars and Exoplanets: Creating Space Weather Reports for Distant Worlds",
+          "funder": "NWO",
+          "stream": "NWO-Talentprogramma Vidi ENW 2024 ENW/Science",
+          "call": "",
+          "start": "2026-03-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3Ace591d8f5ab48e8274e0bb87f79dd706"
+        },
+        {
+          "id": "nwo_________::1f923579408127bc66d9d505c7b51ec0",
+          "code": "2024.047",
+          "acronym": "",
+          "title": "LOFAR Data Valorization",
+          "funder": "NWO",
+          "stream": "Rekentijd nationale computersystemen Aanvragen 2024 Verwerkingsronde aanvragen 2024",
+          "call": "",
+          "start": "2025-02-20",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A1f923579408127bc66d9d505c7b51ec0"
+        },
+        {
+          "id": "nwo_________::299a48c40fac744498626b1df660d9c3",
+          "code": "22001",
+          "acronym": "",
+          "title": "Commercial Feasibility of PowerSensor (CFPS)",
+          "funder": "NWO",
+          "stream": "Take-off WO fase 1 - Haalbaarheidsstudies 2024 TTW 2a",
+          "call": "",
+          "start": "2025-06-18",
+          "end": "2025-12-17",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A299a48c40fac744498626b1df660d9c3"
+        },
+        {
+          "id": "nwo_________::4b698ccb9137b9946f50b25962c7cd6a",
+          "code": "21356",
+          "acronym": "",
+          "title": "SuperCode: SUstainability PER AI-driven CO-DEsign",
+          "funder": "NWO",
+          "stream": "Open technologieprogramma OTP 2023 2023-8",
+          "call": "",
+          "start": "2025-01-17",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A4b698ccb9137b9946f50b25962c7cd6a"
+        },
+        {
+          "id": "nwo_________::5ef39aa4be207f94e0216715f45cd33e",
+          "code": "175.2023.005",
+          "acronym": "",
+          "title": "LOFAR Enhanced Network for Sharp Surveys (LENSS)",
+          "funder": "NWO",
+          "stream": "Wetenschappelijke infrastructuur (WI): nationale consortia Wetenschappelijke infrastructuur (WI): nationale consortia 2023/2024",
+          "call": "",
+          "start": "2025-10-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A5ef39aa4be207f94e0216715f45cd33e"
+        },
+        {
+          "id": "ukri________::34999c1d234171c3bc10263f170932e6",
+          "code": "UKRI1186",
+          "acronym": "",
+          "title": "Learning how to clean deep and fast for next-generation radio-astronomical imaging (AI-CLEAN)",
+          "funder": "UKRI",
+          "stream": "STFC",
+          "call": "",
+          "start": "2025-06-30",
+          "end": "2028-06-30",
+          "amount": 494065,
+          "currency": "GBP",
+          "url": "https://explore.openaire.eu/search/project?projectId=ukri________%3A%3A34999c1d234171c3bc10263f170932e6"
+        },
+        {
+          "id": "nwo_________::091adf643380c06697c4252b4e947471",
+          "code": "OCENW.M.22.443",
+          "acronym": "",
+          "title": "Ambient-L: an ambient-temperature L-band receiver for the Westerbork radio telescope",
+          "funder": "NWO",
+          "stream": "Open Competitie ENW - M 2022/2023 Pakket 22-6",
+          "call": "",
+          "start": "2024-09-02",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A091adf643380c06697c4252b4e947471"
+        },
+        {
+          "id": "nwo_________::27d2736ed3a51df44f3929fdca45df1f",
+          "code": "VI.Veni.222.333",
+          "acronym": "",
+          "title": "A Gamma-ray Interferometer to Advance Gravitational Wave Astrophysics (GIGA)",
+          "funder": "NWO",
+          "stream": "NWO-Talentprogramma Veni ENW 2022",
+          "call": "",
+          "start": "2024-01-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A27d2736ed3a51df44f3929fdca45df1f"
+        }
+      ],
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Netherlands%20Institute%20for%20Radio%20Astronomy%22&f0=q"
     },
     "nioz": {
-      "ror": "01gntjh03",
-      "openaireId": "openorgs____::eb2f1247784acef155801d95b5ac937b",
-      "openaireName": "Royal Netherlands Institute for Sea Research",
+      "query": "Royal Netherlands Institute for Sea Research",
       "since": "2023-09-19",
-      "numFound": 0,
-      "fetched": 0,
-      "active": 0,
-      "fundedTotal": 0,
-      "fundedKnown": 0,
-      "byFunder": {},
-      "projects": [],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3Aeb2f1247784acef155801d95b5ac937b"
+      "numFound": 1,
+      "fetched": 1,
+      "active": 1,
+      "fundedTotal": 186225,
+      "fundedKnown": 1,
+      "byFunder": {
+        "ANR": {
+          "name": "French National Research Agency (ANR)",
+          "count": 1,
+          "amount": 186225
+        }
+      },
+      "projects": [
+        {
+          "id": "anr_________::d589463bed2d59faf7841844ae84fffc",
+          "code": "ANR-23-EBIP-0014",
+          "acronym": "BioBoost+",
+          "title": "Boosting the Frequency and Scale of Marine Biodiversity Monitoring Using Digital Imagery and Artificial Intelligence",
+          "funder": "ANR",
+          "stream": "null",
+          "call": "",
+          "start": "2024-04-01",
+          "end": "",
+          "amount": 186225,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=anr_________%3A%3Ad589463bed2d59faf7841844ae84fffc"
+        }
+      ],
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Royal%20Netherlands%20Institute%20for%20Sea%20Research%22&f0=q"
     },
     "knmi": {
-      "ror": "05dfgh554",
-      "openaireId": "openorgs____::b0a51df36791d8bb939721e0ad1f92b5",
-      "openaireName": "Royal Netherlands Meteorological Institute",
+      "query": "Royal Netherlands Meteorological Institute",
       "since": "2023-09-19",
       "numFound": 17,
       "fetched": 17,
@@ -4323,23 +5900,36 @@
           "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A025dc79f03aa6d072c9bf4a463eb93fd"
         }
       ],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3Ab0a51df36791d8bb939721e0ad1f92b5"
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Royal%20Netherlands%20Meteorological%20Institute%22&f0=q"
     },
     "naturalis": {
-      "ror": "0566bfb96",
-      "openaireId": "openorgs____::dd29a935a8c8b552752fd00524f5c2a3",
-      "openaireName": "Naturalis Biodiversity Center",
+      "query": "Naturalis Biodiversity Center",
       "since": "2023-09-19",
-      "numFound": 19,
-      "fetched": 19,
-      "active": 17,
-      "fundedTotal": 85138940,
-      "fundedKnown": 19,
+      "numFound": 51,
+      "fetched": 51,
+      "active": 47,
+      "fundedTotal": 86552434.7,
+      "fundedKnown": 23,
       "byFunder": {
         "EC": {
           "name": "European Commission",
           "count": 19,
           "amount": 85138940
+        },
+        "NWO": {
+          "name": "Netherlands Organisation for Scientific Research (NWO)",
+          "count": 28,
+          "amount": 0
+        },
+        "UKRI": {
+          "name": "UK Research and Innovation",
+          "count": 1,
+          "amount": 848323
+        },
+        "ANR": {
+          "name": "French National Research Agency (ANR)",
+          "count": 3,
+          "amount": 565171.7
         }
       },
       "projects": [
@@ -4456,68 +6046,66 @@
           "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3Ae6c0b3300a8a7520604d643f3f0bed46"
         },
         {
-          "id": "corda_____he::0c0fddc60f2a263275471b41099f3663",
-          "code": "101165305",
-          "acronym": "WoodCulture",
-          "title": "Domestic forests and wood culture in the continental Euro-Atlantic region (1300 – 1600 CE): explaining change and redressing biased perspectives",
-          "funder": "EC",
-          "stream": "Horizon Europe Framework Programme - European Research Council - HORIZON ERC Grants",
-          "call": "ERC-2024-STG",
-          "start": "2025-01-01",
-          "end": "2029-12-31",
-          "amount": 2246000,
+          "id": "nwo_________::37a845a5bfb7d34daa3cfcb5bdbf0313",
+          "code": "VI.Veni.242.138",
+          "acronym": "",
+          "title": "Viewing island biogeography theory through the lens of atolls: biodiversity in a dynamic world",
+          "funder": "NWO",
+          "stream": "NWO-Talentprogramma Veni ENW 2024",
+          "call": "",
+          "start": "2026-06-01",
+          "end": "",
+          "amount": null,
           "currency": "EUR",
-          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A0c0fddc60f2a263275471b41099f3663"
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A37a845a5bfb7d34daa3cfcb5bdbf0313"
         },
         {
-          "id": "corda_____he::7117035bc6b1a0023506ae94c1c5a019",
-          "code": "101208398",
-          "acronym": "ASIA",
-          "title": "Historical Dynamics and the Extraordinary Biodiversity of Asian Mountains",
-          "funder": "EC",
-          "stream": "Horizon Europe Framework Programme - HORIZON TMA MSCA Postdoctoral Fellowships - European Fellowships",
-          "call": "HORIZON-MSCA-2024-PF-01",
-          "start": "2025-07-01",
-          "end": "2027-06-30",
-          "amount": 232916,
+          "id": "nwo_________::467df6094c58831481ca8823bb107f40",
+          "code": "500.020.2406",
+          "acronym": "",
+          "title": "CS@Sea, the citizen science hub for marine and coastal natural history searchers and researchers",
+          "funder": "NWO",
+          "stream": "Open Science NL Citizen Science Hubs Ronde 2024",
+          "call": "",
+          "start": "2026-04-01",
+          "end": "",
+          "amount": null,
           "currency": "EUR",
-          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A7117035bc6b1a0023506ae94c1c5a019"
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A467df6094c58831481ca8823bb107f40"
         },
         {
-          "id": "corda_____he::930655de638845081a61b4746833ed29",
-          "code": "101226735",
-          "acronym": "PacificPeopleForest",
-          "title": "History, Archaeology, and Botany of Pacific Islands: \nassessing the Impacts of Early European colonialism on Peoples and Forests",
-          "funder": "EC",
-          "stream": "Horizon Europe Framework Programme - HORIZON TMA MSCA Doctoral Networks",
-          "call": "HORIZON-MSCA-2024-DN-01",
-          "start": "2025-11-01",
-          "end": "2029-10-31",
-          "amount": 1752030,
+          "id": "nwo_________::6a7764af8f398b98f8a3c23ff26137b8",
+          "code": "ENWPP.24.021",
+          "acronym": "",
+          "title": "Plumbing the biological pump: Linking missing carbon flows between pelagic and benthic ecosystems in a changing Arctic Ocean (C-CONNECT)",
+          "funder": "NWO",
+          "stream": "Polair Programma Polair Programma Arctische wetenschap in samenwerking met AWI",
+          "call": "",
+          "start": "2026-07-01",
+          "end": "",
+          "amount": null,
           "currency": "EUR",
-          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A930655de638845081a61b4746833ed29"
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A6a7764af8f398b98f8a3c23ff26137b8"
         },
         {
-          "id": "corda_____he::972e10b08b83ef35e840014247e06235",
-          "code": "101139598",
-          "acronym": "Commit2Green",
-          "title": "Commit to Green: Participatory urban greening and renaturing towards climate neutrality and resilience in European cities (Commit2Green/C2G)",
-          "funder": "EC",
-          "stream": "Horizon Europe Framework Programme - HORIZON Innovation Actions",
-          "call": "HORIZON-MISS-2023-CLIMA-CITIES-01",
-          "start": "2025-01-01",
-          "end": "2029-06-30",
-          "amount": 11991400,
+          "id": "nwo_________::830410d81680ddf86f24a78054208738",
+          "code": "482.24.514",
+          "acronym": "",
+          "title": "TIDE-MPAs: Tourism Impact Dashboard for Social-Ecological-System Resilience in Marine Protected Areas",
+          "funder": "NWO",
+          "stream": "Merian Fund Cooperation Indonesia-The Netherlands Blue Economy 2024",
+          "call": "",
+          "start": "2026-11-01",
+          "end": "",
+          "amount": null,
           "currency": "EUR",
-          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A972e10b08b83ef35e840014247e06235"
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A830410d81680ddf86f24a78054208738"
         }
       ],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3Add29a935a8c8b552752fd00524f5c2a3"
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Naturalis%20Biodiversity%20Center%22&f0=q"
     },
     "nlr": {
-      "ror": "022sw4578",
-      "openaireId": "openorgs____::fa2e191ad1d35db623f96abcedb9fb96",
-      "openaireName": "Netherlands Aerospace Centre",
+      "query": "Netherlands Aerospace Centre",
       "since": "2023-09-19",
       "numFound": 28,
       "fetched": 28,
@@ -4706,27 +6294,67 @@
           "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A6280d8f611b668676b16cc21502a2f17"
         }
       ],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3Afa2e191ad1d35db623f96abcedb9fb96"
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Netherlands%20Aerospace%20Centre%22&f0=q"
     },
     "pbl": {
-      "notFound": true,
-      "reason": "OpenAIRE has no organisation record for ROR 052x1hs80.",
-      "ror": "052x1hs80"
+      "query": "PBL Netherlands Environmental Assessment Agency",
+      "since": "2023-09-19",
+      "numFound": 0,
+      "fetched": 0,
+      "active": 0,
+      "fundedTotal": 0,
+      "fundedKnown": 0,
+      "byFunder": {},
+      "projects": [],
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22PBL%20Netherlands%20Environmental%20Assessment%20Agency%22&f0=q"
     },
     "cpb": {
-      "notFound": true,
-      "reason": "OpenAIRE has no organisation record for ROR 04rjxzd30.",
-      "ror": "04rjxzd30"
+      "query": "CPB Netherlands Bureau for Economic Policy Analysis",
+      "since": "2023-09-19",
+      "numFound": 0,
+      "fetched": 0,
+      "active": 0,
+      "fundedTotal": 0,
+      "fundedKnown": 0,
+      "byFunder": {},
+      "projects": [],
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22CPB%20Netherlands%20Bureau%20for%20Economic%20Policy%20Analysis%22&f0=q"
     },
     "rathenau": {
-      "notFound": true,
-      "reason": "OpenAIRE has no organisation record for ROR 04crnd335.",
-      "ror": "04crnd335"
+      "query": "Rathenau Instituut",
+      "since": "2023-09-19",
+      "numFound": 1,
+      "fetched": 1,
+      "active": 1,
+      "fundedTotal": 0,
+      "fundedKnown": 0,
+      "byFunder": {
+        "NWO": {
+          "name": "Netherlands Organisation for Scientific Research (NWO)",
+          "count": 1,
+          "amount": 0
+        }
+      },
+      "projects": [
+        {
+          "id": "nwo_________::c619502a9d87c651f371490ee103f07c",
+          "code": "LINTL.INST.L06.001",
+          "acronym": "",
+          "title": "Hybride Realiteiten",
+          "funder": "NWO",
+          "stream": "L.INT L.INT Lectorposities bij instituten L.INT 2025 Lectoraten en instituten L.INT 2025 Lectoraten en instituten Batch 1",
+          "call": "",
+          "start": "2026-06-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3Ac619502a9d87c651f371490ee103f07c"
+        }
+      ],
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Rathenau%20Instituut%22&f0=q"
     },
     "scp": {
-      "ror": "04tagjk85",
-      "openaireId": "openorgs____::374bcee2ff43200e9afe71b6dc606e6c",
-      "openaireName": "Netherlands Institute for Social Research",
+      "query": "SCP — Netherlands Institute for Social Research",
       "since": "2023-09-19",
       "numFound": 0,
       "fetched": 0,
@@ -4735,29 +6363,10 @@
       "fundedKnown": 0,
       "byFunder": {},
       "projects": [],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=openorgs____%3A%3A374bcee2ff43200e9afe71b6dc606e6c"
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22SCP%20%E2%80%94%20Netherlands%20Institute%20for%20Social%20Research%22&f0=q"
     },
     "clingendael": {
-      "notFound": true,
-      "reason": "OpenAIRE has no organisation record for ROR 04vbm7a71.",
-      "ror": "04vbm7a71"
-    },
-    "hiil": {
-      "notFound": true,
-      "reason": "No ROR id resolved for this organisation, so OpenAIRE cannot be queried."
-    },
-    "oxfamnovib": {
-      "notFound": true,
-      "reason": "No ROR id resolved for this organisation, so OpenAIRE cannot be queried."
-    },
-    "icj": {
-      "notFound": true,
-      "reason": "No ROR id resolved for this organisation, so OpenAIRE cannot be queried."
-    },
-    "iiss": {
-      "ror": "04tdptw32",
-      "openaireId": "pending_org_::22011643f5064ab9e4ba1e725fbeedf0",
-      "openaireName": "STICHTING T.M.C. ASSER INSTITUUT",
+      "query": "Clingendael Institute",
       "since": "2023-09-19",
       "numFound": 0,
       "fetched": 0,
@@ -4766,7 +6375,331 @@
       "fundedKnown": 0,
       "byFunder": {},
       "projects": [],
-      "sourceUrl": "https://explore.openaire.eu/search/advanced/projects?relorganizationid=pending_org_%3A%3A22011643f5064ab9e4ba1e725fbeedf0"
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Clingendael%20Institute%22&f0=q"
+    },
+    "hiil": {
+      "query": "HiiL — Hague Institute for Innovation of Law",
+      "since": "2023-09-19",
+      "numFound": 0,
+      "fetched": 0,
+      "active": 0,
+      "fundedTotal": 0,
+      "fundedKnown": 0,
+      "byFunder": {},
+      "projects": [],
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22HiiL%20%E2%80%94%20Hague%20Institute%20for%20Innovation%20of%20Law%22&f0=q"
+    },
+    "oxfamnovib": {
+      "query": "Oxfam Novib",
+      "since": "2023-09-19",
+      "numFound": 0,
+      "fetched": 0,
+      "active": 0,
+      "fundedTotal": 0,
+      "fundedKnown": 0,
+      "byFunder": {},
+      "projects": [],
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Oxfam%20Novib%22&f0=q"
+    },
+    "icj": {
+      "query": "International Court of Justice",
+      "since": "2023-09-19",
+      "numFound": 0,
+      "fetched": 0,
+      "active": 0,
+      "fundedTotal": 0,
+      "fundedKnown": 0,
+      "byFunder": {},
+      "projects": [],
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22International%20Court%20of%20Justice%22&f0=q"
+    },
+    "iiss": {
+      "query": "Asser Institute",
+      "since": "2023-09-19",
+      "numFound": 0,
+      "fetched": 0,
+      "active": 0,
+      "fundedTotal": 0,
+      "fundedKnown": 0,
+      "byFunder": {},
+      "projects": [],
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Asser%20Institute%22&f0=q"
+    },
+    "amolf": {
+      "notFound": true,
+      "reason": "No name to search OpenAIRE with."
+    },
+    "ihedelft": {
+      "query": "IHE Delft Institute for Water Education",
+      "since": "2023-09-19",
+      "numFound": 18,
+      "fetched": 18,
+      "active": 18,
+      "fundedTotal": 51419450,
+      "fundedKnown": 10,
+      "byFunder": {
+        "EC": {
+          "name": "European Commission",
+          "count": 10,
+          "amount": 51419450
+        },
+        "NWO": {
+          "name": "Netherlands Organisation for Scientific Research (NWO)",
+          "count": 8,
+          "amount": 0
+        }
+      },
+      "projects": [
+        {
+          "id": "corda_____he::3142816e2d5b0ddd467f34361ac8885f",
+          "code": "101286483",
+          "acronym": "SeaStrong",
+          "title": "STRONGER TOGETHER: THE ROLE OF CONNECTIVITY IN SAFEGUARDING FUNCTIONING COASTAL ECOSYSTEMS UNDER GLOBAL CHANGE",
+          "funder": "EC",
+          "stream": "Horizon Europe Framework Programme - HORIZON  Research and Innovation Actions",
+          "call": "HORIZON-CL6-2025-01",
+          "start": "2026-09-01",
+          "end": "2031-02-28",
+          "amount": 5997470,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A3142816e2d5b0ddd467f34361ac8885f"
+        },
+        {
+          "id": "corda_____he::32c8bd38881b767fd5381efa3fb52279",
+          "code": "101200826",
+          "acronym": "Aquiverse",
+          "title": "Aquiverse: a collaborative study of initiatives of groundwater care to re-think, improve and support its governance.",
+          "funder": "EC",
+          "stream": "Horizon Europe Framework Programme - European Research Council - HORIZON ERC Grants",
+          "call": "ERC-2024-ADG",
+          "start": "2026-07-01",
+          "end": "2031-06-30",
+          "amount": 2489660,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A32c8bd38881b767fd5381efa3fb52279"
+        },
+        {
+          "id": "corda_____he::4961993e9eda8a82395ad3de5afbcb6b",
+          "code": "101227354",
+          "acronym": "I3waterS",
+          "title": "intelligent, innovative, integrative Water Systems",
+          "funder": "EC",
+          "stream": "Horizon Europe Framework Programme - HORIZON TMA MSCA Doctoral Networks",
+          "call": "HORIZON-MSCA-2024-DN-01",
+          "start": "2026-01-01",
+          "end": "2029-12-31",
+          "amount": 4594010,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A4961993e9eda8a82395ad3de5afbcb6b"
+        },
+        {
+          "id": "corda_____he::635c31384cf44937f2b0bd95a8e3684f",
+          "code": "101295561",
+          "acronym": "Smart TwinVill",
+          "title": "Multi-actor digital twins for open, citizen-driven digital twins for climate-resilient smart villages",
+          "funder": "EC",
+          "stream": "Horizon Europe Framework Programme - HORIZON  Research and Innovation Actions",
+          "call": "HORIZON-CL6-2025-03",
+          "start": "2026-09-01",
+          "end": "2030-08-31",
+          "amount": 5998340,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A635c31384cf44937f2b0bd95a8e3684f"
+        },
+        {
+          "id": "corda_____he::90cc7beb1dfae21b719f36e30c825a53",
+          "code": "101181983",
+          "acronym": "RIVIERADE",
+          "title": "IMPROVING MODELLING METHODS TO PRODUCE CLIMATE SERVICES FOR RESILIENT EUROPEAN SEAS AND COASTS IN A DECADAL TO MULTI-DECADAL HORIZON",
+          "funder": "EC",
+          "stream": "Horizon Europe Framework Programme - HORIZON  Research and Innovation Actions",
+          "call": "HORIZON-CL6-2024-CLIMATE-01",
+          "start": "2026-01-01",
+          "end": "2029-12-31",
+          "amount": 4356200,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A90cc7beb1dfae21b719f36e30c825a53"
+        },
+        {
+          "id": "corda_____he::c16f26d9c4529e5f4c161b4c6c663a62",
+          "code": "101295922",
+          "acronym": "HARCCA",
+          "title": "Hotspot Resilience: Co-Construct Approaches to Coastal Climate Adaptation",
+          "funder": "EC",
+          "stream": "Horizon Europe Framework Programme - HORIZON Innovation Actions",
+          "call": "HORIZON-MISS-2025-01",
+          "start": "2026-10-01",
+          "end": "2030-09-30",
+          "amount": 9836740,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3Ac16f26d9c4529e5f4c161b4c6c663a62"
+        },
+        {
+          "id": "nwo_________::aa76b37ee4d97212d98cdbcfb119f59c",
+          "code": "NWA.1681.24.005",
+          "acronym": "",
+          "title": "SYSTEMS APPROACH FOR CREATING SUSTAINABLE LANDSCAPE AND RESILIENT COMMUNITY IN RIVERINE AND COASTAL SOCIO-ECOLOGICAL SYSTEM",
+          "funder": "NWO",
+          "stream": "NWA L2 - Thema 2023 - Adaptive Delta Management Bangladesh-Nederland ADM-LAB Livings Labs for ADM in Bangladesh",
+          "call": "",
+          "start": "2026-01-24",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3Aaa76b37ee4d97212d98cdbcfb119f59c"
+        },
+        {
+          "id": "nwo_________::f214bedb5c1d4e300d7b0eb91da7e44a",
+          "code": "482.24.504",
+          "acronym": "",
+          "title": "The Urban-Ocean Nexus: Towards Developing Inclusive, Resilient, and Sustainable Blue Economy in Indonesia and the Netherlands",
+          "funder": "NWO",
+          "stream": "Merian Fund Cooperation Indonesia-The Netherlands Blue Economy 2024",
+          "call": "",
+          "start": "2026-05-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3Af214bedb5c1d4e300d7b0eb91da7e44a"
+        },
+        {
+          "id": "nwo_________::fcd3273e306a7b89158aeb61803c2ca3",
+          "code": "INT.1836.24.016",
+          "acronym": "",
+          "title": "Soil moisture and Scale-making in West Africa: Multiplying water retention practices for increased resilience and food security in Benin and Burkina Faso (Acronym: SMSM)",
+          "funder": "NWO",
+          "stream": "INT - The Netherlands - CGIAR research programme II Water food Nexus Water-Food Nexus call",
+          "call": "",
+          "start": "2026-05-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3Afcd3273e306a7b89158aeb61803c2ca3"
+        },
+        {
+          "id": "corda_____he::0e261d4f1e600ee535680949656eb69e",
+          "code": "101214288",
+          "acronym": "WoodTreat",
+          "title": "INnovative INtegral approach for WOOD waste depollution and multi-sector valorization",
+          "funder": "EC",
+          "stream": "Horizon Europe Framework Programme - HORIZON JU Research and Innovation Actions",
+          "call": "HORIZON-JU-CBE-2024",
+          "start": "2025-09-01",
+          "end": "2029-08-31",
+          "amount": 3500000,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=corda_____he%3A%3A0e261d4f1e600ee535680949656eb69e"
+        },
+        {
+          "id": "nwo_________::2c49b1530fda595b504cb858dd7484c1",
+          "code": "W 07.30323.004",
+          "acronym": "",
+          "title": "Alluvial aquifers in arid Africa are lifelines for resilient livelihoods – A4Life",
+          "funder": "NWO",
+          "stream": "Joint SDG research initiative - Tackling Global Challenges through Use-Inspired Research SDG Scaling Grants",
+          "call": "",
+          "start": "2025-01-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A2c49b1530fda595b504cb858dd7484c1"
+        },
+        {
+          "id": "nwo_________::ef41b58422ef3de75c283d7ed16aaf56",
+          "code": "NWA.1630.23.014",
+          "acronym": "",
+          "title": "Climate Resilience in Diverse African Contexts: Co-creating Knowledge∞Action Chains (Climares)",
+          "funder": "NWO",
+          "stream": "NWA L1 - Onderzoek op Routes door Consortia 2023 - NWA-ORC 2023",
+          "call": "",
+          "start": "2025-09-15",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3Aef41b58422ef3de75c283d7ed16aaf56"
+        }
+      ],
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22IHE%20Delft%20Institute%20for%20Water%20Education%22&f0=q"
+    },
+    "mpi": {
+      "query": "Max Planck Institute for Psycholinguistics",
+      "since": "2023-09-19",
+      "numFound": 4,
+      "fetched": 4,
+      "active": 4,
+      "fundedTotal": 1345190,
+      "fundedKnown": 1,
+      "byFunder": {
+        "NWO": {
+          "name": "Netherlands Organisation for Scientific Research (NWO)",
+          "count": 3,
+          "amount": 0
+        },
+        "UKRI": {
+          "name": "UK Research and Innovation",
+          "count": 1,
+          "amount": 1345190
+        }
+      },
+      "projects": [
+        {
+          "id": "nwo_________::bff6c8c516ec2fdec7bccd533ad434c7",
+          "code": "080.25074",
+          "acronym": "",
+          "title": "Strengthening Prediction through Re-meta-analysis of Infant Twin Studies: SPRITS",
+          "funder": "NWO",
+          "stream": "Open Science NL Replicatiestudies 2025",
+          "call": "",
+          "start": "2026-06-01",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3Abff6c8c516ec2fdec7bccd533ad434c7"
+        },
+        {
+          "id": "nwo_________::e56e1400d0bada38e3121157cd5c4e8f",
+          "code": "OCENW.XS25.2.255",
+          "acronym": "",
+          "title": "Grounded Gesture Generation in Context: Object- and Interaction-Aware Generative AI Models of Language Use",
+          "funder": "NWO",
+          "stream": "Open Competitie ENW XS Pakket 25-2",
+          "call": "",
+          "start": "2026-01-15",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3Ae56e1400d0bada38e3121157cd5c4e8f"
+        },
+        {
+          "id": "nwo_________::268db1ed5b012dbaf607a8e7c1c1bd7d",
+          "code": "VI.Vidi.231C.027",
+          "acronym": "",
+          "title": "From Grunts to Grammars: Unpacking language evolution using Virtual Reality and Swarm Robotics",
+          "funder": "NWO",
+          "stream": "NWO-Talentprogramma Vidi SGW 2023 - SGW/SSH Cultuur en Taalwetenschappen",
+          "call": "",
+          "start": "2025-04-16",
+          "end": "",
+          "amount": null,
+          "currency": "EUR",
+          "url": "https://explore.openaire.eu/search/project?projectId=nwo_________%3A%3A268db1ed5b012dbaf607a8e7c1c1bd7d"
+        },
+        {
+          "id": "ukri________::e4417df167e3a79fb7e64b4f32b5e3e6",
+          "code": "UKRI1451",
+          "acronym": "",
+          "title": "Investigating CHD3-associated craniofacial syndromes",
+          "funder": "UKRI",
+          "stream": "MRC",
+          "call": "",
+          "start": "2025-08-31",
+          "end": "2028-08-31",
+          "amount": 1345190,
+          "currency": "GBP",
+          "url": "https://explore.openaire.eu/search/project?projectId=ukri________%3A%3Ae4417df167e3a79fb7e64b4f32b5e3e6"
+        }
+      ],
+      "sourceUrl": "https://explore.openaire.eu/search/find/projects?fv0=%22Max%20Planck%20Institute%20for%20Psycholinguistics%22&f0=q"
     }
   }
 }
