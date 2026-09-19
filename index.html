@@ -8564,7 +8564,9 @@ function cmxSort(key) {
 function cmxClearFilters() { _cmxSearch = ''; _cmxStatusFilter = null; renderSubscriptionMatrix(); }
 function cmxSetView(v) { _cmxView = v; localStorage.setItem('nl_crm_matrix_view', v); renderSubscriptionMatrix(); }
 
-const _CYCLE = ['yes','likely','expiring','unknown','no'];
+// A click on a status icon flips it through these three: ✓ has it, ✕ does
+// not, ? unverified. Anything else (likely, expiring, cancelled) starts at ✓.
+const _CYCLE = ['yes','no','unknown'];
 const _OV_BADGES = { active:'', expiring:'', unconfirmed:'?', cancelled:'', none:'—', likely:'~' };
 const _OV_TITLES = { active:'Active', expiring:'Cancelling', unconfirmed:'Unconfirmed', cancelled:'Cancelled', none:'Not subscribed', likely:'Likely active' };
 const _COL_LABELS = { springer:'SpringerLink', wiley:'Wiley Online', tf:'Taylor & Francis', wos:'Web of Science', ieee:'IEEE Xplore', acm:'ACM Digital Library', scifinder:'SciFinder-N' };
@@ -8576,11 +8578,10 @@ function toggleMatrixEdit(){
 
 function cycleCell(instId, colKey, ev){
   if(ev) ev.stopPropagation();
-  if(!_matrixEditMode) return;
-  const inst = state.institutions.find(i => i.id === instId);
-  const cur = ((inst && inst.productStatus) || {})[colKey] || ((window.matrixOverrides || {})[instId] || {})[colKey];
+  if(state.currentRole !== 'admin') return;
+  const cur = getProductStatus(instId, colKey); // record, then local override, then researched data
   const idx = _CYCLE.indexOf(cur);
-  const next = idx >= _CYCLE.length-1 ? '' : idx === -1 ? _CYCLE[0] : _CYCLE[idx+1];
+  const next = idx === -1 || idx >= _CYCLE.length-1 ? _CYCLE[0] : _CYCLE[idx+1];
   setProductStatus(instId, colKey, next); // saved on the record; the matrix redraws from the local mirror at once
   renderSubscriptionMatrix();
 }
@@ -9424,6 +9425,7 @@ function renderSubscriptionMatrix() {
   };
 
   const isEditing = _matrixEditMode;
+  const canEdit = state.currentRole === 'admin'; // a click on an icon flips it, no edit mode needed
 
   document.getElementById('topbar-actions').innerHTML = `<div style="display:flex;gap:8px;align-items:center">
     <button class="btn ${isEditing?'btn-primary':'btn-outline'}" onclick="toggleMatrixEdit()" style="font-size:12px;padding:6px 14px">
@@ -9490,10 +9492,10 @@ function renderSubscriptionMatrix() {
     const s = getStatus(instId, col.key);
     const st = STATUS[s] || STATUS.unknown;
     const renewal = getRenewal(instId, col.key);
-    const tdClick = isEditing ? `onclick="event.stopPropagation();cycleCell('${instId}','${col.key}',event)"` : '';
-    return `<td ${tdClick} style="cursor:${isEditing?'pointer':'default'};text-align:center;padding:10px 8px;border-bottom:1px solid rgba(255,255,255,.04);border-right:1px solid rgba(255,255,255,.04);vertical-align:middle">
+    const tdClick = canEdit ? `onclick="event.stopPropagation();cycleCell('${instId}','${col.key}',event)"` : '';
+    return `<td ${tdClick} style="cursor:${canEdit?'pointer':'default'};text-align:center;padding:10px 8px;border-bottom:1px solid rgba(255,255,255,.04);border-right:1px solid rgba(255,255,255,.04);vertical-align:middle">
       <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
-        <span title="${st.label}" style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:${st.bg};border:1.5px solid ${st.border};font-size:12px;font-weight:800;color:${st.text};transition:all .15s;box-shadow:none" onmouseenter="this.style.boxShadow='${st.glow}';this.style.transform='scale(1.2)'" onmouseleave="this.style.boxShadow='none';this.style.transform='scale(1)'">${st.icon}</span>
+        <span title="${st.label}${canEdit ? ' — click to change: ✓ has it → ✕ does not → ? unverified' : ''}" style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:${st.bg};border:1.5px solid ${st.border};font-size:12px;font-weight:800;color:${st.text};transition:all .15s;box-shadow:none" onmouseenter="this.style.boxShadow='${st.glow}';this.style.transform='scale(1.2)'" onmouseleave="this.style.boxShadow='none';this.style.transform='scale(1)'">${st.icon}</span>
         ${renewal ? `<span style="font-size:9px;color:rgba(255,255,255,.4);font-weight:500">${renewal}</span>` : ''}
       </div>
     </td>`;
@@ -9722,10 +9724,10 @@ function renderSubscriptionMatrix() {
       const s = getStatus(inst.id, col.key);
       const st = STATUS[s] || STATUS.unknown;
       const renewal = getRenewal(inst.id, col.key);
-      const tdEditAttr = isEditing ? `onclick="event.stopPropagation();cycleCell('${inst.id}','${col.key}',event)"` : '';
-      html += `<td class="cmx-elsevier-bg" ${tdEditAttr} style="cursor:${isEditing?'pointer':'default'};text-align:center;padding:10px 8px;border-bottom:1px solid rgba(255,255,255,.04);border-right:1px solid rgba(251,146,60,.1);vertical-align:middle">
+      const tdEditAttr = canEdit ? `onclick="event.stopPropagation();cycleCell('${inst.id}','${col.key}',event)"` : '';
+      html += `<td class="cmx-elsevier-bg" ${tdEditAttr} style="cursor:${canEdit?'pointer':'default'};text-align:center;padding:10px 8px;border-bottom:1px solid rgba(255,255,255,.04);border-right:1px solid rgba(251,146,60,.1);vertical-align:middle">
         <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
-          <span title="${st.label}" style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:${st.bg};border:1.5px solid ${st.border};font-size:12px;font-weight:800;color:${st.text};transition:all .15s;box-shadow:none" onmouseenter="this.style.boxShadow='${st.glow}';this.style.transform='scale(1.2)'" onmouseleave="this.style.boxShadow='none';this.style.transform='scale(1)'">${st.icon}</span>
+          <span title="${st.label}${canEdit ? ' — click to change: ✓ has it → ✕ does not → ? unverified' : ''}" style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:${st.bg};border:1.5px solid ${st.border};font-size:12px;font-weight:800;color:${st.text};transition:all .15s;box-shadow:none" onmouseenter="this.style.boxShadow='${st.glow}';this.style.transform='scale(1.2)'" onmouseleave="this.style.boxShadow='none';this.style.transform='scale(1)'">${st.icon}</span>
           ${renewal ? `<span style="font-size:9px;color:#fb923c;font-weight:600;background:rgba(251,146,60,.12);padding:1px 5px;border-radius:3px;letter-spacing:.02em">${renewal}</span>` : ''}
         </div>
       </td>`;
