@@ -4962,6 +4962,10 @@ function renderMap() {
     onmouseout="if(!this.classList.contains('mf-active')){this.style.borderColor='rgba(255,255,255,.08)';this.style.color='rgba(255,255,255,.45)';this.style.background='rgba(255,255,255,.03)'}"
   `;
 
+  // The White Space folder is not a type, so it gets its own filter button
+  // after the type ones, carrying the pinned count; hidden when nothing is pinned.
+  const mapPinnedCount = state.institutions.filter(i => wsIsPinned(i.id)).length;
+
   document.getElementById('content').innerHTML = `
     <style>
       .mf-active{background:rgba(255,255,255,.1)!important;border-color:rgba(255,255,255,.22)!important;color:#fff!important;box-shadow:0 2px 8px rgba(0,0,0,.3)!important}
@@ -4975,6 +4979,11 @@ function renderMap() {
           <span style="width:7px;height:7px;border-radius:50%;background:${TYPE_COLORS_MAP[k]};display:inline-block;flex-shrink:0;box-shadow:0 0 8px ${TYPE_COLORS_MAP[k]}"></span>
           ${v.replace(' Inst.','')}
         </button>`).join('')}
+      ${mapPinnedCount ? `
+        <button class="map-filter-btn" ${filterBtnStyle('whitespace', WS_PINNED_STATUS.color)} title="Accounts pinned to the White Space folder by hand">
+          <span style="width:7px;height:7px;border-radius:50%;background:${WS_PINNED_STATUS.color};display:inline-block;flex-shrink:0;box-shadow:0 0 8px ${WS_PINNED_STATUS.color}"></span>
+          White Space (${mapPinnedCount})
+        </button>` : ''}
     </div>
     <div id="map-container" style="height:calc(100vh - 186px);border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.06);box-shadow:0 12px 48px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.04)"></div>`;
 
@@ -5050,12 +5059,19 @@ function renderMap() {
       });
 
       marker._instType = inst.type;
+      marker._instPinned = wsIsPinned(inst.id);
       marker._instCol = col;
       _mapMarkers.push(marker);
     });
   }, 50);
 }
 
+// Which markers a map filter keeps: a type, the White Space folder, or all.
+function mapMarkerMatches(m, type) {
+  if (type === 'all') return true;
+  if (type === 'whitespace') return !!m._instPinned;
+  return m._instType === type;
+}
 function setMapFilter(type) {
   _mapActiveFilter = type;
   // Update button styles
@@ -5069,7 +5085,7 @@ function setMapFilter(type) {
   if (active) { active.classList.add('mf-active'); active.style.background='rgba(255,255,255,.1)'; active.style.borderColor='rgba(255,255,255,.22)'; active.style.color='#fff'; }
   // Show/hide markers
   _mapMarkers.forEach(m => {
-    if (type === 'all' || m._instType === type) {
+    if (mapMarkerMatches(m, type)) {
       if (!_fullMap.hasLayer(m)) m.addTo(_fullMap);
     } else {
       if (_fullMap.hasLayer(m)) _fullMap.removeLayer(m);
