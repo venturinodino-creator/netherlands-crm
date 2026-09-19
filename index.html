@@ -5129,6 +5129,8 @@ function renderInstitutions() {
 
   let insts = state.institutions.filter(i=>{
     if(state.instSearch && !`${i.name} ${i.short} ${i.city} ${i.description}`.toLowerCase().includes(state.instSearch.toLowerCase())) return false;
+    // "whitespace" is the pinned-to-White-Space folder, not a stored type.
+    if(state.instType==='whitespace') return wsIsPinned(i.id);
     if(state.instType && i.type!==state.instType) return false;
     return true;
   });
@@ -5146,6 +5148,7 @@ function renderInstitutions() {
         <option value="medical" ${state.instType==='medical'?'selected':''}> Medical Center</option>
         <option value="research" ${state.instType==='research'?'selected':''}>Research Institute</option>
         <option value="ngo" ${state.instType==='ngo'?'selected':''}> NGO / Foundation</option>
+        <option value="whitespace" ${state.instType==='whitespace'?'selected':''}>White Space</option>
       </select>
       <span style="font-size:12px;color:var(--muted)">${insts.length} result${insts.length!==1?'s':''}</span>
     </div>`;
