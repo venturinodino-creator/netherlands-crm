@@ -5430,9 +5430,16 @@ function wsTogglePin(id) {
   const on = !wsIsPinned(id);
   wsSetPinned(id, on);
   const inst = state.institutions.find(i => i.id === id);
-  updateWhiteSpaceBadge();
-  renderWhiteSpace();
+  // Called from the White Space cards and from the detail page header, so
+  // redraw whichever is open (render() also refreshes the nav badge).
+  render();
   toast((inst ? inst.name : 'Institution') + (on ? ' pinned to White Space' : ' unpinned from White Space'), 'ok');
+}
+// Pin/Unpin button for the detail page topbar, same pin as the cards.
+function wsPinButton(id) {
+  return wsIsPinned(id)
+    ? '<button class="btn btn-outline" onclick="wsTogglePin(\'' + id + '\')" title="Unpin from the White Space folder — it stays only if its product status still qualifies">Unpin from White Space</button>'
+    : '<button class="btn btn-outline" onclick="wsTogglePin(\'' + id + '\')" title="Keep this account in the White Space folder whatever its product status">Pin to White Space</button>';
 }
 // Pin/Unpin and Remove/Restore controls shared by the grid card footer and the table row.
 function wsRowAction(id) {
@@ -5921,6 +5928,7 @@ function renderDetail() {
   document.getElementById('page-sub').textContent = inst.city + ' · ' + (TYPE_LABEL[inst.type]||inst.type);
   document.getElementById('topbar-actions').innerHTML = `
     <button class="btn btn-outline" onclick="nav('org-map',{instId:'${inst.id}'})" title="Visual org chart: who sits where">🗺 Org Map</button>
+    ${wsPinButton(inst.id)}
     <button class="btn btn-outline" data-admin-only onclick="openEditInstitution('${inst.id}')"> Edit</button>
     <button class="btn btn-accent" data-admin-only onclick="openAddContact('${inst.id}')">+ Add Contact</button>`;
 
