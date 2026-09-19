@@ -7898,13 +7898,14 @@ function anKpis(s) {
   const elsevier = s.insts.filter(i => AN_PRODUCTS.some(p => p.elsevier && anHas(i.id, p.key))).length;
   const ws = anWhiteSpaceList(s);
   const green = ws.filter(i => anWsBucket(i.id) === 'greenfield').length;
+  const wsPinned = ws.filter(i => wsIsPinned(i.id)).length;
   const openRfps = s.rfps.filter(anRfpOpen).length;
   const tiles = [
     { l: 'Accounts',            v: String(n),              s: typeSub || 'in scope' },
     { l: 'Contacts',            v: String(s.contacts.length), s: `${anPct(withEmail, s.contacts.length)}% with an email on file` },
     { l: 'Decision-maker seats', v: avgCov + '%',          s: `${strong} of ${n} accounts at 80% or more` },
     { l: 'Elsevier footprint',  v: String(elsevier),       s: `of ${n} run Scopus, SciVal or Pure` },
-    { l: 'Pure white space',    v: String(ws.length),      s: `${green} greenfield · no Pure tenancy` },
+    { l: 'Pure white space',    v: String(ws.length),      s: `${green} greenfield · no Pure tenancy` + (wsPinned ? ` · ${wsPinned} pinned` : '') },
     { l: 'Tenders',             v: String(s.rfps.length),  s: `${openRfps} open · ${AN_RANGE_LABEL[state.anRange]}` },
   ];
   // Only once there is something behind them.
@@ -8019,12 +8020,18 @@ function anWhiteSpace(s) {
   const subs = { greenfield: 'no rival CRIS either', rival: 'a rival CRIS is installed', unknown: 'not yet verified' };
   const rows = Object.entries(WS_BUCKET_LABEL).map(([k, m]) =>
     anRow(anLabel(m.label, subs[k]), `${b[k]}<em>${anPct(b[k], list.length)}%</em>`, b[k] / list.length * 100, m.color)).join('');
+  // Hand-pinned accounts overlap the buckets above (a pin says nothing about
+  // the CRIS), so they get their own row rather than a fourth slice.
+  const pinned = list.filter(i => wsIsPinned(i.id)).length;
+  const pinnedRow = pinned
+    ? anRow(anLabel(WS_PINNED_STATUS.label, 'kept on the list by hand'), `${pinned}<em>${anPct(pinned, list.length)}%</em>`, pinned / list.length * 100, WS_PINNED_STATUS.color)
+    : '';
   const top = list.map(i => ({ inst: i, works: anWorks(i.id) })).filter(r => r.works !== null).sort((a, b) => b.works - a.works).slice(0, 5);
   const topRows = top.length
     ? '<div class="an-step" style="padding:12px 0 2px">Biggest unmanaged output</div>' +
       top.map(r => anRow(anInstLink(r.inst), `${anNum(r.works)}<em>works</em>`, r.works / top[0].works * 100, '#fb923c', { swatch: false })).join('')
     : '';
-  return anCard('Pure white space', `${list.length} universities and medical centres with no Pure tenancy`, rows + topRows, { action: open });
+  return anCard('Pure white space', `${list.length} universities and medical centres with no Pure tenancy` + (pinned ? ` · ${pinned} pinned` : ''), rows + pinnedRow + topRows, { action: open });
 }
 
 function anGaps(s) {
