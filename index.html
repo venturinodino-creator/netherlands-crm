@@ -4460,6 +4460,27 @@ function dshEnsurePalette() {
   });
 }
 
+// One extra row under "Institutions by Type" for the accounts pinned to the
+// White Space folder by hand. It is a folder, not a type, so it sits after the
+// type rows in the same blue as the Pinned chip and badge, and opens the
+// Institutions page filtered to that folder. Nothing is rendered when no
+// account is pinned.
+function dshPinnedRow(total) {
+  const n = state.institutions.filter(i => wsIsPinned(i.id)).length;
+  if (!n) return '';
+  const c = WS_PINNED_STATUS.color;
+  return `<div class="bk-row" onclick="state.instType='whitespace';state.instPage=1;nav('institutions')" title="View the accounts pinned to the White Space folder">
+      <div style="width:36px;height:36px;border-radius:9px;background:${c}1f;border:1px solid ${c}40;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;color:${c}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17v5"/><path d="M9 11V6a3 3 0 0 1 6 0v5l2 3H7z"/></svg></div>
+      <div style="flex:1;min-width:0">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <span style="font-size:12.5px;font-weight:600;color:#f1f5f9">White Space folder</span>
+          <span style="font-size:11px;color:rgba(255,255,255,.32)">${Math.round(n / (total || 1) * 100)}% pinned</span>
+        </div>
+        <div class="bk-bar"><div class="bk-fill" data-w="${Math.round(n / (total || 1) * 100)}" style="width:0;background:linear-gradient(90deg,${c},#93c5fd)"></div></div>
+      </div>
+      <div style="font-size:18px;font-weight:800;color:#f8fafc;letter-spacing:-1px;min-width:24px;text-align:right;flex-shrink:0">${n}</div>
+    </div>`;
+}
 function renderDashboard() {
   document.getElementById('page-title').textContent = 'Dashboard';
   document.getElementById('page-sub').textContent = DSH_REGION_SUB;
@@ -4501,7 +4522,7 @@ function renderDashboard() {
       </div>
       <div style="font-size:18px;font-weight:800;color:#f8fafc;letter-spacing:-1px;min-width:24px;text-align:right;flex-shrink:0">${n}</div>
     </div>`;
-  }).join('');
+  }).join('') + dshPinnedRow(inst.length);
 
   const hpRows = cont.filter(c => c.priority === 'high').slice(0, 5).map(c => {
     const i2 = getInst(c.instId);
