@@ -5164,7 +5164,7 @@ function renderInstitutions() {
       return `<div class="ic" onclick="nav('detail',{instId:'${i.id}'})">
         <div class="ic-head">
           <div class="ic-icon ${i.type}">${TYPE_ICON[i.type]||`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>`}</div>
-          <span class="badge b-${i.type}" style="font-size:10px">${TYPE_LABEL[i.type]||i.type}</span>
+          <span style="display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end"><span class="badge b-${i.type}" style="font-size:10px">${TYPE_LABEL[i.type]||i.type}</span>${wsPinnedBadge(i.id)}</span>
         </div>
         <h3>${esc(i.name)}</h3>
         ${i.short?`<div class="short">${esc(i.short)}</div>`:''}
@@ -5187,7 +5187,7 @@ function renderInstitutions() {
       const cc = contactsForInst(i.id).length;
       return `<tr onclick="nav('detail',{instId:'${i.id}'})">
         <td><div class="name-cell"><span style="font-size:18px">${TYPE_ICON[i.type]||`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>`}</span><div><div style="font-weight:600">${esc(i.name)}</div><div style="font-size:11px;color:var(--muted)">${esc(i.short||'')}</div></div></div></td>
-        <td><span class="badge b-${i.type}">${TYPE_LABEL[i.type]}</span></td>
+        <td><span class="badge b-${i.type}">${TYPE_LABEL[i.type]}</span> ${wsPinnedBadge(i.id)}</td>
         <td><span style="display:inline-flex;vertical-align:middle;margin-right:3px;opacity:.55"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>${esc(i.city)}</td>
         <td>${i.founded||'—'}</td>
         <td>${cc} contact${cc!==1?'s':''}</td>
@@ -5299,6 +5299,11 @@ function wsPinnedIds() {
   catch (e) { return []; }
 }
 function wsIsPinned(id) { return wsPinnedIds().includes(id); }
+function wsPinnedBadge(id) {
+  if (!wsIsPinned(id)) return '';
+  const c = WS_PINNED_STATUS.color;
+  return '<span class="badge" style="font-size:10px;background:' + c + '22;color:' + c + ';border:1px solid ' + c + '55" title="Pinned to the White Space folder via the Type dropdown">White Space</span>';
+}
 function wsSetPinned(id, on) {
   const ids = wsPinnedIds().filter(x => x !== id);
   if (on) ids.push(id);
