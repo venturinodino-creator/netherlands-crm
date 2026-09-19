@@ -1,18 +1,41 @@
 {
-  "lastRun": "2026-09-18T17:56:51.215Z",
-  "lastAddedCount": 8,
+  "lastRun": "2026-09-19T12:29:34.572Z",
+  "lastAddedCount": 0,
   "lastBatch": [
-    "ru"
+    "aighd",
+    "aumc",
+    "erasmusmc",
+    "lumc",
+    "mumc",
+    "mmc"
   ],
-  "lastWebSearches": 10,
-  "cursor": 15,
+  "lastWebSearches": 0,
+  "cursor": 21,
   "institutions": 55,
   "perInstitution": [
     {
-      "instId": "ru",
-      "named": 10,
-      "kept": 8,
-      "searches": 10
+      "instId": "aighd",
+      "error": "Anthropic API 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CfCoLLN874mCrjX8nLkTb\"}"
+    },
+    {
+      "instId": "aumc",
+      "error": "Anthropic API 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CfCoLMQt6B9ghHwr3thRc\"}"
+    },
+    {
+      "instId": "erasmusmc",
+      "error": "Anthropic API 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CfCoLN2azxTdhpZaBJu86\"}"
+    },
+    {
+      "instId": "lumc",
+      "error": "Anthropic API 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CfCoLNoiX1rZejkDW5vCd\"}"
+    },
+    {
+      "instId": "mumc",
+      "error": "Anthropic API 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CfCoLPW93j4eFSux4ZWW2\"}"
+    },
+    {
+      "instId": "mmc",
+      "error": "Anthropic API 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CfCoLQ6roY3ifSeXxmPhz\"}"
     }
   ]
 }
