@@ -1,34 +1,16 @@
 {
-  "generatedAt": "2026-09-18T12:03:47.724Z",
-  "articleCount": 3,
-  "headline": "Pharma Giants Deploy Claude AI for Drug Discovery—Elsevier Must Accelerate Research Intelligence Integration",
-  "bottomLine": "Novo Nordisk's strategic partnership with Anthropic to embed Claude AI into drug discovery signals pharma's shift toward AI-native research workflows, creating urgency for Elsevier to position LeapSpace and Scopus as essential intelligence…",
-  "keyFindings": [
-    "Novo Nordisk has chosen Anthropic's Claude as a core AI partner for accelerating drug discovery pipelines, signaling pharma's confidence in LLM-driven scientific workflows over traditional search and…",
-    "This partnership positions Claude not as a peripheral tool but as central infrastructure for research velocity, directly competing with how institutions currently use ScienceDirect and Scopus as…",
-    "The move reflects broader pharma strategy to integrate frontier AI into R&D workflows, meaning research institutions will expect their subscription tools to offer equivalent AI-assisted discovery,…",
-    "Anthropic's credibility in enterprise AI and safety positions it as a preferred vendor for regulated life-sciences customers, raising the bar for competing research platforms to demonstrate…"
-  ],
-  "whyItMatters": "Novo Nordisk's Claude partnership is a bellwether: pharma's largest R&D spenders are now architecting AI-first discovery processes, and institutions following suit will expect integrated AI reasoning over literature databases alone.",
+  "generatedAt": "2026-09-19T11:47:00.653Z",
+  "articleCount": 0,
+  "headline": "",
+  "bottomLine": "No live stories to summarize yet.",
+  "keyFindings": [],
+  "whyItMatters": "",
   "impact": {
-    "novelty": 4,
-    "commercial": 5,
-    "threat": 4,
-    "urgency": 5
+    "novelty": 3,
+    "commercial": 3,
+    "threat": 3,
+    "urgency": 3
   },
-  "entities": [
-    "Novo Nordisk",
-    "Anthropic",
-    "Claude (LLM)",
-    "LeapSpace",
-    "Scopus",
-    "ScienceDirect",
-    "Pharma R&D"
-  ],
-  "actionItems": [
-    "Immediately schedule calls with top 10 Netherlands pharma/biotech R&D leaders to assess whether they are evaluating Claude or other frontier LLMs for drug discovery, and position LeapSpace as the…",
-    "Develop a competitive brief on how LeapSpace + Scopus + ScienceDirect together outperform standalone Claude for regulated, high-stakes drug discovery (real-time literature coverage, citation…",
-    "Commission a joint use-case study with a willing Netherlands pharma partner showing measurable R&D acceleration from embedding Scopus/LeapSpace citations into Claude-assisted workflows, targeting…",
-    "Audit LeapSpace's current Claude integration depth and publish a roadmap showing Elsevier's technical commitment to enterprise LLM partnerships, signaling Elsevier is architecting (not reacting) to…"
-  ]
+  "entities": [],
+  "actionItems": []
 }
