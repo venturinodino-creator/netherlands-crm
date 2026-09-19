@@ -47,7 +47,9 @@ COUNTRY_CODE = "NLD"
 # as an ambiguous term via PAIR_RULES below, which is what actually catches
 # the real ones — e.g. VUB's "UL-Elsevier - Pure - licenties en hosting",
 # where "pure" and "elsevier" appear separately in the same notice.
-ELSEVIER_PRODUCTS = ["Scopus", "SciVal", "Elsevier Pure"]
+# Named products only: the bare company name fires on every legal-publishing
+# and plagiarism-software notice that mentions Elsevier in passing.
+ELSEVIER_PRODUCTS = ["Scopus", "SciVal", "Elsevier Pure", "ScienceDirect", "Digital Commons", "Mendeley"]
 
 # Competitors, grouped by the Elsevier product they displace. Only names
 # distinctive enough to stand alone belong here — "Dimensions", "Metis",
@@ -59,6 +61,13 @@ COMPETITOR_PRODUCTS = [
     # Bibliometrics / citation analytics
     "Web of Science", "InCites", "Journal Citation Reports", "Clarivate",
     "Academic Analytics", "OpenAlex",
+    # Content, discovery and library platforms — the tenders where a
+    # ScienceDirect deal gets reviewed (SURF names its content tenders
+    # "Content - <publisher>", so the publisher is the competitor)
+    "Ex Libris", "OCLC", "WorldShare", "EBSCO", "ProQuest", "Springer Nature",
+    "Wiley", "Taylor & Francis", "SciFinder", "JSTOR", "Ovid",
+    # Repositories / research data — Digital Commons territory
+    "Figshare", "DSpace",
 ]
 
 # Category terms. A category hit only counts if PRODUCT_ALIGNMENT maps it to a
@@ -78,6 +87,23 @@ CATEGORY_KEYWORDS = [
     "onderzoeksregistratie", "onderzoeksportaal",
     "publicatiedatabank", "wetenschappelijke databanken",
     "bibliometrisch", "bibliometrie", "literatuurdatabanken",
+    # Content / e-resources — ScienceDirect
+    "e-journals", "e-journal", "electronic journals", "journal package",
+    "tijdschriftenpakket", "wetenschappelijke tijdschriften",
+    "electronic resources", "e-resources", "wetenschappelijke content",
+    "scientific content", "full text database", "full-text database",
+    "content -", "wetenschappelijke vakinformatie", "wetenschappelijke digitale tijdschriften",
+    # Library platforms / discovery — where content deals get reviewed
+    "library services platform", "library management system", "library system",
+    "bibliotheeksysteem", "discovery service", "discovery layer",
+    "discovery platform", "alma", "primo",
+    # Research data / repositories — Digital Commons. "research data" on its
+    # own catches every bespoke lab database, so only the management and
+    # repository phrasings count.
+    "research data management", "onderzoeksdatamanagement", "researchdatamanagement",
+    "research data repository", "data repository", "institutional repository",
+    "repository", "publicatieplatform",
+    "open access platform", "open access publishing",
 ]
 
 ALL_KEYWORDS = ELSEVIER_PRODUCTS + COMPETITOR_PRODUCTS + CATEGORY_KEYWORDS
@@ -133,6 +159,30 @@ PRODUCT_ALIGNMENT = {
     "bibliometrie": "SciVal",
     "wetenschappelijke databanken": "Scopus",
     "literatuurdatabanken": "Scopus",
+    # ── Content / e-resources / discovery -> ScienceDirect ──
+    "e-journals": "ScienceDirect", "e-journal": "ScienceDirect",
+    "electronic journals": "ScienceDirect", "journal package": "ScienceDirect",
+    "tijdschriftenpakket": "ScienceDirect", "wetenschappelijke tijdschriften": "ScienceDirect",
+    "electronic resources": "ScienceDirect", "e-resources": "ScienceDirect",
+    "wetenschappelijke content": "ScienceDirect", "scientific content": "ScienceDirect",
+    "full text database": "ScienceDirect", "full-text database": "ScienceDirect",
+    "content -": "ScienceDirect", "wetenschappelijke vakinformatie": "ScienceDirect",
+    "wetenschappelijke digitale tijdschriften": "ScienceDirect",
+    "library services platform": "ScienceDirect", "library management system": "ScienceDirect",
+    "library system": "ScienceDirect", "bibliotheeksysteem": "ScienceDirect",
+    "discovery service": "ScienceDirect", "discovery layer": "ScienceDirect",
+    "discovery platform": "ScienceDirect", "alma": "ScienceDirect", "primo": "ScienceDirect",
+    "ex libris": "ScienceDirect", "oclc": "ScienceDirect", "worldshare": "ScienceDirect",
+    "ebsco": "ScienceDirect", "proquest": "ScienceDirect", "springer nature": "ScienceDirect",
+    "wiley": "ScienceDirect", "taylor & francis": "ScienceDirect", "scifinder": "ScienceDirect",
+    "jstor": "ScienceDirect", "ovid": "ScienceDirect",
+    # ── Research data / repositories -> Digital Commons ──
+    "research data management": "Digital Commons", "onderzoeksdatamanagement": "Digital Commons",
+    "researchdatamanagement": "Digital Commons", "research data repository": "Digital Commons",
+    "data repository": "Digital Commons", "institutional repository": "Digital Commons",
+    "repository": "Digital Commons", "publicatieplatform": "Digital Commons",
+    "open access platform": "Digital Commons", "open access publishing": "Digital Commons",
+    "figshare": "Digital Commons", "dspace": "Digital Commons",
 }
 
 # Terms that mark a tender as a CRIS procurement specifically — the highest
@@ -157,6 +207,15 @@ CRIS_MARKERS = [
 # appears in the notice. Qualifiers are deliberately specific to research
 # information management — a bare "research" or "university" is not enough,
 # because every university equipment tender contains both.
+# Procurements that are never ours even when they name publishers or
+# repositories in the spec (a plagiarism-detection tender lists the journal
+# databases it must cover). A named Elsevier product still wins.
+EXCLUDE_TERMS = ["plagiaat", "plagiarism", "turnitin", "ouriginal", "urkund",
+                 "juridische uitgeverij", "juridische uitgever", "juridische content", "juridische informatie"]
+
+_CONTENT_QUALS = ["journal", "tijdschrift", "e-book", "ebook", "wetenschappelijk",
+                  "scientific", "database", "databank", "bibliotheek", "library",
+                  "content", "uitgever", "publisher"]
 PAIR_RULES = {
     "pure": [
         "elsevier", "research information", "current research information",
@@ -180,6 +239,23 @@ PAIR_RULES = {
     "esploro": ["research information", "research output", "cris", "bibliometri"],
     "symplectic": ["research information", "research output", "cris",
                    "bibliometri", "publicatie", "elements"],
+    # Library-platform names that are also ordinary words or given names.
+    "alma":  ["ex libris", "bibliotheek", "library", "discovery", "primo"],
+    "primo": ["ex libris", "bibliotheek", "library", "discovery", "alma"],
+    # "repository" is also an IT artefact store; only the scholarly kind counts.
+    "repository": ["institutional repository", "publicatie", "publication",
+                   "open access", "scholarly", "dspace", "figshare",
+                   "research output", "onderzoeksoutput"],
+    "library system": ["bibliotheek", "library", "universit", "hogeschool", "umc"],
+    # SURF names its content deals "Content - <publisher>".
+    "content -": ["surf", "tijdschrift", "journal", "database", "databank",
+                  "e-book", "ebook", "wetenschap", "scientific", "uitgever", "publisher"],
+    # Publishers get named in passing (a reference list, a plagiarism-software
+    # spec); they are competitors only on a content or library procurement.
+    "springer nature":  _CONTENT_QUALS, "wiley": _CONTENT_QUALS,
+    "taylor & francis": _CONTENT_QUALS, "ebsco": _CONTENT_QUALS,
+    "proquest": _CONTENT_QUALS, "jstor": _CONTENT_QUALS, "ovid": _CONTENT_QUALS,
+    "scifinder": _CONTENT_QUALS,
 }
 
 # CPV families a research-information or bibliographic-database procurement
@@ -224,8 +300,17 @@ def save_state(new_count: int, scanned: int, cris_count: int) -> None:
 def existing_ids(tenders: list) -> set:
     return {t["id"] for t in tenders}
 
+def _title_key(title: str) -> str:
+    """One procurement, one key, whichever source it came from. TED prefixes
+    every title with "<Country> – <CPV description> – "; TenderNed does not.
+    Strip that prefix and collapse spacing so the two collapse together."""
+    parts = [x.strip() for x in (title or "").split("\u2013")]
+    if len(parts) >= 3 and COUNTRY_LABEL.lower() in parts[0].lower():
+        title = "\u2013".join(parts[2:])
+    return re.sub(r"\s+", " ", title.lower()).strip()
+
 def existing_titles(tenders: list) -> set:
-    return {t["title"].lower().strip() for t in tenders}
+    return {_title_key(t["title"]) for t in tenders}
 
 def _term_ok(term: str, text: str) -> bool:
     """An ambiguous term only counts when one of its qualifiers co-occurs."""
@@ -256,6 +341,14 @@ def notice_is_domestic(notice: dict) -> bool:
     services - ..."), so that is the tiebreaker: when the leading label names a
     different country, believe the label.
     """
+    # A lead buyer in another country is not ours even when the Netherlands
+    # is among the places of performance or the co-buyers (the EU
+    # Publications Office's continent-wide e-resources framework lists forty
+    # buyer countries, ours included).
+    bc = notice.get("buyer-country")
+    bc = bc if isinstance(bc, list) else ([bc] if bc else [])
+    if bc and str(bc[0]).upper() != COUNTRY_CODE:
+        return False
     title = _pick_lang(notice.get("notice-title") or {})
     head  = title.split("–")[0].split(" - ")[0].strip()
     if not head or len(head) > 60:
@@ -306,6 +399,9 @@ def is_relevant(title: str, description: str = "", cpvs=None) -> tuple:
     hit = _find(ELSEVIER_PRODUCTS, text)
     if hit:
         return result(hit, _find(COMPETITOR_PRODUCTS, text))
+
+    if _find(EXCLUDE_TERMS, text):
+        return False, "", "", False
 
     hit = _find(COMPETITOR_PRODUCTS, text)
     if hit:
@@ -621,7 +717,7 @@ def scrape_ted(existing: list) -> tuple:
             t = ted_to_tender(n, product, competitor, is_cris)
             if t["id"] in ids or t["id"] in seen:
                 continue
-            key = t["title"].lower().strip()
+            key = _title_key(t["title"])
             if key in titles:
                 continue
             new.append(t)
@@ -656,6 +752,71 @@ TENDERNED_KEYWORDS = [
     "wetenschappelijke databanken",
 ]
 
+# The research-sector sweep. TenderNed's `search` is fuzzy full-text and, sorted
+# by relevance, returns years of unrelated notices, so keyword searches only
+# catch a procurement that literally names a product. Sorted by date and
+# scoped to one contracting authority at a time, the same endpoint gives a
+# clean recent list per institution to run the relevance rules over. Each
+# entry: (CRM institution name or None, the Dutch name TenderNed uses as the
+# search term, the lowercase substring the authority name must contain).
+TENDERNED_AUTHORITIES = [
+    ("TU Delft", "Technische Universiteit Delft", "technische universiteit delft"),
+    ("Leiden University", "Universiteit Leiden", "universiteit leiden"),
+    ("University of Amsterdam", "Universiteit van Amsterdam", "universiteit van amsterdam"),
+    ("VU Amsterdam", "Vrije Universiteit Amsterdam", "vrije universiteit"),
+    ("Utrecht University", "Universiteit Utrecht", "universiteit utrecht"),
+    ("University of Groningen", "Rijksuniversiteit Groningen", "rijksuniversiteit groningen"),
+    ("Radboud University", "Radboud Universiteit", "radboud universiteit"),
+    ("Eindhoven University of Technology", "Technische Universiteit Eindhoven", "technische universiteit eindhoven"),
+    ("University of Twente", "Universiteit Twente", "universiteit twente"),
+    ("Tilburg University", "Tilburg University", "tilburg university"),
+    ("Maastricht University", "Universiteit Maastricht", "universiteit maastricht"),
+    ("Wageningen University & Research", "Wageningen University", "wageningen"),
+    ("Open Universiteit", "Open Universiteit", "open universiteit"),
+    ("Erasmus University Rotterdam", "Erasmus Universiteit Rotterdam", "erasmus universiteit"),
+    ("IHE Delft Institute for Water Education", "IHE Delft", "ihe delft"),
+    ("Erasmus MC", "Erasmus MC", "erasmus mc"),
+    ("Leiden University Medical Centre", "Leids Universitair Medisch Centrum", "leids universitair medisch centrum"),
+    ("UMC Utrecht", "UMC Utrecht", "umc utrecht"),
+    ("Radboudumc", "Radboudumc", "radboudumc"),
+    ("University Medical Centre Groningen", "Universitair Medisch Centrum Groningen", "universitair medisch centrum groningen"),
+    ("Amsterdam UMC", "Amsterdam UMC", "amsterdam umc"),
+    ("Maastricht UMC+", "Maastricht UMC", "maastricht umc"),
+    ("Princess M\u00e1xima Center", "Prinses M\u00e1xima Centrum", "prinses m\u00e1xima"),
+    ("Netherlands Cancer Institute", "Antoni van Leeuwenhoek", "antoni van leeuwenhoek"),
+    ("Sanquin Research", "Sanquin", "sanquin"),
+    ("TNO", "TNO", "tno"),
+    ("Deltares", "Deltares", "deltares"),
+    ("KNMI \u2014 Royal Netherlands Meteorological Institute", "KNMI", "knmi"),
+    ("RIVM", "RIVM", "rivm"),
+    ("Royal Netherlands Academy of Arts and Sciences", "KNAW", "knaw"),
+    ("Dutch Research Council", "NWO", "nwo"),
+    ("Centrum Wiskunde & Informatica", "Centrum Wiskunde & Informatica", "centrum wiskunde"),
+    ("AMOLF", "AMOLF", "amolf"),
+    ("ASTRON \u2014 Netherlands Institute for Radio Astronomy", "ASTRON", "astron"),
+    ("Nikhef", "Nikhef", "nikhef"),
+    ("SRON Netherlands Institute for Space Research", "SRON", "sron"),
+    ("NIOZ Royal Netherlands Institute for Sea Research", "NIOZ", "nioz"),
+    ("Naturalis Biodiversity Center", "Naturalis", "naturalis"),
+    ("Hubrecht Institute", "Hubrecht", "hubrecht"),
+    ("NLR \u2014 Netherlands Aerospace Centre", "NLR", "nlr"),
+    ("PBL Netherlands Environmental Assessment Agency", "Planbureau voor de Leefomgeving", "planbureau voor de leefomgeving"),
+    ("SCP \u2014 Netherlands Institute for Social Research", "Sociaal en Cultureel Planbureau", "sociaal en cultureel planbureau"),
+    ("CPB Netherlands Bureau for Economic Policy Analysis", "Centraal Planbureau", "centraal planbureau"),
+    ("ZonMw", "ZonMw", "zonmw"),
+    ("Netherlands eScience Center", "eScience Center", "escience"),
+    ("Rathenau Institute", "Rathenau", "rathenau"),
+    # Sector bodies that buy on behalf of the institutions
+    (None, "SURF B.V.", "surf"),
+    (None, "SURFmarket", "surfmarket"),
+    (None, "Koninklijke Bibliotheek", "koninklijke bibliotheek"),
+    (None, "Universiteiten van Nederland", "universiteiten van nederland"),
+    (None, "UKB", "ukb"),
+]
+
+def _tenderned_norm(s: str) -> str:
+    return re.sub(r"[^a-z0-9 ]", " ", (s or "").lower()).strip()
+
 def scrape_tenderned(existing: list) -> tuple:
     ids     = existing_ids(existing)
     titles  = existing_titles(existing)
@@ -663,72 +824,106 @@ def scrape_tenderned(existing: list) -> tuple:
     seen    = set()
     scanned = 0
     cutoff  = (date.today() - timedelta(days=LOOKBACK_DAYS)).isoformat()
+    headers = {"User-Agent": "Mozilla/5.0 (research-crm-scraper/1.0)"}
 
+    def consider(item: dict, how: str, inst_name: str = None) -> None:
+        """Run the relevance rules over one TenderNed publication and, when it
+        qualifies and is new, append the tender record."""
+        title = (item.get("aanbestedingNaam") or "").strip()
+        desc  = item.get("opdrachtBeschrijving") or ""
+        rel, product, competitor, is_cris = is_relevant(title, desc, None)
+        if not rel:
+            return
+        # Relevance sort surfaces years-old notices; apply the same lookback
+        # window as TED so only recent publications count as new.
+        pub_date = (item.get("publicatieDatum") or "")[:10]
+        if pub_date and pub_date < cutoff:
+            return
+        pub_id = str(item.get("publicatieId", ""))
+        t_id = "tn_" + re.sub(r"[^a-z0-9]", "_", pub_id.lower())
+        if t_id in ids or t_id in seen:
+            return
+        key = _title_key(title)
+        if key in titles:
+            return
+        titles.add(key)   # collapse repeat notices for one procurement
+        link = item.get("link") or {}
+        ntype = (item.get("typePublicatie") or {})
+        ntype = ntype.get("omschrijving", "") if isinstance(ntype, dict) else str(ntype or "")
+        notes = [f"TenderNed publicatie {pub_id}.", how]
+        if ntype:
+            notes.append(f"Type: {ntype}.")
+        if is_cris:
+            notes.append("*** CRIS / research information system procurement - direct Elsevier Pure opportunity. ***")
+        # The CRM's own institution name (when the sweep matched a tracked
+        # authority) so the RFP row links to the profile; otherwise the
+        # contracting authority as TenderNed names it.
+        institution = inst_name or item.get("opdrachtgeverNaam") or ""
+        if inst_name and (item.get("opdrachtgeverNaam") or "") and inst_name != item.get("opdrachtgeverNaam"):
+            notes.append(f"Contracting authority: {item.get('opdrachtgeverNaam')}.")
+        t = {
+            "id": t_id,
+            "title": title,
+            "institution": institution,
+            "publishedDate": pub_date,
+            "deadline": (item.get("sluitingsDatum") or "")[:10],
+            "status": "identified",
+            "value": "",
+            "product": product,
+            "competitor": competitor or "\u2014",
+            "winner": "",
+            "noticeType": ntype,
+            "noticeTypeLabel": ntype or "TenderNed publication",
+            "biddable": "opdracht" in ntype.lower() or "marktconsultatie" in ntype.lower(),
+            "isCRIS": is_cris,
+            "category": "CRIS" if is_cris else "Database/Analytics",
+            "contractEnd": "",
+            "duration": "",
+            "url": link.get("href") or f"https://www.tenderned.nl/aankondigingen/overzicht/{pub_id}",
+            "notes": " ".join(notes),
+            "source": f"TenderNed {pub_id}",
+            "createdAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+            "updatedAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+        }
+        new.append(t)
+        seen.add(t_id)
+        flag = "[CRIS] " if is_cris else ""
+        print(f"       + {flag}{title[:78]}  ({product})")
+
+    # Pass 1: product and category keywords, relevance-sorted.
     for kw in TENDERNED_KEYWORDS:
         encoded = urllib.parse.quote(kw)
         url = f"{TENDERNED_API}?page=0&size=50&search={encoded}&sort=relevantie"
         print(f"  TenderNed: {kw}")
-        result = fetch_json(url, headers={"User-Agent": "Mozilla/5.0 (research-crm-scraper/1.0)"})
+        result = fetch_json(url, headers=headers)
         if not result:
             continue
         items = result.get("content", []) or []
         scanned += len(items)
         for item in items:
-            title = (item.get("aanbestedingNaam") or "").strip()
-            desc  = item.get("opdrachtBeschrijving") or ""
-            rel, product, competitor, is_cris = is_relevant(title, desc, None)
-            if not rel:
-                continue
-            # Relevance sort surfaces years-old notices; apply the same
-            # lookback window as TED so only recent publications count as new.
-            pub_date = (item.get("publicatieDatum") or "")[:10]
-            if pub_date and pub_date < cutoff:
-                continue
-            pub_id = str(item.get("publicatieId", ""))
-            t_id = "tn_" + re.sub(r"[^a-z0-9]", "_", pub_id.lower())
-            if t_id in ids or t_id in seen:
-                continue
-            key = title.lower().strip()
-            if key in titles:
-                continue
-            titles.add(key)   # collapse repeat notices for one procurement
-            link = item.get("link") or {}
-            ntype = (item.get("typePublicatie") or {})
-            ntype = ntype.get("omschrijving", "") if isinstance(ntype, dict) else str(ntype or "")
-            notes = [f"TenderNed publicatie {pub_id}.", f"Found via search for '{kw}'."]
-            if ntype:
-                notes.append(f"Type: {ntype}.")
-            if is_cris:
-                notes.append("*** CRIS / research information system procurement - direct Elsevier Pure opportunity. ***")
-            t = {
-                "id": t_id,
-                "title": title,
-                "institution": item.get("opdrachtgeverNaam") or "",
-                "publishedDate": pub_date,
-                "deadline": (item.get("sluitingsDatum") or "")[:10],
-                "status": "identified",
-                "value": "",
-                "product": product,
-                "competitor": competitor or "\u2014",
-                "winner": "",
-                "noticeType": ntype,
-                "noticeTypeLabel": ntype or "TenderNed publication",
-                "biddable": "opdracht" in ntype.lower() or "marktconsultatie" in ntype.lower(),
-                "isCRIS": is_cris,
-                "category": "CRIS" if is_cris else "Database/Analytics",
-                "contractEnd": "",
-                "duration": "",
-                "url": link.get("href") or f"https://www.tenderned.nl/aankondigingen/overzicht/{pub_id}",
-                "notes": " ".join(notes),
-                "source": f"TenderNed {pub_id}",
-                "createdAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
-                "updatedAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
-            }
-            new.append(t)
-            seen.add(t_id)
-            flag = "[CRIS] " if is_cris else ""
-            print(f"       + {flag}{title[:78]}")
+            consider(item, f"Found via search for '{kw}'.")
         time.sleep(0.5)
+
+    # Pass 2: every tracked institution and sector body, newest first, kept
+    # only where the contracting authority really is that body (the search
+    # is fuzzy and drags in SURF and neighbouring universities).
+    print("  TenderNed: research-sector sweep by contracting authority")
+    swept = 0
+    for inst_name, term, must_contain in TENDERNED_AUTHORITIES:
+        encoded = urllib.parse.quote(term)
+        url = f"{TENDERNED_API}?page=0&size=100&search={encoded}&sort=publicatieDatum,desc"
+        result = fetch_json(url, headers=headers)
+        if not result:
+            continue
+        items = [i for i in (result.get("content", []) or [])
+                 if must_contain in _tenderned_norm(i.get("opdrachtgeverNaam"))
+                 and (i.get("publicatieDatum") or "")[:10] >= cutoff]
+        scanned += len(items)
+        swept += len(items)
+        for item in items:
+            consider(item, f"Found in the {term} procurement list.", inst_name)
+        time.sleep(0.5)
+    print(f"  TenderNed sweep: {swept} recent notice(s) from {len(TENDERNED_AUTHORITIES)} authorities examined")
 
     return new, scanned
 
