@@ -2018,23 +2018,41 @@ async function supaFetch(path, opts={}) {
     const { data } = await supabaseClient.auth.getSession();
     if (data && data.session && data.session.access_token) authKey = data.session.access_token;
   }
-  const res = await fetch(SUPA_URL + '/rest/v1/' + finalPath, {
-    ...opts,
-    body,
-    headers: {
-      'apikey': SUPA_KEY,
-      'Authorization': 'Bearer ' + authKey,
-      'Content-Type': 'application/json',
-      'Prefer': opts.method && opts.method !== 'GET' ? 'return=representation' : '',
-      ...(opts.headers||{})
+  const headers = {
+    'apikey': SUPA_KEY,
+    'Authorization': 'Bearer ' + authKey,
+    'Content-Type': 'application/json',
+    'Prefer': opts.method && opts.method !== 'GET' ? 'return=representation' : '',
+    ...(opts.headers||{})
+  };
+  const url = SUPA_URL + '/rest/v1/' + finalPath;
+  if (method !== 'GET') {
+    const res = await fetch(url, { ...opts, body, headers });
+    if(!res.ok) {
+      const err = await res.text();
+      throw new Error(err);
     }
-  });
-  if(!res.ok) {
-    const err = await res.text();
-    throw new Error(err);
+    const text = await res.text();
+    return text ? JSON.parse(text) : null;
   }
-  const text = await res.text();
-  return text ? JSON.parse(text) : null;
+  // PostgREST answers at most 1,000 rows per request. A region with more
+  // contacts than that (Denmark passed it on 2026-09-19) used to show exactly
+  // 1,000 and silently lose the rest, so reads page until a short page
+  // arrives. A 416 means the range starts past the end: also the end.
+  const out = [];
+  for (let from = 0; ; from += 1000) {
+    const res = await fetch(url, { ...opts, headers: { ...headers, 'Range-Unit': 'items', 'Range': from + '-' + (from + 999) } });
+    if (res.status === 416) return out;
+    if(!res.ok) {
+      const err = await res.text();
+      throw new Error(err);
+    }
+    const text = await res.text();
+    const page = text ? JSON.parse(text) : null;
+    if (!Array.isArray(page)) return from === 0 ? page : out; // a single object or nothing
+    out.push(...page);
+    if (page.length < 1000) return out;
+  }
 }
 
 // Map DB row (snake_case)  CRM institution object (camelCase)
