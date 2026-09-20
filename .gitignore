@@ -11,3 +11,12 @@ __pycache__/
 # ignoring a tracked file has no effect.
 push.bat
 push_log.txt
+
+# Local tooling state, test copies of the page (sign-in bypassed), local
+# helper scripts and their output, secrets and OS clutter
+_test_ws.html
+node_modules/
+.env
+.env.*
+.DS_Store
+Thumbs.db
