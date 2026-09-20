@@ -107,17 +107,31 @@
     "tier": null,
     "annualFee": null,
     "announceDate": null,
-    "effectiveDate": null,
-    "notes": "Utrecht University Library maintains a dedicated OpenAlex LibGuide describing OpenAlex as a free and open catalogue of the world's scholarly research system run by a non-profit, and directing users to contact the library for support. The university separately published a background interview with its open science specialist Jeroen Bosman assessing whether OpenAlex could replace expensive commercial subscriptions. No paid Member, Member+ or Partner subscription was found for Utrecht in this search, so status is active rather than subscriber.",
-    "signal": "ACTIVE, UNPAID. Library runs a dedicated OpenAlex LibGuide; no paid subscription found.",
+    "effectiveDate": "2026-01-01",
+    "notes": "A UU student-services news page states the University Library will not renew Web of Science and that UU staff, UMC Utrecht staff and UU students lose access to WoS and JCR from 1 January 2026. The stated rationale is that closed commercial databases do not fit UU's Open Science vision and its aim to work with open research information as much as possible. This is a confirmed cancellation of a Clarivate product and materially raises the risk that Scopus is reviewed on the same grounds.",
+    "signal": "Utrecht University Library decided not to renew its Web of Science licence (including Journal Citation Reports), ending access on 1 January 2026.",
     "sources": [
       {
         "label": "Utrecht University Library - OpenAlex LibGuide",
         "url": "https://libguides.library.uu.nl/openalex"
+      },
+      {
+        "label": "Utrecht University signs Barcelona Declaration on open research information | Science|Business",
+        "url": "https://sciencebusiness.net/network-updates/utrecht-university-signs-barcelona-declaration-open-research-information"
+      },
+      {
+        "label": "Access to Web of Science will end on 1 January 2026 - Students UU",
+        "url": "https://students.uu.nl/en/news/access-to-web-of-science-will-end-on-1-january-2026"
+      },
+      {
+        "label": "OpenAlex, a big step towards Open Science? - Background - Utrecht University",
+        "url": "https://www.uu.nl/en/background/openalex-a-big-step-towards-open-science"
       }
     ],
     "autoDiscovered": true,
-    "foundDate": "2026-08-17"
+    "foundDate": "2026-08-17",
+    "signalType": "database_cancellation",
+    "lastConfirmed": "2026-09-20"
   },
   {
     "id": "university-of-groningen",
@@ -322,5 +336,60 @@
     ],
     "autoDiscovered": true,
     "foundDate": "2026-09-19"
+  },
+  {
+    "id": "vu-amsterdam",
+    "inst": "VU Amsterdam",
+    "type": "University",
+    "status": "active",
+    "signalType": "cris_integration",
+    "tier": null,
+    "annualFee": null,
+    "announceDate": null,
+    "effectiveDate": null,
+    "notes": "The library's Open Research Information page states that data on VU research output is published as open metadata in the Netherlands Research Portal in OpenAIRE, and that VU works to remove technical and contractual barriers so research information generated in the publication process is also open. VU's Pure-based VU Research Portal is the upstream source for this open metadata flow. Contractual clauses restricting reuse of metadata are therefore a live issue in any Scopus or WoS renewal negotiation at VU.",
+    "signal": "VU publishes metadata on its research output openly via the Netherlands Research Portal in OpenAIRE, as part of its Barcelona Declaration commitments.",
+    "sources": [
+      {
+        "label": "Open Research Information - Vrije Universiteit Amsterdam (University Library)",
+        "url": "https://vu.nl/en/about-vu/divisions/university-library/more-about/open-research-information"
+      },
+      {
+        "label": "Search systems and reference tools - VU Amsterdam University Library",
+        "url": "https://vu.nl/en/about-vu/divisions/university-library/more-about/search-systems-and-reference-tools"
+      },
+      {
+        "label": "University Library Vrije Universiteit Amsterdam · GitHub (ubvu)",
+        "url": "https://github.com/ubvu"
+      }
+    ],
+    "autoDiscovered": true,
+    "foundDate": "2026-09-20",
+    "lastConfirmed": "2026-09-20"
+  },
+  {
+    "id": "wageningen-university-research",
+    "inst": "Wageningen University & Research",
+    "type": "University",
+    "status": "active",
+    "signalType": "library_guide",
+    "tier": null,
+    "annualFee": null,
+    "announceDate": "2024-12-08",
+    "effectiveDate": null,
+    "notes": "The WUR Library-run OpenScience weblog hosts a dedicated OpenAlex page (weblog.wur.eu/openscience/openalex/, PDF copy at edepot.wur.nl/683404) that walks researchers through OpenAlex search features and API use limits, and positions it alongside other open bibliographic engines such as OpenAIRE and The Lens. This is library-endorsed promotion of a free alternative discovery/metadata source rather than a contract, so it signals growing internal familiarity with non-proprietary indexes. For a Scopus or Web of Science renewal it suggests WUR is building in-house competence in open alternatives that could be used as leverage or as a partial substitute in future negotiations.",
+    "signal": "WUR Library's OpenScience blog publishes an instructional guide, \"Discover OpenAlex: A free, open and global research tool\", explaining the OpenAlex web interface, custom alerts and the OpenAlex API to WUR researchers.",
+    "sources": [
+      {
+        "label": "Discover OpenAlex: A free, open and global research tool - OpenScience (WUR Library weblog)",
+        "url": "https://edepot.wur.nl/683404"
+      },
+      {
+        "label": "Discover OpenAlex: A free, open and global research tool - Wageningen University & Research research portal",
+        "url": "https://research.wur.nl/en/publications/discover-openalex-a-free-open-and-global-research-tool/"
+      }
+    ],
+    "autoDiscovered": true,
+    "foundDate": "2026-09-20"
   }
 ]
