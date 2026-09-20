@@ -1,9 +1,9 @@
 {
-  "lastRun": "2026-09-19T21:22:53.664Z",
-  "lastChecked": 200,
-  "lastVerified": 34,
-  "lastEmailsFilled": 0,
-  "lastAmbiguous": 0,
+  "lastRun": "2026-09-20T13:34:06.234Z",
+  "lastChecked": 150,
+  "lastVerified": 40,
+  "lastEmailsFilled": 1,
+  "lastAmbiguous": 1,
   "lastFailed": 0,
-  "remaining": 985
+  "remaining": 882
 }
