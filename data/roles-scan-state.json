@@ -1,78 +1,80 @@
 {
-  "lastRun": "2026-09-19T17:30:38.807Z",
-  "lastAddedCount": 34,
+  "lastRun": "2026-09-20T13:26:00.561Z",
+  "lastAddedCount": 43,
   "lastBatch": [
-    "nki",
-    "maxima",
-    "radboudumc",
-    "sanquin",
-    "umcutrecht",
-    "umcg",
-    "amolf",
-    "astron",
-    "cwi",
-    "cpb"
+    "deltares",
+    "nwo",
+    "hubrecht",
+    "knmi",
+    "mpi",
+    "naturalis",
+    "esc",
+    "nin",
+    "nikhef",
+    "nioz"
   ],
-  "lastWebSearches": 90,
-  "cursor": 31,
+  "lastWebSearches": 100,
+  "cursor": 41,
   "institutions": 55,
   "perInstitution": [
     {
-      "instId": "nki",
-      "named": 6,
-      "kept": 4,
-      "searches": 10
-    },
-    {
-      "instId": "maxima",
-      "named": 11,
+      "instId": "deltares",
+      "named": 9,
       "kept": 8,
       "searches": 10
     },
     {
-      "instId": "radboudumc",
-      "named": 3,
-      "kept": 2,
+      "instId": "nwo",
+      "named": 9,
+      "kept": 7,
       "searches": 10
     },
     {
-      "instId": "sanquin",
+      "instId": "hubrecht",
       "named": 4,
-      "kept": 4,
-      "searches": 10
-    },
-    {
-      "instId": "umcutrecht",
-      "named": 1,
-      "kept": 0,
-      "searches": 10
-    },
-    {
-      "instId": "umcg",
-      "named": 2,
       "kept": 1,
       "searches": 10
     },
     {
-      "instId": "amolf",
-      "error": "fetch failed"
+      "instId": "knmi",
+      "named": 7,
+      "kept": 5,
+      "searches": 10
     },
     {
-      "instId": "astron",
+      "instId": "mpi",
+      "named": 9,
+      "kept": 4,
+      "searches": 10
+    },
+    {
+      "instId": "naturalis",
+      "named": 6,
+      "kept": 5,
+      "searches": 10
+    },
+    {
+      "instId": "esc",
       "named": 4,
       "kept": 3,
       "searches": 10
     },
     {
-      "instId": "cwi",
+      "instId": "nin",
       "named": 5,
       "kept": 3,
       "searches": 10
     },
     {
-      "instId": "cpb",
-      "named": 10,
-      "kept": 9,
+      "instId": "nikhef",
+      "named": 7,
+      "kept": 4,
+      "searches": 10
+    },
+    {
+      "instId": "nioz",
+      "named": 5,
+      "kept": 3,
       "searches": 10
     }
   ]
