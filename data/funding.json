@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-19T21:04:34.119Z",
+  "generatedAt": "2026-09-21T11:43:40.548Z",
   "source": "OpenAIRE Graph API (projects by organisation name; CORDIS and national funders)",
-  "since": "2023-09-19",
+  "since": "2023-09-21",
   "institutions": {
     "uva": {
       "query": "University of Amsterdam",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 259,
       "fetched": 259,
       "active": 236,
@@ -212,7 +212,7 @@
     },
     "vu": {
       "query": "Vrije Universiteit Amsterdam",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 528,
       "fetched": 300,
       "active": 448,
@@ -414,7 +414,7 @@
     },
     "eur": {
       "query": "Erasmus University Rotterdam",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 50,
       "fetched": 50,
       "active": 49,
@@ -611,7 +611,7 @@
     },
     "uu": {
       "query": "Utrecht University",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 204,
       "fetched": 204,
       "active": 186,
@@ -823,7 +823,7 @@
     },
     "leiden": {
       "query": "Leiden University",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 633,
       "fetched": 300,
       "active": 521,
@@ -1025,7 +1025,7 @@
     },
     "rug": {
       "query": "University of Groningen",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 144,
       "fetched": 144,
       "active": 129,
@@ -1232,7 +1232,7 @@
     },
     "ru": {
       "query": "Radboud University Nijmegen",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 11,
       "fetched": 11,
       "active": 11,
@@ -1415,7 +1415,7 @@
     },
     "tudelft": {
       "query": "Delft University of Technology",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 327,
       "fetched": 300,
       "active": 310,
@@ -1617,7 +1617,7 @@
     },
     "tue": {
       "query": "Eindhoven University of Technology",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 480,
       "fetched": 300,
       "active": 402,
@@ -1814,7 +1814,7 @@
     },
     "ut": {
       "query": "University of Twente",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 123,
       "fetched": 123,
       "active": 115,
@@ -2011,16 +2011,16 @@
     },
     "tiu": {
       "query": "Tilburg University",
-      "since": "2023-09-19",
-      "numFound": 137,
-      "fetched": 137,
-      "active": 115,
+      "since": "2023-09-21",
+      "numFound": 136,
+      "fetched": 136,
+      "active": 114,
       "fundedTotal": 321227.7,
       "fundedKnown": 2,
       "byFunder": {
         "NWO": {
           "name": "Netherlands Organisation for Scientific Research (NWO)",
-          "count": 135,
+          "count": 134,
           "amount": 0
         },
         "ANR": {
@@ -2203,10 +2203,10 @@
     },
     "um": {
       "query": "Maastricht University",
-      "since": "2023-09-19",
-      "numFound": 343,
+      "since": "2023-09-21",
+      "numFound": 341,
       "fetched": 300,
-      "active": 292,
+      "active": 290,
       "fundedTotal": 417564710,
       "fundedKnown": 89,
       "byFunder": {
@@ -2405,8 +2405,8 @@
     },
     "wur": {
       "query": "Wageningen University & Research",
-      "since": "2023-09-19",
-      "numFound": 346,
+      "since": "2023-09-21",
+      "numFound": 345,
       "fetched": 300,
       "active": 282,
       "fundedTotal": 4091815,
@@ -2607,7 +2607,7 @@
     },
     "ou": {
       "query": "Open Universiteit",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 47,
       "fetched": 47,
       "active": 42,
@@ -2794,7 +2794,7 @@
     },
     "aumc": {
       "query": "Amsterdam University Medical Centers",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 2,
       "fetched": 2,
       "active": 2,
@@ -2846,7 +2846,7 @@
     },
     "erasmusmc": {
       "query": "Erasmus MC",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 216,
       "fetched": 216,
       "active": 188,
@@ -3048,7 +3048,7 @@
     },
     "umcutrecht": {
       "query": "University Medical Center Utrecht",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 76,
       "fetched": 76,
       "active": 73,
@@ -3250,7 +3250,7 @@
     },
     "lumc": {
       "query": "Leiden University Medical Center",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 144,
       "fetched": 144,
       "active": 120,
@@ -3457,7 +3457,7 @@
     },
     "umcg": {
       "query": "University Medical Center Groningen",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 130,
       "fetched": 130,
       "active": 110,
@@ -3664,7 +3664,7 @@
     },
     "radboudumc": {
       "query": "Radboud University Medical Center",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 3,
       "fetched": 3,
       "active": 3,
@@ -3730,7 +3730,7 @@
     },
     "mumc": {
       "query": "Maastricht University Medical Centre",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 5,
       "fetched": 5,
       "active": 5,
@@ -3824,7 +3824,7 @@
     },
     "maxima": {
       "query": "Princess Máxima Center",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 0,
       "fetched": 0,
       "active": 0,
@@ -3836,7 +3836,7 @@
     },
     "nki": {
       "query": "The Netherlands Cancer Institute",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 11,
       "fetched": 11,
       "active": 11,
@@ -4009,7 +4009,7 @@
     },
     "mmc": {
       "query": "Máxima Medical Centre",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 0,
       "fetched": 0,
       "active": 0,
@@ -4021,7 +4021,7 @@
     },
     "sanquin": {
       "query": "Sanquin Research",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 1,
       "fetched": 1,
       "active": 1,
@@ -4054,7 +4054,7 @@
     },
     "aighd": {
       "query": "Amsterdam Institute for Global Health and Development",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 7,
       "fetched": 7,
       "active": 6,
@@ -4176,7 +4176,7 @@
     },
     "nwo": {
       "query": "Dutch Research Council",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 2,
       "fetched": 2,
       "active": 2,
@@ -4223,7 +4223,7 @@
     },
     "zonmw": {
       "query": "ZonMw The Dutch Organisation for knowledge and innovation in health healthcare and well-being",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 0,
       "fetched": 0,
       "active": 0,
@@ -4235,7 +4235,7 @@
     },
     "tno": {
       "query": "Netherlands Organisation for Applied Scientific Research",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 109,
       "fetched": 109,
       "active": 107,
@@ -4422,7 +4422,7 @@
     },
     "knaw": {
       "query": "Royal Netherlands Academy of Arts and Sciences",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 54,
       "fetched": 54,
       "active": 48,
@@ -4619,7 +4619,7 @@
     },
     "hubrecht": {
       "query": "Hubrecht Institute",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 16,
       "fetched": 16,
       "active": 15,
@@ -4811,7 +4811,7 @@
     },
     "nin": {
       "query": "Netherlands Institute for Neuroscience",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 3,
       "fetched": 3,
       "active": 2,
@@ -4872,7 +4872,7 @@
     },
     "rivm": {
       "query": "National Institute for Public Health and the Environment",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 20,
       "fetched": 20,
       "active": 19,
@@ -5059,7 +5059,7 @@
     },
     "cwi": {
       "query": "Centrum Wiskunde & Informatica",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 39,
       "fetched": 39,
       "active": 30,
@@ -5246,7 +5246,7 @@
     },
     "esc": {
       "query": "Netherlands eScience Center",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 25,
       "fetched": 25,
       "active": 23,
@@ -5447,7 +5447,7 @@
     },
     "sron": {
       "query": "Space Research Organisation Netherlands",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 1,
       "fetched": 1,
       "active": 0,
@@ -5480,7 +5480,7 @@
     },
     "nikhef": {
       "query": "National Institute for Subatomic Physics",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 0,
       "fetched": 0,
       "active": 0,
@@ -5492,7 +5492,7 @@
     },
     "astron": {
       "query": "Netherlands Institute for Radio Astronomy",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 16,
       "fetched": 16,
       "active": 13,
@@ -5684,7 +5684,7 @@
     },
     "nioz": {
       "query": "Royal Netherlands Institute for Sea Research",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 1,
       "fetched": 1,
       "active": 1,
@@ -5717,7 +5717,7 @@
     },
     "knmi": {
       "query": "Royal Netherlands Meteorological Institute",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 17,
       "fetched": 17,
       "active": 17,
@@ -5904,7 +5904,7 @@
     },
     "naturalis": {
       "query": "Naturalis Biodiversity Center",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 51,
       "fetched": 51,
       "active": 47,
@@ -6106,7 +6106,7 @@
     },
     "nlr": {
       "query": "Netherlands Aerospace Centre",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 28,
       "fetched": 28,
       "active": 24,
@@ -6298,7 +6298,7 @@
     },
     "pbl": {
       "query": "PBL Netherlands Environmental Assessment Agency",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 0,
       "fetched": 0,
       "active": 0,
@@ -6310,7 +6310,7 @@
     },
     "cpb": {
       "query": "CPB Netherlands Bureau for Economic Policy Analysis",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 0,
       "fetched": 0,
       "active": 0,
@@ -6322,7 +6322,7 @@
     },
     "rathenau": {
       "query": "Rathenau Instituut",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 1,
       "fetched": 1,
       "active": 1,
@@ -6355,7 +6355,7 @@
     },
     "scp": {
       "query": "SCP — Netherlands Institute for Social Research",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 0,
       "fetched": 0,
       "active": 0,
@@ -6367,7 +6367,7 @@
     },
     "clingendael": {
       "query": "Clingendael Institute",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 0,
       "fetched": 0,
       "active": 0,
@@ -6379,7 +6379,7 @@
     },
     "hiil": {
       "query": "HiiL — Hague Institute for Innovation of Law",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 0,
       "fetched": 0,
       "active": 0,
@@ -6391,7 +6391,7 @@
     },
     "oxfamnovib": {
       "query": "Oxfam Novib",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 0,
       "fetched": 0,
       "active": 0,
@@ -6403,7 +6403,7 @@
     },
     "icj": {
       "query": "International Court of Justice",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 0,
       "fetched": 0,
       "active": 0,
@@ -6415,7 +6415,7 @@
     },
     "iiss": {
       "query": "Asser Institute",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 0,
       "fetched": 0,
       "active": 0,
@@ -6431,7 +6431,7 @@
     },
     "ihedelft": {
       "query": "IHE Delft Institute for Water Education",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 18,
       "fetched": 18,
       "active": 18,
@@ -6623,7 +6623,7 @@
     },
     "mpi": {
       "query": "Max Planck Institute for Psycholinguistics",
-      "since": "2023-09-19",
+      "since": "2023-09-21",
       "numFound": 4,
       "fetched": 4,
       "active": 4,
