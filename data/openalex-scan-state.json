@@ -1,18 +1,18 @@
 {
-  "lastRun": "2026-09-20T12:14:15.689Z",
+  "lastRun": "2026-09-21T13:48:21.039Z",
   "lastAddedCount": 2,
-  "lastUpdatedCount": 3,
-  "lastCandidateCount": 10,
+  "lastUpdatedCount": 0,
+  "lastCandidateCount": 5,
   "lastWebSearches": 36,
   "lastBatch": [
-    "uu",
-    "vu",
-    "wur",
-    "aighd",
-    "aumc",
-    "erasmusmc"
+    "lumc",
+    "mumc",
+    "mmc",
+    "nki",
+    "maxima",
+    "radboudumc"
   ],
-  "cursor": 18,
+  "cursor": 24,
   "institutionsTotal": 55,
   "nationalLastRun": "2026-09-18T21:32:11.282Z",
   "checked": {
@@ -83,6 +83,36 @@
     },
     "erasmusmc": {
       "lastChecked": "2026-09-20",
+      "result": "none",
+      "searches": 6
+    },
+    "lumc": {
+      "lastChecked": "2026-09-21",
+      "result": "none",
+      "searches": 6
+    },
+    "mumc": {
+      "lastChecked": "2026-09-21",
+      "result": "subscriber",
+      "searches": 6
+    },
+    "mmc": {
+      "lastChecked": "2026-09-21",
+      "result": "none",
+      "searches": 6
+    },
+    "nki": {
+      "lastChecked": "2026-09-21",
+      "result": "active",
+      "searches": 6
+    },
+    "maxima": {
+      "lastChecked": "2026-09-21",
+      "result": "none",
+      "searches": 6
+    },
+    "radboudumc": {
+      "lastChecked": "2026-09-21",
       "result": "none",
       "searches": 6
     }

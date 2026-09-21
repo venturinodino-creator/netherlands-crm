@@ -391,5 +391,55 @@
     ],
     "autoDiscovered": true,
     "foundDate": "2026-09-20"
+  },
+  {
+    "id": "maastricht-umc",
+    "inst": "Maastricht UMC+",
+    "type": "Medical Centre",
+    "status": "subscriber",
+    "signalType": "subscription",
+    "tier": "Partner",
+    "annualFee": null,
+    "announceDate": null,
+    "effectiveDate": null,
+    "notes": "The library news item states it 'is taking a significant step towards open research information by investing in a partner subscription with OpenAlex', framing OpenAlex as broader in coverage (non-English material, grey literature, inclusive topics) than closed commercial databases. The contracting party named is Maastricht University Library, not MUMC+ as a legal entity, but the same library states it serves the UM community 'including the Brightlands campuses, azM/MUMC+', so MUMC+ researchers sit inside this subscription's user base. No fee or contract dates were published on the page; for a Scopus or Web of Science renewal this is a hard signal that an open index is already funded as the replacement backbone.",
+    "signal": "Maastricht University Library — which explicitly serves azM/MUMC+ — announced it is investing in a partner subscription with OpenAlex.",
+    "sources": [
+      {
+        "label": "Investing in open research information: OpenAlex partnership and end of Scopus license — Maastricht University Library",
+        "url": "https://library.maastrichtuniversity.nl/news/investing-in-open-research-information-openalex-partnership-and-end-of-scopus-license/"
+      },
+      {
+        "label": "Maastricht University signs the Barcelona Declaration on Open Research Information — News, Maastricht University",
+        "url": "https://www.maastrichtuniversity.nl/news/maastricht-university-signs-barcelona-declaration-open-research-information-0"
+      },
+      {
+        "label": "Maastricht University / MUMC+ Research Information — Maastricht University Library",
+        "url": "https://library.maastrichtuniversity.nl/database/umarchive/"
+      }
+    ],
+    "autoDiscovered": true,
+    "foundDate": "2026-09-21"
+  },
+  {
+    "id": "netherlands-cancer-institute",
+    "inst": "Netherlands Cancer Institute",
+    "type": "Medical Centre",
+    "status": "active",
+    "signalType": "other",
+    "tier": null,
+    "annualFee": null,
+    "announceDate": null,
+    "effectiveDate": null,
+    "notes": "Searches of NKI/AVL web pages, OpenAlex and OurResearch blog material, and the Barcelona Declaration signatory coverage found no evidence of an OpenAlex Premium/Member/Member+/Partner subscription, no LibGuide on OpenAlex, no CRIS or bibliometric integration, and no Barcelona Declaration signature by NKI (Dutch signatories surfaced were NWO, ZonMw, Leiden, Groningen and VU Amsterdam, not NKI). The only institution-specific open-science governance signal found in this session is NKI's CoARA signatory page, which indicates a commitment to reforming research assessment away from narrow journal- and citation-based metrics. For a Scopus or Web of Science renewal this is an indirect, early-stage indicator only: CoARA commitments often precede scrutiny of proprietary citation-index spend and open",
+    "signal": "The Netherlands Cancer Institute is listed as a signatory of CoARA (Coalition for Advancing Research Assessment) on CoARA's own signatory directory.",
+    "sources": [
+      {
+        "label": "The Netherlands Cancer Institute – CoARA (signatories)",
+        "url": "https://www.coara.org/signatories/the-netherlands-cancer-institute/"
+      }
+    ],
+    "autoDiscovered": true,
+    "foundDate": "2026-09-21"
   }
 ]
