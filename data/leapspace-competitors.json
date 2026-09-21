@@ -384,5 +384,19 @@
     "sourceUrl": "https://tech.einnews.com/pr_news/884097304/grantbite-launches-ai-platform-with-advanced-grant-discovery-matching-and-management-features",
     "sourceName": "EIN Presswire / Technology Today",
     "autoDiscovered": true
+  },
+  {
+    "id": "auto-pensoft-publishers-orpho",
+    "company": "Pensoft Publishers",
+    "product": "ORPHO",
+    "addedDate": "2026-09-21",
+    "eventDate": "2026-09-21",
+    "elements": [
+      "writingCoach"
+    ],
+    "howItCompetes": "Pensoft announced the beta launch of ORPHO, an online 'intelligent workspace' for collaborative scientific writing, positioned as the successor/companion to its long-running ARPHA Writing Tool. It is designed to streamline co-authored manuscript drafting and to produce structured, 'AI-ready' scholarly outputs that meet journal formatting and technical requirements. This directly challenges LeapSpace's Writing Coach tab as a dedicated drafting workspace for researchers, backed by an established scholarly publisher and technology provider rather than a startup.",
+    "sourceUrl": "https://blog.pensoft.net/2026/09/21/pensoft-launches-orpho-a-new-intelligent-workspace-for-scientific-writing/",
+    "sourceName": "Pensoft Blog",
+    "autoDiscovered": true
   }
 ]

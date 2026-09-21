@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-15T12:29:26.265Z",
+  "generatedAt": "2026-09-21T13:41:22.879Z",
   "entries": {
     "clarivate-wos-research-assistant": {
       "whatTheyDid": "Clarivate built an agentic research workspace on Web of Science to match LeapSpace's end-to-end literature discovery → funding → proposal workflow. They're now positioning as a direct institutional alternative with their own citation foundation and multi-step research guides.",
@@ -92,17 +92,21 @@
     "auto-grantbite-grantbite-ai-platform": {
       "whatTheyDid": "GrantBite launched an AI platform combining grant discovery, matching, and application management—directly competing with LeapSpace's Funding Discovery tab but adding workflow management that LeapSpace doesn't yet cover. They're positioning as an end-to-end funding solution.",
       "counter": "Lead with Funding Discovery as the research-first entry point: LeapSpace surfaces opportunities *while* you're actively building your research narrative across Literature Search, Author Search, and Writing Coach, so grant matching happens in context rather than as a standalone silo tool."
+    },
+    "auto-pensoft-publishers-orpho": {
+      "whatTheyDid": "Pensoft launched ORPHO, a dedicated AI-powered collaborative writing workspace that locks researchers into their ecosystem with structured manuscript formatting and journal-ready outputs. It's a focused, publisher-backed alternative to LeapSpace's Writing Coach.",
+      "counter": "LeapSpace's Writing Coach isn't just a drafting tool—it pressure-tests claims against Trust Cards & Claim Radar and Deep Research Reports, meaning writers catch unsupported arguments *before* submission. ORPHO formats; LeapSpace validates."
     }
   },
   "executiveSummary": {
-    "headline": "16 competitive AI research tools from 15 companies, launched July–Aug 2026, targeting LeapSpace's core workflows.",
-    "pressurePoint": "Literature Search & Discovery faces 10 direct overlaps—the most concentrated pressure point. Trust/Claim validation (3 overlaps) and Deep Research Reports (6 overlaps) also heavily contested.",
+    "headline": "16 competing AI research tools from 14 companies launched July–September 2026, fragmenting the market across discovery, synthesis, and integrity checking.",
+    "pressurePoint": "Literature Search & Discovery under heaviest attack (10 tools), followed by Deep Research Reports (8 tools) and Reading Assistant (6 tools). Trust/Claim validation fragmented across 4 specialized competitors.",
     "topThreats": [
-      "Clarivate Web of Science Research Assistant: 1:1 flagship rival built on WoS Core Collection with agentic topic/journal/review guides—same strategic footprint as LeapSpace on ScienceDirect/Scopus.",
-      "SciSpace Research Workspace: Broadest multi-agent challenger spanning literature search, writing coach, and deep research across 280M+ papers—directly replicates LeapSpace's bundled workspace model.",
-      "Ai2 Asta: Free, nonprofit, open-source unified research assistant folding Scholar QA into 108M+ abstracts—undercuts LeapSpace's pricing model rather than feature set, highest adoption risk."
+      "Clarivate Web of Science Research Assistant: direct 1:1 competitor built on equivalent content (WoS vs. ScienceDirect/Scopus) with agentic research guides—the closest feature-parity threat to LeapSpace's core value.",
+      "SciSpace Research Workspace: broadest multi-agent challenger spanning literature search, writing coach, and deep research with 280M+ papers, positioning itself as an end-to-end alternative to LeapSpace's bundled workspace.",
+      "OpenAI ChatGPT for Academic Researchers: free access for 100K+ researchers at institutions, covering 4 LeapSpace tabs (search, synthesis, writing, reading) with frontier models—pricing and model quality advantage."
     ],
-    "strength": "LeapSpace's integrated 8-tab workspace (Literature, Author, Funding, Writing Coach, Trust, Deep Reports, Reading Assistant, Compare) remains the only purpose-built agentic suite covering the full researcher lifecycle—no competitor bundles this breadth."
+    "strength": "LeapSpace's integrated 8-tab workspace and native ScienceDirect/Scopus content layer remain defensible; competitors specialize in 1–3 tabs each, leaving room for bundled workflow superiority if execution and adoption are tight."
   },
-  "executiveSummaryDate": "2026-09-15T12:29:26.265Z"
+  "executiveSummaryDate": "2026-09-21T13:41:22.879Z"
 }
