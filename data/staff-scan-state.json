@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-09-20T12:39:08.681Z",
+  "lastRun": "2026-09-21T14:32:08.399Z",
   "lastAddedCount": 0,
   "sources": 53,
   "blockedSources": [
@@ -51,29 +51,6 @@
     },
     {
       "instId": "esc",
-      "note": "no people extracted"
-    },
-    {
-      "instId": "nikhef",
-      "url": "https://www.nikhef.nl/en/nikhef/organisation/",
-      "error": "fetch failed"
-    },
-    {
-      "instId": "nikhef",
-      "url": "https://www.nikhef.nl/en/director/",
-      "error": "fetch failed"
-    },
-    {
-      "instId": "nikhef",
-      "note": "no people extracted"
-    },
-    {
-      "instId": "radboudumc",
-      "url": "https://icai.ai/lab/radboud-ai-for-health-lab/",
-      "error": "This operation was aborted"
-    },
-    {
-      "instId": "radboudumc",
       "note": "no people extracted"
     },
     {
