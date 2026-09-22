@@ -1,6 +1,5 @@
 {
-  "lastRun": "2026-09-21T13:41:22.879Z",
-  "lastAddedCount": 1,
-  "lastCandidateCount": 1,
-  "lastWebSearches": 8
+  "lastRun": "2026-09-22T12:22:21.309Z",
+  "lastAddedCount": 0,
+  "error": "discovery: Anthropic API 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CfJUDCxFXtNBJmuWmd9z9\"}"
 }
