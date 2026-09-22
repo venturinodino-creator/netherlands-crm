@@ -1,5 +1,21 @@
 [
   {
+    "id": "20260922T130307Z",
+    "date": "2026-09-22",
+    "generatedAt": "2026-09-22T13:03:07.301007+00:00",
+    "file": "reports/summary-2026-09-22-130306.pdf",
+    "summary": "Research CRM tracks 70 institutions across the Netherlands (15 universities, 12 medical centres, 35 research institutes, 8 NGOs/foundations) and 1189 verified contacts (216 high priority). 54 candidate contacts are awaiting review right now. Scopus remains active at 13 of 70 tracked institutions; Clarivate's Web of Science is cancelled or expiring at 5. 18 institution(s) have a live OpenAlex subscription. The daily intelligence scan currently has 22 live news item(s) and 28 open competitor role(s) tracked. Since 15 Sep: contacts +251, news live +14, open roles +24.",
+    "stats": {
+      "institutions": 70,
+      "contacts": 1189,
+      "contactsIsLive": true,
+      "pending": 54,
+      "pendingIsLive": true,
+      "news": 22,
+      "hiring": 28
+    }
+  },
+  {
     "id": "20260921T144843Z",
     "date": "2026-09-21",
     "generatedAt": "2026-09-21T14:48:43.482365+00:00",
