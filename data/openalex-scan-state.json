@@ -1,18 +1,18 @@
 {
-  "lastRun": "2026-09-22T12:14:27.127Z",
+  "lastRun": "2026-09-23T12:27:34.150Z",
   "lastAddedCount": 0,
   "lastUpdatedCount": 0,
   "lastCandidateCount": 0,
   "lastWebSearches": 0,
   "lastBatch": [
-    "sanquin",
-    "umcutrecht",
-    "umcg",
-    "amolf",
-    "astron",
-    "cwi"
+    "cpb",
+    "deltares",
+    "nwo",
+    "hubrecht",
+    "knmi",
+    "mpi"
   ],
-  "cursor": 30,
+  "cursor": 36,
   "institutionsTotal": 55,
   "nationalLastRun": "2026-09-18T21:32:11.282Z",
   "checked": {
@@ -118,7 +118,7 @@
     }
   },
   "errors": {
-    "sanquin": "Anthropic API 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CfJTcFKuLaA6F4LJUrKA2\"}"
+    "cpb": "Anthropic API 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CfLNRBNeNwUVFdHDbykcV\"}"
   },
   "error": "Anthropic API 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase cr"
 }
