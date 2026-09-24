@@ -1,5 +1,62 @@
 [
   {
+    "id": "news-gold35",
+    "title": "Anthropic launches Claude Opus 5.5 with expanded biology capabilities - MobiHealthNews",
+    "description": "Anthropic launches Claude Opus 5.5 with expanded biology capabilities MobiHealthNews",
+    "institution": "Anthropic",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://www.mobihealthnews.com/news/anthropic-launches-claude-opus-55-expanded-biology-capabilities",
+    "sourceName": "MobiHealthNews",
+    "publishedDate": "2026-09-23",
+    "foundDate": "2026-09-24",
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPTkZ3WlVySXByWW1fX1hNaXZYZnMzazZqZ1htQ1lGRWhmQWpFRzY4NUVqMzlUaEJxVDhiTDk1SjRzWXJ5YmlJUnppVWRiMjk4UHBXTXcxMWo0UVZzdjg3bUVCX08xakI3NXJUdlozdUJFZkR6WkZoMzR5OUpERXB6YVdiU0ZJWm0xVnRaMGtEdGUxWHhpS1JCZmp1V0IwejV4?oc=5"
+  },
+  {
+    "id": "news-fd9yy9",
+    "title": "Australia launches urgent AI governance review after OpenAI Medicare hack - The News International",
+    "description": "Australia launches urgent AI governance review after OpenAI Medicare hack The News International",
+    "institution": "OpenAI",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "",
+    "sourceName": "The News International",
+    "publishedDate": "2026-09-24",
+    "foundDate": "2026-09-24",
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPNXdUS3pzbjJVMFl0TFlQa1FnYmdWXzdqaGVwNlFZcGFIb2xhMnhrejlsRlFLdm94bzc3VUV2dlQwSDRlZ1V1WFdlb3ptNTljU2d6YjBURE0ybDFHQzFRTlRDM015elhtS25WT0o5dkstYzFTdnJkS3U2NmJFdFdGV1c5ejNxcFdnOTJtSVFzU292WXVKVDd0clI2RHdFSU1nWElpV0dZSk42ZFNhMlFlUTc1clJqQdIBsgFBVV95cUxPQTZja1hLVmw5eWhCcmQ2RVI0YTZHS21zUkxCQzY2QUROVkhWXzdkcnl4ZjJ2dDQwX09aMnhxS2wwRFpkU3J5cjI2dXp3eHhoejVRQTZaSHd4ZjAtWkZaZllKOGJwZGRqMEVkaUtTdXROVXZablRTZHMxMm1KYVNXZUJySXZZNHdNMkloUXByZjloZ1NtQlgxa2oya04",
+    "linkExpired": true
+  },
+  {
+    "id": "news-en42n4",
+    "title": "Wiley Announces Quarterly Dividend; Leader in Trusted Content and Research Intelligence Raised Dividend for 33 - Business Wire",
+    "description": "Wiley Announces Quarterly Dividend; Leader in Trusted Content and Research Intelligence Raised Dividend for 33 Business Wire",
+    "institution": "Wiley",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://www.businesswire.com/news/home/20260924075654/en/Wiley-Announces-Quarterly-Dividend-Leader-in-Trusted-Content-and-Research-Intelligence-Raised-Dividend-for-33rd-Consecutive-Year-in-June-2026",
+    "sourceName": "Business Wire",
+    "publishedDate": "2026-09-24",
+    "foundDate": "2026-09-24",
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMipAJBVV95cUxPazNVVldOX2dzaThBc1V6elVQVnBYYjBOUXB1QnotSHJjc3VxYkRWTHpJaE85YkxKTnZsNDUxYTktOXdZRzl6djNGekRiNmVaclo3SXdydndUSngzS2xUbHRNSVFWSEVZdXNMSTBaU2FleXhWb3luZVFwT1FJYmtFcDlBRUc1U295MTkyRFBGWGs2b08zOUcxR1RkTFhQdGFUcnloS1Q0QlRkaEhOVnJEVnZCVlRZYl9CZkNkdkJxbUdESEc0UTVtUHFPQmVqVjYxT3p2U0IwOXB6SkRGUVFGZEFmR0hpNGl5bWs0STRXbGlQRW16R05lRDdwdUhCM1dxMFl2dTNsaGdYQXBvZzVWZmNFQkNKd2ZFaVlJVWNCS0RQNVBN?oc=5"
+  },
+  {
+    "id": "news-iwthzl",
+    "title": "Edison Scientific Announces Agreement With Springer Nature, Bringing Trusted Research Into Kosmos - Business Wire",
+    "description": "Edison Scientific Announces Agreement With Springer Nature, Bringing Trusted Research Into Kosmos Business Wire",
+    "institution": "Springer Nature",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://www.businesswire.com/news/home/20260924263018/en/Edison-Scientific-Announces-Agreement-With-Springer-Nature-Bringing-Trusted-Research-Into-Kosmos",
+    "sourceName": "Business Wire",
+    "publishedDate": "2026-09-24",
+    "foundDate": "2026-09-24",
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxNbExJMlNmNE5wTzZSQ0ZTSFNDUFhnUDB6S2pRdWl0ZHFuWEpVOWpRblBoWjZIMkdHZWdpdGJUZy1vaVR2aXZZMGJhY29nbXFVczBTeXozTmItM3V1TjVNUVNxSUlNcGswSnA3ckp5a1Q2NXprbFVNNWZJVjE1bU05TEZmREVTaEVMVUVHTmtGbGhVbGVpUkZUajVTcG55Y0dWYlZzODJ3UnJaUGw2b3pINk5ENnhWRmNQdkhqWVJXaGN2Rkt4NFh1cDdOTVo4SVpjbEJVbFJnNm11aW9LcEp0Y2hjNUF3YjdT?oc=5"
+  },
+  {
     "id": "news-ssnbxm",
     "title": "Novo Nordisk Partners with Anthropic on Drug Discovery, Aiming to Shorten Development Timelines with AI - finance.biggo.com",
     "description": "Novo Nordisk Partners with Anthropic on Drug Discovery, Aiming to Shorten Development Timelines with AI finance.biggo.com",
@@ -12,34 +69,6 @@
     "foundDate": "2026-09-22",
     "autoDiscovered": true,
     "googleNewsUrl": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBpY2MwQmxhOGszTGRocVNPVGp5eTNnMXpfSWdLZXg3b2kzVUtXM1UzZzFVVEJ4dXhfQ2E1eXJ0MjR5YUVGVEVOOGlpWG9yMDR4dnhFRVpSZmE0dDBJaFpCVWR3c0ZSYnRjVzRETE91ZmtfT1VxRnc?oc=5"
-  },
-  {
-    "id": "news-w3zz33",
-    "title": "Novo Nordisk Partners With Anthropic To Use Claude For Drug Research - konsulteer.com",
-    "description": "Novo Nordisk Partners With Anthropic To Use Claude For Drug Research konsulteer.com",
-    "institution": "Anthropic",
-    "category": "competitor_announcements",
-    "categoryLabel": "Competitor Announcements",
-    "url": "https://www.konsulteer.com/article/novo-nordisk-partners-with-anthropic-to-use-claude-for-drug-research",
-    "sourceName": "konsulteer.com",
-    "publishedDate": "2026-09-17",
-    "foundDate": "2026-09-22",
-    "autoDiscovered": true,
-    "googleNewsUrl": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPTGFYbUdpV19BVHJjRldpeGtCNWhvR0FsUEdKR3BkSlVDc1psTkxuR3duRzRJMVd5V2d3YVBsWFZjNFVZSm5obUJCUmxEV2JHX0xpWUp2QlZ6R0pOMTA2UENRdVdfT18zMGw3WE43X2hzVEFhcEJTSVM0ZU9Xb2t5X1pEQ09OdEd3VUN1RVpVNlU3RUZ1STBiclZ3VlkydktrWFRvTmJn?oc=5"
-  },
-  {
-    "id": "news-vpo05r",
-    "title": "Anthropic Launches Life Sciences Verification Program in Beta - Unite.AI",
-    "description": "Anthropic Launches Life Sciences Verification Program in Beta Unite.AI",
-    "institution": "Anthropic",
-    "category": "competitor_announcements",
-    "categoryLabel": "Competitor Announcements",
-    "url": "https://www.unite.ai/anthropic-launches-life-sciences-verification-program-in-beta/",
-    "sourceName": "Unite.AI",
-    "publishedDate": "2026-09-17",
-    "foundDate": "2026-09-22",
-    "autoDiscovered": true,
-    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPTHN6Ni0tbk11d3IwcEtQdWxLNUxhc040SnFIZTRDLWxZSDNsSEhHUEpHMGhNRVZvVzk2OE9RSkl2aGFlQXRBYlZnSjlaX2pwZFMxRGhmX0M4ZFZIRmp3R0dpMGRPNzB1SC1qWF9rb1BsNGJRV3A1ZXozdkxzSm0zelhibW1OeDJ5TmFZ?oc=5"
   },
   {
     "id": "news-e5dyoi",
@@ -84,21 +113,6 @@
     "googleNewsUrl": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPSnNNZ25mNF80T1FZajk4cWxUd0phcWVqNXdCY19Mc1hwdlRVTDZBajVTU2d0OFpORDBEN1gzY19RZGNtZmp5MkJWQ1hIeWVSV2kyV3lYTXB4SGhBX0NGY0lvdVBfNXJMUEJHMjUtQjgtUE11RTNBQnlnRWVXRlc3RjBVUk1xQ19fQUFfX2xhNFBicE9MNGp5REF3aWdQYVFMVDR3N2VRTnA?oc=5"
   },
   {
-    "id": "news-6mjonk",
-    "title": "A tiny 1,700-year-old piece of ‘The Odyssey’ was hiding in a library book at Utrecht University— researche - The Economic Times",
-    "description": "A tiny 1,700-year-old piece of ‘The Odyssey’ was hiding in a library book at Utrecht University— researche The Economic Times",
-    "institution": "Utrecht University",
-    "category": "funding",
-    "categoryLabel": "Funding Received",
-    "url": "",
-    "sourceName": "The Economic Times",
-    "publishedDate": "2026-09-17",
-    "foundDate": "2026-09-22",
-    "autoDiscovered": true,
-    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiowJBVV95cUxOaEJXV2VIdlhqd1JLUnlzUFFrTHZSR1hFOVpZVllsMTVBNU82Zzh5aHNBYVBfVUFvQmIyVkVqZVMzMUlVTUNwQnF0dDRFaU8xZlFqQ1ZOVktfcGg3eUxEQ01Bc2U0YUJsN2Q1bVJYc1B2OWJ4YUNqRFo4NmNMaU1DNUt1Mmt5NnhZM05KbmRTX1Nydmc1TkJpT0lUY1d4LTZBS3ZmcEszdk8ySjRHdDN4aXJvckxEaEU2b2YxRHN4czhGSjVQNVhKY1ZXZC1OVXJUR3VnSGRnUlphbnFta0lrQ2xVVU5KTU9MMjNaN056N3FYZDVZemxDeGJTRVpoM1B6TUFOVnVFeWJqakNMVE95SGhER1FSV2lVZ0RsM2EzalBscFXSAagCQVVfeXFMT1NNQktzYWs5VnRrMlZvZGthMXZkcFR6em1ub2ZsdDlKVkZzaDJLRDB",
-    "linkExpired": true
-  },
-  {
     "id": "news-pj8bi8",
     "title": "Stefan Sleijfer (Erasmus MC): ‘AI must contribute to better care’ - Management Scope",
     "description": "Stefan Sleijfer (Erasmus MC): ‘AI must contribute to better care’ Management Scope",
@@ -127,20 +141,6 @@
     "googleNewsUrl": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNSDZQV29jTl9WeDFjRUFULXk5V181dTQzdVJLRGNzbGpacWtJaklrSlJFdG40cUQ2OGhFeFZVS3l0elUzTEZJZ2ZhVmpOMXpCWnZ2M21iclJRdVhnalVsNmZZY2JuaWNWZlBrVkRZa0tWWXJtd1ozOVpqWlZRZXltSlVNbno3T2RsZnNOWWs3NTUtQ0ZMTW96dkh3?oc=5"
   },
   {
-    "id": "news-vbb4rs",
-    "title": "Bridging Science, Policy and Society CAPHRI’s Global Impact through WHO Collaborating Centres - Maastricht University",
-    "description": "Bridging Science, Policy and Society CAPHRI’s Global Impact through WHO Collaborating Centres Maastricht University",
-    "institution": "Maastricht University",
-    "category": "ai_adoption",
-    "categoryLabel": "AI Development & Adoption",
-    "url": "https://www.maastrichtuniversity.nl/news/bridging-science-policy-and-society-caphri%E2%80%99s-global-impact-through-who-collaborating-centres",
-    "sourceName": "Maastricht University",
-    "publishedDate": "2026-09-17",
-    "foundDate": "2026-09-22",
-    "autoDiscovered": true,
-    "googleNewsUrl": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxPaGpmbVJCbHBySXFDNHJVQ0R1aVptdlZDTWxjZWsyenM3bG9FM19WQnhWUUx1bjJiOTE0UHV1RHpQUjBlejBTcHpobklmdlpJS01QM3pXVG1pX2pySE5ueXg4VDlWRkQ0dWZ5Vy1RMXBlQlhONVQ4cDFFc3pmeVZaSWdVOUZ5Z25SSnBXUE8yd2c5bUpTSGFNYmlNemlMZkM3RmVDcmVtR25na1hsclptbzZzZmZudTFIcWluTW5mUjFab0ZidmNuOU5tTy0wenpiNHltSEpaV2U?oc=5"
-  },
-  {
     "id": "news-fha0tn",
     "title": "INFERNO-RES: preparing critical infrastructure for fire, blast and wildfire - TU Delft",
     "description": "INFERNO-RES: preparing critical infrastructure for fire, blast and wildfire TU Delft",
@@ -153,19 +153,5 @@
     "foundDate": "2026-09-22",
     "autoDiscovered": true,
     "googleNewsUrl": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPUEVpM3hod1J5UGdhb0k1UFRtNndoOHhmMGdCN1RKTkUySGhtOUJVaVhzamFNdWRJZWpYTnAtWDRmUUZLQXJIYy1TZDZMb2ZXdkc1MnZZSHR6UjNTZHdDSmdfUjdkRFM5SENGV0x1RGgwb1Rxd0xwU2szS3RTelhhYkFjOUtiU1pqOXpiQ1JLaXA2NGMxcUpxRndZR2sxbTk5X1QzMUNvWjV2MTBGbklNV3pLaEdMUVFDVEtndHp1UGQ2cW50SWNaSUlOSzFyRTVNcHB1NTk2S2NMbHVnZzNHVUVlM2hFbk5k?oc=5"
-  },
-  {
-    "id": "news-1f9x1z",
-    "title": "Trustworthy AI research in new European road safety project - TU Delft",
-    "description": "Trustworthy AI research in new European road safety project TU Delft",
-    "institution": "TU Delft",
-    "category": "ai_adoption",
-    "categoryLabel": "AI Development & Adoption",
-    "url": "https://www.tudelft.nl/en/2026/tbm/trustworthy-ai-research-in-new-european-road-safety-project",
-    "sourceName": "TU Delft",
-    "publishedDate": "2026-09-17",
-    "foundDate": "2026-09-22",
-    "autoDiscovered": true,
-    "googleNewsUrl": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOdElaR0RheHMtR3RrTnA4SDVKMlFIM2xQMzh4NnVFazBua0Zfd2s0b3I5Wm1UZ01yQmRLLXZEYTA0YjBCZDIxMFEwNTAycWF4LXItWGgydDhZeGVVaTVLWUY3MVZmNFFLTFBnWDViQWFhSEM5anhBeTh3clVuZWctSkptYmFscVF0OFlwYkJWelpTYlU5U1dzbklB?oc=5"
   }
 ]
