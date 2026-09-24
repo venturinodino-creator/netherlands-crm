@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-09-23T12:58:44.233Z",
+  "lastRun": "2026-09-24T12:56:11.258Z",
   "lastAddedCount": 0,
   "sources": 53,
   "blockedSources": [
@@ -47,6 +47,10 @@
     },
     {
       "instId": "cpb",
+      "note": "no people extracted"
+    },
+    {
+      "instId": "esc",
       "note": "no people extracted"
     },
     {
