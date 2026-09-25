@@ -1,18 +1,18 @@
 {
-  "lastRun": "2026-09-24T12:26:32.135Z",
+  "lastRun": "2026-09-25T12:27:31.151Z",
   "lastAddedCount": 0,
   "lastUpdatedCount": 0,
   "lastCandidateCount": 0,
   "lastWebSearches": 0,
   "lastBatch": [
-    "naturalis",
-    "esc",
-    "nin",
-    "nikhef",
-    "nioz",
-    "nlr"
+    "pbl",
+    "rathenau",
+    "rivm",
+    "knaw",
+    "scp",
+    "sron"
   ],
-  "cursor": 42,
+  "cursor": 48,
   "institutionsTotal": 55,
   "nationalLastRun": "2026-09-18T21:32:11.282Z",
   "checked": {
@@ -118,7 +118,7 @@
     }
   },
   "errors": {
-    "naturalis": "Anthropic API 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CfNG9WsmMmbjPM7r45isy\"}"
+    "pbl": "Anthropic API 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CfQA2nT1R77An1YZPHbiS\"}"
   },
   "error": "Anthropic API 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase cr"
 }
