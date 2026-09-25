@@ -1,5 +1,33 @@
 [
   {
+    "id": "news-qy2qc8",
+    "title": "Claude discovers a novel enzyme system with CRISPR-like repeats - Anthropic",
+    "description": "Claude discovers a novel enzyme system with CRISPR-like repeats Anthropic",
+    "institution": "Anthropic",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
+    "sourceName": "Anthropic",
+    "publishedDate": "2026-09-23",
+    "foundDate": "2026-09-25",
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9JT0FwTVctZXNkYnJXeW44aHhoZmJfbDYwN3B4a2tMTThJZm9XRklxMkEzdFlxb2Z6VGM2UnpDTGlaQ09PODJUMkJFWWl1UVZOTDJ0WU1UQ1pZMDlrbS0tM3FTS0RGWmNSeGt5QlJjZktQWkl4N0E?oc=5"
+  },
+  {
+    "id": "news-upj79h",
+    "title": "Edison Scientific Announces Agreement With Springer Nature, Bringing Trusted Research Into Kosmos - finance.yahoo.com",
+    "description": "Edison Scientific Announces Agreement With Springer Nature, Bringing Trusted Research Into Kosmos finance.yahoo.com",
+    "institution": "Springer Nature",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://finance.yahoo.com/technology/ai/articles/edison-scientific-announces-agreement-springer-120000986.html",
+    "sourceName": "finance.yahoo.com",
+    "publishedDate": "2026-09-24",
+    "foundDate": "2026-09-25",
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMirwFBVV95cUxORy0weGxXVF9OeHlMck4tQUVPdzJmcnhqXzFENW5WNk1CX1pUaXc2MDV3NFJBblVUMEozVk1PODJBblNlSGlwYnM2cjBYdDZwRXA3eFJtUVV2Q1NBYVpBV1hBM0JnREdzUW5BS0lqNGg0RnNzMUItVDlWVnBZNFNud3o1Skt1d1dpZFRtOERUMVo2cGpnX19JNWI3Z3gzY191U040SGNkT3ZFdGhqNXhB?oc=5"
+  },
+  {
     "id": "news-gold35",
     "title": "Anthropic launches Claude Opus 5.5 with expanded biology capabilities - MobiHealthNews",
     "description": "Anthropic launches Claude Opus 5.5 with expanded biology capabilities MobiHealthNews",
@@ -57,34 +85,6 @@
     "googleNewsUrl": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxNbExJMlNmNE5wTzZSQ0ZTSFNDUFhnUDB6S2pRdWl0ZHFuWEpVOWpRblBoWjZIMkdHZWdpdGJUZy1vaVR2aXZZMGJhY29nbXFVczBTeXozTmItM3V1TjVNUVNxSUlNcGswSnA3ckp5a1Q2NXprbFVNNWZJVjE1bU05TEZmREVTaEVMVUVHTmtGbGhVbGVpUkZUajVTcG55Y0dWYlZzODJ3UnJaUGw2b3pINk5ENnhWRmNQdkhqWVJXaGN2Rkt4NFh1cDdOTVo4SVpjbEJVbFJnNm11aW9LcEp0Y2hjNUF3YjdT?oc=5"
   },
   {
-    "id": "news-ssnbxm",
-    "title": "Novo Nordisk Partners with Anthropic on Drug Discovery, Aiming to Shorten Development Timelines with AI - finance.biggo.com",
-    "description": "Novo Nordisk Partners with Anthropic on Drug Discovery, Aiming to Shorten Development Timelines with AI finance.biggo.com",
-    "institution": "Anthropic",
-    "category": "competitor_announcements",
-    "categoryLabel": "Competitor Announcements",
-    "url": "https://finance.biggo.com/news/57207404-ec2e-418c-9497-3fcba5ab3ca6",
-    "sourceName": "finance.biggo.com",
-    "publishedDate": "2026-09-18",
-    "foundDate": "2026-09-22",
-    "autoDiscovered": true,
-    "googleNewsUrl": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBpY2MwQmxhOGszTGRocVNPVGp5eTNnMXpfSWdLZXg3b2kzVUtXM1UzZzFVVEJ4dXhfQ2E1eXJ0MjR5YUVGVEVOOGlpWG9yMDR4dnhFRVpSZmE0dDBJaFpCVWR3c0ZSYnRjVzRETE91ZmtfT1VxRnc?oc=5"
-  },
-  {
-    "id": "news-e5dyoi",
-    "title": "Novo & Anthropic: Partnering on Claude AI Drug Discovery - Healthcare Digital",
-    "description": "Novo & Anthropic: Partnering on Claude AI Drug Discovery Healthcare Digital",
-    "institution": "Anthropic",
-    "category": "competitor_announcements",
-    "categoryLabel": "Competitor Announcements",
-    "url": "https://healthcare-digital.com/news/novo-anthropic-partnering-on-claude-ai-drug-discovery",
-    "sourceName": "Healthcare Digital",
-    "publishedDate": "2026-09-18",
-    "foundDate": "2026-09-22",
-    "autoDiscovered": true,
-    "googleNewsUrl": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQNGQxSkU2cHFDRzdVRFZDQ2tyR2M1bTlWVklEbTIxcFU5QnpZMkJaVWVJOEJ4YXpFcS1Qblh0X25VSEpiVWY0aC1zQnlaMlpGMWRKcTZVdEFfQzl4UjlvMlUtZFN2NmR3V3RTVnVLT3BOQV9lSVQzWXFqTUlPay1ubEZGU3JFMC1vR1VBQ0hNT2N1WU0?oc=5"
-  },
-  {
     "id": "news-tbn67o",
     "title": "Anthropic Eases AI Safeguards for Verified Life Science Teams - HPCwire",
     "description": "Anthropic Eases AI Safeguards for Verified Life Science Teams HPCwire",
@@ -97,20 +97,6 @@
     "foundDate": "2026-09-22",
     "autoDiscovered": true,
     "googleNewsUrl": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNQkc5eTE1dUNOZ2lDZmNMRmNBd253SkRScFBqamhYT1REb21VcjNDZ1otMEFBaURrRGFxQm8zWThjVk04YlZzY2d5cG5kR0dLYy1kVzR1eDczQ2dXMTNlTUkyc1NQUkZ1dmloNUVEN01xZjBhdGlPVVVCNV9BSnZGSjZEMVk4TTBmZ3ZpcHFLSy1DYU4tV284cDRQRU9Dbm5zN2VzMG5Sbw?oc=5"
-  },
-  {
-    "id": "news-b9zsmp",
-    "title": "OpenAI launches legal-focused AI platform, escalating race for law firm users - dzrh.com.ph",
-    "description": "OpenAI launches legal-focused AI platform, escalating race for law firm users dzrh.com.ph",
-    "institution": "OpenAI",
-    "category": "competitor_announcements",
-    "categoryLabel": "Competitor Announcements",
-    "url": "https://www.dzrh.com.ph/post/openai-launches-legal-focused-ai-platform-escalating-race-for-law-firm-users",
-    "sourceName": "dzrh.com.ph",
-    "publishedDate": "2026-09-18",
-    "foundDate": "2026-09-22",
-    "autoDiscovered": true,
-    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPSnNNZ25mNF80T1FZajk4cWxUd0phcWVqNXdCY19Mc1hwdlRVTDZBajVTU2d0OFpORDBEN1gzY19RZGNtZmp5MkJWQ1hIeWVSV2kyV3lYTXB4SGhBX0NGY0lvdVBfNXJMUEJHMjUtQjgtUE11RTNBQnlnRWVXRlc3RjBVUk1xQ19fQUFfX2xhNFBicE9MNGp5REF3aWdQYVFMVDR3N2VRTnA?oc=5"
   },
   {
     "id": "news-pj8bi8",
@@ -139,19 +125,5 @@
     "foundDate": "2026-09-22",
     "autoDiscovered": true,
     "googleNewsUrl": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNSDZQV29jTl9WeDFjRUFULXk5V181dTQzdVJLRGNzbGpacWtJaklrSlJFdG40cUQ2OGhFeFZVS3l0elUzTEZJZ2ZhVmpOMXpCWnZ2M21iclJRdVhnalVsNmZZY2JuaWNWZlBrVkRZa0tWWXJtd1ozOVpqWlZRZXltSlVNbno3T2RsZnNOWWs3NTUtQ0ZMTW96dkh3?oc=5"
-  },
-  {
-    "id": "news-fha0tn",
-    "title": "INFERNO-RES: preparing critical infrastructure for fire, blast and wildfire - TU Delft",
-    "description": "INFERNO-RES: preparing critical infrastructure for fire, blast and wildfire TU Delft",
-    "institution": "TU Delft",
-    "category": "ai_adoption",
-    "categoryLabel": "AI Development & Adoption",
-    "url": "https://www.tudelft.nl/en/tu-delft-safety-security-institute/research/seed-funding-projects/preparing-critical-infrastructure-for-fire-blast-and-wildfire",
-    "sourceName": "TU Delft",
-    "publishedDate": "2026-09-18",
-    "foundDate": "2026-09-22",
-    "autoDiscovered": true,
-    "googleNewsUrl": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPUEVpM3hod1J5UGdhb0k1UFRtNndoOHhmMGdCN1RKTkUySGhtOUJVaVhzamFNdWRJZWpYTnAtWDRmUUZLQXJIYy1TZDZMb2ZXdkc1MnZZSHR6UjNTZHdDSmdfUjdkRFM5SENGV0x1RGgwb1Rxd0xwU2szS3RTelhhYkFjOUtiU1pqOXpiQ1JLaXA2NGMxcUpxRndZR2sxbTk5X1QzMUNvWjV2MTBGbklNV3pLaEdMUVFDVEtndHp1UGQ2cW50SWNaSUlOSzFyRTVNcHB1NTk2S2NMbHVnZzNHVUVlM2hFbk5k?oc=5"
   }
 ]
