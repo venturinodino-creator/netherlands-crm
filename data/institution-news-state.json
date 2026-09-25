@@ -1,14 +1,19 @@
 {
-  "lastRun": "2026-09-24T12:20:41.354652Z",
+  "lastRun": "2026-09-25T12:23:21.010747Z",
   "lastNewCount": 0,
-  "sourcesReached": 15,
+  "sourcesReached": 14,
   "sourcesTotal": 16,
-  "itemsExamined": 339,
+  "itemsExamined": 328,
   "failedSources": [
     {
       "institution": "Leiden University Libraries",
       "url": "https://www.library.universiteitleiden.nl/news",
       "error": "Remote end closed connection without response"
+    },
+    {
+      "institution": "SURF",
+      "url": "https://www.surf.nl/en/rss",
+      "error": "<urlopen error [Errno 101] Network is unreachable>"
     }
   ],
   "seenUrls": [
