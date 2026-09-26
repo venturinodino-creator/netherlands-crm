@@ -1,21 +1,10 @@
 {
-  "lastRun": "2026-09-25T12:23:21.010747Z",
+  "lastRun": "2026-09-26T11:52:38.624437Z",
   "lastNewCount": 0,
-  "sourcesReached": 14,
+  "sourcesReached": 16,
   "sourcesTotal": 16,
-  "itemsExamined": 328,
-  "failedSources": [
-    {
-      "institution": "Leiden University Libraries",
-      "url": "https://www.library.universiteitleiden.nl/news",
-      "error": "Remote end closed connection without response"
-    },
-    {
-      "institution": "SURF",
-      "url": "https://www.surf.nl/en/rss",
-      "error": "<urlopen error [Errno 101] Network is unreachable>"
-    }
-  ],
+  "itemsExamined": 367,
+  "failedSources": [],
   "seenUrls": [
     "https://library4research.tudl.tudelft.nl/2026/03/18/webinar-scival-ahead-smart-ai-summaries-and-more/?utm_source=rss&utm_medium=rss&utm_campaign=webinar-scival-ahead-smart-ai-summaries-and-more",
     "https://library4research.tudl.tudelft.nl/2026/05/12/master-research-insights-with-dimensions-101-and-new-tutorials/?utm_source=rss&utm_medium=rss&utm_campaign=master-research-insights-with-dimensions-101-and-new-tutorials",
