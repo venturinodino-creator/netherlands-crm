@@ -1,5 +1,33 @@
 [
   {
+    "id": "news-d2271b",
+    "title": "Then and now: ‍‍Data Science and Artificial Intelligence - Maastricht University",
+    "description": "Then and now: ‍‍Data Science and Artificial Intelligence Maastricht University",
+    "institution": "Maastricht University",
+    "category": "ai_adoption",
+    "categoryLabel": "AI Development & Adoption",
+    "url": "https://www.maastrichtuniversity.nl/news/then-and-now-data-science-and-artificial-intelligence",
+    "sourceName": "Maastricht University",
+    "publishedDate": "2026-09-19",
+    "foundDate": "2026-09-22",
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNSDZQV29jTl9WeDFjRUFULXk5V181dTQzdVJLRGNzbGpacWtJaklrSlJFdG40cUQ2OGhFeFZVS3l0elUzTEZJZ2ZhVmpOMXpCWnZ2M21iclJRdVhnalVsNmZZY2JuaWNWZlBrVkRZa0tWWXJtd1ozOVpqWlZRZXltSlVNbno3T2RsZnNOWWs3NTUtQ0ZMTW96dkh3?oc=5"
+  },
+  {
+    "id": "news-tm01n2",
+    "title": "1,700-year-old fragment of Homer's Odyssey found in Utrecht University library - NL Times",
+    "description": "1,700-year-old fragment of Homer's Odyssey found in Utrecht University library NL Times",
+    "institution": "Utrecht University",
+    "category": "funding",
+    "categoryLabel": "Funding Received",
+    "url": "https://nltimes.nl/2026/09/16/1700-year-old-fragment-homers-odyssey-found-utrecht-university-library",
+    "sourceName": "NL Times",
+    "publishedDate": "2026-09-16",
+    "foundDate": "2026-09-26",
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOVmh6N2h4NUdKSFZNS3Nka1M1bEl6dkhralBFUlF3dVJtNlN2NlB4ZzJmYUVsSkRLZk5LV3U2NEY2ck84Vzd3U2hmenQzTjlGdjdSblktcDNwVEQwS2k4bVp0UVg4ZktuRi1HbVg2cmF2WHBiNlRRQXdMRGRya0FYY2UzTnBTQjl5bHBEWW5xVE1lc25GV0F0ZVp0bEY0N0VpdEE?oc=5"
+  },
+  {
     "id": "news-fha0tn",
     "title": "INFERNO-RES: preparing critical infrastructure for fire, blast and wildfire - TU Delft",
     "description": "INFERNO-RES: preparing critical infrastructure for fire, blast and wildfire TU Delft",
