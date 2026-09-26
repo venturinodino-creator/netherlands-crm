@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-09-25T12:58:40.630Z",
+  "lastRun": "2026-09-26T12:25:57.999Z",
   "lastAddedCount": 0,
   "sources": 53,
   "blockedSources": [
@@ -50,6 +50,10 @@
       "note": "no people extracted"
     },
     {
+      "instId": "esc",
+      "note": "no people extracted"
+    },
+    {
       "instId": "nikhef",
       "url": "https://www.nikhef.nl/en/nikhef/organisation/",
       "error": "fetch failed"
@@ -62,11 +66,6 @@
     {
       "instId": "nikhef",
       "note": "no people extracted"
-    },
-    {
-      "instId": "sanquin",
-      "url": "https://www.sanquin.nl/en/about-sanquin/management-supervision",
-      "error": "fetch failed"
     },
     {
       "instId": "umcg",
