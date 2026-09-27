@@ -1,5 +1,19 @@
 [
   {
+    "id": "news-x0ajn1",
+    "title": "Novo Nordisk Partners with Anthropic to Bring AI Deeper into Drug Discovery - Yahoo Finance",
+    "description": "Novo Nordisk Partners with Anthropic to Bring AI Deeper into Drug Discovery Yahoo Finance",
+    "institution": "Anthropic",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://finance.yahoo.com/healthcare/articles/novo-nordisk-partners-anthropic-bring-014854957.html",
+    "sourceName": "Yahoo Finance",
+    "publishedDate": "2026-09-22",
+    "foundDate": "2026-09-27",
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOWFgzeU83dlcwTi0xaHNwdmlDREdFZjRIbVJlRXpyd0hDVjhfalMyNUp3M3dlV2dzVDlmb2lraWdTZDI2Ym01NC10bXc4WG1qeG03UjJDc0JVRk11SG1TSlJTbFNEX002azJ2dDcxVzlGOV9KWDhBRE9XdW1kbnhIc0pYMnhlenlRTWZQblVGbmhNb1Z2ZWV0UXJwYlBTeEk?oc=5"
+  },
+  {
     "id": "news-qy2qc8",
     "title": "Claude discovers a novel enzyme system with CRISPR-like repeats - Anthropic",
     "description": "Claude discovers a novel enzyme system with CRISPR-like repeats Anthropic",
