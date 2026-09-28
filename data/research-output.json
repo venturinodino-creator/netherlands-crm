@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-21T10:59:59.981Z",
+  "generatedAt": "2026-09-28T11:54:50.561Z",
   "source": "OpenAlex API (works grouped by year, OA status, funder, publisher, co-author institution)",
   "window": {
     "from": 2022,
@@ -13,128 +13,128 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 56079,
+      "worksTotal": 54099,
       "byYear": [
         {
           "year": 2022,
-          "count": 10469
+          "count": 9953
         },
         {
           "year": 2023,
-          "count": 11102
+          "count": 10279
         },
         {
           "year": 2024,
-          "count": 9994
+          "count": 9310
         },
         {
           "year": 2025,
-          "count": 10672
+          "count": 10234
         },
         {
           "year": 2026,
-          "count": 13842
+          "count": 14323
         }
       ],
       "oa": {
-        "share": 89.9,
+        "share": 89.4,
         "byStatus": {
-          "green": 17756,
-          "hybrid": 15317,
-          "gold": 12741,
-          "closed": 5641,
-          "bronze": 2398,
-          "diamond": 2226
+          "green": 18261,
+          "hybrid": 13938,
+          "gold": 11709,
+          "closed": 5746,
+          "diamond": 2450,
+          "bronze": 1995
         }
       },
       "funders": [
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 6428
+          "count": 6513
         },
         {
           "name": "European Commission",
-          "count": 4343
-        },
-        {
-          "name": "ZonMw",
-          "count": 2617
+          "count": 4576
         },
         {
           "name": "Universiteit van Amsterdam",
-          "count": 2065
+          "count": 2134
+        },
+        {
+          "name": "ZonMw",
+          "count": 2023
         },
         {
           "name": "National Science Foundation",
-          "count": 1670
-        },
-        {
-          "name": "Amsterdam University Medical Centers",
-          "count": 1396
+          "count": 1889
         },
         {
           "name": "Deutsche Forschungsgemeinschaft",
-          "count": 1352
+          "count": 1522
+        },
+        {
+          "name": "Horizon 2020 Framework Programme",
+          "count": 1209
         },
         {
           "name": "National Institutes of Health",
-          "count": 1167
+          "count": 1088
         }
       ],
       "publishers": [
         {
           "name": "Elsevier BV",
-          "count": 8215
+          "count": 6999
         },
         {
           "name": "Springer Nature",
-          "count": 7078
-        },
-        {
-          "name": "Wiley",
-          "count": 3716
+          "count": 6410
         },
         {
           "name": "Springer Science+Business Media",
-          "count": 3664
+          "count": 3252
+        },
+        {
+          "name": "Wiley",
+          "count": 3251
+        },
+        {
+          "name": "Taylor & Francis",
+          "count": 1924
         },
         {
           "name": "University of Oxford",
-          "count": 2453
-        },
-        {
-          "name": "Oxford University Press",
-          "count": 2426
+          "count": 1917
         }
       ],
       "elsevier": {
-        "count": 8215,
-        "share": 14.6
+        "count": 6999,
+        "share": 12.9
       },
       "partners": [
         {
           "name": "Amsterdam University Medical Centers",
-          "count": 17891
+          "count": 15315
+        },
+        {
+          "name": "Amsterdam UMC Location University of Amsterdam",
+          "count": 4930
         },
         {
           "name": "Vrije Universiteit Amsterdam",
-          "count": 6725
-        },
-        {
-          "name": "Amsterdam Neuroscience",
-          "count": 5679
-        },
-        {
-          "name": "Amsterdam University of Applied Sciences",
-          "count": 4563
+          "count": 4879
         },
         {
           "name": "University of Groningen",
-          "count": 4411
+          "count": 4389
         },
         {
-          "name": "Radboud University Nijmegen",
-          "count": 4242
+          "name": "Utrecht University",
+          "count": 3625
+        },
+        {
+          "name": "University of London",
+          "count": 3323
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I887064364,publication_year:2022-2026",
@@ -147,128 +147,128 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 37853,
+      "worksTotal": 36478,
       "byYear": [
         {
           "year": 2022,
-          "count": 7751
+          "count": 7614
         },
         {
           "year": 2023,
-          "count": 8084
+          "count": 7667
         },
         {
           "year": 2024,
-          "count": 7421
+          "count": 7049
         },
         {
           "year": 2025,
-          "count": 7910
+          "count": 7586
         },
         {
           "year": 2026,
-          "count": 6687
+          "count": 6562
         }
       ],
       "oa": {
-        "share": 89.7,
+        "share": 90.1,
         "byStatus": {
-          "gold": 11228,
-          "hybrid": 10679,
-          "green": 8998,
-          "closed": 3907,
-          "bronze": 1744,
-          "diamond": 1297
+          "gold": 11120,
+          "hybrid": 10280,
+          "green": 8666,
+          "closed": 3594,
+          "bronze": 1617,
+          "diamond": 1201
         }
       },
       "funders": [
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 4251
+          "count": 4201
         },
         {
           "name": "European Commission",
-          "count": 2951
+          "count": 3116
         },
         {
           "name": "ZonMw",
-          "count": 2199
-        },
-        {
-          "name": "Vrije Universiteit Amsterdam",
-          "count": 933
+          "count": 2034
         },
         {
           "name": "National Institutes of Health",
-          "count": 904
+          "count": 956
+        },
+        {
+          "name": "Vrije Universiteit Amsterdam",
+          "count": 947
         },
         {
           "name": "Horizon 2020 Framework Programme",
-          "count": 878
-        },
-        {
-          "name": "Amsterdam University Medical Centers",
-          "count": 807
+          "count": 894
         },
         {
           "name": "Deutsche Forschungsgemeinschaft",
-          "count": 772
+          "count": 771
+        },
+        {
+          "name": "Medical Research Council",
+          "count": 705
         }
       ],
       "publishers": [
         {
           "name": "Elsevier BV",
-          "count": 5795
+          "count": 5665
         },
         {
           "name": "Springer Nature",
-          "count": 5398
+          "count": 5188
         },
         {
           "name": "Wiley",
-          "count": 2983
+          "count": 2949
         },
         {
           "name": "Springer Science+Business Media",
-          "count": 2538
+          "count": 2442
         },
         {
           "name": "Taylor & Francis",
-          "count": 1313
+          "count": 1282
         },
         {
           "name": "Informa",
-          "count": 1218
+          "count": 1187
         }
       ],
       "elsevier": {
-        "count": 5795,
-        "share": 15.3
+        "count": 5665,
+        "share": 15.5
       },
       "partners": [
         {
           "name": "Amsterdam University Medical Centers",
-          "count": 10106
+          "count": 10382
+        },
+        {
+          "name": "Amsterdam UMC Location Vrije Universiteit Amsterdam",
+          "count": 5038
         },
         {
           "name": "University of Amsterdam",
-          "count": 6802
+          "count": 4925
+        },
+        {
+          "name": "Amsterdam Public Health",
+          "count": 3493
         },
         {
           "name": "Amsterdam Neuroscience",
-          "count": 4535
+          "count": 2646
         },
         {
           "name": "University of London",
-          "count": 2381
-        },
-        {
-          "name": "Radboud University Nijmegen",
-          "count": 2242
-        },
-        {
-          "name": "Utrecht University",
-          "count": 2141
+          "count": 2384
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I865915315,publication_year:2022-2026",
@@ -281,128 +281,128 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 24254,
+      "worksTotal": 16054,
       "byYear": [
         {
           "year": 2022,
-          "count": 4918
+          "count": 3248
         },
         {
           "year": 2023,
-          "count": 4810
+          "count": 3319
         },
         {
           "year": 2024,
-          "count": 4871
+          "count": 3166
         },
         {
           "year": 2025,
-          "count": 5363
+          "count": 3413
         },
         {
           "year": 2026,
-          "count": 4292
+          "count": 2908
         }
       ],
       "oa": {
-        "share": 88.5,
+        "share": 88.3,
         "byStatus": {
-          "hybrid": 8102,
-          "gold": 5488,
-          "green": 5385,
-          "closed": 2793,
-          "bronze": 1566,
-          "diamond": 920
+          "hybrid": 5335,
+          "green": 4009,
+          "gold": 3418,
+          "closed": 1871,
+          "bronze": 713,
+          "diamond": 708
         }
       },
       "funders": [
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 1832
-        },
-        {
-          "name": "ZonMw",
-          "count": 1623
+          "count": 1164
         },
         {
           "name": "European Commission",
-          "count": 1467
+          "count": 1010
+        },
+        {
+          "name": "ZonMw",
+          "count": 815
         },
         {
           "name": "Erasmus Universiteit Rotterdam",
-          "count": 741
+          "count": 642
         },
         {
           "name": "National Institutes of Health",
-          "count": 637
+          "count": 333
         },
         {
           "name": "Erasmus Medisch Centrum",
-          "count": 554
+          "count": 305
         },
         {
           "name": "Medical Research Council",
-          "count": 540
+          "count": 262
         },
         {
           "name": "National Institute for Health and Care Research",
-          "count": 461
+          "count": 193
         }
       ],
       "publishers": [
         {
           "name": "Elsevier BV",
-          "count": 5111
+          "count": 2816
         },
         {
           "name": "Springer Nature",
-          "count": 3985
+          "count": 2166
         },
         {
           "name": "Springer Science+Business Media",
-          "count": 2067
+          "count": 1079
         },
         {
           "name": "Wiley",
-          "count": 1654
+          "count": 1049
         },
         {
-          "name": "University of Oxford",
-          "count": 1359
+          "name": "Taylor & Francis",
+          "count": 910
         },
         {
-          "name": "Oxford University Press",
-          "count": 1335
+          "name": "Informa",
+          "count": 779
         }
       ],
       "elsevier": {
-        "count": 5111,
-        "share": 21.1
+        "count": 2816,
+        "share": 17.5
       },
       "partners": [
         {
           "name": "Erasmus MC",
-          "count": 11099
+          "count": 4462
         },
         {
           "name": "Amsterdam University Medical Centers",
-          "count": 2190
+          "count": 1078
         },
         {
-          "name": "Radboud University Nijmegen",
-          "count": 1998
+          "name": "Utrecht University",
+          "count": 919
         },
         {
           "name": "University of Amsterdam",
-          "count": 1723
+          "count": 911
         },
         {
-          "name": "University Medical Center Utrecht",
-          "count": 1607
+          "name": "Vrije Universiteit Amsterdam",
+          "count": 831
         },
         {
-          "name": "Leiden University Medical Center",
-          "count": 1518
+          "name": "University of London",
+          "count": 807
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I913958620,publication_year:2022-2026",
@@ -415,128 +415,128 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 48478,
+      "worksTotal": 50491,
       "byYear": [
         {
           "year": 2022,
-          "count": 9605
+          "count": 9972
         },
         {
           "year": 2023,
-          "count": 10140
+          "count": 10476
         },
         {
           "year": 2024,
-          "count": 9383
+          "count": 9769
         },
         {
           "year": 2025,
-          "count": 10199
+          "count": 10642
         },
         {
           "year": 2026,
-          "count": 9151
+          "count": 9632
         }
       ],
       "oa": {
-        "share": 89.9,
+        "share": 90.4,
         "byStatus": {
-          "gold": 14813,
-          "hybrid": 13004,
-          "green": 12131,
-          "closed": 4889,
-          "diamond": 1879,
-          "bronze": 1762
+          "gold": 15564,
+          "hybrid": 13617,
+          "green": 12597,
+          "closed": 4824,
+          "diamond": 2032,
+          "bronze": 1857
         }
       },
       "funders": [
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 6440
+          "count": 6655
         },
         {
           "name": "European Commission",
-          "count": 4049
+          "count": 4490
         },
         {
           "name": "Universiteit Utrecht",
-          "count": 1956
+          "count": 2040
         },
         {
           "name": "ZonMw",
-          "count": 1530
+          "count": 1721
         },
         {
           "name": "National Science Foundation",
-          "count": 1337
-        },
-        {
-          "name": "Horizon 2020 Framework Programme",
-          "count": 1218
+          "count": 1401
         },
         {
           "name": "Deutsche Forschungsgemeinschaft",
-          "count": 1217
+          "count": 1268
+        },
+        {
+          "name": "Horizon 2020 Framework Programme",
+          "count": 1250
         },
         {
           "name": "National Natural Science Foundation of China",
-          "count": 1008
+          "count": 1038
         }
       ],
       "publishers": [
         {
           "name": "Elsevier BV",
-          "count": 7579
+          "count": 8205
         },
         {
           "name": "Springer Nature",
-          "count": 6325
+          "count": 6561
         },
         {
           "name": "Wiley",
-          "count": 3406
+          "count": 3470
         },
         {
           "name": "Springer Science+Business Media",
-          "count": 2835
+          "count": 2834
         },
         {
           "name": "Taylor & Francis",
-          "count": 1596
+          "count": 1646
         },
         {
           "name": "Nature Portfolio",
-          "count": 1497
+          "count": 1570
         }
       ],
       "elsevier": {
-        "count": 7579,
-        "share": 15.6
+        "count": 8205,
+        "share": 16.3
       },
       "partners": [
         {
           "name": "University Medical Center Utrecht",
-          "count": 10333
-        },
-        {
-          "name": "University of Amsterdam",
-          "count": 3692
-        },
-        {
-          "name": "University of Applied Sciences Utrecht",
-          "count": 3173
+          "count": 11603
         },
         {
           "name": "Amsterdam University Medical Centers",
-          "count": 2824
+          "count": 3652
         },
         {
-          "name": "Radboud University Nijmegen",
-          "count": 2678
+          "name": "University of Amsterdam",
+          "count": 3490
+        },
+        {
+          "name": "University of Groningen",
+          "count": 2626
+        },
+        {
+          "name": "University of London",
+          "count": 2406
         },
         {
           "name": "Centre National de la Recherche Scientifique",
-          "count": 2459
+          "count": 2386
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I193662353,publication_year:2022-2026",
@@ -549,128 +549,128 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 27683,
+      "worksTotal": 32289,
       "byYear": [
         {
           "year": 2022,
-          "count": 5587
+          "count": 6369
         },
         {
           "year": 2023,
-          "count": 5698
+          "count": 6480
         },
         {
           "year": 2024,
-          "count": 5352
+          "count": 6277
         },
         {
           "year": 2025,
-          "count": 5576
+          "count": 6797
         },
         {
           "year": 2026,
-          "count": 5470
+          "count": 6366
         }
       ],
       "oa": {
-        "share": 86.2,
+        "share": 86.4,
         "byStatus": {
-          "gold": 7272,
-          "hybrid": 7242,
-          "green": 6861,
-          "closed": 3827,
-          "diamond": 1270,
-          "bronze": 1211
+          "hybrid": 8844,
+          "gold": 8581,
+          "green": 7519,
+          "closed": 4378,
+          "bronze": 1517,
+          "diamond": 1450
         }
       },
       "funders": [
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 4121
+          "count": 4472
         },
         {
           "name": "European Commission",
-          "count": 2797
-        },
-        {
-          "name": "National Science Foundation",
-          "count": 1499
+          "count": 3247
         },
         {
           "name": "Universiteit Leiden",
-          "count": 1317
+          "count": 1590
+        },
+        {
+          "name": "National Science Foundation",
+          "count": 1507
         },
         {
           "name": "National Aeronautics and Space Administration",
-          "count": 1277
+          "count": 1222
         },
         {
           "name": "Science and Technology Facilities Council",
-          "count": 1138
+          "count": 1093
         },
         {
           "name": "Deutsche Forschungsgemeinschaft",
-          "count": 997
+          "count": 1075
         },
         {
-          "name": "National Natural Science Foundation of China",
-          "count": 764
+          "name": "H2020 European Research Council",
+          "count": 904
         }
       ],
       "publishers": [
         {
-          "name": "Springer Nature",
-          "count": 3153
+          "name": "Elsevier BV",
+          "count": 4282
         },
         {
-          "name": "Elsevier BV",
-          "count": 2912
+          "name": "Springer Nature",
+          "count": 3839
         },
         {
           "name": "Wiley",
-          "count": 1604
+          "count": 1996
         },
         {
           "name": "Springer Science+Business Media",
-          "count": 1528
+          "count": 1858
         },
         {
           "name": "University of Oxford",
-          "count": 1373
+          "count": 1655
         },
         {
           "name": "Oxford University Press",
-          "count": 1360
+          "count": 1640
         }
       ],
       "elsevier": {
-        "count": 2912,
-        "share": 10.5
+        "count": 4282,
+        "share": 13.3
       },
       "partners": [
         {
-          "name": "University of Applied Sciences Leiden",
-          "count": 2786
+          "name": "Leiden University Medical Center",
+          "count": 6899
         },
         {
-          "name": "Leiden University Medical Center",
-          "count": 2328
+          "name": "Leiden Observatory",
+          "count": 3448
         },
         {
           "name": "Centre National de la Recherche Scientifique",
-          "count": 2282
-        },
-        {
-          "name": "Max Planck Society",
-          "count": 2094
+          "count": 2341
         },
         {
           "name": "University of Amsterdam",
-          "count": 1908
+          "count": 2122
+        },
+        {
+          "name": "Max Planck Society",
+          "count": 2086
         },
         {
           "name": "University of London",
-          "count": 1498
+          "count": 1828
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I121797337,publication_year:2022-2026",
@@ -683,128 +683,128 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 43957,
+      "worksTotal": 47314,
       "byYear": [
         {
           "year": 2022,
-          "count": 9069
+          "count": 9444
         },
         {
           "year": 2023,
-          "count": 9091
+          "count": 9419
         },
         {
           "year": 2024,
-          "count": 8591
+          "count": 9140
         },
         {
           "year": 2025,
-          "count": 8424
+          "count": 9453
         },
         {
           "year": 2026,
-          "count": 8782
+          "count": 9858
         }
       ],
       "oa": {
-        "share": 92.6,
+        "share": 92.4,
         "byStatus": {
-          "hybrid": 13577,
-          "green": 12025,
-          "gold": 11389,
-          "closed": 3253,
-          "diamond": 1874,
-          "bronze": 1839
+          "hybrid": 14733,
+          "green": 12596,
+          "gold": 12347,
+          "closed": 3602,
+          "diamond": 2026,
+          "bronze": 2010
         }
       },
       "funders": [
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 4741
+          "count": 4963
         },
         {
           "name": "European Commission",
-          "count": 3741
+          "count": 4167
         },
         {
           "name": "Rijksuniversiteit Groningen",
-          "count": 3051
+          "count": 3207
         },
         {
           "name": "Deutsche Forschungsgemeinschaft",
-          "count": 1791
+          "count": 1855
         },
         {
           "name": "National Natural Science Foundation of China",
-          "count": 1788
+          "count": 1835
         },
         {
           "name": "Universitair Medisch Centrum Groningen",
-          "count": 1580
+          "count": 1787
         },
         {
           "name": "ZonMw",
-          "count": 1519
+          "count": 1721
         },
         {
           "name": "National Science Foundation",
-          "count": 1427
+          "count": 1498
         }
       ],
       "publishers": [
         {
           "name": "Elsevier BV",
-          "count": 7111
+          "count": 8158
         },
         {
           "name": "Springer Nature",
-          "count": 5715
+          "count": 6192
         },
         {
           "name": "Wiley",
-          "count": 3094
+          "count": 3342
         },
         {
           "name": "Springer Science+Business Media",
-          "count": 2631
+          "count": 2885
         },
         {
           "name": "University of Oxford",
-          "count": 1540
+          "count": 1723
         },
         {
           "name": "Oxford University Press",
-          "count": 1519
+          "count": 1699
         }
       ],
       "elsevier": {
-        "count": 7111,
-        "share": 16.2
+        "count": 8158,
+        "share": 17.2
       },
       "partners": [
         {
           "name": "University Medical Center Groningen",
-          "count": 15111
+          "count": 17879
         },
         {
           "name": "University of Amsterdam",
-          "count": 4438
+          "count": 4408
         },
         {
-          "name": "United States Department of Energy",
-          "count": 2830
+          "name": "Amsterdam University Medical Centers",
+          "count": 2967
         },
         {
           "name": "Centre National de la Recherche Scientifique",
-          "count": 2819
+          "count": 2875
         },
         {
-          "name": "Office of Science",
-          "count": 2486
+          "name": "United States Department of Energy",
+          "count": 2803
         },
         {
-          "name": "Radboud University Nijmegen",
-          "count": 2435
+          "name": "Utrecht University",
+          "count": 2612
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I169381384,publication_year:2022-2026",
@@ -817,128 +817,128 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 46382,
+      "worksTotal": 35925,
       "byYear": [
         {
           "year": 2022,
-          "count": 9734
+          "count": 7705
         },
         {
           "year": 2023,
-          "count": 9744
+          "count": 7656
         },
         {
           "year": 2024,
-          "count": 9069
+          "count": 7014
         },
         {
           "year": 2025,
-          "count": 9610
+          "count": 7423
         },
         {
           "year": 2026,
-          "count": 8225
+          "count": 6127
         }
       ],
       "oa": {
-        "share": 87.8,
+        "share": 88.4,
         "byStatus": {
-          "hybrid": 13489,
-          "gold": 12351,
-          "green": 10141,
-          "closed": 5650,
-          "bronze": 2815,
-          "diamond": 1936
+          "hybrid": 11101,
+          "gold": 9654,
+          "green": 7581,
+          "closed": 4166,
+          "bronze": 1795,
+          "diamond": 1628
         }
       },
       "funders": [
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 5468
+          "count": 5037
         },
         {
           "name": "European Commission",
-          "count": 3881
+          "count": 3543
         },
         {
           "name": "ZonMw",
-          "count": 2652
+          "count": 1992
         },
         {
           "name": "Radboud Universiteit",
-          "count": 2080
-        },
-        {
-          "name": "Radboud Universitair Medisch Centrum",
-          "count": 1763
+          "count": 1853
         },
         {
           "name": "Deutsche Forschungsgemeinschaft",
-          "count": 1707
+          "count": 1531
         },
         {
-          "name": "National Institutes of Health",
-          "count": 1401
+          "name": "Radboud Universitair Medisch Centrum",
+          "count": 1490
         },
         {
           "name": "National Science Foundation",
-          "count": 1273
+          "count": 1218
+        },
+        {
+          "name": "National Institutes of Health",
+          "count": 1074
         }
       ],
       "publishers": [
         {
           "name": "Elsevier BV",
-          "count": 8743
+          "count": 6253
         },
         {
           "name": "Springer Nature",
-          "count": 7186
+          "count": 5691
         },
         {
           "name": "Springer Science+Business Media",
-          "count": 3699
+          "count": 2832
         },
         {
           "name": "Wiley",
-          "count": 3347
+          "count": 2785
         },
         {
           "name": "University of Oxford",
-          "count": 2312
+          "count": 1696
         },
         {
           "name": "Oxford University Press",
-          "count": 2279
+          "count": 1673
         }
       ],
       "elsevier": {
-        "count": 8743,
-        "share": 18.8
+        "count": 6253,
+        "share": 17.4
       },
       "partners": [
         {
           "name": "Radboud University Medical Center",
-          "count": 26205
+          "count": 17368
         },
         {
-          "name": "Radboud Institute for Molecular Life Sciences",
-          "count": 6687
+          "name": "Donders Institute for Brain, Cognition and Behaviour",
+          "count": 5819
         },
         {
           "name": "Amsterdam University Medical Centers",
-          "count": 5043
-        },
-        {
-          "name": "Erasmus MC",
-          "count": 4267
+          "count": 3589
         },
         {
           "name": "University of Amsterdam",
-          "count": 4251
+          "count": 2740
         },
         {
-          "name": "University Medical Center Utrecht",
-          "count": 4018
+          "name": "Erasmus MC",
+          "count": 2737
+        },
+        {
+          "name": "University of London",
+          "count": 2586
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I145872427,publication_year:2022-2026",
@@ -951,128 +951,128 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 42615,
+      "worksTotal": 42805,
       "byYear": [
         {
           "year": 2022,
-          "count": 8330
+          "count": 8375
         },
         {
           "year": 2023,
-          "count": 8599
+          "count": 8683
         },
         {
           "year": 2024,
-          "count": 8514
+          "count": 8546
         },
         {
           "year": 2025,
-          "count": 8593
+          "count": 8628
         },
         {
           "year": 2026,
-          "count": 8579
+          "count": 8573
         }
       ],
       "oa": {
         "share": 83,
         "byStatus": {
-          "gold": 11275,
-          "green": 10623,
-          "hybrid": 10043,
-          "closed": 7239,
-          "diamond": 1922,
-          "bronze": 1513
+          "gold": 11375,
+          "green": 10501,
+          "hybrid": 10190,
+          "closed": 7277,
+          "diamond": 1939,
+          "bronze": 1523
         }
       },
       "funders": [
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 5150
+          "count": 5160
         },
         {
           "name": "European Commission",
-          "count": 3564
+          "count": 3754
         },
         {
           "name": "Technische Universiteit Delft",
-          "count": 2285
+          "count": 2282
         },
         {
           "name": "National Natural Science Foundation of China",
-          "count": 1744
+          "count": 1753
         },
         {
           "name": "Horizon 2020 Framework Programme",
-          "count": 1098
+          "count": 1104
         },
         {
           "name": "China Scholarship Council",
-          "count": 982
+          "count": 998
         },
         {
           "name": "National Science Foundation",
-          "count": 823
+          "count": 830
         },
         {
           "name": "HORIZON EUROPE Framework Programme",
-          "count": 775
+          "count": 783
         }
       ],
       "publishers": [
         {
           "name": "Elsevier BV",
-          "count": 7720
+          "count": 7840
         },
         {
           "name": "Springer Nature",
-          "count": 4130
+          "count": 4119
         },
         {
           "name": "Springer Science+Business Media",
-          "count": 2042
+          "count": 2049
         },
         {
           "name": "Institute of Electrical and Electronics Engineers",
-          "count": 1722
+          "count": 1731
         },
         {
           "name": "Wiley",
-          "count": 1411
+          "count": 1420
         },
         {
           "name": "Multidisciplinary Digital Publishing Institute",
-          "count": 1330
+          "count": 1332
         }
       ],
       "elsevier": {
-        "count": 7720,
-        "share": 18.1
+        "count": 7840,
+        "share": 18.3
       },
       "partners": [
         {
+          "name": "Netherlands Organisation for Applied Scientific Research",
+          "count": 1405
+        },
+        {
           "name": "Helmholtz Association of German Research Centres",
-          "count": 1305
+          "count": 1356
         },
         {
           "name": "Utrecht University",
-          "count": 1206
+          "count": 1232
         },
         {
           "name": "Centre National de la Recherche Scientifique",
-          "count": 1193
+          "count": 1209
         },
         {
           "name": "Board of the Swiss Federal Institutes of Technology",
-          "count": 1108
+          "count": 1200
         },
         {
           "name": "Erasmus MC",
-          "count": 1074
-        },
-        {
-          "name": "Netherlands Organisation for Applied Scientific Research",
-          "count": 991
+          "count": 1183
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I98358874,publication_year:2022-2026",
@@ -1085,128 +1085,128 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 21461,
+      "worksTotal": 21354,
       "byYear": [
         {
           "year": 2022,
-          "count": 4119
+          "count": 4109
         },
         {
           "year": 2023,
-          "count": 4998
+          "count": 4988
         },
         {
           "year": 2024,
-          "count": 4133
+          "count": 4152
         },
         {
           "year": 2025,
-          "count": 4398
+          "count": 4432
         },
         {
           "year": 2026,
-          "count": 3813
+          "count": 3673
         }
       ],
       "oa": {
-        "share": 86.9,
+        "share": 86.7,
         "byStatus": {
-          "green": 7696,
-          "hybrid": 5793,
-          "gold": 3570,
-          "closed": 2816,
-          "bronze": 839,
-          "diamond": 747
+          "green": 7508,
+          "hybrid": 5837,
+          "gold": 3590,
+          "closed": 2833,
+          "bronze": 836,
+          "diamond": 750
         }
       },
       "funders": [
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 3478
+          "count": 3430
         },
         {
           "name": "European Commission",
-          "count": 2183
+          "count": 2249
         },
         {
           "name": "Technische Universiteit Eindhoven",
-          "count": 1182
+          "count": 1180
         },
         {
           "name": "National Natural Science Foundation of China",
-          "count": 748
+          "count": 760
         },
         {
           "name": "Horizon 2020 Framework Programme",
-          "count": 631
+          "count": 638
         },
         {
           "name": "China Scholarship Council",
-          "count": 521
+          "count": 525
         },
         {
           "name": "National Science Foundation",
-          "count": 472
+          "count": 480
         },
         {
           "name": "Deutsche Forschungsgemeinschaft",
-          "count": 388
+          "count": 386
         }
       ],
       "publishers": [
         {
           "name": "Elsevier BV",
-          "count": 3653
+          "count": 3729
         },
         {
           "name": "Springer Nature",
-          "count": 2468
+          "count": 2479
         },
         {
           "name": "Springer Science+Business Media",
-          "count": 1552
+          "count": 1566
         },
         {
           "name": "Wiley",
-          "count": 1079
+          "count": 1069
         },
         {
           "name": "Institute of Electrical and Electronics Engineers",
-          "count": 911
+          "count": 914
         },
         {
           "name": "American Chemical Society",
-          "count": 635
+          "count": 641
         }
       ],
       "elsevier": {
-        "count": 3653,
-        "share": 17
+        "count": 3729,
+        "share": 17.5
       },
       "partners": [
         {
-          "name": "Radboud University Nijmegen",
-          "count": 1177
-        },
-        {
           "name": "Delft University of Technology",
-          "count": 896
+          "count": 890
         },
         {
           "name": "Utrecht University",
-          "count": 795
+          "count": 793
         },
         {
           "name": "Freie Universität Berlin",
-          "count": 736
+          "count": 734
         },
         {
           "name": "Dutch Research Council",
-          "count": 628
+          "count": 624
         },
         {
           "name": "Centre National de la Recherche Scientifique",
-          "count": 626
+          "count": 611
+        },
+        {
+          "name": "NWO-I",
+          "count": 606
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I83019370,publication_year:2022-2026",
@@ -1219,128 +1219,128 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 19632,
+      "worksTotal": 19910,
       "byYear": [
         {
           "year": 2022,
-          "count": 3803
+          "count": 3843
         },
         {
           "year": 2023,
-          "count": 4123
+          "count": 4162
         },
         {
           "year": 2024,
-          "count": 3969
+          "count": 4055
         },
         {
           "year": 2025,
-          "count": 4206
+          "count": 4303
         },
         {
           "year": 2026,
-          "count": 3531
+          "count": 3547
         }
       ],
       "oa": {
         "share": 89.8,
         "byStatus": {
-          "green": 6035,
-          "hybrid": 5220,
-          "gold": 4801,
-          "closed": 2007,
-          "diamond": 842,
-          "bronze": 727
+          "green": 6004,
+          "hybrid": 5412,
+          "gold": 4840,
+          "closed": 2038,
+          "diamond": 853,
+          "bronze": 763
         }
       },
       "funders": [
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 2246
+          "count": 2349
         },
         {
           "name": "European Commission",
-          "count": 1677
+          "count": 1796
         },
         {
           "name": "University of Twente",
-          "count": 1133
+          "count": 1150
         },
         {
           "name": "National Natural Science Foundation of China",
-          "count": 639
+          "count": 663
         },
         {
           "name": "Deutsche Forschungsgemeinschaft",
-          "count": 499
+          "count": 520
         },
         {
           "name": "Horizon 2020 Framework Programme",
-          "count": 432
+          "count": 436
         },
         {
           "name": "China Scholarship Council",
-          "count": 357
+          "count": 368
         },
         {
           "name": "HORIZON EUROPE Framework Programme",
-          "count": 331
+          "count": 339
         }
       ],
       "publishers": [
         {
           "name": "Elsevier BV",
-          "count": 3537
+          "count": 3661
         },
         {
           "name": "Springer Nature",
-          "count": 2661
+          "count": 2679
         },
         {
           "name": "Springer Science+Business Media",
-          "count": 1653
+          "count": 1666
         },
         {
           "name": "Wiley",
-          "count": 917
+          "count": 931
         },
         {
           "name": "Multidisciplinary Digital Publishing Institute",
-          "count": 829
+          "count": 835
         },
         {
           "name": "Taylor & Francis",
-          "count": 562
+          "count": 564
         }
       ],
       "elsevier": {
-        "count": 3537,
-        "share": 18
+        "count": 3661,
+        "share": 18.4
       },
       "partners": [
         {
-          "name": "Radboud University Nijmegen",
-          "count": 995
-        },
-        {
-          "name": "Delft University of Technology",
-          "count": 791
-        },
-        {
-          "name": "Utrecht University",
-          "count": 730
+          "name": "International Institute for Geo-Information Science and Earth Observation",
+          "count": 2328
         },
         {
           "name": "University of Groningen",
-          "count": 715
+          "count": 812
+        },
+        {
+          "name": "Delft University of Technology",
+          "count": 812
+        },
+        {
+          "name": "Radboud University Nijmegen",
+          "count": 792
+        },
+        {
+          "name": "Utrecht University",
+          "count": 746
         },
         {
           "name": "Radboud University Medical Center",
-          "count": 671
-        },
-        {
-          "name": "University Medical Center Groningen",
-          "count": 611
+          "count": 704
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I94624287,publication_year:2022-2026",
@@ -1353,128 +1353,128 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 10639,
+      "worksTotal": 10915,
       "byYear": [
         {
           "year": 2022,
-          "count": 2179
+          "count": 2234
         },
         {
           "year": 2023,
-          "count": 2166
+          "count": 2219
         },
         {
           "year": 2024,
-          "count": 2107
+          "count": 2146
         },
         {
           "year": 2025,
-          "count": 2377
+          "count": 2445
         },
         {
           "year": 2026,
-          "count": 1810
+          "count": 1871
         }
       ],
       "oa": {
-        "share": 85.5,
+        "share": 85.1,
         "byStatus": {
-          "hybrid": 3187,
-          "green": 3074,
-          "gold": 2005,
-          "closed": 1546,
-          "diamond": 512,
-          "bronze": 315
+          "hybrid": 3233,
+          "green": 3114,
+          "gold": 2065,
+          "closed": 1627,
+          "diamond": 547,
+          "bronze": 329
         }
       },
       "funders": [
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 787
+          "count": 797
         },
         {
           "name": "European Commission",
-          "count": 414
+          "count": 463
         },
         {
           "name": "ZonMw",
-          "count": 360
+          "count": 369
         },
         {
           "name": "Universiteit van Tilburg",
-          "count": 290
+          "count": 296
         },
         {
           "name": "Fonds Wetenschappelijk Onderzoek",
-          "count": 168
+          "count": 180
         },
         {
           "name": "Deutsche Forschungsgemeinschaft",
-          "count": 122
+          "count": 131
         },
         {
           "name": "Vlaamse regering",
-          "count": 108
+          "count": 112
         },
         {
-          "name": "National Science Foundation",
-          "count": 95
+          "name": "European Research Council",
+          "count": 103
         }
       ],
       "publishers": [
         {
           "name": "Springer Nature",
-          "count": 1352
+          "count": 1363
         },
         {
           "name": "Elsevier BV",
-          "count": 1165
+          "count": 1209
         },
         {
           "name": "Springer Science+Business Media",
-          "count": 859
+          "count": 866
         },
         {
           "name": "Wiley",
-          "count": 655
+          "count": 665
         },
         {
           "name": "Taylor & Francis",
-          "count": 597
+          "count": 605
         },
         {
           "name": "Informa",
-          "count": 524
+          "count": 532
         }
       ],
       "elsevier": {
-        "count": 1165,
-        "share": 11
+        "count": 1209,
+        "share": 11.1
       },
       "partners": [
         {
           "name": "Radboud University Nijmegen",
-          "count": 809
-        },
-        {
-          "name": "University of Amsterdam",
-          "count": 597
-        },
-        {
-          "name": "Vrije Universiteit Amsterdam",
-          "count": 591
+          "count": 641
         },
         {
           "name": "Utrecht University",
-          "count": 588
+          "count": 605
+        },
+        {
+          "name": "Vrije Universiteit Amsterdam",
+          "count": 598
+        },
+        {
+          "name": "University of Amsterdam",
+          "count": 579
         },
         {
           "name": "KU Leuven",
-          "count": 491
+          "count": 564
         },
         {
           "name": "University of London",
-          "count": 439
+          "count": 463
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I193700539,publication_year:2022-2026",
@@ -1487,128 +1487,128 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 33365,
+      "worksTotal": 34288,
       "byYear": [
         {
           "year": 2022,
-          "count": 6833
+          "count": 6903
         },
         {
           "year": 2023,
-          "count": 7041
+          "count": 7085
         },
         {
           "year": 2024,
-          "count": 6721
+          "count": 6852
         },
         {
           "year": 2025,
-          "count": 6864
+          "count": 7117
         },
         {
           "year": 2026,
-          "count": 5906
+          "count": 6331
         }
       ],
       "oa": {
-        "share": 88,
+        "share": 88.2,
         "byStatus": {
-          "gold": 9609,
-          "hybrid": 9288,
-          "green": 7187,
-          "closed": 3998,
-          "bronze": 1947,
-          "diamond": 1336
+          "gold": 9921,
+          "hybrid": 9605,
+          "green": 7345,
+          "closed": 4057,
+          "bronze": 1925,
+          "diamond": 1435
         }
       },
       "funders": [
         {
           "name": "European Commission",
-          "count": 2432
+          "count": 2618
         },
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 2146
+          "count": 2192
         },
         {
           "name": "ZonMw",
-          "count": 1618
+          "count": 1670
         },
         {
           "name": "Universiteit Maastricht",
-          "count": 1461
+          "count": 1508
         },
         {
           "name": "Deutsche Forschungsgemeinschaft",
-          "count": 1111
+          "count": 1140
         },
         {
           "name": "National Institutes of Health",
-          "count": 839
+          "count": 897
         },
         {
           "name": "Medical Research Council",
-          "count": 664
+          "count": 697
         },
         {
-          "name": "National Natural Science Foundation of China",
-          "count": 612
+          "name": "National Institute for Health and Care Research",
+          "count": 630
         }
       ],
       "publishers": [
         {
           "name": "Elsevier BV",
-          "count": 6074
+          "count": 6426
         },
         {
           "name": "Springer Nature",
-          "count": 4810
+          "count": 4908
         },
         {
           "name": "Springer Science+Business Media",
-          "count": 2414
+          "count": 2480
         },
         {
           "name": "Wiley",
-          "count": 2346
+          "count": 2361
         },
         {
           "name": "University of Oxford",
-          "count": 1666
+          "count": 1623
         },
         {
           "name": "Oxford University Press",
-          "count": 1612
+          "count": 1569
         }
       ],
       "elsevier": {
-        "count": 6074,
-        "share": 18.2
+        "count": 6426,
+        "share": 18.7
       },
       "partners": [
         {
           "name": "Maastricht University Medical Centre",
-          "count": 6534
+          "count": 10837
         },
         {
-          "name": "Radboud University Nijmegen",
-          "count": 3656
+          "name": "Care and Public Health Research Institute",
+          "count": 4343
         },
         {
           "name": "Amsterdam University Medical Centers",
-          "count": 2869
+          "count": 3387
         },
         {
           "name": "Radboud University Medical Center",
-          "count": 2496
+          "count": 2579
         },
         {
           "name": "Erasmus MC",
-          "count": 2140
+          "count": 2361
         },
         {
-          "name": "University of Amsterdam",
-          "count": 2090
+          "name": "Radboud University Nijmegen",
+          "count": 2151
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I34352273,publication_year:2022-2026",
@@ -1621,128 +1621,128 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 34628,
+      "worksTotal": 35327,
       "byYear": [
         {
           "year": 2022,
-          "count": 7032
+          "count": 7144
         },
         {
           "year": 2023,
-          "count": 6615
+          "count": 6696
         },
         {
           "year": 2024,
-          "count": 7034
+          "count": 7118
         },
         {
           "year": 2025,
-          "count": 7339
+          "count": 7430
         },
         {
           "year": 2026,
-          "count": 6608
+          "count": 6939
         }
       ],
       "oa": {
-        "share": 98.1,
+        "share": 98.3,
         "byStatus": {
-          "gold": 12232,
-          "green": 11571,
-          "hybrid": 8727,
-          "diamond": 807,
-          "closed": 659,
-          "bronze": 632
+          "gold": 12462,
+          "green": 11868,
+          "hybrid": 8901,
+          "diamond": 839,
+          "bronze": 647,
+          "closed": 610
         }
       },
       "funders": [
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 3557
+          "count": 3620
         },
         {
           "name": "European Commission",
-          "count": 3302
+          "count": 3589
         },
         {
           "name": "Wageningen University and Research",
-          "count": 2426
+          "count": 2462
         },
         {
           "name": "National Natural Science Foundation of China",
-          "count": 1137
+          "count": 1175
         },
         {
           "name": "China Scholarship Council",
-          "count": 1032
+          "count": 1066
         },
         {
           "name": "Horizon 2020 Framework Programme",
-          "count": 1019
+          "count": 1034
         },
         {
           "name": "Ministerie van Landbouw, Natuur en Voedselkwaliteit",
-          "count": 757
+          "count": 764
         },
         {
           "name": "HORIZON EUROPE Framework Programme",
-          "count": 706
+          "count": 742
         }
       ],
       "publishers": [
         {
           "name": "Elsevier BV",
-          "count": 7216
+          "count": 7393
         },
         {
           "name": "Springer Nature",
-          "count": 3556
+          "count": 3591
         },
         {
           "name": "Wiley",
-          "count": 2246
+          "count": 2278
         },
         {
           "name": "Springer Science+Business Media",
-          "count": 1579
+          "count": 1612
         },
         {
           "name": "Multidisciplinary Digital Publishing Institute",
-          "count": 1058
+          "count": 1063
         },
         {
           "name": "Nature Portfolio",
-          "count": 1025
+          "count": 1046
         }
       ],
       "elsevier": {
-        "count": 7216,
-        "share": 20.8
+        "count": 7393,
+        "share": 20.9
       },
       "partners": [
         {
           "name": "Utrecht University",
-          "count": 2133
+          "count": 2195
         },
         {
           "name": "Institut National de Recherche pour l'Agriculture, l'Alimentation et l'Environnement",
-          "count": 1669
+          "count": 1704
         },
         {
           "name": "Centre National de la Recherche Scientifique",
-          "count": 1412
+          "count": 1329
         },
         {
           "name": "Helmholtz Association of German Research Centres",
-          "count": 1276
+          "count": 1315
         },
         {
           "name": "Board of the Swiss Federal Institutes of Technology",
-          "count": 937
+          "count": 984
         },
         {
           "name": "State Council of the People's Republic of China",
-          "count": 888
+          "count": 846
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I913481162,publication_year:2022-2026",
@@ -1755,128 +1755,128 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 2804,
+      "worksTotal": 3072,
       "byYear": [
         {
           "year": 2022,
-          "count": 530
+          "count": 567
         },
         {
           "year": 2023,
-          "count": 597
+          "count": 629
         },
         {
           "year": 2024,
-          "count": 544
+          "count": 593
         },
         {
           "year": 2025,
-          "count": 642
+          "count": 713
         },
         {
           "year": 2026,
-          "count": 491
+          "count": 570
         }
       ],
       "oa": {
-        "share": 85.6,
+        "share": 85,
         "byStatus": {
-          "hybrid": 826,
-          "gold": 743,
-          "green": 581,
-          "closed": 404,
-          "diamond": 151,
-          "bronze": 99
+          "hybrid": 864,
+          "gold": 816,
+          "green": 634,
+          "closed": 460,
+          "diamond": 192,
+          "bronze": 106
         }
       },
       "funders": [
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 164
+          "count": 181
         },
         {
           "name": "European Commission",
-          "count": 117
+          "count": 125
         },
         {
           "name": "ZonMw",
-          "count": 87
+          "count": 97
         },
         {
           "name": "Fonds Wetenschappelijk Onderzoek",
-          "count": 56
+          "count": 60
         },
         {
           "name": "Vlaamse regering",
-          "count": 45
+          "count": 50
         },
         {
           "name": "National Science Foundation",
-          "count": 37
+          "count": 40
+        },
+        {
+          "name": "Schweizerischer Nationalfonds zur Förderung der Wissenschaftlichen Forschung",
+          "count": 30
         },
         {
           "name": "Horizon 2020 Framework Programme",
-          "count": 28
-        },
-        {
-          "name": "Deutsche Forschungsgemeinschaft",
-          "count": 27
+          "count": 29
         }
       ],
       "publishers": [
         {
           "name": "Springer Nature",
-          "count": 495
+          "count": 491
         },
         {
           "name": "Elsevier BV",
-          "count": 385
+          "count": 396
         },
         {
           "name": "Springer Science+Business Media",
-          "count": 356
+          "count": 360
         },
         {
           "name": "Taylor & Francis",
-          "count": 175
-        },
-        {
-          "name": "Wiley",
-          "count": 165
+          "count": 198
         },
         {
           "name": "Informa",
-          "count": 148
+          "count": 173
+        },
+        {
+          "name": "Wiley",
+          "count": 156
         }
       ],
       "elsevier": {
-        "count": 385,
-        "share": 13.7
+        "count": 396,
+        "share": 12.9
       },
       "partners": [
         {
           "name": "Maastricht University",
-          "count": 390
+          "count": 425
         },
         {
           "name": "Radboud University Nijmegen",
-          "count": 237
-        },
-        {
-          "name": "Utrecht University",
-          "count": 133
-        },
-        {
-          "name": "KU Leuven",
-          "count": 131
-        },
-        {
-          "name": "University of Groningen",
-          "count": 123
+          "count": 235
         },
         {
           "name": "Ghent University",
-          "count": 117
+          "count": 182
+        },
+        {
+          "name": "University of Groningen",
+          "count": 150
+        },
+        {
+          "name": "KU Leuven",
+          "count": 149
+        },
+        {
+          "name": "Utrecht University",
+          "count": 137
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I7876267,publication_year:2022-2026",
@@ -1889,128 +1889,128 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 35461,
+      "worksTotal": 38744,
       "byYear": [
         {
           "year": 2022,
-          "count": 8039
+          "count": 8415
         },
         {
           "year": 2023,
-          "count": 8240
+          "count": 8034
         },
         {
           "year": 2024,
-          "count": 7456
+          "count": 7795
         },
         {
           "year": 2025,
-          "count": 6806
+          "count": 8090
         },
         {
           "year": 2026,
-          "count": 4920
+          "count": 6410
         }
       ],
       "oa": {
-        "share": 89,
+        "share": 87.5,
         "byStatus": {
-          "hybrid": 10796,
-          "gold": 10236,
-          "green": 6621,
-          "closed": 3917,
-          "bronze": 3155,
-          "diamond": 736
+          "hybrid": 11365,
+          "gold": 11026,
+          "green": 7306,
+          "closed": 4825,
+          "bronze": 3352,
+          "diamond": 870
         }
       },
       "funders": [
         {
           "name": "ZonMw",
-          "count": 3604
-        },
-        {
-          "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 2250
+          "count": 3774
         },
         {
           "name": "European Commission",
-          "count": 2153
+          "count": 2417
+        },
+        {
+          "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
+          "count": 2361
         },
         {
           "name": "Amsterdam University Medical Centers",
-          "count": 1911
+          "count": 1818
         },
         {
           "name": "National Institutes of Health",
-          "count": 1449
+          "count": 1714
         },
         {
           "name": "National Institute for Health and Care Research",
-          "count": 1081
+          "count": 1277
         },
         {
           "name": "Medical Research Council",
-          "count": 1072
+          "count": 1268
         },
         {
           "name": "Pfizer",
-          "count": 788
+          "count": 923
         }
       ],
       "publishers": [
         {
           "name": "Elsevier BV",
-          "count": 8617
+          "count": 9724
         },
         {
           "name": "Springer Nature",
-          "count": 5608
+          "count": 5742
         },
         {
           "name": "Wiley",
-          "count": 3539
+          "count": 3555
         },
         {
           "name": "Springer Science+Business Media",
-          "count": 2948
+          "count": 3081
         },
         {
           "name": "University of Oxford",
-          "count": 2708
+          "count": 2968
         },
         {
           "name": "Oxford University Press",
-          "count": 2681
+          "count": 2940
         }
       ],
       "elsevier": {
-        "count": 8617,
-        "share": 24.3
+        "count": 9724,
+        "share": 25.1
       },
       "partners": [
         {
           "name": "University of Amsterdam",
-          "count": 17214
+          "count": 14230
+        },
+        {
+          "name": "Amsterdam UMC Location University of Amsterdam",
+          "count": 9176
         },
         {
           "name": "Vrije Universiteit Amsterdam",
-          "count": 9469
+          "count": 9036
         },
         {
-          "name": "Amsterdam Neuroscience",
-          "count": 7668
+          "name": "Amsterdam UMC Location Vrije Universiteit Amsterdam",
+          "count": 7280
         },
         {
           "name": "Erasmus MC",
-          "count": 4909
+          "count": 5715
         },
         {
           "name": "University Medical Center Utrecht",
-          "count": 4809
-        },
-        {
-          "name": "Radboud University Nijmegen",
-          "count": 4663
+          "count": 5314
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I4210151833,publication_year:2022-2026",
@@ -2023,128 +2023,128 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 26404,
+      "worksTotal": 31829,
       "byYear": [
         {
           "year": 2022,
-          "count": 5603
+          "count": 6524
         },
         {
           "year": 2023,
-          "count": 5553
+          "count": 6552
         },
         {
           "year": 2024,
-          "count": 5514
+          "count": 6633
         },
         {
           "year": 2025,
-          "count": 5435
+          "count": 6712
         },
         {
           "year": 2026,
-          "count": 4299
+          "count": 5408
         }
       ],
       "oa": {
-        "share": 91.2,
+        "share": 90.7,
         "byStatus": {
-          "hybrid": 7945,
-          "gold": 7583,
-          "green": 5748,
-          "closed": 2328,
-          "bronze": 2175,
-          "diamond": 625
+          "hybrid": 9519,
+          "gold": 9043,
+          "green": 6780,
+          "closed": 2957,
+          "bronze": 2755,
+          "diamond": 775
         }
       },
       "funders": [
         {
           "name": "ZonMw",
-          "count": 2625
-        },
-        {
-          "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 2036
+          "count": 2996
         },
         {
           "name": "European Commission",
-          "count": 2032
+          "count": 2518
+        },
+        {
+          "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
+          "count": 2328
         },
         {
           "name": "National Institutes of Health",
-          "count": 1379
-        },
-        {
-          "name": "Erasmus Medisch Centrum",
-          "count": 1012
+          "count": 1575
         },
         {
           "name": "Medical Research Council",
-          "count": 969
+          "count": 1158
+        },
+        {
+          "name": "Erasmus Medisch Centrum",
+          "count": 1130
         },
         {
           "name": "National Institute for Health and Care Research",
-          "count": 812
+          "count": 1003
         },
         {
-          "name": "Pfizer",
-          "count": 591
+          "name": "KWF Kankerbestrijding",
+          "count": 735
         }
       ],
       "publishers": [
         {
           "name": "Elsevier BV",
-          "count": 6836
+          "count": 8520
         },
         {
           "name": "Springer Nature",
-          "count": 4268
+          "count": 5026
         },
         {
           "name": "Wiley",
-          "count": 2141
+          "count": 2473
         },
         {
           "name": "Springer Science+Business Media",
-          "count": 1951
+          "count": 2402
         },
         {
           "name": "University of Oxford",
-          "count": 1684
+          "count": 2307
         },
         {
           "name": "Oxford University Press",
-          "count": 1665
+          "count": 2280
         }
       ],
       "elsevier": {
-        "count": 6836,
-        "share": 25.9
+        "count": 8520,
+        "share": 26.8
       },
       "partners": [
         {
-          "name": "Erasmus University Rotterdam",
-          "count": 10596
-        },
-        {
           "name": "Amsterdam University Medical Centers",
-          "count": 4152
+          "count": 6029
         },
         {
-          "name": "Radboud University Nijmegen",
-          "count": 3337
+          "name": "Erasmus University Rotterdam",
+          "count": 4372
         },
         {
           "name": "Leiden University Medical Center",
-          "count": 3203
+          "count": 4140
         },
         {
           "name": "University Medical Center Utrecht",
-          "count": 3072
+          "count": 3940
+        },
+        {
+          "name": "Erasmus MC Cancer Institute",
+          "count": 3676
         },
         {
           "name": "Radboud University Medical Center",
-          "count": 2781
+          "count": 3586
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I2801952686,publication_year:2022-2026",
@@ -2157,128 +2157,128 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 24255,
+      "worksTotal": 25672,
       "byYear": [
         {
           "year": 2022,
-          "count": 5259
+          "count": 5396
         },
         {
           "year": 2023,
-          "count": 5201
+          "count": 5365
         },
         {
           "year": 2024,
-          "count": 4959
+          "count": 5209
         },
         {
           "year": 2025,
-          "count": 4980
+          "count": 5402
         },
         {
           "year": 2026,
-          "count": 3856
+          "count": 4300
         }
       ],
       "oa": {
-        "share": 90.5,
+        "share": 90.4,
         "byStatus": {
-          "hybrid": 7306,
-          "gold": 7206,
-          "green": 4975,
-          "closed": 2307,
-          "bronze": 1941,
-          "diamond": 520
+          "hybrid": 7715,
+          "gold": 7538,
+          "green": 5345,
+          "closed": 2454,
+          "bronze": 2059,
+          "diamond": 561
         }
       },
       "funders": [
         {
           "name": "ZonMw",
-          "count": 1962
+          "count": 2058
         },
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 1822
+          "count": 1929
         },
         {
           "name": "European Commission",
-          "count": 1631
+          "count": 1821
         },
         {
           "name": "National Institutes of Health",
-          "count": 1046
+          "count": 1109
         },
         {
           "name": "National Institute for Health and Care Research",
-          "count": 912
+          "count": 960
         },
         {
           "name": "Medical Research Council",
-          "count": 905
+          "count": 941
         },
         {
           "name": "KWF Kankerbestrijding",
-          "count": 689
+          "count": 732
         },
         {
           "name": "Wellcome Trust",
-          "count": 534
+          "count": 566
         }
       ],
       "publishers": [
         {
           "name": "Elsevier BV",
-          "count": 6058
+          "count": 6602
         },
         {
           "name": "Springer Nature",
-          "count": 4089
+          "count": 4272
         },
         {
           "name": "Springer Science+Business Media",
-          "count": 2036
+          "count": 2134
         },
         {
           "name": "Wiley",
-          "count": 2011
+          "count": 2078
         },
         {
           "name": "University of Oxford",
-          "count": 1812
+          "count": 1862
         },
         {
           "name": "Oxford University Press",
-          "count": 1797
+          "count": 1850
         }
       ],
       "elsevier": {
-        "count": 6058,
-        "share": 25
+        "count": 6602,
+        "share": 25.7
       },
       "partners": [
         {
           "name": "Utrecht University",
-          "count": 10250
+          "count": 11541
         },
         {
           "name": "Amsterdam University Medical Centers",
-          "count": 4964
-        },
-        {
-          "name": "Radboud University Nijmegen",
-          "count": 3901
+          "count": 6128
         },
         {
           "name": "Erasmus MC",
-          "count": 3767
+          "count": 4360
         },
         {
           "name": "Radboud University Medical Center",
+          "count": 3465
+        },
+        {
+          "name": "Leiden University Medical Center",
           "count": 3271
         },
         {
-          "name": "University of Amsterdam",
-          "count": 3222
+          "name": "University Medical Center Groningen",
+          "count": 3202
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I3018483916,publication_year:2022-2026",
@@ -2291,128 +2291,128 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 23775,
+      "worksTotal": 25358,
       "byYear": [
         {
           "year": 2022,
-          "count": 4996
+          "count": 5321
         },
         {
           "year": 2023,
-          "count": 4970
+          "count": 5292
         },
         {
           "year": 2024,
-          "count": 4770
+          "count": 5084
         },
         {
           "year": 2025,
-          "count": 4976
+          "count": 5275
         },
         {
           "year": 2026,
-          "count": 4063
+          "count": 4386
         }
       ],
       "oa": {
-        "share": 87.6,
+        "share": 87.3,
         "byStatus": {
-          "hybrid": 6987,
-          "gold": 6934,
-          "green": 4241,
-          "closed": 2939,
-          "bronze": 2267,
-          "diamond": 407
+          "gold": 7447,
+          "hybrid": 7397,
+          "green": 4464,
+          "closed": 3213,
+          "bronze": 2376,
+          "diamond": 461
         }
       },
       "funders": [
         {
           "name": "ZonMw",
-          "count": 1836
+          "count": 1987
         },
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 1772
+          "count": 1864
         },
         {
           "name": "Leids Universitair Medisch Centrum",
-          "count": 1736
+          "count": 1801
         },
         {
           "name": "European Commission",
-          "count": 1468
+          "count": 1698
         },
         {
           "name": "Universiteit Leiden",
-          "count": 1367
+          "count": 1393
         },
         {
           "name": "National Institutes of Health",
-          "count": 986
+          "count": 1033
         },
         {
           "name": "Medical Research Council",
-          "count": 684
+          "count": 730
         },
         {
           "name": "National Institute for Health and Care Research",
-          "count": 658
+          "count": 701
         }
       ],
       "publishers": [
         {
           "name": "Elsevier BV",
-          "count": 5817
+          "count": 6277
         },
         {
           "name": "Springer Nature",
-          "count": 3702
-        },
-        {
-          "name": "Wiley",
-          "count": 1873
+          "count": 3897
         },
         {
           "name": "University of Oxford",
-          "count": 1857
+          "count": 1974
         },
         {
           "name": "Oxford University Press",
-          "count": 1834
+          "count": 1951
         },
         {
           "name": "Springer Science+Business Media",
-          "count": 1773
+          "count": 1922
+        },
+        {
+          "name": "Wiley",
+          "count": 1911
         }
       ],
       "elsevier": {
-        "count": 5817,
-        "share": 24.5
+        "count": 6277,
+        "share": 24.8
       },
       "partners": [
         {
+          "name": "Leiden University",
+          "count": 6895
+        },
+        {
           "name": "Amsterdam University Medical Centers",
-          "count": 4213
+          "count": 5290
         },
         {
           "name": "Erasmus MC",
-          "count": 4011
-        },
-        {
-          "name": "Radboud University Nijmegen",
-          "count": 3207
+          "count": 4565
         },
         {
           "name": "University Medical Center Utrecht",
-          "count": 2975
+          "count": 3291
         },
         {
           "name": "Radboud University Medical Center",
-          "count": 2697
+          "count": 2955
         },
         {
-          "name": "University of Amsterdam",
-          "count": 2519
+          "name": "University Medical Center Groningen",
+          "count": 2646
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I2800006345,publication_year:2022-2026",
@@ -2425,128 +2425,128 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 24181,
+      "worksTotal": 24650,
       "byYear": [
         {
           "year": 2022,
-          "count": 5318
+          "count": 5422
         },
         {
           "year": 2023,
-          "count": 4961
+          "count": 5067
         },
         {
           "year": 2024,
-          "count": 4910
+          "count": 5009
         },
         {
           "year": 2025,
-          "count": 5139
+          "count": 5189
         },
         {
           "year": 2026,
-          "count": 3853
+          "count": 3963
         }
       ],
       "oa": {
-        "share": 91.4,
+        "share": 91.2,
         "byStatus": {
-          "hybrid": 7876,
-          "gold": 7286,
-          "green": 4453,
-          "closed": 2070,
-          "bronze": 1907,
-          "diamond": 589
+          "hybrid": 7954,
+          "gold": 7372,
+          "green": 4566,
+          "closed": 2170,
+          "bronze": 1966,
+          "diamond": 622
         }
       },
       "funders": [
         {
           "name": "ZonMw",
-          "count": 1838
+          "count": 1878
         },
         {
           "name": "Universitair Medisch Centrum Groningen",
-          "count": 1816
-        },
-        {
-          "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 1498
+          "count": 1849
         },
         {
           "name": "European Commission",
-          "count": 1463
+          "count": 1598
+        },
+        {
+          "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
+          "count": 1513
         },
         {
           "name": "Rijksuniversiteit Groningen",
-          "count": 1167
+          "count": 1189
         },
         {
           "name": "National Institutes of Health",
-          "count": 910
+          "count": 935
         },
         {
           "name": "AstraZeneca",
-          "count": 735
+          "count": 734
         },
         {
           "name": "Medical Research Council",
-          "count": 724
+          "count": 733
         }
       ],
       "publishers": [
         {
           "name": "Elsevier BV",
-          "count": 6353
+          "count": 6505
         },
         {
           "name": "Springer Nature",
-          "count": 3958
-        },
-        {
-          "name": "Wiley",
-          "count": 1934
+          "count": 3996
         },
         {
           "name": "Springer Science+Business Media",
-          "count": 1903
+          "count": 1983
+        },
+        {
+          "name": "Wiley",
+          "count": 1928
         },
         {
           "name": "University of Oxford",
-          "count": 1488
+          "count": 1500
         },
         {
           "name": "Oxford University Press",
-          "count": 1472
+          "count": 1482
         }
       ],
       "elsevier": {
-        "count": 6353,
-        "share": 26.3
+        "count": 6505,
+        "share": 26.4
       },
       "partners": [
         {
           "name": "University of Groningen",
-          "count": 15115
+          "count": 17880
         },
         {
           "name": "Amsterdam University Medical Centers",
-          "count": 3569
-        },
-        {
-          "name": "Radboud University Nijmegen",
-          "count": 3387
+          "count": 4380
         },
         {
           "name": "Erasmus MC",
-          "count": 3346
+          "count": 3693
         },
         {
           "name": "University Medical Center Utrecht",
-          "count": 3063
+          "count": 3219
         },
         {
           "name": "Radboud University Medical Center",
-          "count": 2901
+          "count": 3043
+        },
+        {
+          "name": "Leiden University Medical Center",
+          "count": 2645
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I1334415907,publication_year:2022-2026",
@@ -2559,128 +2559,128 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 26180,
+      "worksTotal": 25056,
       "byYear": [
         {
           "year": 2022,
-          "count": 5455
+          "count": 5313
         },
         {
           "year": 2023,
-          "count": 5395
+          "count": 5221
         },
         {
           "year": 2024,
-          "count": 5217
+          "count": 5002
         },
         {
           "year": 2025,
-          "count": 5592
+          "count": 5234
         },
         {
           "year": 2026,
-          "count": 4521
+          "count": 4286
         }
       ],
       "oa": {
-        "share": 89.2,
+        "share": 88.4,
         "byStatus": {
-          "hybrid": 8099,
-          "gold": 7769,
-          "green": 5022,
-          "closed": 2840,
-          "bronze": 1744,
-          "diamond": 706
+          "hybrid": 7559,
+          "gold": 7394,
+          "green": 4826,
+          "closed": 2914,
+          "bronze": 1696,
+          "diamond": 667
         }
       },
       "funders": [
         {
-          "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 2281
-        },
-        {
           "name": "ZonMw",
-          "count": 2196
+          "count": 2230
         },
         {
           "name": "European Commission",
-          "count": 1925
+          "count": 1877
+        },
+        {
+          "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
+          "count": 1806
         },
         {
           "name": "Radboud Universitair Medisch Centrum",
-          "count": 1701
+          "count": 1721
         },
         {
           "name": "Radboud Universiteit",
-          "count": 1298
+          "count": 1171
         },
         {
           "name": "National Institutes of Health",
-          "count": 1080
+          "count": 1071
         },
         {
           "name": "Medical Research Council",
-          "count": 883
+          "count": 887
         },
         {
           "name": "KWF Kankerbestrijding",
-          "count": 724
+          "count": 689
         }
       ],
       "publishers": [
         {
           "name": "Elsevier BV",
-          "count": 6129
+          "count": 6023
         },
         {
           "name": "Springer Nature",
-          "count": 4564
-        },
-        {
-          "name": "Wiley",
-          "count": 2337
+          "count": 4353
         },
         {
           "name": "Springer Science+Business Media",
-          "count": 2161
+          "count": 2169
+        },
+        {
+          "name": "Wiley",
+          "count": 2039
         },
         {
           "name": "University of Oxford",
-          "count": 1564
+          "count": 1544
         },
         {
           "name": "Oxford University Press",
-          "count": 1542
+          "count": 1522
         }
       ],
       "elsevier": {
-        "count": 6129,
-        "share": 23.4
+        "count": 6023,
+        "share": 24
       },
       "partners": [
         {
           "name": "Radboud University Nijmegen",
-          "count": 26179
-        },
-        {
-          "name": "Radboud Institute for Molecular Life Sciences",
-          "count": 6687
+          "count": 18224
         },
         {
           "name": "Amsterdam University Medical Centers",
-          "count": 4019
+          "count": 4873
         },
         {
           "name": "Erasmus MC",
-          "count": 3532
+          "count": 3998
+        },
+        {
+          "name": "Donders Institute for Brain, Cognition and Behaviour",
+          "count": 3840
         },
         {
           "name": "University Medical Center Utrecht",
-          "count": 3365
+          "count": 3496
         },
         {
-          "name": "University Medical Center",
-          "count": 3015
+          "name": "University Medical Center Groningen",
+          "count": 3039
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I2802934949,publication_year:2022-2026",
@@ -2693,128 +2693,128 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 10278,
+      "worksTotal": 14699,
       "byYear": [
         {
           "year": 2022,
-          "count": 1957
+          "count": 3031
         },
         {
           "year": 2023,
-          "count": 1928
+          "count": 3028
         },
         {
           "year": 2024,
-          "count": 2103
+          "count": 3128
         },
         {
           "year": 2025,
-          "count": 2323
+          "count": 3010
         },
         {
           "year": 2026,
-          "count": 1967
+          "count": 2502
         }
       ],
       "oa": {
-        "share": 86.8,
+        "share": 86.5,
         "byStatus": {
-          "hybrid": 3445,
-          "gold": 2848,
-          "green": 1473,
-          "closed": 1359,
-          "bronze": 855,
-          "diamond": 298
+          "hybrid": 4574,
+          "gold": 4311,
+          "green": 2066,
+          "closed": 1991,
+          "bronze": 1336,
+          "diamond": 421
         }
       },
       "funders": [
         {
           "name": "ZonMw",
-          "count": 745
+          "count": 1007
         },
         {
           "name": "Universiteit Maastricht",
-          "count": 525
+          "count": 760
         },
         {
           "name": "European Commission",
-          "count": 480
+          "count": 727
         },
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 444
+          "count": 634
         },
         {
           "name": "Maastricht Universitair Medisch Centrum",
-          "count": 346
-        },
-        {
-          "name": "AstraZeneca",
-          "count": 241
+          "count": 547
         },
         {
           "name": "National Institute for Health and Care Research",
-          "count": 234
+          "count": 368
         },
         {
-          "name": "KWF Kankerbestrijding",
-          "count": 221
+          "name": "AstraZeneca",
+          "count": 358
+        },
+        {
+          "name": "National Institutes of Health",
+          "count": 335
         }
       ],
       "publishers": [
         {
           "name": "Elsevier BV",
-          "count": 2884
+          "count": 3979
         },
         {
           "name": "Springer Nature",
-          "count": 1614
+          "count": 2199
         },
         {
           "name": "University of Oxford",
-          "count": 909
+          "count": 1219
         },
         {
           "name": "Oxford University Press",
-          "count": 905
+          "count": 1216
         },
         {
           "name": "Springer Science+Business Media",
-          "count": 863
+          "count": 1183
         },
         {
           "name": "Wiley",
-          "count": 845
+          "count": 1169
         }
       ],
       "elsevier": {
-        "count": 2884,
-        "share": 28.1
+        "count": 3979,
+        "share": 27.1
       },
       "partners": [
         {
           "name": "Maastricht University",
-          "count": 6537
-        },
-        {
-          "name": "Radboud University Nijmegen",
-          "count": 2187
-        },
-        {
-          "name": "Radboud University Medical Center",
-          "count": 1620
+          "count": 10923
         },
         {
           "name": "Amsterdam University Medical Centers",
-          "count": 1579
+          "count": 2909
+        },
+        {
+          "name": "Radboud University Medical Center",
+          "count": 2561
         },
         {
           "name": "Erasmus MC",
-          "count": 1352
+          "count": 2461
         },
         {
           "name": "University Medical Center Utrecht",
-          "count": 1295
+          "count": 2116
+        },
+        {
+          "name": "University Medical Center Groningen",
+          "count": 1889
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I2800191616,publication_year:2022-2026",
@@ -2827,56 +2827,56 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 3531,
+      "worksTotal": 3559,
       "byYear": [
         {
           "year": 2022,
-          "count": 733
+          "count": 725
         },
         {
           "year": 2023,
-          "count": 752
+          "count": 753
         },
         {
           "year": 2024,
-          "count": 744
+          "count": 746
         },
         {
           "year": 2025,
-          "count": 739
+          "count": 751
         },
         {
           "year": 2026,
-          "count": 563
+          "count": 584
         }
       ],
       "oa": {
-        "share": 88,
+        "share": 88.1,
         "byStatus": {
-          "gold": 1105,
-          "hybrid": 1095,
-          "green": 630,
-          "closed": 424,
-          "bronze": 238,
-          "diamond": 39
+          "gold": 1114,
+          "hybrid": 1105,
+          "green": 636,
+          "closed": 425,
+          "bronze": 239,
+          "diamond": 40
         }
       },
       "funders": [
         {
           "name": "Stichting Kinderen Kankervrij",
-          "count": 282
+          "count": 284
         },
         {
           "name": "National Cancer Institute",
-          "count": 206
+          "count": 210
         },
         {
           "name": "National Institutes of Health",
-          "count": 190
+          "count": 194
         },
         {
           "name": "European Commission",
-          "count": 175
+          "count": 192
         },
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
@@ -2884,71 +2884,71 @@
         },
         {
           "name": "KWF Kankerbestrijding",
-          "count": 158
+          "count": 159
         },
         {
           "name": "Cancer Research UK",
-          "count": 124
+          "count": 126
         },
         {
           "name": "Deutsche Forschungsgemeinschaft",
-          "count": 112
+          "count": 117
         }
       ],
       "publishers": [
         {
           "name": "Elsevier BV",
-          "count": 880
+          "count": 896
         },
         {
           "name": "Springer Nature",
-          "count": 653
+          "count": 658
         },
         {
           "name": "Wiley",
-          "count": 328
+          "count": 326
         },
         {
           "name": "University of Oxford",
-          "count": 312
+          "count": 313
         },
         {
           "name": "Oxford University Press",
-          "count": 311
+          "count": 312
         },
         {
           "name": "Springer Science+Business Media",
-          "count": 278
+          "count": 281
         }
       ],
       "elsevier": {
-        "count": 880,
-        "share": 24.9
+        "count": 896,
+        "share": 25.2
       },
       "partners": [
         {
           "name": "University Medical Center Utrecht",
-          "count": 1546
+          "count": 1685
         },
         {
           "name": "Utrecht University",
-          "count": 715
-        },
-        {
-          "name": "Erasmus MC",
-          "count": 630
+          "count": 807
         },
         {
           "name": "Amsterdam University Medical Centers",
-          "count": 606
+          "count": 759
+        },
+        {
+          "name": "Erasmus MC",
+          "count": 656
         },
         {
           "name": "Istituti di Ricovero e Cura a Carattere Scientifico",
-          "count": 564
+          "count": 563
         },
         {
-          "name": "Heidelberg University",
-          "count": 500
+          "name": "Wilhelmina Children's Hospital",
+          "count": 484
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I4210127118,publication_year:2022-2026",
@@ -2961,128 +2961,128 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 6687,
+      "worksTotal": 8027,
       "byYear": [
         {
           "year": 2022,
-          "count": 1595
+          "count": 1687
         },
         {
           "year": 2023,
-          "count": 1619
+          "count": 1713
         },
         {
           "year": 2024,
-          "count": 1462
+          "count": 1678
         },
         {
           "year": 2025,
-          "count": 1230
+          "count": 1692
         },
         {
           "year": 2026,
-          "count": 781
+          "count": 1257
         }
       ],
       "oa": {
-        "share": 82.9,
+        "share": 81.8,
         "byStatus": {
-          "gold": 1656,
-          "hybrid": 1582,
-          "green": 1347,
-          "closed": 1144,
-          "bronze": 876,
-          "diamond": 82
+          "hybrid": 1960,
+          "gold": 1958,
+          "green": 1567,
+          "closed": 1460,
+          "bronze": 980,
+          "diamond": 102
         }
       },
       "funders": [
         {
           "name": "KWF Kankerbestrijding",
-          "count": 787
+          "count": 936
         },
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 401
-        },
-        {
-          "name": "National Cancer Institute",
-          "count": 334
+          "count": 466
         },
         {
           "name": "European Commission",
-          "count": 325
+          "count": 395
+        },
+        {
+          "name": "National Cancer Institute",
+          "count": 385
         },
         {
           "name": "AstraZeneca",
-          "count": 313
-        },
-        {
-          "name": "Pfizer",
-          "count": 292
+          "count": 357
         },
         {
           "name": "ZonMw",
-          "count": 280
+          "count": 342
+        },
+        {
+          "name": "Pfizer",
+          "count": 332
         },
         {
           "name": "National Institutes of Health",
-          "count": 262
+          "count": 309
         }
       ],
       "publishers": [
         {
           "name": "Elsevier BV",
-          "count": 2037
+          "count": 2619
         },
         {
           "name": "Springer Nature",
-          "count": 1343
+          "count": 1555
         },
         {
           "name": "Springer Science+Business Media",
-          "count": 652
+          "count": 783
         },
         {
           "name": "Wolters Kluwer",
-          "count": 429
+          "count": 473
         },
         {
           "name": "Lippincott Williams & Wilkins",
-          "count": 407
+          "count": 449
         },
         {
           "name": "Nature Portfolio",
-          "count": 377
+          "count": 421
         }
       ],
       "elsevier": {
-        "count": 2037,
-        "share": 30.5
+        "count": 2619,
+        "share": 32.6
       },
       "partners": [
         {
-          "name": "Oncode Institute",
-          "count": 2460
-        },
-        {
-          "name": "Radboud University Nijmegen",
-          "count": 1494
-        },
-        {
           "name": "Amsterdam University Medical Centers",
-          "count": 1464
-        },
-        {
-          "name": "Erasmus MC",
-          "count": 1408
+          "count": 1980
         },
         {
           "name": "Leiden University Medical Center",
-          "count": 1384
+          "count": 1758
+        },
+        {
+          "name": "Erasmus MC",
+          "count": 1741
         },
         {
           "name": "University Medical Center Utrecht",
-          "count": 1329
+          "count": 1624
+        },
+        {
+          "name": "Radboud University Medical Center",
+          "count": 1461
+        },
+        {
+          "name": "Radboud University Nijmegen",
+          "count": 1001
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I2898336195,publication_year:2022-2026",
@@ -3095,44 +3095,44 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 1475,
+      "worksTotal": 1438,
       "byYear": [
         {
           "year": 2022,
-          "count": 316
+          "count": 311
         },
         {
           "year": 2023,
-          "count": 303
+          "count": 296
         },
         {
           "year": 2024,
-          "count": 309
+          "count": 304
         },
         {
           "year": 2025,
-          "count": 300
+          "count": 279
         },
         {
           "year": 2026,
-          "count": 247
+          "count": 248
         }
       ],
       "oa": {
-        "share": 89,
+        "share": 89.5,
         "byStatus": {
-          "hybrid": 447,
-          "gold": 442,
-          "green": 214,
-          "bronze": 167,
-          "closed": 162,
-          "diamond": 43
+          "hybrid": 446,
+          "gold": 426,
+          "green": 210,
+          "bronze": 164,
+          "closed": 151,
+          "diamond": 41
         }
       },
       "funders": [
         {
           "name": "ZonMw",
-          "count": 194
+          "count": 199
         },
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
@@ -3140,7 +3140,7 @@
         },
         {
           "name": "Pfizer",
-          "count": 51
+          "count": 50
         },
         {
           "name": "Universiteit Maastricht",
@@ -3148,7 +3148,11 @@
         },
         {
           "name": "KWF Kankerbestrijding",
-          "count": 42
+          "count": 41
+        },
+        {
+          "name": "European Commission",
+          "count": 38
         },
         {
           "name": "Bristol-Myers Squibb",
@@ -3157,20 +3161,16 @@
         {
           "name": "Radboud Universiteit",
           "count": 36
-        },
-        {
-          "name": "European Commission",
-          "count": 35
         }
       ],
       "publishers": [
         {
           "name": "Elsevier BV",
-          "count": 392
+          "count": 389
         },
         {
           "name": "Springer Nature",
-          "count": 236
+          "count": 226
         },
         {
           "name": "Springer Science+Business Media",
@@ -3186,37 +3186,37 @@
         },
         {
           "name": "Wiley",
-          "count": 99
+          "count": 95
         }
       ],
       "elsevier": {
-        "count": 392,
-        "share": 26.6
+        "count": 389,
+        "share": 27.1
       },
       "partners": [
         {
-          "name": "Radboud University Nijmegen",
-          "count": 1475
+          "name": "Amsterdam University Medical Centers",
+          "count": 576
         },
         {
-          "name": "Amsterdam University Medical Centers",
-          "count": 480
+          "name": "Maastricht University Medical Centre",
+          "count": 508
         },
         {
           "name": "Maastricht University",
-          "count": 462
+          "count": 491
         },
         {
           "name": "Radboud University Medical Center",
-          "count": 433
+          "count": 439
+        },
+        {
+          "name": "Erasmus MC",
+          "count": 395
         },
         {
           "name": "University Medical Center Utrecht",
-          "count": 371
-        },
-        {
-          "name": "University Medical Center Groningen",
-          "count": 353
+          "count": 383
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I4210126394,publication_year:2022-2026",
@@ -3229,56 +3229,56 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 1566,
+      "worksTotal": 1532,
       "byYear": [
         {
           "year": 2022,
-          "count": 355
+          "count": 351
         },
         {
           "year": 2023,
-          "count": 342
+          "count": 339
         },
         {
           "year": 2024,
-          "count": 337
+          "count": 327
         },
         {
           "year": 2025,
-          "count": 341
+          "count": 318
         },
         {
           "year": 2026,
-          "count": 191
+          "count": 197
         }
       ],
       "oa": {
-        "share": 85.6,
+        "share": 87,
         "byStatus": {
-          "gold": 477,
-          "hybrid": 398,
-          "green": 283,
-          "closed": 226,
-          "bronze": 154,
-          "diamond": 28
+          "gold": 483,
+          "hybrid": 397,
+          "green": 279,
+          "closed": 199,
+          "bronze": 151,
+          "diamond": 23
         }
       },
       "funders": [
         {
           "name": "ZonMw",
-          "count": 177
+          "count": 176
         },
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 135
-        },
-        {
-          "name": "Stichting Sanquin Bloedvoorziening",
-          "count": 118
+          "count": 134
         },
         {
           "name": "European Commission",
-          "count": 110
+          "count": 121
+        },
+        {
+          "name": "Stichting Sanquin Bloedvoorziening",
+          "count": 120
         },
         {
           "name": "Landsteiner Foundation for Blood Transfusion Research",
@@ -3286,33 +3286,33 @@
         },
         {
           "name": "Amsterdam University Medical Centers",
-          "count": 72
-        },
-        {
-          "name": "National Institute for Health and Care Research",
-          "count": 49
+          "count": 73
         },
         {
           "name": "Leids Universitair Medisch Centrum",
+          "count": 51
+        },
+        {
+          "name": "National Institute for Health and Care Research",
           "count": 49
         }
       ],
       "publishers": [
         {
           "name": "Elsevier BV",
-          "count": 446
+          "count": 443
         },
         {
           "name": "Wiley",
-          "count": 296
+          "count": 300
         },
         {
           "name": "Springer Nature",
-          "count": 169
+          "count": 152
         },
         {
           "name": "Nature Portfolio",
-          "count": 72
+          "count": 71
         },
         {
           "name": "Frontiers Media",
@@ -3324,33 +3324,33 @@
         }
       ],
       "elsevier": {
-        "count": 446,
-        "share": 28.5
+        "count": 443,
+        "share": 28.9
       },
       "partners": [
         {
           "name": "Amsterdam University Medical Centers",
-          "count": 709
+          "count": 935
         },
         {
           "name": "University of Amsterdam",
-          "count": 684
+          "count": 640
+        },
+        {
+          "name": "Amsterdam UMC Location University of Amsterdam",
+          "count": 394
         },
         {
           "name": "Leiden University Medical Center",
-          "count": 358
+          "count": 376
         },
         {
           "name": "Erasmus MC",
-          "count": 270
+          "count": 291
         },
         {
           "name": "Utrecht University",
-          "count": 198
-        },
-        {
-          "name": "University Medical Center Utrecht",
-          "count": 193
+          "count": 215
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I3020210244,publication_year:2022-2026",
@@ -3363,128 +3363,128 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 975,
+      "worksTotal": 804,
       "byYear": [
         {
           "year": 2022,
-          "count": 162
+          "count": 126
         },
         {
           "year": 2023,
-          "count": 202
+          "count": 173
         },
         {
           "year": 2024,
-          "count": 188
+          "count": 165
         },
         {
           "year": 2025,
-          "count": 238
+          "count": 188
         },
         {
           "year": 2026,
-          "count": 185
+          "count": 152
         }
       ],
       "oa": {
-        "share": 93.5,
+        "share": 95.3,
         "byStatus": {
-          "gold": 460,
-          "green": 210,
-          "hybrid": 172,
-          "closed": 63,
-          "diamond": 49,
-          "bronze": 21
+          "gold": 396,
+          "green": 193,
+          "hybrid": 126,
+          "closed": 38,
+          "diamond": 35,
+          "bronze": 16
         }
       },
       "funders": [
         {
           "name": "European Commission",
-          "count": 93
+          "count": 94
         },
         {
-          "name": "National Institutes of Health",
-          "count": 92
+          "name": "European and Developing Countries Clinical Trials Partnership",
+          "count": 88
         },
         {
           "name": "Wellcome Trust",
           "count": 87
         },
         {
-          "name": "European and Developing Countries Clinical Trials Partnership",
-          "count": 87
+          "name": "Bill and Melinda Gates Foundation",
+          "count": 80
         },
         {
-          "name": "Bill and Melinda Gates Foundation",
-          "count": 83
+          "name": "National Institutes of Health",
+          "count": 80
         },
         {
           "name": "National Institute of Allergy and Infectious Diseases",
-          "count": 83
-        },
-        {
-          "name": "Medical Research Council",
           "count": 75
         },
         {
+          "name": "Medical Research Council",
+          "count": 64
+        },
+        {
           "name": "Gilead Sciences",
-          "count": 65
+          "count": 59
         }
       ],
       "publishers": [
         {
           "name": "Elsevier BV",
-          "count": 176
+          "count": 149
         },
         {
           "name": "Springer Nature",
-          "count": 166
-        },
-        {
-          "name": "BioMed Central",
-          "count": 81
+          "count": 126
         },
         {
           "name": "Public Library of Science",
-          "count": 72
+          "count": 67
+        },
+        {
+          "name": "BioMed Central",
+          "count": 67
         },
         {
           "name": "Cold Spring Harbor Laboratory Press",
-          "count": 64
+          "count": 57
         },
         {
           "name": "University of Oxford",
-          "count": 62
+          "count": 53
         }
       ],
       "elsevier": {
-        "count": 176,
-        "share": 18.1
+        "count": 149,
+        "share": 18.5
       },
       "partners": [
         {
-          "name": "University of Amsterdam",
-          "count": 521
+          "name": "Amsterdam University Medical Centers",
+          "count": 547
         },
         {
-          "name": "Amsterdam University Medical Centers",
-          "count": 457
+          "name": "University of Amsterdam",
+          "count": 412
+        },
+        {
+          "name": "Amsterdam UMC Location University of Amsterdam",
+          "count": 212
         },
         {
           "name": "University of London",
-          "count": 172
+          "count": 157
         },
         {
           "name": "Wellcome Trust",
-          "count": 143
-        },
-        {
-          "name": "Vrije Universiteit Amsterdam",
           "count": 131
         },
         {
           "name": "London School of Hygiene & Tropical Medicine",
-          "count": 109
+          "count": 113
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I4210124406,publication_year:2022-2026",
@@ -3497,79 +3497,75 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 317,
+      "worksTotal": 176,
       "byYear": [
         {
           "year": 2022,
-          "count": 57
+          "count": 39
         },
         {
           "year": 2023,
-          "count": 44
+          "count": 33
         },
         {
           "year": 2024,
-          "count": 49
+          "count": 27
         },
         {
           "year": 2025,
-          "count": 73
+          "count": 34
         },
         {
           "year": 2026,
-          "count": 94
+          "count": 43
         }
       ],
       "oa": {
-        "share": 90.5,
+        "share": 96.6,
         "byStatus": {
-          "gold": 118,
-          "green": 112,
-          "hybrid": 40,
-          "closed": 30,
-          "diamond": 15,
+          "gold": 71,
+          "green": 69,
+          "hybrid": 21,
+          "diamond": 7,
+          "closed": 6,
           "bronze": 2
         }
       },
       "funders": [
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 68
+          "count": 50
         },
         {
           "name": "European Commission",
-          "count": 57
+          "count": 40
         },
         {
           "name": "National Science Foundation",
           "count": 38
         },
         {
-          "name": "U.S. Department of Energy",
-          "count": 34
-        },
-        {
           "name": "Vetenskapsrådet",
           "count": 34
         },
         {
-          "name": "China Scholarship Council",
-          "count": 34
+          "name": "National Research Foundation",
+          "count": 33
         },
         {
           "name": "Max-Planck-Gesellschaft",
           "count": 32
         },
         {
+          "name": "U.S. Department of Energy",
+          "count": 31
+        },
+        {
           "name": "Ministerio de Ciencia e Innovación",
-          "count": 32
+          "count": 31
         }
       ],
       "publishers": [
-        {
-          "name": "Elsevier BV",
-          "count": 26
-        },
         {
           "name": "Institute of Physics",
           "count": 21
@@ -3579,45 +3575,49 @@
           "count": 21
         },
         {
-          "name": "Multidisciplinary Digital Publishing Institute",
-          "count": 18
+          "name": "EDP Sciences",
+          "count": 11
         },
         {
-          "name": "Springer Nature",
-          "count": 18
+          "name": "Science Press",
+          "count": 11
         },
         {
-          "name": "Springer Science+Business Media",
-          "count": 15
+          "name": "Wiley",
+          "count": 9
+        },
+        {
+          "name": "American Chemical Society",
+          "count": 6
         }
       ],
       "elsevier": {
-        "count": 26,
-        "share": 8.2
+        "count": 6,
+        "share": 3.4
       },
       "partners": [
         {
           "name": "Centre National de la Recherche Scientifique",
-          "count": 59
-        },
-        {
-          "name": "Netherlands Organisation for Applied Scientific Research",
-          "count": 53
+          "count": 50
         },
         {
           "name": "Leiden University",
-          "count": 45
+          "count": 42
+        },
+        {
+          "name": "Consejo Superior de Investigaciones Científicas",
+          "count": 37
         },
         {
           "name": "University of Amsterdam",
           "count": 37
         },
         {
-          "name": "Sorbonne Université",
+          "name": "University of Waterloo",
           "count": 36
         },
         {
-          "name": "NWO-I",
+          "name": "University of Colorado Boulder",
           "count": 36
         }
       ],
@@ -3631,44 +3631,44 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 102,
+      "worksTotal": 51,
       "byYear": [
         {
           "year": 2022,
-          "count": 19
+          "count": 9
         },
         {
           "year": 2023,
-          "count": 20
-        },
-        {
-          "year": 2024,
           "count": 16
         },
         {
+          "year": 2024,
+          "count": 11
+        },
+        {
           "year": 2025,
-          "count": 26
+          "count": 8
         },
         {
           "year": 2026,
-          "count": 21
+          "count": 7
         }
       ],
       "oa": {
-        "share": 71.6,
+        "share": 86.3,
         "byStatus": {
-          "gold": 31,
-          "closed": 29,
-          "green": 18,
-          "hybrid": 13,
-          "diamond": 7,
-          "bronze": 4
+          "gold": 21,
+          "hybrid": 9,
+          "closed": 7,
+          "green": 7,
+          "diamond": 4,
+          "bronze": 3
         }
       },
       "funders": [
         {
           "name": "ZonMw",
-          "count": 10
+          "count": 8
         },
         {
           "name": "HORIZON EUROPE Framework Programme",
@@ -3679,7 +3679,7 @@
           "count": 3
         },
         {
-          "name": "Universiteit Utrecht",
+          "name": "European Commission",
           "count": 3
         },
         {
@@ -3687,38 +3687,38 @@
           "count": 3
         },
         {
-          "name": "European Commission",
+          "name": "Universiteit Utrecht",
           "count": 2
         },
         {
-          "name": "China Scholarship Council",
-          "count": 2
+          "name": "Foundation for the National Institutes of Health",
+          "count": 1
         },
         {
-          "name": "Horizon 2020 Framework Programme",
-          "count": 2
+          "name": "Stryker",
+          "count": 1
         }
       ],
       "publishers": [
         {
           "name": "Elsevier BV",
-          "count": 13
-        },
-        {
-          "name": "Springer Science+Business Media",
           "count": 11
         },
         {
-          "name": "Springer Nature",
-          "count": 9
+          "name": "Springer Science+Business Media",
+          "count": 6
         },
         {
-          "name": "Wiley",
-          "count": 8
+          "name": "Springer Nature",
+          "count": 6
+        },
+        {
+          "name": "Wolters Kluwer",
+          "count": 5
         },
         {
           "name": "Bohn Stafleu van Loghum",
-          "count": 6
+          "count": 4
         },
         {
           "name": "BioMed Central",
@@ -3726,18 +3726,10 @@
         }
       ],
       "elsevier": {
-        "count": 13,
-        "share": 12.7
+        "count": 11,
+        "share": 21.6
       },
       "partners": [
-        {
-          "name": "Utrecht University",
-          "count": 12
-        },
-        {
-          "name": "University Medical Center Utrecht",
-          "count": 7
-        },
         {
           "name": "Anticancer Fund",
           "count": 7
@@ -3747,11 +3739,19 @@
           "count": 6
         },
         {
+          "name": "Leiden University Medical Center",
+          "count": 6
+        },
+        {
           "name": "Patient-Centered Outcomes Research Institute",
           "count": 6
         },
         {
           "name": "Health and Care Research Wales",
+          "count": 6
+        },
+        {
+          "name": "University of Southampton",
           "count": 6
         }
       ],
@@ -3765,128 +3765,128 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 4005,
+      "worksTotal": 6062,
       "byYear": [
         {
           "year": 2022,
-          "count": 759
+          "count": 1240
         },
         {
           "year": 2023,
-          "count": 817
+          "count": 1283
         },
         {
           "year": 2024,
-          "count": 790
+          "count": 1157
         },
         {
           "year": 2025,
-          "count": 882
+          "count": 1268
         },
         {
           "year": 2026,
-          "count": 757
+          "count": 1114
         }
       ],
       "oa": {
-        "share": 81.6,
+        "share": 82,
         "byStatus": {
-          "gold": 1260,
-          "green": 980,
-          "hybrid": 780,
-          "closed": 737,
-          "diamond": 148,
-          "bronze": 100
+          "gold": 1871,
+          "green": 1568,
+          "hybrid": 1139,
+          "closed": 1094,
+          "diamond": 240,
+          "bronze": 150
         }
       },
       "funders": [
         {
           "name": "European Commission",
-          "count": 458
+          "count": 814
         },
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 307
+          "count": 464
         },
         {
           "name": "Horizon 2020 Framework Programme",
-          "count": 130
+          "count": 233
         },
         {
           "name": "HORIZON EUROPE Framework Programme",
-          "count": 106
+          "count": 145
         },
         {
           "name": "ZonMw",
-          "count": 97
+          "count": 139
         },
         {
           "name": "Nederlandse Organisatie voor Toegepast Natuurwetenschappelijk Onderzoek",
-          "count": 89
+          "count": 119
         },
         {
           "name": "Horizon 2020",
-          "count": 72
+          "count": 100
         },
         {
-          "name": "China Scholarship Council",
-          "count": 56
+          "name": "Ministerie van Economische Zaken en Klimaat",
+          "count": 82
         }
       ],
       "publishers": [
         {
           "name": "Elsevier BV",
-          "count": 575
+          "count": 850
         },
         {
           "name": "Springer Nature",
-          "count": 447
+          "count": 603
         },
         {
           "name": "Springer Science+Business Media",
-          "count": 200
-        },
-        {
-          "name": "Wiley",
-          "count": 175
+          "count": 297
         },
         {
           "name": "Multidisciplinary Digital Publishing Institute",
-          "count": 159
+          "count": 244
         },
         {
-          "name": "Nature Portfolio",
-          "count": 87
+          "name": "Wiley",
+          "count": 238
+        },
+        {
+          "name": "Frontiers Media",
+          "count": 122
         }
       ],
       "elsevier": {
-        "count": 575,
-        "share": 14.4
+        "count": 850,
+        "share": 14
       },
       "partners": [
         {
           "name": "Delft University of Technology",
-          "count": 539
+          "count": 839
         },
         {
           "name": "Utrecht University",
-          "count": 403
+          "count": 566
         },
         {
           "name": "Leiden University",
-          "count": 268
+          "count": 377
         },
         {
           "name": "Eindhoven University of Technology",
-          "count": 220
+          "count": 374
         },
         {
           "name": "Centre National de la Recherche Scientifique",
-          "count": 195
+          "count": 286
         },
         {
-          "name": "Wageningen University & Research",
-          "count": 187
+          "name": "Vrije Universiteit Amsterdam",
+          "count": 281
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I148297040,publication_year:2022-2026",
@@ -3899,128 +3899,128 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 1237,
+      "worksTotal": 1514,
       "byYear": [
         {
           "year": 2022,
-          "count": 201
+          "count": 259
         },
         {
           "year": 2023,
-          "count": 267
+          "count": 336
         },
         {
           "year": 2024,
-          "count": 215
+          "count": 248
         },
         {
           "year": 2025,
-          "count": 233
+          "count": 281
         },
         {
           "year": 2026,
-          "count": 321
+          "count": 390
         }
       ],
       "oa": {
-        "share": 93.6,
+        "share": 93.3,
         "byStatus": {
-          "green": 489,
-          "gold": 335,
-          "hybrid": 279,
-          "closed": 79,
-          "diamond": 28,
-          "bronze": 27
+          "green": 596,
+          "gold": 389,
+          "hybrid": 358,
+          "closed": 102,
+          "bronze": 37,
+          "diamond": 32
         }
       },
       "funders": [
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 333
+          "count": 381
         },
         {
           "name": "European Commission",
-          "count": 178
+          "count": 225
         },
         {
           "name": "ZonMw",
-          "count": 116
-        },
-        {
-          "name": "National Institutes of Health",
-          "count": 58
-        },
-        {
-          "name": "Oncode Institute",
-          "count": 50
-        },
-        {
-          "name": "KWF Kankerbestrijding",
-          "count": 42
+          "count": 117
         },
         {
           "name": "Horizon 2020 Framework Programme",
-          "count": 40
+          "count": 66
         },
         {
-          "name": "European Research Council",
-          "count": 37
+          "name": "National Institutes of Health",
+          "count": 62
+        },
+        {
+          "name": "H2020 European Research Council",
+          "count": 60
+        },
+        {
+          "name": "Oncode Institute",
+          "count": 58
+        },
+        {
+          "name": "KWF Kankerbestrijding",
+          "count": 49
         }
       ],
       "publishers": [
         {
           "name": "Springer Nature",
-          "count": 184
+          "count": 233
         },
         {
           "name": "Elsevier BV",
-          "count": 182
+          "count": 207
         },
         {
           "name": "Nature Portfolio",
-          "count": 111
+          "count": 128
         },
         {
           "name": "Wiley",
-          "count": 58
+          "count": 66
         },
         {
           "name": "Springer Science+Business Media",
-          "count": 39
+          "count": 65
         },
         {
-          "name": "Cell Press",
-          "count": 36
+          "name": "University of Oxford",
+          "count": 40
         }
       ],
       "elsevier": {
-        "count": 182,
-        "share": 14.7
+        "count": 207,
+        "share": 13.7
       },
       "partners": [
         {
           "name": "Netherlands Institute for Neuroscience",
-          "count": 377
+          "count": 510
         },
         {
           "name": "University Medical Center Utrecht",
-          "count": 252
+          "count": 354
         },
         {
           "name": "University of Amsterdam",
-          "count": 202
-        },
-        {
-          "name": "Oncode Institute",
-          "count": 190
+          "count": 259
         },
         {
           "name": "Amsterdam University Medical Centers",
-          "count": 180
+          "count": 246
+        },
+        {
+          "name": "Oncode Institute",
+          "count": 245
         },
         {
           "name": "Utrecht University",
-          "count": 150
+          "count": 192
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I1322597698,publication_year:2022-2026",
@@ -4033,128 +4033,128 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 597,
+      "worksTotal": 487,
       "byYear": [
         {
           "year": 2022,
-          "count": 94
+          "count": 69
         },
         {
           "year": 2023,
-          "count": 77
+          "count": 66
         },
         {
           "year": 2024,
-          "count": 76
+          "count": 57
         },
         {
           "year": 2025,
-          "count": 117
+          "count": 78
         },
         {
           "year": 2026,
-          "count": 233
+          "count": 217
         }
       ],
       "oa": {
-        "share": 93,
+        "share": 91.4,
         "byStatus": {
-          "green": 278,
-          "gold": 131,
-          "hybrid": 114,
+          "green": 270,
+          "gold": 86,
+          "hybrid": 69,
           "closed": 42,
-          "bronze": 24,
-          "diamond": 8
+          "bronze": 17,
+          "diamond": 3
         }
       },
       "funders": [
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 117
+          "count": 93
         },
         {
           "name": "European Commission",
-          "count": 40
-        },
-        {
-          "name": "ZonMw",
           "count": 32
         },
         {
-          "name": "Oncode Institute",
-          "count": 31
-        },
-        {
           "name": "KWF Kankerbestrijding",
-          "count": 30
-        },
-        {
-          "name": "National Institutes of Health",
-          "count": 27
+          "count": 28
         },
         {
           "name": "H2020 European Research Council",
+          "count": 27
+        },
+        {
+          "name": "Oncode Institute",
+          "count": 24
+        },
+        {
+          "name": "National Institutes of Health",
           "count": 23
         },
         {
-          "name": "Medical Research Council",
-          "count": 19
+          "name": "ZonMw",
+          "count": 20
+        },
+        {
+          "name": "Horizon 2020 Framework Programme",
+          "count": 18
         }
       ],
       "publishers": [
         {
           "name": "Springer Nature",
-          "count": 126
+          "count": 68
         },
         {
           "name": "Elsevier BV",
-          "count": 84
+          "count": 63
         },
         {
           "name": "Nature Portfolio",
-          "count": 79
-        },
-        {
-          "name": "Springer Science+Business Media",
-          "count": 29
+          "count": 47
         },
         {
           "name": "Cell Press",
-          "count": 21
+          "count": 16
         },
         {
-          "name": "Wiley",
-          "count": 15
+          "name": "University of Oxford",
+          "count": 12
+        },
+        {
+          "name": "Oxford University Press",
+          "count": 11
         }
       ],
       "elsevier": {
-        "count": 84,
-        "share": 14.1
+        "count": 63,
+        "share": 12.9
       },
       "partners": [
         {
           "name": "Royal Netherlands Academy of Arts and Sciences",
-          "count": 597
+          "count": 487
         },
         {
           "name": "University Medical Center Utrecht",
-          "count": 243
+          "count": 198
+        },
+        {
+          "name": "European Molecular Biology Laboratory",
+          "count": 168
+        },
+        {
+          "name": "European Molecular Biology Laboratory",
+          "count": 159
         },
         {
           "name": "UK Research and Innovation",
-          "count": 157
+          "count": 158
         },
         {
           "name": "Medical Research Council",
-          "count": 155
-        },
-        {
-          "name": "Board of the Swiss Federal Institutes of Technology",
-          "count": 149
-        },
-        {
-          "name": "MRC Laboratory of Molecular Biology",
-          "count": 145
+          "count": 157
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I4210115206,publication_year:2022-2026",
@@ -4167,128 +4167,128 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 1844,
+      "worksTotal": 1166,
       "byYear": [
         {
           "year": 2022,
-          "count": 359
+          "count": 218
         },
         {
           "year": 2023,
-          "count": 409
+          "count": 267
         },
         {
           "year": 2024,
-          "count": 364
+          "count": 239
         },
         {
           "year": 2025,
-          "count": 392
+          "count": 226
         },
         {
           "year": 2026,
-          "count": 320
+          "count": 216
         }
       ],
       "oa": {
-        "share": 93.1,
+        "share": 92.5,
         "byStatus": {
-          "gold": 661,
-          "hybrid": 519,
-          "green": 456,
-          "closed": 127,
-          "bronze": 58,
-          "diamond": 23
+          "gold": 425,
+          "green": 317,
+          "hybrid": 294,
+          "closed": 88,
+          "bronze": 30,
+          "diamond": 12
         }
       },
       "funders": [
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 479
-        },
-        {
-          "name": "European Commission",
-          "count": 221
+          "count": 328
         },
         {
           "name": "ZonMw",
-          "count": 208
+          "count": 168
         },
         {
-          "name": "Horizon 2020 Framework Programme",
-          "count": 94
-        },
-        {
-          "name": "National Institutes of Health",
-          "count": 77
-        },
-        {
-          "name": "Deutsche Forschungsgemeinschaft",
-          "count": 76
+          "name": "European Commission",
+          "count": 141
         },
         {
           "name": "European Research Council",
-          "count": 76
+          "count": 52
         },
         {
-          "name": "Alzheimer Nederland",
-          "count": 73
+          "name": "National Institutes of Health",
+          "count": 49
+        },
+        {
+          "name": "Horizon 2020 Framework Programme",
+          "count": 48
+        },
+        {
+          "name": "Deutsche Forschungsgemeinschaft",
+          "count": 43
+        },
+        {
+          "name": "Koninklijke Nederlandse Akademie van Wetenschappen",
+          "count": 37
         }
       ],
       "publishers": [
         {
           "name": "Elsevier BV",
-          "count": 379
+          "count": 230
         },
         {
           "name": "Springer Nature",
-          "count": 285
+          "count": 176
         },
         {
           "name": "Wiley",
-          "count": 193
+          "count": 100
         },
         {
           "name": "Nature Portfolio",
-          "count": 118
+          "count": 85
         },
         {
           "name": "Springer Science+Business Media",
-          "count": 104
+          "count": 62
         },
         {
-          "name": "University of Oxford",
-          "count": 65
+          "name": "eLife Sciences Publications Ltd",
+          "count": 44
         }
       ],
       "elsevier": {
-        "count": 379,
-        "share": 20.6
+        "count": 230,
+        "share": 19.7
       },
       "partners": [
         {
           "name": "Royal Netherlands Academy of Arts and Sciences",
-          "count": 1844
-        },
-        {
-          "name": "University of Amsterdam",
-          "count": 719
+          "count": 1166
         },
         {
           "name": "Amsterdam University Medical Centers",
-          "count": 552
+          "count": 432
+        },
+        {
+          "name": "University of Amsterdam",
+          "count": 342
         },
         {
           "name": "Vrije Universiteit Amsterdam",
-          "count": 454
-        },
-        {
-          "name": "Amsterdam Neuroscience",
-          "count": 426
+          "count": 317
         },
         {
           "name": "Erasmus MC",
-          "count": 193
+          "count": 210
+        },
+        {
+          "name": "Amsterdam Neuroscience",
+          "count": 180
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I1295801184,publication_year:2022-2026",
@@ -4301,128 +4301,128 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 4548,
+      "worksTotal": 5078,
       "byYear": [
         {
           "year": 2022,
-          "count": 995
+          "count": 1058
         },
         {
           "year": 2023,
-          "count": 893
+          "count": 956
         },
         {
           "year": 2024,
-          "count": 904
+          "count": 956
         },
         {
           "year": 2025,
-          "count": 861
+          "count": 897
         },
         {
           "year": 2026,
-          "count": 895
+          "count": 1211
         }
       ],
       "oa": {
-        "share": 93.8,
+        "share": 93.6,
         "byStatus": {
-          "gold": 1699,
-          "green": 1119,
-          "hybrid": 1057,
-          "closed": 282,
-          "diamond": 262,
-          "bronze": 129
+          "gold": 2048,
+          "green": 1207,
+          "hybrid": 1085,
+          "closed": 326,
+          "diamond": 273,
+          "bronze": 139
         }
       },
       "funders": [
         {
           "name": "European Commission",
-          "count": 635
+          "count": 717
         },
         {
           "name": "Rijksinstituut voor Volksgezondheid en Milieu",
-          "count": 520
+          "count": 529
         },
         {
           "name": "Ministerie van Volksgezondheid, Welzijn en Sport",
-          "count": 410
+          "count": 431
         },
         {
           "name": "ZonMw",
-          "count": 365
+          "count": 379
         },
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 247
+          "count": 253
         },
         {
           "name": "Horizon 2020 Framework Programme",
-          "count": 194
+          "count": 215
         },
         {
           "name": "Medical Research Council",
-          "count": 161
+          "count": 164
         },
         {
           "name": "HORIZON EUROPE Framework Programme",
-          "count": 137
+          "count": 143
         }
       ],
       "publishers": [
         {
           "name": "Elsevier BV",
-          "count": 1083
+          "count": 1128
         },
         {
           "name": "Springer Nature",
-          "count": 641
-        },
-        {
-          "name": "BioMed Central",
-          "count": 261
+          "count": 654
         },
         {
           "name": "University of Oxford",
-          "count": 240
+          "count": 297
         },
         {
           "name": "Oxford University Press",
-          "count": 235
+          "count": 291
         },
         {
-          "name": "Cold Spring Harbor Laboratory Press",
-          "count": 188
+          "name": "BioMed Central",
+          "count": 263
+        },
+        {
+          "name": "Springer Science+Business Media",
+          "count": 202
         }
       ],
       "elsevier": {
-        "count": 1083,
-        "share": 23.8
+        "count": 1128,
+        "share": 22.2
       },
       "partners": [
         {
           "name": "Utrecht University",
-          "count": 808
-        },
-        {
-          "name": "University Medical Center Utrecht",
-          "count": 596
+          "count": 955
         },
         {
           "name": "Amsterdam University Medical Centers",
-          "count": 541
+          "count": 685
+        },
+        {
+          "name": "University Medical Center Utrecht",
+          "count": 592
+        },
+        {
+          "name": "Leiden University",
+          "count": 468
         },
         {
           "name": "Wageningen University & Research",
-          "count": 458
+          "count": 466
         },
         {
-          "name": "University of Amsterdam",
-          "count": 449
-        },
-        {
-          "name": "Radboud University Nijmegen",
-          "count": 447
+          "name": "Leiden University Medical Center",
+          "count": 433
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I4210104433,publication_year:2022-2026",
@@ -4435,128 +4435,128 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 2089,
+      "worksTotal": 1886,
       "byYear": [
         {
           "year": 2022,
-          "count": 401
+          "count": 385
         },
         {
           "year": 2023,
-          "count": 428
+          "count": 392
         },
         {
           "year": 2024,
-          "count": 370
+          "count": 326
         },
         {
           "year": 2025,
-          "count": 515
+          "count": 481
         },
         {
           "year": 2026,
-          "count": 375
+          "count": 302
         }
       ],
       "oa": {
-        "share": 92.1,
+        "share": 91.4,
         "byStatus": {
-          "green": 1010,
-          "gold": 405,
-          "hybrid": 393,
-          "closed": 166,
-          "bronze": 67,
-          "diamond": 48
+          "green": 931,
+          "gold": 364,
+          "hybrid": 333,
+          "closed": 162,
+          "bronze": 56,
+          "diamond": 40
         }
       },
       "funders": [
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 514
+          "count": 475
         },
         {
           "name": "European Commission",
-          "count": 275
+          "count": 266
         },
         {
           "name": "National Science Foundation",
-          "count": 83
-        },
-        {
-          "name": "Horizon 2020 Framework Programme",
-          "count": 68
+          "count": 78
         },
         {
           "name": "Engineering and Physical Sciences Research Council",
-          "count": 66
+          "count": 65
+        },
+        {
+          "name": "Horizon 2020 Framework Programme",
+          "count": 62
         },
         {
           "name": "HORIZON EUROPE Framework Programme",
-          "count": 56
-        },
-        {
-          "name": "Agence Nationale de la Recherche",
-          "count": 49
+          "count": 51
         },
         {
           "name": "Deutsche Forschungsgemeinschaft",
-          "count": 44
+          "count": 48
+        },
+        {
+          "name": "Agence Nationale de la Recherche",
+          "count": 46
         }
       ],
       "publishers": [
         {
           "name": "Springer Nature",
-          "count": 342
+          "count": 320
         },
         {
           "name": "Springer Science+Business Media",
-          "count": 284
+          "count": 272
         },
         {
           "name": "Elsevier BV",
-          "count": 191
-        },
-        {
-          "name": "Institute of Electrical and Electronics Engineers",
-          "count": 56
-        },
-        {
-          "name": "Wiley",
-          "count": 54
+          "count": 151
         },
         {
           "name": "Association for Computing Machinery",
-          "count": 49
+          "count": 56
+        },
+        {
+          "name": "Institute of Electrical and Electronics Engineers",
+          "count": 54
+        },
+        {
+          "name": "Verein zur Förderung des Open Access Publizierens in den Quantenwissenschaften",
+          "count": 36
         }
       ],
       "elsevier": {
-        "count": 191,
-        "share": 9.1
+        "count": 151,
+        "share": 8
       },
       "partners": [
         {
           "name": "Dutch Research Council",
-          "count": 2089
+          "count": 1886
         },
         {
           "name": "NWO-I",
-          "count": 2085
+          "count": 1882
         },
         {
           "name": "University of Amsterdam",
-          "count": 368
-        },
-        {
-          "name": "Vrije Universiteit Amsterdam",
-          "count": 252
+          "count": 265
         },
         {
           "name": "Delft University of Technology",
-          "count": 243
+          "count": 249
         },
         {
-          "name": "Leiden University",
-          "count": 207
+          "name": "Vrije Universiteit Amsterdam",
+          "count": 208
+        },
+        {
+          "name": "Helmholtz Association of German Research Centres",
+          "count": 187
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I1341640284,publication_year:2022-2026",
@@ -4569,38 +4569,38 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 1431,
+      "worksTotal": 1445,
       "byYear": [
         {
           "year": 2022,
-          "count": 142
+          "count": 134
         },
         {
           "year": 2023,
-          "count": 109
+          "count": 105
         },
         {
           "year": 2024,
-          "count": 109
+          "count": 107
         },
         {
           "year": 2025,
-          "count": 226
+          "count": 220
         },
         {
           "year": 2026,
-          "count": 845
+          "count": 879
         }
       ],
       "oa": {
-        "share": 97.8,
+        "share": 98.1,
         "byStatus": {
-          "green": 1073,
-          "gold": 240,
-          "hybrid": 52,
-          "closed": 31,
-          "diamond": 29,
-          "bronze": 6
+          "green": 1110,
+          "gold": 226,
+          "hybrid": 48,
+          "closed": 28,
+          "diamond": 28,
+          "bronze": 5
         }
       },
       "funders": [
@@ -4610,23 +4610,19 @@
         },
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 120
+          "count": 118
         },
         {
           "name": "European Commission",
-          "count": 95
+          "count": 101
         },
         {
           "name": "Deutsche Forschungsgemeinschaft",
-          "count": 18
+          "count": 20
         },
         {
           "name": "HORIZON EUROPE Framework Programme",
-          "count": 17
-        },
-        {
-          "name": "National Science Foundation",
-          "count": 12
+          "count": 16
         },
         {
           "name": "Ministerio de Ciencia e Innovación",
@@ -4635,20 +4631,24 @@
         {
           "name": "ASTRON",
           "count": 12
+        },
+        {
+          "name": "Horizon 2020 Framework Programme",
+          "count": 12
         }
       ],
       "publishers": [
         {
           "name": "Elsevier BV",
-          "count": 39
+          "count": 37
         },
         {
           "name": "Springer Nature",
-          "count": 31
+          "count": 30
         },
         {
           "name": "Open Journals",
-          "count": 20
+          "count": 19
         },
         {
           "name": "Copernicus Publications",
@@ -4664,25 +4664,21 @@
         }
       ],
       "elsevier": {
-        "count": 39,
-        "share": 2.7
+        "count": 37,
+        "share": 2.6
       },
       "partners": [
         {
           "name": "Dutch Research Council",
-          "count": 1431
+          "count": 1445
         },
         {
           "name": "SURF",
-          "count": 1431
+          "count": 1445
         },
         {
           "name": "University of Amsterdam",
-          "count": 472
-        },
-        {
-          "name": "Weifang University",
-          "count": 372
+          "count": 469
         },
         {
           "name": "TU Dortmund University",
@@ -4690,7 +4686,11 @@
         },
         {
           "name": "Utrecht University",
-          "count": 277
+          "count": 286
+        },
+        {
+          "name": "Delft University of Technology",
+          "count": 172
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I4210095242,publication_year:2022-2026",
@@ -4703,56 +4703,56 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 3390,
+      "worksTotal": 3417,
       "byYear": [
         {
           "year": 2022,
-          "count": 565
+          "count": 564
         },
         {
           "year": 2023,
-          "count": 641
+          "count": 639
         },
         {
           "year": 2024,
-          "count": 663
+          "count": 664
         },
         {
           "year": 2025,
-          "count": 827
+          "count": 822
         },
         {
           "year": 2026,
-          "count": 694
+          "count": 728
         }
       ],
       "oa": {
-        "share": 93.5,
+        "share": 93.4,
         "byStatus": {
-          "gold": 1570,
-          "green": 897,
-          "hybrid": 546,
-          "closed": 220,
-          "diamond": 91,
-          "bronze": 66
+          "gold": 1579,
+          "green": 922,
+          "hybrid": 542,
+          "closed": 224,
+          "diamond": 88,
+          "bronze": 62
         }
       },
       "funders": [
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 394
+          "count": 395
         },
         {
           "name": "European Commission",
-          "count": 362
+          "count": 394
         },
         {
           "name": "Deltares",
-          "count": 295
+          "count": 299
         },
         {
           "name": "Horizon 2020 Framework Programme",
-          "count": 119
+          "count": 120
         },
         {
           "name": "Rijkswaterstaat",
@@ -4764,21 +4764,21 @@
         },
         {
           "name": "HORIZON EUROPE Framework Programme",
-          "count": 78
+          "count": 79
         },
         {
           "name": "Technische Universiteit Delft",
-          "count": 70
+          "count": 69
         }
       ],
       "publishers": [
         {
           "name": "Elsevier BV",
-          "count": 409
+          "count": 414
         },
         {
           "name": "Springer Nature",
-          "count": 287
+          "count": 279
         },
         {
           "name": "Wiley",
@@ -4786,45 +4786,45 @@
         },
         {
           "name": "Nature Portfolio",
-          "count": 118
+          "count": 119
         },
         {
           "name": "Springer Science+Business Media",
-          "count": 112
+          "count": 104
         },
         {
           "name": "Copernicus Publications",
-          "count": 100
+          "count": 102
         }
       ],
       "elsevier": {
-        "count": 409,
+        "count": 414,
         "share": 12.1
       },
       "partners": [
         {
           "name": "Delft University of Technology",
-          "count": 878
+          "count": 913
         },
         {
           "name": "Vrije Universiteit Amsterdam",
-          "count": 606
-        },
-        {
-          "name": "Utrecht University",
-          "count": 496
+          "count": 627
         },
         {
           "name": "Wageningen University & Research",
-          "count": 491
+          "count": 515
+        },
+        {
+          "name": "Utrecht University",
+          "count": 499
+        },
+        {
+          "name": "Helmholtz Association of German Research Centres",
+          "count": 353
         },
         {
           "name": "Dutch Research Council",
-          "count": 288
-        },
-        {
-          "name": "NWO-I",
-          "count": 274
+          "count": 282
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I4210103266,publication_year:2022-2026",
@@ -4837,64 +4837,64 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 1886,
+      "worksTotal": 1923,
       "byYear": [
         {
           "year": 2022,
-          "count": 360
+          "count": 364
         },
         {
           "year": 2023,
-          "count": 351
+          "count": 355
         },
         {
           "year": 2024,
-          "count": 315
+          "count": 321
         },
         {
           "year": 2025,
-          "count": 366
+          "count": 369
         },
         {
           "year": 2026,
-          "count": 494
+          "count": 514
         }
       ],
       "oa": {
-        "share": 88.9,
+        "share": 89.5,
         "byStatus": {
-          "gold": 1035,
-          "green": 413,
-          "closed": 209,
-          "hybrid": 159,
-          "bronze": 58,
-          "diamond": 12
+          "gold": 1054,
+          "green": 436,
+          "closed": 201,
+          "hybrid": 164,
+          "bronze": 57,
+          "diamond": 11
         }
       },
       "funders": [
         {
           "name": "National Aeronautics and Space Administration",
-          "count": 510
+          "count": 520
         },
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 317
+          "count": 326
         },
         {
           "name": "European Commission",
-          "count": 278
+          "count": 294
         },
         {
           "name": "Science and Technology Facilities Council",
-          "count": 257
+          "count": 263
         },
         {
           "name": "National Science Foundation",
-          "count": 190
+          "count": 208
         },
         {
           "name": "European Space Agency",
-          "count": 167
+          "count": 170
         },
         {
           "name": "Space Telescope Science Institute",
@@ -4902,63 +4902,63 @@
         },
         {
           "name": "Japan Society for the Promotion of Science",
-          "count": 120
+          "count": 123
         }
       ],
       "publishers": [
         {
           "name": "EDP Sciences",
-          "count": 261
+          "count": 271
         },
         {
           "name": "Science Press",
-          "count": 256
+          "count": 266
         },
         {
           "name": "Institute of Physics",
-          "count": 167
+          "count": 171
         },
         {
           "name": "University of Oxford",
-          "count": 149
+          "count": 150
         },
         {
           "name": "Oxford University Press",
-          "count": 148
+          "count": 149
         },
         {
           "name": "IOP Publishing",
-          "count": 139
+          "count": 142
         }
       ],
       "elsevier": {
-        "count": 27,
-        "share": 1.4
+        "count": 24,
+        "share": 1.2
       },
       "partners": [
         {
           "name": "Dutch Research Council",
-          "count": 1886
+          "count": 1923
         },
         {
           "name": "National Aeronautics and Space Administration",
-          "count": 549
+          "count": 568
         },
         {
           "name": "Leiden University",
-          "count": 498
+          "count": 507
         },
         {
           "name": "Centre National de la Recherche Scientifique",
-          "count": 451
+          "count": 457
+        },
+        {
+          "name": "Leiden Observatory",
+          "count": 439
         },
         {
           "name": "Institut National des Sciences de l'Univers",
-          "count": 359
-        },
-        {
-          "name": "Goddard Space Flight Center",
-          "count": 338
+          "count": 386
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I49206369,publication_year:2022-2026",
@@ -4971,36 +4971,36 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 2203,
+      "worksTotal": 2166,
       "byYear": [
         {
           "year": 2022,
-          "count": 331
+          "count": 326
         },
         {
           "year": 2023,
-          "count": 519
+          "count": 514
         },
         {
           "year": 2024,
-          "count": 428
+          "count": 431
         },
         {
           "year": 2025,
-          "count": 480
+          "count": 476
         },
         {
           "year": 2026,
-          "count": 445
+          "count": 419
         }
       ],
       "oa": {
         "share": 96.2,
         "byStatus": {
-          "diamond": 729,
-          "hybrid": 650,
-          "green": 454,
-          "gold": 232,
+          "diamond": 733,
+          "hybrid": 652,
+          "green": 408,
+          "gold": 235,
           "closed": 83,
           "bronze": 55
         }
@@ -5008,35 +5008,35 @@
       "funders": [
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 1349
+          "count": 1333
         },
         {
           "name": "National Science Foundation",
-          "count": 1185
+          "count": 1175
         },
         {
           "name": "European Commission",
-          "count": 1074
+          "count": 1081
         },
         {
           "name": "Science and Technology Facilities Council",
-          "count": 1046
+          "count": 1043
         },
         {
           "name": "Centre National de la Recherche Scientifique",
-          "count": 1036
+          "count": 1030
         },
         {
           "name": "U.S. Department of Energy",
-          "count": 954
+          "count": 957
         },
         {
           "name": "Institut National de Physique Nucléaire et de Physique des Particules",
-          "count": 893
+          "count": 895
         },
         {
           "name": "Deutsche Forschungsgemeinschaft",
-          "count": 888
+          "count": 887
         }
       ],
       "publishers": [
@@ -5046,11 +5046,11 @@
         },
         {
           "name": "American Physical Society",
-          "count": 538
+          "count": 545
         },
         {
           "name": "Springer Science+Business Media",
-          "count": 234
+          "count": 232
         },
         {
           "name": "Institute of Physics",
@@ -5067,32 +5067,32 @@
       ],
       "elsevier": {
         "count": 84,
-        "share": 3.8
+        "share": 3.9
       },
       "partners": [
         {
           "name": "Dutch Research Council",
-          "count": 2203
+          "count": 2166
         },
         {
           "name": "NWO-I",
-          "count": 2195
+          "count": 2158
         },
         {
           "name": "Istituto Nazionale di Fisica Nucleare",
-          "count": 1254
+          "count": 1252
         },
         {
           "name": "Centre National de la Recherche Scientifique",
-          "count": 1139
+          "count": 1135
         },
         {
           "name": "Institut National de Physique Nucléaire et de Physique des Particules",
-          "count": 1052
+          "count": 1055
         },
         {
           "name": "Université Paris Cité",
-          "count": 1031
+          "count": 1026
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I4210093566,publication_year:2022-2026",
@@ -5105,128 +5105,128 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 2733,
+      "worksTotal": 1498,
       "byYear": [
         {
           "year": 2022,
-          "count": 370
+          "count": 286
         },
         {
           "year": 2023,
-          "count": 430
+          "count": 294
         },
         {
           "year": 2024,
-          "count": 437
+          "count": 289
         },
         {
           "year": 2025,
-          "count": 589
+          "count": 268
         },
         {
           "year": 2026,
-          "count": 907
+          "count": 361
         }
       ],
       "oa": {
-        "share": 91.8,
+        "share": 90.7,
         "byStatus": {
-          "green": 1055,
-          "gold": 1024,
-          "hybrid": 242,
-          "closed": 224,
-          "bronze": 110,
-          "diamond": 78
+          "gold": 714,
+          "green": 416,
+          "hybrid": 162,
+          "closed": 140,
+          "bronze": 43,
+          "diamond": 23
         }
       },
       "funders": [
         {
-          "name": "Science and Technology Facilities Council",
-          "count": 490
-        },
-        {
-          "name": "National Aeronautics and Space Administration",
-          "count": 473
-        },
-        {
-          "name": "National Science Foundation",
-          "count": 455
-        },
-        {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 453
+          "count": 414
+        },
+        {
+          "name": "Science and Technology Facilities Council",
+          "count": 361
         },
         {
           "name": "European Commission",
-          "count": 443
+          "count": 351
         },
         {
-          "name": "Deutsche Forschungsgemeinschaft",
-          "count": 251
+          "name": "National Aeronautics and Space Administration",
+          "count": 327
+        },
+        {
+          "name": "National Science Foundation",
+          "count": 294
         },
         {
           "name": "Centre National de la Recherche Scientifique",
-          "count": 249
+          "count": 223
         },
         {
-          "name": "U.S. Department of Energy",
-          "count": 218
+          "name": "Max-Planck-Gesellschaft",
+          "count": 190
+        },
+        {
+          "name": "Bundesministerium für Bildung und Forschung",
+          "count": 179
         }
       ],
       "publishers": [
         {
           "name": "EDP Sciences",
-          "count": 496
+          "count": 359
         },
         {
           "name": "Science Press",
-          "count": 476
-        },
-        {
-          "name": "Institute of Physics",
-          "count": 284
+          "count": 339
         },
         {
           "name": "University of Oxford",
-          "count": 255
+          "count": 203
         },
         {
           "name": "Oxford University Press",
-          "count": 254
+          "count": 203
+        },
+        {
+          "name": "Institute of Physics",
+          "count": 178
         },
         {
           "name": "IOP Publishing",
-          "count": 199
+          "count": 140
         }
       ],
       "elsevier": {
-        "count": 33,
-        "share": 1.2
+        "count": 17,
+        "share": 1.1
       },
       "partners": [
         {
           "name": "Dutch Research Council",
-          "count": 2733
+          "count": 1498
         },
         {
           "name": "NWO-I",
-          "count": 2729
+          "count": 1494
         },
         {
           "name": "National Institute for Astrophysics",
-          "count": 699
-        },
-        {
-          "name": "Centre National de la Recherche Scientifique",
-          "count": 651
+          "count": 576
         },
         {
           "name": "Max Planck Society",
-          "count": 570
+          "count": 470
         },
         {
-          "name": "Institut National des Sciences de l'Univers",
-          "count": 484
+          "name": "University of Groningen",
+          "count": 464
+        },
+        {
+          "name": "Centre National de la Recherche Scientifique",
+          "count": 458
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I922237871,publication_year:2022-2026",
@@ -5239,15 +5239,15 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 3094,
+      "worksTotal": 3131,
       "byYear": [
         {
           "year": 2022,
-          "count": 589
+          "count": 598
         },
         {
           "year": 2023,
-          "count": 636
+          "count": 653
         },
         {
           "year": 2024,
@@ -5255,32 +5255,32 @@
         },
         {
           "year": 2025,
-          "count": 694
+          "count": 693
         },
         {
           "year": 2026,
-          "count": 636
+          "count": 648
         }
       ],
       "oa": {
-        "share": 95.3,
+        "share": 95.5,
         "byStatus": {
-          "gold": 1404,
-          "green": 742,
-          "hybrid": 672,
-          "closed": 144,
+          "gold": 1417,
+          "green": 777,
+          "hybrid": 665,
+          "closed": 141,
           "bronze": 84,
-          "diamond": 48
+          "diamond": 47
         }
       },
       "funders": [
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 636
+          "count": 638
         },
         {
           "name": "European Commission",
-          "count": 409
+          "count": 447
         },
         {
           "name": "Koninklijk Nederlands Instituut voor Onderzoek der Zee",
@@ -5288,37 +5288,37 @@
         },
         {
           "name": "National Science Foundation",
-          "count": 237
+          "count": 246
         },
         {
           "name": "Natural Environment Research Council",
-          "count": 143
+          "count": 144
         },
         {
           "name": "Deutsche Forschungsgemeinschaft",
-          "count": 141
-        },
-        {
-          "name": "Horizon 2020 Framework Programme",
-          "count": 115
+          "count": 142
         },
         {
           "name": "Netherlands Earth System Science Centre",
+          "count": 116
+        },
+        {
+          "name": "Horizon 2020 Framework Programme",
           "count": 114
         }
       ],
       "publishers": [
         {
           "name": "Elsevier BV",
-          "count": 372
+          "count": 366
         },
         {
           "name": "Springer Nature",
-          "count": 334
+          "count": 329
         },
         {
           "name": "Wiley",
-          "count": 312
+          "count": 314
         },
         {
           "name": "Nature Portfolio",
@@ -5326,7 +5326,7 @@
         },
         {
           "name": "Frontiers Media",
-          "count": 112
+          "count": 113
         },
         {
           "name": "Copernicus Publications",
@@ -5334,33 +5334,33 @@
         }
       ],
       "elsevier": {
-        "count": 372,
-        "share": 12
+        "count": 366,
+        "share": 11.7
       },
       "partners": [
         {
           "name": "Dutch Research Council",
-          "count": 3094
+          "count": 3131
         },
         {
           "name": "NWO-I",
-          "count": 3093
+          "count": 3130
         },
         {
           "name": "Utrecht University",
-          "count": 1097
+          "count": 1160
         },
         {
           "name": "University of Groningen",
-          "count": 432
+          "count": 441
         },
         {
           "name": "Centre National de la Recherche Scientifique",
-          "count": 395
+          "count": 403
         },
         {
           "name": "Wageningen University & Research",
-          "count": 324
+          "count": 358
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I4210107283,publication_year:2022-2026",
@@ -5373,36 +5373,36 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 2725,
+      "worksTotal": 2769,
       "byYear": [
         {
           "year": 2022,
-          "count": 504
+          "count": 521
         },
         {
           "year": 2023,
-          "count": 566
+          "count": 567
         },
         {
           "year": 2024,
-          "count": 568
+          "count": 570
         },
         {
           "year": 2025,
-          "count": 566
+          "count": 570
         },
         {
           "year": 2026,
-          "count": 521
+          "count": 541
         }
       ],
       "oa": {
-        "share": 96.3,
+        "share": 96.2,
         "byStatus": {
-          "gold": 2060,
-          "green": 331,
-          "hybrid": 169,
-          "closed": 102,
+          "gold": 2074,
+          "green": 354,
+          "hybrid": 173,
+          "closed": 105,
           "diamond": 38,
           "bronze": 25
         }
@@ -5410,19 +5410,19 @@
       "funders": [
         {
           "name": "European Commission",
-          "count": 353
+          "count": 380
         },
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 225
+          "count": 228
         },
         {
           "name": "National Aeronautics and Space Administration",
-          "count": 188
+          "count": 194
         },
         {
           "name": "European Space Agency",
-          "count": 129
+          "count": 134
         },
         {
           "name": "National Natural Science Foundation of China",
@@ -5430,21 +5430,21 @@
         },
         {
           "name": "National Science Foundation",
-          "count": 99
+          "count": 102
         },
         {
           "name": "Natural Environment Research Council",
-          "count": 92
+          "count": 93
         },
         {
           "name": "Horizon 2020 Framework Programme",
-          "count": 91
+          "count": 92
         }
       ],
       "publishers": [
         {
           "name": "Copernicus Publications",
-          "count": 229
+          "count": 233
         },
         {
           "name": "Springer Nature",
@@ -5456,7 +5456,7 @@
         },
         {
           "name": "American Geophysical Union",
-          "count": 64
+          "count": 65
         },
         {
           "name": "American Meteorological Society",
@@ -5474,27 +5474,27 @@
       "partners": [
         {
           "name": "Ministry of Infrastructure and Water Management",
-          "count": 2725
+          "count": 2769
         },
         {
           "name": "Government of Netherlands",
-          "count": 2725
+          "count": 2769
         },
         {
           "name": "Centre National de la Recherche Scientifique",
-          "count": 415
+          "count": 430
         },
         {
           "name": "Delft University of Technology",
-          "count": 365
+          "count": 375
         },
         {
           "name": "Utrecht University",
-          "count": 344
+          "count": 354
         },
         {
           "name": "Institut National des Sciences de l'Univers",
-          "count": 335
+          "count": 346
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I1309140791,publication_year:2022-2026",
@@ -5507,128 +5507,128 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 6257,
+      "worksTotal": 8301,
       "byYear": [
         {
           "year": 2022,
-          "count": 497
+          "count": 496
         },
         {
           "year": 2023,
-          "count": 511
+          "count": 933
         },
         {
           "year": 2024,
-          "count": 515
+          "count": 517
         },
         {
           "year": 2025,
-          "count": 2032
+          "count": 2298
         },
         {
           "year": 2026,
-          "count": 2702
+          "count": 4057
         }
       ],
       "oa": {
-        "share": 96.1,
+        "share": 97.2,
         "byStatus": {
-          "green": 3823,
-          "gold": 1342,
-          "hybrid": 510,
-          "closed": 243,
-          "diamond": 232,
-          "bronze": 107
+          "green": 5467,
+          "gold": 1746,
+          "hybrid": 512,
+          "closed": 235,
+          "diamond": 235,
+          "bronze": 106
         }
       },
       "funders": [
         {
           "name": "European Commission",
-          "count": 254
+          "count": 274
         },
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 204
+          "count": 208
         },
         {
           "name": "National Science Foundation",
-          "count": 139
+          "count": 142
         },
         {
           "name": "Naturalis Biodiversity Center",
-          "count": 126
+          "count": 132
         },
         {
           "name": "Deutsche Forschungsgemeinschaft",
-          "count": 122
+          "count": 125
         },
         {
           "name": "Natural Environment Research Council",
-          "count": 118
-        },
-        {
-          "name": "Sight Research UK",
-          "count": 75
+          "count": 119
         },
         {
           "name": "Agence Nationale de la Recherche",
+          "count": 79
+        },
+        {
+          "name": "Sight Research UK",
           "count": 75
         }
       ],
       "publishers": [
         {
           "name": "Springer Nature",
-          "count": 277
+          "count": 275
         },
         {
           "name": "Wiley",
-          "count": 270
+          "count": 268
         },
         {
           "name": "Elsevier BV",
-          "count": 186
+          "count": 189
         },
         {
           "name": "Pensoft Publishers",
-          "count": 152
+          "count": 153
         },
         {
           "name": "Magnolia Press",
-          "count": 121
+          "count": 139
         },
         {
           "name": "Nature Portfolio",
-          "count": 120
+          "count": 119
         }
       ],
       "elsevier": {
-        "count": 186,
-        "share": 3
+        "count": 189,
+        "share": 2.3
       },
       "partners": [
         {
           "name": "University of Mons",
-          "count": 1420
+          "count": 1422
         },
         {
           "name": "Board of the Swiss Federal Institutes of Technology",
-          "count": 1301
+          "count": 1322
         },
         {
-          "name": "Charles University",
-          "count": 1269
+          "name": "University of Vienna",
+          "count": 1302
         },
         {
           "name": "ETH Zurich",
-          "count": 1262
+          "count": 1281
         },
         {
-          "name": "University of Neuchâtel",
-          "count": 1252
+          "name": "Charles University",
+          "count": 1274
         },
         {
-          "name": "Royal Museum for Central Africa",
-          "count": 1236
+          "name": "Christian-Albrechts-Universität zu Kiel",
+          "count": 1264
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I1295562517,publication_year:2022-2026",
@@ -5641,128 +5641,128 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 225,
+      "worksTotal": 422,
       "byYear": [
         {
           "year": 2022,
-          "count": 45
+          "count": 77
         },
         {
           "year": 2023,
-          "count": 48
+          "count": 91
         },
         {
           "year": 2024,
-          "count": 35
+          "count": 74
         },
         {
           "year": 2025,
-          "count": 52
+          "count": 105
         },
         {
           "year": 2026,
-          "count": 45
+          "count": 75
         }
       ],
       "oa": {
-        "share": 74.7,
+        "share": 70.1,
         "byStatus": {
-          "green": 60,
-          "closed": 57,
-          "gold": 47,
-          "hybrid": 37,
-          "diamond": 22,
-          "bronze": 2
+          "closed": 126,
+          "gold": 96,
+          "green": 83,
+          "hybrid": 70,
+          "diamond": 44,
+          "bronze": 3
         }
       },
       "funders": [
         {
           "name": "European Commission",
-          "count": 24
+          "count": 77
         },
         {
           "name": "Horizon 2020 Framework Programme",
-          "count": 9
+          "count": 21
         },
         {
           "name": "Cleansky",
-          "count": 8
-        },
-        {
-          "name": "Conselho Nacional de Desenvolvimento Científico e Tecnológico",
-          "count": 8
-        },
-        {
-          "name": "Coordenação de Aperfeiçoamento de Pessoal de Nível Superior",
-          "count": 6
-        },
-        {
-          "name": "National Aeronautics and Space Administration",
-          "count": 4
-        },
-        {
-          "name": "ZonMw",
-          "count": 4
+          "count": 15
         },
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 4
+          "count": 12
+        },
+        {
+          "name": "HORIZON EUROPE Framework Programme",
+          "count": 7
+        },
+        {
+          "name": "Leprosy Research Initiative",
+          "count": 6
+        },
+        {
+          "name": "Technische Universiteit Delft",
+          "count": 5
+        },
+        {
+          "name": "European and Developing Countries Clinical Trials Partnership",
+          "count": 5
         }
       ],
       "publishers": [
         {
           "name": "Springer Nature",
-          "count": 30
+          "count": 52
         },
         {
           "name": "Elsevier BV",
-          "count": 20
-        },
-        {
-          "name": "Institute of Physics",
-          "count": 11
-        },
-        {
-          "name": "IOP Publishing",
-          "count": 11
-        },
-        {
-          "name": "Springer Science+Business Media",
-          "count": 10
+          "count": 41
         },
         {
           "name": "Multidisciplinary Digital Publishing Institute",
-          "count": 9
+          "count": 25
+        },
+        {
+          "name": "Springer Science+Business Media",
+          "count": 20
+        },
+        {
+          "name": "Springer International Publishing",
+          "count": 15
+        },
+        {
+          "name": "Institute of Physics",
+          "count": 14
         }
       ],
       "elsevier": {
-        "count": 20,
-        "share": 8.9
+        "count": 41,
+        "share": 9.7
       },
       "partners": [
         {
+          "name": "Delft University of Technology",
+          "count": 71
+        },
+        {
           "name": "Helmholtz Association of German Research Centres",
-          "count": 22
+          "count": 55
         },
         {
           "name": "Deutsches Zentrum für Luft- und Raumfahrt e. V. (DLR)",
+          "count": 55
+        },
+        {
+          "name": "Netherlands Leprosy Relief",
+          "count": 42
+        },
+        {
+          "name": "University of Twente",
+          "count": 32
+        },
+        {
+          "name": "Cranfield University",
           "count": 22
-        },
-        {
-          "name": "Delft University of Technology",
-          "count": 17
-        },
-        {
-          "name": "Office National d'Études et de Recherches Aérospatiales",
-          "count": 10
-        },
-        {
-          "name": "University of Amsterdam",
-          "count": 10
-        },
-        {
-          "name": "Leiden University Medical Center",
-          "count": 9
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I184851948,publication_year:2022-2026",
@@ -5775,82 +5775,82 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 934,
+      "worksTotal": 965,
       "byYear": [
         {
           "year": 2022,
-          "count": 168
+          "count": 152
         },
         {
           "year": 2023,
-          "count": 196
+          "count": 184
         },
         {
           "year": 2024,
-          "count": 163
+          "count": 157
         },
         {
           "year": 2025,
-          "count": 183
+          "count": 243
         },
         {
           "year": 2026,
-          "count": 224
+          "count": 229
         }
       ],
       "oa": {
-        "share": 96.6,
+        "share": 97,
         "byStatus": {
-          "gold": 358,
-          "green": 255,
-          "hybrid": 240,
-          "bronze": 37,
-          "closed": 32,
+          "green": 330,
+          "gold": 317,
+          "hybrid": 239,
+          "bronze": 38,
+          "closed": 29,
           "diamond": 12
         }
       },
       "funders": [
         {
           "name": "European Commission",
-          "count": 194
+          "count": 196
         },
         {
           "name": "HORIZON EUROPE Framework Programme",
-          "count": 77
+          "count": 79
         },
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 75
+          "count": 76
         },
         {
           "name": "Horizon 2020 Framework Programme",
-          "count": 74
+          "count": 71
         },
         {
           "name": "Planbureau voor de Leefomgeving",
-          "count": 55
-        },
-        {
-          "name": "National Natural Science Foundation of China",
-          "count": 31
-        },
-        {
-          "name": "Natural Environment Research Council",
-          "count": 22
+          "count": 57
         },
         {
           "name": "Svenska Forskningsrådet Formas",
+          "count": 22
+        },
+        {
+          "name": "Natural Environment Research Council",
           "count": 21
+        },
+        {
+          "name": "Bundesministerium für Bildung und Forschung",
+          "count": 20
         }
       ],
       "publishers": [
         {
           "name": "Elsevier BV",
-          "count": 141
+          "count": 140
         },
         {
           "name": "Springer Nature",
-          "count": 136
+          "count": 131
         },
         {
           "name": "Nature Portfolio",
@@ -5858,33 +5858,33 @@
         },
         {
           "name": "Wiley",
-          "count": 65
-        },
-        {
-          "name": "Springer Science+Business Media",
-          "count": 38
+          "count": 64
         },
         {
           "name": "Institute of Physics",
           "count": 37
+        },
+        {
+          "name": "IOP Publishing",
+          "count": 37
         }
       ],
       "elsevier": {
-        "count": 141,
-        "share": 15.1
+        "count": 140,
+        "share": 14.5
       },
       "partners": [
         {
           "name": "Ministry of Infrastructure and Water Management",
-          "count": 934
+          "count": 965
         },
         {
           "name": "Government of Netherlands",
-          "count": 934
+          "count": 965
         },
         {
           "name": "Utrecht University",
-          "count": 398
+          "count": 404
         },
         {
           "name": "International Institute for Applied Systems Analysis",
@@ -5892,11 +5892,11 @@
         },
         {
           "name": "Leibniz Association",
-          "count": 164
+          "count": 157
         },
         {
-          "name": "Potsdam Institute for Climate Impact Research",
-          "count": 142
+          "name": "Wageningen University & Research",
+          "count": 143
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I1326018075,publication_year:2022-2026",
@@ -5909,15 +5909,15 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 172,
+      "worksTotal": 141,
       "byYear": [
         {
           "year": 2022,
-          "count": 35
+          "count": 30
         },
         {
           "year": 2023,
-          "count": 38
+          "count": 37
         },
         {
           "year": 2024,
@@ -5925,47 +5925,38 @@
         },
         {
           "year": 2025,
-          "count": 45
+          "count": 25
         },
         {
           "year": 2026,
-          "count": 25
+          "count": 20
         }
       ],
       "oa": {
-        "share": 82,
+        "share": 88.7,
         "byStatus": {
-          "green": 79,
-          "hybrid": 47,
-          "closed": 31,
-          "gold": 8,
+          "green": 75,
+          "hybrid": 40,
+          "closed": 16,
           "bronze": 6,
-          "diamond": 1
+          "gold": 4
         }
       },
       "funders": [
         {
-          "name": "European Commission",
-          "count": 10
+          "name": "Network for Studies on Pensions, Aging and Retirement",
+          "count": 7
         },
         {
-          "name": "Network for Studies on Pensions, Aging and Retirement",
+          "name": "European Commission",
           "count": 6
         },
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 5
+          "count": 4
         },
         {
           "name": "Ministerie van Sociale Zaken en Werkgelegenheid",
-          "count": 3
-        },
-        {
-          "name": "Universiteit Utrecht",
-          "count": 3
-        },
-        {
-          "name": "Generalitat de Catalunya",
           "count": 3
         },
         {
@@ -5973,64 +5964,72 @@
           "count": 3
         },
         {
-          "name": "ZonMw",
+          "name": "Universiteit Utrecht",
+          "count": 2
+        },
+        {
+          "name": "Generalitat de Catalunya",
+          "count": 2
+        },
+        {
+          "name": "Université de Strasbourg",
           "count": 2
         }
       ],
       "publishers": [
         {
           "name": "Springer Nature",
-          "count": 41
+          "count": 27
         },
         {
           "name": "Elsevier BV",
-          "count": 24
+          "count": 21
         },
         {
           "name": "Springer Science+Business Media",
-          "count": 19
-        },
-        {
-          "name": "Springer International Publishing",
-          "count": 13
+          "count": 18
         },
         {
           "name": "Wiley",
-          "count": 11
+          "count": 9
         },
         {
           "name": "Informa",
-          "count": 7
+          "count": 4
+        },
+        {
+          "name": "Taylor & Francis",
+          "count": 4
         }
       ],
       "elsevier": {
-        "count": 24,
-        "share": 14
+        "count": 21,
+        "share": 14.9
       },
       "partners": [
         {
           "name": "Ministry of Economic Affairs and Climate Policy",
-          "count": 172
+          "count": 141
         },
         {
           "name": "Government of Netherlands",
-          "count": 172
+          "count": 141
         },
         {
           "name": "Tilburg University",
-          "count": 21
-        },
-        {
-          "name": "Utrecht University",
-          "count": 18
+          "count": 22
         },
         {
           "name": "Erasmus University Rotterdam",
-          "count": 17
+          "count": 18
         },
         {
           "name": "Leiden University",
           "count": 16
+        },
+        {
+          "name": "Utrecht University",
+          "count": 13
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I2800425962,publication_year:2022-2026",
@@ -6043,51 +6042,51 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 207,
+      "worksTotal": 90,
       "byYear": [
         {
           "year": 2022,
-          "count": 28
+          "count": 12
         },
         {
           "year": 2023,
-          "count": 28
+          "count": 21
         },
         {
           "year": 2024,
-          "count": 27
+          "count": 9
         },
         {
           "year": 2025,
-          "count": 67
+          "count": 27
         },
         {
           "year": 2026,
-          "count": 57
+          "count": 21
         }
       ],
       "oa": {
-        "share": 80.7,
+        "share": 94.4,
         "byStatus": {
-          "green": 58,
-          "hybrid": 47,
-          "closed": 40,
-          "gold": 38,
-          "diamond": 17,
-          "bronze": 7
+          "green": 28,
+          "hybrid": 24,
+          "gold": 22,
+          "diamond": 8,
+          "closed": 5,
+          "bronze": 3
         }
       },
       "funders": [
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 19
-        },
-        {
-          "name": "European Commission",
-          "count": 11
+          "count": 20
         },
         {
           "name": "Karlsruhe Institute of Technology",
+          "count": 6
+        },
+        {
+          "name": "European Commission",
           "count": 6
         },
         {
@@ -6095,76 +6094,76 @@
           "count": 6
         },
         {
-          "name": "Horizon 2020 Framework Programme",
-          "count": 4
-        },
-        {
           "name": "National Science Foundation",
-          "count": 2
-        },
-        {
-          "name": "AstraZeneca",
-          "count": 2
+          "count": 3
         },
         {
           "name": "Schweizerischer Nationalfonds zur Förderung der Wissenschaftlichen Forschung",
+          "count": 3
+        },
+        {
+          "name": "ZonMw",
+          "count": 2
+        },
+        {
+          "name": "Horizon 2020 Framework Programme",
           "count": 2
         }
       ],
       "publishers": [
         {
-          "name": "Elsevier BV",
-          "count": 34
+          "name": "Springer Nature",
+          "count": 11
         },
         {
-          "name": "Springer Nature",
-          "count": 19
+          "name": "Elsevier BV",
+          "count": 9
         },
         {
           "name": "University of Oxford",
-          "count": 16
+          "count": 6
         },
         {
           "name": "Oxford University Press",
-          "count": 16
-        },
-        {
-          "name": "Wiley",
-          "count": 7
-        },
-        {
-          "name": "Springer International Publishing",
           "count": 6
+        },
+        {
+          "name": "Informa",
+          "count": 5
+        },
+        {
+          "name": "Taylor & Francis",
+          "count": 5
         }
       ],
       "elsevier": {
-        "count": 34,
-        "share": 16.4
+        "count": 9,
+        "share": 10
       },
       "partners": [
         {
           "name": "Royal Netherlands Academy of Arts and Sciences",
-          "count": 207
-        },
-        {
-          "name": "Inserm",
-          "count": 19
-        },
-        {
-          "name": "Université de Strasbourg",
-          "count": 19
-        },
-        {
-          "name": "Centre National de la Recherche Scientifique",
-          "count": 17
-        },
-        {
-          "name": "Assistance Publique – Hôpitaux de Paris",
-          "count": 15
+          "count": 90
         },
         {
           "name": "Leiden University",
-          "count": 13
+          "count": 15
+        },
+        {
+          "name": "Eindhoven University of Technology",
+          "count": 12
+        },
+        {
+          "name": "Wageningen University & Research",
+          "count": 12
+        },
+        {
+          "name": "University of Amsterdam",
+          "count": 9
+        },
+        {
+          "name": "Netherlands Organisation for Applied Scientific Research",
+          "count": 8
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I2800109292,publication_year:2022-2026",
@@ -6177,48 +6176,46 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 181,
+      "worksTotal": 99,
       "byYear": [
         {
           "year": 2022,
-          "count": 48
-        },
-        {
-          "year": 2023,
-          "count": 39
-        },
-        {
-          "year": 2024,
-          "count": 46
-        },
-        {
-          "year": 2025,
           "count": 33
         },
         {
+          "year": 2023,
+          "count": 20
+        },
+        {
+          "year": 2024,
+          "count": 30
+        },
+        {
+          "year": 2025,
+          "count": 10
+        },
+        {
           "year": 2026,
-          "count": 15
+          "count": 6
         }
       ],
       "oa": {
-        "share": 91.7,
+        "share": 89.9,
         "byStatus": {
-          "hybrid": 68,
-          "gold": 53,
-          "green": 35,
-          "closed": 15,
-          "diamond": 7,
-          "bronze": 3
+          "hybrid": 46,
+          "gold": 31,
+          "green": 12,
+          "closed": 10
         }
       },
       "funders": [
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 18
+          "count": 11
         },
         {
           "name": "European Commission",
-          "count": 14
+          "count": 9
         },
         {
           "name": "University of Sussex",
@@ -6237,68 +6234,68 @@
           "count": 6
         },
         {
-          "name": "Ministerie van Volksgezondheid, Welzijn en Sport",
+          "name": "H2020 European Research Council",
           "count": 5
         },
         {
-          "name": "Rijksinstituut voor Volksgezondheid en Milieu",
-          "count": 5
+          "name": "Ministerie van Volksgezondheid, Welzijn en Sport",
+          "count": 4
         }
       ],
       "publishers": [
         {
           "name": "Springer Nature",
-          "count": 26
-        },
-        {
-          "name": "Elsevier BV",
-          "count": 22
+          "count": 19
         },
         {
           "name": "Taylor & Francis",
-          "count": 17
-        },
-        {
-          "name": "Springer Science+Business Media",
           "count": 13
         },
         {
-          "name": "Wiley",
-          "count": 13
+          "name": "Springer Nature (Netherlands)",
+          "count": 10
         },
         {
           "name": "Multidisciplinary Digital Publishing Institute",
-          "count": 11
+          "count": 9
+        },
+        {
+          "name": "Informa",
+          "count": 8
+        },
+        {
+          "name": "Elsevier BV",
+          "count": 8
         }
       ],
       "elsevier": {
-        "count": 22,
-        "share": 12.2
+        "count": 8,
+        "share": 8.1
       },
       "partners": [
         {
-          "name": "University of Amsterdam",
-          "count": 43
-        },
-        {
           "name": "Utrecht University",
-          "count": 39
-        },
-        {
-          "name": "Erasmus University Rotterdam",
-          "count": 26
+          "count": 27
         },
         {
           "name": "Vrije Universiteit Amsterdam",
-          "count": 25
-        },
-        {
-          "name": "Amsterdam University of Applied Sciences",
-          "count": 20
-        },
-        {
-          "name": "Amsterdam University Medical Centers",
           "count": 18
+        },
+        {
+          "name": "Erasmus University Rotterdam",
+          "count": 15
+        },
+        {
+          "name": "Tilburg University",
+          "count": 14
+        },
+        {
+          "name": "University of Amsterdam",
+          "count": 12
+        },
+        {
+          "name": "Scientific Council for Government Policy",
+          "count": 10
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I4210151519,publication_year:2022-2026",
@@ -6311,11 +6308,11 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 37,
+      "worksTotal": 33,
       "byYear": [
         {
           "year": 2022,
-          "count": 4
+          "count": 5
         },
         {
           "year": 2023,
@@ -6323,7 +6320,7 @@
         },
         {
           "year": 2024,
-          "count": 10
+          "count": 9
         },
         {
           "year": 2025,
@@ -6331,16 +6328,16 @@
         },
         {
           "year": 2026,
-          "count": 6
+          "count": 2
         }
       ],
       "oa": {
-        "share": 78.4,
+        "share": 75.8,
         "byStatus": {
-          "hybrid": 9,
           "closed": 8,
-          "gold": 8,
-          "green": 8,
+          "hybrid": 8,
+          "gold": 7,
+          "green": 6,
           "diamond": 4
         }
       },
@@ -6355,10 +6352,6 @@
         },
         {
           "name": "European Commission",
-          "count": 1
-        },
-        {
-          "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
           "count": 1
         },
         {
@@ -6388,21 +6381,21 @@
           "count": 3
         },
         {
+          "name": "SAGE Publishing",
+          "count": 2
+        },
+        {
           "name": "Informa",
-          "count": 3
+          "count": 2
         },
         {
           "name": "Taylor & Francis",
-          "count": 3
-        },
-        {
-          "name": "Cold Spring Harbor Laboratory Press",
           "count": 2
         }
       ],
       "elsevier": {
         "count": 1,
-        "share": 2.7
+        "share": 3
       },
       "partners": [
         {
@@ -6422,11 +6415,11 @@
           "count": 2
         },
         {
-          "name": "Patient-Centered Outcomes Research Institute",
+          "name": "University of Warwick",
           "count": 2
         },
         {
-          "name": "Maastricht University",
+          "name": "Deltares",
           "count": 2
         }
       ],
@@ -6452,44 +6445,44 @@
         "from": 2022,
         "to": 2026
       },
-      "worksTotal": 279,
+      "worksTotal": 180,
       "byYear": [
         {
           "year": 2022,
-          "count": 52
-        },
-        {
-          "year": 2023,
-          "count": 48
-        },
-        {
-          "year": 2024,
           "count": 44
         },
         {
+          "year": 2023,
+          "count": 34
+        },
+        {
+          "year": 2024,
+          "count": 31
+        },
+        {
           "year": 2025,
-          "count": 65
+          "count": 45
         },
         {
           "year": 2026,
-          "count": 70
+          "count": 26
         }
       ],
       "oa": {
-        "share": 72.8,
+        "share": 65,
         "byStatus": {
-          "green": 84,
-          "closed": 76,
-          "hybrid": 60,
-          "gold": 23,
-          "diamond": 19,
-          "bronze": 17
+          "closed": 63,
+          "hybrid": 47,
+          "green": 46,
+          "gold": 11,
+          "diamond": 7,
+          "bronze": 6
         }
       },
       "funders": [
         {
           "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek",
-          "count": 11
+          "count": 9
         },
         {
           "name": "European Commission",
@@ -6500,15 +6493,7 @@
           "count": 3
         },
         {
-          "name": "Bundesministerium für Verkehr und Digitale Infrastruktur",
-          "count": 2
-        },
-        {
           "name": "Universiteit van Amsterdam",
-          "count": 2
-        },
-        {
-          "name": "Horizon 2020 Framework Programme",
           "count": 2
         },
         {
@@ -6518,62 +6503,70 @@
         {
           "name": "Socio-Legal Studies Association",
           "count": 1
+        },
+        {
+          "name": "University of Oxford",
+          "count": 1
+        },
+        {
+          "name": "University of Bristol",
+          "count": 1
         }
       ],
       "publishers": [
         {
           "name": "Springer Nature",
-          "count": 36
+          "count": 32
         },
         {
           "name": "University of Cambridge",
-          "count": 20
+          "count": 19
         },
         {
           "name": "Cambridge University Press",
-          "count": 20
+          "count": 19
         },
         {
           "name": "Springer Science+Business Media",
-          "count": 18
+          "count": 16
         },
         {
           "name": "Springer International Publishing",
           "count": 12
         },
         {
-          "name": "University of Oxford",
+          "name": "Brill",
           "count": 11
         }
       ],
       "elsevier": {
-        "count": 2,
-        "share": 0.7
+        "count": 0,
+        "share": 0
       },
       "partners": [
         {
           "name": "University of Amsterdam",
-          "count": 43
+          "count": 56
         },
         {
-          "name": "Institut national de recherche en sciences et technologies du numérique",
-          "count": 12
+          "name": "University of London",
+          "count": 4
         },
         {
-          "name": "Technische Universität Berlin",
-          "count": 11
+          "name": "Utrecht University",
+          "count": 4
         },
         {
-          "name": "Universitat Autònoma de Barcelona",
-          "count": 10
+          "name": "Vrije Universiteit Amsterdam",
+          "count": 4
         },
         {
-          "name": "University of British Columbia",
-          "count": 10
+          "name": "Leiden University",
+          "count": 3
         },
         {
-          "name": "Chinese University of Hong Kong",
-          "count": 10
+          "name": "University of Groningen",
+          "count": 3
         }
       ],
       "apiUrl": "https://api.openalex.org/works?filter=authorships.institutions.id:I217960723,publication_year:2022-2026",
