@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-09-27T13:18:49.721Z",
+  "lastRun": "2026-09-28T15:49:44.437Z",
   "lastAddedCount": 0,
   "sources": 53,
   "blockedSources": [
@@ -50,34 +50,6 @@
       "note": "no people extracted"
     },
     {
-      "instId": "nikhef",
-      "url": "https://www.nikhef.nl/en/nikhef/organisation/",
-      "error": "fetch failed"
-    },
-    {
-      "instId": "nikhef",
-      "url": "https://www.nikhef.nl/en/director/",
-      "error": "fetch failed"
-    },
-    {
-      "instId": "nikhef",
-      "note": "no people extracted"
-    },
-    {
-      "instId": "lumc",
-      "url": "https://www.lumc.nl/en/about-lumc/het-lumc/management-and-organization/",
-      "error": "This operation was aborted"
-    },
-    {
-      "instId": "lumc",
-      "note": "no people extracted"
-    },
-    {
-      "instId": "sanquin",
-      "url": "https://www.sanquin.nl/en/about-sanquin/management-supervision",
-      "error": "fetch failed"
-    },
-    {
       "instId": "umcg",
       "url": "https://www.umcg.nl/-/over-het-umcg/organisatie",
       "error": "HTTP 403"
@@ -89,6 +61,10 @@
     },
     {
       "instId": "clingendael",
+      "note": "no people extracted"
+    },
+    {
+      "instId": "amolf",
       "note": "no people extracted"
     }
   ]
