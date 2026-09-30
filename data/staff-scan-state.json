@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-09-29T14:19:01.853Z",
+  "lastRun": "2026-09-30T14:08:52.516Z",
   "lastAddedCount": 0,
   "sources": 53,
   "blockedSources": [
@@ -9,7 +9,9 @@
     "https://www.tilburguniversity.edu/research/institutes-and-research-groups/ticc/meet-our-staff",
     "https://www.cpb.nl/en/staff-members-and-affiliations",
     "https://www.umcg.nl/-/over-het-umcg/organisatie",
-    "https://www.clingendael.org/mission-organisation"
+    "https://www.clingendael.org/mission-organisation",
+    "https://www.hiil.org/who-we-are/",
+    "https://www.hiil.org/who-we-are/boards-2/"
   ],
   "issues": [
     {
@@ -54,6 +56,20 @@
       "note": "no people extracted"
     },
     {
+      "instId": "nikhef",
+      "url": "https://www.nikhef.nl/en/nikhef/organisation/",
+      "error": "fetch failed"
+    },
+    {
+      "instId": "nikhef",
+      "url": "https://www.nikhef.nl/en/director/",
+      "error": "fetch failed"
+    },
+    {
+      "instId": "nikhef",
+      "note": "no people extracted"
+    },
+    {
       "instId": "umcg",
       "url": "https://www.umcg.nl/-/over-het-umcg/organisatie",
       "error": "HTTP 403"
@@ -65,6 +81,20 @@
     },
     {
       "instId": "clingendael",
+      "note": "no people extracted"
+    },
+    {
+      "instId": "hiil",
+      "url": "https://www.hiil.org/who-we-are/",
+      "error": "HTTP 403"
+    },
+    {
+      "instId": "hiil",
+      "url": "https://www.hiil.org/who-we-are/boards-2/",
+      "error": "HTTP 403"
+    },
+    {
+      "instId": "hiil",
       "note": "no people extracted"
     },
     {
