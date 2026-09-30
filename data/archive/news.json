@@ -1,5 +1,47 @@
 [
   {
+    "id": "news-gold35",
+    "title": "Anthropic launches Claude Opus 5.5 with expanded biology capabilities - MobiHealthNews",
+    "description": "Anthropic launches Claude Opus 5.5 with expanded biology capabilities MobiHealthNews",
+    "institution": "Anthropic",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://www.mobihealthnews.com/news/anthropic-launches-claude-opus-55-expanded-biology-capabilities",
+    "sourceName": "MobiHealthNews",
+    "publishedDate": "2026-09-23",
+    "foundDate": "2026-09-24",
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPTkZ3WlVySXByWW1fX1hNaXZYZnMzazZqZ1htQ1lGRWhmQWpFRzY4NUVqMzlUaEJxVDhiTDk1SjRzWXJ5YmlJUnppVWRiMjk4UHBXTXcxMWo0UVZzdjg3bUVCX08xakI3NXJUdlozdUJFZkR6WkZoMzR5OUpERXB6YVdiU0ZJWm0xVnRaMGtEdGUxWHhpS1JCZmp1V0IwejV4?oc=5"
+  },
+  {
+    "id": "news-qy2qc8",
+    "title": "Claude discovers a novel enzyme system with CRISPR-like repeats - Anthropic",
+    "description": "Claude discovers a novel enzyme system with CRISPR-like repeats Anthropic",
+    "institution": "Anthropic",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
+    "sourceName": "Anthropic",
+    "publishedDate": "2026-09-23",
+    "foundDate": "2026-09-25",
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9JT0FwTVctZXNkYnJXeW44aHhoZmJfbDYwN3B4a2tMTThJZm9XRklxMkEzdFlxb2Z6VGM2UnpDTGlaQ09PODJUMkJFWWl1UVZOTDJ0WU1UQ1pZMDlrbS0tM3FTS0RGWmNSeGt5QlJjZktQWkl4N0E?oc=5"
+  },
+  {
+    "id": "news-ui6ww5",
+    "title": "22 researchers behind GLP-1 medicines earn Clarivate’s Nobel-class honor - Stock Titan",
+    "description": "22 researchers behind GLP-1 medicines earn Clarivate’s Nobel-class honor Stock Titan",
+    "institution": "Clarivate",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://www.stocktitan.net/news/CLVT/clarivate-reveals-citation-laureates-2026-recognizing-transformative-ox44ivx2yc75.html",
+    "sourceName": "Stock Titan",
+    "publishedDate": "2026-09-17",
+    "foundDate": "2026-09-30",
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQcjk4Y1FxUjVxeDNocVNGdlZiUVROYmFTV2NTZmF5LVpDSElUSFVZWXpxVnZiSk9Wc3o0RzJjUE56Z050M2ZPbjRHUUpfc0VsMk1Ka2Fwenh0Y0p4N2dnNU9JUkVYZkgzdnJfZkl6Z2NFamI4RnlIVGpNdDVrRGxIVXZfSDFfNlFDVGViTGNpN2puek80UHdZQ3h1VXVlM3FHR1JSUUtxMm1nMWNodGxzTThfUFpCWWZUcUlVZkRFQ3Q?oc=5"
+  },
+  {
     "id": "news-pj8bi8",
     "title": "Stefan Sleijfer (Erasmus MC): ‘AI must contribute to better care’ - Management Scope",
     "description": "Stefan Sleijfer (Erasmus MC): ‘AI must contribute to better care’ Management Scope",

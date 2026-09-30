@@ -1,5 +1,61 @@
 [
   {
+    "id": "news-tcsvno",
+    "title": "The Ohio State University and Google Partner to Accelerate Research and AI Fluency - Google Cloud Press Corner",
+    "description": "The Ohio State University and Google Partner to Accelerate Research and AI Fluency Google Cloud Press Corner",
+    "institution": "Google",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://www.googlecloudpresscorner.com/2026-09-29-The-Ohio-State-University-and-Google-Partner-to-Accelerate-Research-and-AI-Fluency",
+    "sourceName": "Google Cloud Press Corner",
+    "publishedDate": "2026-09-29",
+    "foundDate": "2026-09-30",
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNdk1ERk5BejdfT0tkbTFmWGd3SlRYek9JVHlXZGFxTTZ4Y3lmRUc2aEpXTi1jTW1maGJJdWtkZ0JtOWo0YVdwSkxSdUU2UUFJSVppeUlkbHRNQ3U1Zy13OHhaRkdzZDQ3XzYwaE5yZW1HZm1HdGJoUksxV1FmN29SelFmTnh4a3h2bEVpa0xDZjhON2dmbUVLd0ZmbExnOFVFc0dDX1hleC1uZmcteVA4TVBBcnRsM1BZdU5rdGlvbnB2bjBjT0FfN0xxdWo?oc=5"
+  },
+  {
+    "id": "news-ev79iu",
+    "title": "Ohio State, Google partner to accelerate research and AI Fluency - Ohio State News",
+    "description": "Ohio State, Google partner to accelerate research and AI Fluency Ohio State News",
+    "institution": "Google",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://news.osu.edu/ohio-state-google-partner-to-accelerate-research-and-ai-fluency/",
+    "sourceName": "Ohio State News",
+    "publishedDate": "2026-09-29",
+    "foundDate": "2026-09-30",
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNcTMwTzlKTmZMRENPd2hUT1NrdUE0N3VidmQxUHI1RkNCQWZUbmJ5UGZfT0JRazktUk8yWDZsVUg1amU3amFzcUdRMmlaVWVUZi10Uy1hcFhua3A5b2sxemFWRVBWMy15aVN0bGMwYUFIbjlNRTYyNnlDREFPU3BWYjFYbDcyUmY2T3JsQzFn?oc=5"
+  },
+  {
+    "id": "news-lh88dz",
+    "title": "GSFC University Launches IEEE Branch In Vadodara Campus - Newz Daddy - Newz Daddy",
+    "description": "GSFC University Launches IEEE Branch In Vadodara Campus - Newz Daddy Newz Daddy",
+    "institution": "IEEE",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://www.newzdaddy.com/gsfc-university-launches-ieee-branch-in-vadodara-campus/?amp=1",
+    "sourceName": "Newz Daddy",
+    "publishedDate": "2026-09-29",
+    "foundDate": "2026-09-30",
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOZmFzQVczaGdGYzgzYWs0RGUzSUlaQVVFVURLY3F6TEVFXzRGMWlyZ1JDaDFNWHQtMjNvS1ZBTzFVczlTSTQtZkxZbGJaM3J2UF9mTzVkdTJTSWdWS0prNmExczNlN0R1bl9wYnI2bmk1eTl1UWhYS1NSZExYaHQyd24tSVZKQ0lGNExKOVptUUlzd9IBkgFBVV95cUxOZmFzQVczaGdGYzgzYWs0RGUzSUlaQVVFVURLY3F6TEVFXzRGMWlyZ1JDaDFNWHQtMjNvS1ZBTzFVczlTSTQtZkxZbGJaM3J2UF9mTzVkdTJTSWdWS0prNmExczNlN0R1bl9wYnI2bmk1eTl1UWhYS1NSZExYaHQyd24tSVZKQ0lGNExKOVptUUlzdw?oc=5"
+  },
+  {
+    "id": "news-8l3lbj",
+    "title": "GSFC University Launches IEEE Student Branch - theblunttimes.in",
+    "description": "GSFC University Launches IEEE Student Branch theblunttimes.in",
+    "institution": "IEEE",
+    "category": "competitor_announcements",
+    "categoryLabel": "Competitor Announcements",
+    "url": "https://theblunttimes.in/gsfc-university-launches-ieee-student-branch/73521/",
+    "sourceName": "theblunttimes.in",
+    "publishedDate": "2026-09-30",
+    "foundDate": "2026-09-30",
+    "autoDiscovered": true,
+    "googleNewsUrl": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPcTkyNDRtQW1LazdzWEY1YXpoT3YyZTE5RHd6ZzJkcWgxaHdGQTNpdTR4ckd3OUpMVDhJN2s0dXZHTGZRUmIwbkhVd1pSVkc0MEJYNzF3TmZTeG1OUm03TkV3TERnRFJFU2ZETncyZGtORF9ZNkVnNllNMHc5MVZNbDln?oc=5"
+  },
+  {
     "id": "news-6w68bx",
     "title": "IEEE to Host Ethical AI Summit in Budapest Oct. 1–2 - HPCwire",
     "description": "IEEE to Host Ethical AI Summit in Budapest Oct. 1–2 HPCwire",
@@ -42,20 +98,6 @@
     "googleNewsUrl": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNUnFUVnZ6VjBDRUdMaFREdUx6SkFDV3pETUVtc1VodVAtUkJwVFR3VzFyVnBLX3hCNmFqN1NpUmIwQmZNNjBsMFRQRGRkTVcwajZ5cU1GekVaTUpLR3ZnZzcyTUNSdXozd0ZWTWZJeTZiX0tKOXR5RmF0dzE3TjIzMGpnbmdZcFJjX2NmSURocEdhVmNLazdr?oc=5"
   },
   {
-    "id": "news-qy2qc8",
-    "title": "Claude discovers a novel enzyme system with CRISPR-like repeats - Anthropic",
-    "description": "Claude discovers a novel enzyme system with CRISPR-like repeats Anthropic",
-    "institution": "Anthropic",
-    "category": "competitor_announcements",
-    "categoryLabel": "Competitor Announcements",
-    "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
-    "sourceName": "Anthropic",
-    "publishedDate": "2026-09-23",
-    "foundDate": "2026-09-25",
-    "autoDiscovered": true,
-    "googleNewsUrl": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9JT0FwTVctZXNkYnJXeW44aHhoZmJfbDYwN3B4a2tMTThJZm9XRklxMkEzdFlxb2Z6VGM2UnpDTGlaQ09PODJUMkJFWWl1UVZOTDJ0WU1UQ1pZMDlrbS0tM3FTS0RGWmNSeGt5QlJjZktQWkl4N0E?oc=5"
-  },
-  {
     "id": "news-upj79h",
     "title": "Edison Scientific Announces Agreement With Springer Nature, Bringing Trusted Research Into Kosmos - finance.yahoo.com",
     "description": "Edison Scientific Announces Agreement With Springer Nature, Bringing Trusted Research Into Kosmos finance.yahoo.com",
@@ -68,20 +110,6 @@
     "foundDate": "2026-09-25",
     "autoDiscovered": true,
     "googleNewsUrl": "https://news.google.com/rss/articles/CBMirwFBVV95cUxORy0weGxXVF9OeHlMck4tQUVPdzJmcnhqXzFENW5WNk1CX1pUaXc2MDV3NFJBblVUMEozVk1PODJBblNlSGlwYnM2cjBYdDZwRXA3eFJtUVV2Q1NBYVpBV1hBM0JnREdzUW5BS0lqNGg0RnNzMUItVDlWVnBZNFNud3o1Skt1d1dpZFRtOERUMVo2cGpnX19JNWI3Z3gzY191U040SGNkT3ZFdGhqNXhB?oc=5"
-  },
-  {
-    "id": "news-gold35",
-    "title": "Anthropic launches Claude Opus 5.5 with expanded biology capabilities - MobiHealthNews",
-    "description": "Anthropic launches Claude Opus 5.5 with expanded biology capabilities MobiHealthNews",
-    "institution": "Anthropic",
-    "category": "competitor_announcements",
-    "categoryLabel": "Competitor Announcements",
-    "url": "https://www.mobihealthnews.com/news/anthropic-launches-claude-opus-55-expanded-biology-capabilities",
-    "sourceName": "MobiHealthNews",
-    "publishedDate": "2026-09-23",
-    "foundDate": "2026-09-24",
-    "autoDiscovered": true,
-    "googleNewsUrl": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPTkZ3WlVySXByWW1fX1hNaXZYZnMzazZqZ1htQ1lGRWhmQWpFRzY4NUVqMzlUaEJxVDhiTDk1SjRzWXJ5YmlJUnppVWRiMjk4UHBXTXcxMWo0UVZzdjg3bUVCX08xakI3NXJUdlozdUJFZkR6WkZoMzR5OUpERXB6YVdiU0ZJWm0xVnRaMGtEdGUxWHhpS1JCZmp1V0IwejV4?oc=5"
   },
   {
     "id": "news-fd9yy9",
