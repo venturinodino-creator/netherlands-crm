@@ -27,3 +27,12 @@ Settled with the owner. Do not undo these without asking.
 - **Rebase before merging.** The scans and other sessions push to `main` many times a day, so cut each branch from the current `main` and rebase it before the merge.
 - **The Denmark and Belgium repos are mirrors.** `denmark-crm` and `belgium-crm` are near-copies kept in step by hand. A fix or cleanup that lands here is mirrored there in the same ticket; Region data, Region wording, localised patterns and storage-key prefixes are intentionally different and are never mirrored.
 - **Work on a sibling repo from a clean worktree.** Another session may have uncommitted work in its checkout.
+
+## Testing
+
+The smoke check opens every page in a real browser with sign-in and the database stubbed at the network boundary, and fails on any console error.
+
+- First time: `npm install`, then `npx playwright install chromium`.
+- Every time: `npm test`. One file or one test: `npx playwright test tests/smoke.spec.js -g "<name>"`.
+- Nothing in `index.html` knows it is under test. Keep it that way: stub at the network (`tests/support/stubs.js`), never add a test flag to the page.
+- New behaviour and bug fixes start with a failing test at this seam.
