@@ -5,6 +5,7 @@
 //   - the Supabase REST endpoints  -> canned rows, and a record of every write
 //   - third-party images (map tiles, flags) -> a 1x1 PNG
 //   - third-party JSON APIs        -> an empty object
+//   - data another Region's site serves (/xx-crm/data/...) -> an empty result
 //   - the CDN-hosted libraries and fonts the page really needs -> passed through
 //
 // Nothing here can reach the live database: every request to it is answered
@@ -54,7 +55,18 @@ async function installStubs(page, opts = {}) {
     const url = new URL(req.url());
     const host = url.hostname;
 
-    if (host === '127.0.0.1' || host === 'localhost') return route.continue();
+    if (host === '127.0.0.1' || host === 'localhost') {
+      // The Denmark and Belgium apps read some shared data from the live
+      // Netherlands site by absolute path (/netherlands-crm/data/...). That is
+      // right on GitHub Pages and has no answer on a local server, so answer
+      // it here with an empty result.
+      const shared = url.pathname.match(/^\/[a-z]+-crm\/data\/(.+)$/);
+      if (shared) {
+        const empty = /battlecard/.test(shared[1]) ? 'null' : '[]';
+        return route.fulfill({ status: 200, headers: { ...CORS, 'content-type': 'application/json' }, body: empty });
+      }
+      return route.continue();
+    }
 
     if (host === 'esm.sh' && url.pathname.includes('supabase-js')) {
       return route.fulfill({ status: 200, headers: { ...CORS, 'content-type': 'text/javascript' }, body: supabaseModule() });
