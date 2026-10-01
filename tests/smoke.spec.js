@@ -22,9 +22,8 @@ const VIEWS = viewKeys();
 const INST_SCOPED = ['detail', 'org-map'];
 
 // Pages that exist but that nothing in the interface can open. Each entry is a
-// known bug with a ticket; the list must shrink, never grow.
-//   pipeline — the Deals page lost its sidebar item (#78).
-const KNOWN_UNREACHABLE = ['pipeline'];
+// known bug with a ticket; the list must stay empty unless a new one is filed.
+const KNOWN_UNREACHABLE = [];
 
 // Let late async work (data files, counts, map tiles) land before judging.
 async function settle(page) {
