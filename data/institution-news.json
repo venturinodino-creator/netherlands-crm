@@ -1,5 +1,17 @@
 [
   {
+    "id": "inews_https_www_maastrichtuniversity_nl_pm_njagi",
+    "institution": "Maastricht University",
+    "sourceType": "feed",
+    "title": "P.M. Njagi",
+    "url": "https://www.maastrichtuniversity.nl/pm-njagi",
+    "date": "Thu, 01 Oct 2026 01:07:01 +0000",
+    "summary": "<span>P.M. Njagi</span> <span><span>Anonymous (not verified)</span></span> <span><time datetime=\"2026-10-01T03:07:01+02:00\" title=\"Thu, 10/01/2026 - 03:07\">Thu, 10/01/2026 - 03:07</time> </span> <div> P.M. Njagi </div> <div> P.M. Njagi </div> <div> <a href=\"https://orcid.org/0000-0003-3157-4413\">ORCID</a> </div> <ul class=\"list list--reset\"> <li class=\"mb-1\"> Fac. Health, Medicine and Life Sciences </li> <li class=\"mb-1\"> Care and Public Health Research Inst. </li> <li class=\"mb-1\"> Health Services Research </li> <li class=\"mb-1\"> Creating Value-Based Health Care </li> </ul> <picture> <source ",
+    "matchedTerm": "orcid",
+    "reason": "named system or vendor",
+    "foundAt": "2026-10-01T13:57:39.747279Z"
+  },
+  {
     "id": "inews_https_www_maastrichtuniversity_nl_e_squiccimarro",
     "institution": "Maastricht University",
     "sourceType": "feed",
