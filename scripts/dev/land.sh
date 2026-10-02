@@ -25,10 +25,18 @@ for w in "$DK" "$BE"; do
   git -C "$w" add -- "$@" || { echo "add failed in ${SLUG[$w]}"; exit 1; }
   { cat "$MSG"; echo; echo "Mirrors $NL_SLUG#$NLPR."; } | git -C "$w" commit -q -F - || { echo "commit failed in ${SLUG[$w]}"; exit 1; }
   git -C "$w" push -q -u origin "$BR" 2>&1 | grep -v '^remote:' | tail -1
-  url=$(cd "$w" && gh pr create --title "$TITLE" --body "Mirrors $NL_SLUG#$NLPR. Same change and same tests, run red before the fix and green after in this repo. Region data and wording are untouched.
+  # A re-run after a failed check reuses the pull request the first run opened.
+  open_pr=$(cd "$w" && gh pr list --head "$BR" --state open --json number --jq '.[0].number')
+  if [ -n "$open_pr" ]; then
+    PRN[$w]=$open_pr
+  else
+    url=$(cd "$w" && gh pr create --title "$TITLE" --body "Mirrors $NL_SLUG#$NLPR. Same change and same tests, run red before the fix and green after in this repo. Region data and wording are untouched.
 
-**Door:** two-way." | tail -1)
-  PRN[$w]=${url##*/}
+**Door:** two-way.
+
+🤖 Generated with [Claude Code](https://claude.com/claude-code)" | tail -1)
+    PRN[$w]=${url##*/}
+  fi
   echo "${SLUG[$w]} pull request #${PRN[$w]}"
 done
 
