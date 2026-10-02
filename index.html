@@ -283,7 +283,7 @@
 
 <div class="toast" id="toast"></div>
 
-<script src="seed-data.js?v=6734814e"></script>
+<script src="seed-data.js?v=f2658dcd"></script>
 
 <script>
 //  SEED DATA: SEED_INSTITUTIONS, SEED_CONTACTS and window.COMP_DATA are defined in seed-data.js, which loads before this script.
@@ -893,7 +893,7 @@ function jsStr(value) { return esc(JSON.stringify(String(value == null ? '' : va
 // semicolon that looks like note punctuation.
 function linkifySources(s) {
   const raw = s || '';
-  const urlPattern = /((?:[a-z0-9-]+\.)+(?:dk|nl|com|org|net|edu|gov)(?:\/[^\s,;()"']*)?)/gi;
+  const urlPattern = /((?:[a-z0-9-]+\.)+(?:dk|nl|com|org|net|edu|gov|de)(?:\/[^\s,;()"']*)?)/gi;
   let result = '';
   let lastIndex = 0;
   let m;
@@ -9083,7 +9083,7 @@ const COMPETITOR_PRODUCTS = {
     {
       vendor: 'Clarivate', product: 'Web of Science', category: 'Citation & Abstract Database',
       competesWith: 'Scopus', subscriptionStart: '', contractExpiry: '',
-      notes: '  UNCONFIRMED. TU/e access status unclear — UT, VU, UU & TU Delft all cancelled WoS as of Jan 2026 citing overlap with Scopus & budget pressures. UKB consortium attribution unverified. Confirm with Corry Wouters (Library Director).'
+      notes: 'Active. TU/e Library lists Web of Science and Scopus among its databases, no end notice (checked 2 Oct 2026). Replaces the earlier UNCONFIRMED status. Source: www.tue.nl/en/our-university/library/resources/databases'
     },
     {
       vendor: 'Springer Nature', product: 'SpringerLink', category: 'Journal & Book Platform',
@@ -9122,7 +9122,7 @@ const COMPETITOR_PRODUCTS = {
     {
       vendor: 'Clarivate', product: 'Web of Science', category: 'Citation & Abstract Database',
       competesWith: 'Scopus', subscriptionStart: '', contractExpiry: '',
-      notes: '  UNCONFIRMED. Access status unclear. Multiple Dutch universities cancelled WoS in 2025–2026 citing Scopus overlap. Verify with UvA Library (contact: library@uva.nl).'
+      notes: 'Active. UvA Library pages updated 22 Dec 2025 still offer Web of Science (with its Science, Social Sciences and Arts & Humanities indexes) and the Research Intelligence team supports it next to Scopus and SciVal. No cancellation notice found (checked 2 Oct 2026), but UvA signed the Barcelona Declaration in Sept 2025 and VU, Utrecht, Twente, Delft and Wageningen all dropped it for 2026, so confirm for 2027. Source: uba.uva.nl/zoeken-in-de-collectie/attendering/attendering.html and uba.uva.nl/en/support/research/research-intelligence/research-intelligence.html'
     },
     {
       vendor: 'Springer Nature', product: 'SpringerLink', category: 'Journal & Book Platform',
@@ -9153,6 +9153,11 @@ const COMPETITOR_PRODUCTS = {
 
   /*  VU (Vrije Universiteit Amsterdam)  */
   'vu': [
+    {
+      vendor: 'Clarivate', product: 'Web of Science', category: 'Citation & Abstract Database',
+      competesWith: 'Scopus', subscriptionStart: '', contractExpiry: '2025-12-31',
+      notes: 'CANCELLED. VU no longer has Web of Science from 1 Jan 2026 (Barcelona Declaration; renewal expected to exceed EUR 100,000). Scopus kept as the alternative. Source: vu.nl/en/employee/university-library/termination-of-access-to-web-of-science-as-of-january-1-2026'
+    },
     {
       vendor: 'Springer Nature', product: 'SpringerLink', category: 'Journal & Book Platform',
       competesWith: 'ScienceDirect', subscriptionStart: '2024-01-01', contractExpiry: '2026-12-31',
@@ -9185,7 +9190,7 @@ const COMPETITOR_PRODUCTS = {
     {
       vendor: 'Clarivate', product: 'Web of Science', category: 'Citation & Abstract Database',
       competesWith: 'Scopus', subscriptionStart: '', contractExpiry: '',
-      notes: 'Active subscription confirmed — EUR LibGuide states "The EUR has access to these databases in the Web of Science Core Collection" (SCI-Expanded, SSCI, A&HCI, ESCI, CPCI-S/SSH). Directly verified 2026-08-25. Competes with Scopus for citation analytics across EUR\'s medicine, economics & social science research. Source: libguides.eur.nl/courseresearchimpacts/webofscience.'
+      notes: 'Active. EUR library guide describes the current Web of Science Core Collection subscription (off-campus via EZproxy), no end date announced. Source: libguides.eur.nl/courseresearchimpacts/webofscience'
     },
     {
       vendor: 'Springer Nature', product: 'SpringerLink', category: 'Journal & Book Platform',
@@ -9206,6 +9211,11 @@ const COMPETITOR_PRODUCTS = {
 
   /*  UU (Utrecht University)  */
   'uu': [
+    {
+      vendor: 'Clarivate', product: 'Web of Science', category: 'Citation & Abstract Database',
+      competesWith: 'Scopus', subscriptionStart: '', contractExpiry: '2025-12-31',
+      notes: 'CANCELLED. Utrecht University Library did not renew: UU staff, UMC Utrecht staff and UU students lost Web of Science and Journal Citation Reports on 1 Jan 2026. Source: students.uu.nl/en/news/access-to-web-of-science-will-end-on-1-january-2026'
+    },
     {
       vendor: 'Springer Nature', product: 'SpringerLink', category: 'Journal & Book Platform',
       competesWith: 'ScienceDirect', subscriptionStart: '2024-01-01', contractExpiry: '2026-12-31',
@@ -9233,7 +9243,7 @@ const COMPETITOR_PRODUCTS = {
     {
       vendor: 'Clarivate', product: 'Web of Science', category: 'Citation & Abstract Database',
       competesWith: 'Scopus', subscriptionStart: '', contractExpiry: '',
-      notes: 'Active subscription confirmed. A July 2026 university news article explicitly states "Leiden University has a subscription to the Web of Science database" (confirming CWTS discontinuing its own use of WoS data does not affect the university subscription). Directly verified 2026-08-25. Competes with Scopus; Leiden is home to CWTS (Centre for Science & Technology Studies) which uses both for bibliometrics. Source: universiteitleiden.nl/en/news/2026/07/cwts-takes-next-step-in-open-research-information-transition.'
+      notes: 'Active. Leiden University\'s news of 21 Jul 2026 on CWTS leaving Web of Science data states that the university\'s own Web of Science subscription is unaffected, and the library lists Web of Science among its most popular resources. Leiden is not in the national Scopus agreement, so Web of Science is its main commercial citation database. Source: www.universiteitleiden.nl/en/news/2026/07/cwts-takes-next-step-in-open-research-information-transition and www.library.universiteitleiden.nl/searching-sources'
     },
     {
       vendor: 'Springer Nature', product: 'SpringerLink', category: 'Journal & Book Platform',
@@ -9262,7 +9272,7 @@ const COMPETITOR_PRODUCTS = {
     {
       vendor: 'Clarivate', product: 'Web of Science', category: 'Citation & Abstract Database',
       competesWith: 'Scopus', subscriptionStart: '', contractExpiry: '2026-12-31',
-      notes: 'Currently ACTIVE but CANCELLING — RUG Library news (20 Apr 2026) confirms "the University of Groningen (UG) and the University Medical Centre Groningen (UMCG) will cancel their licence for the Web of Science database with effect from 1 January 2027," citing cost, overlap with other databases, and the Barcelona Declaration on Open Research Information. Directly verified 2026-08-25. After expiry, Scopus will be the primary citation DB. Source: rug.nl/library/news/20260420-end-web-of-science.'
+      notes: 'CANCELLING. UG and UMCG will end the Web of Science licence with effect from 1 Jan 2027 (announced 20 Apr 2026); access runs to 31 Dec 2026. Source: www.rug.nl/library/news/20260420-end-web-of-science?lang=en'
     },
     {
       vendor: 'Springer Nature', product: 'SpringerLink', category: 'Journal & Book Platform',
@@ -9291,7 +9301,7 @@ const COMPETITOR_PRODUCTS = {
     {
       vendor: 'Clarivate', product: 'Web of Science', category: 'Citation & Abstract Database',
       competesWith: 'Scopus', subscriptionStart: '', contractExpiry: '',
-      notes: 'Active subscription confirmed — Radboud University\'s official database catalogue lists Web of Science with "Access: RU staff and students." Directly verified 2026-08-25. Competes with Scopus across Radboud\'s broad research portfolio. Source: ru.nl/en/services/library/searching-for-literature/databases/web-of-science.'
+      notes: 'Active. Radboud University Library lists Web of Science for RU and Radboudumc staff and students; no end date. Source: www.ru.nl/en/services/library/searching-for-literature/databases/web-of-science'
     },
     {
       vendor: 'Springer Nature', product: 'SpringerLink', category: 'Journal & Book Platform',
@@ -9317,6 +9327,11 @@ const COMPETITOR_PRODUCTS = {
 
   /*  TU Delft (Delft University of Technology)  */
   'tudelft': [
+    {
+      vendor: 'Clarivate', product: 'Web of Science', category: 'Citation & Abstract Database',
+      competesWith: 'Scopus', subscriptionStart: '', contractExpiry: '2025-12-31',
+      notes: 'CANCELLED. TU Delft staff and students lost Web of Science and Journal Citation Reports on 1 Jan 2026. Source: www.tudelft.nl/en/2025/library/access-to-web-of-science-and-journal-citation-reports-will-end-on-1-january-2026'
+    },
     {
       vendor: 'Springer Nature', product: 'SpringerLink', category: 'Journal & Book Platform',
       competesWith: 'ScienceDirect', subscriptionStart: '2024-01-01', contractExpiry: '2026-12-31',
@@ -9352,6 +9367,11 @@ const COMPETITOR_PRODUCTS = {
   /*  UT (University of Twente)  */
   'ut': [
     {
+      vendor: 'Clarivate', product: 'Web of Science', category: 'Citation & Abstract Database',
+      competesWith: 'Scopus', subscriptionStart: '', contractExpiry: '2025-12-31',
+      notes: 'CANCELLED. UT stakeholders decided not to negotiate a new Clarivate contract; the licence ended 31 Dec 2025. Source: www.utwente.nl/en/education/student-services/news-events/news/2025/11/622976/web-of-science-licence-will-end-on-31-december-2025'
+    },
+    {
       vendor: 'Springer Nature', product: 'SpringerLink', category: 'Journal & Book Platform',
       competesWith: 'ScienceDirect', subscriptionStart: '2024-01-01', contractExpiry: '2026-12-31',
       notes: 'UKB-SURF Read & Publish agreement 2024–2026. ~2,000 hybrid Springer OpenChoice journals. OA at no APC, capped at 2,067 articles/year nationally. Source: openaccess.nl/en/publisherdeal/springer-2024-2026 — deal page confirms all Dutch universities (incl. UMCs) are covered.'
@@ -9383,7 +9403,7 @@ const COMPETITOR_PRODUCTS = {
     {
       vendor: 'Clarivate', product: 'Web of Science', category: 'Citation & Abstract Database',
       competesWith: 'Scopus', subscriptionStart: '', contractExpiry: '',
-      notes: '  UNCONFIRMED. TiU focuses on social sciences, economics, law & humanities — less dependent on citation DBs than STEM universities. Verify whether WoS subscription is active with library (tilburguniversity.edu/library).'
+      notes: 'Active. Tilburg University Library\'s database guide lists Web of Science (Science, Social Sciences and Arts & Humanities Citation Indexes) under its licensed resources; no end notice found (checked 2 Oct 2026). Replaces the earlier workshop-page citation. Source: libguides.uvt.nl/humanitiesdigitalsciences/databases'
     },
     {
       vendor: 'Springer Nature', product: 'SpringerLink', category: 'Journal & Book Platform',
@@ -9407,7 +9427,7 @@ const COMPETITOR_PRODUCTS = {
     {
       vendor: 'Clarivate', product: 'Web of Science', category: 'Citation & Abstract Database',
       competesWith: 'Scopus', subscriptionStart: '', contractExpiry: '',
-      notes: 'Active subscription confirmed — Maastricht University Library states full-text access is available for "journals to which University Maastricht subscribes" within Web of Science. Directly verified 2026-08-25. Strong medical school and health sciences research makes citation DB coverage a priority. Competes directly with Scopus. Source: library.maastrichtuniversity.nl/database/web.'
+      notes: 'Active. UM Library lists Web of Science (Core Collection, no Book Citation Index) and names it the primary source for Pure imports; no end date. Note UM is cancelling Scopus from 1 Jan 2027, so Web of Science becomes its only commercial citation database. Source: library.maastrichtuniversity.nl/database/web/ and library.maastrichtuniversity.nl/news/investing-in-open-research-information-openalex-partnership-and-end-of-scopus-license/'
     },
     {
       vendor: 'Springer Nature', product: 'SpringerLink', category: 'Journal & Book Platform',
@@ -9435,8 +9455,8 @@ const COMPETITOR_PRODUCTS = {
   'wur': [
     {
       vendor: 'Clarivate', product: 'Web of Science', category: 'Citation & Abstract Database',
-      competesWith: 'Scopus', subscriptionStart: '', contractExpiry: '',
-      notes: '  UNCONFIRMED. WUR is life sciences / agri-food focused — strong bibliometrics culture. Access status unclear given NL cancellation wave. Verify with WUR Library (library@wur.nl).'
+      competesWith: 'Scopus', subscriptionStart: '', contractExpiry: '2025-12-31',
+      notes: 'CANCELLED. WUR Library ended access to Web of Science at the start of 2026 (reported by WUR\'s own magazine Resource, 23 Jan 2026); WUR Library still lists Scopus. The earlier \'no\' was wrong. Source: www.resource-online.nl/index.php/2026/01/23/column-joshua-wanbugu-switch-off-button/?lang=en and www.wur.nl/en/library/databases-and-collections'
     },
     {
       vendor: 'Springer Nature', product: 'SpringerLink', category: 'Journal & Book Platform',
@@ -9465,7 +9485,7 @@ const COMPETITOR_PRODUCTS = {
     {
       vendor: 'Clarivate', product: 'Web of Science', category: 'Citation & Abstract Database',
       competesWith: 'Scopus', subscriptionStart: '', contractExpiry: '',
-      notes: '  UNCONFIRMED. OU is a distance-learning institution with a smaller research budget. WoS subscription status unclear — likely minimal or absent. Verify with OU Library (library@ou.nl).'
+      notes: 'Active. Web of Science is listed in the OU Digital Library\'s overview of 70 databases (access runs through Maastricht University\'s proxy). Scopus is not listed there. Replaces the earlier UNCONFIRMED status. Source: bibliotheek.ou.nl/Databases'
     },
     {
       vendor: 'Springer Nature', product: 'SpringerLink', category: 'Journal & Book Platform',
@@ -9481,6 +9501,86 @@ const COMPETITOR_PRODUCTS = {
       vendor: 'Taylor & Francis', product: 'Taylor & Francis Online', category: 'Journal Content Platform',
       competesWith: 'ScienceDirect', subscriptionStart: '2024-01-01', contractExpiry: '2026-12-31',
       notes: 'UNL (Dutch universities) Read & Publish agreement 2024–2026. ~2,200 hybrid T&F/Routledge journals, capped at 1,451 articles/year.   2025 quota already reached. Source: openaccess.nl/en/publisherdeal/taylor-francis-2024-2026 — deal page confirms all Dutch universities (incl. UMCs) are covered.'
+    }
+  ],
+
+  'ihedelft': [
+    {
+      vendor: 'Clarivate', product: 'Web of Science', category: 'Citation & Abstract Database',
+      competesWith: 'Scopus', subscriptionStart: '', contractExpiry: '',
+      notes: 'Active. IHE Delft\'s Online resources page lists Clarivate Web of Knowledge (1988-present) among licensed resources. Source: www.un-ihe.org/online-resources'
+    }
+  ],
+
+  'aumc': [
+    {
+      vendor: 'Clarivate', product: 'Web of Science', category: 'Citation & Abstract Database',
+      competesWith: 'Scopus', subscriptionStart: '', contractExpiry: '',
+      notes: 'Active. Amsterdam UMC Medical Library lists Web of Science (Clarivate) next to Scopus among its databases. Source: www.amsterdamumc.org/en/research/support/services-support/medical-library/databases'
+    }
+  ],
+
+  'erasmusmc': [
+    {
+      vendor: 'Clarivate', product: 'Web of Science', category: 'Citation & Abstract Database',
+      competesWith: 'Scopus', subscriptionStart: '', contractExpiry: '',
+      notes: 'Active. Erasmus MC Medical Library lists Web of Science next to Scopus; Erasmus MC staff also use the EUR library, which keeps its subscription. Source: medbib.erasmusmc.nl/en/searching/databases-2/'
+    }
+  ],
+
+  'umcutrecht': [
+    {
+      vendor: 'Clarivate', product: 'Web of Science', category: 'Citation & Abstract Database',
+      competesWith: 'Scopus', subscriptionStart: '', contractExpiry: '2025-12-31',
+      notes: 'CANCELLED. UMC Utrecht staff use the Utrecht University Library licence, which ended 1 Jan 2026: UU staff, UMC Utrecht staff and UU students no longer have Web of Science. Source: www.uu.nl/en/news/reminder-access-to-web-of-science-will-end-on-1-january-2026'
+    }
+  ],
+
+  'umcg': [
+    {
+      vendor: 'Clarivate', product: 'Web of Science', category: 'Citation & Abstract Database',
+      competesWith: 'Scopus', subscriptionStart: '', contractExpiry: '2026-12-31',
+      notes: 'CANCELLING. UMCG ends its Web of Science licence together with the University of Groningen with effect from 1 Jan 2027. Source: www.rug.nl/medicallibrary/news/access-to-web-of-science-will-end-on-1-january-2027'
+    }
+  ],
+
+  'radboudumc': [
+    {
+      vendor: 'Clarivate', product: 'Web of Science', category: 'Citation & Abstract Database',
+      competesWith: 'Scopus', subscriptionStart: '', contractExpiry: '',
+      notes: 'Active. Radboud University Library\'s Web of Science page covers students and employees of Radboud University and Radboudumc. Source: www.ru.nl/en/services/library/searching-for-literature/databases/web-of-science'
+    }
+  ],
+
+  'mpi': [
+    {
+      vendor: 'Clarivate', product: 'Web of Science', category: 'Citation & Abstract Database',
+      competesWith: 'Scopus', subscriptionStart: '', contractExpiry: '',
+      notes: 'Active via the Max Planck Society licence. Web of Science and Scopus are licensed MPG-wide and available from any Max Planck institute domain (page written for the Fritz Haber Institute, same MPG licence). Source: www.fhi.mpg.de/116389/databases and www.mpdl.mpg.de/en/services/service-catalog/scientific-journals.html'
+    }
+  ],
+
+  'rivm': [
+    {
+      vendor: 'Clarivate', product: 'Web of Science', category: 'Citation & Abstract Database',
+      competesWith: 'Scopus', subscriptionStart: '', contractExpiry: '',
+      notes: 'Likely. RIVM report 2026-0037 states a literature search was run in Embase, Scopus, Web of Science and PsycINFO in early 2025, and RIVM\'s evidence protocol 2025-0087 names Scopus and Web of Science as minimum databases. No library licence page found. Source: www.rivm.nl/bibliotheek/rapporten/2026-0037.pdf and www.rivm.nl/bibliotheek/rapporten/2025-0087.pdf'
+    }
+  ],
+
+  'lumc': [
+    {
+      vendor: 'Clarivate', product: 'Web of Science', category: 'Citation & Abstract Database',
+      competesWith: 'Scopus', subscriptionStart: '', contractExpiry: '',
+      notes: 'Active via Leiden University Libraries. The Walaeus Library is the LUMC medical library of Leiden University Libraries and lists Web of Science among its database search options; LUMC staff get remote access to the Leiden resources. Source: www.bibliotheek.universiteitleiden.nl/over-ons/locaties/walaeus-bibliotheek'
+    }
+  ],
+
+  'mumc': [
+    {
+      vendor: 'Clarivate', product: 'Web of Science', category: 'Citation & Abstract Database',
+      competesWith: 'Scopus', subscriptionStart: '', contractExpiry: '',
+      notes: 'Active via Maastricht University Library, which also serves as the library of Maastricht UMC+ (azM). UM lists Web of Science with no end date; UM is cancelling Scopus from 1 Jan 2027. Source: library.maastrichtuniversity.nl/database/web/ and www.maastrichtuniversity.nl/nl/partnerships-0'
     }
   ]
 
