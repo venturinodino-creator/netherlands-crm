@@ -41,4 +41,4 @@ The smoke check opens every page in a real browser with sign-in and the database
 
 ## Database
 
-The three Regions share one Supabase project, `cfhljbexesdrabmadpcc`, split by a `region` column. The page only shows what the database accepted, so when a save is refused, read the table's foreign keys and access rules before changing the page: the Supabase connector answers that read-only (`list_tables`, or a `select` on `pg_policies`). Never write to the database from a session.
+The three Regions share one Supabase project, `cfhljbexesdrabmadpcc`, split by a `region` column. The page only shows what the database accepted, so when a save is refused, read the table's foreign keys and access rules before changing the page: the Supabase connector answers that read-only (`list_tables`, or a `select` on `pg_policies`). The rules that explain a refused save, and the columns added for shared edits, are in `docs/agents/database.md`. A schema change is a migration applied only with the owner's go-ahead in that session; never write data to the database from a session.
