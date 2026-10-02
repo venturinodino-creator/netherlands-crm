@@ -30,11 +30,11 @@ A button, link or picker that writes, or opens a window that writes, carries `da
 
 ## One word per thing
 
-Use the terms in `GLOSSARY.md` in the interface, in tests and in issue titles: Institution, Contact, Interaction, Deal, Tender, White Space target. "Opp", "opportunity" and "pipeline" are not shown to users.
+Use the terms in `GLOSSARY.md` (kept in `netherlands-crm`) in the interface, in tests and in issue titles: Institution, Contact, Interaction, Deal, Tender, White Space target. "Opp", "opportunity" and "pipeline" are not shown to users.
 
 ## A change lands in all three repos
 
-`denmark-crm` and `belgium-crm` mirror this repo. A pull request here is not finished until the same change is verified there. Region data, Region wording, localised patterns and storage-key prefixes are left alone. See `docs/agents/mirroring.md`.
+`netherlands-crm` is the reference; `denmark-crm` and `belgium-crm` mirror it. A pull request in one is not finished until the same change is verified in the other two. Region data, Region wording, localised patterns and storage-key prefixes are left alone. The routine is `docs/agents/mirroring.md` in `netherlands-crm`. This file is identical in all three repos.
 
 ## Already enforced, not reviewed by eye
 
