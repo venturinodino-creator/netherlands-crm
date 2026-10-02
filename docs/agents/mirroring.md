@@ -4,7 +4,7 @@
 
 ## What is never mirrored
 
-Region data, Region wording, localised title patterns and storage-key prefixes (`nl_crm_`, `dk_crm_`, `be_crm_`). These differ on purpose.
+Region data (each repo's `seed-data.js`), Region wording, localised title patterns and storage-key prefixes (`nl_crm_`, `dk_crm_`, `be_crm_`). These differ on purpose.
 
 ## The routine
 
