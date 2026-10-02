@@ -1,5 +1,17 @@
 [
   {
+    "id": "inews_https_www_maastrichtuniversity_nl_s_mariani",
+    "institution": "Maastricht University",
+    "sourceType": "feed",
+    "title": "S. Mariani",
+    "url": "https://www.maastrichtuniversity.nl/s-mariani",
+    "date": "Thu, 01 Oct 2026 17:37:01 +0000",
+    "summary": "<span>S. Mariani</span> <span><span>Anonymous (not verified)</span></span> <span><time datetime=\"2026-10-01T19:37:01+02:00\" title=\"Thu, 10/01/2026 - 19:37\">Thu, 10/01/2026 - 19:37</time> </span> <div> S. Mariani </div> <div> S. Mariani </div> <div> <a href=\"https://orcid.org/0000-0002-2238-1399\">ORCID</a> </div> <ul class=\"list list--reset\"> <li class=\"mb-1\"> Fac. Health, Medicine and Life Sciences </li> <li class=\"mb-1\"> Cardiovascular Research Inst. Maastricht </li> <li class=\"mb-1\"> CTC </li> </ul> <picture> <source srcset=\"https://www.maastrichtuniversity.nl/sites/default/files/styles/4800",
+    "matchedTerm": "orcid",
+    "reason": "named system or vendor",
+    "foundAt": "2026-10-02T13:15:33.610716Z"
+  },
+  {
     "id": "inews_https_www_maastrichtuniversity_nl_pm_njagi",
     "institution": "Maastricht University",
     "sourceType": "feed",
