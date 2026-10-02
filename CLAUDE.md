@@ -19,6 +19,7 @@ Single-context: one `GLOSSARY.md` and `docs/adr/` at the repo root, created lazi
 Settled with the owner. Do not undo these without asking.
 
 - **The "Your Day" card lives on the Daily Digest page only.** It was added to the dashboard widget board and then removed again (2026-09-19 and 2026-09-20); the owner confirmed on 2026-10-01 that it stays off the dashboard.
+- **Dismissed news articles and hidden OpenAlex rows stay personal.** They are tidying of one user's own view, so they live in that browser's storage and are not shared. Competitor Matrix notes, competitor details and hand-set threat levels are shared and live in the database (decided 2026-10-02, spec #103).
 
 ## Working convention
 
