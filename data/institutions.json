@@ -1,5 +1,12 @@
 [
  {
+  "id": "arcnl",
+  "name": "Advanced Research Center for Nanolithography",
+  "short": "ARCNL",
+  "type": "research",
+  "city": "Amsterdam"
+ },
+ {
   "id": "amolf",
   "name": "AMOLF",
   "short": "AMOLF",
@@ -56,11 +63,25 @@
   "city": "The Hague"
  },
  {
+  "id": "dans",
+  "name": "DANS — Data Archiving and Networked Services",
+  "short": "DANS",
+  "type": "research",
+  "city": "The Hague"
+ },
+ {
   "id": "deltares",
   "name": "Deltares",
   "short": "Deltares",
   "type": "research",
   "city": "Delft"
+ },
+ {
+  "id": "differ",
+  "name": "DIFFER — Dutch Institute for Fundamental Energy Research",
+  "short": "DIFFER",
+  "type": "research",
+  "city": "Eindhoven"
  },
  {
   "id": "nwo",
@@ -203,11 +224,25 @@
   "city": "Amsterdam"
  },
  {
+  "id": "niod",
+  "name": "NIOD Institute for War, Holocaust and Genocide Studies",
+  "short": "NIOD",
+  "type": "research",
+  "city": "Amsterdam"
+ },
+ {
   "id": "nioz",
   "name": "NIOZ Royal Netherlands Institute for Sea Research",
   "short": "NIOZ",
   "type": "research",
   "city": "Den Burg (Texel)"
+ },
+ {
+  "id": "nivel",
+  "name": "Nivel — Netherlands Institute for Health Services Research",
+  "short": "Nivel",
+  "type": "ngo",
+  "city": "Utrecht"
  },
  {
   "id": "nlr",
@@ -315,6 +350,13 @@
   "city": "The Hague"
  },
  {
+  "id": "trimbos",
+  "name": "Trimbos Institute",
+  "short": "Trimbos",
+  "type": "ngo",
+  "city": "Utrecht"
+ },
+ {
   "id": "tudelft",
   "name": "TU Delft",
   "short": "TU Delft",
@@ -376,6 +418,27 @@
   "short": "WUR",
   "type": "university",
   "city": "Wageningen"
+ },
+ {
+  "id": "westerdijk",
+  "name": "Westerdijk Fungal Biodiversity Institute",
+  "short": "Westerdijk",
+  "type": "research",
+  "city": "Utrecht"
+ },
+ {
+  "id": "wetsus",
+  "name": "Wetsus — European Centre of Excellence for Sustainable Water Technology",
+  "short": "Wetsus",
+  "type": "research",
+  "city": "Leeuwarden"
+ },
+ {
+  "id": "wodc",
+  "name": "WODC — Research and Documentation Centre",
+  "short": "WODC",
+  "type": "research",
+  "city": "The Hague"
  },
  {
   "id": "zonmw",
