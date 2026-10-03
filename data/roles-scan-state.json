@@ -1,22 +1,50 @@
 {
-  "lastRun": "2026-10-02T14:43:51.612Z",
+  "lastRun": "2026-10-03T13:22:36.804Z",
   "lastAddedCount": 0,
   "lastBatch": [
+    "sron",
+    "tno",
+    "westerdijk",
+    "wetsus",
+    "wodc",
+    "iiss",
+    "clingendael",
     "hiil",
     "icj",
-    "oxfamnovib",
-    "zonmw",
-    "tue",
-    "eur",
-    "ihedelft",
-    "leiden",
-    "um",
-    "ou"
+    "nivel"
   ],
   "lastWebSearches": 0,
   "cursor": 51,
-  "institutions": 55,
+  "institutions": 64,
   "perInstitution": [
+    {
+      "instId": "sron",
+      "error": "Anthropic API 401: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"API key is invalid.\"},\"request_id\":null}"
+    },
+    {
+      "instId": "tno",
+      "error": "Anthropic API 401: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"API key is invalid.\"},\"request_id\":null}"
+    },
+    {
+      "instId": "westerdijk",
+      "error": "Anthropic API 401: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"API key is invalid.\"},\"request_id\":null}"
+    },
+    {
+      "instId": "wetsus",
+      "error": "Anthropic API 401: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"API key is invalid.\"},\"request_id\":null}"
+    },
+    {
+      "instId": "wodc",
+      "error": "Anthropic API 401: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"API key is invalid.\"},\"request_id\":null}"
+    },
+    {
+      "instId": "iiss",
+      "error": "Anthropic API 401: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"API key is invalid.\"},\"request_id\":null}"
+    },
+    {
+      "instId": "clingendael",
+      "error": "Anthropic API 401: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"API key is invalid.\"},\"request_id\":null}"
+    },
     {
       "instId": "hiil",
       "error": "Anthropic API 401: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"API key is invalid.\"},\"request_id\":null}"
@@ -26,35 +54,7 @@
       "error": "Anthropic API 401: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"API key is invalid.\"},\"request_id\":null}"
     },
     {
-      "instId": "oxfamnovib",
-      "error": "Anthropic API 401: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"API key is invalid.\"},\"request_id\":null}"
-    },
-    {
-      "instId": "zonmw",
-      "error": "Anthropic API 401: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"API key is invalid.\"},\"request_id\":null}"
-    },
-    {
-      "instId": "tue",
-      "error": "Anthropic API 401: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"API key is invalid.\"},\"request_id\":null}"
-    },
-    {
-      "instId": "eur",
-      "error": "Anthropic API 401: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"API key is invalid.\"},\"request_id\":null}"
-    },
-    {
-      "instId": "ihedelft",
-      "error": "Anthropic API 401: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"API key is invalid.\"},\"request_id\":null}"
-    },
-    {
-      "instId": "leiden",
-      "error": "Anthropic API 401: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"API key is invalid.\"},\"request_id\":null}"
-    },
-    {
-      "instId": "um",
-      "error": "Anthropic API 401: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"API key is invalid.\"},\"request_id\":null}"
-    },
-    {
-      "instId": "ou",
+      "instId": "nivel",
       "error": "Anthropic API 401: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"API key is invalid.\"},\"request_id\":null}"
     }
   ]
