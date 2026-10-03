@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-10-02T14:07:07.460Z",
+  "lastRun": "2026-10-03T12:46:30.148Z",
   "lastAddedCount": 0,
   "sources": 53,
   "blockedSources": [
@@ -55,12 +55,17 @@
     },
     {
       "instId": "nikhef",
-      "note": "no people extracted"
+      "url": "https://www.nikhef.nl/en/nikhef/organisation/",
+      "error": "fetch failed"
     },
     {
-      "instId": "sanquin",
-      "url": "https://www.sanquin.nl/en/about-sanquin/management-supervision",
+      "instId": "nikhef",
+      "url": "https://www.nikhef.nl/en/director/",
       "error": "fetch failed"
+    },
+    {
+      "instId": "nikhef",
+      "note": "no people extracted"
     },
     {
       "instId": "umcg",
@@ -74,15 +79,6 @@
     },
     {
       "instId": "clingendael",
-      "note": "no people extracted"
-    },
-    {
-      "instId": "mpi",
-      "url": "https://www.mpi.nl/page/institute-leadership",
-      "error": "fetch failed"
-    },
-    {
-      "instId": "mpi",
       "note": "no people extracted"
     },
     {
